@@ -1,0 +1,38 @@
+<div class="artist-detail">
+    <div class="container">
+        <div class="col-md-12">
+            <h4>S Yousuf Ali</h4>
+
+            <p class="cont-artist" style=" -webkit-column-count: 2;   -webkit-column-gap: 50px; /* Chrome, Safari, Opera */ -moz-column-count: 2; /* Firefox */ -column-gap: 50px; column-count: 2;">
+                Born in 1939 in Goa. Sheikh Yousuf Ali is the best known among Contemporary Artists of India. At the age of 45, Yousuf Ali's paintings gained international acceptance and appreciation. He was qualified with Diploma in Painting from Sir J J School of Art, Mumbai in 1964. Later he served as a Designer in Advertising for several years in Mumbai and further as an Art Director of a leading Advertising Agency. He received the Height of Glory Award as a Designer in 1977 and the 19th National Award for Excellence in Printing and Designing of Books. He had many solo and group shows in India and abroad. He expired in the year 1997 leaving behind the wonderful memories through his works of Art
+            </p>.
+        </div>
+        <div class="row">
+            <div class="col-md-3" ng-repeat="artistdetails in artistdetail">
+                <div class="artist-details">
+                    <img ng-src='{{artistdetails.image}}' class="img-responsive">
+                    <div class="artist-cont-detail">
+                        <p>
+                            {{artistdetails.id}}
+                        </p>
+                        <p>
+                            {{artistdetails.typename}}
+                        </p>
+                        <p>
+                            {{artistdetails.madein}}
+                        </p>
+                        <p>
+                            <span class="labels">Size</span> {{artistdetails.size}} (inches)
+                        </p>
+                        <p>
+                            <span class="labels">Year</span> {{artistdetails.year}}
+                        </p>
+                        <p>
+                            <span class="labels">Price</span> {{artistdetails.price}} &#8377;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

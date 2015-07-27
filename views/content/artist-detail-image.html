@@ -1,0 +1,35 @@
+<div class="image-detail">
+    <div class="container">
+        <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
+            <div class="col-md-8">
+                <div class="img-imagedetail">
+                    <img ng-src='{{artistDetailImgs.image}}' class="img-responsive">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cont-imagedetail">
+                    <div class="artist-cont-detail">
+                        <p>
+                            {{artistDetailImgs.id}}
+                        </p>
+                        <p>
+                            {{artistDetailImgs.typename}}
+                        </p>
+                        <p>
+                            {{artistDetailImgs.madein}}
+                        </p>
+                        <p>
+                            <span class="labels">Size</span> {{artistDetailImgs.size}} (inches)
+                        </p>
+                        <p>
+                            <span class="labels">Year</span> {{artistDetailImgs.year}}
+                        </p>
+                        <p>
+                            <span class="labels">Price</span> {{artistDetailImgs.price}} &#8377;
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

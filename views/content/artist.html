@@ -1,0 +1,14 @@
+<div class="artist">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3" ng-repeat="artistimages in artistimage">
+                <div class="aristimg-grp1">
+                    <img ng-src='{{artistimages.image}}' class="img-responsive">
+                    <h4 class="text-center">
+                   {{artistimages.name}}
+               </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
