@@ -1,18 +1,113 @@
 @import "lesshat.less";
-
-@color1: #e6e7e9; 
-@color2: #d4ae70; 
+@import "gf.css";
+/*Author wohlig technology*/
+@color1: #e6e7e9;
+@color2: #d4ae70;
 @color3: #ff4f4f;
+@color4: #20df87;
+@color-base: #313131;
+@color-base-light: #666666;
+@color-shade-light: #666666;
+@font-family-body: 'Open Sans';
+@font-body: 13px;
+@font-family-head: 'Raleway';
+@font-head: 21px;
+@box-mini: 32px;
 
-@color_base: #313131;
-@color_base_light: #666666;
+.lh(@n) { line-height: @n; }
 
-@font_body: 14px;
-@font_head: 21px;
+.square(@v) {
+    width: @v;
+    height: @v;
+}
 
-@line_height: 150%;
+.rect(@h, @w) {
+    width: @w;
+    height: @h;
+}
+
+body {
+    font-family: @font-family-body;
+    font-size: @font-body;
+    .lh(150%);
+    color: @color-base;
+}
+
+a {color: @color-base;}
+
+h1, h2, h3, h4, h5, h6 { font-family: @font-family-head; }
 
 .navbar-toggle .icon-bar { background-color: black; }
-.copy { color: #7e7e7e; }
-.nopadding { padding: 0; }
-.light_shade { color: #8f9fab; }
+
+.copy { color: @color-shade-light; }
+
+.nopad { padding: 0; }
+
+.light-shade { color: #8f9fab; }
+
+.row-flex { .display(flex); }
+
+.col-flex { .flex(1); }
+
+.style1-bg { background-color: @color1; }
+
+.style2-bg { background-color: @color2; }
+
+.style3-bg { background-color: @color3; }
+
+.style4-bg { background-color: @color4; }
+
+.img-responsive { width: 100%; }
+
+.inline-box {
+    font-family: @font-family-head;
+    font-size: 11px;
+    .lh(120%);
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    .translateY(-50%);
+}
+
+.box-height {
+    position: relative;
+    height: @box-mini;
+    cursor: pointer;
+}
+
+.small-box {
+    display: inline-block;
+    .square(@box-mini);
+    .lh(@box-mini);
+    text-align: center;
+    color: white;
+}
+
+.form-control:focus {
+    border-color: transparent;
+    .box-shadow('none');
+}
+
+button, input, optgroup, select, textarea {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+}
+
+.ingroup {
+    font-family: @font-family-head;
+    background-color: #f1f1f1;
+    padding-right: 3px;
+
+    input, button { border: none; }
+
+    input { box-shadow: none; background-color: transparent;height: 33px;}
+    
+    .input-group-btn button {.border-radius(0px);border: 0px;padding: 4px 7px;color: @color-shade-light;}
+}
+
+nav.navbar {font-family: @font-family-head; text-transform: uppercase; color: @color-base; font-weight: 500;border: 0; margin: 0; min-height: 0;}
+
+.nav>li>a {background-color: @color2; .transition(all 0.5s ease);}
+
+.nav li+li {padding-left: 5px;} 
