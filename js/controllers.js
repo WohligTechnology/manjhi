@@ -80,7 +80,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
-    $scope.template = TemplateService.changecontent("artist-detail-image");
+    $scope.template = TemplateService.changecontent("detailImage");
     $scope.menutitle = NavigationService.makeactive("Artistdetailimage");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
@@ -97,7 +97,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
 .controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService) {
-    $scope.template = TemplateService.changecontent("artist-detail")
+    $scope.template = TemplateService.changecontent("artistDetail")
     $scope.menutitle = NavigationService.makeactive("ArtistDetail");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
@@ -181,26 +181,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             name: 'S Yousuf Ali'
     }, {
             image: 'img/artist/artist2.jpg',
-            name: 'S Yousuf Ali'
+            name: 'Krishen Khanna'
     }, {
             image: 'img/artist/artist3.jpg',
-            name: 'S Yousuf Ali'
+            name: 'Manjit Bawa'
     }, {
             image: 'img/artist/artist4.jpg',
-            name: 'S Yousuf Ali'
+            name: 'Paramjit Singh'
     },
         {
             image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali'
+            name: 'Sidharth'
     }, {
             image: 'img/artist/artist2.jpg',
-            name: 'S Yousuf Ali'
+            name: 'Ajay De'
     }, {
             image: 'img/artist/artist3.jpg',
-            name: 'S Yousuf Ali'
+            name: 'Ajay R Dhandre'
     }, {
             image: 'img/artist/artist4.jpg',
-            name: 'S Yousuf Ali'
+            name: 'Amarnath Sharma'
     }];
 })
 

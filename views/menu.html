@@ -1,5 +1,7 @@
 <ul class="nav nav-justified">
     <li ng-repeat="menu in navigation" class="{{menu.classis}}">
-        <a href="{{menu.link}}">{{menu.name}}</a>
+        <a href="{{menu.link}}">
+            <div class="inner-nav">{{menu.name}}</div>
+        </a>
     </li>
 </ul>
