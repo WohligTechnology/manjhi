@@ -28,7 +28,7 @@
 }
 
 body {
-    padding-top: 105px;
+//    padding-top: 105px;
     font-family: @font-family-body;
     font-size: @font-body;
     .lh(150%);
@@ -165,7 +165,11 @@ nav.navbar {
     min-height: 0;
 }
 
-.logo { padding-right: 30px; }
+.logo {
+    padding-right: 30px;
+    padding-top: 5px;
+    width: 97%;
+}
 
 .above-nav { padding-top: 15px; }
 
@@ -433,6 +437,10 @@ h4 {
 
 .shadow-on { .box-shadow(0px 1px 2px 0px rgba(0, 0, 0, 0.4)); }
 
+.nav>li>a {
+    padding: 10px 0px;
+}
+
 .nav {
     li {
         a {
@@ -440,33 +448,32 @@ h4 {
             .transition(all 0.5s ease);
         }
 
-        a:after {
+        .slant-menu {
             height: 100%;
             width: 20px;
             position: absolute;
             content: "";
-            right: -10px;
             top: 0;
             .background-image(linear-gradient(to bottom, #fff5eb 0%, #f89e43 100%));
             .skew(-20deg);
+            z-index: -1;
+        }
+
+        a:after {
+            right: -10px;
+            .slant-menu();
         }
 
         a:before {
-            height: 100%;
-            width: 20px;
-            position: absolute;
-            content: "";
             left: -10px;
-            top: 0;
-            .background-image(linear-gradient(to bottom, #fff5eb 0%, #f89e43 100%));
-            .skew(-20deg);
+            .slant-menu();
         }
     }
 
     li+li { margin-left: 25px; }
 
     li:nth-last-child(1) {
-        a { padding-right: 25px; }
+        a { padding-right: 10px; }
 
         a:after { width: 0; }
     }
@@ -474,6 +481,30 @@ h4 {
     li:nth-child(1) {
         a:before { width: 0; }
 
-        a { padding-left: 25px; }
+        a { padding-left: 10px; }
     }
+}
+
+.social-icons {
+    text-align: center;
+
+    ul {
+        padding: 0;
+        margin: 5px 0 0;
+    }
+
+    i { font-size: 22px; }
+
+    li {
+        list-style: none;
+        display: inline;
+    }
+
+    .fa-facebook-square { color: #3B5998; }
+
+    .fa-youtube-square { color: #CE332D; }
+
+    .fa-google-plus-square { color: #D13F2D; }
+
+    .fa-twitter-square { color: #44CCF6; }
 }

@@ -2,20 +2,45 @@ var navigationservice = angular.module('navigationservice', [])
 
 .factory('NavigationService', function() {
     var navigation = [{
-        name: "Home",
-        classis: "active",
-        link: "#/home",
-        subnav: []
-    }, {
-        name: "Features",
+        name: "About",
         active: "",
-        link: "#/feature",
+        link: "#",
         classis: "active",
         subnav: []
     }, {
-        name: "Infinite Scroll",
+        name: "Artists",
         active: "",
-        link: "#/infinite",
+        link: "#",
+        classis: "active",
+        subnav: []
+    }, {
+        name: "Paintings",
+        active: "",
+        link: "#",
+        classis: "active",
+        subnav: []
+    }, {
+        name: "Infra Service",
+        active: "",
+        link: "#",
+        classis: "active",
+        subnav: []
+    }, {
+        name: "Events",
+        active: "",
+        link: "#",
+        classis: "active",
+        subnav: []
+    }, {
+        name: "Press",
+        active: "",
+        link: "#",
+        classis: "active",
+        subnav: []
+    }, {
+        name: "Contact",
+        active: "",
+        link: "#",
         classis: "active",
         subnav: []
     }];

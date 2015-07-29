@@ -237,12 +237,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $(".fixer-top").addClass("shadow-on");
             console.log('5');
         }
-        
-        if (scrolled < 5) {
+        else {
             $(".fixer-top").removeClass("shadow-on");
             console.log('5');
         }
-
         $scope.$apply();
     });
 
