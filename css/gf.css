@@ -1,1 +1,32 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,200,100,500,600,700,800,900|Open+Sans:400,300,600,700,800);
+ .flex-direction-nav a:before {
+    font-family: 'fontAwesome';
+    font-size: 25px;
+    display: inline-block;
+    content: '';
+    color: white;
+    text-shadow: none;
+    opacity: 1;
+    margin-top: 15px;
+}
+.flex-direction-nav a.flex-prev:before {
+    content: '\f053';
+}
+.flex-direction-nav a.flex-next:before {
+    content: '\f054';
+}
+.flex-direction-nav a {
+    opacity: 1 !important;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 26px 0px;
+    height: 100px;
+    text-align: center !important;
+    width: 40px;
+    margin: -45px 0 0;
+}
+.flex-direction-nav .flex-prev {
+    left: 0px !important;
+}
+.flex-direction-nav .flex-next {
+    right: 0px !important;
+}
