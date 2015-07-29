@@ -34,6 +34,11 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
         url: "/cart",
         templateUrl: "views/template.html",
         controller: 'CartCtrl'
+    })  
+        .state('checkout', {
+        url: "/checkout",
+        templateUrl: "views/template.html",
+        controller: 'CheckoutCtrl'
     })
 
     .state('artist', {

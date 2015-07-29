@@ -1,6 +1,6 @@
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select','angular-flexslider'])
 
-.controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("home");
     $scope.menutitle = NavigationService.makeactive("Home");
@@ -12,16 +12,38 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				'img/slide2.jpg'
 			];
 })
-    
-    .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("cart");
-    $scope.menutitle = NavigationService.makeactive("Cart");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
 
-.controller('FeatureCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
+.controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("cart");
+        $scope.menutitle = NavigationService.makeactive("Cart");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
+    .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("checkout");
+        $scope.menutitle = NavigationService.makeactive("Checkout");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        //Valdr
+        valdr.addConstraints({
+            'Person': {
+                'firstName': {
+                    'size': {
+                        'min': 3,
+                        'max': 20,
+                        'message': 'First name is required to be between 3 and 20 characters.'
+                    },
+                    'required': {
+                        'message': 'First name is required.'
+                    }
+                }
+            }
+        });
+    })
+
+.controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
     $scope.template = TemplateService.changecontent("feature");
     $scope.menutitle = NavigationService.makeactive("Features");
     TemplateService.title = $scope.menutitle;
@@ -29,16 +51,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Angular Loader Example
     //Start loader
-    $scope.showLoader = function() {
-        cfpLoadingBar.start();
-    }
-    //Complete loader
-    $scope.hideLoader = function() {
+    $scope.showLoader = function () {
+            cfpLoadingBar.start();
+        }
+        //Complete loader
+    $scope.hideLoader = function () {
         cfpLoadingBar.complete();
     }
 
     //Angular toaster
-    $scope.showToaster = function() {
+    $scope.showToaster = function () {
         toaster.pop({
             type: 'success',
             title: 'Success!',
@@ -61,7 +83,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
     //ngDialog
-    $scope.showPopup = function() {
+    $scope.showPopup = function () {
         ngDialog.open({
             template: 'demopop'
         });
@@ -92,7 +114,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService) {
+.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("detailImage");
     $scope.menutitle = NavigationService.makeactive("Artistdetailimage");
     TemplateService.title = $scope.menutitle;
@@ -109,7 +131,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService) {
+.controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artistDetail")
     $scope.menutitle = NavigationService.makeactive("ArtistDetail");
     TemplateService.title = $scope.menutitle;
@@ -182,7 +204,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function($scope, TemplateService, NavigationService) {
+.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
@@ -216,7 +238,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('InfiniteCtrl', function($scope, TemplateService, NavigationService) {
+.controller('InfiniteCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("infinite");
     $scope.menutitle = NavigationService.makeactive("Infinite Scroll");
     TemplateService.title = $scope.menutitle;
@@ -224,7 +246,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Infinite scroll
     $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];
-    $scope.loadMore = function() {
+    $scope.loadMore = function () {
         var last = $scope.images[$scope.images.length - 1];
         for (var i = 1; i <= 8; i++) {
             $scope.images.push(last + i);
@@ -232,17 +254,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function($scope, TemplateService, $window) {
+.controller('headerctrl', function ($scope, TemplateService, $window) {
     $scope.template = TemplateService;
     var scrolled = 0;
-    angular.element($window).bind("scroll", function() {
+    angular.element($window).bind("scroll", function () {
         var scrolled = this.pageYOffset;
         //$scope.headheight = angular.element('.fixer-top').height();
         if (scrolled >= 5) {
             $(".fixer-top").addClass("shadow-on");
             console.log('5');
-        }
-        else {
+        } else {
             $(".fixer-top").removeClass("shadow-on");
             console.log('5');
         }
