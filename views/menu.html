@@ -1,7 +1,7 @@
-<ul class="nav nav-justified">
-    <li ng-repeat="menu in navigation" class="{{menu.classis}} nav-menus">
+<ul class="nav row-flex">
+    <li ng-repeat="menu in navigation" class="{{menu.classis}} nav-menus col-flex text-center">
         <a href="{{menu.link}}">
-            <div class="inner-nav">{{menu.name}}</div>
+{{menu.name}}
         </a>
     </li>
 </ul>
