@@ -30,6 +30,12 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
         controller: 'InfiniteCtrl'
     })
 
+    .state('cart', {
+        url: "/cart",
+        templateUrl: "views/template.html",
+        controller: 'CartCtrl'
+    })
+
     .state('artist', {
         url: "/artist",
         templateUrl: "views/template.html",
@@ -37,15 +43,15 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
     })
 
     .state('artistdetail', {
-        url: "/artistDetail",
-        templateUrl: "views/template.html",
-        controller: 'ArtistDetailCtrl'
-    }) 
+            url: "/artistDetail",
+            templateUrl: "views/template.html",
+            controller: 'ArtistDetailCtrl'
+        })
         .state('detailImage', {
-        url: "/detailImage",
-        templateUrl: "views/template.html",
-        controller: 'ArtistDetailImageCtrl'
-    })
+            url: "/detailImage",
+            templateUrl: "views/template.html",
+            controller: 'ArtistDetailImageCtrl'
+        })
 
     $urlRouterProvider.otherwise("/home");
 
