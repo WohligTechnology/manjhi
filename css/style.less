@@ -28,7 +28,7 @@
 }
 
 body {
-//    padding-top: 105px;
+    //    padding-top: 105px;
     font-family: @font-family-body;
     font-size: @font-body;
     .lh(150%);
@@ -438,9 +438,7 @@ h4 {
 
 .shadow-on { .box-shadow(0px 1px 2px 0px rgba(0, 0, 0, 0.4)); }
 
-.nav>li>a {
-    padding: 10px 0px;
-}
+.nav>li>a { padding: 10px 0px; }
 
 .nav {
     li {
@@ -510,5 +508,38 @@ h4 {
     .fa-twitter-square { color: #44CCF6; }
 }
 
-.flexslider {border: 0px;}
-.carousel li {margin-right: 0px;}
+.flexslider { border: 0px; }
+
+.carousel li { margin-right: 0px; }
+
+.flex-direction-nav a:before {
+    font-family: 'fontAwesome';
+    font-size: 25px;
+    display: inline-block;
+    content: '';
+    color: white;
+    text-shadow: none;
+    opacity: 1;
+    margin-top: 15px;
+}
+
+.flex-direction-nav a.flex-prev:before { content: '\f053'; }
+
+.flex-direction-nav a.flex-next:before { content: '\f054'; }
+
+.flex-direction-nav a {
+    opacity: 1 !important;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 26px 0px;
+    height: 100px;
+    text-align: center !important;
+    width: 40px;
+    margin: -45px 0 0;
+}
+
+.flex-direction-nav .flex-prev { left: 0px !important; }
+
+.flex-direction-nav .flex-next { right: 0px !important; }
+
+/*Mobile Less*/
+@import "mobile.less";
