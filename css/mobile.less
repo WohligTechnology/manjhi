@@ -3,6 +3,7 @@
 ~"only screen and (-o-min-device-pixel-ratio: 3/2)",
 ~"only screen and (min-device-pixel-ratio: 1.5)";
 @mobile: ~"only screen and (max-width: 767px)";
+@mobileperfect: ~"only screen and (max-width: 480px)";
 @tablet: ~"only screen and (min-width: 768px) and (max-width: 991px)";
 @desktop: ~"only screen and (min-width: 992px) and (max-width: 1128px)";
 @desktop-xl: ~"only screen and (min-width: 1129px)";
@@ -77,17 +78,34 @@
     }
     .padding-more .col-md-3 {
         padding-right: 10px;
-        padding-left: 0px;
     }
     .box-style1 h4 {
         font-size: 16px;
+    }
+    .box-style1 {
+        background-color: #e6e7e9;
+        padding: 0 5px;
+    }
+    .box-style1 {
+        padding: 0 5px;
+        .img-holder {
+            padding: 0 10px 0px 10px;
+        }
+        h5 {
+            font-size: 12px;
+        }
+        p {
+            font-size: 10px;
+            line-height: 170%;
+            height: 38px;
+        }
     }
 }
 
 @media @mobile {
     .logo {
         padding: 5px 0;
-        width: 70%;
+        width: 50%;
         margin: 0 auto;
     }
     .nav li + li {
@@ -95,6 +113,10 @@
     }
     .nav li a:after {
         position: initial;
+    }
+    header.stickyheader .row-flex.login-head {
+        padding: 8px 0px 5px 15px;
+        z-index: 0;
     }
     .nopad-left {
         padding-left: 15px;
@@ -198,5 +220,11 @@
     }
     .box-style1 p {
         text-align: left;
+    }
+}
+
+@media @mobileperfect {
+    .logo {
+        width: 70%;
     }
 }

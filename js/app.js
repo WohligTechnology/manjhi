@@ -48,7 +48,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
     })
 
     .state('artistdetail', {
-            url: "/artistDetail",
+            url: "/ArtistDetail",
             templateUrl: "views/template.html",
             controller: 'ArtistDetailCtrl'
         })
