@@ -15,6 +15,9 @@ a {
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
 }
+.flexslider {
+  margin: 0px;
+}
 a:hover {
   color: #313131;
 }
@@ -739,9 +742,19 @@ span.eventvenue {
   padding-left: 6px;
 }
 /*Mobile Less*/
+@media only screen and (min-width: 1129px) and (max-width: 1200px) {
+  .nav li a {
+    font-size: 11px;
+    padding: 10px 3px;
+  }
+  .search-box label {
+    font-size: 9px;
+  }
+}
 @media only screen and (min-width: 992px) and (max-width: 1128px) {
   .nav li a {
-    font-size: 10px;
+    font-size: 11px;
+    padding: 10px 3px;
   }
   .search-box label {
     font-size: 9px;
@@ -760,6 +773,7 @@ span.eventvenue {
   }
   .nav li a {
     font-size: 10px;
+    padding: 10px 7px;
   }
   .nopad-left {
     padding-left: 15px;
@@ -824,6 +838,9 @@ span.eventvenue {
   }
   .nav li + li {
     margin-left: 0px;
+  }
+  .nav li a {
+    margin-bottom: 1px;
   }
   .nav li a:after {
     position: initial;
