@@ -468,10 +468,19 @@ a.link-page {
 .box-style1 {
     background-color: @color1;
     padding: 0 15px 10px;
+    height: 250px;
     .img-holder {
         margin: 0 -15px;
+        img {
+            height: 100px;
+        }
+    }
+    h5 {
+        font-size: 13px;
+        height: 40px;
     }
     p {
+        font-size: 12px;
         height: 55px;
         overflow: hidden;
         text-align: left;
@@ -635,28 +644,26 @@ h4 {
     right: 0px !important;
 }
 
-ul.artist-crisp {
-    display: block;
-    list-style: none;
-    padding: 0px;
-    li {
-        display: inline-block;
-        a {
-            background: #D4AE70;
-            color: #fff;
-            padding: 8px 15px;
+.painting {
+    padding: 10px 0 5px 0;
+    margin-top: 5px;
+    .aristimg-grp1 img {
+        width: auto;
+        height: 200px;
+        margin: 0px auto;
+    }
+    ul.artist-crisp {
+        display: block;
+        list-style: none;
+        padding: 0px;
+        li {
+            display: inline-block;
+            a {
+                color: @color-base;
+                padding: 8px 15px;
+            }
         }
     }
-}
-
-.painting {
-    padding: 30px 0 20px 0;
-}
-
-.aristimg-grp1 img {
-    width: auto;
-    height: 200px;
-    margin: 0px auto;
 }
 
 .row-flex.pad-flex {
