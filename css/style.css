@@ -26,6 +26,10 @@ h5,
 h6 {
   font-family: 'Raleway';
 }
+.border-top {
+  border-top: 1px solid #f1f1f1;
+  margin-top: 5px;
+}
 h3.home-header {
   text-transform: uppercase;
   font-size: 18px;
@@ -660,26 +664,70 @@ h4 {
 .flex-direction-nav .flex-next {
   right: 0px !important;
 }
-.painting {
-  padding: 10px 0 5px 0;
+.artist .painting {
+  padding: 2px 0 5px 0;
   margin-top: 5px;
+  margin-bottom: 30px;
 }
-.painting .aristimg-grp1 img {
+.artist .painting .aristimg-grp1 img {
   width: auto;
   height: 200px;
   margin: 0px auto;
 }
-.painting ul.artist-crisp {
+.artist .painting ul.artist-crisp {
   display: block;
   list-style: none;
   padding: 0px;
 }
-.painting ul.artist-crisp li {
+.artist .painting ul.artist-crisp li {
   display: inline-block;
+  position: relative;
 }
-.painting ul.artist-crisp li a {
+.artist .painting ul.artist-crisp li a {
   color: #313131;
-  padding: 8px 15px;
+  padding: 8px 4px;
+  text-transform: uppercase;
+}
+.artist .painting ul.artist-filter {
+  display: block;
+  list-style: none;
+  padding: 0px;
+}
+.artist .painting ul.artist-filter li {
+  display: inline-block;
+  position: relative;
+}
+.artist .painting ul.artist-filter li a {
+  color: #313131;
+  padding: 8px 4px;
+}
+.artist .image-holder {
+  text-align: center;
+  border: 1px solid #f1f1f1;
+}
+.artist .image-holder img {
+  height: 230px;
+}
+.artist .aristimg-grp1 h4 {
+  font-size: 16px;
+  font-family: 'Raleway';
+  font-weight: 600;
+}
+ul.artist-crisp li a.actives:before {
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 8px 8px 0px 8px;
+  border-color: #ff4f4f transparent transparent transparent;
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .row-flex.pad-flex {
   margin: 0 -3px;
