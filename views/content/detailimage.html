@@ -1,14 +1,17 @@
 <div class="image-detail">
+    <div class="border-top"></div>
     <div class="container">
         <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div class="img-imagedetail">
-                    <img ng-src='{{artistDetailImgs.image}}' class="img-responsive">
+                    <!--                    <img ng-src='{{artistDetailImgs.image}}' class="img-responsive">-->
+                    <img src="img/imagedetail/imagedetail.jpg" class="img-responsive">
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="cont-imagedetail">
                     <div class="artist-cont-detail">
+                        <h5>VIPUL RAVUNDRA BABU</h5>
                         <p>
                             {{artistDetailImgs.id}}
                         </p>
@@ -28,8 +31,12 @@
                             <span class="labels">Price</span> {{artistDetailImgs.price}} &#8377;
                         </p>
                     </div>
-                    <button type="submit" class="btn btn-default"> <i class="fa fa-star-o"></i> Favourites</button>
-                    <button type="submit" class="btn btn-default"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                    <button type="button" class="btn btn-primary btn-block">
+                        <i class="fa fa-star-o"></i> Favourites
+                    </button>
+                    <button type="button" class="btn btn-primary btn-block">
+                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    </button>
                 </div>
             </div>
         </div>

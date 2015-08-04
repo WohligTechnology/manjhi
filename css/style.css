@@ -329,6 +329,9 @@ a.link-page {
   -o-transition: all 300ms ease;
   transition: all 300ms ease;
 }
+.search-box input[type="checkbox"]:checked {
+  background: #666;
+}
 .search-box .panel-group {
   margin: 0;
 }
@@ -498,6 +501,7 @@ h4 {
 }
 .image-box .col-flex {
   margin: 0 10px;
+  align-self: center;
 }
 .white-line {
   border-right: 1px solid white;
@@ -529,7 +533,7 @@ h4 {
   background-color: #FFD83B;
 }
 .nav li a {
-  background-color: #FFD83B;
+  background-color: #FFD011;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -541,7 +545,7 @@ h4 {
   position: absolute;
   content: "";
   top: 0;
-  background-color: #FFD83B;
+  background-color: #FFD011;
   -webkit-transform: skew(-20deg);
   -moz-transform: skew(-20deg);
   -ms-transform: skew(-20deg);
@@ -556,7 +560,7 @@ h4 {
   position: absolute;
   content: "";
   top: 0;
-  background-color: #FFD83B;
+  background-color: #FFD011;
   -webkit-transform: skew(-20deg);
   -moz-transform: skew(-20deg);
   -ms-transform: skew(-20deg);
@@ -571,7 +575,7 @@ h4 {
   position: absolute;
   content: "";
   top: 0;
-  background-color: #FFD83B;
+  background-color: #FFD011;
   -webkit-transform: skew(-20deg);
   -moz-transform: skew(-20deg);
   -ms-transform: skew(-20deg);
@@ -662,6 +666,9 @@ h4 {
   margin-top: 5px;
   margin-bottom: 30px;
 }
+.artist .painting a {
+  font-size: 12px;
+}
 .artist .painting .aristimg-grp1 img {
   width: auto;
   height: 200px;
@@ -693,6 +700,7 @@ h4 {
 .artist .painting ul.artist-filter li a {
   color: #313131;
   padding: 8px 4px;
+  font-size: 12px;
 }
 .artist .image-holder {
   text-align: center;
@@ -706,6 +714,9 @@ h4 {
   font-family: 'Raleway';
   font-weight: 600;
 }
+.artist .aristimg-grp1 {
+  padding-bottom: 25px;
+}
 ul.artist-crisp li a.actives {
   color: #ff4f4f !important;
   font-weight: 600;
@@ -715,7 +726,7 @@ ul.artist-crisp li a.actives:before {
   width: 0px;
   height: 0px;
   border-style: solid;
-  border-width: 8px 8px 0px 8px;
+  border-width: 8px 6px 0px 6px;
   border-color: #ff4f4f transparent transparent transparent;
   position: absolute;
   top: -8px;
@@ -742,7 +753,7 @@ span.eventvenue {
   padding-left: 6px;
 }
 /*Mobile Less*/
-@media only screen and (min-width: 1129px) and (max-width: 1200px) {
+@media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
     font-size: 11px;
     padding: 10px 3px;
@@ -753,8 +764,8 @@ span.eventvenue {
 }
 @media only screen and (min-width: 992px) and (max-width: 1128px) {
   .nav li a {
-    font-size: 11px;
-    padding: 10px 3px;
+    font-size: 0.77em;
+    padding: 10px 6px;
   }
   .search-box label {
     font-size: 9px;
