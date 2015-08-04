@@ -103,14 +103,35 @@
         <div class="row">
             <div class="col-md-3" ng-repeat="artistimages in artistimage">
                 <div class="aristimg-grp1">
-                    <div class="image-holder">
-                        <img ng-src='{{artistimages.image}}'>
+                    <div class="image-holder" fixit>
+                        <img class="fix-img" ng-src='{{artistimages.image}}'>
                     </div>
                     <h4 class="text-center">
                    {{artistimages.name}}
                </h4>
                 </div>
             </div>
+        </div>
+        <div class="nav-page">
+            <nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">Previous;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">Next;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
         </div>
     </div>
 </div>

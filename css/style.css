@@ -705,8 +705,10 @@ h4 {
 .artist .image-holder {
   text-align: center;
   border: 1px solid #f1f1f1;
+  position: relative;
 }
 .artist .image-holder img {
+  position: absolute;
   height: 230px;
 }
 .artist .aristimg-grp1 h4 {
