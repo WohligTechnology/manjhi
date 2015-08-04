@@ -65,12 +65,12 @@
                 <div class="col-md-12">
                     <nav class="pagination-artist">
                         <ul class="pagination">
-                            <li>
+                            <li class="actived">
                                 <a href="#">
                                     All
                                 </a>
                             </li>
-                            <li><a href="#">A</a></li>
+                            <li ><a href="#">A</a></li>
                             <li><a href="#">B</a></li>
                             <li><a href="#">C</a></li>
                             <li><a href="#">D</a></li>
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3" ng-repeat="artistimages in artistimage">
+            <div class="col-md-3 col-sm-6" ng-repeat="artistimages in artistimage">
                 <div class="aristimg-grp1">
                     <div class="image-holder" fixit>
                         <img class="fix-img" ng-src='{{artistimages.image}}'>
@@ -113,11 +113,11 @@
             </div>
         </div>
         <div class="nav-page">
-            <nav>
+            <nav  class="pagination-artist">
   <ul class="pagination">
-    <li>
+    <li class="actived">
       <a href="#" aria-label="Previous">
-        <span aria-hidden="true">Previous;</span>
+        <span aria-hidden="true">Prev</span>
       </a>
     </li>
     <li><a href="#">1</a></li>
@@ -125,9 +125,9 @@
     <li><a href="#">3</a></li>
     <li><a href="#">4</a></li>
     <li><a href="#">5</a></li>
-    <li>
+    <li class="actived">
       <a href="#" aria-label="Next">
-        <span aria-hidden="true">Next;</span>
+        <span aria-hidden="true">Next</span>
       </a>
     </li>
   </ul>

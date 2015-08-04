@@ -2,43 +2,68 @@
     <div class="border-top"></div>
     <div class="container">
         <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
-            <div class="col-md-6">
-                <div class="img-imagedetail">
-                    <!--                    <img ng-src='{{artistDetailImgs.image}}' class="img-responsive">-->
-                    <img src="img/imagedetail/imagedetail.jpg" class="img-responsive">
+            <div class="breadcrums">
+                <div class="col-md-12">
+                    <p>Head / Painting </p>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="img-imagedetail" fixit>
+                    <img class="fix-img" ng-src='{{artistDetailImgs.image}}'>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="cont-imagedetail">
                     <div class="artist-cont-detail">
-                        <h5>VIPUL RAVUNDRA BABU</h5>
-                        <p>
-                            {{artistDetailImgs.id}}
-                        </p>
-                        <p>
-                            {{artistDetailImgs.typename}}
-                        </p>
-                        <p>
-                            {{artistDetailImgs.madein}}
-                        </p>
-                        <p>
-                            <span class="labels">Size</span> {{artistDetailImgs.size}} (inches)
-                        </p>
-                        <p>
-                            <span class="labels">Year</span> {{artistDetailImgs.year}}
-                        </p>
-                        <p>
-                            <span class="labels">Price</span> {{artistDetailImgs.price}} &#8377;
-                        </p>
+                        <div class="painting-details">
+                            <h5>{{artistDetailImgs.artistname}}</h5>
+                            <i class="fa fa-heart"></i>
+                            <p class="bold">
+                                {{artistDetailImgs.id}}
+                            </p>
+                            <p class="bold">
+                                {{artistDetailImgs.typename }}
+                            </p>
+                        </div>
+                        <div class="painting-details">
+                            <p class="bold">
+                                <span class="labels">Price: </span> {{artistDetailImgs.price}}
+                            </p>
+                            <p class="bold">
+                                <span class="labels">SIZE <span class="lowercase">(inches):</span> </span> {{artistDetailImgs.size}}
+                            </p>
+                            <p class="bold">
+                                <span class="labels">Year: </span> {{artistDetailImgs.year}}
+                            </p>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block">
-                        <i class="fa fa-star-o"></i> Favourites
+                    <button type="button" class="btn btn-block">
+                        VIEW ARTWORK IN YOUR ROOM
                     </button>
-                    <button type="button" class="btn btn-primary btn-block">
-                        <i class="fa fa-shopping-cart"></i>Add to cart
+                    <button type="button" class="btn btn-primarys btn-block">
+                        ADD TO CART
                     </button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="this-artist">
+        <div class="container">
+            <div class="col-md-12">
+                <h4 class="bold">MORE WORKS BY THIS ARTIST <a href="#" class="link-viewall">VIEW ALL</a></h4>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-3" ng-repeat="aristimages in aristImages">
+                        <div class="aristimg-grp1">
+                            <div class="image-holder" fixit>
+                                <img class="fix-img" ng-src='{{aristimages.image}}'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

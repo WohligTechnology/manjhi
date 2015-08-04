@@ -643,14 +643,33 @@ h4 {
             }
         }
     }
+    nav.pagination-artist {
+        text-align: center;
+        padding-bottom: 20px;
+        ul {
+            li {
+                a {
+                    -webkit-border-radius: 0px !important;
+                    -moz-border-radius: 0px !important;
+                    border-radius: 0px !important;
+                    color: @color-base;
+                    background: @color1;
+                    padding: 6px 15px;
+                    text-transform: uppercase;
+                }
+            }
+            li.actived a {
+                background: @color2;
+                color: #fff;
+                border-color: @color2;
+            }
+        }
+    }
     .image-holder {
         text-align: center;
         border: 1px solid @abbr-border-color;
         position: relative;
-        img {
-            position: absolute;
-            height: 230px;
-        }
+        height: 230px;
     }
     .aristimg-grp1 h4 {
         font-size: 16px;
@@ -663,7 +682,7 @@ h4 {
 }
 ul.artist-crisp {
     li a.actives {
-        color: @color3!important;
+        color: @color2!important;
         font-weight: 600;
     }
     li a.actives:before {
@@ -672,7 +691,7 @@ ul.artist-crisp {
         height: 0px;
         border-style: solid;
         border-width: 8px 6px 0px 6px;
-        border-color: @color3 transparent transparent transparent;
+        border-color: @color2 transparent transparent transparent;
         position: absolute;
         top: -8px;
         left: 50%;
@@ -693,6 +712,64 @@ span.eventtime {
 }
 span.eventvenue {
     padding-left: 6px;
+}
+.image-detail {
+    .img-imagedetail {
+        text-align: center;
+        border: 1px solid #f1f1f1;
+        position: relative;
+        height: 450px;
+    }
+}
+.painting-details {
+    position: relative;
+    padding-bottom: 10px;
+    color: @color-base;
+    i.fa.fa-heart {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        color: @color1;
+    }
+    h5 {
+        font-weight: 700;
+        margin: 5px 0;
+    }
+    p {
+        margin: 0;
+        font-family: @font-family-head;
+    }
+    span.lowercase {
+        text-transform: lowercase;
+    }
+    span.labels {
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+}
+button.btn.btn-primarys {
+    background: @color2;
+}
+.breadcrums p {
+    margin: 10px 0px;
+    color: @color1;
+    text-transform: uppercase;
+}
+.image-holder {
+    text-align: center;
+    border: 1px solid @abbr-border-color;
+    position: relative;
+    height: 230px;
+}
+.this-artist {
+    background: @color1;
+    padding: 20px 0 35px 0;
+    margin: 30px 0 20px 0;
+}
+a.link-viewall {
+    font-size: 10px;
+    padding-left: 10px;
+    color: @color3;
 }
 
 /*Mobile Less*/

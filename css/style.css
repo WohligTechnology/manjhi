@@ -702,13 +702,28 @@ h4 {
   padding: 8px 4px;
   font-size: 12px;
 }
+.artist nav.pagination-artist {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.artist nav.pagination-artist ul li a {
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  border-radius: 0px !important;
+  color: #313131;
+  background: #e6e7e9;
+  padding: 6px 15px;
+  text-transform: uppercase;
+}
+.artist nav.pagination-artist ul li.actived a {
+  background: #d4ae70;
+  color: #fff;
+  border-color: #d4ae70;
+}
 .artist .image-holder {
   text-align: center;
   border: 1px solid #f1f1f1;
   position: relative;
-}
-.artist .image-holder img {
-  position: absolute;
   height: 230px;
 }
 .artist .aristimg-grp1 h4 {
@@ -720,7 +735,7 @@ h4 {
   padding-bottom: 25px;
 }
 ul.artist-crisp li a.actives {
-  color: #ff4f4f !important;
+  color: #d4ae70 !important;
   font-weight: 600;
 }
 ul.artist-crisp li a.actives:before {
@@ -729,7 +744,7 @@ ul.artist-crisp li a.actives:before {
   height: 0px;
   border-style: solid;
   border-width: 8px 6px 0px 6px;
-  border-color: #ff4f4f transparent transparent transparent;
+  border-color: #d4ae70 transparent transparent transparent;
   position: absolute;
   top: -8px;
   left: 50%;
@@ -753,6 +768,62 @@ span.eventtime {
 }
 span.eventvenue {
   padding-left: 6px;
+}
+.image-detail .img-imagedetail {
+  text-align: center;
+  border: 1px solid #f1f1f1;
+  position: relative;
+  height: 450px;
+}
+.painting-details {
+  position: relative;
+  padding-bottom: 10px;
+  color: #313131;
+}
+.painting-details i.fa.fa-heart {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  color: #e6e7e9;
+}
+.painting-details h5 {
+  font-weight: 700;
+  margin: 5px 0;
+}
+.painting-details p {
+  margin: 0;
+  font-family: 'Raleway';
+}
+.painting-details span.lowercase {
+  text-transform: lowercase;
+}
+.painting-details span.labels {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+button.btn.btn-primarys {
+  background: #d4ae70;
+}
+.breadcrums p {
+  margin: 10px 0px;
+  color: #e6e7e9;
+  text-transform: uppercase;
+}
+.image-holder {
+  text-align: center;
+  border: 1px solid #f1f1f1;
+  position: relative;
+  height: 230px;
+}
+.this-artist {
+  background: #e6e7e9;
+  padding: 20px 0 35px 0;
+  margin: 30px 0 20px 0;
+}
+a.link-viewall {
+  font-size: 10px;
+  padding-left: 10px;
+  color: #ff4f4f;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {

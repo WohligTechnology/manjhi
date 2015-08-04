@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select','angular-flexslider'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider'])
 
 .controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
@@ -6,7 +6,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Home");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
-    
+
     $scope.slides = [
 				'img/slide1.jpg',
 				'img/slide2.jpg'
@@ -120,13 +120,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.artistDetailImg = [{
-        image: 'img/artist/artist1.jpg',
-        id: '1527',
+        image: 'img/imagedetail/imagedetail.jpg',
+        artistname: 'VIPUL RAVUNDRA BABU',
+        id: ' Floating Dreams -1527',
         typename: 'Untitled',
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Price available on request'
+    }];
+
+
+    $scope.aristImages = [{
+        image: 'img/artist/artist1.jpg',
+
+    }, {
+        image: 'img/artist/artist2.jpg',
+
+    }, {
+        image: 'img/artist/artist3.jpg',
+
+    }, {
+        image: 'img/artist/artist4.jpg',
+
     }];
 })
 
@@ -169,7 +185,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         year: '1978',
         price: 'Price available on request'
     }, {
-        image: 'img/artist/artist1.jpg',
+        image: 'img/artist/artist5.jpg',
         id: '1527',
         typename: 'Untitled',
         madein: 'Oil on board',
@@ -185,7 +201,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         year: '1978',
         price: '2000'
     }, {
-        image: 'img/artist/artist3.jpg',
+        image: 'img/artist/artist5.jpg',
         id: '1527',
         typename: 'Untitled',
         madein: 'Oil on board',
@@ -232,7 +248,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         image: 'img/artist/artist3.jpg',
         name: 'Ajay R Dhandre'
     }, {
-        image: 'img/artist/artist4.jpg',
+        image: 'img/artist/artist5.jpg',
         name: 'Amarnath Sharma'
     }];
 })
