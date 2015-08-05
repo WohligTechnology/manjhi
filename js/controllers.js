@@ -121,13 +121,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     $scope.artistDetailImg = [{
         image: 'img/imagedetail/imagedetail.jpg',
-        artistname: 'VIPUL RAVUNDRA BABU',
-        id: ' Floating Dreams -1527',
+        id: ' 1527',
+        artistname: 'Vipul Ravundra Babu',
+        title: ' Floating Dreams',
         typename: 'Untitled',
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: 'Price available on request'
+        price: 'Rs. 1,00,000/ $ 6.400'
     }];
 
 

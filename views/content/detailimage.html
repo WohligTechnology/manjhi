@@ -16,23 +16,27 @@
                 <div class="cont-imagedetail">
                     <div class="artist-cont-detail">
                         <div class="painting-details">
-                            <h5>{{artistDetailImgs.artistname}}</h5>
-                            <i class="fa fa-heart"></i>
-                            <p class="bold">
+                             <p>
                                 {{artistDetailImgs.id}}
+                                 <i class="fa fa-heart"></i>
                             </p>
-                            <p class="bold">
-                                {{artistDetailImgs.typename }}
+                            <p>
+                             <span class="labels">Artist: </span>{{artistDetailImgs.artistname}}</p>
+                            <p>
+                                 <span class="labels">Title: </span>{{artistDetailImgs.title}}
+                            </p>
+                            <p>
+                               <span class="labels">Medium: </span> {{artistDetailImgs.typename }}
                             </p>
                         </div>
                         <div class="painting-details">
-                            <p class="bold">
+                            <p>
                                 <span class="labels">Price: </span> {{artistDetailImgs.price}}
                             </p>
-                            <p class="bold">
-                                <span class="labels">SIZE <span class="lowercase">(inches):</span> </span> {{artistDetailImgs.size}}
+                            <p>
+                                <span class="labels">SIZE: </span> {{artistDetailImgs.size}} inches
                             </p>
-                            <p class="bold">
+                            <p>
                                 <span class="labels">Year: </span> {{artistDetailImgs.year}}
                             </p>
                         </div>
