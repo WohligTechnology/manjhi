@@ -31,7 +31,12 @@
                 </div>
                 <accordion close-others="true">
                     <accordion-group heading="Search By Artist">
-                        Artist
+                        <ui-select multiple ng-model="multipleDemo.artist" theme="select2" ng-disabled="disabled" style="width: 300px;">
+                            <ui-select-match placeholder="Select Artist...">{{$item}}</ui-select-match>
+                            <ui-select-choices repeat="artist in availableAritist| filter:$select.search">
+                                {{artist}}
+                            </ui-select-choices>
+                        </ui-select>
                     </accordion-group>
                     <accordion-group heading="Search By Price">
                         Price
@@ -266,7 +271,7 @@
                             </div>
                             <div class="col-flex">
                                 <h6>VIDEO</h6>
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ZgwIe-QW5f8" frameborder="0" allowfullscreen></iframe>
+                                <iframe width="100%" height="130" src="https://www.youtube.com/embed/ZgwIe-QW5f8" frameborder="0" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>

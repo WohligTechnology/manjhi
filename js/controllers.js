@@ -11,17 +11,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				'img/slide1.jpg',
 				'img/slide2.jpg'
 			];
+    //Colours for ui-select
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar', 'Krishen Khanna'];
 })
 
 .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("cart");
-        $scope.menutitle = NavigationService.makeactive("Cart");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-    })
-    
-    .controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("cart");
+    $scope.menutitle = NavigationService.makeactive("Cart");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+
+.controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("team");
         $scope.menutitle = NavigationService.makeactive("Team");
@@ -265,7 +267,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }, {
         image: 'img/artist/artist5.jpg',
         name: 'Amarnath Sharma'
-    },{
+    }, {
         image: 'img/artist/artist1.jpg',
         name: 'S Yousuf Ali'
     }, {
@@ -297,7 +299,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window) {
+.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
     $scope.template = TemplateService;
     var scrolled = 0;
     angular.element($window).bind("scroll", function () {
@@ -313,7 +315,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.$apply();
     });
 
-
+    $scope.showLogin = function () {
+        ngDialog.open({
+            template: 'demopoplogin'
+        });
+    };
 })
 
 ;
