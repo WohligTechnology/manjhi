@@ -720,6 +720,20 @@ h4 {
   padding: 8px 4px;
   text-transform: uppercase;
 }
+.artist .painting ul.artist-filter {
+  display: block;
+  list-style: none;
+  padding: 0px;
+}
+.artist .painting ul.artist-filter li {
+  display: inline-block;
+  position: relative;
+}
+.artist .painting ul.artist-filter li a {
+  color: #313131;
+  padding: 8px 4px;
+  font-size: 12px;
+}
 .artist .painting .search-form {
   position: relative;
   display: table;
@@ -771,13 +785,14 @@ h4 {
   margin-top: 0px;
 }
 .artist .aristimg-grp1 {
-  padding-bottom: 25px;
+  padding: 25px 0;
 }
-ul.artist-crisp li a.actives {
+ul.artist-crisp li a.actives,
+ul.artist-crisp li a:hover {
   color: #d4ae70 !important;
-  font-weight: 600;
 }
-ul.artist-crisp li a.actives:before {
+ul.artist-crisp li a.actives:before,
+ul.artist-crisp li a:hover:before {
   content: '';
   width: 0px;
   height: 0px;
@@ -809,16 +824,16 @@ span.eventvenue {
   padding-left: 6px;
 }
 .nav-page.bottom-page {
-  position: absolute;
+  position: fixed;
   width: 100%;
   left: 0;
+  bottom: 0px;
 }
 nav.pagination-artist {
   text-align: center;
-  padding-bottom: 20px;
 }
 nav.pagination-artist ul.margin-remove {
-  margin-top: 0px;
+  margin: 0px;
 }
 nav.pagination-artist ul li a {
   -webkit-border-radius: 0px !important;

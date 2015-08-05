@@ -703,20 +703,20 @@ h4 {
                 }
             }
         }
-        //        ul.artist-filter {
-        //            display: block;
-        //            list-style: none;
-        //            padding: 0px;
-        //            li {
-        //                display: inline-block;
-        //                position: relative;
-        //                a {
-        //                    color: @color-base;
-        //                    padding: 8px 4px;
-        //                    font-size: 12px;
-        //                }
-        //            }
-        //        }
+                ul.artist-filter {
+                display: block;
+                list-style: none;
+                padding: 0px;
+                li {
+                    display: inline-block;
+                    position: relative;
+                    a {
+                        color: @color-base;
+                        padding: 8px 4px;
+                        font-size: 12px;
+                    }
+                }
+            }
         .search-form {
             position: relative;
             display: table;
@@ -769,13 +769,12 @@ h4 {
         margin-top: 0px;
     }
     .aristimg-grp1 {
-        padding-bottom: 25px;
+       padding: 25px 0;
     }
 }
 
-ul.artist-crisp li a.actives {
+ul.artist-crisp li a.actives, ul.artist-crisp li a:hover  {
     color: @color2!important;
-    font-weight: 600;
     &:before {
         content: '';
         width: 0px;
@@ -810,16 +809,16 @@ span.eventvenue {
 }
 
 .nav-page.bottom-page {
-    position: absolute;
+    position: fixed;
     width: 100%;
     left: 0;
+    bottom: 0px;
 }
 
 nav.pagination-artist {
     text-align: center;
-    padding-bottom: 20px;
     ul.margin-remove {
-        margin-top: 0px;
+        margin: 0px;
     }
     ul {
         li a {
