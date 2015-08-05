@@ -12,7 +12,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				'img/slide2.jpg'
 			];
     //Colours for ui-select
-    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar', 'Krishen Khanna'];
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
 })
 
 .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -24,11 +24,57 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("team");
+    $scope.menutitle = NavigationService.makeactive("Team");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+
+.controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
-        $scope.template = TemplateService.changecontent("team");
-        $scope.menutitle = NavigationService.makeactive("Team");
+        $scope.template = TemplateService.changecontent("totalartpage");
+        $scope.menutitle = NavigationService.makeactive("Totalartpage");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+
+        $scope.artistimage = [{
+            image: 'img/artist/artist1.jpg',
+            name: 'S Yousuf Ali'
+    }, {
+            image: 'img/artist/artist2.jpg',
+            name: 'Krishen Khanna'
+    }, {
+            image: 'img/artist/artist3.jpg',
+            name: 'Manjit Bawa'
+    }, {
+            image: 'img/artist/artist4.jpg',
+            name: 'Paramjit Singh'
+    }, {
+            image: 'img/artist/artist1.jpg',
+            name: 'Sidharth'
+    }, {
+            image: 'img/artist/artist2.jpg',
+            name: 'Ajay De'
+    }, {
+            image: 'img/artist/artist3.jpg',
+            name: 'Ajay R Dhandre'
+    }, {
+            image: 'img/artist/artist5.jpg',
+            name: 'Amarnath Sharma'
+    }, {
+            image: 'img/artist/artist1.jpg',
+            name: 'S Yousuf Ali'
+    }, {
+            image: 'img/artist/artist2.jpg',
+            name: 'Krishen Khanna'
+    }, {
+            image: 'img/artist/artist3.jpg',
+            name: 'Manjit Bawa'
+    }, {
+            image: 'img/artist/artist4.jpg',
+            name: 'Paramjit Singh'
+    }];
     })
     .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
@@ -181,7 +227,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
 
-  
+
 })
 
 
@@ -336,9 +382,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.$apply();
     });
 
-    $scope.showLogin = function () {
+    $scope.showPopups = function () {
         ngDialog.open({
-            template: 'demopoplogin'
+            template: 'login.html'
         });
     };
 })

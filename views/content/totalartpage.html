@@ -1,0 +1,101 @@
+<div class="artist">
+    <div class="border-top"></div>
+    <div class="container">
+        <div class="row">
+            <div class="painting">
+                <div class="col-md-5">
+
+                    <ul class="artist-crisp">
+                        <li class="">
+                            <a href="" class="actives">
+                    Paintings
+                    </a>
+                        </li>
+                        <li class="">
+                            <a href=""> 
+                    Sculptures
+                    </a>
+                        </li>
+                        <li class="">
+                            <a href=""> 
+                     Photographs
+                     </a>
+                        </li>
+                        <li class="">
+                            <a href="">  
+                    Prints
+                    </a>
+                        </li>
+                        <li class="">
+                            <a href=""> 
+                     Others
+                     </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-5">
+                    <ul class="artist-filter">
+                        <li class=""><i class="fa fa-filter"></i></li>
+                        <li class=""> FILTER BY</li>
+                        <li class="">
+                            <a href="">ARTIST</a></li>
+                        <li class="">
+                            /</li>
+                        <li class="">
+                            <a href="">PRICE</a>
+                        </li>
+                        <li class="">
+                            /</li>
+                        <li class="">
+                            <a href=""> SIZE</a>
+                        </li>
+                        <li class="">
+                            /</li>
+                        <li class="">
+                            <a href=""> MEDIUM</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2">
+                    <a href="">
+                        <i class="fa fa-sort-amount-asc"></i> SORT BY
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="artistimages in artistimage">
+                <div class="aristimg-grp1">
+                    <h4 class="text-center">
+                   {{artistimages.name}}
+               </h4>
+                    <div class="image-holder" fixit>
+                        <img class="fix-img" ng-src='{{artistimages.image}}'>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-page bottom-page">
+            <nav class="pagination-artist">
+                <ul class="pagination margin-remove">
+                    <li class="actived">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">Prev</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class="actived">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

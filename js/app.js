@@ -67,6 +67,11 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             templateUrl: "views/template.html",
             controller: 'ArtInfrastructureCtrl'
         })
+        .state('totalartpage', {
+            url: "/totalartpage",
+            templateUrl: "views/template.html",
+            controller: 'TotalartPageCtrl'
+        })
 
     $urlRouterProvider.otherwise("/home");
 
