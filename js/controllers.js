@@ -390,9 +390,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.$apply();
     });
 
-    $scope.showPopups = function () {
+    $scope.showLogin = function () {
         ngDialog.open({
-            template: 'login.html'
+            template: 'views/content/login.html'
         });
     };
 })
