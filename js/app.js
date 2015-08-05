@@ -45,7 +45,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
         url: "/artist",
         templateUrl: "views/template.html",
         controller: 'ArtistCtrl'
-    })
+    })  
 
     .state('artistdetail', {
         url: "/artistDetail",
@@ -56,6 +56,11 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             url: "/detailImage",
             templateUrl: "views/template.html",
             controller: 'ArtistDetailImageCtrl'
+        }) 
+        .state('team', {
+            url: "/team",
+            templateUrl: "views/template.html",
+            controller: 'TeamCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");

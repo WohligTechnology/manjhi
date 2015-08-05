@@ -20,6 +20,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
+    
+    .controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("team");
+        $scope.menutitle = NavigationService.makeactive("Team");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
     .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("checkout");
@@ -144,6 +152,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }, {
         image: 'img/artist/artist4.jpg',
 
+    }, {
+        image: 'img/artist/artist3.jpg',
+
+    }, {
+        image: 'img/artist/artist4.jpg',
+
     }];
 })
 
@@ -251,6 +265,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }, {
         image: 'img/artist/artist5.jpg',
         name: 'Amarnath Sharma'
+    },{
+        image: 'img/artist/artist1.jpg',
+        name: 'S Yousuf Ali'
+    }, {
+        image: 'img/artist/artist2.jpg',
+        name: 'Krishen Khanna'
+    }, {
+        image: 'img/artist/artist3.jpg',
+        name: 'Manjit Bawa'
+    }, {
+        image: 'img/artist/artist4.jpg',
+        name: 'Paramjit Singh'
     }];
 })
 

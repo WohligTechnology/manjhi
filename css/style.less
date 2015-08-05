@@ -10,7 +10,7 @@
 @color-base: #313131;
 @color-base-light: #666666;
 @color-shade-light: #666666;
-@color-breadcrums:#aeaeae;
+@color-breadcrums: #aeaeae;
 @font-family-body: 'Open Sans';
 @font-body: 13px;
 @font-family-head: 'Raleway';
@@ -636,30 +636,70 @@ h4 {
                 }
             }
         }
-        ul.artist-filter {
-            display: block;
-            list-style: none;
-            padding: 0px;
-            li {
-                display: inline-block;
+        //        ul.artist-filter {
+        //            display: block;
+        //            list-style: none;
+        //            padding: 0px;
+        //            li {
+        //                display: inline-block;
+        //                position: relative;
+        //                a {
+        //                    color: @color-base;
+        //                    padding: 8px 4px;
+        //                    font-size: 12px;
+        //                }
+        //            }
+        //        }
+        .search-form {
+            position: relative;
+            display: table;
+            border-collapse: separate;
+            border-bottom: 1px solid @abbr-border-color;
+            .search-line {
+                width: 1%;
                 position: relative;
-                a {
-                    color: @color-base;
-                    padding: 8px 4px;
-                    font-size: 12px;
+                vertical-align: middle;
+                display: table-cell;
+                .btn-line {
+                    z-index: 2;
+                    margin-left: -1px;
+                    display: inline-block;
+                    padding: 6px 12px;
+                    line-height: 1.42857143;
+                    text-align: center;
+                    vertical-align: middle;
+                    -ms-touch-action: manipulation;
+                    touch-action: manipulation;
+                    cursor: pointer;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    border: 0px;
+                    background: #fff;
                 }
+            }
+            .form-control {
+                position: relative;
+                z-index: 2;
+                float: left;
+                width: 100%;
+                margin-bottom: 0;
+                box-shadow: none;
+                background-color: transparent;
+                display: table-cell;
+                border: 0px;
             }
         }
     }
     .image-holder {
         text-align: center;
-        border: 1px solid@abbr-border-color;
         height: 230px;
     }
     .aristimg-grp1 h4 {
         font-size: 16px;
         font-family: @font-family-head;
         font-weight: 600;
+        margin-top: 0px;
     }
     .aristimg-grp1 {
         padding-bottom: 25px;
@@ -699,6 +739,9 @@ span.eventvenue {
 nav.pagination-artist {
     text-align: center;
     padding-bottom: 20px;
+    ul.margin-remove {
+        margin-top: 0px;
+    }
     ul {
         li a {
             -webkit-border-radius: 0px !important;
@@ -718,26 +761,23 @@ nav.pagination-artist {
 }
 .image-detail .img-imagedetail {
     text-align: center;
-    border: 1px solid #f1f1f1;
     position: relative;
-    height: 450px;
+    height: 475px;
 }
 .painting-details {
     position: relative;
     padding-bottom: 10px;
+    padding-left: 8px;
     color: @color-base;
     i.fa.fa-heart {
         padding-left: 8px;
         color: @color1;
     }
-    h5 {
-        font-weight: 700;
-        margin: 5px 0;
-    }
-    p {
-        margin: 0;
+    td {
         font-family: @font-family-head;
         font-size: 14px;
+        border: 0px !important;
+        padding: 4px 2px 4px 2px;
     }
     span.lowercase {
         text-transform: lowercase;
@@ -759,16 +799,24 @@ button.btn.btn-primarys {
     position: relative;
     height: 230px;
 }
-.this-artist {
-    background: @color1;
-    padding: 20px 0 35px 0;
-    margin: 30px 0 20px 0;
+.margin-btm-top {
+    margin: 20px 0;
 }
 a.link-viewall {
     font-size: 10px;
     padding-left: 10px;
     color: @color3;
 }
+.view-more {
+    ul {
+            padding-left: 20px;
+        li {
+            list-style: none;
+            background: url('../img/arrowli.png') no-repeat left 3px;
+            padding-left: 25px;
+        }
+        }
+    }
 
 /*Mobile Less*/
 

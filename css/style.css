@@ -717,29 +717,55 @@ h4 {
   padding: 8px 4px;
   text-transform: uppercase;
 }
-.artist .painting ul.artist-filter {
-  display: block;
-  list-style: none;
-  padding: 0px;
-}
-.artist .painting ul.artist-filter li {
-  display: inline-block;
+.artist .painting .search-form {
   position: relative;
+  display: table;
+  border-collapse: separate;
+  border-bottom: 1px solid #f1f1f1;
 }
-.artist .painting ul.artist-filter li a {
-  color: #313131;
-  padding: 8px 4px;
-  font-size: 12px;
+.artist .painting .search-form .search-line {
+  width: 1%;
+  position: relative;
+  vertical-align: middle;
+  display: table-cell;
+}
+.artist .painting .search-form .search-line .btn-line {
+  z-index: 2;
+  margin-left: -1px;
+  display: inline-block;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 0px;
+  background: #fff;
+}
+.artist .painting .search-form .form-control {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 100%;
+  margin-bottom: 0;
+  box-shadow: none;
+  background-color: transparent;
+  display: table-cell;
+  border: 0px;
 }
 .artist .image-holder {
   text-align: center;
-  border: 1px solid #f1f1f1;
   height: 230px;
 }
 .artist .aristimg-grp1 h4 {
   font-size: 16px;
   font-family: 'Raleway';
   font-weight: 600;
+  margin-top: 0px;
 }
 .artist .aristimg-grp1 {
   padding-bottom: 25px;
@@ -783,6 +809,9 @@ nav.pagination-artist {
   text-align: center;
   padding-bottom: 20px;
 }
+nav.pagination-artist ul.margin-remove {
+  margin-top: 0px;
+}
 nav.pagination-artist ul li a {
   -webkit-border-radius: 0px !important;
   -moz-border-radius: 0px !important;
@@ -799,27 +828,24 @@ nav.pagination-artist ul li.actived a {
 }
 .image-detail .img-imagedetail {
   text-align: center;
-  border: 1px solid #f1f1f1;
   position: relative;
-  height: 450px;
+  height: 475px;
 }
 .painting-details {
   position: relative;
   padding-bottom: 10px;
+  padding-left: 8px;
   color: #313131;
 }
 .painting-details i.fa.fa-heart {
   padding-left: 8px;
   color: #e6e7e9;
 }
-.painting-details h5 {
-  font-weight: 700;
-  margin: 5px 0;
-}
-.painting-details p {
-  margin: 0;
+.painting-details td {
   font-family: 'Raleway';
   font-size: 14px;
+  border: 0px !important;
+  padding: 4px 2px 4px 2px;
 }
 .painting-details span.lowercase {
   text-transform: lowercase;
@@ -840,15 +866,21 @@ button.btn.btn-primarys {
   position: relative;
   height: 230px;
 }
-.this-artist {
-  background: #e6e7e9;
-  padding: 20px 0 35px 0;
-  margin: 30px 0 20px 0;
+.margin-btm-top {
+  margin: 20px 0;
 }
 a.link-viewall {
   font-size: 10px;
   padding-left: 10px;
   color: #ff4f4f;
+}
+.view-more ul {
+  padding-left: 20px;
+}
+.view-more ul li {
+  list-style: none;
+  background: url('../img/arrowli.png') no-repeat left 3px;
+  padding-left: 25px;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
@@ -882,7 +914,7 @@ a.link-viewall {
   }
   .nav li a {
     font-size: 10px;
-    padding: 10px 7px;
+    padding: 10px 6px;
   }
   .nopad-left {
     padding-left: 15px;
@@ -893,6 +925,9 @@ a.link-viewall {
   .search-box .absolute-box {
     position: initial;
     padding-bottom: 20px;
+  }
+  .search-box .panel {
+    border-right: 1px solid #e6e7e9;
   }
   .sweet-box .text-white {
     padding: 0px;
@@ -919,10 +954,6 @@ a.link-viewall {
   }
   .box-style1 h4 {
     font-size: 16px;
-  }
-  .box-style1 {
-    background-color: #e6e7e9;
-    padding: 0 5px;
   }
   .box-style1 {
     padding: 0 5px;
@@ -1026,6 +1057,10 @@ a.link-viewall {
   }
   .box-style1 {
     margin: 10px 0;
+    height: auto;
+  }
+  .box-style1 .img-holder img {
+    height: auto;
   }
   .some-image .col-md-4.col-sm-4 {
     margin-bottom: 10px;

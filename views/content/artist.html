@@ -34,6 +34,7 @@
                     </ul>
                 </div>
                 <div class="col-md-5">
+                    <!--
                     <ul class="artist-filter">
                         <li class=""><i class="fa fa-filter"></i></li>
                         <li class=""> FILTER BY</li>
@@ -56,12 +57,23 @@
                             <a href=""> MEDIUM</a>
                         </li>
                     </ul>
+-->
+                    <div class="search-form">
+                        <input type="search" class="form-control" placeholder="Search Artist">
+                        <span class="search-line">
+                            <button class="btn-line" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
                 </div>
+                <!--
                 <div class="col-md-2">
                     <a href="">
                         <i class="fa fa-sort-amount-asc"></i> SORT BY
                     </a>
                 </div>
+-->
                 <div class="col-md-12">
                     <nav class="pagination-artist">
                         <ul class="pagination">
@@ -70,7 +82,7 @@
                                     All
                                 </a>
                             </li>
-                            <li ><a href="#">A</a></li>
+                            <li><a href="#">A</a></li>
                             <li><a href="#">B</a></li>
                             <li><a href="#">C</a></li>
                             <li><a href="#">D</a></li>
@@ -101,7 +113,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="artistimages in artistimage">
+            <div class="col-md-2 col-sm-3" ng-repeat="artistimages in artistimage">
                 <div class="aristimg-grp1">
                     <div class="image-holder" fixit>
                         <img class="fix-img" ng-src='{{artistimages.image}}'>
@@ -113,25 +125,25 @@
             </div>
         </div>
         <div class="nav-page">
-            <nav  class="pagination-artist">
-  <ul class="pagination">
-    <li class="actived">
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">Prev</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li class="actived">
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+            <nav class="pagination-artist">
+                <ul class="pagination margin-remove">
+                    <li class="actived">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">Prev</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class="actived">
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

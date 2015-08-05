@@ -30,7 +30,7 @@
   }
   .nav li a {
     font-size: 10px;
-    padding: 10px 7px;
+    padding: 10px 6px;
   }
   .nopad-left {
     padding-left: 15px;
@@ -41,6 +41,9 @@
   .search-box .absolute-box {
     position: initial;
     padding-bottom: 20px;
+  }
+  .search-box .panel {
+    border-right: 1px solid #e6e7e9;
   }
   .sweet-box .text-white {
     padding: 0px;
@@ -67,10 +70,6 @@
   }
   .box-style1 h4 {
     font-size: 16px;
-  }
-  .box-style1 {
-    background-color: #e6e7e9;
-    padding: 0 5px;
   }
   .box-style1 {
     padding: 0 5px;
@@ -174,6 +173,10 @@
   }
   .box-style1 {
     margin: 10px 0;
+    height: auto;
+  }
+  .box-style1 .img-holder img {
+    height: auto;
   }
   .some-image .col-md-4.col-sm-4 {
     margin-bottom: 10px;

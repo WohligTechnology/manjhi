@@ -16,30 +16,40 @@
                 <div class="cont-imagedetail">
                     <div class="artist-cont-detail">
                         <div class="painting-details">
-                             <p>
-                                {{artistDetailImgs.id}}
-                                 <i class="fa fa-heart"></i>
-                            </p>
-                            <p>
-                             <span class="labels">Artist: </span>{{artistDetailImgs.artistname}}</p>
-                            <p>
-                                 <span class="labels">Title: </span>{{artistDetailImgs.title}}
-                            </p>
-                            <p>
-                               <span class="labels">Medium: </span> {{artistDetailImgs.typename }}
-                            </p>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td> {{artistDetailImgs.id}}
+                                            <i class="fa fa-heart"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Artist:</td>
+                                        <td>{{artistDetailImgs.artistname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title:</td>
+                                        <td>{{artistDetailImgs.title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Medium: </td>
+                                        <td>{{artistDetailImgs.typename }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price: </td>
+                                        <td>{{artistDetailImgs.price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Size:</td>
+                                        <td>{{artistDetailImgs.size}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Year: </td>
+                                        <td>{{artistDetailImgs.year }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="painting-details">
-                            <p>
-                                <span class="labels">Price: </span> {{artistDetailImgs.price}}
-                            </p>
-                            <p>
-                                <span class="labels">SIZE: </span> {{artistDetailImgs.size}} inches
-                            </p>
-                            <p>
-                                <span class="labels">Year: </span> {{artistDetailImgs.year}}
-                            </p>
-                        </div>
+
                     </div>
                     <button type="button" class="btn btn-block">
                         VIEW ARTWORK IN YOUR ROOM
@@ -51,17 +61,19 @@
             </div>
         </div>
     </div>
-    <div class="this-artist">
+    <div class="style1-bg margin-btm-top">
         <div class="container">
-            <div class="col-md-12">
-                <h4 class="bold">MORE WORKS BY THIS ARTIST <a href="#" class="link-viewall">VIEW ALL</a></h4>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-3" ng-repeat="aristimages in aristImages">
-                        <div class="aristimg-grp1">
-                            <div class="image-holder" fixit>
-                                <img class="fix-img" ng-src='{{aristimages.image}}'>
+            <div class="padding-more">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="bold">MORE WORKS BY THIS ARTIST <a href="#" class="link-viewall">VIEW ALL</a></h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-2 col-sm-4" ng-repeat="aristimages in aristImages">
+                            <div class="aristimg-grp1">
+                                <div class="image-holder" fixit>
+                                    <img class="fix-img" ng-src='{{aristimages.image}}'>
+                                </div>
                             </div>
                         </div>
                     </div>
