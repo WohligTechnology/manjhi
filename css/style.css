@@ -890,6 +890,52 @@ a.link-viewall {
   background: url('../img/arrowli.png') no-repeat left 3px;
   padding-left: 25px;
 }
+.margintp {
+  margin-bottom: 40px;
+}
+.row-head {
+  background-color: #E6E7E9;
+  padding: 12px 1px 2px 26px;
+}
+.row-head p {
+  font-size: 16px;
+}
+.row-headleft {
+  margin-top: 22px;
+}
+.row-headleft p {
+  padding-left: 29px;
+}
+.row-headleft span {
+  color: #ff4f4f;
+  padding-left: 29px;
+  font-weight: 600;
+  line-height: 260%;
+}
+.panel-set {
+  margin-top: 25px;
+  padding-left: 22px;
+}
+.panel-set .panels .panel {
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+}
+.panel-set .panels .panel-heading {
+  padding: 10px 0px;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: #ff4f4f;
+}
+.panel-set .panels .panel-body {
+  padding: 10px 1px;
+  text-align: center;
+  font-size: 12px;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
