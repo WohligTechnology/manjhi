@@ -163,6 +163,27 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 })
 
+.controller('ArtInfrastructureCtrl', function ($scope, TemplateService, NavigationService) {
+    $scope.template = TemplateService.changecontent("artInfrastructure");
+    $scope.menutitle = NavigationService.makeactive("ArtInfrastructure");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    $scope.artistDetailImg = [{
+        image: 'img/imagedetail/imagedetail.jpg',
+        id: ' 1527',
+        artistname: 'Vipul Ravundra Babu',
+        title: ' Floating Dreams',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: 'Rs. 1,00,000/ $ 6.400'
+    }];
+
+
+  
+})
+
 
 .controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artistdetail")
