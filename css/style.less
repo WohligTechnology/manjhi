@@ -1113,8 +1113,9 @@ body.ngdialog-open {
 .media {
     padding-left: 15px;
 }
-.padtop{
-        padding-bottom: 10px;
+
+.padtop {
+    padding-bottom: 10px;
 }
 
 .mediacov {
@@ -1122,31 +1123,20 @@ body.ngdialog-open {
     .panel {
         margin-bottom: 0;
         border-radius: 0px;
-    }
-    .panel-default {
-        border-color: @color2;
-        .panel-heading {
-            color: @color-base;
-            background-color: #fff;
-            border-color: @color2;
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            outline: 0;
-            a:focus {
-                outline: 0;
-            }
-        }
-        .panel-heading+.panel-collapse>.panel-body {
-            border-top-color: @color2 !important;
-        }
+            border-left: 0px;
     }
     .media-detail {
         .data {
             h6 {
                 margin: 0;
                 padding: 0;
-                font-size: 14px;
+                font-size: 13px;
+                font-family: @font-family-head;
             }
+        }
+        .media-img {
+            height: 400px;
+            overflow: hidden;
         }
     }
 }

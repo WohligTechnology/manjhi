@@ -330,8 +330,49 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Mediacoverages");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    
+    $scope.oneAtATime = true;
+    
+    $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
 
     $scope.media2015 = [{
+        name: 'Interiors & Decor',
+        date: ' Sep 30, 2014 ',
+        img: 'img/mediacove/m1.jpg'
+    }, {
+        name: 'Design Matrix',
+        date: 'Oct 30, 2014 ',
+        img: 'img/mediacove/m2.jpg'
+    }, {
+        name: 'IFJ',
+        date: 'Aug 31, 2014',
+        img: 'img/mediacove/m3.jpg'
+    }, {
+        name: 'The Design Source',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m4.jpg'
+    }, {
+        name: 'Sourcing Hardware',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m5.jpg'
+    }, {
+        name: 'Society Interiors',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m6.jpg'
+    }, {
+        name: 'Architecture + Design',
+        date: 'Aug 31, 2014',
+        img: 'img/mediacove/m7.jpg'
+    }, {
+        name: 'Times of India - Full page - Page 13',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m7.jpg'
+    }];
+    
+        $scope.media2014 = [{
         name: 'Interiors & Decor',
         date: ' Sep 30, 2014 ',
         img: 'img/mediacove/m1.jpg'
