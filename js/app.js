@@ -4,6 +4,7 @@ var firstapp = angular.module('firstapp', [
     'phonecatControllers',
     'templateservicemod',
     'navigationservice'
+    
 ]);
 
 firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
@@ -125,3 +126,9 @@ firstapp.directive('fixit', function($window) {
         });
     };
 });
+
+firstapp.filter('rawHtml', ['$sce', function ($sce) {
+    return function (val) {
+        return $sce.trustAsHtml(val);
+    };
+}]);
