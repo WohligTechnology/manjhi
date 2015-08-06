@@ -1,0 +1,114 @@
+<div class="border-top"></div>
+<div class="info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="info-cont pull-right">
+                    <ul class="info-li">
+                        <li class="cat-list cpointer" ng-class="info" ng-click="changeinfo()">Personal Info</li>
+                        <li class="cat-list cpointer" ng-class="chngpass" ng-click="changechngpass()">Change password</li>
+                        <li class="cat-list cpointer" ng-class="myorders" ng-click="changemyorders()">My Orders</li>
+                        <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Order Tracking</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="myaccnthead col-md-6">
+                <h3>My Account <span ng-if="info=='bolds'" class="pull-right"> <a href="">Edit</a></span> </h3> 
+            </div>
+            <div class="col-md-4" ng-if="info=='bolds'">
+                <div class="chngpswd-cont">
+                    <div class="form-group">
+                        <div class="input-id">
+                            <input type="text" class="form-control" placeholder="Name"  required>
+                        </div>
+                        <div class="input-id">
+                            <input type="text" class="form-control" placeholder="Last Name">
+                        </div>
+                        <div class="input-id">
+                            <textarea class="form-control" rows="5" id="comment" placeholder="Address"></textarea>
+                        </div>
+                        <div class="input-id">
+                            <input type="emalid" class="form-control" placeholder="Email ID" required>
+                        </div>
+                        <div class="input-id">
+                            <input type="phoneno" class="form-control" placeholder="Phone No">
+                        </div>
+                        <div class="input-id">
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio" value="0">Man</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="optradio" value="1">Woman</label>
+                        </div>
+                        <a ng-click="updateUser(user)">Save</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" ng-if="chngpass=='bolds'">
+                <div class="chngpswd-cont">
+                    <div class="form-group">
+                        <div class="input-id">
+                            <input type="emalid" class="form-control" placeholder="Email ID"  required>
+                        </div>
+                        <div class="input-id">
+                            <input type="password" class="form-control" placeholder="Old Password"  required>
+                        </div>
+                        <div class="input-id">
+                            <input type="password" class="form-control" placeholder="New Password" required>
+                        </div>
+                        <div class="input-id">
+                            <input type="password" class="form-control" placeholder="Conform Password"  required>
+                        </div>
+                        <a ng-click="changepassword(pass)">Save</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9" ng-if="myorders=='bolds'">
+                <div class="my-order">
+                    <div class="cart orders">
+                        <table class="table table-hover content-static content">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Order
+                                    </th>
+                                    <th>Date</th>
+                                    <th>Item</th>
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ngRepeat: singlecart in cart -->
+                                <tr ng-repeat="myorder in allorders">
+                                    <td>{{myorder.id}}</td>
+                                    <td>{{myorder.date}}</td>
+                                    <td>{{myorder.productname}}</td>
+                                    <td>{{myorder.quantity}}</td>
+                                    <td>Rs {{myorder.price}}</td>
+                                    <td>{{myorder.orderstatusname}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagination pull-right">
+                            <a class="previous"><i class="fa fa-angle-left "></i>Pervious</a>
+                            <select ng-model="form.pag" ng-change="pagchange(form.pag)">
+                                <option></option>
+                            </select> <a class="next">Next<i class="fa fa-angle-right "></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" ng-if="ordertracing=='bolds'">
+                <div class="trck-order">
+                    <span>Trace Order:</span>
+                    <input type="text" class="form-control" placeholder="OrderId"> <span><a href="#">Track</a></span>
+                </div>
+                <p class="pending" ng-if="trace!=''">Your Order Status Is : {{trace.orderstatusname}}</p>
+            </div>
+        </div>
+    </div>
+</div>

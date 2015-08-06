@@ -1504,3 +1504,55 @@ a.forgetlink:hover {
   font-size: 14px;
   padding-right: 5px;
 }
+.making th {
+  background-color: #d4ae70;
+  color: #fff;
+}
+.info {
+  padding-top: 25px;
+}
+.info .info-cont {
+  border-right: 1px solid #d4ae70;
+  position: relative;
+  height: 300px;
+  padding-left: 10px;
+}
+.info .info-cont ul.info-li {
+  list-style: none;
+  padding-top: 30px;
+  padding-right: 25px;
+  float: right;
+}
+.info .info-cont ul.info-li li {
+  padding: 8px 0;
+  cursor: pointer;
+}
+.info .info-cont ul.info-li li.cat-list.cpointer.bolds {
+  color: #d4ae70;
+  font-weight: 500;
+  position: relative;
+}
+.info .info-cont ul.info-li li.cat-list.cpointer.bolds:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 0px 7px 14px;
+  border-color: transparent #FFFFFF;
+  display: block;
+  width: 0;
+  top: 10px;
+  right: -37px;
+  z-index: 1;
+}
+.info .info-cont ul.info-li li.cat-list.cpointer.bolds:before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 0px 7px 14px;
+  border-color: transparent #ffffff #ffffff #d4ae70;
+  display: block;
+  width: 0;
+  z-index: 0;
+  top: 10px;
+  right: -40px;
+}

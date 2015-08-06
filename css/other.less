@@ -213,7 +213,58 @@ a.forgetlink {
 }
 .making {
     th {
-        background-color: #D4AE70;
+        background-color: @color2;
         color: #fff;
+    }
+}
+.info {
+    padding-top: 25px;
+    .input-id {
+        padding-bottom: 20px;
+    }
+    .info-cont {
+        border-right: 1px solid @color2;
+        position: relative;
+        height: 300px;
+        padding-left: 10px;
+        ul.info-li {
+            list-style: none;
+            padding-top: 30px;
+            padding-right: 25px;
+            float: right;
+            li {
+                padding: 8px 0;
+                cursor: pointer;
+            }
+            li.cat-list.cpointer.bolds {
+                color: @color2;
+                font-weight: 500;
+                position: relative;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    border-style: solid;
+                    border-width: 7px 0px 7px 14px;
+                    border-color: transparent #FFFFFF;
+                    display: block;
+                    width: 0;
+                    top: 10px;
+                    right: -37px;
+                    z-index: 1;
+                }
+                &:before {
+                    content: '';
+                    position: absolute;
+                    border-style: solid;
+                    border-width: 7px 0px 7px 14px;
+                    border-color: transparent #fff #fff @color2;
+                    display: block;
+                    width: 0;
+                    z-index: 0;
+                    top: 10px;
+                    right: -40px;
+                }
+            }
+        }
     }
 }
