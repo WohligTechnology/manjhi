@@ -186,19 +186,34 @@ a.forgetlink {
         }
     }
 }
-.artist-details {
-    table.table {
-        td {
-            padding: 2px 0 2px 0;
-            border-top: 0px;
-            i.fa.fa-heart {
-                padding-left: 8px;
-                float: right;
-                color: @color1;
-                &:hover{
-                color: @color3;
+.artist-detail {
+    padding-top: 20px;
+    .artist-details {
+        margin-bottom: 25px;
+        .artist-cont-detail {
+            padding: 15px 0;
+            p {
+                margin-bottom: 5px;
+                border-top: 0px;
+                i.fa.fa-heart {
+                    padding-left: 8px;
+                    float: right;
+                    color: @color1;
+                    &:hover {
+                        color: @color3;
+                    }
                 }
             }
         }
+    }
+}
+.labels {
+    font-size: 14px;
+    padding-right: 5px;
+}
+.making {
+    th {
+        background-color: #D4AE70;
+        color: #fff;
     }
 }

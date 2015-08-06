@@ -1479,15 +1479,28 @@ a.forgetlink:hover {
 .cart .checkout.row table {
   margin-bottom: 10px;
 }
-.artist-details table.table td {
-  padding: 2px 0 2px 0;
+.artist-detail {
+  padding-top: 20px;
+}
+.artist-detail .artist-details {
+  margin-bottom: 25px;
+}
+.artist-detail .artist-details .artist-cont-detail {
+  padding: 15px 0;
+}
+.artist-detail .artist-details .artist-cont-detail p {
+  margin-bottom: 5px;
   border-top: 0px;
 }
-.artist-details table.table td i.fa.fa-heart {
+.artist-detail .artist-details .artist-cont-detail p i.fa.fa-heart {
   padding-left: 8px;
   float: right;
   color: #e6e7e9;
 }
-.artist-details table.table td i.fa.fa-heart:hover {
+.artist-detail .artist-details .artist-cont-detail p i.fa.fa-heart:hover {
   color: #ff4f4f;
+}
+.labels {
+  font-size: 14px;
+  padding-right: 5px;
 }

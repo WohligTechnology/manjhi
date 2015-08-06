@@ -4,7 +4,7 @@
         <div class="col-md-12">
             <h4>S Yousuf Ali</h4>
 
-            <p class="cont-artist" style=" -webkit-column-count: 2;   -webkit-column-gap: 50px; /* Chrome, Safari, Opera */ -moz-column-count: 2; /* Firefox */ -column-gap: 50px; column-count: 2;">
+            <p class="cont-artist">
                 Born in 1939 in Goa. Sheikh Yousuf Ali is the best known among Contemporary Artists of India. At the age of 45, Yousuf Ali's paintings gained international acceptance and appreciation. He was qualified with Diploma in Painting from Sir J J School of Art, Mumbai in 1964. Later he served as a Designer in Advertising for several years in Mumbai and further as an Art Director of a leading Advertising Agency. He received the Height of Glory Award as a Designer in 1977 and the 19th National Award for Excellence in Printing and Designing of Books. He had many solo and group shows in India and abroad. He expired in the year 1997 leaving behind the wonderful memories through his works of Art
             </p>.
         </div>
@@ -15,39 +15,25 @@
                         <img class="fix-img" ng-src='{{artistdetails.image}}'>
                     </div>
                     <div class="artist-cont-detail">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td colspan="2"> {{artistdetails.id}}
-                                        <i class="fa fa-heart"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Artist:</td>
-                                    <td>{{artistdetails.typename}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Title:</td>
-                                    <td>{{artistDetailImgs.title}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Medium: </td>
-                                    <td> {{artistdetails.madein}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Price: </td>
-                                    <td>{{artistdetails.price}} &#8377;</td>
-                                </tr>
-                                <tr>
-                                    <td>Size:</td>
-                                    <td>{{artistdetails.size}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Year: </td>
-                                    <td>{{artistdetails.year}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p>
+                            <span class="labels">Size:</span>{{artistdetails.id}}
+                            <i class="fa fa-heart"></i>
+                        </p>
+                        <p>
+                            <span class="labels">Medium:</span>   {{artistdetails.typename}}
+                        </p>
+                        <p>
+                           <span class="labels">Medium:</span> {{artistdetails.madein}}
+                        </p>
+                        <p>
+                           <span class="labels">Size:</span> {{artistdetails.size}} (inches)
+                        </p>
+                        <p>
+                            <span class="labels">Year:</span> {{artistdetails.year}}
+                        </p>
+                        <p>
+                            <span class="labels">Price:</span> {{artistdetails.price}} &#8377;
+                        </p>
                     </div>
                 </div>
             </div>
