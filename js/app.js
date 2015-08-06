@@ -77,6 +77,11 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             url: "/eventdetail",
             templateUrl: "views/template.html",
             controller: 'EventdetailCtrl'
+        })  
+        .state('mediacoverages', {
+            url: "/mediacoverages",
+            templateUrl: "views/template.html",
+            controller: 'MediacoveragesCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");

@@ -1,6 +1,6 @@
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider'])
 
-.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("home");
     $scope.menutitle = NavigationService.makeactive("Home");
@@ -8,14 +8,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 
     $scope.slides = [
-				'img/slide1.jpg',
-				'img/slide2.jpg'
-			];
+        'img/slide1.jpg',
+        'img/slide2.jpg'
+    ];
     //Colours for ui-select
     $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
 })
 
-.controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("cart");
     $scope.menutitle = NavigationService.makeactive("Cart");
@@ -23,7 +23,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('TeamCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("team");
     $scope.menutitle = NavigationService.makeactive("Team");
@@ -31,7 +31,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('TotalartPageCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("totalartpage");
         $scope.menutitle = NavigationService.makeactive("Totalartpage");
@@ -41,42 +41,42 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistimage = [{
             image: 'img/artist/artist1.jpg',
             name: 'S Yousuf Ali'
-    }, {
+        }, {
             image: 'img/artist/artist2.jpg',
             name: 'Krishen Khanna'
-    }, {
+        }, {
             image: 'img/artist/artist3.jpg',
             name: 'Manjit Bawa'
-    }, {
+        }, {
             image: 'img/artist/artist4.jpg',
             name: 'Paramjit Singh'
-    }, {
+        }, {
             image: 'img/artist/artist1.jpg',
             name: 'Sidharth'
-    }, {
+        }, {
             image: 'img/artist/artist2.jpg',
             name: 'Ajay De'
-    }, {
+        }, {
             image: 'img/artist/artist3.jpg',
             name: 'Ajay R Dhandre'
-    }, {
+        }, {
             image: 'img/artist/artist5.jpg',
             name: 'Amarnath Sharma'
-    }, {
+        }, {
             image: 'img/artist/artist1.jpg',
             name: 'S Yousuf Ali'
-    }, {
+        }, {
             image: 'img/artist/artist2.jpg',
             name: 'Krishen Khanna'
-    }, {
+        }, {
             image: 'img/artist/artist3.jpg',
             name: 'Manjit Bawa'
-    }, {
+        }, {
             image: 'img/artist/artist4.jpg',
             name: 'Paramjit Singh'
-    }];
+        }];
     })
-    .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
+    .controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("checkout");
         $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -98,7 +98,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         });
     })
-    .controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    .controller('EventsCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("events");
         $scope.menutitle = NavigationService.makeactive("Events");
@@ -114,67 +114,67 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         };
 
 
-     $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
-    
-      $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-    
-       $scope.event2015 = [{
-        name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
-        detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
-           img:'img/event/event1.jpg'
-    }, {
-         name: 'Art and Culture exchange between India & China',
-         detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
-        img:'img/event/event2.jpg'
-    }];
-    
-         $scope.event2014 = [{
-        name: 'The Art Enclave at UBM Index Fairs 2014',
-        detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
-           img:'img/event/event3.jpg'
-    }, {
-         name: 'Art Partner for The Edutainment Show 2014',
-         detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
-        img:''
-    }, {
-         name: 'Art Partner for Yes Bank International Polo Cup',
-         detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
-        img:''
-    }];
-    
-            $scope.event2013 = [{
-        name: 'Art Infrastructure – nobody’s business',
-        detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
-           img:'img/event/event4.jpg'
-    }, {
-         name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
-         detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
-        img:'img/event/event5.jpg'
-    }, {
-         name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
-         detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
-        img:'img/event/event6.jpg'
-    }, {
-         name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
-         detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
-        img:''
-    }, {
-         name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
-         detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
-        img:''
-    }, {
-         name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
-         detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
-        img:''
-    }, {
-         name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
-         detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
-        img:'img/event/event7.jpg'
-    }];
-   
+        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+
+        $scope.status = {
+            isFirstOpen: true,
+            isFirstDisabled: false
+        };
+
+        $scope.event2015 = [{
+            name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
+            detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
+            img: 'img/event/event1.jpg'
+        }, {
+            name: 'Art and Culture exchange between India & China',
+            detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
+            img: 'img/event/event2.jpg'
+        }];
+
+        $scope.event2014 = [{
+            name: 'The Art Enclave at UBM Index Fairs 2014',
+            detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
+            img: 'img/event/event3.jpg'
+        }, {
+            name: 'Art Partner for The Edutainment Show 2014',
+            detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
+            img: ''
+        }, {
+            name: 'Art Partner for Yes Bank International Polo Cup',
+            detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
+            img: ''
+        }];
+
+        $scope.event2013 = [{
+            name: 'Art Infrastructure – nobody’s business',
+            detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
+            img: 'img/event/event4.jpg'
+        }, {
+            name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
+            detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
+            img: 'img/event/event5.jpg'
+        }, {
+            name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
+            detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
+            img: 'img/event/event6.jpg'
+        }, {
+            name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
+            detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
+            img: ''
+        }, {
+            name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
+            detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
+            img: ''
+        }, {
+            name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
+            detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
+            img: ''
+        }, {
+            name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
+            detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
+            img: 'img/event/event7.jpg'
+        }];
+
 
     })
 
@@ -197,134 +197,178 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
         image: 'img/eventgallery/g1.jpg'
     }, {
-       
+
         image: 'img/eventgallery/g2.jpg'
     }, {
-       
+
         image: 'img/eventgallery/g3.jpg'
     }, {
-       
+
         image: 'img/eventgallery/g4.jpg'
     }, {
-       
+
         image: 'img/eventgallery/g5.jpg'
     }, {
-       
+
         image: 'img/eventgallery/g6.jpg'
     }, {
-       
+
         image: 'img/eventgallery/g7.jpg'
     }];
-    
-//    ****** popup lightbox ******
-        
-                $scope.zoomposition = 0;
 
-        $scope.openModal = function (gal) {
+    //    ****** popup lightbox ******
 
-            $scope.zoomposition = $scope.gallery.indexOf(gal);
+    $scope.zoomposition = 0;
 
-            ngDialog.open({
-                disableAnimation: true,
-                template: 'views/directive/zoomimage.html',
-                scope: $scope
-            });
-        };
+    $scope.openModal = function(gal) {
 
-        $scope.nextImage = function (oldposition) {
-            if (oldposition == ($scope.gallery.length - 1)) {
-                $scope.zoomposition = 0;
-            } else {
-                $scope.zoomposition++;
-            }
-        };
+        $scope.zoomposition = $scope.gallery.indexOf(gal);
 
-        $scope.previousImage = function (oldposition) {
-            if (oldposition == 0) {
-                $scope.zoomposition = ($scope.gallery.length - 1);
-            } else {
-                $scope.zoomposition--;
-            }
-        };
-      $scope.openBox = function (id) {
-            $(id).attr('openbox', 'show');
+        ngDialog.open({
+            disableAnimation: true,
+            template: 'views/directive/zoomimage.html',
+            scope: $scope
+        });
+    };
+
+    $scope.nextImage = function(oldposition) {
+        if (oldposition == ($scope.gallery.length - 1)) {
+            $scope.zoomposition = 0;
+        } else {
+            $scope.zoomposition++;
         }
+    };
+
+    $scope.previousImage = function(oldposition) {
+        if (oldposition == 0) {
+            $scope.zoomposition = ($scope.gallery.length - 1);
+        } else {
+            $scope.zoomposition--;
+        }
+    };
+    $scope.openBox = function(id) {
+        $(id).attr('openbox', 'show');
+    }
 
 
 })
 
-    .controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
-        $scope.template = TemplateService.changecontent("feature");
-        $scope.menutitle = NavigationService.makeactive("Features");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
+.controller('FeatureCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
+    $scope.template = TemplateService.changecontent("feature");
+    $scope.menutitle = NavigationService.makeactive("Features");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
 
-        //Angular Loader Example
-        //Start loader
-        $scope.showLoader = function () {
-                cfpLoadingBar.start();
-            }
-            //Complete loader
-        $scope.hideLoader = function () {
-            cfpLoadingBar.complete();
+    //Angular Loader Example
+    //Start loader
+    $scope.showLoader = function() {
+            cfpLoadingBar.start();
         }
+        //Complete loader
+    $scope.hideLoader = function() {
+        cfpLoadingBar.complete();
+    }
 
-        //Angular toaster
-        $scope.showToaster = function () {
-            toaster.pop({
-                type: 'success',
-                title: 'Success!',
-                body: 'Huraaay!',
-                showCloseButton: true
-            });
-        };
+    //Angular toaster
+    $scope.showToaster = function() {
+        toaster.pop({
+            type: 'success',
+            title: 'Success!',
+            body: 'Huraaay!',
+            showCloseButton: true
+        });
+    };
 
-        //Tags input
-        $scope.tags = [{
-            text: 'Chintan'
+    //Tags input
+    $scope.tags = [{
+        text: 'Chintan'
     }, {
-            text: 'Saloni'
+        text: 'Saloni'
     }, {
-            text: 'Sohan'
+        text: 'Sohan'
     }, {
-            text: 'Mahesh'
+        text: 'Mahesh'
     }, {
-            text: 'Jagruti'
+        text: 'Jagruti'
     }];
 
-        //ngDialog
-        $scope.showPopup = function () {
-            ngDialog.open({
-                template: 'demopop'
-            });
-        };
+    //ngDialog
+    $scope.showPopup = function() {
+        ngDialog.open({
+            template: 'demopop'
+        });
+    };
 
-        //Valdr
-        valdr.addConstraints({
-            'Person': {
-                'firstName': {
-                    'size': {
-                        'min': 3,
-                        'max': 20,
-                        'message': 'First name is required to be between 3 and 20 characters.'
-                    },
-                    'required': {
-                        'message': 'First name is required.'
-                    }
+    //Valdr
+    valdr.addConstraints({
+        'Person': {
+            'firstName': {
+                'size': {
+                    'min': 3,
+                    'max': 20,
+                    'message': 'First name is required to be between 3 and 20 characters.'
+                },
+                'required': {
+                    'message': 'First name is required.'
                 }
             }
-        });
+        }
+    });
 
-        //Colours for ui-select
-        $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
+    //Colours for ui-select
+    $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
 
-        //MomentJS
-        $scope.today = new Date();
-        $scope.dateformat = "medium";
+    //MomentJS
+    $scope.today = new Date();
+    $scope.dateformat = "medium";
 
-    })
+})
 
-.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
+
+.controller('MediacoveragesCtrl', function($scope, TemplateService, NavigationService) {
+    $scope.template = TemplateService.changecontent("mediacoverages");
+    $scope.menutitle = NavigationService.makeactive("Mediacoverages");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    
+    $scope.media2015 = [{
+        name: 'Interiors & Decor',
+        date: ' Sep 30, 2014 ',
+        img: 'img/mediacove/m1.jpg'
+    }, {
+        name: 'Design Matrix',
+        date: 'Oct 30, 2014 ',
+        img: 'img/mediacove/m2.jpg'
+    }, {
+        name: 'IFJ',
+        date: 'Aug 31, 2014',
+        img: 'img/mediacove/m3.jpg'
+    }, {
+        name: 'The Design Source',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m4.jpg'
+    }, {
+        name: 'Sourcing Hardware',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m5.jpg'
+    }, {
+        name: 'Society Interiors',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m6.jpg'
+    }, {
+        name: 'Architecture + Design',
+        date: 'Aug 31, 2014',
+        img: 'img/mediacove/m7.jpg'
+    }, {
+        name: 'Times of India - Full page - Page 13',
+        date: 'Sep 30, 2014',
+        img: 'img/mediacove/m7.jpg'
+    }];
+
+
+})
+
+.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("detailImage");
     $scope.menutitle = NavigationService.makeactive("Artistdetailimage");
     TemplateService.title = $scope.menutitle;
@@ -363,7 +407,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 })
 
-.controller('ArtInfrastructureCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artInfrastructure");
     $scope.menutitle = NavigationService.makeactive("ArtInfrastructure");
     TemplateService.title = $scope.menutitle;
@@ -385,7 +429,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artistdetail")
     $scope.menutitle = NavigationService.makeactive("ArtistDetail");
     TemplateService.title = $scope.menutitle;
@@ -458,7 +502,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
@@ -504,7 +548,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('InfiniteCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('InfiniteCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("infinite");
     $scope.menutitle = NavigationService.makeactive("Infinite Scroll");
     TemplateService.title = $scope.menutitle;
@@ -512,7 +556,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Infinite scroll
     $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];
-    $scope.loadMore = function () {
+    $scope.loadMore = function() {
         var last = $scope.images[$scope.images.length - 1];
         for (var i = 1; i <= 8; i++) {
             $scope.images.push(last + i);
@@ -520,10 +564,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
+.controller('headerctrl', function($scope, TemplateService, $window, ngDialog) {
     $scope.template = TemplateService;
     var scrolled = 0;
-    angular.element($window).bind("scroll", function () {
+    angular.element($window).bind("scroll", function() {
         var scrolled = this.pageYOffset;
         //$scope.headheight = angular.element('.fixer-top').height();
         if (scrolled >= 5) {
@@ -536,7 +580,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.$apply();
     });
 
-    $scope.showLogin = function () {
+    $scope.showLogin = function() {
         ngDialog.open({
             template: 'views/content/login.html'
         });
