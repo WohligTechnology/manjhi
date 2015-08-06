@@ -951,6 +951,21 @@ a.link-viewall {
   text-align: center;
   font-size: 12px;
 }
+.event-set .up-event {
+  padding: 20px 80px;
+}
+.event-set .event-img img {
+  border: 1px solid #f1f1f1;
+}
+.event-set .event h5 {
+  font-weight: 600;
+}
+.event-set .event h5:hover {
+  color: aqua;
+}
+.event-set .event p {
+  margin: 0;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {

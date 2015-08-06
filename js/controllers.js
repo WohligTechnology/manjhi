@@ -105,6 +105,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         //Valdr
+      $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
    
     })
 .controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {

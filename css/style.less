@@ -703,20 +703,20 @@ h4 {
                 }
             }
         }
-                ul.artist-filter {
-                display: block;
-                list-style: none;
-                padding: 0px;
-                li {
-                    display: inline-block;
-                    position: relative;
-                    a {
-                        color: @color-base;
-                        padding: 8px 4px;
-                        font-size: 12px;
-                    }
+        ul.artist-filter {
+            display: block;
+            list-style: none;
+            padding: 0px;
+            li {
+                display: inline-block;
+                position: relative;
+                a {
+                    color: @color-base;
+                    padding: 8px 4px;
+                    font-size: 12px;
                 }
             }
+        }
         .search-form {
             position: relative;
             display: table;
@@ -769,11 +769,12 @@ h4 {
         margin-top: 0px;
     }
     .aristimg-grp1 {
-       padding: 25px 0;
+        padding: 25px 0;
     }
 }
 
-ul.artist-crisp li a.actives, ul.artist-crisp li a:hover  {
+ul.artist-crisp li a.actives,
+ul.artist-crisp li a:hover {
     color: @color2!important;
     &:before {
         content: '';
@@ -929,29 +930,51 @@ a.link-viewall {
         line-height: 260%;
     }
 }
-    .panel-set {
+
+.panel-set {
     margin-top: 25px;
     padding-left: 22px;
-
-.panels {
-    .panel{
-        .border-radius(0);
+    .panels {
+        .panel {
+            .border-radius(0);
+        }
+        .panel-heading {
+            padding: 10px 0px;
+            text-align: center;
+            text-transform: capitalize;
+            font-weight: 600;
+            .font-color3;
+        }
+        .panel-body {
+            padding: 10px 1px;
+            text-align: center;
+            font-size: 12px;
+        }
     }
-    .panel-heading {
-        padding: 10px 0px;
-        text-align: center;
-        text-transform: capitalize;
-        font-weight: 600;
-        .font-color3;
-    }
-    .panel-body {
-        padding: 10px 1px;
-        text-align: center;
-        font-size: 12px;
-    }
-
 }
+
+.event-set {
+    .up-event {
+        padding: 20px 80px;
+    }
+    .event-img {
+        img {
+            border: 1px solid @abbr-border-color;
+        }
+    }
+    .event {
+        h5 {
+            font-weight: 600;
+//            &:hover {
+//                color: aqua;
+//            }
+        }
+        p {
+            margin: 0;
+        }
+    }
 }
+
 
 /*Mobile Less*/
 
