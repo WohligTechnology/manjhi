@@ -9,7 +9,7 @@
             </p>.
         </div>
         <div class="row">
-            <div class="col-md-3" ng-repeat="artistdetails in artistdetail">
+            <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
                 <div class="artist-details">
                     <div class="image-holder" fixit>
                         <img class="fix-img" ng-src='{{artistdetails.image}}'>
@@ -20,7 +20,7 @@
                             <i class="fa fa-heart"></i>
                         </p>
                         <p>
-                            <span class="labels">Medium:</span>   {{artistdetails.typename}}
+                            <span class="labels">Name:</span>   {{artistdetails.typename}}
                         </p>
                         <p>
                            <span class="labels">Medium:</span> {{artistdetails.madein}}
