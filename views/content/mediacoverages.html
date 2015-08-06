@@ -3,12 +3,31 @@
     <div class="media">
         <h3 class="font-color3 home-header">Media Coverage</h3>
     </div>
-    <div class="row">
-        <div class="mediacov">
-                  <accordion close-others="true">
-                  <accordion-group heading="Media Coverage 2014">
+    <div class="row media">
+         <div class="all-events search-box media">
+            <accordion close-others="true">
+                <accordion-group heading="Media Coverage 2015">
                     <div class="row">
                         <div class="col-md-3" ng-repeat="media in media2015">
+                            <div class="event-detail ">
+                               <div class="data">
+                                <h6 class="font-color2">{{media.name}}</h6>
+                                <p>{{media.data}}</p>
+                                </div>
+                                <div class="event-img text-center">
+                                    <figure>
+                                        <img ng-src="{{media.img}}" class="img-responsive">
+                                    </figure>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </accordion-group>
+                <accordion-group heading="Media Coverage 2014">
+                    <div class="row">
+                        <div class="col-md-3" ng-repeat="event in media2014">
                             <div class="event-detail ">
                                <div class="data">
                                 <h6 class="font-color2">{{media.name}}</h6>
@@ -25,26 +44,8 @@
 
                     </div>
                 </accordion-group>
-                        <accordion-group heading="Media Coverage 2015">
-                    <div class="row">
-                        <div class="col-md-3" ng-repeat="media in media2015">
-                            <div class="event-detail ">
-                               <div class="data">
-                                <h6 class="font-color2">{{media.name}}</h6>
-                                <p>{{media.date}}</p>
-                                </div>
-                                <div class="event-img text-center">
-                                    <figure>
-                                        <img ng-src="{{media.img}}" class="img-responsive">
-                                    </figure>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </accordion-group>
-                  </accordion>
+     
+            </accordion>
         </div>
     </div>
 </div>

@@ -973,7 +973,7 @@ a.link-viewall {
         }
     }
     .event {
-        padding-top: 40px;
+        padding-top: 48px;
         h5 {
             font-weight: 600;
             //            &:hover {
@@ -1038,7 +1038,7 @@ a.link-viewall {
 
 .ngdialog-overlay {
     position: fixed;
-    background-color:  rgba(22, 22, 22, 0.8);
+    background-color: rgba(22, 22, 22, 0.8);
 }
 
 img.balckbak {
@@ -1066,6 +1066,7 @@ img.balckbak {
     position: fixed;
     z-index: 1000000;
 }
+
 .ngdialog-close {
     position: absolute;
     top: -10px;
@@ -1076,18 +1077,21 @@ img.balckbak {
     height: 30px;
     width: 30px;
 }
+
 .ngdialog.ngdialog-theme-default .ngdialog-close:before {
     font-size: 36px !important;
 }
 
 .ngdialog-content .image {
     padding: 8px;
-        background-color: #928E8E;
+    background-color: #928E8E;
 }
-.imagebrowser2{
+
+.imagebrowser2 {
     cursor: pointer;
 }
-.imagebrowser{
+
+.imagebrowser {
     cursor: pointer;
 }
 
@@ -1095,8 +1099,7 @@ img.balckbak {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-   
-   .translate(-50%, -50%);
+    .translate(-50%, -50%);
 }
 
 .ngdialog-closing {
@@ -1107,22 +1110,42 @@ body.ngdialog-open {
     overflow: auto !important;
 }
 
-.mediacov {
-    .panel {
-    margin-bottom: 0;
-    border-radius:0px;
+.media {
+    padding-left: 15px;
 }
+.padtop{
+        padding-bottom: 10px;
+}
+
+.mediacov {
+    margin-top: 30px;
+    .panel {
+        margin-bottom: 0;
+        border-radius: 0px;
+    }
     .panel-default {
         border-color: @color2;
         .panel-heading {
-            color: #fff;
-            background-color: @color2;
+            color: @color-base;
+            background-color: #fff;
             border-color: @color2;
-                border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
             outline: 0;
-            a:focus{
-                outline:0;
+            a:focus {
+                outline: 0;
+            }
+        }
+        .panel-heading+.panel-collapse>.panel-body {
+            border-top-color: @color2 !important;
+        }
+    }
+    .media-detail {
+        .data {
+            h6 {
+                margin: 0;
+                padding: 0;
+                font-size: 14px;
             }
         }
     }
