@@ -111,6 +111,60 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     isFirstOpen: true,
     isFirstDisabled: false
   };
+    
+       $scope.event2015 = [{
+        name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
+        detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
+           img:'img/event/event1.jpg'
+    }, {
+         name: 'Art and Culture exchange between India & China',
+         detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
+        img:'img/event/event2.jpg'
+    }];
+    
+         $scope.event2014 = [{
+        name: 'The Art Enclave at UBM Index Fairs 2014',
+        detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
+           img:'img/event/event3.jpg'
+    }, {
+         name: 'Art Partner for The Edutainment Show 2014',
+         detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
+        img:''
+    }, {
+         name: 'Art Partner for Yes Bank International Polo Cup',
+         detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
+        img:''
+    }];
+    
+            $scope.event2013 = [{
+        name: 'Art Infrastructure – nobody’s business',
+        detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
+           img:'img/event/event4.jpg'
+    }, {
+         name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
+         detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
+        img:'img/event/event5.jpg'
+    }, {
+         name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
+         detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
+        img:'img/event/event6.jpg'
+    }, {
+         name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
+         detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
+        img:''
+    }, {
+         name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
+         detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
+        img:''
+    }, {
+         name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
+         detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
+        img:''
+    }, {
+         name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
+         detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
+        img:'img/event/event7.jpg'
+    }];
    
     })
 .controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
