@@ -938,12 +938,19 @@ a.link-viewall {
         .panel {
             .border-radius(0);
         }
+        .panel-default {
+            border-color: @color2;
+        }
         .panel-heading {
             padding: 10px 0px;
             text-align: center;
             text-transform: capitalize;
             font-weight: 600;
-            .font-color3;
+            background-color: @color2;
+            border-color: @color2;
+            color: #fff;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
         }
         .panel-body {
             padding: 10px 1px;
