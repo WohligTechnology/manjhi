@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ImageZoom'])
 
 .controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
@@ -330,13 +330,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Mediacoverages");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
-    
+
     $scope.oneAtATime = true;
-    
+
     $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
     $scope.media2015 = [{
         name: 'Interiors & Decor',
@@ -371,8 +371,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         date: 'Sep 30, 2014',
         img: 'img/mediacove/m7.jpg'
     }];
-    
-        $scope.media2014 = [{
+
+    $scope.media2014 = [{
         name: 'Interiors & Decor',
         date: ' Sep 30, 2014 ',
         img: 'img/mediacove/m1.jpg'
@@ -425,7 +425,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         year: '1978',
         price: 'Rs. 1,00,000/ $ 6.400'
     }];
-
+    $scope.imageSrc = 'img/artist/artist1.jpg';
+    $scope.switchImage = function (imageSrc) {
+        console.log('change image to: ' + imageSrc);
+        $scope.imageSrc = imageSrc;
+    };
 
     $scope.aristImages = [{
         image: 'img/artist/artist1.jpg',
@@ -649,7 +653,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.ordertracing = "";
             $scope.listingmsg = "";
         }
-        
+
         $scope.changemyorders = function () {
             $scope.info = "";
             $scope.chngpass = "";
@@ -657,7 +661,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.ordertracing = "";
             $scope.listingmsg = "";
         }
-        
+
         $scope.changeordertracing = function () {
             $scope.info = "";
             $scope.chngpass = "";

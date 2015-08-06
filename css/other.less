@@ -77,9 +77,11 @@
         }
     }
 }
+
 textarea {
     resize: none;
 }
+
 .main-cont {
     padding-top: 25px;
     .panel-default {
@@ -96,6 +98,7 @@ textarea {
         }
     }
 }
+
 .btn-sucesses {
     background-color: @color2;
     border-color: @color2;
@@ -112,6 +115,7 @@ textarea {
         color: #fff;
     }
 }
+
 .btn-cont {
     background-color: @color3;
     border-color: @color3;
@@ -130,6 +134,7 @@ textarea {
         color: #fff;
     }
 }
+
 a.forgetlink {
     margin-top: 10px;
     font-size: 12px;
@@ -139,6 +144,7 @@ a.forgetlink {
         color: @color2;
     }
 }
+
 .cart {
     padding-top: 30px;
     tr {
@@ -186,6 +192,7 @@ a.forgetlink {
         }
     }
 }
+
 .artist-detail {
     padding-top: 20px;
     .artist-details {
@@ -207,16 +214,19 @@ a.forgetlink {
         }
     }
 }
+
 .labels {
     font-size: 14px;
     padding-right: 5px;
 }
+
 .making {
     th {
         background-color: @color2;
         color: #fff;
     }
 }
+
 .info {
     padding-top: 25px;
     .input-id {
@@ -273,15 +283,46 @@ a.forgetlink {
         }
     }
 }
+
 ul.read-morecont {
     padding-top: 40px;
 }
+
 li.head {
     padding-bottom: 10px;
     text-transform: uppercase;
     font-size: 15px;
 }
+
 a.readmore {
     color: @color3;
     cursor: pointer;
+}
+.aboveimage{
+    width: 450px;
+    margin: 0 auto;
+.image-zoom {
+    position: relative;
+    margin: auto;
+    .image-zoom-lens {
+        position: absolute;
+        z-index: 999;
+        width: 200px;
+        right: -212px !important;
+        left: inherit !important;
+        top: 0px !important;
+        height: 200px;
+        filter: alpha(opacity=0);
+        background-repeat: no-repeat;
+        border-radius: 0px;
+        opacity: 0;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 50%;
+        border: 1px solid @abbr-border-color;
+    }
+    .image
+    {
+        width: 100%;
+    }
+}
 }

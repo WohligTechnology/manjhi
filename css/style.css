@@ -863,6 +863,7 @@ nav.pagination-artist ul li.actived a {
 .painting-details i.fa.fa-heart {
   padding-left: 8px;
   color: #e6e7e9;
+  cursor: pointer;
 }
 .painting-details i.fa.fa-heart:hover {
   color: #ff4f4f;
@@ -968,7 +969,7 @@ a.link-viewall {
   border: 1px solid #f1f1f1;
 }
 .event-set .event {
-  padding-top: 40px;
+  padding-top: 48px;
 }
 .event-set .event h5 {
   font-weight: 600;
@@ -1028,6 +1029,7 @@ a.link-viewall {
 }
 .ngdialog-overlay {
   position: fixed;
+  background-color: rgba(22, 22, 22, 0.8);
 }
 img.balckbak {
   width: 100%;
@@ -1059,11 +1061,28 @@ img.balckbak {
   position: fixed;
   z-index: 1000000;
 }
+.ngdialog-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #BFBFBF;
+  border-radius: 100%;
+  padding: 5px;
+  height: 30px;
+  width: 30px;
+}
 .ngdialog.ngdialog-theme-default .ngdialog-close:before {
   font-size: 36px !important;
 }
 .ngdialog-content .image {
-  padding: 25px;
+  padding: 8px;
+  background-color: #928E8E;
+}
+.imagebrowser2 {
+  cursor: pointer;
+}
+.imagebrowser {
+  cursor: pointer;
 }
 .ngdialog.ngdialog-theme-default .ngdialog-content {
   position: absolute !important;
@@ -1080,6 +1099,30 @@ img.balckbak {
 }
 body.ngdialog-open {
   overflow: auto !important;
+}
+.media {
+  padding-left: 15px;
+}
+.padtop {
+  padding-bottom: 10px;
+}
+.mediacov {
+  margin-top: 30px;
+}
+.mediacov .panel {
+  margin-bottom: 0;
+  border-radius: 0px;
+  border-left: 0px;
+}
+.mediacov .media-detail .data h6 {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  font-family: 'Raleway';
+}
+.mediacov .media-detail .media-img {
+  height: 400px;
+  overflow: hidden;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
@@ -1486,7 +1529,7 @@ a.forgetlink:hover {
   margin-bottom: 25px;
 }
 .artist-detail .artist-details .artist-cont-detail {
-  padding: 15px 0;
+  padding: 15px 10px;
 }
 .artist-detail .artist-details .artist-cont-detail p {
   margin-bottom: 5px;
@@ -1510,6 +1553,9 @@ a.forgetlink:hover {
 }
 .info {
   padding-top: 25px;
+}
+.info .input-id {
+  padding-bottom: 20px;
 }
 .info .info-cont {
   border-right: 1px solid #d4ae70;
@@ -1555,4 +1601,46 @@ a.forgetlink:hover {
   z-index: 0;
   top: 10px;
   right: -40px;
+}
+.info .myaccnthead h3 {
+  margin: 15px 0;
+}
+ul.read-morecont {
+  padding-top: 40px;
+}
+li.head {
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+a.readmore {
+  color: #ff4f4f;
+  cursor: pointer;
+}
+.aboveimage {
+  width: 450px;
+  margin: 0 auto;
+}
+.aboveimage .image-zoom {
+  position: relative;
+  margin: auto;
+}
+.aboveimage .image-zoom .image-zoom-lens {
+  position: absolute;
+  z-index: 999;
+  width: 200px;
+  right: -212px !important;
+  left: inherit !important;
+  top: 0px !important;
+  height: 200px;
+  filter: alpha(opacity=0);
+  background-repeat: no-repeat;
+  border-radius: 0px;
+  opacity: 0;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 50%;
+  border: 1px solid #f1f1f1;
+}
+.aboveimage .image-zoom .image {
+  width: 100%;
 }
