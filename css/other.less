@@ -5,7 +5,7 @@
     left: 50%;
     .translate(-50%, -50%);
     background: #fff;
-    padding: 20px 50px;
+    padding: 35px 50px;
     h3.createtitle {
         text-transform: uppercase;
         font-family: @font-family-head;
@@ -86,14 +86,37 @@
         }
     }
 }
-
 textarea {
-   resize: none;
+    resize: none;
 }
-.asteric
-{
-    &:before
-    {
-        content: "*"
+.main-cont {
+    padding-top: 25px;
+    .panel-default {
+        border-radius: 0px;
+    }
+    .panel-default {
+        border-color: @color2;
+        .panel-heading {
+            color: #FFF;
+            background-color: @color2;
+            border-color: @color2;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+    }
+}
+.btn-sucesses {
+    background-color: @color2;
+    border-color: @color2;
+    color: #fff!important;
+    &:hover {
+        background-color: @color2;
+        border-color: @color2;
+        color: #fff;
+    } 
+    &:active {
+        background-color: @color2;
+        border-color: @color2;
+        color: #fff;
     }
 }

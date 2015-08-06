@@ -939,12 +939,19 @@ a.link-viewall {
   border-radius: 0;
   background-clip: padding-box;
 }
+.panel-set .panels .panel-default {
+  border-color: #d4ae70;
+}
 .panel-set .panels .panel-heading {
   padding: 10px 0px;
   text-align: center;
   text-transform: capitalize;
   font-weight: 600;
-  color: #ff4f4f;
+  background-color: #d4ae70;
+  border-color: #d4ae70;
+  color: #fff;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 .panel-set .panels .panel-body {
   padding: 10px 1px;
@@ -969,6 +976,26 @@ a.link-viewall {
 .event-set .all-events {
   padding-left: 15px;
   padding-top: 30px;
+}
+.event-set .all-events .panel {
+  border-left: 0px !important;
+  border-right: 0px !important;
+}
+.event-set .event-detail .event-img {
+  width: 150px;
+  margin: 0 auto;
+  height: 212px;
+}
+.event-set .event-detail .event-img img {
+  max-height: 212px;
+}
+.event-set .event-detail p {
+  font-family: 'Open Sans';
+  font-size: 11px;
+}
+.event-set .event-detail .data {
+  padding-bottom: 10px;
+  min-height: 100px;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
@@ -1193,19 +1220,19 @@ a.link-viewall {
   background: #fff;
   padding: 20px 50px;
 }
+.popup-dialogbox h3.createtitle {
+  text-transform: uppercase;
+  font-family: 'Raleway';
+  margin-top: -7px;
+  font-size: 22px;
+  line-height: 1.1;
+}
 .popup-dialogbox .signinor {
   width: 100%;
   padding-right: 75px;
   margin-right: 60px;
   position: relative;
   background: url(../img/or.png) top right no-repeat;
-}
-.popup-dialogbox .signinor h4 {
-  text-transform: uppercase;
-  font-family: 'Raleway';
-  margin-top: -7px;
-  font-size: 22px;
-  line-height: 1.1;
 }
 .popup-dialogbox .signinor .btn-sucess {
   background: #d4ae70;
@@ -1269,4 +1296,33 @@ a.link-viewall {
 }
 .popup-dialogbox .gogbtn .twit {
   background: #4099ff;
+}
+textarea {
+  resize: none;
+}
+.main-cont {
+  padding-top: 25px;
+}
+.main-cont .panel-default {
+  border-radius: 0px;
+}
+.main-cont .panel-default {
+  border-color: #d4ae70;
+}
+.main-cont .panel-default .panel-heading {
+  color: #FFF;
+  background-color: #d4ae70;
+  border-color: #d4ae70;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.btn-sucesses {
+  background-color: #d4ae70;
+  border-color: #d4ae70;
+  color: #fff;
+}
+.btn-sucesses:hover:active {
+  background-color: #d4ae70;
+  border-color: #d4ae70;
+  color: #fff;
 }

@@ -1,51 +1,213 @@
+<div class="border-top"></div>
 <div class="container">
-    <div class="making">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Billing Information</h3>
+    <div class="main-cont">
+        <div class="cont-main">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Checkout Method</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>CHECKOUT AS A GUEST OR REGISTER</h4>
+                                <p>Register with us for future convenience:</p>
+                                <div class="row">
+                                    <div class="form-group col-md-offset-2  col-md-8">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optradio">Checkout as guest</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optradio">Register</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <h5>REGISTER AND SAVE TIME!</h5>
+                                <p>Register with us for future convenience:</p>
+                                <ul>
+                                    <li>Fast and easy check out</li>
+                                    <li>Easy access to your order history and status</li>
+                                </ul>
+                                <!--{{form}}-->
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>LOGIN</h4>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control asteric" placeholder="Username or email" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <input type="password" class="form-control asteric" placeholder="Password" class="form-control" required>
+                                    </div>
+                                </div>
+                                <a href="" class="forgetlink">Forgot password ?</a>
+                                <!--                                <button href class="btn btn-primary pull-right">Login</button>-->
+                                <button type="submit" class="btn btn-sucesses pull-right"> Login</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="form-group col-md-offset-2 col-md-4">
-                        <input type="text" class="form-control asteric" id="" placeholder="First Name">
+        </div>
+        <div class="clear-fix"></div>
+        <div class="making">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Billing Information</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2 col-md-4">
+                                <input type="text" class="form-control asteric" id="" placeholder="First Name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="Company">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="email" class="form-control" id="" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-md-offset-2 ">
+                                <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="City">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="State/Provision">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="tel" class="form-control" id="" placeholder="Telephone Number">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="form-group col-md-offset-2  col-md-8">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optradio">Ship to this address</label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="optradio">Ship to different address</label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <input type="text" class="form-control" id="" placeholder="Last Name">
+                    <div class="row">
+                        <div class="form-group col-md-offset-2 col-md-8">
+                            <h4>Ship To This Address</h4></div>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2 col-md-4">
+                                <input type="text" class="form-control asteric" id="" placeholder="Shipping Name">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="tel" class="form-control" id="" placeholder="Telephone">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-md-offset-2 ">
+                                <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="City">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="State/Provision">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="Country">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-offset-2  col-md-8">
+                            <button class="btn btn-sucesses pull-right">Continue</button>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-offset-2  col-md-4">
-                        <input type="text" class="form-control" id="" placeholder="Company">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <input type="email" class="form-control" id="" placeholder="Email">
+            </div>
+        </div>
+        <div class="making">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Billing Information</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Unit Price</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ngRepeat: singlecart in cart -->
+                            <tr>
+                                <td>American Diamond Bangle</td>
+                                <td>Rs 2450.00</td>
+                                <td>
+                                    1
+                                </td>
+                                <td>Rs 2450.00</td>
+
+                            </tr>
+                            <!-- end ngRepeat: singlecart in cart -->
+
+
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div class="col-md-offset-8 col-md-4">
+                        <table class="table table-bordered ">
+                            <tbody>
+                                <tr>
+                                    <th>Sub Total</th>
+                                    <th>Discount</th>
+                                    <th>Shipping</th>
+                                    <th>Grand Total</th>
+                                </tr>
+                                <tr>
+                                    <td>Rs 2450.00</td>
+                                    <td>Rs 0.00</td>
+                                    <td>Rs 0.00</td>
+                                    <td>Rs 2450.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-8 col-md-offset-2 ">
-                        <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-offset-2  col-md-4">
-                        <input type="text" class="form-control" id="" placeholder="City">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <input type="text" class="form-control" id="" placeholder="State/Provision">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-offset-2  col-md-4">
-                        <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <input type="tel" class="form-control" id="" placeholder="Telephone Number">
-                    </div>
-                </div>
-                <p>
-                                             <input type="radio" class="form-control" name="shippdifferent" ng-model="form.shipdifferent" value="1">Ship to this address
-                                            
-                                            <input type="radio" class="form-control" name="shippdifferent" ng-model="form.shipdifferent" value="2">Ship to different address</p>
             </div>
         </div>
     </div>
