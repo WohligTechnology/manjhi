@@ -966,6 +966,10 @@ a.link-viewall {
 .event-set .event p {
   margin: 0;
 }
+.event-set .all-events {
+  padding-left: 15px;
+  padding-top: 30px;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
@@ -1175,4 +1179,94 @@ a.link-viewall {
   .logo {
     width: 70%;
   }
+}
+.popup-dialogbox {
+  position: absolute;
+  width: 60%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px 50px;
+}
+.popup-dialogbox .signinor {
+  width: 100%;
+  padding-right: 75px;
+  margin-right: 60px;
+  position: relative;
+  background: url(../img/or.png) top right no-repeat;
+}
+.popup-dialogbox .signinor h4 {
+  text-transform: uppercase;
+  font-family: 'Raleway';
+  margin-top: -7px;
+  font-size: 22px;
+  line-height: 1.1;
+}
+.popup-dialogbox .signinor .btn-sucess {
+  background: #d4ae70;
+  color: #fff;
+  text-transform: capitalize;
+  padding: 10px 0px;
+  border-radius: 0px;
+  display: block;
+  width: 100%;
+  margin: 20px 0px 25px 0px;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  height: 45px;
+  border: none;
+}
+.popup-dialogbox .signinor .btn-sucess:active {
+  background-color: #d4ae70;
+}
+.popup-dialogbox .signinor input:focus {
+  border: 1px solid #ccc;
+}
+.popup-dialogbox .border1 {
+  border-top: 1px solid #f1f1f1;
+}
+.popup-dialogbox .border1 p.abc {
+  padding-top: 12px;
+}
+.popup-dialogbox .border1 p.abc a.forgetlink {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #d4ae70;
+}
+.popup-dialogbox .border1 p.abc a.forgetlink:hover {
+  text-decoration: none!important;
+  color: #d4ae70;
+}
+.popup-dialogbox .gogbtn {
+  margin: 15% 0 0;
+}
+.popup-dialogbox .gogbtn .btnsoc {
+  font-size: 15px;
+  padding: 10px 0 0px;
+  color: #fff;
+  margin-top: 10px;
+  width: 100%;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.1);
+  display: block;
+  text-align: center;
+  height: 45px;
+}
+.popup-dialogbox .gogbtn .btnsoc .fa {
+  float: left;
+  padding: 4px 20px 10px 20px;
+}
+.popup-dialogbox .gogbtn .gplus {
+  background: #dd4d3b;
+}
+.popup-dialogbox .gogbtn .fbook {
+  background: #3c5a98;
+}
+.popup-dialogbox .gogbtn .twit {
+  background: #4099ff;
 }

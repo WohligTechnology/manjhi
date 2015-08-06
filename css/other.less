@@ -1,14 +1,99 @@
-.popup-dialog {
+.popup-dialogbox {
     position: absolute;
     width: 60%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    .translate(-50%, -50%);
     background: #fff;
-    padding: 50px;
+    padding: 20px 50px;
+    h3.createtitle {
+        text-transform: uppercase;
+        font-family: @font-family-head;
+        margin-top: -7px;
+        font-size: 22px;
+        line-height: 1.1;
+    }
+    .signinor {
+        width: 100%;
+        padding-right: 75px;
+        margin-right: 60px;
+        position: relative;
+        background: url(../img/or.png) top right no-repeat;
+        .btn-sucess {
+            background: @color2;
+            color: #fff;
+            text-transform: capitalize;
+            padding: 10px 0px;
+            border-radius: 0px;
+            display: block;
+            width: 100%;
+            margin: 20px 0px 25px 0px;
+            font-weight: 500;
+            font-size: 15px;
+            text-align: center;
+            height: 45px;
+            border: none;
+            &:active {
+                background-color: @color2;
+            }
+        }
+        input {
+            &:focus {
+                border: 1px solid #ccc;
+            }
+        }
+    }
+    .border1 {
+        border-top: 1px solid @abbr-border-color;
+        p.abc {
+            padding-top: 12px;
+            a.forgetlink {
+                margin-top: 10px;
+                font-size: 12px;
+                color: @color2;
+                &:hover {
+                    text-decoration: none!important;
+                    color: @color2;
+                }
+            }
+        }
+    }
+    .gogbtn {
+        margin: 15% 0 0;
+        .btnsoc {
+            font-size: 15px;
+            padding: 10px 0 0px;
+            color: #fff;
+            margin-top: 10px;
+            width: 100%;
+            border-bottom: 3px solid rgba(0, 0, 0, 0.1);
+            display: block;
+            text-align: center;
+            height: 45px;
+            .fa {
+                float: left;
+                padding: 4px 20px 10px 20px;
+            }
+        }
+        .gplus {
+            background: #dd4d3b;
+        }
+        .fbook {
+            background: #3c5a98
+        }
+        .twit {
+            background: #4099FF
+        }
+    }
 }
 
-.popup-dialog h4 {
-    padding-bottom: 20px;
-    font-size: 22px;
+textarea {
+   resize: none;
+}
+.asteric
+{
+    &:before
+    {
+        content: "*"
+    }
 }

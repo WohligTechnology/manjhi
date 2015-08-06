@@ -6,19 +6,46 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-inline">
-                            <form valdr-type="Person" class="form-group">
-                                <label for="firstName">First Name</label>
-                                <input class="form-control" type="text" id="firstName" name="firstName" ng-model="person.firstName">
-                                <span class="valdr" valdr-message="firstName"></span>
-                            </form>
-                        </div>
+                    <div class="form-group col-md-offset-2 col-md-4">
+                        <input type="text" class="form-control asteric" id="" placeholder="First Name">
                     </div>
-                    <div class="col-md-4">
-                        <input type="text" placeholder="Billing">
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="" placeholder="Last Name">
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-md-offset-2  col-md-4">
+                        <input type="text" class="form-control" id="" placeholder="Company">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="email" class="form-control" id="" placeholder="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-8 col-md-offset-2 ">
+                        <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-offset-2  col-md-4">
+                        <input type="text" class="form-control" id="" placeholder="City">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="text" class="form-control" id="" placeholder="State/Provision">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-offset-2  col-md-4">
+                        <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input type="tel" class="form-control" id="" placeholder="Telephone Number">
+                    </div>
+                </div>
+                <p>
+                                             <input type="radio" class="form-control" name="shippdifferent" ng-model="form.shipdifferent" value="1">Ship to this address
+                                            
+                                            <input type="radio" class="form-control" name="shippdifferent" ng-model="form.shipdifferent" value="2">Ship to different address</p>
             </div>
         </div>
     </div>

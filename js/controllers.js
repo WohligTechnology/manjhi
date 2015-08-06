@@ -76,7 +76,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             name: 'Paramjit Singh'
     }];
     })
-    .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("checkout");
         $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -105,84 +105,84 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         //Valdr
-     $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
-    
-      $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-   
+        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+
+        $scope.status = {
+            isFirstOpen: true,
+            isFirstDisabled: false
+        };
+
     })
-.controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
-    $scope.template = TemplateService.changecontent("feature");
-    $scope.menutitle = NavigationService.makeactive("Features");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
+    .controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
+        $scope.template = TemplateService.changecontent("feature");
+        $scope.menutitle = NavigationService.makeactive("Features");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
 
-    //Angular Loader Example
-    //Start loader
-    $scope.showLoader = function () {
-            cfpLoadingBar.start();
+        //Angular Loader Example
+        //Start loader
+        $scope.showLoader = function () {
+                cfpLoadingBar.start();
+            }
+            //Complete loader
+        $scope.hideLoader = function () {
+            cfpLoadingBar.complete();
         }
-        //Complete loader
-    $scope.hideLoader = function () {
-        cfpLoadingBar.complete();
-    }
 
-    //Angular toaster
-    $scope.showToaster = function () {
-        toaster.pop({
-            type: 'success',
-            title: 'Success!',
-            body: 'Huraaay!',
-            showCloseButton: true
-        });
-    };
+        //Angular toaster
+        $scope.showToaster = function () {
+            toaster.pop({
+                type: 'success',
+                title: 'Success!',
+                body: 'Huraaay!',
+                showCloseButton: true
+            });
+        };
 
-    //Tags input
-    $scope.tags = [{
-        text: 'Chintan'
+        //Tags input
+        $scope.tags = [{
+            text: 'Chintan'
     }, {
-        text: 'Saloni'
+            text: 'Saloni'
     }, {
-        text: 'Sohan'
+            text: 'Sohan'
     }, {
-        text: 'Mahesh'
+            text: 'Mahesh'
     }, {
-        text: 'Jagruti'
+            text: 'Jagruti'
     }];
 
-    //ngDialog
-    $scope.showPopup = function () {
-        ngDialog.open({
-            template: 'demopop'
-        });
-    };
+        //ngDialog
+        $scope.showPopup = function () {
+            ngDialog.open({
+                template: 'demopop'
+            });
+        };
 
-    //Valdr
-    valdr.addConstraints({
-        'Person': {
-            'firstName': {
-                'size': {
-                    'min': 3,
-                    'max': 20,
-                    'message': 'First name is required to be between 3 and 20 characters.'
-                },
-                'required': {
-                    'message': 'First name is required.'
+        //Valdr
+        valdr.addConstraints({
+            'Person': {
+                'firstName': {
+                    'size': {
+                        'min': 3,
+                        'max': 20,
+                        'message': 'First name is required to be between 3 and 20 characters.'
+                    },
+                    'required': {
+                        'message': 'First name is required.'
+                    }
                 }
             }
-        }
-    });
+        });
 
-    //Colours for ui-select
-    $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
+        //Colours for ui-select
+        $scope.availableColors = ['Red', 'Green', 'Blue', 'Yellow', 'Magenta', 'Maroon', 'Umbra', 'Turquoise'];
 
-    //MomentJS
-    $scope.today = new Date();
-    $scope.dateformat = "medium";
+        //MomentJS
+        $scope.today = new Date();
+        $scope.dateformat = "medium";
 
-})
+    })
 
 .controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("detailImage");
