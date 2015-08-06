@@ -105,7 +105,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         //Valdr
-<<<<<<< HEAD
+
         $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
 
         $scope.status = {
@@ -113,7 +113,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             isFirstDisabled: false
         };
 
-=======
+
      $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
     
       $scope.status = {
@@ -175,8 +175,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         img:'img/event/event7.jpg'
     }];
    
->>>>>>> origin/master
+
     })
+
+.controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("eventdetail");
+    $scope.menutitle = NavigationService.makeactive("Eventdetail");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+
     .controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
         $scope.template = TemplateService.changecontent("feature");
         $scope.menutitle = NavigationService.makeactive("Features");

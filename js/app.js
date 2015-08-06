@@ -12,7 +12,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
 
     $stateProvider
 
-    .state('home', {
+        .state('home', {
         url: "/home",
         templateUrl: "views/template.html",
         controller: 'HomeCtrl'
@@ -31,10 +31,10 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
     })
 
     .state('cart', {
-        url: "/cart",
-        templateUrl: "views/template.html",
-        controller: 'CartCtrl'
-    })
+            url: "/cart",
+            templateUrl: "views/template.html",
+            controller: 'CartCtrl'
+        })
         .state('checkout', {
             url: "/checkout",
             templateUrl: "views/template.html",
@@ -45,32 +45,37 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
         url: "/artist",
         templateUrl: "views/template.html",
         controller: 'ArtistCtrl'
-    })  
+    })
 
     .state('artistdetail', {
-        url: "/artistDetail",
-        templateUrl: "views/template.html",
-        controller: 'ArtistDetailCtrl'
-    })
+            url: "/artistDetail",
+            templateUrl: "views/template.html",
+            controller: 'ArtistDetailCtrl'
+        })
         .state('detailImage', {
             url: "/detailImage",
             templateUrl: "views/template.html",
             controller: 'ArtistDetailImageCtrl'
-        }) 
+        })
         .state('team', {
             url: "/team",
             templateUrl: "views/template.html",
             controller: 'TeamCtrl'
-        })  
+        })
         .state('artInfrastructure', {
             url: "/artInfrastructure",
             templateUrl: "views/template.html",
             controller: 'ArtInfrastructureCtrl'
-        })  
+        })
         .state('events', {
             url: "/events",
             templateUrl: "views/template.html",
             controller: 'EventsCtrl'
+        })
+        .state('eventdetail', {
+            url: "/eventdetail",
+            templateUrl: "views/template.html",
+            controller: 'EventdetailCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");
@@ -91,32 +96,32 @@ firstapp.directive("scroll", function($window) {
     };
 });
 
-firstapp.directive('fixit',function($window) {
-	return function(scope, element, attrs) {
-		var myelem = {};
-            var imagedim = {};
-            $element = $(element);
-            myelem.height = $element.height();
-            myelem.width = $element.width();
-            myelem.ratio = myelem.width / myelem.height;
-		
-            	$element.children("img.fix-img").load(function() {
-                imagedim.height = $(this).height();
-                imagedim.width = $(this).width();
-                imagedim.ratio = imagedim.width / imagedim.height;
-			  
-			  
-			  if (myelem.ratio == imagedim.ratio) {
-                    $(this).css("width", "auto");
-                    $(this).css("height", myelem.height);
-                } else if (myelem.ratio > imagedim.ratio) {
-                    $(this).css("width", "auto");
-                    $(this).css("height", myelem.height);
-                } else {
-                    $(this).css("width", "100%");
-                    $(this).css("height", "auto");
-                }
-			  
-            });
+firstapp.directive('fixit', function($window) {
+    return function(scope, element, attrs) {
+        var myelem = {};
+        var imagedim = {};
+        $element = $(element);
+        myelem.height = $element.height();
+        myelem.width = $element.width();
+        myelem.ratio = myelem.width / myelem.height;
+
+        $element.children("img.fix-img").load(function() {
+            imagedim.height = $(this).height();
+            imagedim.width = $(this).width();
+            imagedim.ratio = imagedim.width / imagedim.height;
+
+
+            if (myelem.ratio == imagedim.ratio) {
+                $(this).css("width", "auto");
+                $(this).css("height", myelem.height);
+            } else if (myelem.ratio > imagedim.ratio) {
+                $(this).css("width", "auto");
+                $(this).css("height", myelem.height);
+            } else {
+                $(this).css("width", "100%");
+                $(this).css("height", "auto");
+            }
+
+        });
     };
 });
