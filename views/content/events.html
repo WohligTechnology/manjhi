@@ -22,21 +22,18 @@
     <div class="row">
         <div class="all-events search-box">
           <accordion close-others="true">
-                    <accordion-group heading="Search By Artist">
+                    <accordion-group heading="Past Events - 2015">
                         <ui-select multiple ng-model="multipleDemo.artist" theme="select2" ng-disabled="disabled" style="width: 300px;">
-                            <ui-select-match placeholder="Select Artist...">{{$item}}</ui-select-match>
-                            <ui-select-choices repeat="artist in availableAritist| filter:$select.search">
-                                {{artist}}
-                            </ui-select-choices>
+                          
                         </ui-select>
                     </accordion-group>
-                    <accordion-group heading="Search By Price">
+                    <accordion-group heading="Past Events - 2014">
                         Price
                     </accordion-group>
-                    <accordion-group heading="Search By Size">
+                    <accordion-group heading="Past Events - 2013">
                         Size
                     </accordion-group>
-                    <accordion-group heading="Search By Medium">
+                    <accordion-group heading="Past Events - 2012">
                         Medium
                     </accordion-group>
                 </accordion>
