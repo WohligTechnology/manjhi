@@ -966,17 +966,39 @@ a.link-viewall {
         padding-top: 40px;
         h5 {
             font-weight: 600;
-//            &:hover {
-//                color: aqua;
-//            }
+            //            &:hover {
+            //                color: aqua;
+            //            }
         }
         p {
             margin: 0;
         }
     }
-    .all-events{
+    .all-events {
         padding-left: 15px;
-        padding-top:30px;
+        padding-top: 30px;
+        .panel {
+            border-left: 0px !important;
+            border-right: 0px !important;
+        }
+    }
+    .event-detail {
+        .event-img {
+            width: 150px;
+            margin: 0 auto;
+            height: 212px;
+            img {
+                max-height: 212px;
+            }
+        }
+        p {
+            font-family: @font-family-body;
+            font-size: 11px;
+        }
+        .data {
+            padding-bottom: 10px;
+            min-height: 100px;
+        }
     }
 }
 
