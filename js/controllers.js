@@ -178,7 +178,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     })
 
-.controller('EventdetailCtrl', function($scope, TemplateService, NavigationService, $timeout) {
+.controller('EventdetailCtrl', function($scope, TemplateService, NavigationService, $timeout, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("eventdetail");
     $scope.menutitle = NavigationService.makeactive("Eventdetail");
@@ -193,28 +193,63 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     }];
 
-    $scope.gallerys = [{
+    $scope.gallery = [{
 
-        img: 'img/eventgallery/g1.jpg'
+        image: 'img/eventgallery/g1.jpg'
     }, {
        
-        img: 'img/eventgallery/g2.jpg'
+        image: 'img/eventgallery/g2.jpg'
     }, {
        
-        img: 'img/eventgallery/g3.jpg'
+        image: 'img/eventgallery/g3.jpg'
     }, {
        
-        img: 'img/eventgallery/g4.jpg'
+        image: 'img/eventgallery/g4.jpg'
     }, {
        
-        img: 'img/eventgallery/g5.jpg'
+        image: 'img/eventgallery/g5.jpg'
     }, {
        
-        img: 'img/eventgallery/g6.jpg'
+        image: 'img/eventgallery/g6.jpg'
     }, {
        
-        img: 'img/eventgallery/g7.jpg'
+        image: 'img/eventgallery/g7.jpg'
     }];
+    
+//    ****** popup lightbox ******
+        
+                $scope.zoomposition = 0;
+
+        $scope.openModal = function (gal) {
+
+            $scope.zoomposition = $scope.gallery.indexOf(gal);
+
+            ngDialog.open({
+                disableAnimation: true,
+                template: 'views/directive/zoomimage.html',
+                scope: $scope
+            });
+        };
+
+        $scope.nextImage = function (oldposition) {
+            if (oldposition == ($scope.gallery.length - 1)) {
+                $scope.zoomposition = 0;
+            } else {
+                $scope.zoomposition++;
+            }
+        };
+
+        $scope.previousImage = function (oldposition) {
+            if (oldposition == 0) {
+                $scope.zoomposition = ($scope.gallery.length - 1);
+            } else {
+                $scope.zoomposition--;
+            }
+        };
+      $scope.openBox = function (id) {
+            $(id).attr('openbox', 'show');
+        }
+
 
 })
 

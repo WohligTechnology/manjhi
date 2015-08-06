@@ -1016,20 +1016,69 @@ a.link-viewall {
             font-weight: 600;
         }
     }
-    .eventgallery{
+    .eventgallery {
         margin-top: 30px;
-        .event-pic{
-               text-align: center;
-    position: relative;
-    height: 200px;
-            img{
+        .event-pic {
+            text-align: center;
+            position: relative;
+            height: 200px;
+            img {
                 height: auto;
             }
         }
     }
-     span {
-            font-weight: 600;
-        }
+    span {
+        font-weight: 600;
+    }
+}
+
+.ngdialog-overlay {
+    position: fixed;
+}
+
+img.balckbak {
+    width: 100%;
+}
+
+.image img.imagebrowser {
+    position: absolute;
+    left: 48px;
+    top: 50%;
+    .translateY(-50%);
+}
+
+.image img.imagebrowser2 {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    .translateY(-50%);
+}
+
+.ngdialog.ngdialog-theme-default {
+    padding-bottom: 0px;
+    padding-top: 0px !important;
+    height: 100%;
+    position: fixed;
+    z-index: 1000000;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-close:before {
+    font-size: 36px !important;
+}
+
+.ngdialog-content .image {
+    padding: 25px;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    .translate(-50%, -50%);
+}
+
+.ngdialog-closing {
+    display: none;
 }
 
 

@@ -1,32 +1,33 @@
 <div class="border-top"></div>
 <div class="container ">
-   <div class="eventpad" ng-repeat="events in event">
-    <div class="row">
-        <div class="eventdetail">
-            <h3 class="font-color3 home-header">{{events.name}}</h3>
+    <div class="eventpad" ng-repeat="events in event">
+        <div class="row">
+            <div class="eventdetail">
+                <h3 class="font-color3 home-header">{{events.name}}</h3>
+
+                <p><span>Event Venue</span> : {{events.venue}}</p>
+                <p><span>Period of show </span> : {{events.Period}}</p>
+                <p><span>Event Time</span> : {{events.time}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class=" details">
+                <span>Details :</span>
+                <p ng-bind-html="events.detail | rawHtml"></p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="eventgallery">
             
-            <p><span>Event Venue</span> : {{events.venue}}</p>
-            <p><span>Period of show </span> : {{events.Period}}</p>
-            <p><span>Event Time</span> : {{events.time}}</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class=" details">
-            <span>Details :</span>
-            <p ng-bind-html="events.detail | rawHtml"></p>
-        </div>
-        
-    </div>
-    <div class="row">
-       <div class="eventgallery">
-        <div class="col-md-3" ng-repeat="gal in gallerys">
-             <div class="event-pic" fixit>
-                       
-                        <img class="fix-img" ng-src='{{gal.img}}'>
-                 
+                <div class="col-md-3" ng-repeat="gal in gallery">
+                    <div class="event-pic" fixit>
+
+                        <img class="fix-img" ng-src="{{gal.image}}" ng-click="openModal(gal);">
+
                     </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
     </div>
 </div>
