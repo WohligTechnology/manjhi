@@ -4,15 +4,10 @@
         <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
             <div class="breadcrums">
                 <div class="col-md-12">
-                    <p>Home / Painting </p>
+                    <p>Home / Sculpture </p>
                 </div>
             </div>
             <div class="col-md-8">
-                <!--
-                <div class="img-imagedetail" fixit>
-                    <img class="fix-img" ng-src='{{artistDetailImgs.image}}'>
-                </div>
--->
                 <div class="aboveimage">
                     <div style="position:relative;" image-zoom data-template-url="views/content/image-zoom.html">
                     </div>
@@ -56,14 +51,23 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-                    <button type="button" class="btn btn-block  uppercase">
+                    <button type="button" class="btn btn-block uppercase">
                         VIEW ARTWORK IN YOUR ROOM
+                    </button>
+                    <button type="button" class="btn btn-block btn-royal uppercase">
+                        Rent sculpture
                     </button>
                     <button type="button" class="btn btn-primarys btn-block uppercase">
                         ADD TO CART
                     </button>
+                    <div class="row-flex row-flex row-unflex sweet-box box-more text-center">
+                        <div class="col-flex" ng-repeat="moresculptures in moreSculpture">
+                            <div class="view-box">
+                                <img ng-src='{{moresculptures.image}}' alt="" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

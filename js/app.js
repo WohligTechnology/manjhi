@@ -93,6 +93,16 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             templateUrl: "views/template.html",
             controller: 'ThoughtleadershipCtrl'
         })
+        .state('sculpture', {
+            url: "/sculpture",
+            templateUrl: "views/template.html",
+            controller: 'SculptureCtrl'
+        }) 
+        .state('favorite', {
+            url: "/favorite",
+            templateUrl: "views/template.html",
+            controller: 'FavoriteCtrl'
+        })
 
     $urlRouterProvider.otherwise("/home");
 

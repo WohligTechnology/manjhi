@@ -1,4 +1,4 @@
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ImageZoom'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ImageZoom', 'ui-rangeSlider'])
 
 .controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
@@ -13,8 +13,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     ];
     //Colours for ui-select
     $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+    // set available range
+    $scope.minPrice = 0;
+    $scope.maxPrice = 100000;
+
+    // default the user's values to the available range
+    $scope.userMinPrice = $scope.minPrice;
+    $scope.userMaxPrice = $scope.maxPrice;
 })
 
+.controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("favorite");
+    $scope.menutitle = NavigationService.makeactive("favorite");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
 .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("cart");
@@ -410,61 +424,117 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
-    $scope.template = TemplateService.changecontent("detailImage");
-    $scope.menutitle = NavigationService.makeactive("Artistdetailimage");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-    $scope.artistDetailImg = [{
-        image: 'img/imagedetail/imagedetail.jpg',
-        id: ' 1527',
-        artistname: 'Vipul Ravundra Babu',
-        title: ' Floating Dreams',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs. 1,00,000/ $ 6.400'
+        $scope.template = TemplateService.changecontent("detailImage");
+        $scope.menutitle = NavigationService.makeactive("Artistdetailimage");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        $scope.artistDetailImg = [{
+            image: 'img/imagedetail/imagedetail.jpg',
+            id: ' 1527',
+            artistname: 'Vipul Ravundra Babu',
+            title: ' Floating Dreams',
+            typename: 'Untitled',
+            madein: 'Oil on board',
+            size: '19.5 x 23',
+            year: '1978',
+            price: 'Rs. 1,00,000/ $ 6.400'
     }];
-    $scope.imageSrc = 'img/artist/artist1.jpg';
-    $scope.switchImage = function (imageSrc) {
-        console.log('change image to: ' + imageSrc);
-        $scope.imageSrc = imageSrc;
-    };
+        $scope.imageSrc = 'img/artist/artist1.jpg';
+        $scope.switchImage = function (imageSrc) {
+            console.log('change image to: ' + imageSrc);
+            $scope.imageSrc = imageSrc;
+        };
 
-    $scope.aristImages = [{
-        image: 'img/artist/artist1.jpg',
-
-    }, {
-        image: 'img/artist/artist2.jpg',
+        $scope.aristImages = [{
+            image: 'img/artist/artist1.jpg',
 
     }, {
-        image: 'img/artist/artist3.jpg',
+            image: 'img/artist/artist2.jpg',
 
     }, {
-        image: 'img/artist/artist4.jpg',
+            image: 'img/artist/artist3.jpg',
 
     }, {
-        image: 'img/artist/artist3.jpg',
+            image: 'img/artist/artist4.jpg',
 
     }, {
-        image: 'img/artist/artist4.jpg',
+            image: 'img/artist/artist3.jpg',
+
+    }, {
+            image: 'img/artist/artist4.jpg',
 
     }];
-})
+    })
+    .controller('SculptureCtrl', function ($scope, TemplateService, NavigationService) {
+        $scope.template = TemplateService.changecontent("sculpture");
+        $scope.menutitle = NavigationService.makeactive("Sculpture");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        $scope.artistDetailImg = [{
+            image: 'img/imagedetail/imagedetail.jpg',
+            id: ' 1527',
+            artistname: 'Vipul Ravundra Babu',
+            title: ' Floating Dreams',
+            typename: 'Untitled',
+            madein: 'Oil on board',
+            size: '19.5 x 23',
+            year: '1978',
+            price: 'Rs. 1,00,000/ $ 6.400'
+    }];
+        $scope.imageSrc = 'img/imagedetail/sculputure.jpg';
+        $scope.switchImage = function (imageSrc) {
+            console.log('change image to: ' + imageSrc);
+            $scope.imageSrc = imageSrc;
+        };
+
+        $scope.moreSculpture = [{
+                image: 'img/imagedetail/sculputure.jpg'
+        },
+            {
+                image: 'img/imagedetail/sculputure.jpg'
+            },
+            {
+                image: 'img/imagedetail/sculputure.jpg'
+            },
+            {
+                image: 'img/imagedetail/sculputure.jpg'
+            }];
+
+
+        $scope.aristImages = [{
+            image: 'img/artist/artist1.jpg',
+
+    }, {
+            image: 'img/artist/artist2.jpg',
+
+    }, {
+            image: 'img/artist/artist3.jpg',
+
+    }, {
+            image: 'img/artist/artist4.jpg',
+
+    }, {
+            image: 'img/artist/artist3.jpg',
+
+    }, {
+            image: 'img/artist/artist4.jpg',
+
+    }];
+    })
 
 .controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("thoughtleadership");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadership");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
- 
-       $scope.table = [{
+
+    $scope.table = [{
         sr: '1',
         date: '06/07/2013',
         title: 'Aura Art announces ICICI Lombard as Insurance Partner'
 
     }, {
-         sr: '2',
+        sr: '2',
         date: '08/06/2012',
         title: 'China overtakes the United States to become the worlds largest art and antiques market'
 
@@ -474,7 +544,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         title: 'Hedging Millionaires Buy Jets, Art, Bling...'
 
     }, {
-         sr: '4',
+        sr: '4',
         date: '24/02/2010',
         title: 'Aura Art: has moved to an office-cum-gallery in Kalina (off BKC)'
 

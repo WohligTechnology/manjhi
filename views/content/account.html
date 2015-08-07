@@ -2,7 +2,10 @@
 <div class="info">
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="myaccnthead col-md-12">
+                <h4>My Account</h4>
+            </div>
+            <div class="col-md-2">
                 <div class="info-cont pull-right">
                     <ul class="info-li">
                         <li class="cat-list cpointer" ng-class="info" ng-click="changeinfo()">Personal Info</li>
@@ -12,14 +15,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="myaccnthead col-md-6">
-                <h3>My Account <span ng-if="info=='bolds'" class="pull-right"> <a href="">Edit</a></span> </h3> 
-            </div>
-            <div class="col-md-4" ng-if="info=='bolds'">
+            <div class="col-md-5" ng-if="info=='bolds'">
                 <div class="chngpswd-cont">
                     <div class="form-group">
                         <div class="input-id">
-                            <input type="text" class="form-control" placeholder="Name"  required>
+                            <input type="text" class="form-control" placeholder="Name" required>
                         </div>
                         <div class="input-id">
                             <input type="text" class="form-control" placeholder="Last Name">
@@ -35,11 +35,11 @@
                         </div>
                         <div class="input-id">
                             <label class="radio-inline">
-                                <input type="radio" name="optradio" value="0">Man</label>
+                                <input type="radio" name="optradio" value="0">Male</label>
                             <label class="radio-inline">
-                                <input type="radio" name="optradio" value="1">Woman</label>
+                                <input type="radio" name="optradio" value="1">Female</label>
                         </div>
-                        <a ng-click="updateUser(user)">Save</a>
+                        <a class="btn btn-sucesses">Save</a>
                     </div>
                 </div>
             </div>
@@ -47,18 +47,18 @@
                 <div class="chngpswd-cont">
                     <div class="form-group">
                         <div class="input-id">
-                            <input type="emalid" class="form-control" placeholder="Email ID"  required>
+                            <input type="emalid" class="form-control" placeholder="Email ID" required>
                         </div>
                         <div class="input-id">
-                            <input type="password" class="form-control" placeholder="Old Password"  required>
+                            <input type="password" class="form-control" placeholder="Old Password" required>
                         </div>
                         <div class="input-id">
                             <input type="password" class="form-control" placeholder="New Password" required>
                         </div>
                         <div class="input-id">
-                            <input type="password" class="form-control" placeholder="Conform Password"  required>
+                            <input type="password" class="form-control" placeholder="Conform Password" required>
                         </div>
-                        <a ng-click="changepassword(pass)">Save</a>
+                        <a class="btn btn-sucesses">Save</a>
                     </div>
                 </div>
             </div>

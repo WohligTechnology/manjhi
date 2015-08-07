@@ -239,9 +239,9 @@ a.forgetlink {
         padding-left: 10px;
         ul.info-li {
             list-style: none;
-            padding-top: 30px;
-            padding-right: 25px;
-            float: right;
+            padding-top: 15px;
+            padding-right: 15px;
+            padding-left: 0px;
             li {
                 padding: 8px 0;
                 cursor: pointer;
@@ -250,18 +250,6 @@ a.forgetlink {
                 color: @color2;
                 font-weight: 500;
                 position: relative;
-                &:after {
-                    content: '';
-                    position: absolute;
-                    border-style: solid;
-                    border-width: 7px 0px 7px 14px;
-                    border-color: transparent #FFFFFF;
-                    display: block;
-                    width: 0;
-                    top: 10px;
-                    right: -37px;
-                    z-index: 1;
-                }
                 &:before {
                     content: '';
                     position: absolute;
@@ -271,58 +259,110 @@ a.forgetlink {
                     display: block;
                     width: 0;
                     z-index: 0;
-                    top: 10px;
-                    right: -40px;
+                    top: 9px;
+                    right: -30px;
                 }
             }
         }
     }
     .myaccnthead {
-        h3 {
-            margin: 15px 0;
+        h4 {
+            margin: 0 0 20px 0;
+            font-size: 18px;
+            text-transform: uppercase;
+            color: @color3;
         }
     }
+}
+
+.content-team {
+    padding-bottom: 20px;
+    h4.head-team {
+        text-transform: uppercase;
+        margin-top: 0px;
+        margin-bottom: 20px;
+        color: @color3;
+    }
+}
+
+.head-team {
+    text-transform: uppercase;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    color: @color3;
 }
 
 ul.read-morecont {
     padding-top: 40px;
 }
 
-li.head {
-    padding-bottom: 10px;
-    text-transform: uppercase;
-    font-size: 15px;
+nav li:hover .dropdown-menu {
+    display: block;
+    padding: 0px;
+    margin: -1px;
+}
+
+nav {
+    li {
+        &:hover {
+            ul.dropdown-menu {
+                left: -17px;
+                li {
+                    margin: 0!important;
+                    a {
+//                        font-weight: 600;
+                        font-size: 13px!important;
+                        padding: 10px 10px;
+                        background-image: linear-gradient(to bottom, #fff 0%, #fff 100%);
+                        background: #fff;
+                        color: #000;
+                        &:after {
+                            right: 0px;
+                            height: 0px;
+                            width: 0px;
+                        }
+                        &:before {
+                            right: 0px;
+                            left: 0px;
+                            height: 0px;
+                            width: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 a.readmore {
     color: @color3;
     cursor: pointer;
 }
-.aboveimage{
+
+.aboveimage {
     width: 450px;
     margin: 0 auto;
-.image-zoom {
-    position: relative;
-    margin: auto;
-    .image-zoom-lens {
-        position: absolute;
-        z-index: 999;
-        width: 200px;
-        right: -212px !important;
-        left: inherit !important;
-        top: 0px !important;
-        height: 200px;
-        filter: alpha(opacity=0);
-        background-repeat: no-repeat;
-        border-radius: 0px;
-        opacity: 0;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 50%;
-        border: 1px solid @abbr-border-color;
+    .image-zoom {
+        position: relative;
+        margin: auto;
+        .image-zoom-lens {
+            position: absolute;
+            z-index: 999;
+            width: 200px;
+            right: -212px !important;
+            left: inherit !important;
+            top: 0px !important;
+            height: 200px;
+            filter: alpha(opacity=0);
+            background-repeat: no-repeat;
+            border-radius: 0px;
+            opacity: 0;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 50%;
+            border: 1px solid @abbr-border-color;
+        }
+        .image {
+            width: 100%;
+        }
     }
-    .image
-    {
-        width: 100%;
-    }
-}
 }

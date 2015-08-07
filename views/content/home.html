@@ -39,7 +39,9 @@
                         </ui-select>
                     </accordion-group>
                     <accordion-group heading="Search By Price">
-                        Price
+                        <div range-slider min="minPrice" max="maxPrice" model-min="userMinPrice" model-max="userMaxPrice" step="5"></div>
+                        <input type="number" placeholder="min" class="maxmin">
+                        <input type="number" placeholder="max" class="maxmin">
                     </accordion-group>
                     <accordion-group heading="Search By Size">
                         Size

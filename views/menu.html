@@ -3,5 +3,10 @@
         <a href="{{menu.link}}">
 {{menu.name}}
         </a>
+        <ul class="dropdown-menu" ng-if="menu.subnav!='';">
+            <li ng-repeat="submenu in menu.subnav">
+                <a href="{{submenu.link}}">{{submenu.name}}</a>
+            </li>
+        </ul>
     </li>
 </ul>

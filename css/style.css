@@ -880,6 +880,14 @@ nav.pagination-artist ul li.actived a {
 button.btn.btn-primarys {
   background: #d4ae70;
 }
+button.btn.btn-royal {
+  border: 1px solid #0fba66;
+  background: #fff;
+  color: #0fba66;
+}
+.uppercase {
+  text-transform: uppercase;
+}
 .breadcrums p {
   margin: 10px 0px;
   color: #aeaeae;
@@ -904,10 +912,18 @@ a.link-viewall {
 .view-more ul {
   padding-left: 20px;
 }
+.view-more ul .head {
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+}
 .view-more ul li {
   list-style: none;
-  background: url('../img/arrowli.png') no-repeat left 3px;
+  background: url('../img/arrowli.png') no-repeat left 7px;
   padding-left: 25px;
+  line-height: 200%;
+  text-align: justify;
 }
 .margintp {
   margin-bottom: 40px;
@@ -1145,6 +1161,38 @@ body.ngdialog-open .ngdialog-close {
 }
 .leader .leader-detail .leader-data {
   margin-bottom: 40px;
+}
+.ngrs-range-slider {
+  border: 0px!important;
+  -webkit-box-shadow: 0 0 !important;
+  -moz-box-shadow: 0 0 !important;
+  box-shadow: 0 0 !important;
+  border-radius: 0px!important;
+  padding: 0px;
+}
+.ngrs-range-slider .ngrs-handle {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 18px;
+  margin: 0 0 0 -9px;
+  -webkit-border-radius: 21px !important;
+  -webkit-background-clip: padding-box !important;
+  -moz-border-radius: 21px !important;
+  -moz-background-clip: padding !important;
+  border-radius: 21px !important;
+  background-clip: padding-box !important;
+}
+.ngrs-range-slider .ngrs-join {
+  background-image: 8121991 !important;
+  background-image: -webkit-linear-gradient(#c3c3c3, #c3c3c3) !important;
+  background-image: -moz-linear-gradient(#c3c3c3, #c3c3c3) !important;
+  background-image: -o-linear-gradient(#c3c3c3, #c3c3c3) !important;
+  background-image: linear-gradient(#c3c3c3, #c3c3c3) !important;
+}
+.maxmin {
+  width: 40%;
+  margin: 0 10px;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
@@ -1587,9 +1635,9 @@ a.forgetlink:hover {
 }
 .info .info-cont ul.info-li {
   list-style: none;
-  padding-top: 30px;
-  padding-right: 25px;
-  float: right;
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 0px;
 }
 .info .info-cont ul.info-li li {
   padding: 8px 0;
@@ -1600,18 +1648,6 @@ a.forgetlink:hover {
   font-weight: 500;
   position: relative;
 }
-.info .info-cont ul.info-li li.cat-list.cpointer.bolds:after {
-  content: '';
-  position: absolute;
-  border-style: solid;
-  border-width: 7px 0px 7px 14px;
-  border-color: transparent #FFFFFF;
-  display: block;
-  width: 0;
-  top: 10px;
-  right: -37px;
-  z-index: 1;
-}
 .info .info-cont ul.info-li li.cat-list.cpointer.bolds:before {
   content: '';
   position: absolute;
@@ -1621,19 +1657,62 @@ a.forgetlink:hover {
   display: block;
   width: 0;
   z-index: 0;
-  top: 10px;
-  right: -40px;
+  top: 9px;
+  right: -30px;
 }
-.info .myaccnthead h3 {
-  margin: 15px 0;
+.info .myaccnthead h4 {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #ff4f4f;
+}
+.content-team {
+  padding-bottom: 20px;
+}
+.content-team h4.head-team {
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  color: #ff4f4f;
+}
+.head-team {
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  color: #ff4f4f;
 }
 ul.read-morecont {
   padding-top: 40px;
 }
-li.head {
-  padding-bottom: 10px;
-  text-transform: uppercase;
-  font-size: 15px;
+nav li:hover .dropdown-menu {
+  display: block;
+  padding: 0px;
+  margin: -1px;
+}
+nav li:hover ul.dropdown-menu {
+  left: -18px;
+}
+nav li:hover ul.dropdown-menu li {
+  margin: 0!important;
+}
+nav li:hover ul.dropdown-menu li a {
+  font-weight: 600;
+  font-size: 14px!important;
+  padding: 10px 10px;
+  background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+  font-family: 'Raleway';
+  background: rgba(246, 246, 246, 0.59);
+}
+nav li:hover ul.dropdown-menu li a:after {
+  right: 0px;
+  height: 0px;
+  width: 0px;
+}
+nav li:hover ul.dropdown-menu li a:before {
+  right: 0px;
+  left: 0px;
+  height: 0px;
+  width: 0px;
 }
 a.readmore {
   color: #ff4f4f;
