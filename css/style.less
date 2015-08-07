@@ -1124,7 +1124,7 @@ body.ngdialog-open {
     .panel {
         margin-bottom: 0;
         border-radius: 0px;
-            border-left: 0px;
+        border-left: 0px;
     }
     .media-detail {
         .data {
@@ -1138,6 +1138,36 @@ body.ngdialog-open {
         .media-img {
             height: 400px;
             overflow: hidden;
+        }
+    }
+}
+
+.leader {
+    .view {
+        margin-top: 14px;
+    }
+    .leader-detail {
+            margin-top: 22px;
+        table {
+            thead {
+                tr {
+                    background-color: #D4AE70;
+                    color: #fff;
+                    font-weight: 100;
+                    th {
+                        font-weight: 400;
+                            border-bottom: 2px solid @color2;
+                            font-size: 15px;
+                    }
+                }
+            }
+            tbody tr:nth-child(odd) {
+                background: #F1F1F1;
+            }
+        }
+        .leader-data{
+                margin-bottom: 40px;
+
         }
     }
 }

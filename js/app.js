@@ -88,6 +88,11 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             templateUrl: "views/template.html",
             controller: 'AccountCtrl'
         })
+        .state('thoughtleadership', {
+            url: "/thoughtleadership",
+            templateUrl: "views/template.html",
+            controller: 'ThoughtleadershipCtrl'
+        })
 
     $urlRouterProvider.otherwise("/home");
 

@@ -452,6 +452,67 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 })
 
+.controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {
+    $scope.template = TemplateService.changecontent("thoughtleadership");
+    $scope.menutitle = NavigationService.makeactive("Thoughtleadership");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+ 
+       $scope.table = [{
+        sr: '1',
+        date: '06/07/2013',
+        title: 'Aura Art announces ICICI Lombard as Insurance Partner'
+
+    }, {
+         sr: '2',
+        date: '08/06/2012',
+        title: 'China overtakes the United States to become the worlds largest art and antiques market'
+
+    }, {
+        sr: '3',
+        date: '24/06/2010',
+        title: 'Hedging Millionaires Buy Jets, Art, Bling...'
+
+    }, {
+         sr: '4',
+        date: '24/02/2010',
+        title: 'Aura Art: has moved to an office-cum-gallery in Kalina (off BKC)'
+
+    }, {
+        sr: '5',
+        date: '01/09/2009',
+        title: 'Aura Art goes International'
+
+    }, {
+        sr: '6',
+        date: '25/05/2009',
+        title: 'Show se show tak... Change (in Asset Allocation) is the only constant...'
+
+    }, {
+        sr: '7',
+        date: '01/04/2009',
+        title: 'Malvinder Singh is on to other things — art, photography and Ranbaxy, of course...'
+
+    }, {
+        sr: '8',
+        date: '25/10/2008',
+        title: 'Mumbai-born artist goes for Rs 17 crore'
+
+    }, {
+        sr: '9',
+        date: '06/07/2015',
+        title: 'Aura Art Show 2008... thanks...'
+
+    }, {
+        sr: '10',
+        date: '06/05/2013',
+        title: 'Aura Art in the news - Bombay Times and Human Rights Times'
+
+    }];
+
+})
+
+
 .controller('ArtInfrastructureCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artInfrastructure");
     $scope.menutitle = NavigationService.makeactive("ArtInfrastructure");

@@ -1124,6 +1124,28 @@ body.ngdialog-open {
   height: 400px;
   overflow: hidden;
 }
+.leader .view {
+  margin-top: 14px;
+}
+.leader .leader-detail {
+  margin-top: 22px;
+}
+.leader .leader-detail table thead tr {
+  background-color: #D4AE70;
+  color: #fff;
+  font-weight: 100;
+}
+.leader .leader-detail table thead tr th {
+  font-weight: 400;
+  border-bottom: 2px solid #d4ae70;
+  font-size: 15px;
+}
+.leader .leader-detail table tbody tr:nth-child(odd) {
+  background: #F1F1F1;
+}
+.leader .leader-detail .leader-data {
+  margin-bottom: 40px;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
