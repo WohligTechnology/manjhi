@@ -50,6 +50,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Artistpage");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+})  
+    .controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("contactus");
+    $scope.menutitle = NavigationService.makeactive("contactus");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
 })
 
 .controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {

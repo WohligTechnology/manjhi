@@ -112,6 +112,11 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
             url: "/artistpage",
             templateUrl: "views/template.html",
             controller: 'ArtistPageCtrl'
+        })  
+        .state('contactus', {
+            url: "/contactus",
+            templateUrl: "views/template.html",
+            controller: 'ContactusCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");

@@ -913,15 +913,19 @@ a.link-viewall {
 .view-more {
     ul {
         padding-left: 20px;
-        .head {
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            font-size: 14px;
+        span.small {
+            font-weight: 400;
+            font-family: 'Open Sans';
+            font-size: 13px;
+        }
+        li.head {
+            background: url('../img/arrowli.png') no-repeat left 7px;
             font-weight: 600;
+            
         }
         li {
             list-style: none;
-            background: url('../img/arrowli.png') no-repeat left 7px;
+            //            background: url('../img/arrowli.png') no-repeat left 7px;s
             padding-left: 25px;
             line-height: 200%;
             text-align: justify;
@@ -1030,7 +1034,7 @@ a.link-viewall {
 }
 
 .eventpad {
-    padding-top:20px!important;
+    padding-top: 20px!important;
     .event-set .all-events;
     .eventdetail {
         span {
@@ -1115,14 +1119,13 @@ img.balckbak {
 
 body.ngdialog-open {
     overflow: auto !important;
-    .ngdialog-close
-    {
+    .ngdialog-close {
         display: none;
     }
     .ngdialog-close.close {
         position: absolute;
         top: 5px;
-        right: 10px; 
+        right: 10px;
         padding: 1px 0px 6px 7px;
         height: 30px;
         width: 30px;
@@ -1215,9 +1218,12 @@ body.ngdialog-open {
 
 .cont-artist {
     padding-bottom: 20px;
-    p{
+    p {
         text-align: justify;
     }
+}
+td.labels{
+    width: 30%;
 }
 /*Mobile Less*/
 

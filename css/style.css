@@ -913,15 +913,17 @@ a.link-viewall {
 .view-more ul {
   padding-left: 20px;
 }
-.view-more ul .head {
-  padding-bottom: 10px;
-  text-transform: uppercase;
-  font-size: 14px;
+.view-more ul span.small {
+  font-weight: 400;
+  font-family: 'Open Sans';
+  font-size: 13px;
+}
+.view-more ul li.head {
+  background: url('../img/arrowli.png') no-repeat left 7px;
   font-weight: 600;
 }
 .view-more ul li {
   list-style: none;
-  background: url('../img/arrowli.png') no-repeat left 7px;
   padding-left: 25px;
   line-height: 200%;
   text-align: justify;
@@ -1203,6 +1205,9 @@ body.ngdialog-open .ngdialog-close.close {
 }
 .cont-artist p {
   text-align: justify;
+}
+td.labels {
+  width: 30%;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
