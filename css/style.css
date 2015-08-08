@@ -877,8 +877,9 @@ nav.pagination-artist ul li.actived a {
 .painting-details span.lowercase {
   text-transform: lowercase;
 }
-button.btn.btn-primarys {
+.btn-primarys {
   background: #d4ae70;
+  border-radius: 0px;
 }
 button.btn.btn-royal {
   border: 1px solid #0fba66;
@@ -1196,6 +1197,12 @@ body.ngdialog-open .ngdialog-close.close {
   width: 40%;
   margin: 0 10px;
 }
+.cont-artist {
+  padding-bottom: 20px;
+}
+.cont-artist p {
+  text-align: justify;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
@@ -1434,7 +1441,40 @@ body.ngdialog-open .ngdialog-close.close {
   position: relative;
   background: url(../img/or.png) top right no-repeat;
 }
-.ngdialog-open .popup-dialogbox .signinor .btn-sucess {
+.ngdialog-open .border1 {
+  border-top: 1px solid #f1f1f1;
+}
+.ngdialog-open .border1 p.abc {
+  padding-top: 12px;
+}
+.ngdialog-open .gogbtn .btnsoc {
+  font-size: 15px;
+  padding: 10px 0 0px;
+  color: #fff;
+  margin-top: 10px;
+  width: 100%;
+  display: block;
+  text-align: center;
+  height: 45px;
+}
+.ngdialog-open .gogbtn .btnsoc i {
+  font-size: 18px;
+}
+.ngdialog-open .gogbtn .btnsoc .fa {
+  float: left;
+  padding: 4px 20px 10px 20px;
+}
+.ngdialog-open .gogbtn .gplus {
+  background: #dd4d3b;
+  margin-top: 0px;
+}
+.ngdialog-open .gogbtn .fbook {
+  background: #3c5a98;
+}
+.ngdialog-open .gogbtn .twit {
+  background: #4099ff;
+}
+.ngdialog-open .btn-sucess {
   background: #d4ae70;
   color: #fff;
   text-transform: capitalize;
@@ -1449,44 +1489,11 @@ body.ngdialog-open .ngdialog-close.close {
   height: 45px;
   border: none;
 }
-.ngdialog-open .popup-dialogbox .signinor .btn-sucess:active {
+.ngdialog-open .btn-sucess:active {
   background-color: #d4ae70;
 }
-.ngdialog-open .popup-dialogbox .signinor input:focus {
+.ngdialog-open input.form-control:focus {
   border: 1px solid #ccc;
-}
-.ngdialog-open .popup-dialogbox .border1 {
-  border-top: 1px solid #f1f1f1;
-}
-.ngdialog-open .popup-dialogbox .border1 p.abc {
-  padding-top: 12px;
-}
-.ngdialog-open .popup-dialogbox .gogbtn .btnsoc {
-  font-size: 15px;
-  padding: 10px 0 0px;
-  color: #fff;
-  margin-top: 10px;
-  width: 100%;
-  display: block;
-  text-align: center;
-  height: 45px;
-}
-.ngdialog-open .popup-dialogbox .gogbtn .btnsoc i {
-  font-size: 18px;
-}
-.ngdialog-open .popup-dialogbox .gogbtn .btnsoc .fa {
-  float: left;
-  padding: 4px 20px 10px 20px;
-}
-.ngdialog-open .popup-dialogbox .gogbtn .gplus {
-  background: #dd4d3b;
-  margin-top: 0px;
-}
-.ngdialog-open .popup-dialogbox .gogbtn .fbook {
-  background: #3c5a98;
-}
-.ngdialog-open .popup-dialogbox .gogbtn .twit {
-  background: #4099ff;
 }
 textarea {
   resize: none;
@@ -1687,6 +1694,15 @@ a.forgetlink:hover {
 ul.read-morecont {
   padding-top: 40px;
 }
+.dropdown-menu {
+  font-size: 12px!important;
+  font-weight: 600;
+  box-shadow: 0px 0px 0px;
+  border-radius: 0px;
+}
+.dropdown-menu .nav li a {
+  font-weight: 600;
+}
 nav li:hover .dropdown-menu {
   display: block;
   padding: 0px;
@@ -1699,7 +1715,6 @@ nav li:hover ul.dropdown-menu li {
   margin: 0!important;
 }
 nav li:hover ul.dropdown-menu li a {
-  font-size: 13px!important;
   padding: 10px 10px;
   background-image: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
   background: #fff;
@@ -1754,4 +1769,23 @@ a.readmore {
 .main-cont textarea.form-control:focus,
 .cart textarea.form-control:focus {
   border: 1px solid #ccc;
+}
+.ulblock {
+  display: block;
+  padding-top: 25px;
+}
+.ulblock ul.lineul {
+  list-style: none;
+  padding: 0;
+  padding-right: 15px;
+  display: inline-block;
+}
+.ulblock ul.lineul li a {
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 200%;
+  font-weight: 600;
+}
+.ulblock ul.lineul li a:hover {
+  color: #d4ae70;
 }

@@ -2,11 +2,12 @@
 <div class="artist-detail">
     <div class="container">
         <div class="col-md-12">
-            <h4>S Yousuf Ali</h4>
-
-            <p class="cont-artist">
-                Born in 1939 in Goa. Sheikh Yousuf Ali is the best known among Contemporary Artists of India. At the age of 45, Yousuf Ali's paintings gained international acceptance and appreciation. He was qualified with Diploma in Painting from Sir J J School of Art, Mumbai in 1964. Later he served as a Designer in Advertising for several years in Mumbai and further as an Art Director of a leading Advertising Agency. He received the Height of Glory Award as a Designer in 1977 and the 19th National Award for Excellence in Printing and Designing of Books. He had many solo and group shows in India and abroad. He expired in the year 1997 leaving behind the wonderful memories through his works of Art
-            </p>.
+            <div class="cont-artist">
+                <h4>S Yousuf Ali</h4>
+                <p><span class="bold">Age:</span> 1939</p>
+                <p><span class="bold">Location:</span> Goa</p>
+                <p><span class="bold">Short Description:</span> Sheikh Yousuf Ali is the best known among Contemporary Artists of India. At the age of 45, Yousuf Ali's paintings gained international acceptance and appreciation. He was qualified with Diploma in Painting from Sir J J School of Art, Mumbai in 1964. Later he served as a Designer in Advertising for several years in Mumbai and further as an Art Director of a leading Advertising Agency. He received the Height of Glory Award as a Designer in 1977 and the 19th National Award for Excellence in Printing and Designing of Books. He had many solo and group shows in India and abroad. He expired in the year 1997 leaving behind the wonderful memories through his works of Art.</p>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
@@ -20,13 +21,13 @@
                             <i class="fa fa-heart"></i>
                         </p>
                         <p>
-                            <span class="labels">Name:</span>   {{artistdetails.typename}}
+                            <span class="labels">Name:</span> {{artistdetails.typename}}
                         </p>
                         <p>
-                           <span class="labels">Medium:</span> {{artistdetails.madein}}
+                            <span class="labels">Medium:</span> {{artistdetails.madein}}
                         </p>
                         <p>
-                           <span class="labels">Size:</span> {{artistdetails.size}} (inches)
+                            <span class="labels">Size:</span> {{artistdetails.size}} (inches)
                         </p>
                         <p>
                             <span class="labels">Year:</span> {{artistdetails.year}}
@@ -34,6 +35,7 @@
                         <p>
                             <span class="labels">Price:</span> {{artistdetails.price}} &#8377;
                         </p>
+                        <button type="submit" class="btn btn-sucesses text-center">Add to cart</button>
                     </div>
                 </div>
             </div>

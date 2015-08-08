@@ -53,7 +53,7 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Paintings & more",
             active: "",
-            link: "#/paintings-more",
+            link: "#/totalartpage",
             classis: "active",
             subnav: [
                 {
