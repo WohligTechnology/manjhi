@@ -748,6 +748,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 .controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
         $scope.template = TemplateService;
         var scrolled = 0;
+    $scope.logintab = '1';
         angular.element($window).bind("scroll", function () {
             var scrolled = this.pageYOffset;
             //$scope.headheight = angular.element('.fixer-top').height();
@@ -766,14 +767,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 template: 'views/content/login.html'
             });
         }; 
-    $scope.showforgot = function () {
-//            ngDialog.open({
-//                template: 'views/content/forgot.html'
-//            }); 
-        ngDialog.close({
-                template: 'views/content/login.html'
-            });
-        };
+        
+       
+
+        $scope.changeTab = function (tab) {
+            $scope.logintab = tab;
+        }
+
     })
     .controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("account");

@@ -21,64 +21,64 @@
             margin-right: 60px;
             position: relative;
             background: url(../img/or.png) top right no-repeat;
-            .btn-sucess {
-                background: @color2;
-                color: #fff;
-                text-transform: capitalize;
-                padding: 10px 0px;
-                border-radius: 0px;
-                display: block;
-                width: 100%;
-                margin: 9px 0px 25px 0px;
-                font-weight: 500;
-                font-size: 15px;
-                text-align: center;
-                height: 45px;
-                border: none;
-                &:active {
-                    background-color: @color2;
-                }
+        }
+    }
+    .border1 {
+        border-top: 1px solid @abbr-border-color;
+        p.abc {
+            padding-top: 12px;
+        }
+    }
+    .gogbtn {
+        .btnsoc {
+            font-size: 15px;
+            padding: 10px 0 0px;
+            color: #fff;
+            margin-top: 10px;
+            width: 100%;
+            display: block;
+            text-align: center;
+            height: 45px;
+            i {
+                font-size: 18px;
             }
-            input {
-                &:focus {
-                    border: 1px solid #ccc;
-                }
+            .fa {
+                float: left;
+                padding: 4px 20px 10px 20px;
             }
         }
-        .border1 {
-            border-top: 1px solid @abbr-border-color;
-            p.abc {
-                padding-top: 12px;
-            }
+        .gplus {
+            background: #dd4d3b;
+            margin-top: 0px;
         }
-        .gogbtn {
-            .btnsoc {
-                font-size: 15px;
-                padding: 10px 0 0px;
-                color: #fff;
-                margin-top: 10px;
-                width: 100%;
-                display: block;
-                text-align: center;
-                height: 45px;
-                i {
-                    font-size: 18px;
-                }
-                .fa {
-                    float: left;
-                    padding: 4px 20px 10px 20px;
-                }
-            }
-            .gplus {
-                background: #dd4d3b;
-                margin-top: 0px;
-            }
-            .fbook {
-                background: #3c5a98
-            }
-            .twit {
-                background: #4099FF
-            }
+        .fbook {
+            background: #3c5a98
+        }
+        .twit {
+            background: #4099FF
+        }
+    }
+    .btn-sucess {
+        background: @color2;
+        color: #fff;
+        text-transform: capitalize;
+        padding: 10px 0px;
+        border-radius: 0px;
+        display: block;
+        width: 100%;
+        margin: 9px 0px 25px 0px;
+        font-weight: 500;
+        font-size: 15px;
+        text-align: center;
+        height: 45px;
+        border: none;
+        &:active {
+            background-color: @color2;
+        }
+    }
+    input.form-control {
+        &:focus {
+            border: 1px solid #ccc;
         }
     }
 }
@@ -300,7 +300,17 @@ a.forgetlink {
 ul.read-morecont {
     padding-top: 40px;
 }
-
+.dropdown-menu
+{
+    font-size: 12px!important;
+    font-weight: 600;
+    box-shadow: 0px 0px 0px;
+    border-radius: 0px;
+    .nav li a
+    {
+        font-weight: 600;
+    }
+}
 nav li:hover .dropdown-menu {
     display: block;
     padding: 0px;
@@ -315,8 +325,6 @@ nav {
                 li {
                     margin: 0!important;
                     a {
-                        //                        font-weight: 600;
-                        font-size: 13px!important;
                         padding: 10px 10px;
                         background-image: linear-gradient(to bottom, #fff 0%, #fff 100%);
                         background: #fff;
@@ -400,9 +408,8 @@ a.readmore {
                 font-size: 11px;
                 line-height: 200%;
                 font-weight: 600;
-                &:hover
-                {
-                    color:@color2;
+                &:hover {
+                    color: @color2;
                 }
             }
         }

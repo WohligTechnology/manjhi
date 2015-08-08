@@ -11,7 +11,7 @@ var navigationservice = angular.module('navigationservice', [])
         {
             name: "About",
             active: "",
-            link: "#/about",
+            link: "#/team",
             classis: "active",
             subnav: [
                 {
@@ -84,38 +84,39 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Infra Services",
             active: "",
-            link: "#/infra-services",
+            link: "#/artInfrastructure",
             classis: "active",
             subnav: [
-                {
-                    name: "Data Management",
-                    classis: "active",
-                    link: "#"
-        }, {
-                    name: "Valuation & Insurance",
-                    classis: "active",
-                    link: "#"
-        }, {
-                    name: "Strategy for Art Initiatives, including CSR",
-                    classis: "active",
-                    link: "#"
-        }, {
-                    name: "Packing & Logistics",
-                    classis: "active",
-                    link: "#"
-        }, {
-                    name: "Archival Facility Set-up",
-                    classis: "active",
-                    link: "#"
-        }, {
-                    name: "Trusteeship & Warehousing",
-                    classis: "active",
-                    link: "#"
-        }, {
-                    name: "Training & Workshops",
-                    classis: "active",
-                    link: "#"
-        }]
+//                {
+//                    name: "Data Management",
+//                    classis: "active",
+//                    link: "#"
+//        }, {
+//                    name: "Valuation & Insurance",
+//                    classis: "active",
+//                    link: "#"
+//        }, {
+//                    name: "Strategy for Art Initiatives, including CSR",
+//                    classis: "active",
+//                    link: "#"
+//        }, {
+//                    name: "Packing & Logistics",
+//                    classis: "active",
+//                    link: "#"
+//        }, {
+//                    name: "Archival Facility Set-up",
+//                    classis: "active",
+//                    link: "#"
+//        }, {
+//                    name: "Trusteeship & Warehousing",
+//                    classis: "active",
+//                    link: "#"
+//        }, {
+//                    name: "Training & Workshops",
+//                    classis: "active",
+//                    link: "#"
+//        }
+            ]
     }, {
             name: "Events",
             active: "",
@@ -137,7 +138,7 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Press",
             active: "",
-            link: "#/press",
+            link: "#/mediacoverages",
             classis: "active",
             subnav: []
     }, {

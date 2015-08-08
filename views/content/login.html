@@ -1,6 +1,6 @@
-<div class="container popup-all">
+<div class="container popup-all" ng-controller="headerctrl">
     <div class="popup-dialogbox">
-        <div class="holder1">
+        <div class="holder1" ng-if="logintab==1">
             <div class="ngdialog-close close"></div>
             <h3 class="createtitle">Login</h3>
             <div class="row">
@@ -36,8 +36,107 @@
                 </div>
             </div>
             <div class="border1">
-                <p class="abc"> <a href="#forgot" class="forgetlink" ng-click="showforgot();"> Forgot your password? </a><span class="already">Don't have an account ? Click <a href="#register" class="forgetlink">here</a> to  create one </span>
+                <p class="abc"> <a href="#forgot" class="forgetlink" ng-click="changeTab(3)"> Forgot your password? </a><span class="already">Don't have an account ? Click <a class="forgetlink" ng-class="loginholder" ng-click="changeTab(2)">here</a> to  create one </span>
                 </p>
+            </div>
+        </div>   
+        <div class="holder1" ng-if="logintab==2">
+            <div class="ngdialog-close close"></div>
+            <h3 class="createtitle">Registration</h3>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="signin">
+                        <div class="signinor">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="email" class="form-control" placeholder="Enter your email *" required="">
+                                    </div>
+                                </div>            
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" placeholder="Enter your Name *" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="password" class="form-control" placeholder="Password *" required="">
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="password" class="form-control" placeholder="Confirm Password *" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn-sucess">Signup</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="gogbtn">
+                        <a class="btnsoc gplus"> <i class="fa fa-google-plus"></i>Sign in with Google </a>
+                        <a class="btnsoc fbook"> <i class="fa fa-facebook"></i>Sign in with Facebook </a>
+                        <a class="btnsoc twit"> <i class="fa fa-twitter"></i>Sign in with Twitter </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border1">
+                <p class="abc"> <a href="#forgot" class="forgetlink" ng-click="changeTab(3);"> Forgot your password? </a><span class="already">Already Registered? Click <a href="#" class="forgetlink" ng-click="changeTab(1)">here</a> to Login </span>
+                </p>
+            </div>
+        </div>      
+        <div class="holder3" ng-if="logintab==3">
+            <div class="ngdialog-close close"></div>
+            <h3 class="createtitle">Forgot Password</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="signin">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="email" class="form-control" placeholder="Enter your email *" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-sucess" ng-click="changeTab(4)">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="holder3" ng-if="logintab==4">
+            <div class="ngdialog-close close"></div>
+            <h3 class="createtitle">Forgot Password</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="signin">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="password" class="form-control" placeholder="New Password *" required="">
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="password" class="form-control" placeholder="Confirm Password  *" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn btn-sucess">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
