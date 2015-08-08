@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container popup-all">
     <div class="popup-dialogbox">
         <div class="holder1">
             <div class="ngdialog-close close"></div>
+            <h3 class="createtitle">Login</h3>
             <div class="row">
                 <div class="col-md-7">
                     <div class="signin">
-                        <h3 class="createtitle">Login</h3>
                         <div class="signinor">
                             <form class="form-horizontal">
                                 <div class="form-group">
@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn-sucess"> Login</button>
+                                        <button type="submit" class="btn-sucess">Login</button>
                                     </div>
                                 </div>
                             </form>
@@ -36,7 +36,8 @@
                 </div>
             </div>
             <div class="border1">
-                <p class="abc"> <a href="#forgot" class="forgetlink"> Forgot your password? </a><span class="already">Don't have an account ? Click <a href="#register" class="forgetlink">here</a> to  create one </span></p>
+                <p class="abc"> <a href="#forgot" class="forgetlink" ng-click="showforgot();"> Forgot your password? </a><span class="already">Don't have an account ? Click <a href="#register" class="forgetlink">here</a> to  create one </span>
+                </p>
             </div>
         </div>
     </div>

@@ -23,24 +23,31 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("favorite");
-    $scope.menutitle = NavigationService.makeactive("favorite");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
-.controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("cart");
-    $scope.menutitle = NavigationService.makeactive("Cart");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("favorite");
+        $scope.menutitle = NavigationService.makeactive("favorite");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
+    .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("cart");
+        $scope.menutitle = NavigationService.makeactive("Cart");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
 
 .controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("team");
     $scope.menutitle = NavigationService.makeactive("Team");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+    .controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("artistpage");
+    $scope.menutitle = NavigationService.makeactive("Artistpage");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 })
@@ -118,8 +125,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Events");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-        //Valdr
-
         $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
 
         $scope.status = {
@@ -758,6 +763,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
         $scope.showLogin = function () {
             ngDialog.open({
+                template: 'views/content/login.html'
+            });
+        }; 
+    $scope.showforgot = function () {
+//            ngDialog.open({
+//                template: 'views/content/forgot.html'
+//            }); 
+        ngDialog.close({
                 template: 'views/content/login.html'
             });
         };

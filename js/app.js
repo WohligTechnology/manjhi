@@ -4,10 +4,10 @@ var firstapp = angular.module('firstapp', [
     'phonecatControllers',
     'templateservicemod',
     'navigationservice'
-    
+
 ]);
 
-firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
+firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
     //Turn the spinner on or off
     cfpLoadingBarProvider.includeSpinner = false;
 
@@ -77,12 +77,12 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             url: "/eventdetail",
             templateUrl: "views/template.html",
             controller: 'EventdetailCtrl'
-        })  
+        })
         .state('mediacoverages', {
             url: "/mediacoverages",
             templateUrl: "views/template.html",
             controller: 'MediacoveragesCtrl'
-        }) 
+        })
         .state('account', {
             url: "/account",
             templateUrl: "views/template.html",
@@ -97,20 +97,25 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             url: "/sculpture",
             templateUrl: "views/template.html",
             controller: 'SculptureCtrl'
-        }) 
+        })
         .state('favorite', {
             url: "/favorite",
             templateUrl: "views/template.html",
             controller: 'FavoriteCtrl'
+        })
+        .state('artistpage', {
+            url: "/artistpage",
+            templateUrl: "views/template.html",
+            controller: 'ArtistPageCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");
 
 });
 
-firstapp.directive("scroll", function($window) {
-    return function(scope, element, attrs) {
-        angular.element($window).bind("scroll", function() {
+firstapp.directive("scroll", function ($window) {
+    return function (scope, element, attrs) {
+        angular.element($window).bind("scroll", function () {
             if (this.pageYOffset >= 100) {
                 element.addClass('min');
                 console.log('Scrolled below header.');
@@ -122,8 +127,8 @@ firstapp.directive("scroll", function($window) {
     };
 });
 
-firstapp.directive('fixit', function($window) {
-    return function(scope, element, attrs) {
+firstapp.directive('fixit', function ($window) {
+    return function (scope, element, attrs) {
         var myelem = {};
         var imagedim = {};
         $element = $(element);
@@ -131,7 +136,7 @@ firstapp.directive('fixit', function($window) {
         myelem.width = $element.width();
         myelem.ratio = myelem.width / myelem.height;
 
-        $element.children("img.fix-img").load(function() {
+        $element.children("img.fix-img").load(function () {
             imagedim.height = $(this).height();
             imagedim.width = $(this).width();
             imagedim.ratio = imagedim.width / imagedim.height;
@@ -156,4 +161,20 @@ firstapp.filter('rawHtml', ['$sce', function ($sce) {
     return function (val) {
         return $sce.trustAsHtml(val);
     };
+
+
 }]);
+
+firstapp.directive('readmores', function ($window) {
+    $( ".read-morecont" ).hide()
+    $("a.readmore3").click(function () {
+        $(".read-morecont3").toggle("slow");
+    });
+    $("a.readmore1").click(function () {
+        $(".read-morecont1").toggle("slow");
+    });
+    $("a.readmore2").click(function () {
+        $(".read-morecont2").toggle("slow");
+    });
+
+});

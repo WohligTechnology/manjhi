@@ -1083,18 +1083,8 @@ img.balckbak {
     z-index: 1000000;
 }
 
-//    .ngdialog-close {
-//        position: absolute;
-//        top: -10px;
-//        right: -10px;
-//        background-color: #BFBFBF;
-//        border-radius: 100%;
-//        padding: 5px;
-//        height: 30px;
-//        width: 30px;
-//    }
 .ngdialog.ngdialog-theme-default .ngdialog-close:before {
-    font-size: 36px !important;
+    font-size: 26px !important;
 }
 
 .ngdialog-content .image {
@@ -1123,15 +1113,18 @@ img.balckbak {
 
 body.ngdialog-open {
     overflow: auto !important;
-    .ngdialog-close {
+    .ngdialog-close
+    {
+        display: none;
+    }
+    .ngdialog-close.close {
         position: absolute;
-        top: -10px;
-        right: -10px;
-        background-color: #BFBFBF;
-        border-radius: 100%;
-        padding: 5px;
+        top: 5px;
+        right: 10px; 
+        padding: 1px 0px 6px 7px;
         height: 30px;
         width: 30px;
+        display: block;
     }
 }
 
@@ -1212,8 +1205,8 @@ body.ngdialog-open {
         .background-image(linear-gradient(#C3C3C3, #C3C3C3))!important;
     }
 }
-.maxmin
-{
+
+.maxmin {
     width: 40%;
     margin: 0 10px;
 }
