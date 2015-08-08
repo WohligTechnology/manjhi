@@ -5,9 +5,11 @@
     <div class="row">
         <div class="col-md-3">
             <h3 class="font-color3 home-header padtop">Upcoming Events</h3>
-            <div class="event-img">
-                <img src="img/event.jpg" class="img-responsive">
-            </div>
+            <a href="#/eventdetail">
+                <div class="event-img">
+                    <img src="img/event.jpg" class="img-responsive">
+                </div>
+            </a>
         </div>
         <div class="col-md-9">
             <div class="event">
@@ -26,16 +28,17 @@
                     <div class="row">
                         <div class="col-md-3" ng-repeat="event in event2015">
                             <div class="event-detail ">
-                               <div class="data">
-                                <h6 class="font-color2">{{event.name}}</h6>
-                                <p>{{event.detail}}</p>
+                                <div class="data">
+                                    <h6 class="font-color2">{{event.name}}</h6>
+                                    <p>{{event.detail}}</p>
                                 </div>
-                                <div class="event-img text-center">
-                                    <figure>
-                                        <img ng-src="{{event.img}}" class="img-responsive">
-                                    </figure>
-                                </div>
-
+                                <a href="#/eventdetail">
+                                    <div class="event-img text-center">
+                                        <figure>
+                                            <img ng-src="{{event.img}}" class="img-responsive">
+                                        </figure>
+                                    </div>
+                                </a>
                             </div>
                         </div>
 
@@ -45,9 +48,9 @@
                     <div class="row">
                         <div class="col-md-3" ng-repeat="event in event2014">
                             <div class="event-detail ">
-                               <div class="data">
-                                <h6 class="font-color2">{{event.name}}</h6>
-                                <p>{{event.detail}}</p>
+                                <div class="data">
+                                    <h6 class="font-color2">{{event.name}}</h6>
+                                    <p>{{event.detail}}</p>
                                 </div>
                                 <div class="event-img text-center">
                                     <figure>
@@ -64,9 +67,9 @@
                     <div class="row">
                         <div class="col-md-3" ng-repeat="event in event2013">
                             <div class="event-detail ">
-                               <div class="data">
-                                <h6 class="font-color2">{{event.name}}</h6>
-                                <p>{{event.detail}}</p>
+                                <div class="data">
+                                    <h6 class="font-color2">{{event.name}}</h6>
+                                    <p>{{event.detail}}</p>
                                 </div>
                                 <div class="event-img text-center">
                                     <figure>

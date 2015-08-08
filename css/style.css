@@ -1019,6 +1019,7 @@ a.link-viewall {
   min-height: 100px;
 }
 .eventpad {
+  padding-top: 20px!important;
   padding-left: 15px;
   padding-top: 30px;
 }
