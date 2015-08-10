@@ -937,8 +937,11 @@ a.link-viewall {
   font-size: 13px;
 }
 .view-more ul li.head {
-  background: url('../img/a') no-repeat left 7px;
   font-weight: 600;
+}
+.view-more ul li.head:before {
+  content: "\f105";
+  padding-right: 10px;
 }
 .view-more ul li {
   list-style: none;
@@ -1826,6 +1829,13 @@ a.readmore {
   width: 450px;
   margin: 0 auto;
 }
+.aboveimage i.fa.fa-arrows-alt {
+  position: absolute;
+  right: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #ddd;
+}
 .aboveimage .image-zoom {
   position: relative;
   margin: auto;
@@ -1878,4 +1888,7 @@ a.readmore {
 }
 .ulblock ul.lineul li a:hover {
   color: #d4ae70;
+}
+a {
+  cursor: pointer;
 }

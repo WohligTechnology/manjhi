@@ -38,26 +38,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
 
 .controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("team");
-    $scope.menutitle = NavigationService.makeactive("Team");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("team");
+        $scope.menutitle = NavigationService.makeactive("Team");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
     .controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("artistpage");
-    $scope.menutitle = NavigationService.makeactive("Artistpage");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})  
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("artistpage");
+        $scope.menutitle = NavigationService.makeactive("Artistpage");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
     .controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("contactus");
-    $scope.menutitle = NavigationService.makeactive("contactus");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("contactus");
+        $scope.menutitle = NavigationService.makeactive("contactus");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
 
 .controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
@@ -752,30 +752,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 .controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
         $scope.template = TemplateService;
         var scrolled = 0;
-    $scope.logintab = '1';
-        angular.element($window).bind("scroll", function () {
-            var scrolled = this.pageYOffset;
-            //$scope.headheight = angular.element('.fixer-top').height();
-            if (scrolled >= 5) {
-                $(".fixer-top").addClass("shadow-on");
-            } else {
-                $(".fixer-top").removeClass("shadow-on");
-            }
-            $scope.$apply();
-        });
-
+        $scope.logintab = '1';
         $scope.showLogin = function () {
             ngDialog.open({
                 template: 'views/content/login.html'
             });
-        }; 
-        
-       
-
+        };
         $scope.changeTab = function (tab) {
             $scope.logintab = tab;
         }
-
     })
     .controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("account");
@@ -815,4 +800,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.ordertracing = "bolds";
             $scope.listingmsg = "";
         }
+    })
+    .controller('ActivitiesCtrl', function ($scope, TemplateService, NavigationService) {
+        $scope.template = TemplateService.changecontent("activities");
+        $scope.menutitle = NavigationService.makeactive("Activities");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
     });

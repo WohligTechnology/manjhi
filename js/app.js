@@ -77,7 +77,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
             url: "/eventdetail",
             templateUrl: "views/template.html",
             controller: 'EventdetailCtrl'
-        })  
+        })
         .state('totalartpage', {
             url: "/totalartpage",
             templateUrl: "views/template.html",
@@ -112,11 +112,16 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
             url: "/artistpage",
             templateUrl: "views/template.html",
             controller: 'ArtistPageCtrl'
-        })  
+        })
         .state('contactus', {
             url: "/contactus",
             templateUrl: "views/template.html",
             controller: 'ContactusCtrl'
+        })
+        .state('activities', {
+            url: "/activities",
+            templateUrl: "views/template.html",
+            controller: 'ActivitiesCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");
@@ -174,7 +179,7 @@ firstapp.filter('rawHtml', ['$sce', function ($sce) {
 }]);
 
 firstapp.directive('readmores', function ($window) {
-    $( ".read-morecont" ).hide()
+    $(".read-morecont").hide()
     $("a.readmore3").click(function () {
         $(".read-morecont3").toggle("slow");
     });

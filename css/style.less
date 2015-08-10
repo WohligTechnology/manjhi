@@ -855,12 +855,14 @@ a.link-viewall {
             font-size: 13px;
         }
         li.head {
-            background: url('../img/a') no-repeat left 7px;
             font-weight: 600;
+            &:before {
+                content: "\f105";
+                padding-right: 10px;
+            }
         }
         li {
             list-style: none;
-            //            background: url('../img/arrowli.png') no-repeat left 7px;s
             padding-left: 25px;
             line-height: 200%;
             text-align: justify;
@@ -1029,8 +1031,7 @@ img.balckbak {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    .translate(-50%,
-    -50%);
+    .translate(-50%, -50%);
 }
 .ngdialog-closing {
     display: none;

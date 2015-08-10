@@ -21,7 +21,7 @@ var navigationservice = angular.module('navigationservice', [])
         }, {
                     name: "Activities",
                     classis: "active",
-                    link: "#/activity"
+                    link: "#/activities"
         }]
     }, {
             name: "Artists",
