@@ -881,10 +881,10 @@ nav.pagination-artist ul li.actived a {
   background: #d4ae70;
   border-radius: 0px;
 }
-button.btn.btn-royal {
-  border: 1px solid #0fba66;
-  background: #fff;
-  color: #0fba66;
+.btn-primarys:hover {
+  background: #fff!important;
+  border: 1px solid #d4ae70 !important;
+  color: #d4ae70 !important;
 }
 .uppercase {
   text-transform: uppercase;
@@ -894,8 +894,26 @@ button.btn.btn-royal {
   color: #aeaeae;
   text-transform: uppercase;
 }
-.artist-cont-detail {
+.cont-imagedetail .artist-cont-detail {
   padding-bottom: 15px;
+}
+.cont-imagedetail button.btn.btn-block:hover {
+  border: 1px solid #DDD;
+  background-color: #CECECE;
+}
+.view-box.image-box i {
+  position: absolute;
+  font-size: xx-large;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #FEFEFE;
+  cursor: pointer;
 }
 .image-holder {
   text-align: center;
@@ -919,7 +937,7 @@ a.link-viewall {
   font-size: 13px;
 }
 .view-more ul li.head {
-  background: url('../img/arrowli.png') no-repeat left 7px;
+  background: url('../img/a') no-repeat left 7px;
   font-weight: 600;
 }
 .view-more ul li {
@@ -1209,6 +1227,19 @@ body.ngdialog-open .ngdialog-close.close {
 td.labels {
   width: 30%;
 }
+.pading-less-bottom {
+  padding-bottom: 0px!important;
+}
+.box-more {
+  margin: 20px -1px 0;
+}
+.box-more .view-box.image-box {
+  height: 90px;
+  width: 90px;
+  overflow: hidden;
+  align-self: center;
+  margin: 0;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
@@ -1462,6 +1493,7 @@ td.labels {
   display: block;
   text-align: center;
   height: 45px;
+  cursor: pointer;
 }
 .ngdialog-open .gogbtn .btnsoc i {
   font-size: 18px;
@@ -1474,18 +1506,32 @@ td.labels {
   background: #dd4d3b;
   margin-top: 0px;
 }
+.ngdialog-open .gogbtn .gplus:hover {
+  background: #BF4233;
+}
 .ngdialog-open .gogbtn .fbook {
   background: #3c5a98;
 }
+.ngdialog-open .gogbtn .fbook:hover {
+  background: #2F4675;
+}
 .ngdialog-open .gogbtn .twit {
-  background: #4099ff;
+  background: #4099FF;
+}
+.ngdialog-open .gogbtn .twit:hover {
+  background: #3C89E2;
 }
 .ngdialog-open .btn-sucess {
   background: #d4ae70;
   color: #fff;
   text-transform: capitalize;
   padding: 10px 0px;
+  -webkit-border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px;
+  -moz-background-clip: padding;
   border-radius: 0px;
+  background-clip: padding-box;
   display: block;
   width: 100%;
   margin: 9px 0px 25px 0px;
@@ -1494,6 +1540,11 @@ td.labels {
   text-align: center;
   height: 45px;
   border: none;
+}
+.ngdialog-open .btn-sucess:hover {
+  background-color: #fff;
+  border: 1px solid #d4ae70;
+  color: #d4ae70;
 }
 .ngdialog-open .btn-sucess:active {
   background-color: #d4ae70;
@@ -1508,7 +1559,12 @@ textarea {
   padding-top: 25px;
 }
 .main-cont .panel-default {
+  -webkit-border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px;
+  -moz-background-clip: padding;
   border-radius: 0px;
+  background-clip: padding-box;
 }
 .main-cont .panel-default {
   border-color: #d4ae70;
@@ -1523,13 +1579,22 @@ textarea {
 .btn-sucesses {
   background-color: #d4ae70;
   border-color: #d4ae70;
-  color: #fff!important;
+  color: #fff;
+  -webkit-border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px;
+  -moz-background-clip: padding;
   border-radius: 0px;
+  background-clip: padding-box;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
 }
 .btn-sucesses:hover {
-  background-color: #d4ae70;
+  background-color: #fff;
   border-color: #d4ae70;
-  color: #fff;
+  color: #d4ae70;
 }
 .btn-sucesses:active {
   background-color: #d4ae70;
@@ -1540,7 +1605,12 @@ textarea {
   background-color: #0fba66;
   border-color: #0fba66;
   color: #fff!important;
+  -webkit-border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px;
+  -moz-background-clip: padding;
   border-radius: 0px;
+  background-clip: padding-box;
   height: 50px;
   line-height: 2.4;
 }
@@ -1584,8 +1654,11 @@ a.forgetlink:hover {
 .cart tr td .carticon {
   font-size: 25px;
   -webkit-border-radius: 100%;
+  -webkit-background-clip: padding-box;
   -moz-border-radius: 100%;
+  -moz-background-clip: padding;
   border-radius: 100%;
+  background-clip: padding-box;
   width: 25px;
   height: 25px;
   padding: 2px;
@@ -1704,7 +1777,12 @@ ul.read-morecont {
   font-size: 12px!important;
   font-weight: 600;
   box-shadow: 0px 0px 0px;
+  -webkit-border-radius: 0px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px;
+  -moz-background-clip: padding;
   border-radius: 0px;
+  background-clip: padding-box;
 }
 .dropdown-menu .nav li a {
   font-weight: 600;
@@ -1737,6 +1815,9 @@ nav li:hover ul.dropdown-menu li a:before {
   height: 0px;
   width: 0px;
 }
+nav li:hover ul.dropdown-menu li a:hover {
+  color: #aaa;
+}
 a.readmore {
   color: #ff4f4f;
   cursor: pointer;
@@ -1752,17 +1833,20 @@ a.readmore {
 .aboveimage .image-zoom .image-zoom-lens {
   position: absolute;
   z-index: 999;
-  width: 200px;
-  right: -212px !important;
+  width: 230px;
+  right: -240px !important;
   left: inherit !important;
   top: 0px !important;
-  height: 200px;
+  height: 230px;
   filter: alpha(opacity=0);
   background-repeat: no-repeat;
-  border-radius: 0px;
-  opacity: 0;
   -webkit-border-radius: 0px;
-  -moz-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0px;
+  -moz-background-clip: padding;
+  border-radius: 0px;
+  background-clip: padding-box;
+  opacity: 0;
   border: 1px solid #f1f1f1;
 }
 .aboveimage .image-zoom .image {

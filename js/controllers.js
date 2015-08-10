@@ -507,9 +507,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             },
             {
                 image: 'img/imagedetail/sculputure.jpg'
-            },
-            {
-                image: 'img/imagedetail/sculputure.jpg'
             }];
 
 
@@ -761,10 +758,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //$scope.headheight = angular.element('.fixer-top').height();
             if (scrolled >= 5) {
                 $(".fixer-top").addClass("shadow-on");
-                console.log('5');
             } else {
                 $(".fixer-top").removeClass("shadow-on");
-                console.log('5');
             }
             $scope.$apply();
         });

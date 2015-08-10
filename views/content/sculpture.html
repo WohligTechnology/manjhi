@@ -9,14 +9,15 @@
             </div>
             <div class="col-md-8">
                 <div class="aboveimage">
+                    <i class="fa fa-arrows-alt"></i>
                     <div style="position:relative;" image-zoom data-template-url="views/content/image-zoom.html">
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="cont-imagedetail">
-                    <div class="artist-cont-detail">
-                        <div class="painting-details">
+                    <div class="artist-cont-detail pading-less-bottom">
+                        <div class="painting-details pading-less-bottom">
                             <table class="table">
                                 <tbody>
                                     <tr>
@@ -55,7 +56,7 @@
                     <button type="button" class="btn btn-block uppercase">
                         VIEW ARTWORK IN YOUR ROOM
                     </button>
-                    <button type="button" class="btn btn-block btn-royal uppercase">
+                    <button type="button" class="btn btn-block uppercase">
                         Rent sculpture
                     </button>
                     <button type="button" class="btn btn-primarys btn-block uppercase">
@@ -63,8 +64,14 @@
                     </button>
                     <div class="row-flex row-flex row-unflex sweet-box box-more text-center">
                         <div class="col-flex" ng-repeat="moresculptures in moreSculpture">
-                            <div class="view-box">
+                            <div class="view-box image-box">
                                 <img ng-src='{{moresculptures.image}}' alt="" class="img-responsive">
+                            </div>
+                        </div>
+                        <div class="col-flex">
+                            <div class="view-box image-box">
+                                <img src="img/imagedetail/sculputure.jpg" alt="" class="img-responsive">
+                                <i class="fa fa-play-circle-o"></i>
                             </div>
                         </div>
                     </div>
