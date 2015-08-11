@@ -1277,13 +1277,10 @@ h4.head-more {
   margin-top: 0px;
 }
 .margintop .detailname h5 {
-  background-color: #FFFFFF;
-  border: 1px solid #d4ae70;
-  padding: 11px;
   color: #313131;
-}
-.margintop .leaderdetail {
-  padding: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 0;
 }
 .margintop .leaderdetail p {
   font-weight: 600;
