@@ -159,55 +159,60 @@
                     <h3 class="panel-title">Billing Information</h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Product id</th>
-                                <th>Artist Name</th>
-                                <th>Product Name</th>
-                                <th>Unit Price</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- ngRepeat: singlecart in cart -->
-                            <tr class="cart-details">
-                                <td>
-                                    <span class="mobile">Product Id</span> 11
-                                </td>
-                                <td>
-                                    <span class="mobile">Artist Name</span> Untitled
-                                </td>
-                                <td>
-                                    <span class="mobile">Product Name</span> Untitled
-                                </td>
-                                <td>
-                                    <span class="mobile">Unit Price</span> Rs 5000000
-                                </td>
-                                <td>
-                                    <span class="mobile">Action</span>
-                                    <i class="fa fa-trash-o"></i>
-                                </td>
-                            </tr>
-                            <!-- end ngRepeat: singlecart in cart -->
-                        </tbody>
-                    </table>
-                    <hr>
-                    <div class="col-md-offset-8 col-md-4">
-                        <table class="table table-bordered ">
+                    <div class="cart check">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product id</th>
+                                    <th>Artist Name</th>
+                                    <th>Product Name</th>
+                                    <th>Unit Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr>
-                                    <th>Discount</th>
-                                    <th>Shipping</th>
-                                    <th>Grand Total</th>
+                                <!-- ngRepeat: singlecart in cart -->
+                                <tr class="cart-details">
+                                    <td>
+                                        <span class="mobile">Product Id</span> 11
+                                    </td>
+                                    <td>
+                                        <span class="mobile">Artist Name</span> Untitled
+                                    </td>
+                                    <td>
+                                        <span class="mobile">Product Name</span> Untitled
+                                    </td>
+                                    <td>
+                                        <span class="mobile">Unit Price</span> Rs 5000000
+                                    </td>
+                                    <td>
+                                        <span class="mobile">Action</span>
+                                        <i class="fa fa-trash-o"></i>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Rs 0.00</td>
-                                    <td>Rs 0.00</td>
-                                    <td>Rs 2450.00</td>
-                                </tr>
+                                <!-- end ngRepeat: singlecart in cart -->
                             </tbody>
                         </table>
+                        <hr>
+                        <div class="col-md-offset-8 col-md-4">
+                            <table class="table table-bordered ">
+                                <tbody>
+                                    <tr>
+                                        <th>Discount</th>
+                                        <th>Shipping</th>
+                                        <th>Grand Total</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Rs 0.00</td>
+                                        <td>Rs 0.00</td>
+                                        <td>Rs 2450.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-offset-4 col-md-8">
+                            <a href="#/checkout" class="btn btn-cont pull-right">Proceed &#38; Payment</a>
+                        </div>
                     </div>
                 </div>
             </div>
