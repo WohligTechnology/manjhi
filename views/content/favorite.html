@@ -4,6 +4,11 @@
         <h4 class="head-team">My Favorites</h4>
         <div class="info fav">
             <div class="row">
+                <div class="col-xs-12">
+                    <div class="btn-right">
+                        <button type="submit" class="btn pull-right">Create favorites</button>
+                    </div>
+                </div>
                 <div class="col-md-2">
                     <div class="info-cont pull-right">
                         <ul class="info-li">
@@ -17,7 +22,7 @@
                             <div class="fav-holder" fixit>
                                 <img class="fix-img" ng-src='{{artistdetails.image}}'>
                             </div>
-                            <div class="artist-cont-detail">
+                            <div class="artist-cont-detail-fav">
                                 <p>
                                     <span class="labels">Size:</span>{{artistdetails.id}}
                                 </p>
@@ -36,8 +41,6 @@
                                 <p>
                                     <span class="labels">Price:</span> {{artistdetails.price}} &#8377;
                                 </p>
-                                <button type="submit" class="btn btn-sucesses text-center">Add to cart</button>
-                                <button type="submit" class="btn btn-sucesses text-center">Rent Sculpture</button>
                             </div>
                         </div>
                     </div>

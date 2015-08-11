@@ -184,7 +184,9 @@ firstapp.filter('rawHtml', ['$sce', function ($sce) {
 }]);
 
 firstapp.directive('readmores', function ($window) {
-    $(".read-morecont").hide()
+    $(".read-morecont1").hide();
+    $(".read-morecont2").hide();
+    $(".read-morecont3").hide();
     $("a.readmore3").click(function () {
         $(".read-morecont3").toggle("slow");
     });

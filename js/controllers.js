@@ -23,9 +23,42 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 .controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("favorite");
-        $scope.menutitle = NavigationService.makeactive("favorite");
+        $scope.menutitle = NavigationService.makeactive("Favorite");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+        $scope.artistdetail = [{
+            image: 'img/artist/artist1.jpg',
+            id: '1527',
+            typename: 'Untitled',
+            madein: 'Oil on board',
+            size: '19.5 x 23',
+            year: '1978',
+            price: '2000'
+    }, {
+            image: 'img/artist/artist2.jpg',
+            id: '1527',
+            typename: 'Untitled',
+            madein: 'Oil on board',
+            size: '19.5 x 23',
+            year: '1978',
+            price: '20000'
+    }, {
+            image: 'img/artist/artist3.jpg',
+            id: '1527',
+            typename: 'Untitled',
+            madein: 'Oil on board',
+            size: '19.5 x 23',
+            year: '1978',
+            price: '20000'
+    }, {
+            image: 'img/artist/artist4.jpg',
+            id: '1527',
+            typename: 'Untitled',
+            madein: 'Oil on board',
+            size: '19.5 x 23',
+            year: '1978',
+            price: '50000'
+    }];
     })
     .controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
@@ -441,7 +474,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistDetailImg = [{
             image: 'img/imagedetail/imagedetail.jpg',
             id: ' 1527',
-            artistname: 'Vipul Ravundra Babu',
+            artistname: 'Veguri Ravindra Babu',
             title: ' Floating Dreams',
             typename: 'Untitled',
             madein: 'Oil on board',
@@ -483,7 +516,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistDetailImg = [{
             image: 'img/imagedetail/imagedetail.jpg',
             id: ' 1527',
-            artistname: 'Vipul Ravundra Babu',
+            artistname: '',
             title: ' Floating Dreams',
             typename: 'Untitled',
             madein: 'Oil on board',
@@ -655,7 +688,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artistDetailImg = [{
         image: 'img/imagedetail/imagedetail.jpg',
         id: ' 1527',
-        artistname: 'Vipul Ravundra Babu',
+        artistname: 'Veguri Ravindra Babu',
         title: ' Floating Dreams',
         typename: 'Untitled',
         madein: 'Oil on board',
@@ -663,9 +696,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         year: '1978',
         price: 'Rs. 1,00,000/ $ 6.400'
     }];
-
-
-
 })
 
 
