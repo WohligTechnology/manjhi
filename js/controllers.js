@@ -516,7 +516,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistDetailImg = [{
             image: 'img/imagedetail/imagedetail.jpg',
             id: ' 1527',
-            artistname: '',
+            artistname: 'Arzan Khambatta',
             title: ' Floating Dreams',
             typename: 'Untitled',
             madein: 'Oil on board',
