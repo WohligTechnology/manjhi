@@ -41,6 +41,7 @@ body {
     font-size: @font-body;
     .lh(150%);
     color: @color-base;
+    .placeholder(#ccc);
 }
 
 a {
@@ -1342,16 +1343,48 @@ h4.head-more {
         }
     }
 }
-.contact-form{
-    h4{
+
+.contact-form {
+    h4 {
         margin: 0px;
-        text-transform: uppercase;
-            font-weight: 600;
+        text-transform: capitalize;
+        font-weight: 600;
     }
-    .paddtop{
-            padding-top: 15px;
+    .paddtop {
+        padding-top: 15px;
     }
 }
+
+.form-control:focus {
+    border-color: #ccc !important;
+}
+
+.form-control {
+    placeholder {
+        color: #ccc;
+    }
+}
+
+.addcat {
+    ul {
+        list-style: none;
+        display: block;
+        li {
+            display: inline-block;
+            display: inline-block;
+            border: 1px solid @color2;
+            padding: 5px 10px;
+            margin: 0px 10px;
+            text-transform: capitalize;
+        }
+        .active{
+            background-color: @color2;
+            color:#fff;
+            border:1px solid @color2;
+        }
+    }
+}
+
 
 /*Mobile Less*/
 

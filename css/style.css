@@ -7,6 +7,18 @@ body {
   line-height: 150%;
   color: #313131;
 }
+body::-webkit-input-placeholder {
+  color: #cccccc;
+}
+body:-moz-placeholder {
+  color: #cccccc;
+}
+body::-moz-placeholder {
+  color: #cccccc;
+}
+body:-ms-input-placeholder {
+  color: #cccccc;
+}
 a {
   color: #313131;
   text-decoration: none !important;
@@ -1307,11 +1319,33 @@ h4.head-more {
 }
 .contact-form h4 {
   margin: 0px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
 }
 .contact-form .paddtop {
   padding-top: 15px;
+}
+.form-control:focus {
+  border-color: #ccc !important;
+}
+.form-control placeholder {
+  color: #ccc;
+}
+.addcat ul {
+  list-style: none;
+  display: block;
+}
+.addcat ul li {
+  display: inline-block;
+  border: 1px solid #d4ae70;
+  padding: 5px 10px;
+  margin: 0px 10px;
+  text-transform: capitalize;
+}
+.addcat ul .active {
+  background-color: #d4ae70;
+  color: #fff;
+  border: 1px solid #d4ae70;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {

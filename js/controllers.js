@@ -1,6 +1,6 @@
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'ngSocial', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ImageZoom', 'ui-rangeSlider'])
 
-.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("home");
     $scope.menutitle = NavigationService.makeactive("Home");
@@ -20,14 +20,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.userMaxPrice = $scope.maxPrice;
 })
 
-.controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("favorite");
         $scope.menutitle = NavigationService.makeactive("favorite");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    .controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("cart");
         $scope.menutitle = NavigationService.makeactive("Cart");
@@ -35,21 +35,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('TeamCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("team");
         $scope.menutitle = NavigationService.makeactive("Team");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    .controller('ArtistPageCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("artistpage");
         $scope.menutitle = NavigationService.makeactive("Artistpage");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    .controller('ContactusCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("contactus");
         $scope.menutitle = NavigationService.makeactive("contactus");
@@ -57,7 +57,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('TotalartPageCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("totalartpage");
         $scope.menutitle = NavigationService.makeactive("Totalartpage");
@@ -102,7 +102,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             name: 'Paramjit Singh'
         }];
     })
-    .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
+    .controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("checkout");
         $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -124,7 +124,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         });
     })
-    .controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    .controller('EventsCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("events");
         $scope.menutitle = NavigationService.makeactive("Events");
@@ -202,7 +202,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     })
 
-.controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
+.controller('EventdetailCtrl', function($scope, TemplateService, NavigationService, $timeout, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("eventdetail");
     $scope.menutitle = NavigationService.makeactive("Eventdetail");
@@ -244,7 +244,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.zoomposition = 0;
 
-    $scope.openModal = function (gal) {
+    $scope.openModal = function(gal) {
 
         $scope.zoomposition = $scope.gallery.indexOf(gal);
 
@@ -255,7 +255,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    $scope.nextImage = function (oldposition) {
+    $scope.nextImage = function(oldposition) {
         if (oldposition == ($scope.gallery.length - 1)) {
             $scope.zoomposition = 0;
         } else {
@@ -263,21 +263,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.previousImage = function (oldposition) {
+    $scope.previousImage = function(oldposition) {
         if (oldposition == 0) {
             $scope.zoomposition = ($scope.gallery.length - 1);
         } else {
             $scope.zoomposition--;
         }
     };
-    $scope.openBox = function (id) {
+    $scope.openBox = function(id) {
         $(id).attr('openbox', 'show');
     }
 
 
 })
 
-.controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
+.controller('FeatureCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
     $scope.template = TemplateService.changecontent("feature");
     $scope.menutitle = NavigationService.makeactive("Features");
     TemplateService.title = $scope.menutitle;
@@ -285,16 +285,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Angular Loader Example
     //Start loader
-    $scope.showLoader = function () {
+    $scope.showLoader = function() {
             cfpLoadingBar.start();
         }
         //Complete loader
-    $scope.hideLoader = function () {
+    $scope.hideLoader = function() {
         cfpLoadingBar.complete();
     }
 
     //Angular toaster
-    $scope.showToaster = function () {
+    $scope.showToaster = function() {
         toaster.pop({
             type: 'success',
             title: 'Success!',
@@ -317,7 +317,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
     //ngDialog
-    $scope.showPopup = function () {
+    $scope.showPopup = function() {
         ngDialog.open({
             template: 'demopop'
         });
@@ -349,7 +349,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('PressCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('PressCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("press");
     $scope.menutitle = NavigationService.makeactive("Press");
     TemplateService.title = $scope.menutitle;
@@ -433,7 +433,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("detailImage");
         $scope.menutitle = NavigationService.makeactive("Artistdetailimage");
         TemplateService.title = $scope.menutitle;
@@ -448,9 +448,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             size: '19.5 x 23',
             year: '1978',
             price: 'Rs. 1,00,000/ $ 6.400'
-    }];
+        }];
         $scope.imageSrc = 'img/artist/artist1.jpg';
-        $scope.switchImage = function (imageSrc) {
+        $scope.switchImage = function(imageSrc) {
             console.log('change image to: ' + imageSrc);
             $scope.imageSrc = imageSrc;
         };
@@ -458,24 +458,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.aristImages = [{
             image: 'img/artist/artist1.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist2.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist3.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist4.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist3.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist4.jpg',
 
-    }];
+        }];
     })
-    .controller('SculptureCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('SculptureCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("sculpture");
         $scope.menutitle = NavigationService.makeactive("Sculpture");
         TemplateService.title = $scope.menutitle;
@@ -490,46 +490,44 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             size: '19.5 x 23',
             year: '1978',
             price: 'Rs. 1,00,000/ $ 6.400'
-    }];
+        }];
         $scope.imageSrc = 'img/imagedetail/sculputure.jpg';
-        $scope.switchImage = function (imageSrc) {
+        $scope.switchImage = function(imageSrc) {
             console.log('change image to: ' + imageSrc);
             $scope.imageSrc = imageSrc;
         };
 
         $scope.moreSculpture = [{
-                image: 'img/imagedetail/sculputure.jpg'
-        },
-            {
-                image: 'img/imagedetail/sculputure.jpg'
-            },
-            {
-                image: 'img/imagedetail/sculputure.jpg'
-            }];
+            image: 'img/imagedetail/sculputure.jpg'
+        }, {
+            image: 'img/imagedetail/sculputure.jpg'
+        }, {
+            image: 'img/imagedetail/sculputure.jpg'
+        }];
 
 
         $scope.aristImages = [{
             image: 'img/artist/artist1.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist2.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist3.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist4.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist3.jpg',
 
-    }, {
+        }, {
             image: 'img/artist/artist4.jpg',
 
-    }];
+        }];
     })
 
-.controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ThoughtleadershipCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("thoughtleadership");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadership");
     TemplateService.title = $scope.menutitle;
@@ -589,7 +587,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ThoughtleadershipdetailCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ThoughtleadershipdetailCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("thoughtleadershipdetail");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadershipdetail");
     TemplateService.title = $scope.menutitle;
@@ -649,7 +647,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtInfrastructureCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artInfrastructure");
     $scope.menutitle = NavigationService.makeactive("ArtInfrastructure");
     TemplateService.title = $scope.menutitle;
@@ -671,7 +669,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artistdetail")
     $scope.menutitle = NavigationService.makeactive("ArtistDetail");
     TemplateService.title = $scope.menutitle;
@@ -744,7 +742,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
@@ -790,7 +788,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('InfiniteCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('InfiniteCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("infinite");
     $scope.menutitle = NavigationService.makeactive("Infinite Scroll");
     TemplateService.title = $scope.menutitle;
@@ -798,7 +796,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Infinite scroll
     $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];
-    $scope.loadMore = function () {
+    $scope.loadMore = function() {
         var last = $scope.images[$scope.images.length - 1];
         for (var i = 1; i <= 8; i++) {
             $scope.images.push(last + i);
@@ -806,59 +804,89 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
+.controller('headerctrl', function($scope, TemplateService, $window, ngDialog) {
         $scope.template = TemplateService;
         var scrolled = 0;
         $scope.logintab = '1';
-        $scope.showLogin = function () {
+        $scope.showLogin = function() {
             ngDialog.open({
                 template: 'views/content/login.html'
             });
         };
-        $scope.changeTab = function (tab) {
+        $scope.changeTab = function(tab) {
             $scope.logintab = tab;
         }
     })
-    .controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('AccountCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("account");
         $scope.menutitle = NavigationService.makeactive("Account");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         $scope.info = "bolds";
+        $scope.resi = "active";
 
-        $scope.changeinfo = function () {
+        $scope.changeresi = function() {
+            $scope.resi = "active";
+            $scope.offce = "";
+            //            $scope.chngadd = "";
+            //            $scope.myorders = "";
+            //            $scope.ordertracing = "";
+            //            $scope.listingmsg = "";
+        }
+        $scope.changeoffice = function() {
+            $scope.resi = "";
+            $scope.offce = "active";
+            //            $scope.chngadd = "";
+            //            $scope.myorders = "";
+            //            $scope.ordertracing = "";
+            //            $scope.listingmsg = "";
+        }
+
+        $scope.changeinfo = function() {
             $scope.info = "bolds";
             $scope.chngpass = "";
+            $scope.chngadd = "";
             $scope.myorders = "";
             $scope.ordertracing = "";
             $scope.listingmsg = "";
         }
 
-        $scope.changechngpass = function () {
-            $scope.info = "";
-            $scope.chngpass = "bolds";
-            $scope.myorders = "";
-            $scope.ordertracing = "";
-            $scope.listingmsg = "";
-        }
-
-        $scope.changemyorders = function () {
+        $scope.changeadress = function() {
             $scope.info = "";
             $scope.chngpass = "";
+            $scope.chngadd = "bolds";
+            $scope.myorders = "";
+            $scope.ordertracing = "";
+            $scope.listingmsg = "";
+        }
+        $scope.changechngpass = function() {
+            $scope.info = "";
+            $scope.chngpass = "bolds";
+            $scope.chngadd = "";
+            $scope.myorders = "";
+            $scope.ordertracing = "";
+            $scope.listingmsg = "";
+        }
+
+        $scope.changemyorders = function() {
+            $scope.info = "";
+            $scope.chngpass = "";
+            $scope.chngadd = "";
             $scope.myorders = "bolds";
             $scope.ordertracing = "";
             $scope.listingmsg = "";
         }
 
-        $scope.changeordertracing = function () {
+        $scope.changeordertracing = function() {
             $scope.info = "";
             $scope.chngpass = "";
+            $scope.chngadd = "";
             $scope.myorders = "";
             $scope.ordertracing = "bolds";
             $scope.listingmsg = "";
         }
     })
-    .controller('ActivitiesCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('ActivitiesCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("activities");
         $scope.menutitle = NavigationService.makeactive("Activities");
         TemplateService.title = $scope.menutitle;
