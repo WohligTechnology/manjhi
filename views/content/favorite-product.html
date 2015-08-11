@@ -1,0 +1,74 @@
+<div class="image-detail">
+    <div class="border-top"></div>
+    <div class="container">
+        <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
+            <div class="breadcrums">
+                <div class="col-md-12">
+                    <p>Home / favorite </p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="aboveimage">
+                    <div class="light-make light-shade">Enlarge<i class="fa fa-arrows-alt"></i></div>
+                    <div style="position:relative;" image-zoom data-template-url="views/content/image-zoom.html">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="cont-imagedetail">
+                    <div class="artist-cont-detail pading-less-bottom">
+                        <div class="painting-details pading-less-bottom">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td> {{artistDetailImgs.id}}
+                                            <i class="fa fa-heart"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Artist:</td>
+                                        <td>{{artistDetailImgs.artistname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Title:</td>
+                                        <td>{{artistDetailImgs.title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Medium: </td>
+                                        <td>{{artistDetailImgs.typename }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Price: </td>
+                                        <td>{{artistDetailImgs.price}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Size:</td>
+                                        <td>{{artistDetailImgs.size}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Year: </td>
+                                        <td>{{artistDetailImgs.year }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-block uppercase">
+                        VIEW ARTWORK IN YOUR ROOM
+                    </button>
+                    <button type="button" class="btn btn-block uppercase">
+                        Rent sculpture
+                    </button>
+                    <button type="button" class="btn btn-primarys btn-block uppercase">
+                        ADD TO CART
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="">
+
+            </div>
+        </div>
+    </div>
+</div>

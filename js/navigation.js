@@ -87,35 +87,35 @@ var navigationservice = angular.module('navigationservice', [])
             link: "#/artInfrastructure",
             classis: "active",
             subnav: [
-//                {
-//                    name: "Data Management",
-//                    classis: "active",
-//                    link: "#"
-//        }, {
-//                    name: "Valuation & Insurance",
-//                    classis: "active",
-//                    link: "#"
-//        }, {
-//                    name: "Strategy for Art Initiatives, including CSR",
-//                    classis: "active",
-//                    link: "#"
-//        }, {
-//                    name: "Packing & Logistics",
-//                    classis: "active",
-//                    link: "#"
-//        }, {
-//                    name: "Archival Facility Set-up",
-//                    classis: "active",
-//                    link: "#"
-//        }, {
-//                    name: "Trusteeship & Warehousing",
-//                    classis: "active",
-//                    link: "#"
-//        }, {
-//                    name: "Training & Workshops",
-//                    classis: "active",
-//                    link: "#"
-//        }
+                {
+                    name: "Data Management",
+                    classis: "active",
+                    link: "#"
+                }, {
+                    name: "Valuation & Insurance",
+                    classis: "active",
+                    link: "#"
+                }, {
+                    name: "Strategy for Art Initiatives, including CSR",
+                    classis: "active",
+                    link: "#"
+                }, {
+                    name: "Packing & Logistics",
+                    classis: "active",
+                    link: "#"
+                }, {
+                    name: "Archival Facility Set-up",
+                    classis: "active",
+                    link: "#"
+                }, {
+                    name: "Trusteeship & Warehousing",
+                    classis: "active",
+                    link: "#"
+                }, {
+                    name: "Training & Workshops",
+                    classis: "active",
+                    link: "#"
+                }
             ]
     }, {
             name: "Events",

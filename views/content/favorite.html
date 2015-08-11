@@ -19,9 +19,11 @@
                 <div class="col-md-10">
                     <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
                         <div class="artist-details">
-                            <div class="fav-holder" fixit>
-                                <img class="fix-img" ng-src='{{artistdetails.image}}'>
-                            </div>
+                            <a href="#/favorite-product">
+                                <div class="fav-holder" fixit>
+                                    <img class="fix-img" ng-src='{{artistdetails.image}}'>
+                                </div>
+                            </a>
                             <div class="artist-cont-detail-fav">
                                 <p>
                                     <span class="labels">Size:</span>{{artistdetails.id}}

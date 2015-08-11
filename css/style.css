@@ -1687,7 +1687,6 @@ textarea {
   background-color: #d4ae70;
   border-color: #d4ae70;
   color: #fff;
-  margin: 5px 0;
   -webkit-border-radius: 0px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 0px;
@@ -1880,7 +1879,14 @@ a.forgetlink:hover {
   margin-bottom: 20px;
   color: #ff4f4f;
 }
-ul.read-morecont {
+div.read-morecont {
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  overflow: hidden;
+}
+ul.read-inner {
   padding-top: 40px;
 }
 .dropdown-menu {
@@ -2023,4 +2029,7 @@ a {
   -webkit-box-shadow: 0px 0px 0px;
   -moz-box-shadow: 0px 0px 0px;
   box-shadow: 0px 0px 0px;
+}
+.pad-top-more {
+  margin-top: 40px;
 }

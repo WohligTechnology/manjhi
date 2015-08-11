@@ -127,6 +127,11 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
             url: "/activities",
             templateUrl: "views/template.html",
             controller: 'ActivitiesCtrl'
+        }) 
+        .state('favorite-product', {
+            url: "/favorite-product",
+            templateUrl: "views/template.html",
+            controller: 'FavoriteProductCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");
