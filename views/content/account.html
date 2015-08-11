@@ -1,5 +1,5 @@
 <div class="border-top"></div>
-<div class="info">
+<div class="info min-cont">
     <div class="container">
         <div class="row">
             <div class="myaccnthead col-md-12">
@@ -66,9 +66,9 @@
                   <div class="col-md-4" ng-if="chngadd=='bolds'">
                 <div class="chngpswd-cont">
                    <div class="addcat">
-                      <h5>Billing</h5>
+                      <h5 class="displ">Default Billing Address</h5><a class="displ righ" ng-click="changeTab(1)" ng-if="!formstatus">Edit Address</a>
                    </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-if="formstatus">
                         <div class="input-id">
                             <textarea class="form-control" rows="5" id="comment" placeholder="Address"></textarea>
                         </div>
@@ -334,16 +334,27 @@
                             <input type="number" class="form-control" placeholder="Pincode" required>
                         </div>
                         <a class="btn btn-sucesses">Save</a>
-                          <a class="btn btn-sucesses" >Edit</a>
+                        
+                        <a class="btn btn-sucesses" ng-click="closeTab(1)">Cancel</a>
+                         
+                    </div>
+               
+                    <div class="accadd" ng-if="!formstatus">
+                        
+                        <h5>Krishna Cottage,Mg Road</h5>
+                        <h5>Kumar Metro Center,Room Number:121</h5>
+                        <h5>Mumbai</h5>
+                        <h5>Maharashtra</h5>
+                        <h5>421001</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-4" ng-if="chngadd=='bolds'">
                 <div class="chngpswd-cont">
                    <div class="addcat">
-                       <h5>Shipping</h5>
+                       <h5 class="displ">Default Shipping Address</h5><a href="" class="displ righ" ng-click="changeTab(2)" ng-if="!formstatussec">Edit Address</a>
                    </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-if="formstatussec" ng-if="formstatussec">
                         <div class="input-id">
                             <textarea class="form-control" rows="5" id="comment" placeholder="Address"></textarea>
                         </div>
@@ -609,7 +620,17 @@
                             <input type="number" class="form-control" placeholder="Pincode" required>
                         </div>
                         <a class="btn btn-sucesses">Save</a>
-                          <a class="btn btn-sucesses" >Edit</a>
+                          <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
+                    </div>
+                    
+                    
+                    <div class="accadd" ng-if="!formstatussec">
+                        
+                        <h5>Krishna Cottage,Mg Road</h5>
+                        <h5>Kumar Metro Center,Room Number:121</h5>
+                        <h5>Mumbai</h5>
+                        <h5>Maharashtra</h5>
+                        <h5>421001</h5>
                     </div>
                 </div>
             </div>
@@ -675,10 +696,11 @@
             </div>
             <div class="col-md-4" ng-if="ordertracing=='bolds'">
                 <div class="trck-order">
-                    <span>Trace Order:</span>
-                    <input type="text" class="form-control" placeholder="OrderId"> <span><a href="#">Track</a></span>
+                    <span class="bolds">Trace Your Order:</span>
+                    <input type="text" class="form-control displ wseve paddbtm" placeholder="Enter Order Id"> <span><a href="#" class="btn btn-sucesses displ">Track Now</a></span>
                 </div>
-                <p class="pending" ng-if="trace!=''">Your Order Status Is : {{trace.orderstatusname}}</p>
+                <p class="pending bolds" ng-if="trace!=''">Your Order Status Is : <br><span class="normal">The shipment was sent through: Ekart Logistics
+Shipment Tracking ID: WSRC4251982428</span></p>
             </div>
         </div>
     </div>

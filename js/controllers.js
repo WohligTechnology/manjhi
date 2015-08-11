@@ -854,7 +854,33 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.navigation = NavigationService.getnav();
         $scope.info = "bolds";
         $scope.resi = "active";
+        $scope.formstatus = false;
+        $scope.formstatussec = false;
 
+        $scope.changeTab = function(tab){
+            if(tab==1){
+                $scope.formstatus = true;
+//                $scope.formstatussec = false;
+            }else{
+//                $scope.formstatus = false;
+                $scope.formstatussec = true;
+            }
+            
+        }
+        $scope.closeTab = function(tab){
+            if(tab==1){
+                $scope.formstatus = false;
+//                $scope.formstatussec = false;
+            }else{
+//                $scope.formstatus = false;
+                $scope.formstatussec = false;
+            }
+            
+        }
+         $scope.changeTabs = function(){
+            $scope.formstatussec = true;
+        }
+        
         $scope.changeresi = function () {
             $scope.resi = "active";
             $scope.offce = "";
