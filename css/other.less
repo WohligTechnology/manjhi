@@ -120,6 +120,7 @@ textarea {
     background-color: @color2;
     border-color: @color2;
     color: #fff;
+    margin: 5px 0;
     .border-radius(0px);
     .transition(all 1s ease);
     &:hover {
@@ -356,12 +357,14 @@ a.readmore {
 .aboveimage {
     width: 450px;
     margin: 0 auto;
-    i.fa.fa-arrows-alt {
+    .light-make.light-shade {
         position: absolute;
         right: 10px;
-        font-size: 16px;
         cursor: pointer;
-        color: #ddd;
+        i {
+            font-size: 16px;
+            padding-left: 10px;
+        }
     }
     .image-zoom {
         position: relative;
@@ -421,4 +424,18 @@ a.readmore {
 }
 a {
     cursor: pointer;
+}
+.info.fav {
+    padding: 0px;
+}
+.fav-holder {
+    text-align: center;
+    position: relative;
+    height: 200px;
+}
+.artist-cont-detail-fav {
+    padding-top: 10px;
+    p {
+        margin: 2px 0;
+    }
 }

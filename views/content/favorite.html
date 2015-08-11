@@ -1,92 +1,48 @@
 <div class="border-top"></div>
 <section class="favorites cart">
     <div class="container">
-        <h4 class="head-team">Favorites</h4>
-        <div class="table-cart">
-            <table class="table table-hover cart-table">
-                <thead>
-                    <tr>
-                        <th>Product Image</th>
-                        <th>Product Name</th>
-                        <th>Categories</th>
-                        <th>Unit Price</th>
-                        <th>Action</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="cart-details">
-                        <td class="cart-img">
-                            <span class="mobile">Product Image</span>
-                            <img src="img/artist/artist2.jpg" class="img-box">
-                        </td>
-                        <td>
-                            <span class="mobile">Product Name</span> Untitled
-                        </td>
-                        <td>
-                            <span class="mobile">Categories</span> Painting
-                        </td>
-                        <td>
-                            <span class="mobile">Unit Price</span> Rs 5000000
-                        </td>
-                        <td>
-                            <span class="mobile">Cart</span>
-                            <a class="btn btn-sucesses valid">Add to cart</a>
-                        </td>
-                        <td>
-                            <span class="mobile">Remove</span>
-                            <i class="fa fa-trash-o"></i>
-                        </td>
-                    </tr>
-                    <tr class="cart-details">
-                        <td class="cart-img">
-                            <span class="mobile">Product Image</span>
-                            <img src="img/artist/artist2.jpg" class="img-box">
-                        </td>
-                        <td>
-                            <span class="mobile">Product Name</span> Untitled
-                        </td>
-                        <td>
-                            <span class="mobile">Categories</span> Sculpture
-                        </td>
-                        <td>
-                            <span class="mobile">Unit Price</span> Rs 5000000
-                        </td>
-
-                        <td>
-                            <span class="mobile">Cart</span>
-                            <a class="btn btn-sucesses valid">Add to cart</a>
-                        </td>
-                        <td>
-                            <span class="mobile">Remove</span>
-                            <i class="fa fa-trash-o"></i>
-                        </td>
-                    </tr>
-                    <tr class="cart-details">
-                        <td class="cart-img">
-                            <span class="mobile">Product Image</span>
-                            <img src="img/artist/artist2.jpg" class="img-box">
-                        </td>
-                        <td>
-                            <span class="mobile">Product Name</span> Untitled
-                        </td>
-                        <td>
-                            <span class="mobile">Categories</span>Photograph  
-                        </td>
-                        <td>
-                            <span class="mobile">Unit Price</span> Rs 5000000
-                        </td>
-                        <td>
-                            <span class="mobile">Cart</span>
-                            <a class="btn btn-sucesses valid">Rent Sculpture</a>
-                        </td>
-                        <td>
-                            <span class="mobile">Remove</span>
-                            <i class="fa fa-trash-o"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <h4 class="head-team">My Favorites</h4>
+        <div class="info fav">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="info-cont pull-right">
+                        <ul class="info-li">
+                            <li class="cat-list cpointer bolds">My Favorites <span>(4)</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
+                        <div class="artist-details">
+                            <div class="fav-holder" fixit>
+                                <img class="fix-img" ng-src='{{artistdetails.image}}'>
+                            </div>
+                            <div class="artist-cont-detail">
+                                <p>
+                                    <span class="labels">Size:</span>{{artistdetails.id}}
+                                </p>
+                                <p>
+                                    <span class="labels">Name:</span> {{artistdetails.typename}}
+                                </p>
+                                <p>
+                                    <span class="labels">Medium:</span> {{artistdetails.madein}}
+                                </p>
+                                <p>
+                                    <span class="labels">Size:</span> {{artistdetails.size}} (inches)
+                                </p>
+                                <p>
+                                    <span class="labels">Year:</span> {{artistdetails.year}}
+                                </p>
+                                <p>
+                                    <span class="labels">Price:</span> {{artistdetails.price}} &#8377;
+                                </p>
+                                <button type="submit" class="btn btn-sucesses text-center">Add to cart</button>
+                                <button type="submit" class="btn btn-sucesses text-center">Rent Sculpture</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
