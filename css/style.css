@@ -1709,27 +1709,27 @@ textarea {
   color: #fff;
 }
 .btn-cont {
-  background-color: #0fba66;
-  border-color: #0fba66;
-  color: #fff!important;
+  background-color: #e6e7e9;
+  border-color: #e6e7e9;
+  color: #000!important;
   -webkit-border-radius: 0px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 0px;
   -moz-background-clip: padding;
   border-radius: 0px;
   background-clip: padding-box;
-  height: 50px;
-  line-height: 2.4;
+  height: 45px;
+  line-height: 2;
 }
 .btn-cont:hover {
-  background-color: #0fba66;
-  border-color: #0fba66;
-  color: #fff;
+  background-color: #e6e7e9;
+  border-color: #e6e7e9;
+  color: #000;
 }
 .btn-cont:active {
-  background-color: #0fba66;
-  border-color: #0fba66;
-  color: #fff;
+  background-color: #e6e7e9;
+  border-color: #e6e7e9;
+  color: #000;
 }
 a.forgetlink {
   margin-top: 10px;
@@ -2032,4 +2032,7 @@ a {
 }
 .pad-top-more {
   margin-top: 40px;
+}
+.media.cont {
+  min-height: 460px;
 }
