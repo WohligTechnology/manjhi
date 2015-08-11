@@ -1286,7 +1286,7 @@ h4.head-more {
   margin-top: 14px;
 }
 .margintop {
-  margin-top: 0px;
+  margin-top: 20px;
 }
 .margintop .detailname h5 {
   color: #313131;
@@ -1331,21 +1331,11 @@ h4.head-more {
 .form-control placeholder {
   color: #ccc;
 }
-.addcat ul {
-  list-style: none;
-  display: block;
-}
-.addcat ul li {
-  display: inline-block;
-  border: 1px solid #d4ae70;
-  padding: 5px 10px;
-  margin: 0px 10px;
+.addcat h5 {
   text-transform: capitalize;
-}
-.addcat ul .active {
-  background-color: #d4ae70;
-  color: #fff;
-  border: 1px solid #d4ae70;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0px;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
@@ -1709,9 +1699,9 @@ textarea {
   color: #fff;
 }
 .btn-cont {
-  background-color: #0fba66;
-  border-color: #0fba66;
-  color: #fff!important;
+  background-color: #e6e7e9;
+  border-color: #e6e7e9;
+  color: #000!important;
   -webkit-border-radius: 0px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 0px;
@@ -1722,14 +1712,14 @@ textarea {
   line-height: 2.4;
 }
 .btn-cont:hover {
-  background-color: #0fba66;
-  border-color: #0fba66;
-  color: #fff;
+  background-color: #e6e7e9;
+  border-color: #e6e7e9;
+  color: #000;
 }
 .btn-cont:active {
-  background-color: #0fba66;
-  border-color: #0fba66;
-  color: #fff;
+  background-color: #e6e7e9;
+  border-color: #e6e7e9;
+  color: #000;
 }
 a.forgetlink {
   margin-top: 10px;
