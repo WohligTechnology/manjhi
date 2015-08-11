@@ -1180,9 +1180,6 @@ body.ngdialog-open .ngdialog-close.close {
 .leader .view {
   margin-top: 14px;
 }
-.leader .leader-detail {
-  margin-top: 22px;
-}
 .leader .leader-detail table thead tr {
   background-color: #D4AE70;
   color: #fff;
@@ -1263,6 +1260,41 @@ td.labels {
 }
 h4.head-more {
   margin: 10px 0 20px 0;
+}
+.margintop {
+  margin-top: 0px;
+}
+.margintop .detailname h5 {
+  background-color: #FFFFFF;
+  border: 1px solid #d4ae70;
+  padding: 11px;
+  color: #313131;
+}
+.margintop .leaderdetail {
+  padding: 11px;
+}
+.margintop .leaderdetail p {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.margintop .leaderdetail p span {
+  font-weight: 400;
+}
+.margintop .leaderdetail .detailtext {
+  margin-top: 20px;
+}
+.margintop .leaderdetail .detailtext p {
+  text-transform: capitalize;
+  font-weight: 400;
+  font-family: 'Open Sans';
+}
+.margintop .leaderdetail .detailimg {
+  width: 50%;
+  display: block;
+}
+.margintop .leaderdetail .detailimg img {
+  width: 100%;
+  height: auto;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
