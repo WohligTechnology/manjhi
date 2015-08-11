@@ -1645,6 +1645,7 @@ textarea {
   background-color: #d4ae70;
   border-color: #d4ae70;
   color: #fff;
+  margin: 5px 0;
   -webkit-border-radius: 0px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 0px;
@@ -1893,12 +1894,14 @@ a.readmore {
   width: 450px;
   margin: 0 auto;
 }
-.aboveimage i.fa.fa-arrows-alt {
+.aboveimage .light-make.light-shade {
   position: absolute;
   right: 10px;
-  font-size: 16px;
   cursor: pointer;
-  color: #ddd;
+}
+.aboveimage .light-make.light-shade i {
+  font-size: 16px;
+  padding-left: 10px;
 }
 .aboveimage .image-zoom {
   position: relative;
@@ -1955,4 +1958,18 @@ a.readmore {
 }
 a {
   cursor: pointer;
+}
+.info.fav {
+  padding: 0px;
+}
+.fav-holder {
+  text-align: center;
+  position: relative;
+  height: 200px;
+}
+.artist-cont-detail-fav {
+  padding-top: 10px;
+}
+.artist-cont-detail-fav p {
+  margin: 2px 0;
 }
