@@ -101,18 +101,22 @@ textarea {
     resize: none;
 }
 .main-cont {
-    padding-top: 25px;
     .panel-default {
         .border-radius(0px);
+        .box-shadow(0 0 0);
     }
     .panel-default {
-        border-color: @color2;
+        border-color: #fff;
         .panel-heading {
-            color: #FFF;
-            background-color: @color2;
-            border-color: @color2;
+            color: #000;
+            background-color: #fff;
+            border-color: @abbr-border-color;
             border-top-left-radius: 0px;
             border-top-right-radius: 0px;
+            .panel-title {
+                text-transform: uppercase;
+                font-weight: 600;
+            }
         }
     }
 }
@@ -120,7 +124,7 @@ textarea {
     background-color: @color2;
     border-color: @color2;
     color: #fff;
-//    margin: 5px 0;
+    //    margin: 5px 0;
     .border-radius(0px);
     .transition(all 1s ease);
     &:hover {
@@ -139,8 +143,8 @@ textarea {
     border-color: @color1;
     color: #000!important;
     .border-radius(0px);
-    height: 50px;
-    line-height: 2.4;
+    height: 45px;
+    line-height: 2;
     &:hover {
         background-color: @color1;
         border-color: @color1;
@@ -174,9 +178,6 @@ a.forgetlink {
             text-align: center;
             img.img-box {
                 width: 100px;
-            }
-            span.mobile {
-                display: none;
             }
             .carticon {
                 font-size: 25px;
@@ -452,4 +453,13 @@ a {
 }
 .pad-top-more {
     margin-top: 40px;
+}
+.media.cont {
+    min-height: 460px;
+}
+.mobile {
+    display: none;
+}
+.sort-by {
+    padding-top: 3px;
 }

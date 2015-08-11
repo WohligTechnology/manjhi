@@ -1708,8 +1708,8 @@ textarea {
   -moz-background-clip: padding;
   border-radius: 0px;
   background-clip: padding-box;
-  height: 50px;
-  line-height: 2.4;
+  height: 45px;
+  line-height: 2;
 }
 .btn-cont:hover {
   background-color: #e6e7e9;
@@ -2022,4 +2022,7 @@ a {
 }
 .pad-top-more {
   margin-top: 40px;
+}
+.media.cont {
+  min-height: 460px;
 }

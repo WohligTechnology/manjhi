@@ -2,6 +2,7 @@
 <div class="container">
     <div class="main-cont">
         <div class="cont-main">
+            <h3 class="font-color3 home-header">Checkout</h3>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Checkout Method</h3>
@@ -10,10 +11,10 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4>CHECKOUT AS A GUEST OR REGISTER</h4>
+                                <h5>CHECKOUT AS A GUEST OR REGISTER</h5>
                                 <p>Register with us for future convenience:</p>
                                 <div class="row">
-                                    <div class="form-group col-md-offset-2  col-md-8">
+                                    <div class="form-group col-md-8">
                                         <div class="radio">
                                             <label>
                                                 <input type="radio" name="optradio">Checkout as guest</label>
@@ -35,7 +36,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-6">
-                                <h4>LOGIN</h4>
+                                <h5>LOGIN</h5>
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <input type="text" class="form-control asteric" placeholder="Username or email" class="form-control" required>
@@ -103,13 +104,9 @@
                     </form>
                     <div class="row">
                         <div class="form-group col-md-offset-2  col-md-8">
-                            <div class="radio">
+                            <div class="checkbox">
                                 <label>
-                                    <input type="radio" name="optradio">Ship to this address</label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optradio">Ship to different address</label>
+                                    <input type="checkbox" name="check">Ship to this address</label>
                             </div>
                         </div>
                     </div>
@@ -165,27 +162,34 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th>Product id</th>
+                                <th>Artist Name</th>
                                 <th>Product Name</th>
                                 <th>Unit Price</th>
-                                <th>Qty</th>
-                                <th>Subtotal</th>
-
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- ngRepeat: singlecart in cart -->
-                            <tr>
-                                <td>Untitled</td>
-                                <td>Rs 2450.00</td>
+                            <tr class="cart-details">
                                 <td>
-                                    1
+                                    <span class="mobile">Product Id</span> 11
                                 </td>
-                                <td>Rs 2450.00</td>
-
+                                <td>
+                                    <span class="mobile">Artist Name</span> Untitled
+                                </td>
+                                <td>
+                                    <span class="mobile">Product Name</span> Untitled
+                                </td>
+                                <td>
+                                    <span class="mobile">Unit Price</span> Rs 5000000
+                                </td>
+                                <td>
+                                    <span class="mobile">Action</span>
+                                    <i class="fa fa-trash-o"></i>
+                                </td>
                             </tr>
                             <!-- end ngRepeat: singlecart in cart -->
-
-
                         </tbody>
                     </table>
                     <hr>
@@ -193,13 +197,11 @@
                         <table class="table table-bordered ">
                             <tbody>
                                 <tr>
-                                    <th>Sub Total</th>
                                     <th>Discount</th>
                                     <th>Shipping</th>
                                     <th>Grand Total</th>
                                 </tr>
                                 <tr>
-                                    <td>Rs 2450.00</td>
                                     <td>Rs 0.00</td>
                                     <td>Rs 0.00</td>
                                     <td>Rs 2450.00</td>
