@@ -1261,6 +1261,18 @@ td.labels {
 h4.head-more {
   margin: 10px 0 20px 0;
 }
+.leaderdetail-set h3 {
+  display: inline-block;
+}
+.leaderdetail-set a {
+  display: inline-block;
+  float: right;
+  background-color: #d4ae70;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin-top: 14px;
+}
 .margintop {
   margin-top: 0px;
 }
