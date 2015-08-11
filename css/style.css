@@ -938,16 +938,22 @@ a.link-viewall {
 }
 .view-more ul li.head {
   font-weight: 600;
+  padding-left: 0px;
+  font-size: 14px;
 }
 .view-more ul li.head:before {
+  font-family: 'FontAwesome';
   content: "\f105";
   padding-right: 10px;
+  padding-top: 0px;
+  vertical-align: baseline;
+  font-size: 16px;
 }
 .view-more ul li {
   list-style: none;
-  padding-left: 25px;
   line-height: 200%;
   text-align: justify;
+  padding-left: 15px;
 }
 .margintp {
   margin-bottom: 40px;
@@ -1242,6 +1248,14 @@ td.labels {
   overflow: hidden;
   align-self: center;
   margin: 0;
+}
+.cont-artist h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+.panel-body .form-horizontal input {
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 0px;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {

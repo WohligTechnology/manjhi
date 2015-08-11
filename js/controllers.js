@@ -11,8 +11,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         'img/slide1.jpg',
         'img/slide2.jpg'
     ];
-    //Colours for ui-select
-    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
     // set available range
     $scope.minPrice = 0;
     $scope.maxPrice = 100000;

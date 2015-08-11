@@ -31,17 +31,18 @@
                 </div>
                 <accordion close-others="true">
                     <accordion-group heading="Search By Artist">
-                        <ui-select multiple ng-model="multipleDemo.artist" theme="select2" ng-disabled="disabled" style="width: 300px;">
-                            <ui-select-match placeholder="Select Artist...">{{$item}}</ui-select-match>
-                            <ui-select-choices repeat="artist in availableAritist| filter:$select.search">
-                                {{artist}}
-                            </ui-select-choices>
-                        </ui-select>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" placeholder="Artist Name">
+                                </div>
+                            </div>
+                        </form>
                     </accordion-group>
                     <accordion-group heading="Search By Price">
                         <div range-slider min="minPrice" max="maxPrice" model-min="userMinPrice" model-max="userMaxPrice" step="5"></div>
-                        <input type="number" placeholder="min" class="maxmin">
-                        <input type="number" placeholder="max" class="maxmin">
+                        <input type="number" placeholder="0" class="maxmin">
+                        <input type="number" placeholder="100000" class="maxmin">
                     </accordion-group>
                     <accordion-group heading="Search By Size">
                         Size
