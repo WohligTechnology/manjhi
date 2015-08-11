@@ -184,17 +184,18 @@ firstapp.filter('rawHtml', ['$sce', function ($sce) {
 }]);
 
 firstapp.directive('readmores', function ($window) {
-    $(".read-morecont1").hide();
-    $(".read-morecont2").hide();
-    $(".read-morecont3").hide();
-    $("a.readmore3").click(function () {
-        $(".read-morecont3").toggle("slow");
-    });
-    $("a.readmore1").click(function () {
-        $(".read-morecont1").toggle("slow");
-    });
-    $("a.readmore2").click(function () {
-        $(".read-morecont2").toggle("slow");
-    });
 
+    return function (scope, element, attrs) {
+        var $element = $(element);
+        $element.children(".read-morecont").height(0);
+        $element.children(".readmore").click(function () {
+            var lastheight = $element.children(".read-morecont").height();
+            if (lastheight == 0) {
+                var newheight=$element.children(".read-morecont").children(".read-inner").height();
+                 $element.children(".read-morecont").height(newheight+40);
+            } else {
+                $element.children(".read-morecont").height(0);
+            }
+        });
+    };
 });

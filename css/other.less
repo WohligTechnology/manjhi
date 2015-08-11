@@ -301,7 +301,11 @@ a.forgetlink {
     margin-bottom: 20px;
     color: @color3;
 }
-ul.read-morecont {
+div.read-morecont {
+    .transition(all 1s);
+    overflow: hidden;
+}
+ul.read-inner {
     padding-top: 40px;
 }
 .dropdown-menu {
@@ -445,4 +449,7 @@ a {
 }
 .form-control {
     .box-shadow(0px 0px 0px);
+}
+.pad-top-more {
+    margin-top: 40px;
 }
