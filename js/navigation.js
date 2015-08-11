@@ -138,7 +138,7 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Press",
             active: "",
-            link: "#/mediacoverages",
+            link: "#/press",
             classis: "active",
             subnav: []
     }, {

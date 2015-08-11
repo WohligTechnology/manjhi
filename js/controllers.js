@@ -349,9 +349,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('MediacoveragesCtrl', function ($scope, TemplateService, NavigationService) {
-    $scope.template = TemplateService.changecontent("mediacoverages");
-    $scope.menutitle = NavigationService.makeactive("Mediacoverages");
+.controller('PressCtrl', function ($scope, TemplateService, NavigationService) {
+    $scope.template = TemplateService.changecontent("press");
+    $scope.menutitle = NavigationService.makeactive("Press");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 

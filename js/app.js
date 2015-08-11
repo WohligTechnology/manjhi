@@ -83,10 +83,10 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
             templateUrl: "views/template.html",
             controller: 'TotalartPageCtrl'
         })
-        .state('mediacoverages', {
-            url: "/mediacoverages",
+        .state('press', {
+            url: "/press",
             templateUrl: "views/template.html",
-            controller: 'MediacoveragesCtrl'
+            controller: 'PressCtrl'
         })
         .state('account', {
             url: "/account",
