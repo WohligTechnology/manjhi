@@ -11,7 +11,7 @@ var navigationservice = angular.module('navigationservice', [])
         {
             name: "About",
             active: "",
-            link: "#/team",
+            link: "#",
             classis: "active",
             subnav: [
                 {

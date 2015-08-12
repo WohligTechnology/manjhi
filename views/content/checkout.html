@@ -99,121 +99,121 @@
                         <div class="form-group col-md-offset-2  col-md-8">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="check">Ship to this address</label>
+                                    <input type="checkbox" ng-model="checkout.isshipping" name="check" ng-click="showShipping(checkout.isshipping)">Ship to different address</label>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-if="checkout.isshipping == true">
                         <div class="form-group col-md-offset-2 col-md-8">
-                            <h4>Ship To This Address</h4></div>
-                    </div>
-                    <form>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2 col-md-4">
-                                <input type="text" class="form-control asteric" id="" placeholder="Shipping Name">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="tel" class="form-control" id="" placeholder="Telephone">
-                            </div>
+                            <h4>Ship to this Address</h4>
                         </div>
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-offset-2 col-md-4">
+                                    <input type="text" class="form-control asteric" id="" placeholder="Shipping Name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="tel" class="form-control" id="" placeholder="Telephone">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-8 col-md-offset-2 ">
+                                    <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-offset-2  col-md-4">
+                                    <input type="text" class="form-control" id="" placeholder="City">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" id="" placeholder="State/Provision">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-offset-2  col-md-4">
+                                    <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" id="" placeholder="Country">
+                                </div>
+                            </div>
+                        </form>
                         <div class="row">
-                            <div class="form-group col-md-8 col-md-offset-2 ">
-                                <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
+                            <div class="col-md-offset-2  col-md-8">
+                                <button class="btn btn-cont pull-right">Continue</button>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="City">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="State/Provision">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="Country">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <div class="col-md-offset-2  col-md-8">
-                            <button class="btn btn-cont pull-right">Continue</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="making">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Billing Information</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="cart check">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Product Image</th>
-                                    <th>Product id</th>
-                                    <th>Artist Name</th>
-                                    <th>Product Name</th>
-                                    <th>Unit Price</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- ngRepeat: singlecart in cart -->
-                                <tr class="cart-details">
-                                    <td class="cart-img">
-                                        <span class="mobile">Product Image</span>
-                                        <img src="img/artist/artist2.jpg" class="img-box">
-                                    </td>
-                                    <td>
-                                        <span class="mobile">Product Id</span> 11
-                                    </td>
-                                    <td>
-                                        <span class="mobile">Artist Name</span> Untitled
-                                    </td>
-                                    <td>
-                                        <span class="mobile">Product Name</span> Untitled
-                                    </td>
-                                    <td>
-                                        <span class="mobile">Unit Price</span> Rs 5000000
-                                    </td>
-                                    <td>
-                                        <span class="mobile">Action</span>
-                                        <i class="fa fa-trash-o"></i>
-                                    </td>
-                                </tr>
-                                <!-- end ngRepeat: singlecart in cart -->
-                            </tbody>
-                        </table>
-                        <hr>
-                        <div class="col-md-offset-8 col-md-4">
-                            <table class="table table-bordered ">
+            <div class="making">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Billing Information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="cart check">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Product Image</th>
+                                        <th>Product id</th>
+                                        <th>Artist Name</th>
+                                        <th>Product Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>Discount</th>
-                                        <th>Shipping</th>
-                                        <th>Grand Total</th>
+                                    <!-- ngRepeat: singlecart in cart -->
+                                    <tr class="cart-details">
+                                        <td class="cart-img">
+                                            <span class="mobile">Product Image</span>
+                                            <img src="img/artist/artist2.jpg" class="img-box">
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Product Id</span> 11
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Artist Name</span> Untitled
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Product Name</span> Untitled
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Unit Price</span> Rs 5000000
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Action</span>
+                                            <i class="fa fa-trash-o"></i>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>Rs 0.00</td>
-                                        <td>Rs 0.00</td>
-                                        <td>Rs 2450.00</td>
-                                    </tr>
+                                    <!-- end ngRepeat: singlecart in cart -->
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="col-md-offset-4 col-md-8">
-                            <a href="#/checkout" class="btn btn-cont pull-right">Proceed &#38; Payment</a>
+                            <hr>
+                            <div class="col-md-offset-8 col-md-4">
+                                <table class="table table-bordered ">
+                                    <tbody>
+                                        <tr>
+                                            <th>Discount</th>
+                                            <th>Shipping</th>
+                                            <th>Grand Total</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Rs 0.00</td>
+                                            <td>Rs 0.00</td>
+                                            <td>Rs 2450.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-offset-4 col-md-8">
+                                <a href="#/checkout" class="btn btn-cont pull-right">Proceed &#38; Payment</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -142,6 +142,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         //Valdr
+        $scope.checkout = [];
+        $scope.checkout.isshipping = true;
+    
+        $scope.showShipping = function(check){
+            console.log(check);
+        }
+    
         valdr.addConstraints({
             'Person': {
                 'firstName': {

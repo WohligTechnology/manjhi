@@ -1105,7 +1105,7 @@ img.balckbak {
 }
 .image img.imagebrowser {
   position: absolute;
-  left: 48px;
+  left: 15px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -1115,7 +1115,7 @@ img.balckbak {
 }
 .image img.imagebrowser2 {
   position: absolute;
-  right: 48px;
+  right: 15px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -2096,4 +2096,7 @@ a {
 }
 .media.min-cont .input-id {
   padding-bottom: 10px;
+}
+.pad-btm {
+  padding-bottom: 20px;
 }
