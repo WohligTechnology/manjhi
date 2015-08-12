@@ -127,11 +127,16 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
             url: "/activities",
             templateUrl: "views/template.html",
             controller: 'ActivitiesCtrl'
-        }) 
+        })
         .state('favorite-product', {
             url: "/favorite-product",
             templateUrl: "views/template.html",
             controller: 'FavoriteProductCtrl'
+        })
+        .state('reach-out', {
+            url: "/reach-out",
+            templateUrl: "views/template.html",
+            controller: 'ReachOutCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");
@@ -189,15 +194,14 @@ firstapp.filter('rawHtml', ['$sce', function ($sce) {
 }]);
 
 firstapp.directive('readmores', function ($window) {
-
     return function (scope, element, attrs) {
         var $element = $(element);
         $element.children(".read-morecont").height(0);
         $element.children(".readmore").click(function () {
             var lastheight = $element.children(".read-morecont").height();
             if (lastheight == 0) {
-                var newheight=$element.children(".read-morecont").children(".read-inner").height();
-                 $element.children(".read-morecont").height(newheight+40);
+                var newheight = $element.children(".read-morecont").children(".read-inner").height();
+                $element.children(".read-morecont").height(newheight + 40);
             } else {
                 $element.children(".read-morecont").height(0);
             }

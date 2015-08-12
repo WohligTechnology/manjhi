@@ -144,21 +144,21 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Contact Us",
             active: "",
-            link: "#/contactus",
+            link: "",
             classis: "active",
             subnav: [
                 {
                     name: "Join our mailing list",
                     classis: "active",
-                    link: "#"
+                    link: ""
         }, {
                     name: "Reach out for artworks",
                     classis: "active",
-                    link: "#"
+                    link: "#/reach-out"
         }, {
                     name: "Contact Details",
                     classis: "active",
-                    link: "#"
+                    link: "#/contactus"
         }
             ]
     }];

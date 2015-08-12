@@ -939,6 +939,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Activities");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
+    }) 
+    .controller('ReachOutCtrl', function ($scope, TemplateService, NavigationService) {
+        $scope.template = TemplateService.changecontent("reach-out");
+        $scope.menutitle = NavigationService.makeactive("Reach Out");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
     })
     .controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("favorite-product");
