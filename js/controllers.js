@@ -78,14 +78,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     .controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("artistpage");
-        $scope.menutitle = NavigationService.makeactive("Artistpage");
+        $scope.menutitle = NavigationService.makeactive("Artist");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
     .controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("contactus");
-        $scope.menutitle = NavigationService.makeactive("contactus");
+        $scope.menutitle = NavigationService.makeactive("Contact Us");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
@@ -93,7 +93,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 .controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("totalartpage");
-        $scope.menutitle = NavigationService.makeactive("Totalartpage");
+        $scope.menutitle = NavigationService.makeactive("Total Artwork");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
 
@@ -238,7 +238,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 .controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("eventdetail");
-    $scope.menutitle = NavigationService.makeactive("Eventdetail");
+    $scope.menutitle = NavigationService.makeactive("Event");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.event = [{
@@ -468,7 +468,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("detailImage");
-        $scope.menutitle = NavigationService.makeactive("Artistdetailimage");
+        $scope.menutitle = NavigationService.makeactive("Artists");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         $scope.artistDetailImg = [{
@@ -682,7 +682,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('ArtInfrastructureCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artInfrastructure");
-    $scope.menutitle = NavigationService.makeactive("ArtInfrastructure");
+    $scope.menutitle = NavigationService.makeactive("Art Infrastructure");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.artistDetailImg = [{
@@ -701,7 +701,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artistdetail")
-    $scope.menutitle = NavigationService.makeactive("ArtistDetail");
+    $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.artistdetail = [{
@@ -774,7 +774,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('ArtistCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artist");
-    $scope.menutitle = NavigationService.makeactive("Artist");
+    $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
@@ -942,7 +942,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
     .controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("favorite-product");
-        $scope.menutitle = NavigationService.makeactive("Favorite Product.html");
+        $scope.menutitle = NavigationService.makeactive("Favorites");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         $scope.artistDetailImg = [{
