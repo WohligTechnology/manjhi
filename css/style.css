@@ -950,26 +950,24 @@ a.link-viewall {
   padding-left: 10px;
   color: #ff4f4f;
 }
+.view-more .head {
+  font-weight: 600;
+  padding-left: 0px;
+  font-size: 14px;
+}
+.view-more .head:before {
+  padding-right: 10px;
+  padding-top: 0px;
+  vertical-align: baseline;
+  font-size: 16px;
+}
 .view-more ul {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 .view-more ul span.small {
   font-weight: 400;
   font-family: 'Open Sans';
   font-size: 13px;
-}
-.view-more ul li.head {
-  font-weight: 600;
-  padding-left: 0px;
-  font-size: 14px;
-}
-.view-more ul li.head:before {
-  font-family: 'FontAwesome';
-  content: "\f105";
-  padding-right: 10px;
-  padding-top: 0px;
-  vertical-align: baseline;
-  font-size: 16px;
 }
 .view-more ul li {
   list-style: none;

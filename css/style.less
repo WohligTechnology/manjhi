@@ -852,25 +852,26 @@ a.link-viewall {
     color: @color3;
 }
 .view-more {
+    .head {
+        font-weight: 600;
+        padding-left: 0px;
+        font-size: 14px;
+        &:before {
+//            font-family: 'FontAwesome';
+//            content: url(../img/bullet.png);
+//            content: "\f105";
+            padding-right: 10px;
+            padding-top: 0px;
+            vertical-align: baseline;
+            font-size: 16px;
+        }
+    }
     ul {
-        padding-left: 20px;
+        padding-left: 10px;
         span.small {
             font-weight: 400;
             font-family: 'Open Sans';
             font-size: 13px;
-        }
-        li.head {
-            font-weight: 600;
-            padding-left: 0px;
-            font-size: 14px;
-            &:before {
-                font-family: 'FontAwesome';
-                content: "\f105";
-                padding-right: 10px;
-                padding-top: 0px;
-                vertical-align: baseline;
-                font-size: 16px;
-            }
         }
         li {
             list-style: none;
