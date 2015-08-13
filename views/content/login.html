@@ -8,15 +8,15 @@
                 <div class="col-md-7">
                     <div class="signin">
                         <div class="signinor">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" ng-submit="userlogin();">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="email" class="form-control" placeholder="Enter your email *" required="">
+                                        <input type="email" class="form-control" placeholder="Enter your email *" required="" ng-model="login.email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="password" class="form-control" placeholder="Password *" required="">
+                                        <input type="password" class="form-control" placeholder="Password *" required="" ng-model="login.password">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -51,25 +51,25 @@
                 <div class="col-md-7">
                     <div class="signin">
                         <div class="signinor">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" ng-submit="registeruser();">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="email" class="form-control" placeholder="Enter your email *" required="">
+                                        <input type="email" class="form-control" placeholder="Enter your email *" required="" ng-model="register.email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" placeholder="Enter your Name *" required="">
+                                        <input type="text" class="form-control" placeholder="Enter your Name *" required="" ng-model="register.name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="password" class="form-control" placeholder="Password *" required="">
+                                        <input type="password" class="form-control" placeholder="Password *" required="" ng-model="register.password">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="password" class="form-control" placeholder="Confirm Password *" required="">
+                                        <input type="password" class="form-control" placeholder="Confirm Password *" required="" ng-model="register.confirmpassword">
                                     </div>
                                 </div>
                                 <div class="form-group">
