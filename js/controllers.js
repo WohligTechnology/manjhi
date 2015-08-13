@@ -847,6 +847,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.logintab = '1';
         $scope.login = {};
         $scope.register = {};
+        $scope.forgot = {};
 
         $scope.showLogin = function () {
             ngDialog.open({
@@ -862,7 +863,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.userlogin($scope.login, function (data, status) {
                 console.log(data);
                 if (data.value != false) {
-                    ngDialog.close();
+                    $.jStorage.set("user", data);
+                    ngDialog.closeAll();
                 }
             })
         };
@@ -872,9 +874,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if ($scope.register.password === $scope.register.confirmpassword) {
                 NavigationService.registeruser($scope.register, function (data, status) {
                     console.log(data);
+                    if (data.value == true) {
+                        $scope.changeTab(1);
+                    }
                 })
             }
         };
+
+        $scope.forgotpassword = function () {
+            console.log($scope.forgot);
+            NavigationService.forgotpassword($scope.forgot, function (data, status) {
+                console.log(data);
+                if (data.value == true) {
+                    $scope.changeTab(4);
+                }
+            })
+        }
 
     })
     .controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {

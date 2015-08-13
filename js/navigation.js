@@ -192,6 +192,13 @@ var navigationservice = angular.module('navigationservice', [])
                 method: "POST",
                 data: login
             }).success(callback);
+        },
+        forgotpassword:function (forgot, callback) {
+            $http({
+                url: adminurl + "user/forgotpassword",
+                method: "POST",
+                data: forgot
+            }).success(callback);
         }
     }
 });
