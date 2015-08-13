@@ -144,11 +144,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         //Valdr
         $scope.checkout = [];
         $scope.checkout.isshipping = true;
-    
-        $scope.showShipping = function(check){
+
+        $scope.showShipping = function (check) {
             console.log(check);
         }
-    
+
         valdr.addConstraints({
             'Person': {
                 'firstName': {
@@ -841,10 +841,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
+.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService) {
         $scope.template = TemplateService;
         var scrolled = 0;
         $scope.logintab = '1';
+        $scope.login = {};
+        $scope.register = {};
+
         $scope.showLogin = function () {
             ngDialog.open({
                 template: 'views/content/login.html'
@@ -853,6 +856,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.changeTab = function (tab) {
             $scope.logintab = tab;
         }
+
+        $scope.userlogin = function () {
+            console.log($scope.login);
+            NavigationService.userlogin($scope.login, function (data, status) {
+                console.log(data);
+                if (data.value != false) {
+                    ngDialog.close();
+                }
+            })
+        };
+
+        $scope.registeruser = function () {
+            console.log($scope.register);
+            if ($scope.register.password === $scope.register.confirmpassword) {
+                NavigationService.registeruser($scope.register, function (data, status) {
+                    console.log(data);
+                })
+            }
+        };
+
     })
     .controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("account");
@@ -864,30 +887,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.formstatus = false;
         $scope.formstatussec = false;
 
-        $scope.changeTab = function(tab){
-            if(tab==1){
+        $scope.changeTab = function (tab) {
+            if (tab == 1) {
                 $scope.formstatus = true;
-//                $scope.formstatussec = false;
-            }else{
-//                $scope.formstatus = false;
+                //                $scope.formstatussec = false;
+            } else {
+                //                $scope.formstatus = false;
                 $scope.formstatussec = true;
             }
-            
+
         }
-        $scope.closeTab = function(tab){
-            if(tab==1){
+        $scope.closeTab = function (tab) {
+            if (tab == 1) {
                 $scope.formstatus = false;
-//                $scope.formstatussec = false;
-            }else{
-//                $scope.formstatus = false;
+                //                $scope.formstatussec = false;
+            } else {
+                //                $scope.formstatus = false;
                 $scope.formstatussec = false;
             }
-            
+
         }
-         $scope.changeTabs = function(){
+        $scope.changeTabs = function () {
             $scope.formstatussec = true;
         }
-        
+
         $scope.changeresi = function () {
             $scope.resi = "active";
             $scope.offce = "";
@@ -946,7 +969,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Activities");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    }) 
+    })
     .controller('ReachOutCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("reach-out");
         $scope.menutitle = NavigationService.makeactive("Reach Out");
