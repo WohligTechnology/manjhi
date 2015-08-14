@@ -2,48 +2,46 @@
 <div class="artist-detail">
     <div class="container">
         <div class="cont-artist">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 class="head-team">Veguri Ravindra Babu</h4>
-                </div>
-                <a class="readmore pull-right">View Profile</a>
-                <div ng-if="click" class="animate-if row">
-                    <div class="col-md-12 read-inner">
-                        <div class="col-md-6">
-                            <p><span class="bold">Born in</span> 1983 <span class="bold">at</span> Andhra Pradesh</p>
-                            <p><span class="bold">Passed away</span></p>
-                            <p><span class="bold">Education</span>
-                                <br> 2006, Bachelor of Fine Arts, Andhra University, Vishakhapatnam
-                                <br> 2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
-                                <br> 2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
-                            </p>
-                            <p>
-                                <span class="bold">Awards / Recognitions / Honors </span>
-                                <br> 2006, H R D National Scholarship
-                                <br> 2006, H R D National Scholarship
-                                <br> 2006, H R D National Scholarship
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <p><span class="bold">Auctions</span>
-                                <br> 2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
-                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
-                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai</p>
-                            <p><span class="bold">Solo Shows</span>
-                                <br> 2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
-                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
-                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
-                            </p>
-                            <p><span class="bold">Group Shows</span>
-                                <br>2008, Aura Art Inaugural Show, Aura Art, Nehru Centre, Worli, Mumbai
-                                <br>2012, United Art Fair, Pragati Maidan, New Delhi
-                                <br>2013, The Aura Art Show 2013, Aura Art, Jehangir Art Gallery, Mumbai
-                            </p>
-                        </div>
+            <h4 class="head-team">Veguri Ravindra Babu</h4>
+            <a class="readmore pull-right" ng-click="showmore=!showmore">View Profile</a>
+            <div ng-if="showmore==true;" class="open-if">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><span class="bold">Born in</span> 1983 <span class="bold">at</span> Andhra Pradesh</p>
+                        <p><span class="bold">Passed away</span>
+                        </p>
+                        <p><span class="bold">Education</span>
+                            <br>2006, Bachelor of Fine Arts, Andhra University, Vishakhapatnam
+                            <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
+                            <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
+                        </p>
+                        <p>
+                            <span class="bold">Awards / Recognitions / Honors </span>
+                            <br>2006, H R D National Scholarship
+                            <br>2006, H R D National Scholarship
+                            <br>2006, H R D National Scholarship
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><span class="bold">Auctions</span>
+                            <br>2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
+                            <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+                            <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai</p>
+                        <p><span class="bold">Solo Shows</span>
+                            <br>2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
+                            <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+                            <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+                        </p>
+                        <p><span class="bold">Group Shows</span>
+                            <br>2008, Aura Art Inaugural Show, Aura Art, Nehru Centre, Worli, Mumbai
+                            <br>2012, United Art Fair, Pragati Maidan, New Delhi
+                            <br>2013, The Aura Art Show 2013, Aura Art, Jehangir Art Gallery, Mumbai
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
                 <div class="artist-details">
