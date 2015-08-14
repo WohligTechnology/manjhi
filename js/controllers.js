@@ -181,12 +181,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         //Valdr
-<<<<<<< HEAD
-=======
         $scope.checkout = [];
         $scope.checkout.isshipping = true;
 
->>>>>>> origin/master
         $scope.showShipping = function (check) {
             console.log(check);
         }
