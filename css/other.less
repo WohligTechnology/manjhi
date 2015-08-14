@@ -220,19 +220,25 @@ a.forgetlink {
     .artist-details {
         margin-bottom: 25px;
         .artist-cont-detail {
-            padding: 15px 10px;
+            padding: 15px 0px;
             p {
-                margin-bottom: 5px;
+                margin-bottom: 0px;
                 border-top: 0px;
+                font-size: 12px;
+                line-height: 1.5;
                 i.fa.fa-heart {
                     padding-left: 8px;
-                    float: right;
                     color: @color1;
                     cursor: pointer;
                     &:hover {
                         color: @color3;
                     }
                 }
+            }
+            .btn.btn-small {
+                margin-top: 8px;
+                padding: 4px 8px;
+                font-size: 13px;
             }
         }
     }
@@ -386,11 +392,11 @@ a.readmore {
         .image-zoom-lens {
             position: absolute;
             z-index: 999;
-            width: 230px;
-            right: -240px !important;
+            width: 400px;
+            right: -440px !important;
             left: inherit !important;
             top: 0px !important;
-            height: 230px;
+            height: 400px;
             filter: alpha(opacity=0);
             background-repeat: no-repeat;
             .border-radius(0px);
@@ -469,7 +475,11 @@ a {
     display: none;
 }
 .sort-by {
-    padding-top: 3px;
+    padding-top: 6px;
+    cursor: pointer;
+    i {
+        font-size: 12px;
+    }
 }
 .checkbox input {
     margin-top: 3px;
@@ -496,4 +506,16 @@ a {
 }
 .pad-btm {
     padding-bottom: 20px;
+}
+.animate-if.ng-enter,
+.animate-if.ng-leave {
+    .transition( all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s);
+}
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+    opacity: 1;
 }

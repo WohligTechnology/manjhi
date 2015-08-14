@@ -97,42 +97,81 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
 
-        $scope.artistimage = [{
+        $scope.totalartcont = [{
             image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali'
+            name: 'S Yousuf Ali',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna'
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa'
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh'
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist1.jpg',
-            name: 'Sidharth'
+            name: 'Sidharth',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Ajay De'
+            name: 'Ajay De',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Ajay R Dhandre'
+            name: 'Ajay R Dhandre',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist5.jpg',
-            name: 'Amarnath Sharma'
+            name: 'Amarnath Sharma',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali'
+            name: 'S Yousuf Ali',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna'
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa'
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh'
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist2.jpg',
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist3.jpg',
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist4.jpg',
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
         }];
     })
     .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
@@ -142,13 +181,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         //Valdr
-        $scope.checkout = [];
-        $scope.checkout.isshipping = true;
-    
-        $scope.showShipping = function(check){
+        $scope.showShipping = function (check) {
             console.log(check);
         }
-    
+
         valdr.addConstraints({
             'Person': {
                 'firstName': {
@@ -864,30 +900,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.formstatus = false;
         $scope.formstatussec = false;
 
-        $scope.changeTab = function(tab){
-            if(tab==1){
+        $scope.changeTab = function (tab) {
+            if (tab == 1) {
                 $scope.formstatus = true;
-//                $scope.formstatussec = false;
-            }else{
-//                $scope.formstatus = false;
+                //                $scope.formstatussec = false;
+            } else {
+                //                $scope.formstatus = false;
                 $scope.formstatussec = true;
             }
-            
+
         }
-        $scope.closeTab = function(tab){
-            if(tab==1){
+        $scope.closeTab = function (tab) {
+            if (tab == 1) {
                 $scope.formstatus = false;
-//                $scope.formstatussec = false;
-            }else{
-//                $scope.formstatus = false;
+                //                $scope.formstatussec = false;
+            } else {
+                //                $scope.formstatus = false;
                 $scope.formstatussec = false;
             }
-            
+
         }
-         $scope.changeTabs = function(){
+        $scope.changeTabs = function () {
             $scope.formstatussec = true;
         }
-        
+
         $scope.changeresi = function () {
             $scope.resi = "active";
             $scope.offce = "";
@@ -946,7 +982,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Activities");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    }) 
+    })
     .controller('ReachOutCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("reach-out");
         $scope.menutitle = NavigationService.makeactive("Reach Out");

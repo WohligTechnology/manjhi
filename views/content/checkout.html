@@ -99,11 +99,14 @@
                         <div class="form-group col-md-offset-2  col-md-8">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="checkout.isshipping" name="check" ng-click="showShipping(checkout.isshipping)">Ship to different address</label>
+<!--                                    <input type="checkbox" ng-model="checkout.isshipping" name="check" ng-click="showShipping(checkout.isshipping)">-->
+                                    <input type="checkbox" type="checkbox" ng-model="checked" ng-init="checked=true">
+                                    Ship to different address</label>
                             </div>
                         </div>
                     </div>
-                    <div class="row" ng-if="checkout.isshipping == true">
+<!--                    <div class="row" ng-if="checkout.isshipping == true" class="animate-if">-->
+                    <div ng-if="checked" class="animate-if row">
                         <div class="form-group col-md-offset-2 col-md-8">
                             <h4>Ship to this Address</h4>
                         </div>
