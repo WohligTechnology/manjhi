@@ -1,6 +1,7 @@
+var adminurl = "http://localhost:1337/";
 var navigationservice = angular.module('navigationservice', [])
 
-.factory('NavigationService', function () {
+.factory('NavigationService', function ($http) {
     var navigation = [{
             name: "Home",
             active: "",
@@ -177,6 +178,27 @@ var navigationservice = angular.module('navigationservice', [])
             }
             return menuname;
         },
-
+        registeruser: function (register, callback) {
+            delete register.confirmpassword
+            $http({
+                url: adminurl + "user/save",
+                method: "POST",
+                data: register
+            }).success(callback);
+        },
+        userlogin: function (login, callback) {
+            $http({
+                url: adminurl + "user/login",
+                method: "POST",
+                data: login
+            }).success(callback);
+        },
+        forgotpassword:function (forgot, callback) {
+            $http({
+                url: adminurl + "user/forgotpassword",
+                method: "POST",
+                data: forgot
+            }).success(callback);
+        }
     }
 });

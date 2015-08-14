@@ -181,6 +181,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         //Valdr
+<<<<<<< HEAD
+=======
+        $scope.checkout = [];
+        $scope.checkout.isshipping = true;
+
+>>>>>>> origin/master
         $scope.showShipping = function (check) {
             console.log(check);
         }
@@ -877,20 +883,68 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
-        $scope.template = TemplateService;
-        var scrolled = 0;
-        $scope.logintab = '1';
-        $scope.showLogin = function () {
-            ngDialog.open({
-                template: 'views/content/login.html'
-            });
-        };
-        $scope.changeTab = function (tab) {
-            $scope.logintab = tab;
+.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService) {
+    $scope.template = TemplateService;
+    var scrolled = 0;
+    $scope.logintab = '1';
+    $scope.login = {};
+    $scope.register = {};
+    $scope.forgot = {};
+
+    $scope.showLogin = function () {
+        ngDialog.open({
+            template: 'views/content/login.html'
+        });
+    };
+    $scope.changeTab = function (tab) {
+        $scope.logintab = tab;
+    }
+
+    $scope.userlogin = function () {
+        console.log($scope.login);
+        NavigationService.userlogin($scope.login, function (data, status) {
+            console.log(data);
+            if (data.value != false) {
+                $.jStorage.set("user", data);
+                ngDialog.closeAll();
+            }
+        })
+    };
+
+    $scope.registeruser = function () {
+        console.log($scope.register);
+        if ($scope.register.password === $scope.register.confirmpassword) {
+            NavigationService.registeruser($scope.register, function (data, status) {
+                console.log(data);
+                if (data.value == true) {
+                    $scope.changeTab(1);
+                }
+            })
         }
-    })
-    .controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
+    };
+
+    $scope.forgotpassword = function () {
+        console.log($scope.forgot);
+        NavigationService.forgotpassword($scope.forgot, function (data, status) {
+            console.log(data);
+            if (data.value == true) {
+                $scope.changeTab(4);
+            }
+        })
+    }
+
+    $scope.$on('event:google-plus-signin-success', function (event, authResult) {
+        // Send login to server or save into cookie
+        console.log(authResult);
+    });
+    $scope.$on('event:google-plus-signin-failure', function (event, authResult) {
+        // Auth failure or signout detected
+        console.log(authResult);
+    });
+
+})
+
+.controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("account");
         $scope.menutitle = NavigationService.makeactive("Account");
         TemplateService.title = $scope.menutitle;
