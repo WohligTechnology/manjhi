@@ -898,6 +898,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.login = {};
     $scope.register = {};
     $scope.forgot = {};
+    $scope.invalidlogin = 0;
 
     $scope.showLogin = function () {
         ngDialog.open({
@@ -913,8 +914,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.userlogin($scope.login, function (data, status) {
             console.log(data);
             if (data.value != false) {
+                $scope.invalidlogin = 0;
                 $.jStorage.set("user", data);
                 ngDialog.closeAll();
+            } else {
+                $scope.invalidlogin = 1;
             }
         })
     };
