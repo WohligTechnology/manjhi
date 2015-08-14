@@ -6,11 +6,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Home");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    $scope.slides = [];
 
-    $scope.slides = [
-        'img/slide1.jpg',
-        'img/slide2.jpg'
-    ];
+    //    $scope.slides = [
+    //        'img/slide1.jpg',
+    //        'img/slide2.jpg'
+    //    ];
     // set available range
     $scope.minPrice = 0;
     $scope.maxPrice = 100000;
@@ -18,6 +19,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // default the user's values to the available range
     $scope.userMinPrice = $scope.minPrice;
     $scope.userMaxPrice = $scope.maxPrice;
+
+    NavigationService.getsliderimages(function (data, status) {
+        _.each(data, function (n) {
+            $scope.slides.push(n._id);
+        })
+    })
 })
 
 .controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -97,42 +104,81 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
 
-        $scope.artistimage = [{
+        $scope.totalartcont = [{
             image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali'
+            name: 'S Yousuf Ali',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna'
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa'
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh'
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist1.jpg',
-            name: 'Sidharth'
+            name: 'Sidharth',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Ajay De'
+            name: 'Ajay De',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Ajay R Dhandre'
+            name: 'Ajay R Dhandre',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist5.jpg',
-            name: 'Amarnath Sharma'
+            name: 'Amarnath Sharma',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali'
+            name: 'S Yousuf Ali',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna'
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa'
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh'
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist2.jpg',
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist3.jpg',
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist4.jpg',
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
         }];
     })
     .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
@@ -144,11 +190,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         //Valdr
         $scope.checkout = [];
         $scope.checkout.isshipping = true;
-    
-        $scope.showShipping = function(check){
+
+        $scope.showShipping = function (check) {
             console.log(check);
         }
-    
+
         valdr.addConstraints({
             'Person': {
                 'firstName': {
@@ -776,6 +822,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         year: '1978',
         price: 'Price available on request'
     }];
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 })
 
 
@@ -841,20 +891,68 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog) {
-        $scope.template = TemplateService;
-        var scrolled = 0;
-        $scope.logintab = '1';
-        $scope.showLogin = function () {
-            ngDialog.open({
-                template: 'views/content/login.html'
-            });
-        };
-        $scope.changeTab = function (tab) {
-            $scope.logintab = tab;
+.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService) {
+    $scope.template = TemplateService;
+    var scrolled = 0;
+    $scope.logintab = '1';
+    $scope.login = {};
+    $scope.register = {};
+    $scope.forgot = {};
+
+    $scope.showLogin = function () {
+        ngDialog.open({
+            template: 'views/content/login.html'
+        });
+    };
+    $scope.changeTab = function (tab) {
+        $scope.logintab = tab;
+    }
+
+    $scope.userlogin = function () {
+        console.log($scope.login);
+        NavigationService.userlogin($scope.login, function (data, status) {
+            console.log(data);
+            if (data.value != false) {
+                $.jStorage.set("user", data);
+                ngDialog.closeAll();
+            }
+        })
+    };
+
+    $scope.registeruser = function () {
+        console.log($scope.register);
+        if ($scope.register.password === $scope.register.confirmpassword) {
+            NavigationService.registeruser($scope.register, function (data, status) {
+                console.log(data);
+                if (data.value == true) {
+                    $scope.changeTab(1);
+                }
+            })
         }
-    })
-    .controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
+    };
+
+    $scope.forgotpassword = function () {
+        console.log($scope.forgot);
+        NavigationService.forgotpassword($scope.forgot, function (data, status) {
+            console.log(data);
+            if (data.value == true) {
+                $scope.changeTab(4);
+            }
+        })
+    }
+
+    $scope.$on('event:google-plus-signin-success', function (event, authResult) {
+        // Send login to server or save into cookie
+        console.log(authResult);
+    });
+    $scope.$on('event:google-plus-signin-failure', function (event, authResult) {
+        // Auth failure or signout detected
+        console.log(authResult);
+    });
+
+})
+
+.controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("account");
         $scope.menutitle = NavigationService.makeactive("Account");
         TemplateService.title = $scope.menutitle;
@@ -864,30 +962,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.formstatus = false;
         $scope.formstatussec = false;
 
-        $scope.changeTab = function(tab){
-            if(tab==1){
+        $scope.changeTab = function (tab) {
+            if (tab == 1) {
                 $scope.formstatus = true;
-//                $scope.formstatussec = false;
-            }else{
-//                $scope.formstatus = false;
+                //                $scope.formstatussec = false;
+            } else {
+                //                $scope.formstatus = false;
                 $scope.formstatussec = true;
             }
-            
+
         }
-        $scope.closeTab = function(tab){
-            if(tab==1){
+        $scope.closeTab = function (tab) {
+            if (tab == 1) {
                 $scope.formstatus = false;
-//                $scope.formstatussec = false;
-            }else{
-//                $scope.formstatus = false;
+                //                $scope.formstatussec = false;
+            } else {
+                //                $scope.formstatus = false;
                 $scope.formstatussec = false;
             }
-            
+
         }
-         $scope.changeTabs = function(){
+        $scope.changeTabs = function () {
             $scope.formstatussec = true;
         }
-        
+
         $scope.changeresi = function () {
             $scope.resi = "active";
             $scope.offce = "";
@@ -946,7 +1044,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Activities");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    }) 
+    })
     .controller('ReachOutCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("reach-out");
         $scope.menutitle = NavigationService.makeactive("Reach Out");

@@ -2,42 +2,48 @@
 <div class="artist-detail">
     <div class="container">
         <div class="cont-artist">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>Veguri Ravindra Babu</h4>
-                    <p><span class="bold">Born in</span> 1983 at Andhra Pradesh</p>
-                    <p><span class="bold">Education</span>
-                        <br> 2006, Bachelor of Fine Arts, Andhra University, Vishakhapatnam
-                        <br> 2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
-                        <br> 2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
-                        <br>
-                    </p>
-                    <p>
-                        <span class="bold">Awards / Recognitions / Honors </span>
-                        <br> 2006, H R D National Scholarship
-                        <br> 2006, H R D National Scholarship
-                        <br> 2006, H R D National Scholarship
-                        <br>
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <p><span class="bold">Auctions</span>
-                        <br> 2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
-                        <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
-                        <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai</p>
-                    <p><span class="bold">Solo Shows</span>
-                        <br> 2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
-                        <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
-                        <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
-                    </p>
-                    <p><span class="bold">Group Shows</span>
-                        <br>2008, Aura Art Inaugural Show, Aura Art, Nehru Centre, Worli, Mumbai
-                        <br>2012, United Art Fair, Pragati Maidan, New Delhi
-                        <br>2013, The Aura Art Show 2013, Aura Art, Jehangir Art Gallery, Mumbai
-                    </p>
-                </div>
-            </div>
+            <h4 class="head-team">Veguri Ravindra Babu</h4>
+            <a class="readmore pull-right" ng-click="status.open = !status.open">View Profile</a>
+            <accordion>
+                <accordion-group is-open="status.open">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><span class="bold">Born in</span> 1983 <span class="bold">at</span> Andhra Pradesh</p>
+                            <p><span class="bold">Passed away</span>
+                            </p>
+                            <p><span class="bold">Education</span>
+                                <br>2006, Bachelor of Fine Arts, Andhra University, Vishakhapatnam
+                                <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
+                                <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
+                            </p>
+                            <p>
+                                <span class="bold">Awards / Recognitions / Honors </span>
+                                <br>2006, H R D National Scholarship
+                                <br>2006, H R D National Scholarship
+                                <br>2006, H R D National Scholarship
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><span class="bold">Auctions</span>
+                                <br>2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
+                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai</p>
+                            <p><span class="bold">Solo Shows</span>
+                                <br>2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
+                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+                            </p>
+                            <p><span class="bold">Group Shows</span>
+                                <br>2008, Aura Art Inaugural Show, Aura Art, Nehru Centre, Worli, Mumbai
+                                <br>2012, United Art Fair, Pragati Maidan, New Delhi
+                                <br>2013, The Aura Art Show 2013, Aura Art, Jehangir Art Gallery, Mumbai
+                            </p>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
         </div>
+
         <div class="row">
             <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
                 <div class="artist-details">
@@ -47,25 +53,25 @@
                     </div>
                     <div class="artist-cont-detail">
                         <p>
-                            <span class="labels">Size:</span>{{artistdetails.id}}
+                            {{artistdetails.id}}
                             <i class="fa fa-heart"></i>
                         </p>
                         <p>
-                            <span class="labels">Name:</span> {{artistdetails.typename}}
+                            {{artistdetails.typename}}
                         </p>
                         <p>
-                            <span class="labels">Medium:</span> {{artistdetails.madein}}
+                            {{artistdetails.madein}}
                         </p>
                         <p>
-                            <span class="labels">Size:</span> {{artistdetails.size}} (inches)
+                            {{artistdetails.size}} inches
                         </p>
                         <p>
-                            <span class="labels">Year:</span> {{artistdetails.year}}
+                            {{artistdetails.year}}
                         </p>
                         <p>
-                            <span class="labels">Price:</span> Rs {{artistdetails.price}}
+                            Rs {{artistdetails.price}}
                         </p>
-                        <button type="submit" class="btn btn-sucesses text-center">Add to cart</button>
+                        <button type="submit" class="btn btn-sucesses btn-small text-center">Add to cart</button>
                     </div>
                 </div>
             </div>
