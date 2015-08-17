@@ -1489,6 +1489,12 @@ h4.head-more {
 ul.artist-crisp.pad-less {
   padding: 7px 0 0 0!important;
 }
+.sort-by .dropdown-menu {
+  top: 90%;
+}
+.sort-by:hover .dropdown-menu {
+  display: block;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
