@@ -90,50 +90,115 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("totalartpage");
         $scope.menutitle = NavigationService.makeactive("Total Artwork");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-
-        $scope.artistimage = [{
+        $scope.totalartcont = [{
             image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali'
+            name: 'S Yousuf Ali',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna'
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa'
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh'
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist1.jpg',
-            name: 'Sidharth'
+            name: 'Sidharth',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Ajay De'
+            name: 'Ajay De',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Ajay R Dhandre'
+            name: 'Ajay R Dhandre',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist5.jpg',
-            name: 'Amarnath Sharma'
+            name: 'Amarnath Sharma',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali'
+            name: 'S Yousuf Ali',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna'
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa'
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
         }, {
             image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh'
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist2.jpg',
+            name: 'Krishen Khanna',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist3.jpg',
+            name: 'Manjit Bawa',
+            id: '15',
+            size: '135x36'
+        }, {
+            image: 'img/artist/artist4.jpg',
+            name: 'Paramjit Singh',
+            id: '15',
+            size: '135x36'
         }];
+        $scope.artistDetailImg = [{
+            image: 'img/imagedetail/imagedetail.jpg',
+            id: ' 1527',
+            artistname: 'Veguri Ravindra Babu',
+            title: ' Floating Dreams',
+            typename: 'Untitled',
+            madein: 'Oil on board',
+            size: '19.5 x 23',
+            year: '1978',
+            price: 'Rs. 1,00,000/ $ 6.400'
+        }];
+
+        // set available range
+        $scope.minPrice = 0;
+        $scope.maxPrice = 100000;
+
+        // default the user's values to the available range
+        $scope.userMinPrice = $scope.minPrice;
+        $scope.userMaxPrice = $scope.maxPrice;
+
+        $scope.imageSrc = 'img/artist/artist1.jpg';
+
+        $scope.showDetails = function () {
+            ngDialog.open({
+                template: 'views/content/quickview-imagedetail.html'
+            });
+        };
     })
     .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
         //Used to name the .html file
@@ -473,7 +538,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
         $scope.template = TemplateService.changecontent("detailImage");
         $scope.menutitle = NavigationService.makeactive("Artists");
         TemplateService.title = $scope.menutitle;
@@ -514,8 +579,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             image: 'img/artist/artist4.jpg',
 
         }];
+
+        $scope.showDetailImage = function () {
+            ngDialog.open({
+                template: 'views/content/quickview-image.html'
+            });
+        };
     })
-    .controller('SculptureCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
         $scope.template = TemplateService.changecontent("sculpture");
         $scope.menutitle = NavigationService.makeactive("Sculpture");
         TemplateService.title = $scope.menutitle;
@@ -565,6 +636,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             image: 'img/artist/artist4.jpg',
 
         }];
+
+        $scope.showDetailImage = function () {
+            ngDialog.open({
+                template: 'views/content/quickview-image.html'
+            });
+        };
     })
 
 .controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {
@@ -779,7 +856,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -821,6 +898,45 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }, {
         image: 'img/artist/artist4.jpg',
         name: 'Paramjit Singh'
+    }];
+    $scope.showDetail = function () {
+        ngDialog.open({
+            template: 'views/content/quickview-artist.html'
+        });
+    };
+
+    $scope.artistdetail = [{
+        image: 'img/artist/artist1.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: '2000'
+    }, {
+        image: 'img/artist/artist2.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: '20000'
+    }, {
+        image: 'img/artist/artist3.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: '20000'
+    }, {
+        image: 'img/artist/artist4.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: '50000'
     }];
 })
 

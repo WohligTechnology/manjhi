@@ -97,9 +97,11 @@
         }
     }
 }
+
 textarea {
     resize: none;
 }
+
 .main-cont {
     .panel-default {
         .border-radius(0px);
@@ -120,6 +122,7 @@ textarea {
         }
     }
 }
+
 .btn-sucesses {
     background-color: @color2;
     border-color: @color2;
@@ -138,6 +141,7 @@ textarea {
         color: #fff;
     }
 }
+
 .btn-cont {
     background-color: @color1;
     border-color: @color1;
@@ -156,6 +160,7 @@ textarea {
         color: #000;
     }
 }
+
 a.forgetlink {
     margin-top: 10px;
     font-size: 12px;
@@ -165,6 +170,7 @@ a.forgetlink {
         color: @color2;
     }
 }
+
 .cart {
     padding-top: 30px;
     tr {
@@ -215,6 +221,7 @@ a.forgetlink {
         float: left;
     }
 }
+
 .artist-detail {
     padding-top: 20px;
     .artist-details {
@@ -243,16 +250,19 @@ a.forgetlink {
         }
     }
 }
+
 .labels {
     font-size: 14px;
     padding-right: 5px;
 }
+
 .making {
     th {
         background-color: @color2;
         color: #fff;
     }
 }
+
 .info {
     padding-top: 25px;
     .input-id {
@@ -301,16 +311,19 @@ a.forgetlink {
         }
     }
 }
+
 .head-team {
     text-transform: uppercase;
     margin-top: 0px;
     margin-bottom: 20px;
     color: @color3;
 }
+
 div.read-morecont {
     .transition(all 1s);
     overflow: hidden;
 }
+
 .dropdown-menu {
     font-size: 12px!important;
     font-weight: 600;
@@ -320,11 +333,13 @@ div.read-morecont {
         font-weight: 600;
     }
 }
+
 nav li:hover .dropdown-menu {
     display: block;
     padding: 0px;
     margin: -1px;
 }
+
 nav {
     li {
         &:hover {
@@ -357,13 +372,18 @@ nav {
         }
     }
 }
+
 a.readmore {
     color: @color3;
     cursor: pointer;
 }
+
 .aboveimage {
     width: 450px;
     margin: 0 auto;
+    .image-quickview {
+        width: 100%;
+    }
     .light-make.light-shade {
         position: absolute;
         right: 10px;
@@ -396,6 +416,7 @@ a.readmore {
         }
     }
 }
+
 .main-cont,
 .cart {
     input.form-control {
@@ -409,6 +430,7 @@ a.readmore {
         }
     }
 }
+
 .ulblock {
     display: block;
     padding-top: 25px;
@@ -430,51 +452,101 @@ a.readmore {
         }
     }
 }
+
 a {
     cursor: pointer;
 }
+
 .info.fav {
     padding: 0px;
 }
+
 .fav-holder {
     text-align: center;
     position: relative;
     height: 200px;
 }
+
 .artist-cont-detail-fav {
     padding: 10px 0;
     p {
         margin: 2px 0;
     }
 }
+
 .btn-right {
     padding-bottom: 50px;
 }
+
 .form-control {
     .box-shadow(0px 0px 0px);
 }
+
 .min-cont {
     min-height: 460px;
 }
+
 .mobile {
     display: none;
 }
+
 .sort-by {
     padding-top: 6px;
     cursor: pointer;
     i {
         font-size: 12px;
     }
+    select {
+        border: 0px;
+        .appearance(none);
+    }
 }
+
 .checkbox input {
     margin-top: 3px;
 }
+
 .comt-box {
     margin-bottom: 40px;
     .btn-comt {
         margin-top: 5px;
     }
 }
+
+.hoverme {
+    &:hover .drop-cart {
+        display: block;
+    }
+    .drop-cart {
+//        display: none;
+        position: absolute!important;
+        top: 92px;
+        width: 250px;
+        padding: 25px;
+        left: 50%;
+        z-index: 99999;
+        background: rgba(255, 255, 255, 0.9);
+        .transition(all 1s);
+        .translateX(-50%);
+        ul {
+            position: relative;
+            height: 95px;
+            list-style: none;
+            padding: 0px;
+            li {
+                color: #000!important;
+                width: 50%;
+                float: left;
+                img {
+                    width: 90px;
+                    padding: 5px;
+                    height: 90px;
+                }
+            }
+        }
+    }
+}
+
 .text-cont {
     padding: 20px 0 0px 0;
     border-bottom: 1px solid @abbr-border-color;
@@ -486,24 +558,30 @@ a {
         }
     }
 }
+
 .media.min-cont .input-id {
     padding-bottom: 10px;
 }
+
 .pad-btm {
     padding-bottom: 20px;
 }
+
 .animate-if.ng-enter,
 .animate-if.ng-leave {
     .transition( all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s);
 }
+
 .animate-if.ng-enter,
 .animate-if.ng-leave.ng-leave-active {
     opacity: 0;
 }
+
 .animate-if.ng-leave,
 .animate-if.ng-enter.ng-enter-active {
     opacity: 1;
 }
+
 .contss {
     padding: 20px 0px;
 }

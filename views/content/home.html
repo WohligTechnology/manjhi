@@ -29,24 +29,32 @@
                 </div>
                 <accordion close-others="true">
                     <accordion-group heading="Search By Artist">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <input type="text" class="form-control" placeholder="Artist Name">
-                                </div>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Artist Name">
+                        </div>
                     </accordion-group>
                     <accordion-group heading="Search By Price">
                         <div range-slider min="minPrice" max="maxPrice" model-min="userMinPrice" model-max="userMaxPrice" step="5"></div>
-                        <input type="number" placeholder="0" class="maxmin">
-                        <input type="number" placeholder="100000" class="maxmin">
+                        <input type="number" maxlength="1000" placeholder="0" class="maxmin">
+                        <input type="number" max="100000" placeholder="1000" class="maxmin pull-right">
                     </accordion-group>
-                    <accordion-group heading="Search By Size">
-                        Size
+                    <accordion-group heading="Search By Size (inches)">
+                        <div class="min-max">
+                            <h5>Height</h5>
+                            <input type="number" placeholder="min-height" class="maxmin">
+                            <input type="number" placeholder="max-height" class="maxmin pull-right">
+                            <h5>Width</h5>
+                            <input type="number" placeholder="min-width" class="maxmin">
+                            <input type="number" placeholder="max-width" class="maxmin pull-right">
+                            <h5>Depth</h5>
+                            <input type="number" placeholder="min-Depth" class="maxmin">
+                            <input type="number" placeholder="max-Depth" class="maxmin pull-right">
+                        </div>
                     </accordion-group>
                     <accordion-group heading="Search By Medium">
-                        Medium
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Medium">
+                        </div>
                     </accordion-group>
                 </accordion>
                 <div class="accordion-upper">

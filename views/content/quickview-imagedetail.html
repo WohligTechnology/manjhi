@@ -1,0 +1,62 @@
+<div class="image-detail" ng-controller="TotalartPageCtrl">
+    <div class="container">
+        <div class="ngdialog-close close"></div>
+        <div class="row padding-more" ng-repeat="artistDetailImgs in artistDetailImg">
+            <div class="breadcrums">
+                <div class="col-md-8">
+                    <div class="aboveimage images">
+                        <img class="image-quickview" ng-src="{{imageSrc}}" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cont-imagedetail">
+                        <div class="artist-cont-detail">
+                            <div class="painting-details">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td> {{artistDetailImgs.id}}
+                                                <i class="fa fa-heart"></i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labels">Artist:</td>
+                                            <td>{{artistDetailImgs.artistname}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labels">Title:</td>
+                                            <td>{{artistDetailImgs.title}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labels">Medium: </td>
+                                            <td>{{artistDetailImgs.typename }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labels">Price: </td>
+                                            <td>{{artistDetailImgs.price}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labels">Size:</td>
+                                            <td>{{artistDetailImgs.size}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labels">Year: </td>
+                                            <td>{{artistDetailImgs.year }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <button type="button" class="btn btn-block  uppercase">
+                            VIEW ARTWORK IN YOUR ROOM
+                        </button>
+                        <a href="#/cart" type="button" class="btn btn-primarys btn-block uppercase">
+                        ADD TO CART
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

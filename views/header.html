@@ -18,10 +18,14 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="social-icons">
                                 <ul>
-                                    <li><i class="fa fa-facebook-square"></i></li>
-                                    <li><i class="fa fa-twitter-square"></i></li>
-                                    <li><i class="fa fa-google-plus-square"></i></li>
-                                    <li><i class="fa fa-youtube-square"></i></li>
+                                    <li><i class="fa fa-facebook-square"></i>
+                                    </li>
+                                    <li><i class="fa fa-twitter-square"></i>
+                                    </li>
+                                    <li><i class="fa fa-google-plus-square"></i>
+                                    </li>
+                                    <li><i class="fa fa-youtube-square"></i>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -38,14 +42,17 @@
                                 <a href="#/favorite">
                                     <div class="style3-bg small-box"><i class="fa fa-heart"></i>
                                     </div>
-                                    <div class="inline-box"><span class="">Favorite</span></div>
+                                    <div class="inline-box"><span class="">Favorite</span>
+                                    </div>
                                 </a>
                             </div>
-                            <div class="col-flex box-height">
+                            <div class="col-flex box-height" ng-controller="Cartdropctrl" ng-mouseover="showcart(0)" ng-mouseleave="hidecart(0)">
                                 <div class="style2-bg small-box"></div>
                                 <div class="inline-box">
                                     My Cart
                                     <br><span class="light-shade">Rs.0</span>
+                                </div>
+                                <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
                                 </div>
                             </div>
                         </div>
@@ -74,10 +81,14 @@
                         <div class="col-md-3 col-sm-3">
                             <div class="social-icons">
                                 <ul>
-                                    <li><i class="fa fa-facebook-square"></i></li>
-                                    <li><i class="fa fa-twitter-square"></i></li>
-                                    <li><i class="fa fa-google-plus-square"></i></li>
-                                    <li><i class="fa fa-youtube-square"></i></li>
+                                    <li><i class="fa fa-facebook-square"></i>
+                                    </li>
+                                    <li><i class="fa fa-twitter-square"></i>
+                                    </li>
+                                    <li><i class="fa fa-google-plus-square"></i>
+                                    </li>
+                                    <li><i class="fa fa-youtube-square"></i>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -91,15 +102,18 @@
                                 <a href="#/favorite">
                                     <div class="style3-bg small-box"><i class="fa fa-heart"></i>
                                     </div>
-                                    <div class="inline-box"><span class="">Favorite</span></div>
+                                    <div class="inline-box"><span class="">Favorite</span>
+                                    </div>
                                 </a>
                             </div>
 
-                            <div class="col-flex box-height">
+                            <div class="col-flex box-height" ng-controller="Cartdropctrl" ng-mouseover="showcart(0)" ng-mouseleave="hidecart(0)">
                                 <div class="style2-bg small-box"></div>
                                 <div class="inline-box">
                                     My Cart
                                     <br><span class="light-shade">Rs.0</span>
+                                </div>
+                                <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
                                 </div>
                             </div>
                         </div>

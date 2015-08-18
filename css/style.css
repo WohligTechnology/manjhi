@@ -711,6 +711,32 @@ h4 {
   margin-top: 5px;
   margin-bottom: 30px;
 }
+.artist .painting .col-md-5.full-mega {
+  position: static;
+}
+.artist .painting .col-md-5.full-mega div.megamenu {
+  position: absolute;
+  width: 90%;
+  left: 0;
+  z-index: 999999999;
+  background-color: #fff;
+  padding: 10px;
+  margin: 0 auto;
+  top: 205px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.artist .painting .col-md-5.full-mega .ngrs-range-slider {
+  margin: 10px 0 30px;
+}
 .artist .painting a {
   font-size: 12px;
 }
@@ -763,6 +789,7 @@ h4 {
   display: block;
   list-style: none;
   padding: 6px 0;
+  cursor: pointer;
 }
 .artist .painting ul.artist-filter li {
   display: inline-block;
@@ -1319,10 +1346,13 @@ body.ngdialog-open .ngdialog-close.close {
 }
 .maxmin {
   width: 40%;
-  margin: 0 10px;
+  padding-left: 5px;
+}
+.min-max h5 {
+  font-size: 13px;
+  margin-bottom: 4px;
 }
 .cont-artist {
-  padding-bottom: 20px;
   position: relative;
 }
 .cont-artist h4 {
@@ -1489,11 +1519,33 @@ h4.head-more {
 ul.artist-crisp.pad-less {
   padding: 7px 0 0 0!important;
 }
-.sort-by .dropdown-menu {
-  top: 90%;
+.cont-artist.padd-mores {
+  padding: 20px;
 }
-.sort-by:hover .dropdown-menu {
-  display: block;
+.btn.button-small {
+  padding: 2px 4px;
+  font-size: 12px;
+}
+.enlarge-img {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.filter h4 {
+  font-size: 16px;
+}
+.btn-main {
+  padding-right: 15px;
+}
+.filter .row .col-md-3 + .col-md-3 {
+  border-left: 1px solid #f1f1f1;
+  min-height: 190px;
+}
+.ngrs-range-slider .ngrs-runner {
+  margin: 0 0px;
+}
+.margin-no {
+  margin: 0px;
 }
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
@@ -2100,6 +2152,9 @@ a.readmore {
 .aboveimage {
   width: 450px;
   margin: 0 auto;
+}
+.aboveimage .image-quickview {
+  width: 100%;
 }
 .aboveimage .light-make.light-shade {
   position: absolute;

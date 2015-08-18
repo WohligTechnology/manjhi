@@ -1,13 +1,12 @@
 <div class="artist">
     <div class="border-top"></div>
     <div class="container">
-        <div class="row">
+        <div class="row" ng-controller="filterctrl" style="position:static;">
             <div class="painting">
                 <div class="col-md-12">
                     <h4 class="head-team">Total Artwork</h4>
                 </div>
                 <div class="col-md-5">
-
                     <ul class="artist-crisp pad-less">
                         <li class="">
                             <a href="" class="actives">
@@ -47,12 +46,14 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-5">
-                    <ul class="artist-filter">
-                        <li class=""><i class="fa fa-filter"></i></li>
+                <div class="col-md-5 full-mega">
+                    <ul class="artist-filter" ng-mouseover="showfilter(0)" ng-mouseleave="hidefilter(0)">
+                        <li class=""><i class="fa fa-filter"></i>
+                        </li>
                         <li class=""> FILTER BY</li>
                         <li class="">
-                            <a href="">ARTIST</a></li>
+                            <a href="">ARTIST</a>
+                        </li>
                         <li class="">
                             /</li>
                         <li class="">
@@ -68,45 +69,46 @@
                         <li class="">
                             <a href=""> MEDIUM</a>
                         </li>
+                        <div class="megamenu" ng-include src="filterval[0]" ng-show="filters[0]">
+                        </div>
                     </ul>
                 </div>
-
                 <div class="col-md-2">
                     <div class="sort-by">
-                        <!--                        <div class="hover-by">-->
-                        <i class="fa fa-sort-amount-asc"></i> SORT BY
-                        <!--                        </div>-->
-                        <ul class="dropdown-menu">
-                            <li><a href>Newest to Oldest</a></li>
-                            <li><a href>Oldest to Newest</a></li>
-                            <li><a href>Hight to Low</a></li>
-                            <li><a href>Low to High</a></li>
-                        </ul>
+                        <i class="fa fa-sort-amount-asc"></i>
+                        <select name="dropdown">
+                            <option value="Data Structures" selected>SORT BY</option>
+                            <option value="Newest">Newest to Oldest</option>
+                            <option value="Newest">Oldest to Newest</option>
+                            <option value="Newest">Hight to Low</option>
+                            <option value="Newest">Low to High</option>
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-20" ng-repeat="totalartconts in totalartcont">
-                <a href="#/detailImage">
-                    <div class="aristimg-grp1">
+                <div class="aristimg-grp1">
+                    <a href="#/detailImage">
                         <div class="image-holder" fixit>
                             <img class="fix-img" ng-src='{{totalartconts.image}}'>
                         </div>
-                        <div class="artist-cont-detail">
-                            <p>
-                                {{totalartconts.id}}
-                                <i class="fa fa-heart"></i>
-                            </p>
-                            <p>
-                                {{totalartconts.name}}
-                            </p>
-                            <p>
-                                {{totalartconts.size}} inches
-                            </p>
-                        </div>
+                    </a>
+                    <div class="artist-cont-detail">
+                        <p>
+                            {{totalartconts.id}}
+                            <i class="fa fa-heart"></i>
+                        </p>
+                        <p>
+                            {{totalartconts.name}}
+                        </p>
+                        <p>
+                            {{totalartconts.size}} inches
+                        </p>
+                        <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>

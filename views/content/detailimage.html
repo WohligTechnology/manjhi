@@ -8,13 +8,9 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <!--
-                <div class="img-imagedetail" fixit>
-                    <img class="fix-img" ng-src='{{artistDetailImgs.image}}'>
-                </div>
--->
                 <div class="aboveimage">
-                    <div class="light-make light-shade">Enlarge<i class="fa fa-arrows-alt"></i></div>
+                    <div class="light-make light-shade" ng-click="showDetailImage();">Enlarge<i class="fa fa-arrows-alt"></i>
+                    </div>
                     <div style="position:relative;" image-zoom data-template-url="views/content/image-zoom.html">
                     </div>
                 </div>
@@ -57,7 +53,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                     <button type="button" class="btn btn-block  uppercase">
                         VIEW ARTWORK IN YOUR ROOM
@@ -89,5 +84,4 @@
             </div>
         </div>
     </div>
-
 </div>
