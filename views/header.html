@@ -46,7 +46,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-flex box-height" ng-controller="Cartdropctrl" ng-mouseover="showcart(0)" ng-mouseleave="hidecart(0)">
+                            <div class="col-flex box-height" ng-controller="cartdropctrl" ng-mouseover="showcart(0)" ng-mouseleave="hidecart(0)">
                                 <div class="style2-bg small-box"></div>
                                 <div class="inline-box">
                                     My Cart
@@ -107,13 +107,15 @@
                                 </a>
                             </div>
 
-                            <div class="col-flex box-height" ng-controller="Cartdropctrl" ng-mouseover="showcart(0)" ng-mouseleave="hidecart(0)">
+                            <div class="col-flex box-height" ng-controller="cartdropctrl" ng-mouseover="showcart(0)" ng-mouseleave="hidecart(0)">
                                 <div class="style2-bg small-box"></div>
-                                <div class="inline-box">
-                                    My Cart
-                                    <br><span class="light-shade">Rs.0</span>
-                                </div>
-                                <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
+                                <div class="" >
+                                    <div class="inline-box">
+                                        My Cart
+                                        <br><span class="light-shade">Rs.0</span>
+                                    </div>
+                                    <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
+                                    </div>
                                 </div>
                             </div>
                         </div>

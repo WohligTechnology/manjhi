@@ -715,27 +715,8 @@ h4 {
   position: static;
 }
 .artist .painting .col-md-5.full-mega div.megamenu {
-  position: absolute;
-  width: 90%;
-  left: 0;
-  z-index: 999999999;
-  background-color: #fff;
-  padding: 10px;
-  margin: 0 auto;
-  top: 205px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  transform: translateX(-50%);
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-}
-.artist .painting .col-md-5.full-mega .ngrs-range-slider {
-  margin: 10px 0 30px;
+  top: 92px;
+  width: 100%;
 }
 .artist .painting a {
   font-size: 12px;
@@ -1547,6 +1528,25 @@ ul.artist-crisp.pad-less {
 .margin-no {
   margin: 0px;
 }
+div.megamenu {
+  position: absolute;
+  width: 235px;
+  z-index: 999999999;
+  background-color: #fff;
+  padding: 10px;
+  margin: 0 auto;
+  top: 30px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
 /*Mobile Less*/
 @media only screen and (min-width: 1129px) and (max-width: 1199px) {
   .nav li a {
@@ -2257,6 +2257,12 @@ a {
 .sort-by i {
   font-size: 12px;
 }
+.sort-by select {
+  border: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 .checkbox input {
   margin-top: 3px;
 }
@@ -2265,6 +2271,28 @@ a {
 }
 .comt-box .btn-comt {
   margin-top: 5px;
+}
+.drop-cart ul {
+  position: relative;
+  height: 95px;
+  list-style: none;
+  padding: 0px;
+}
+.drop-cart ul li {
+  color: #000!important;
+  width: 50%;
+  float: left;
+}
+.drop-cart ul li p {
+  margin: 0px;
+}
+.drop-cart ul li h5 {
+  margin: 5px 0 2px 0;
+}
+.drop-cart ul li img {
+  width: 90px;
+  padding: 5px;
+  height: 90px;
 }
 .text-cont {
   padding: 20px 0 0px 0;

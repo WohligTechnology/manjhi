@@ -46,7 +46,7 @@ templateservicemod.controller('cartdropctrl', ['$scope', 'TemplateService',
                                                  function ($scope, TemplateService, MainJson, $rootScope) {
         $scope.cartval = ['views/content/cartdropdown.html'];
         $scope.carts = [];
-        $scope.showfilter = function (data) {
+        $scope.showcart = function (data) {
             console.log(data);
             $scope.carts[data] = true;
         };
