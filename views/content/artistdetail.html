@@ -48,13 +48,14 @@
             <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
                 <div class="artist-details">
                     <a href=""></a>
-                    <div class="image-holder" fixit>
+                    <div class="image-holders" fixit>
                         <img class="fix-img" ng-src='{{artistdetails.image}}'>
                     </div>
                     <div class="artist-cont-detail">
                         <p>
                             {{artistdetails.id}}
                             <i class="fa fa-heart"></i>
+                            <i class="fa fa-shopping-cart"></i>
                         </p>
                         <p>
                             {{artistdetails.typename}}
@@ -72,7 +73,7 @@
                         <p>
                             Rs. {{artistdetails.price}}
                         </p>
-                        <button type="submit" class="btn btn-sucesses btn-small text-center">Add to cart</button>
+<!--                        <button type="submit" class="btn btn-sucesses btn-small text-center">Add to cart</button>-->
                     </div>
                 </div>
             </div>

@@ -33,7 +33,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: '2000'
+            price: 'Rs.1,00,000/ $6,400'
     }, {
             image: 'img/artist/artist2.jpg',
             id: '1527',
@@ -41,7 +41,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: '20000'
+            price: 'Rs.1,00,000/ $6,400'
     }, {
             image: 'img/artist/artist3.jpg',
             id: '1527',
@@ -49,7 +49,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: '20000'
+            price: 'Rs.1,00,000/ $6,400'
     }, {
             image: 'img/artist/artist4.jpg',
             id: '1527',
@@ -57,7 +57,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: '50000'
+            price: 'Rs.1,00,000/ $6,400'
     }];
     })
     .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -181,7 +181,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: 'Rs. 1,00,000/ $ 6.400'
+            price: 'Rs.1,00,000/ $6,400'
         }];
 
         // set available range
@@ -552,7 +552,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: 'Rs. 1,00,000/ $ 6.400'
+            price: 'Rs.1,00,000/ $6,400'
         }];
         $scope.imageSrc = 'img/artist/artist1.jpg';
         $scope.switchImage = function (imageSrc) {
@@ -594,7 +594,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: 'Rs. 1,00,000/ $ 6.400'
+            price: 'Rs.1,00,000/ $6,400'
         }];
         $scope.imageSrc = 'img/imagedetail/sculputure.jpg';
         $scope.switchImage = function (imageSrc) {
@@ -766,7 +766,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: 'Rs. 1,00,000/ $ 6.400'
+        price: 'Rs.1,00,000/ $6,400'
     }];
 })
 
@@ -783,7 +783,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist2.jpg',
         id: '1527',
@@ -791,7 +791,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist3.jpg',
         id: '1527',
@@ -799,7 +799,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Rs1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist4.jpg',
         id: '1527',
@@ -815,7 +815,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist2.jpg',
         id: '1527',
@@ -823,7 +823,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist5.jpg',
         id: '1527',
@@ -831,7 +831,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist4.jpg',
         id: '1527',
@@ -900,7 +900,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '2000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist2.jpg',
         id: '1527',
@@ -908,7 +908,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '20000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist3.jpg',
         id: '1527',
@@ -916,7 +916,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '20000'
+        price: 'Rs.1,00,000/ $6,400'
     }, {
         image: 'img/artist/artist4.jpg',
         id: '1527',
@@ -924,7 +924,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         madein: 'Oil on board',
         size: '19.5 x 23',
         year: '1978',
-        price: '50000'
+        price: 'Rs.1,00,000/ $6,400'
     }];
 })
 
@@ -1119,7 +1119,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             madein: 'Oil on board',
             size: '19.5 x 23',
             year: '1978',
-            price: 'Rs. 1,00,000/ $ 6.400'
+            price: 'Rs.1,00,000/ $6,400'
         }];
         $scope.imageSrc = 'img/imagedetail/sculputure.jpg';
         $scope.switchImage = function (imageSrc) {
