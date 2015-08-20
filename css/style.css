@@ -895,29 +895,12 @@ nav.pagination-artist ul li.actived a {
   color: #fff;
   border-color: #d4ae70;
 }
-nav.pagination-artist label.grid-view {
-  float: right;
-}
-nav.pagination-artist label.grid-view select {
+nav.pagination-artist select.grid-view {
   color: #000;
-  background-color: #ddd;
+  background-color: #eee;
   border-color: #ddd;
-  padding: 5px 15px 5px 2px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  font-weight: normal;
-}
-nav.pagination-artist label.grid-view:before {
-  position: absolute;
-  top: 20%;
-  right: 20px;
-  border-top: 5px solid;
-  border-right: 5px solid rgba(0, 0, 0, 0);
-  border-left: 5px solid rgba(0, 0, 0, 0);
-  color: #000;
-  content: "";
-  z-index: 9;
+  float: right;
+  padding: 5px 5px;
 }
 .image-detail .img-imagedetail {
   text-align: center;
@@ -1002,63 +985,30 @@ a.link-viewall {
   padding-left: 10px;
   color: #ff4f4f;
 }
-.content-team {
-  padding-bottom: 20px;
+.view-more .head {
+  font-weight: 600;
+  padding-left: 0px;
+  font-size: 14px;
 }
-.content-team h4 {
-  text-transform: uppercase;
-  margin-top: 0px;
+.view-more .head:before {
+  padding-right: 10px;
+  padding-top: 0px;
+  vertical-align: baseline;
   font-size: 16px;
 }
-.content-team .pad-top-more {
-  margin-top: 40px;
+.view-more ul {
+  padding-left: 10px;
 }
-.content-team .view-more .panel-default {
-  border: none;
-  -webkit-box-shadow: 0px 0px 0px;
-  -moz-box-shadow: 0px 0px 0px;
-  box-shadow: 0px 0px 0px;
-  margin-top: 10px;
-}
-.content-team .view-more .panel-default .panel-heading {
-  color: #000;
-  background-color: #fff;
-  border: 0px;
-  padding: 0px;
-  border-radius: 0px;
-}
-.content-team .view-more .panel-default .panel-heading + .panel-collapse {
-  border-radius: 0px;
-}
-.content-team .view-more .panel-default .panel-heading + .panel-collapse .panel-body {
-  border: 0px;
-  border-radius: 0px;
-  padding-left: 0;
-}
-.content-team .view-more h5 {
-  margin: 10px 0px 4px 0;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-.content-team .view-more h5:before {
-  content: url('../img/bullet.png');
-  vertical-align: middle;
-  padding-right: 5px;
-}
-.content-team .view-more ul {
-  padding-left: 0px;
-}
-.content-team .view-more ul span.small {
+.view-more ul span.small {
   font-weight: 400;
   font-family: 'Open Sans';
   font-size: 13px;
 }
-.content-team .view-more ul li {
-  list-style: circle;
-  line-height: 140%;
+.view-more ul li {
+  list-style: none;
+  line-height: 200%;
   text-align: justify;
-  margin-left: 40px;
-  font-size: 13px;
+  padding-left: 15px;
 }
 .margintp {
   margin-bottom: 40px;
@@ -1334,6 +1284,7 @@ body.ngdialog-open .ngdialog-close.close {
   margin-bottom: 4px;
 }
 .cont-artist {
+  padding-bottom: 20px;
   position: relative;
 }
 .cont-artist h4 {
@@ -1349,26 +1300,6 @@ body.ngdialog-open .ngdialog-close.close {
 }
 .cont-artist p {
   text-align: justify;
-}
-.cont-artist .panel-default {
-  border: none;
-  -webkit-box-shadow: 0px 0px 0px;
-  -moz-box-shadow: 0px 0px 0px;
-  box-shadow: 0px 0px 0px;
-}
-.cont-artist .panel-default .panel-heading {
-  color: #000;
-  background-color: #fff;
-  border: 0px;
-  padding: 0px;
-  border-radius: 0px;
-}
-.cont-artist .panel-default .panel-heading + .panel-collapse {
-  border-radius: 0px;
-}
-.cont-artist .panel-default .panel-heading + .panel-collapse .panel-body {
-  border: 0px;
-  border-radius: 0px;
 }
 td.labels {
   width: 30%;
@@ -1386,7 +1317,11 @@ td.labels {
   align-self: center;
   margin: 0;
 }
-.cont-artist .panel-body .form-horizontal input {
+.cont-artist h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+.panel-body .form-horizontal input {
   border: 1px solid #ddd;
   box-shadow: 0px 0px 0px;
 }
@@ -2087,6 +2022,15 @@ a.forgetlink:hover {
   text-transform: uppercase;
   color: #ff4f4f;
 }
+.content-team {
+  padding-bottom: 20px;
+}
+.content-team h4.head-team {
+  text-transform: uppercase;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  color: #ff4f4f;
+}
 .head-team {
   text-transform: uppercase;
   margin-top: 0px;
@@ -2099,6 +2043,9 @@ div.read-morecont {
   -o-transition: all 1s;
   transition: all 1s;
   overflow: hidden;
+}
+ul.read-inner {
+  padding-top: 40px;
 }
 .dropdown-menu {
   font-size: 12px!important;
@@ -2244,6 +2191,9 @@ a {
   -moz-box-shadow: 0px 0px 0px;
   box-shadow: 0px 0px 0px;
 }
+.pad-top-more {
+  margin-top: 40px;
+}
 .min-cont {
   min-height: 460px;
 }
@@ -2325,7 +2275,4 @@ a {
 .animate-if.ng-leave,
 .animate-if.ng-enter.ng-enter-active {
   opacity: 1;
-}
-.contss {
-  padding: 20px 0px;
 }
