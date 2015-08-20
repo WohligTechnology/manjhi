@@ -826,7 +826,8 @@ h4 {
   line-height: 3.3;
 }
 .artist .aristimg-grp1 {
-  padding: 25px 0;
+  padding: 10px 0;
+  position: relative;
 }
 .artist .aristimg-grp1:hover .hover-look {
   display: block;
@@ -1572,7 +1573,7 @@ div.megamenu {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   display: none;
 }
 .hover-look .btn {

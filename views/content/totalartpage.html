@@ -93,6 +93,9 @@
                     <a href="#/detailImage">
                         <div class="image-holder" fixit>
                             <img class="fix-img" ng-src='{{totalartconts.image}}'>
+                            <div class="hover-look">
+                                <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
+                            </div>
                         </div>
                     </a>
                     <div class="artist-cont-detail">
@@ -106,7 +109,6 @@
                         <p>
                             {{totalartconts.size}} inches
                         </p>
-                        <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
                     </div>
                 </div>
             </div>
