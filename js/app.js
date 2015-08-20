@@ -190,22 +190,22 @@ firstapp.filter('rawHtml', ['$sce', function ($sce) {
         return $sce.trustAsHtml(val);
     };
 }]);
-
-firstapp.directive('readmores', function ($window) {
-    return function (scope, element, attrs) {
-        var $element = $(element);
-        $element.children(".read-morecont").height(0);
-        $element.children(".readmore").click(function () {
-            var lastheight = $element.children(".read-morecont").height();
-            if (lastheight == 0) {
-                var newheight = $element.children(".read-morecont").children(".read-inner").height();
-                $element.children(".read-morecont").height(newheight + 40);
-            } else {
-                $element.children(".read-morecont").height(0);
-            }
-        });
-    };
-});
+//
+//firstapp.directive('readmores', function ($window) {
+//    return function (scope, element, attrs) {
+//        var $element = $(element);
+//        $element.children(".read-morecont").height(0);
+//        $element.children(".readmore").click(function () {
+//            var lastheight = $element.children(".read-morecont").height();
+//            if (lastheight == 0) {
+//                var newheight = $element.children(".read-morecont").children(".read-inner").height();
+//                $element.children(".read-morecont").height(newheight + 40);
+//            } else {
+//                $element.children(".read-morecont").height(0);
+//            }
+//        });
+//    };
+//});
 
 firstapp.directive('googlePlusSignin', ['$window', function ($window) {
     var ending = /\.apps\.googleusercontent\.com$/;
@@ -277,3 +277,24 @@ firstapp.directive('googlePlusSignin', ['$window', function ($window) {
         }
     };
 }]);
+
+var dem = 0;
+
+firstapp.directive('fancyboxBox', function ($document) {
+    return {
+        restrict: 'EA',
+        replace: false,
+        link: function ($scope, element, attr) {
+            var $element = $(element);
+            dem = $element;
+            $element.fancybox({
+                prevEffect: 'none',
+                nextEffect: 'none',
+                closeBtn: false,
+                helpers: {
+                    media: {}
+                }
+            });
+        }
+    }
+});

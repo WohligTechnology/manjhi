@@ -4,20 +4,22 @@
         <h3 class="font-color3 home-header">Press</h3>
     </div>
     <div class="row media">
-         <div class="all-events search-box media mediacov">
+        <div class="all-events search-box media mediacov">
             <accordion close-others="true">
-                <accordion-group heading="Media Coverage 2015"  is-open="status.isFirstOpen" >
+                <accordion-group heading="Media Coverage 2015" is-open="status.isFirstOpen">
                     <div class="row">
                         <div class="col-md-3" ng-repeat="media in media2015">
                             <div class="event-detail media-detail">
-                               <div class="data">
-                                <h6 class="font-color2">{{media.name}}</h6>
-                                <p>{{media.date}}</p>
+                                <div class="data">
+                                    <h6 class="font-color2">{{media.name}}</h6>
+                                    <p>{{media.date}}</p>
                                 </div>
                                 <div class="media-img text-center">
-                                    <figure>
-                                        <img ng-src="{{media.img}}" class="img-responsive">
-                                    </figure>
+                                    <a href="{{media.img}}" fancybox-box>
+                                        <figure>
+                                            <img ng-src="{{media.img}}" class="img-responsive">
+                                        </figure>
+                                    </a>
                                 </div>
 
                             </div>
@@ -29,13 +31,15 @@
                     <div class="row">
                         <div class="col-md-3" ng-repeat="media in media2014">
                             <div class="event-detail media-detail">
-                               <div class="data">
-                                <h6 class="font-color2">{{media.name}}</h6>
-                                <p>{{media.date}}</p>
+                                <div class="data">
+                                    <h6 class="font-color2">{{media.name}}</h6>
+                                    <p>{{media.date}}</p>
                                 </div>
                                 <div class="media-img text-center">
                                     <figure>
-                                        <img ng-src="{{media.img}}" class="img-responsive">
+                                        <a href="{{media.img}}" fancybox-box>
+                                            <img ng-src="{{media.img}}" class="img-responsive">
+                                        </a>
                                     </figure>
                                 </div>
 
@@ -44,7 +48,7 @@
 
                     </div>
                 </accordion-group>
-     
+
             </accordion>
         </div>
     </div>
