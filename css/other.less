@@ -228,10 +228,10 @@ a.forgetlink {
                 line-height: 1.5;
                 i.fa.fa-heart {
                     padding-left: 8px;
-                    color: @color1;
+                    color: darken(@color1, 10%);
                     cursor: pointer;
                     &:hover {
-                        color: @color3;
+                        color: darken(@color3, 10%);
                     }
                 }
             }
@@ -405,6 +405,7 @@ a.readmore {
             .border-radius(0px);
             opacity: 0;
             border: 1px solid @abbr-border-color;
+            background-color: rgba(255, 255, 255, 0.90) !important
         }
         .image {
             width: 100%;

@@ -290,7 +290,7 @@ firstapp.directive('fancyboxBox', function ($document) {
             $element.fancybox({
                 prevEffect: 'none',
                 nextEffect: 'none',
-                closeBtn: false,
+                closeBtn: true,
                 helpers: {
                     media: {}
                 }

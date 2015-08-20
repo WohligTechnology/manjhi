@@ -579,12 +579,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             image: 'img/artist/artist4.jpg',
 
         }];
-
-        $scope.showDetailImage = function () {
-            ngDialog.open({
-                template: 'views/content/quickview-image.html'
-            });
-        };
     })
     .controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
         $scope.template = TemplateService.changecontent("sculpture");
@@ -636,12 +630,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             image: 'img/artist/artist4.jpg',
 
         }];
-
-        $scope.showDetailImage = function () {
-            ngDialog.open({
-                template: 'views/content/quickview-image.html'
-            });
-        };
     })
 
 .controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {
