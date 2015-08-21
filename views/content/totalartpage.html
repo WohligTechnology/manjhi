@@ -90,14 +90,13 @@
         <div class="row">
             <div class="col-xs-20" ng-repeat="totalartconts in totalartcont">
                 <div class="aristimg-grp1">
-                    <a href="#/detailImage">
-                        <div class="image-holder" fixit>
-                            <img class="fix-img" ng-src='{{totalartconts.image}}'>
-                            <div class="hover-look">
-                                <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
-                            </div>
+                    <div class="image-holders" fixit>
+                        <img class="fix-img" ng-src='{{totalartconts.image}}'>
+                        <div class="hover-look">
+                            <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
+                            <a type="submit" class="btn btn-sucesses button-small text-center" href="#/detailImage">Details</a>
                         </div>
-                    </a>
+                    </div>
                     <div class="artist-cont-detail">
                         <p>
                             {{totalartconts.id}}

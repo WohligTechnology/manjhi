@@ -765,7 +765,7 @@
                     color: darken(@color1, 10%);
                     cursor: pointer;
                     &:hover {
-                        color: darken(@color3, 10%);
+                        color: darken(@color2, 10%);
                     }
                 }
             }
@@ -1266,6 +1266,7 @@
             margin-bottom: 0px;
             .panel-heading+.panel-collapse>.panel-body {
                 border-top-color: #fff;
+                padding-top: 0px;
             }
         }
         h4 {
@@ -1350,6 +1351,7 @@
                     text-transform: capitalize;
                     font-weight: 400;
                     font-family: @font-family-body;
+                    text-align: justify;
                 }
             }
             .detailimg {
@@ -1467,7 +1469,7 @@
         background-color: #fff;
         padding: 10px;
         margin: 0 auto;
-        top: 30px;
+        top: 32px;
         left: 50%;
         .translateX(-50%);
         border: 1px solid #ccc;
@@ -1482,7 +1484,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         display: none;
         .btn {
             background: rgba(255, 255, 255, 0.7);
@@ -1493,5 +1495,5 @@
     }
     /*Mobile Less*/
     
-    @import "mobile.less";
     @import "other.less";
+    @import "mobile.less";

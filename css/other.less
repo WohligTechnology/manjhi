@@ -166,7 +166,7 @@ a.forgetlink {
     }
 }
 .cart {
-    padding-top: 30px;
+    padding-top: 20px;
     tr {
         th {
             background-color: @color2;
@@ -197,6 +197,9 @@ a.forgetlink {
             .fa.fa-trash-o {
                 font-size: 20px;
                 cursor: pointer;
+                &:hover {
+                    color: darken(@color3, 10%);
+                }
             }
         }
     }
@@ -230,6 +233,7 @@ a.forgetlink {
                     padding-left: 8px;
                     color: darken(@color1, 10%);
                     cursor: pointer;
+                    font-size: 13px;
                     transition: all 300ms ease;
                     &:hover {
                         color: darken(@color3, 10%);
@@ -238,9 +242,11 @@ a.forgetlink {
                 i.fa.fa-shopping-cart {
                     padding-left: 8px;
                     cursor: pointer;
+                    color: darken(@color1, 10%);
+                    font-size: 14px;
                     transition: all 300ms ease;
                     &:hover {
-                        color: darken(@color2, 10%);
+                        color: darken(@color2, 15%);
                     }
                 }
             }
@@ -510,9 +516,10 @@ a {
 .drop-cart {
     ul {
         position: relative;
-        height: 95px;
         list-style: none;
         padding: 0px;
+        min-height: 110px;
+        border-bottom: 1px solid @abbr-border-color;
         li {
             color: #000!important;
             width: 50%;
@@ -562,5 +569,5 @@ a {
 }
 .image-holders {
     position: relative;
-    height: 200px;
+    height: 190px;
 }

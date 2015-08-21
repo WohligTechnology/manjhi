@@ -210,6 +210,24 @@
     width: 100%;
     float: left;
   }
+  .margintop .leaderdetail .detailimg {
+    width: 65%;
+    display: block;
+  }
+  table.table.table-hover.cart-table thead {
+    display: none;
+  }
+  table.table.table-hover.cart-table tr.cart-details {
+    width: 200px;
+    margin: 0 auto;
+    display: table;
+  }
+  table.table.table-hover.cart-table tr.cart-details td {
+    display: block;
+    padding: 10px 10px;
+    text-align: left !important;
+    border: none;
+  }
 }
 @media only screen and (max-width: 480px) {
   .logo {

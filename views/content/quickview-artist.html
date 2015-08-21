@@ -3,7 +3,8 @@
         <div class="ngdialog-close close"></div>
         <div class="cont-artist padd-mores">
             <div class="row">
-              <div class="col-md-12"><h4 class="head-team">Veguri Ravindra Babu</h4></div>  
+                <div class="col-md-12">
+                    <h4 class="head-team">Veguri Ravindra Babu</h4></div>
                 <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
                     <div class="artist-details">
                         <div class="image-holder" fixit>
@@ -13,6 +14,7 @@
                             <p>
                                 {{artistdetails.id}}
                                 <i class="fa fa-heart"></i>
+                                <i class="fa fa-shopping-cart"></i>
                             </p>
                             <p>
                                 {{artistdetails.typename}}
@@ -29,7 +31,7 @@
                             <p>
                                 Rs {{artistdetails.price}}
                             </p>
-                            <button type="submit" class="btn btn-sucesses btn-small text-center">Add to cart</button>
+                            <!--                            <button type="submit" class="btn btn-sucesses btn-small text-center">Add to cart</button>-->
                         </div>
                     </div>
                 </div>
