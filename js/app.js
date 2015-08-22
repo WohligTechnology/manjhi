@@ -137,6 +137,17 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
             url: "/reach-out",
             templateUrl: "views/template.html",
             controller: 'ReachOutCtrl'
+        }) 
+        
+        .state('create-user', {
+            url: "/create-user",
+            templateUrl: "views/template.html",
+            controller: 'CreateUserCtrl'
+        })  
+        .state('create-artwork', {
+            url: "/create-artwork",
+            templateUrl: "views/template.html",
+            controller: 'CreateArtworkCtrl'
         })
 
     $urlRouterProvider.otherwise("/home");
