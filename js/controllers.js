@@ -849,6 +849,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    $scope.tab = 'grid';
+
+    
+
 
     $scope.artistimage = [{
         image: 'img/artist/artist1.jpg',
@@ -1104,13 +1108,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Reach Out");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    })  
+    })
     .controller('CreateArtworkCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("create-artwork");
         $scope.menutitle = NavigationService.makeactive("Create Artwork");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    }) 
+    })
     .controller('CreateUserCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("create-user");
         $scope.menutitle = NavigationService.makeactive("Create User");

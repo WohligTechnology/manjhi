@@ -117,9 +117,9 @@
                             </li>
                         </ul>
                         <label class="grid-view">
-                            <select>
-                                <option value="">Grid View</option>
-                                <option value="">List View</option>
+                            <select ng-model="tab">
+                                <option value="grid">Grid View</option>
+                                <option value="list">List View</option>
                             </select>
                         </label>
                     </nav>
@@ -127,7 +127,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2 col-sm-3" ng-repeat="artistimages in artistimage">
+            <div class="col-md-2 col-sm-3" ng-repeat="artistimages in artistimage" ng-if="tab=='grid'">
                 <div class="aristimg-grp1">
                     <h4 class="text-center">
                    {{artistimages.name}}
@@ -144,9 +144,10 @@
                 </div>
             </div>
         </div>
-        <div class="ulblock">
-            <ul class="lineul">
-                <li ng-repeat="artistimages in artistimage"><a href="#">{{artistimages.name}}
+          <div class="holder1" ng-if="tab=='list'">
+            <div class="ulblock">
+                <ul class="lineul">
+                    <li ng-repeat="artistimages in artistimage"><a href="#">{{artistimages.name}}
                 </li>
             </ul>   
             <ul class="lineul">
@@ -157,5 +158,6 @@
                 <li ng-repeat="artistimages in artistimage"><a href="#">{{artistimages.name}}
                 </li>
             </ul>
-    </div>
+            </div>
+        </div>
 </div>
