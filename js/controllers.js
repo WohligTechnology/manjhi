@@ -890,6 +890,27 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }, {
         image: 'img/artist/artist4.jpg',
         name: 'Paramjit Singh'
+    },{
+        image: 'img/artist/artist1.jpg',
+        name: 'S Yousuf Ali'
+    }, {
+        image: 'img/artist/artist2.jpg',
+        name: 'Krishen Khanna'
+    }, {
+        image: 'img/artist/artist3.jpg',
+        name: 'Manjit Bawa'
+    }, {
+        image: 'img/artist/artist4.jpg',
+        name: 'Paramjit Singh'
+    }, {
+        image: 'img/artist/artist1.jpg',
+        name: 'Sidharth'
+    }, {
+        image: 'img/artist/artist2.jpg',
+        name: 'Ajay De'
+    }, {
+        image: 'img/artist/artist3.jpg',
+        name: 'Ajay R Dhandre'
     }];
     $scope.showDetail = function () {
         ngDialog.open({
