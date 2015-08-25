@@ -735,7 +735,7 @@
             .transition(all 1s ease);
             &:hover {
                 .hover-look {
-                    display: block;
+                    opacity: 1;
                 }
             }
             h4 {
@@ -1489,8 +1489,9 @@
     .hover-look {
         position: absolute;
         bottom: -4px;
-        display: none;
+        opacity: 0;
         width: 100%;
+        .transition(all 0.8s ease);
         .btn {
             color: @color2!important;
             margin: 4px 0;
