@@ -47,7 +47,7 @@
                     </ul>
                 </div>
                 <div class="col-md-5 full-mega">
-                    <ul class="artist-filter" ng-mouseover="showfilter(0)" ng-mouseleave="hidefilter(0)">
+                    <ul class="artist-filter" ng-click="showfilter(0)">
                         <li class=""><i class="fa fa-filter"></i>
                         </li>
                         <li class=""> FILTER BY</li>
@@ -78,9 +78,9 @@
                         <i class="fa fa-sort-amount-asc"></i>
                         <select name="dropdown">
                             <option value="Data Structures" selected>SORT BY</option>
-                            <option value="Newest">Newest to Oldest</option>
-                            <option value="Newest">Oldest to Newest</option>
-                            <option value="Newest">Hight to Low</option>
+                            <option value="Newest">New to Old</option>
+                            <option value="Newest">Old to New</option>
+                            <option value="Newest">High to Low</option>
                             <option value="Newest">Low to High</option>
                         </select>
                     </div>
@@ -90,12 +90,16 @@
         <div class="row">
             <div class="col-xs-20" ng-repeat="totalartconts in totalartcont">
                 <div class="aristimg-grp1">
-                    <div class="image-holders" fixit>
-                        <img class="fix-img" ng-src='{{totalartconts.image}}'>
-                        <div class="hover-look">
-                            <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
-                            <a type="submit" class="btn btn-sucesses button-small text-center" href="#/detailImage">Details</a>
-                        </div>
+                    <div class="relative">
+                        <a href="#/detailImage">
+                            <div class="image-holders" fixit>
+                                <img class="fix-img" ng-src='{{totalartconts.image}}'>
+                            </div>
+                            <div class="hover-look">
+                                <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
+                                <a type="submit" class="btn btn-sucesses button-small text-center" href="#/detailImage">Details</a>
+                            </div>
+                        </a>
                     </div>
                     <div class="artist-cont-detail">
                         <p>
