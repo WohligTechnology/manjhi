@@ -539,7 +539,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
-        $scope.template = TemplateService.changecontent("detailImage");
+        $scope.template = TemplateService.changecontent("detailimage");
         $scope.menutitle = NavigationService.makeactive("Artists");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
