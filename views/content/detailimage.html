@@ -1,12 +1,15 @@
 <div class="image-detail">
     <div class="border-top"></div>
     <div class="container">
-        <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
-            <div class="breadcrums">
-                <div class="col-md-12">
-                    <p>Home / Painting </p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrums">
+                    <p>Home / Painting</p>
                 </div>
             </div>
+        </div>
+        <div class="row">
+
             <div class="col-md-8">
                 <div class="aboveimage">
                     <a class="light-make light-shade" fancybox-box href="{{imageSrc}}">Enlarge<i class="fa fa-arrows-alt"></i>
@@ -22,39 +25,39 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td> {{artistDetailImgs.id}}
+                                        <td>{{artistDetailImg.id}}
                                             <i class="fa fa-heart"></i>
                                         </td>
                                     </tr>
                                     <tr class="font-color3">
                                         <td class="labels">Artist:</td>
-                                        <td>{{artistDetailImgs.artistname}}</td>
+                                        <td>{{artistDetailImg.artistname}}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Title:</td>
-                                        <td>{{artistDetailImgs.title}}</td>
+                                        <td>{{artistDetailImg.title}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Medium: </td>
-                                        <td>{{artistDetailImgs.typename }}</td>
+                                        <td class="labels">Medium:</td>
+                                        <td>{{artistDetailImg.typename }}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Size:</td>
-                                        <td>{{artistDetailImgs.size}}</td>
+                                        <td>{{artistDetailImg.size}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Year: </td>
-                                        <td>{{artistDetailImgs.year }}</td>
+                                        <td class="labels">Year:</td>
+                                        <td>{{artistDetailImg.year }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Price: </td>
-                                        <td>{{artistDetailImgs.price}}</td>
+                                        <td class="labels">Price:</td>
+                                        <td>{{artistDetailImg.price}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-block  uppercase">
+                    <button type="button" class="btn btn-block uppercase">
                         VIEW ARTWORK IN YOUR ROOM
                     </button>
                     <a href="#/cart" type="button" class="btn btn-primarys btn-block uppercase">

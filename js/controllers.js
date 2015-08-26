@@ -543,7 +543,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Artists");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-        $scope.artistDetailImg = [{
+        $scope.artistDetailImg = {
             image: 'img/imagedetail/imagedetail.jpg',
             id: ' 1527',
             artistname: 'Veguri Ravindra Babu',
@@ -553,7 +553,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             size: '19.5 x 23',
             year: '1978',
             price: 'Rs.1,00,000/ $6,400'
-        }];
+        };
         $scope.imageSrc = 'img/artist/artist1.jpg';
         $scope.switchImage = function (imageSrc) {
             console.log('change image to: ' + imageSrc);
