@@ -554,21 +554,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             year: '1978',
             price: 'Rs.1,00,000/ $6,400'
         };
-        $scope.imageSrc = 'img/artist/artist1.jpg';
-        $scope.switchImage = function (imageSrc) {
-            console.log('change image to: ' + imageSrc);
-            $scope.imageSrc = imageSrc;
-        };
-
         $scope.images = [{
-            small: 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image1.png',
-            large: 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image1.jpg'
+            small: 'img/zoomsmall.jpg',
+            large: 'img/zoomlarge.jpg'
     }, {
-            small: 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image2.png',
-            large: 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image2.jpg'
+            small: 'img/zoomsmall.jpg',
+            large: 'img/zoomlarge.jpg'
     }, {
-            small: 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/small/image3.png',
-            large: 'http://www.elevateweb.co.uk/wp-content/themes/radial/zoom/images/large/image3.jpg'
+            small: 'img/zoomsmall.jpg',
+            large: 'img/zoomlarge.jpg'
     }];
         $scope.aristImages = [{
             image: 'img/artist/artist1.jpg',
@@ -606,11 +600,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             year: '1978',
             price: 'Rs.1,00,000/ $6,400'
         }];
-        $scope.switchImage = function (imageSrc) {
-            console.log('change image to: ' + imageSrc);
-            $scope.imageSrc = imageSrc;
-        };
-
+        $scope.images = [{
+            small: 'img/smallsculpture.jpg',
+            large: 'img/largesculpture.jpg'
+    }, {
+            small: 'img/smallsculpture.jpg',
+            large: 'img/largesculpture.jpg'
+    }, {
+            small: 'img/smallsculpture.jpg',
+            large: 'img/largesculpture.jpg'
+    }];
         $scope.moreSculpture = [{
             image: 'img/imagedetail/sculputure.jpg'
         }, {
