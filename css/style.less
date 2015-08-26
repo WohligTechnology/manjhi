@@ -935,6 +935,14 @@
         color: @color3;
     }
     .content-team {
+        h4.head-team {
+            text-transform: uppercase;
+            margin-top: 0px;
+            margin-bottom: 20px;
+            color: @color3;
+        }
+    }
+    .content-team {
         padding-bottom: 20px;
         h4 {
             text-transform: uppercase;
@@ -969,11 +977,11 @@
                 margin: 10px 0px 4px 0;
                 font-weight: 600;
                 text-transform: capitalize;
-                //                &:before {
-                //                    content: url('../img/bullet.png');
-                //                    vertical-align: middle;
-                //                    padding-right: 5px;
-                //                }
+                                &:before {
+                         content: url('../img/bullet.png');
+                         vertical-align: middle;
+                         padding-right: 5px;
+                     }
             }
             ul.circle-none li {
                 list-style: none!important;
@@ -990,7 +998,6 @@
                     list-style: circle;
                     line-height: 140%;
                     text-align: justify;
-                    margin-left: 40px;
                     font-size: 13px;
                 }
             }
