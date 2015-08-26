@@ -1,11 +1,11 @@
 <div class="image-detail" ng-controller="TotalartPageCtrl">
     <div class="container">
         <div class="ngdialog-close close"></div>
-        <div class="row padding-more" ng-repeat="artistDetailImgs in artistDetailImg">
+        <div class="row padding-more">
             <div class="breadcrums">
                 <div class="col-md-8">
-                    <div class="aboveimage images">
-                        <img class="image-quickview" ng-src="{{imageSrc}}" />
+                    <div class="aboveimage images" fixit>
+                        <img class="image-quickview fix-img" ng-src="{{imageSrc}}" />
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -15,33 +15,33 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td> {{artistDetailImgs.id}}
+                                            <td> {{artistDetailImg.id}}
                                                 <i class="fa fa-heart"></i>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Artist:</td>
-                                            <td>{{artistDetailImgs.artistname}}</td>
+                                            <td>{{artistDetailImg.artistname}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Title:</td>
-                                            <td>{{artistDetailImgs.title}}</td>
+                                            <td>{{artistDetailImg.title}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Medium: </td>
-                                            <td>{{artistDetailImgs.typename }}</td>
+                                            <td>{{artistDetailImg.typename }}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Price: </td>
-                                            <td>{{artistDetailImgs.price}}</td>
+                                            <td>{{artistDetailImg.price}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Size:</td>
-                                            <td>{{artistDetailImgs.size}}</td>
+                                            <td>{{artistDetailImg.size}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Year: </td>
-                                            <td>{{artistDetailImgs.year }}</td>
+                                            <td>{{artistDetailImg.year }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
