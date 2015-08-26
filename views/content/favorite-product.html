@@ -1,31 +1,33 @@
 <div class="image-detail">
     <div class="border-top"></div>
     <div class="container">
-        <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
-            <div class="breadcrums">
-                <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrums">
                     <p>Home / favorite </p>
                 </div>
             </div>
+        </div>
+        <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
             <div class="col-md-8">
-                <div class="aboveimage">
-                    <div class="light-make light-shade">Enlarge<i class="fa fa-arrows-alt"></i></div>
-                    <div style="position:relative;" image-zoom data-template-url="views/content/image-zoom.html">
-                    </div>
+                <div class="aboveimage" fixit>
+                    <a class="light-make light-shade" fancybox-box href="{{images[0].large}}">Enlarge<i class="fa fa-arrows-alt"></i>
+                    </a>
+                    <img elevate-zoom small-image="{{images[0].small}}" big-image="{{images[0].large}}" class="fix-img" />
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="cont-imagedetail">
-                    <div class="artist-cont-detail pading-less-bottom">
-                        <div class="painting-details pading-less-bottom">
+                    <div class="artist-cont-detail">
+                        <div class="painting-details">
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td> {{artistDetailImgs.id}}
+                                        <td>{{artistDetailImgs.id}}
                                             <i class="fa fa-heart"></i>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr class="font-color3">
                                         <td class="labels">Artist:</td>
                                         <td>{{artistDetailImgs.artistname}}</td>
                                     </tr>
@@ -34,20 +36,20 @@
                                         <td>{{artistDetailImgs.title}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Medium: </td>
+                                        <td class="labels">Medium:</td>
                                         <td>{{artistDetailImgs.typename }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Price: </td>
-                                        <td>{{artistDetailImgs.price}}</td>
-                                    </tr>
-                                    <tr>
                                         <td class="labels">Size:</td>
-                                        <td>{{artistDetailImgs.size}}</td>
+                                        <td>{{artistDetailImg.size}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Year: </td>
-                                        <td>{{artistDetailImgs.year}}</td>
+                                        <td class="labels">Year:</td>
+                                        <td>{{artistDetailImgs.year }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Price:</td>
+                                        <td>{{artistDetailImgs.price}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -56,12 +58,9 @@
                     <button type="button" class="btn btn-block uppercase">
                         VIEW ARTWORK IN YOUR ROOM
                     </button>
-                    <button type="button" class="btn btn-block uppercase">
-                        Rent sculpture
-                    </button>
-                    <button type="button" class="btn btn-primarys btn-block uppercase">
+                    <a href="#/cart" type="button" class="btn btn-primarys btn-block uppercase">
                         ADD TO CART
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -93,3 +92,4 @@
             </div>
         </div>
     </div>
+</div>

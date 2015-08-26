@@ -1155,7 +1155,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
         $scope.artistDetailImg = [{
-            image: 'img/imagedetail/imagedetail.jpg',
             id: ' 1527',
             artistname: 'Arzan Khambatta',
             title: ' Floating Dreams',
@@ -1165,9 +1164,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             year: '1978',
             price: 'Rs.1,00,000/ $6,400'
         }];
-        $scope.imageSrc = 'img/imagedetail/sculputure.jpg';
-        $scope.switchImage = function (imageSrc) {
-            console.log('change image to: ' + imageSrc);
-            $scope.imageSrc = imageSrc;
-        };
+        $scope.images = [{
+            small: 'img/smallsculpture.jpg',
+            large: 'img/largesculpture.jpg'
+    }, {
+            small: 'img/smallsculpture.jpg',
+            large: 'img/largesculpture.jpg'
+    }, {
+            small: 'img/smallsculpture.jpg',
+            large: 'img/largesculpture.jpg'
+    }];
     });

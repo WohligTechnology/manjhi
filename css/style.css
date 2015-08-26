@@ -708,7 +708,7 @@ h4 {
   right: 0px !important;
 }
 .list-cart div.megamenu {
-  width: 235px;
+  width: 280px;
 }
 .artist .painting {
   padding: 20px 0;
@@ -2007,6 +2007,7 @@ a.readmore {
   height: 400px;
   margin: 0 auto;
   text-align: center;
+  padding: 0 40px;
 }
 .aboveimage .image-quickview {
   width: 100%;
@@ -2081,7 +2082,6 @@ a {
   padding: 0px;
 }
 .fav-holder {
-  text-align: center;
   position: relative;
   height: 200px;
 }
@@ -2089,7 +2089,18 @@ a {
   padding: 10px 0;
 }
 .artist-cont-detail-fav p {
-  margin: 2px 0;
+  margin: 0px 0;
+  line-height: 120%;
+  font-size: 12px;
+}
+.artist-cont-detail-fav i.fa.fa-shopping-cart {
+  padding-left: 8px;
+  color: #cbcdd1;
+  cursor: pointer;
+  font-size: 14px;
+}
+.artist-cont-detail-fav i.fa.fa-shopping-cart:hover {
+  color: #c89849;
 }
 .btn-right {
   padding-bottom: 50px;
@@ -2139,12 +2150,15 @@ a {
   position: relative;
   list-style: none;
   padding: 0px;
-  min-height: 110px;
+  min-height: 100px;
   border-bottom: 1px solid #f1f1f1;
+}
+.drop-cart ul li.cart-img {
+  width: 40% !important;
 }
 .drop-cart ul li {
   color: #000!important;
-  width: 50%;
+  width: 60%;
   float: left;
 }
 .drop-cart ul li p {
