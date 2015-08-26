@@ -74,15 +74,10 @@
                     </ul>
                 </div>
                 <div class="col-md-2">
-                    <div class="sort-by">
-                        <i class="fa fa-sort-amount-asc"></i>
-                        <select name="dropdown">
-                            <option value="Data Structures" selected>SORT BY</option>
-                            <option value="Newest">New to Old</option>
-                            <option value="Newest">Old to New</option>
-                            <option value="Newest">High to Low</option>
-                            <option value="Newest">Low to High</option>
-                        </select>
+                    <div class="sort-by" ng-click="showfilter(1)" ng-mouseleave="hidefilter(1)">
+                        <i class="fa fa-sort-amount-asc"></i> Sort By
+                        <div class="megamenu" ng-include src="filterval[1]" ng-show="filters[1]">
+                        </div>
                     </div>
                 </div>
             </div>

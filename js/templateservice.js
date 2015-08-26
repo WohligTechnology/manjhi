@@ -30,7 +30,7 @@ templateservicemod.service('TemplateService', function () {
 
 templateservicemod.controller('filterctrl', ['$scope', 'TemplateService',
                                                  function ($scope, TemplateService, MainJson, $rootScope) {
-        $scope.filterval = ['views/content/filter.html'];
+        $scope.filterval = ['views/content/filter.html', 'views/content/sort.html'];
         $scope.filters = [];
         $scope.showfilter = function (data) {
             console.log(data);

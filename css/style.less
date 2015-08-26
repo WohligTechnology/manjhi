@@ -615,6 +615,11 @@ h4 {
 .flex-direction-nav .flex-next {
     right: 0px !important;
 }
+.list-cart {
+    div.megamenu {
+        width: 235px;
+    }
+}
 .artist {
     .painting {
         padding: 20px 0;
@@ -1391,7 +1396,7 @@ ul.artist-crisp.pad-less {
 }
 div.megamenu {
     position: absolute;
-    width: 235px;
+    width: auto;
     z-index: 999999999;
     background-color: #fff;
     padding: 10px;
@@ -1404,7 +1409,7 @@ div.megamenu {
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
 }
-.contss {
+.pad-top-btm {
     padding: 20px 0px;
 }
 .hover-look {
@@ -1446,13 +1451,16 @@ div.megamenu {
         list-style-image: url('../img/bullet.jpg');
         margin-bottom: 0px;
     }
-    h4+h5, p+h4, ul+h4, accordion+h4 {
+    h4+h5,
+    p+h4,
+    ul+h4,
+    accordion+h4 {
         margin-top: 15px;
     }
-    ul+h5, p+h5 {
+    ul+h5,
+    p+h5 {
         margin-top: 10px;
     }
-    
     .panel-default {
         border: none;
         .box-shadow (0px 0px 0px);
@@ -1966,7 +1974,7 @@ a {
     display: none;
 }
 .sort-by {
-    padding-top: 6px;
+    padding: 6px 0 20px 0;
     cursor: pointer;
     i {
         font-size: 12px;
@@ -1975,6 +1983,10 @@ a {
         border: 0px;
         .appearance(none);
         background: #fff;
+    }
+    div.megamenu {
+        top: 25px;
+        left: 25%;
     }
 }
 .checkbox input {
@@ -2044,10 +2056,13 @@ a {
     position: relative;
     height: 190px;
 }
-.relative
-{
+.relative {
     position: relative;
 }
+/*.fancybox-wrap.fancybox-desktop.fancybox-type-image.fancybox-opened {
+    top: 85px!important;
+}*/
+
 /*Mobile Less*/
 
 //@import "other.less";
