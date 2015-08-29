@@ -90,9 +90,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('TotalartPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog) {
+.controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog) {
         //Used to name the .html file
-        $scope.template = TemplateService.changecontent("totalartpage");
+        $scope.template = TemplateService.changecontent("totalartwork");
         $scope.menutitle = NavigationService.makeactive("Total Artwork");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();

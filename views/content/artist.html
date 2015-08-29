@@ -132,19 +132,19 @@
                     <h4 class="text-center">
                    {{artistimages.name}}
                </h4>
-                    <a href="#/artistDetail">
+                    <a href="#/artist/detail">
                         <div class="image-holder" fixit>
                             <img class="fix-img" ng-src='{{artistimages.image}}'>
                         </div>
                     </a>
                     <div class="hover-look">
                         <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetail();">Quick View</button>
-                        <a type="submit" class="btn btn-sucesses button-small text-center" href="#/artistDetail">Details</a>
+                        <a type="submit" class="btn btn-sucesses button-small text-center" href="#/artist/detail">Details</a>
                     </div>
                 </div>
             </div>
         </div>
-          <div class="holder1" ng-if="tab=='list'">
+        <div class="holder1" ng-if="tab=='list'">
             <div class="ulblock">
                 <ul class="lineul">
                     <li ng-repeat="artistimages in artistimage"><a href="#/artistDetail">{{artistimages.name}}

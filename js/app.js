@@ -7,13 +7,13 @@ var firstapp = angular.module('firstapp', [
 
 ]);
 
-firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
+firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
     //Turn the spinner on or off
     cfpLoadingBarProvider.includeSpinner = false;
 
     $stateProvider
 
-    .state('home', {
+        .state('home', {
         url: "/home",
         templateUrl: "views/template.html",
         controller: 'HomeCtrl'
@@ -36,11 +36,12 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
         templateUrl: "views/template.html",
         controller: 'CartCtrl'
     })
-        .state('checkout', {
-            url: "/checkout",
-            templateUrl: "views/template.html",
-            controller: 'CheckoutCtrl'
-        })
+
+    .state('checkout', {
+        url: "/checkout",
+        templateUrl: "views/template.html",
+        controller: 'CheckoutCtrl'
+    })
 
     .state('artist', {
         url: "/artist",
@@ -49,22 +50,24 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
     })
 
     .state('artistdetail', {
-        url: "/artistDetail",
+        url: "/artist/detail",
         templateUrl: "views/template.html",
         controller: 'ArtistDetailCtrl'
     })
-        .state('detailImage', {
-            url: "/detailImage",
-            templateUrl: "views/template.html",
-            controller: 'ArtistDetailImageCtrl'
-        })
-        .state('team', {
+
+    .state('detail', {
+        url: "/artwork/all/detail",
+        templateUrl: "views/template.html",
+        controller: 'ArtistDetailImageCtrl'
+    })
+
+    .state('team', {
             url: "/team",
             templateUrl: "views/template.html",
             controller: 'TeamCtrl'
         })
         .state('artInfrastructure', {
-            url: "/artInfrastructure",
+            url: "/infra-services",
             templateUrl: "views/template.html",
             controller: 'ArtInfrastructureCtrl'
         })
@@ -73,90 +76,104 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             templateUrl: "views/template.html",
             controller: 'EventsCtrl'
         })
-        .state('eventdetail', {
-            url: "/eventdetail",
-            templateUrl: "views/template.html",
-            controller: 'EventdetailCtrl'
-        })
-        .state('totalartpage', {
-            url: "/totalartpage",
-            templateUrl: "views/template.html",
-            controller: 'TotalartPageCtrl'
-        })
-        .state('press', {
-            url: "/press",
-            templateUrl: "views/template.html",
-            controller: 'PressCtrl'
-        })
-        .state('account', {
-            url: "/account",
-            templateUrl: "views/template.html",
-            controller: 'AccountCtrl'
-        })
-        .state('thoughtleadership', {
-            url: "/thoughtleadership",
-            templateUrl: "views/template.html",
-            controller: 'ThoughtleadershipCtrl'
-        })
-        .state('thoughtleadershipdetail', {
-            url: "/thoughtleadershipdetail",
-            templateUrl: "views/template.html",
-            controller: 'ThoughtleadershipdetailCtrl'
-        })
-        .state('sculpture', {
-            url: "/sculpture",
-            templateUrl: "views/template.html",
-            controller: 'SculptureCtrl'
-        })
-        .state('favorite', {
-            url: "/favorite",
-            templateUrl: "views/template.html",
-            controller: 'FavoriteCtrl'
-        })
-        .state('artistpage', {
-            url: "/artistpage",
-            templateUrl: "views/template.html",
-            controller: 'ArtistPageCtrl'
-        })
-        .state('contactus', {
-            url: "/contactus",
-            templateUrl: "views/template.html",
-            controller: 'ContactusCtrl'
-        })
-        .state('activities', {
-            url: "/activities",
-            templateUrl: "views/template.html",
-            controller: 'ActivitiesCtrl'
-        })
-        .state('favorite-product', {
-            url: "/favorite-product",
-            templateUrl: "views/template.html",
-            controller: 'FavoriteProductCtrl'
-        })
-        .state('reach-out', {
-            url: "/reach-out",
-            templateUrl: "views/template.html",
-            controller: 'ReachOutCtrl'
-        })
+
+    .state('eventdetail', {
+        url: "/eventdetail",
+        templateUrl: "views/template.html",
+        controller: 'EventdetailCtrl'
+    })
+
+    .state('totalartpage', {
+        url: "/artwork/all",
+        templateUrl: "views/template.html",
+        controller: 'TotalartWorkCtrl'
+    })
+
+    .state('press', {
+        url: "/press",
+        templateUrl: "views/template.html",
+        controller: 'PressCtrl'
+    })
+
+    .state('account', {
+        url: "/account",
+        templateUrl: "views/template.html",
+        controller: 'AccountCtrl'
+    })
+
+    .state('thoughtleadership', {
+        url: "/thoughtleadership",
+        templateUrl: "views/template.html",
+        controller: 'ThoughtleadershipCtrl'
+    })
+
+    .state('thoughtleadershipdetail', {
+        url: "/thoughtleadershipdetail",
+        templateUrl: "views/template.html",
+        controller: 'ThoughtleadershipdetailCtrl'
+    })
+
+    .state('sculpture', {
+        url: "/sculpture",
+        templateUrl: "views/template.html",
+        controller: 'SculptureCtrl'
+    })
+
+    .state('favorite', {
+        url: "/favorite",
+        templateUrl: "views/template.html",
+        controller: 'FavoriteCtrl'
+    })
+
+    .state('artistpage', {
+        url: "/artistpage",
+        templateUrl: "views/template.html",
+        controller: 'ArtistPageCtrl'
+    })
+
+    .state('contactus', {
+        url: "/contactus",
+        templateUrl: "views/template.html",
+        controller: 'ContactusCtrl'
+    })
+
+    .state('activities', {
+        url: "/activities",
+        templateUrl: "views/template.html",
+        controller: 'ActivitiesCtrl'
+    })
+
+    .state('favorite-product', {
+        url: "/favorite-product",
+        templateUrl: "views/template.html",
+        controller: 'FavoriteProductCtrl'
+    })
+
+    .state('reach-out', {
+        url: "/reach-out",
+        templateUrl: "views/template.html",
+        controller: 'ReachOutCtrl'
+    })
 
     .state('create-user', {
         url: "/create-user",
         templateUrl: "views/template.html",
         controller: 'CreateUserCtrl'
     })
-        .state('create-artwork', {
-            url: "/create-artwork",
-            templateUrl: "views/template.html",
-            controller: 'CreateArtworkCtrl'
-        })
+
+    .state('create-artwork', {
+        url: "/create-artwork",
+        templateUrl: "views/template.html",
+        controller: 'CreateArtworkCtrl'
+    })
 
     $urlRouterProvider.otherwise("/home");
 
 });
 
-firstapp.directive("scroll", function($window) {
-    return function(scope, element, attrs) {
-        angular.element($window).bind("scroll", function() {
+firstapp.directive("scroll", function ($window) {
+    return function (scope, element, attrs) {
+        angular.element($window).bind("scroll", function () {
             if (this.pageYOffset >= 100) {
                 element.addClass('min');
             } else {
@@ -166,8 +183,8 @@ firstapp.directive("scroll", function($window) {
     };
 });
 
-firstapp.directive('fixit', function($window) {
-    return function(scope, element, attrs) {
+firstapp.directive('fixit', function ($window) {
+    return function (scope, element, attrs) {
         var myelem = {};
         var imagedim = {};
         $element = $(element);
@@ -175,7 +192,7 @@ firstapp.directive('fixit', function($window) {
         myelem.width = $element.width();
         myelem.ratio = myelem.width / myelem.height;
 
-        $element.children("img.fix-img").load(function() {
+        $element.children("img.fix-img").load(function () {
             imagedim.height = $(this).height();
             imagedim.width = $(this).width();
             imagedim.ratio = imagedim.width / imagedim.height;
@@ -197,8 +214,8 @@ firstapp.directive('fixit', function($window) {
 });
 
 firstapp.filter('rawHtml', ['$sce',
-    function($sce) {
-        return function(val) {
+    function ($sce) {
+        return function (val) {
             return $sce.trustAsHtml(val);
         };
     }
@@ -221,7 +238,7 @@ firstapp.directive('readmores', function ($window) {
 });*/
 
 firstapp.directive('googlePlusSignin', ['$window',
-    function($window) {
+    function ($window) {
         var ending = /\.apps\.googleusercontent\.com$/;
 
         return {
@@ -229,7 +246,7 @@ firstapp.directive('googlePlusSignin', ['$window',
             transclude: true,
             template: '<span></span>',
             replace: true,
-            link: function(scope, element, attrs, ctrl, linker) {
+            link: function (scope, element, attrs, ctrl, linker) {
                 attrs.clientid += (ending.test(attrs.clientid) ? '' : '.apps.googleusercontent.com');
 
                 attrs.$set('data-clientid', attrs.clientid);
@@ -250,7 +267,7 @@ firstapp.directive('googlePlusSignin', ['$window',
                 defaults.theme = attrs.theme;
 
                 // Overwrite default values if explicitly set
-                angular.forEach(Object.getOwnPropertyNames(defaults), function(propName) {
+                angular.forEach(Object.getOwnPropertyNames(defaults), function (propName) {
                     if (attrs.hasOwnProperty(propName)) {
                         defaults[propName] = attrs[propName];
                     }
@@ -258,7 +275,7 @@ firstapp.directive('googlePlusSignin', ['$window',
 
                 // Default language
                 // Supported languages: https://developers.google.com/+/web/api/supported-languages
-                attrs.$observe('language', function(value) {
+                attrs.$observe('language', function (value) {
                     $window.___gcfg = {
                         lang: value ? value : 'en'
                     };
@@ -272,8 +289,8 @@ firstapp.directive('googlePlusSignin', ['$window',
                 var s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(po, s);
 
-                linker(function(el, tScope) {
-                    po.onload = function() {
+                linker(function (el, tScope) {
+                    po.onload = function () {
                         if (el.length) {
                             element.append(el);
                         }
@@ -284,8 +301,8 @@ firstapp.directive('googlePlusSignin', ['$window',
         }
     }
 ]).run(['$window', '$rootScope',
-    function($window, $rootScope) {
-        $window.signinCallback = function(authResult) {
+    function ($window, $rootScope) {
+        $window.signinCallback = function (authResult) {
             if (authResult && authResult.access_token) {
                 $rootScope.$broadcast('event:google-plus-signin-success', authResult);
             } else {
@@ -297,11 +314,11 @@ firstapp.directive('googlePlusSignin', ['$window',
 
 var dem = 0;
 
-firstapp.directive('fancyboxBox', function($document) {
+firstapp.directive('fancyboxBox', function ($document) {
     return {
         restrict: 'EA',
         replace: false,
-        link: function($scope, element, attr) {
+        link: function ($scope, element, attr) {
             var $element = $(element);
             dem = $element;
             $element.fancybox({
@@ -317,11 +334,11 @@ firstapp.directive('fancyboxBox', function($document) {
     }
 });
 
-firstapp.directive('elevateZoom', function($document) {
+firstapp.directive('elevateZoom', function ($document) {
     return {
         restrict: 'EA',
         replace: false,
-        link: function($scope, element, attr) {
+        link: function ($scope, element, attr) {
             var $element = $(element);
             dem = $element;
             var smallimg = attr.smallImage;
@@ -333,11 +350,11 @@ firstapp.directive('elevateZoom', function($document) {
     }
 });
 
-firstapp.directive('zoomContainer', function() {
+firstapp.directive('zoomContainer', function () {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
-            scope.$on('$stateChangeSuccess', function() {
+        link: function (scope, element, attrs) {
+            scope.$on('$stateChangeSuccess', function () {
                 var target = element.children('div.zoomContainer').remove();
             })
         }

@@ -54,68 +54,68 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Paintings & more",
             active: "",
-            link: "#/totalartpage",
+            link: "#/artwork/all",
             classis: "active",
             subnav: [
                 {
                     name: "Paintings",
                     classis: "active",
-                    link: "#/paintings"
+                    link: "#/artwork/all"
         }, {
                     name: "Sculptures",
                     classis: "active",
-                    link: "#/sculptures"
+                    link: "#/artwork/all"
         }, {
                     name: "Commissioned Sculptures",
                     classis: "active",
-                    link: "#/commissionedsculptures"
+                    link: "#/artwork/all"
         }, {
                     name: "Photographs",
                     classis: "active",
-                    link: "#/photographs"
+                    link: "#/artwork/all"
         }, {
                     name: "Prints",
                     classis: "active",
-                    link: "#/prints"
+                    link: "#/artwork/all"
         }, {
                     name: "Others",
                     classis: "active",
-                    link: "#/others"
+                    link: "#/artwork/all"
         }]
     }, {
             name: "Infra Services",
             active: "",
-            link: "#/artInfrastructure",
+            link: "#/infra-services",
             classis: "active",
             subnav: [
                 {
                     name: "Data Management",
                     classis: "active",
-                    link: "#"
+                    link: "#/infra-services"
                 }, {
                     name: "Valuation & Insurance",
                     classis: "active",
-                    link: "#"
+                    link: "#/infra-services"
                 }, {
                     name: "Strategy for Art Initiatives, including CSR",
                     classis: "active",
-                    link: "#"
+                    link: "#/infra-services"
                 }, {
                     name: "Packing & Logistics",
                     classis: "active",
-                    link: "#"
+                    link: "#/infra-services"
                 }, {
                     name: "Archival Facility Set-up",
                     classis: "active",
-                    link: "#"
+                    link: "#/infra-services"
                 }, {
                     name: "Trusteeship & Warehousing",
                     classis: "active",
-                    link: "#"
+                    link: "#/infra-services"
                 }, {
                     name: "Training & Workshops",
                     classis: "active",
-                    link: "#"
+                    link: "#/infra-services"
                 }
             ]
     }, {
@@ -126,15 +126,15 @@ var navigationservice = angular.module('navigationservice', [])
             subnav: [{
                 name: "Current Events",
                 classis: "active",
-                link: "#"
+                link: "#/events"
         }, {
                 name: "Upcoming Events",
                 classis: "active",
-                link: "#"
+                link: "#/events"
         }, {
                 name: "Past Events",
                 classis: "active",
-                link: "#"
+                link: "#/events"
         }]
     }, {
             name: "Press",
@@ -193,7 +193,7 @@ var navigationservice = angular.module('navigationservice', [])
                 data: login
             }).success(callback);
         },
-        forgotpassword:function (forgot, callback) {
+        forgotpassword: function (forgot, callback) {
             $http({
                 url: adminurl + "user/forgotpassword",
                 method: "POST",
