@@ -1,4 +1,5 @@
 var adminurl = "http://localhost:1337/";
+var adminurl = "http://104.197.23.70/";
 var navigationservice = angular.module('navigationservice', [])
 
 .factory('NavigationService', function ($http) {
@@ -198,6 +199,13 @@ var navigationservice = angular.module('navigationservice', [])
                 url: adminurl + "user/forgotpassword",
                 method: "POST",
                 data: forgot
+            }).success(callback);
+        },
+        artworktype: function (pagedata, callback) {
+            $http({
+                url: adminurl + "artwork/artworktype",
+                method: "POST",
+                data: pagedata
             }).success(callback);
         }
     }

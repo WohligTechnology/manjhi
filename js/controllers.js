@@ -91,116 +91,129 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
 
 .controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("totalartwork");
-        $scope.menutitle = NavigationService.makeactive("Total Artwork");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        $scope.totalartcont = [{
-            image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist1.jpg',
-            name: 'Sidharth',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist2.jpg',
-            name: 'Ajay De',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist3.jpg',
-            name: 'Ajay R Dhandre',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist5.jpg',
-            name: 'Amarnath Sharma',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist1.jpg',
-            name: 'S Yousuf Ali',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist2.jpg',
-            name: 'Krishen Khanna',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist3.jpg',
-            name: 'Manjit Bawa',
-            id: '15',
-            size: '135x36'
-    }, {
-            image: 'img/artist/artist4.jpg',
-            name: 'Paramjit Singh',
-            id: '15',
-            size: '135x36'
-    }];
-        $scope.artistDetailImg = [{
-            image: 'img/imagedetail/imagedetail.jpg',
-            id: ' 1527',
-            artistname: 'Veguri Ravindra Babu',
-            title: ' Floating Dreams',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
-    }];
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("totalartwork");
+    $scope.menutitle = NavigationService.makeactive("Total Artwork");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    $scope.pagedata = {};
+    $scope.pagedata.search = "";
+    $scope.pagedata.type = "";
+    $scope.pagedata.pagenumber = 1;
+    $scope.pagedata.pagesize = 20;
 
-        // set available range
-        $scope.minPrice = 0;
-        $scope.maxPrice = 100000;
-
-        // default the user's values to the available range
-        $scope.userMinPrice = $scope.minPrice;
-        $scope.userMaxPrice = $scope.maxPrice;
-
-        $scope.imageSrc = 'img/artist/artist1.jpg';
-
-        $scope.showDetails = function () {
-            ngDialog.open({
-                template: 'views/content/quickview-imagedetail.html'
-            });
-        };
+    NavigationService.artworktype($scope.pagedata, function (data, status) {
+        console.log(data);
+        $scope.totalartcont = data.data;
     })
-    .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
+
+    //    $scope.totalartcont = [{
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'S Yousuf Ali',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Krishen Khanna',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Manjit Bawa',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        name: 'Paramjit Singh',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'Sidharth',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Ajay De',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Ajay R Dhandre',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist5.jpg',
+    //        name: 'Amarnath Sharma',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'S Yousuf Ali',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Krishen Khanna',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Manjit Bawa',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        name: 'Paramjit Singh',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Krishen Khanna',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Manjit Bawa',
+    //        id: '15',
+    //        size: '135x36'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        name: 'Paramjit Singh',
+    //        id: '15',
+    //        size: '135x36'
+    //    }];
+
+    $scope.artistDetailImg = [{
+        image: 'img/imagedetail/imagedetail.jpg',
+        id: ' 1527',
+        artistname: 'Veguri Ravindra Babu',
+        title: ' Floating Dreams',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: 'Rs.1,00,000/ $6,400'
+    }];
+
+    // set available range
+    $scope.minPrice = 0;
+    $scope.maxPrice = 100000;
+
+    // default the user's values to the available range
+    $scope.userMinPrice = $scope.minPrice;
+    $scope.userMaxPrice = $scope.maxPrice;
+
+    $scope.imageSrc = 'img/artist/artist1.jpg';
+
+    $scope.showDetails = function () {
+        ngDialog.open({
+            template: 'views/content/quickview-imagedetail.html'
+        });
+    };
+})
+
+.controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("checkout");
         $scope.menutitle = NavigationService.makeactive("Checkout");
