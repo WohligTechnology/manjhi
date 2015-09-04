@@ -361,3 +361,11 @@ firstapp.directive('zoomContainer', function () {
     }
 
 });
+
+firstapp.filter('uploadpath', function () {
+    return function (input) {
+        if (input && input != "") {
+            return adminurl + "user/resize?file=" + input;
+        }
+    };
+});

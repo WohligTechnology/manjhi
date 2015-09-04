@@ -8,42 +8,43 @@
                 </div>
                 <div class="col-md-5">
                     <ul class="artist-crisp pad-less">
-                        <li class="">
-                            <a href="" class="actives">
-                    All
-                                    <hr class="hover-see">
-                    </a>
+                        <li class="" ng-click="makeactive(type.name);" ng-repeat="type in typejson">
+                            <a href="" class="{{type.class}}">{{type.name}}
+                            <hr class="hover-see">
+                            </a>
                         </li>
-                        <li class="">
+                        <!--
+                        <li class="" ng-click="makeactive('Paintings');">
                             <a href="" class="">
                     Paintings
                                     <hr class="hover-see">
                     </a>
                         </li>
-                        <li class="">
+                        <li class="" ng-click="makeactive('Sculptures');">
                             <a href=""> 
                     Sculptures
                                     <hr class="hover-see">
                     </a>
                         </li>
-                        <li class="">
+                        <li class="" ng-click="makeactive('Photographs');">
                             <a href=""> 
                      Photographs
                                     <hr class="hover-see">
                      </a>
                         </li>
-                        <li class="">
+                        <li class="" ng-click="makeactive('Prints');">
                             <a href="">  
                     Prints
                                     <hr class="hover-see">
                     </a>
                         </li>
-                        <li class="">
+                        <li class="" ng-click="makeactive('Others');">
                             <a href=""> 
                      Others
                                     <hr class="hover-see">
                      </a>
                         </li>
+-->
                     </ul>
                 </div>
                 <div class="col-md-5 full-mega">
@@ -83,12 +84,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-20" ng-repeat="totalartconts in totalartcont">
+            <div class="col-xs-20" ng-repeat="totalartconts in totalartcont" infinite-scroll='loadMore();' infinite-scroll-distance='0' infinite-scroll-disabled='callinfinite'>
                 <div class="aristimg-grp1">
                     <div class="relative">
                         <a href="#/artwork/all/detail">
                             <div class="image-holders" fixit>
-                                <img class="fix-img" ng-src='{{totalartconts.artwork.image[0]}}'>
+                                <img class="fix-img" ng-src='{{totalartconts.artwork.image[0]|uploadpath}}'>
                             </div>
                         </a>
                         <div class="hover-look">
@@ -98,15 +99,18 @@
                     </div>
                     <div class="artist-cont-detail">
                         <p>
-                            {{totalartconts.id}}
+                            {{totalartconts.artwork.srno}}
                             <i class="fa fa-heart"></i>
                             <i class="fa fa-shopping-cart"></i>
                         </p>
                         <p>
                             {{totalartconts.name}}
                         </p>
-                        <p>
-                            {{totalartconts.size}} inches
+                        <p ng-if="totalartconts.artwork.type!='Sculptures'">
+                            {{totalartconts.artwork.width}} X {{totalartconts.artwork.height}} inches
+                        </p>
+                        <p ng-if="totalartconts.artwork.type=='Sculptures'">
+                            {{totalartconts.artwork.width}} X {{totalartconts.artwork.height}} X {{totalartconts.artwork.breadth}} inches
                         </p>
                     </div>
                 </div>

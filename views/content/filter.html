@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <h4>Artist</h4>
-            <input type="text" class="form-control" placeholder="Artist Name">
+            <input type="text" class="form-control" placeholder="Artist Name" ng-model="pagedata.search">
         </div>
         <div class="col-md-3">
             <div class="mega-cont">
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="btn-main pull-right">
-            <button class="btn btn-sucesses">Go</button>
+            <button class="btn btn-sucesses" ng-click="filterresults(pagedata.search);">Go</button>
         </div>
     </div>
 </div>

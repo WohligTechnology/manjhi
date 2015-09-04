@@ -101,88 +101,147 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.type = "";
     $scope.pagedata.pagenumber = 1;
     $scope.pagedata.pagesize = 20;
+    $scope.totalartcont = [];
+    $scope.totalpagecount = 0;
+    $scope.callinfinite = true;
 
-    NavigationService.artworktype($scope.pagedata, function (data, status) {
-        console.log(data);
-        $scope.totalartcont = data.data;
-    })
+    $scope.typejson = [{
+        name: "All",
+        class: "actives"
+    }, {
+        name: "Paintings",
+        class: ""
+    }, {
+        name: "Sculptures",
+        class: ""
+    }, {
+        name: "Photographs",
+        class: ""
+    }, {
+        name: "Prints",
+        class: ""
+    }, {
+        name: "Others",
+        class: ""
+    }]
+
+    $scope.getartworkswithtype = function () {
+        NavigationService.artworktype($scope.pagedata, function (data, status) {
+            console.log(data);
+            $scope.totalpagecount = data.totalpages;
+            _.each(data.data, function (n) {
+                $scope.totalartcont.push(n);
+            })
+            $scope.callinfinite = false;
+        });
+    }
+
+    $scope.getartworkswithtype();
+
+    $scope.makeactive = function (type) {
+        _.each($scope.typejson, function (n) {
+            var index = n.name.indexOf(type);
+            if (index != -1) {
+                n.class = "actives";
+            } else {
+                n.class = "";
+            }
+        })
+        if (type == "All")
+            type = "";
+        $scope.pagedata.type = type;
+        $scope.getartworkswithtype();
+    }
+
+    $scope.loadMore = function () {
+        $scope.pagedata.pagenumber++;
+        if ($scope.pagedata.pagenumber <= $scope.totalpagecount) {
+            $scope.callinfinite = true;
+            $scope.getartworkswithtype();
+        }
+    };
+
+    $scope.filterresults = function (search) {
+        console.log(search);
+
+    }
 
     //    $scope.totalartcont = [{
     //        image: 'img/artist/artist1.jpg',
     //        name: 'S Yousuf Ali',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist2.jpg',
     //        name: 'Krishen Khanna',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist3.jpg',
     //        name: 'Manjit Bawa',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist4.jpg',
     //        name: 'Paramjit Singh',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist1.jpg',
     //        name: 'Sidharth',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist2.jpg',
     //        name: 'Ajay De',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist3.jpg',
     //        name: 'Ajay R Dhandre',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist5.jpg',
     //        name: 'Amarnath Sharma',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist1.jpg',
     //        name: 'S Yousuf Ali',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist2.jpg',
     //        name: 'Krishen Khanna',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist3.jpg',
     //        name: 'Manjit Bawa',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist4.jpg',
     //        name: 'Paramjit Singh',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist2.jpg',
     //        name: 'Krishen Khanna',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist3.jpg',
     //        name: 'Manjit Bawa',
     //        id: '15',
     //        size: '135x36'
-    //    }, {
+    //        }, {
     //        image: 'img/artist/artist4.jpg',
     //        name: 'Paramjit Singh',
     //        id: '15',
     //        size: '135x36'
-    //    }];
+    //        }];
 
     $scope.artistDetailImg = [{
         image: 'img/imagedetail/imagedetail.jpg',
