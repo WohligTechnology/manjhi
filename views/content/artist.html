@@ -18,9 +18,9 @@
                 </div>
                 <div class="col-md-4 col-md-offset-3">
                     <div class="search-form">
-                        <input type="search" class="form-control" placeholder="Search Artist" ng-model="pagedata.searchname" ng-change="getartistbysearch();">
+                        <input type="search" class="form-control" placeholder="Search Artist" ng-model="pagedata.searchname">
                         <span class="search-line">
-                            <button class="btn-line" type="submit">
+                            <button class="btn-line" type="submit" ng-click="getartistbysearch();">
                                 <i class="fa fa-search"></i>
                             </button>
                         </span>
@@ -58,7 +58,7 @@
                     </a>
                     <div class="hover-look">
                         <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetail(artistimages._id,artistimages.name);">Quick View</button>
-                        <a type="submit" class="btn btn-sucesses button-small text-center" href="#/artist/detail">Details</a>
+                        <a type="submit" class="btn btn-sucesses button-small text-center" href="#/artist/detail">All Works</a>
                     </div>
                 </div>
             </div>

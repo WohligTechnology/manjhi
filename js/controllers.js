@@ -322,7 +322,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             isFirstDisabled: false
         };
 
-        $scope.event2016= [{
+        $scope.event2016 = [{
             name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
             detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
             img: 'img/event/event1.jpg'
@@ -945,9 +945,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artistimage = [];
 
     $scope.reload = function () {
-        if ($scope.pagedata.searchname != '')
-            $scope.artistimage = [];
-
         NavigationService.getallartist($scope.pagedata, function (data, status) {
             console.log(data);
             _.each(data.data, function (n) {
