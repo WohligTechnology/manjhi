@@ -322,7 +322,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             isFirstDisabled: false
         };
 
-        $scope.event2015 = [{
+        $scope.event2016= [{
             name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
             detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
             img: 'img/event/event1.jpg'
@@ -332,7 +332,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             img: 'img/event/event2.jpg'
         }];
 
-        $scope.event2014 = [{
+        $scope.event2015 = [{
             name: 'The Art Enclave at UBM Index Fairs 2014',
             detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
             img: 'img/event/event3.jpg'
@@ -346,7 +346,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             img: ''
         }];
 
-        $scope.event2013 = [{
+        $scope.event2014 = [{
             name: 'Art Infrastructure – nobody’s business',
             detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
             img: 'img/event/event4.jpg'
