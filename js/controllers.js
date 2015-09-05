@@ -956,9 +956,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    if ($scope.artistimage.length == 0) {
-        $scope.reload();
-    }
+    $scope.reload();
 
     $scope.getartistbyletter = function (letter) {
 
@@ -976,6 +974,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             letter = "";
 
         $scope.pagedata.search = letter;
+        $scope.artistimage = [];
+        $scope.reload();
+    }
+
+    $scope.getartistbysearch = function () {
         $scope.artistimage = [];
         $scope.reload();
     }
