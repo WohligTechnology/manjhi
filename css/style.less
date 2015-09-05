@@ -1254,7 +1254,7 @@
             //        margin-top: 22px;
             table {
                 thead tr {
-                    background-color: #D4AE70;
+                    background-color: @color2;
                     color: #fff;
                     font-weight: 100;
                     th {
@@ -1469,7 +1469,7 @@
     .righ {
         float: right;
         font-size: 15px;
-        color: #D4AE70;
+        color: @color2;
         border-bottom: 1px solid;
     }
     
@@ -1585,7 +1585,7 @@
         p,
         li {
             margin: 0;
-            color: #404040;
+            color: #000;
             font-size: 13px;
             font-weight: 300;
             line-height: 140%;
@@ -1631,6 +1631,7 @@
     a.readmore {
         color: @color3;
         cursor: pointer;
+        padding-right: 90px;
     }
     
     //other less
@@ -2273,6 +2274,97 @@
     
     .zoomWindow {
         margin-left: 20px;
+    }
+    
+    .panel-default {
+        border-color: @color2;
+        .panel-hdr {
+            color: #fff;
+            background-color: @color2 ;
+            border-color: @color2;
+            .mr5 {
+                margin-right: 5px;
+            }
+        }
+        .panel-body {
+            padding: 15px;
+        }
+        .form-control {
+            border: 0px;
+            box-shadow: none;
+            border: 1px solid #999999;
+        }
+        .ui-select-multiple.ui-select-bootstrap {
+            height: auto;
+            padding: 3px 3px 0 3px;
+            border-radius: 0px;
+        }
+        .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+            background-color: transparent !important;
+            border: none;
+            outline: none;
+            height: 1.666666em;
+            margin-bottom: 3px;
+        }
+        .form-control:focus {
+            border-color: @color2;
+            outline: 0;
+            color: #444;
+            box-shadow: none;
+            border-width: 2px;
+        }
+        .form-control:focus {
+            border-color: @color2;
+            outline: 0;
+            color: #444;
+            box-shadow: none;
+            border-width: 2px;
+        }
+        .btn {
+            border-radius: 0px;
+        }
+        .scroll-x {
+            width: 100%;
+            overflow-x: scroll;
+            .img-box {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+            }
+        }
+        .many-img {
+            height: 150px;
+            display: inline-block;
+            -webkit-align-self: center;
+            -ms-flex-item-align: center;
+            align-self: center;
+            position: relative;
+            img {
+                height: 100%;
+                max-height: 100%;
+                padding-right: 5px;
+            }
+            .close-btn {
+                position: absolute;
+                top: 0;
+            }
+        }
+        .all-btn {
+            background-color: #fff;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+            color: @color2;
+            border: 1px solid @color2;
+            -webkit-transition: all 1s;
+            &:hover {
+                color: #fff;
+                background-color: @color2;
+                border: 1px solid @color2;
+            }
+        }
     }
     /*Mobile Less*/
     
