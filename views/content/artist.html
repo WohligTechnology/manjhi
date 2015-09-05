@@ -9,47 +9,16 @@
                 <div class="col-md-5">
 
                     <ul class="artist-crisp">
-                        <li class="">
-                            <a href="" class="actives">
-                    All
+                        <li class="" ng-click="makeactive(type.name);" ng-repeat="type in typejson">
+                            <a href="" class="{{type.class}}">{{type.name}}
                                 <hr class="hover-see">
-                    </a>
-                        </li>
-                        <li class="">
-                            <a href="">
-                    Paintings
-                                <hr class="hover-see">
-                    </a>
-                        </li>
-                        <li class="">
-                            <a href=""> 
-                    Sculptures
-                                 <hr class="hover-see">
-                    </a>
-                        </li>
-                        <li class="">
-                            <a href=""> 
-                     Photographs
-                                 <hr class="hover-see">
-                     </a>
-                        </li>
-                        <li class="">
-                            <a href="">  
-                    Prints
-                                 <hr class="hover-see">
-                    </a>
-                        </li>
-                        <li class="">
-                            <a href=""> 
-                     Others
-                                 <hr class="hover-see">
-                     </a>
+                            </a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-md-offset-3">
                     <div class="search-form">
-                        <input type="search" class="form-control" placeholder="Search Artist">
+                        <input type="search" class="form-control" placeholder="Search Artist" ng-model="pagedata.searchname" ng-change="reload();">
                         <span class="search-line">
                             <button class="btn-line" type="submit">
                                 <i class="fa fa-search"></i>
@@ -60,60 +29,10 @@
                 <div class="col-md-12">
                     <nav class="pagination-artist">
                         <ul class="pagination">
-                            <li class="actived">
-                                <a href="#">
-                                    All
+                            <li class="{{alphabet.class}}" ng-repeat="alphabet in alphabetjson">
+                                <a ng-click="getartistbyletter(alphabet.name);">
+                                    {{alphabet.name}}
                                 </a>
-                            </li>
-                            <li><a href="#">A</a>
-                            </li>
-                            <li><a href="#">B</a>
-                            </li>
-                            <li><a href="#">C</a>
-                            </li>
-                            <li><a href="#">D</a>
-                            </li>
-                            <li><a href="#">E</a>
-                            </li>
-                            <li><a href="#">F</a>
-                            </li>
-                            <li><a href="#">G</a>
-                            </li>
-                            <li><a href="#">H</a>
-                            </li>
-                            <li><a href="#">I</a>
-                            </li>
-                            <li><a href="#">J</a>
-                            </li>
-                            <li><a href="#">K</a>
-                            </li>
-                            <li><a href="#">L</a>
-                            </li>
-                            <li><a href="#">M</a>
-                            </li>
-                            <li><a href="#">N</a>
-                            </li>
-                            <li><a href="#">O</a>
-                            </li>
-                            <li><a href="#">P</a>
-                            </li>
-                            <li><a href="#">R</a>
-                            </li>
-                            <li><a href="#">S</a>
-                            </li>
-                            <li><a href="#">T</a>
-                            </li>
-                            <li><a href="#">U</a>
-                            </li>
-                            <li><a href="#">V</a>
-                            </li>
-                            <li><a href="#">W</a>
-                            </li>
-                            <li><a href="#">X</a>
-                            </li>
-                            <li><a href="#">Y</a>
-                            </li>
-                            <li><a href="#">Z</a>
                             </li>
                         </ul>
                         <label class="grid-view">
@@ -134,11 +53,11 @@
                </h4>
                     <a href="#/artist/detail">
                         <div class="image-holder" fixit>
-                            <img class="fix-img" ng-src='{{artistimages.image}}'>
+                            <img class="fix-img" ng-src='{{artistimages.artwork[0].image[0]|uploadthumbnail}}'>
                         </div>
                     </a>
                     <div class="hover-look">
-                        <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetail();">Quick View</button>
+                        <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetail(artistimages._id,artistimages.name);">Quick View</button>
                         <a type="submit" class="btn btn-sucesses button-small text-center" href="#/artist/detail">Details</a>
                     </div>
                 </div>

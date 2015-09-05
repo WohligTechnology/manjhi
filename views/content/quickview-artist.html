@@ -1,35 +1,38 @@
-<div class="artist-detail" ng-controller="ArtistCtrl">
+<div class="artist-detail">
     <div class="container">
         <div class="ngdialog-close close"></div>
         <div class="cont-artist padd-mores">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="head-team">Veguri Ravindra Babu</h4></div>
-                <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
+                    <h4 class="head-team">{{artistdetail.name}}</h4></div>
+                <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail.artworks">
                     <div class="artist-details">
                         <div class="image-holder" fixit>
-                            <img class="fix-img" ng-src='{{artistdetails.image}}'>
+                            <img class="fix-img" ng-src='{{artistdetails.image[0]|uploadthumbnail}}'>
                         </div>
                         <div class="artist-cont-detail">
                             <p>
-                                {{artistdetails.id}}
+                                {{artistdetails.srno}}
                                 <i class="fa fa-heart"></i>
                                 <i class="fa fa-shopping-cart"></i>
                             </p>
                             <p>
-                                {{artistdetails.typename}}
+                                {{artistdetails.name}}
                             </p>
                             <p>
-                                {{artistdetails.madein}}
+                                {{artistdetails.subtype[0].name}}
+                            </p>
+                            <p ng-if="artistdetails.type!='Sculptures'">
+                                {{artistdetails.width}} X {{artistdetails.height}} inches
+                            </p>
+                            <p ng-if="artistdetails.type=='Sculptures'">
+                                {{artistdetails.width}} X {{artistdetails.height}} X {{artistdetails.breadth}} inches
                             </p>
                             <p>
-                                {{artistdetails.size}} inches
+                                {{artistdetails.yoc}}
                             </p>
                             <p>
-                                {{artistdetails.year}}
-                            </p>
-                            <p>
-                                Rs {{artistdetails.price}}
+                                Rs {{artistdetails.gprice}}
                             </p>
                             <!--                            <button type="submit" class="btn btn-sucesses btn-small text-center">Add to cart</button>-->
                         </div>

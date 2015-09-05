@@ -207,6 +207,22 @@ var navigationservice = angular.module('navigationservice', [])
                 method: "POST",
                 data: pagedata
             }).success(callback);
+        },
+        getartworkdetail: function (artid, callback) {
+            $http({
+                url: adminurl + "artwork/findbyid",
+                method: "POST",
+                data: {
+                    "_id": artid
+                }
+            }).success(callback);
+        },
+        getallartist: function (pagedata, callback) {
+            $http({
+                url: adminurl + "user/findbyletter",
+                method: "POST",
+                data: pagedata
+            }).success(callback);
         }
     }
 });

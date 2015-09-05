@@ -10,10 +10,17 @@
         </div>
         <div class="row">
             <div class="col-md-8">
-                <div class="aboveimage" fixit>
-                    <a class="light-make light-shade" fancybox-box href="{{images[0].large}}">Enlarge<i class="fa fa-arrows-alt"></i>
+                <div class="aboveimage fixit">
+                    <!--
+                   <a class="light-make light-shade" fancybox-box href="{{images[0].large}}">Enlarge<i class="fa fa-arrows-alt"></i>
                     </a>
                     <img elevate-zoom small-image="{{images[0].small}}" big-image="{{images[0].large}}" class="fix-img" />
+-->
+                    <a class="light-make light-shade" fancybox-box href="{{artistDetailImg.artwork.image[0]|uploadpath}}">Enlarge<i class="fa fa-arrows-alt"></i>
+                    </a>
+                    
+                    
+                    <img elevate-zoom image="artistDetailImg" ng-if="artistDetailImg" class="fix-img" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -29,27 +36,28 @@
                                     </tr>
                                     <tr class="font-color3">
                                         <td class="labels">Artist:</td>
-                                        <td>{{artistDetailImg.artistname}}</td>
+                                        <td>{{artistDetailImg.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Title:</td>
-                                        <td>{{artistDetailImg.title}}</td>
+                                        <td>{{artistDetailImg.artwork.name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Medium:</td>
-                                        <td>{{artistDetailImg.typename }}</td>
+                                        <td>{{artistDetailImg.artwork.subtype[0].name}}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Size:</td>
-                                        <td>{{artistDetailImg.size}}</td>
+                                        <td ng-if="artistDetailImg.artwork.type!='Sculptures'">{{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}}</td>
+                                        <td ng-if="artistDetailImg.artwork.type=='Sculptures'">{{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}} X {{artistDetailImg.artwork.breadth}}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Year:</td>
-                                        <td>{{artistDetailImg.year }}</td>
+                                        <td>{{artistDetailImg.artwork.yoc}}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Price:</td>
-                                        <td>{{artistDetailImg.price}}</td>
+                                        <td>Rs. {{artistDetailImg.artwork.gprice}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -88,4 +96,3 @@
         </div>
     </div>
 </div>
-

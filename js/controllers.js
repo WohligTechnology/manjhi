@@ -157,7 +157,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.pagenumber++;
         if ($scope.pagedata.pagenumber <= $scope.totalpagecount) {
             $scope.callinfinite = true;
-            $scope.getartworkswithtype();
+            //            $scope.getartworkswithtype();
         }
     };
 
@@ -610,106 +610,113 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
-        $scope.template = TemplateService.changecontent("detailimage");
-        $scope.menutitle = NavigationService.makeactive("Artists");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        $scope.artistDetailImg = {
-            image: 'img/imagedetail/imagedetail.jpg',
-            id: ' 1527',
-            artistname: 'Veguri Ravindra Babu',
-            title: ' Floating Dreams',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
-        };
-        $scope.images = [{
-            small: 'img/zoomsmall.jpg',
-            large: 'img/zoomlarge.jpg'
-    }, {
-            small: 'img/zoomsmall.jpg',
-            large: 'img/zoomlarge.jpg'
-    }, {
-            small: 'img/zoomsmall.jpg',
-            large: 'img/zoomlarge.jpg'
-    }];
-        $scope.aristImages = [{
-            image: 'img/artist/artist1.jpg',
+.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams) {
+    $scope.template = TemplateService.changecontent("detailimage");
+    $scope.menutitle = NavigationService.makeactive("Artists");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    //    $scope.artistDetailImg = {
+    //        image: 'img/imagedetail/imagedetail.jpg',
+    //        id: ' 1527',
+    //        artistname: 'Veguri Ravindra Babu',
+    //        title: ' Floating Dreams',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    };
 
-        }, {
-            image: 'img/artist/artist2.jpg',
-
-        }, {
-            image: 'img/artist/artist3.jpg',
-
-        }, {
-            image: 'img/artist/artist4.jpg',
-
-        }, {
-            image: 'img/artist/artist3.jpg',
-
-        }, {
-            image: 'img/artist/artist4.jpg',
-
-        }];
+    NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
+        console.log(data);
+        $scope.artistDetailImg = data[0];
     })
-    .controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
-        $scope.template = TemplateService.changecontent("sculpture");
-        $scope.menutitle = NavigationService.makeactive("Sculpture");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        $scope.artistDetailImg = [{
-            image: 'img/imagedetail/imagedetail.jpg',
-            id: ' 1527',
-            artistname: 'Arzan Khambatta',
-            title: ' Floating Dreams',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
-        }];
-        $scope.images = [{
-            small: 'img/smallsculpture.jpg',
-            large: 'img/largesculpture.jpg'
+
+    $scope.images = [{
+        small: 'img/zoomsmall.jpg',
+        large: 'img/zoomlarge.jpg'
     }, {
-            small: 'img/smallsculpture.jpg',
-            large: 'img/largesculpture.jpg'
+        small: 'img/zoomsmall.jpg',
+        large: 'img/zoomlarge.jpg'
     }, {
-            small: 'img/smallsculpture.jpg',
-            large: 'img/largesculpture.jpg'
+        small: 'img/zoomsmall.jpg',
+        large: 'img/zoomlarge.jpg'
     }];
-        $scope.moreSculpture = [{
-            image: 'img/imagedetail/sculputure.jpg'
-        }, {
-            image: 'img/imagedetail/sculputure.jpg'
-        }, {
-            image: 'img/imagedetail/sculputure.jpg'
-        }];
-        $scope.aristImages = [{
-            image: 'img/artist/artist1.jpg',
+    $scope.aristImages = [{
+        image: 'img/artist/artist1.jpg',
 
         }, {
-            image: 'img/artist/artist2.jpg',
+        image: 'img/artist/artist2.jpg',
 
         }, {
-            image: 'img/artist/artist3.jpg',
+        image: 'img/artist/artist3.jpg',
 
         }, {
-            image: 'img/artist/artist4.jpg',
+        image: 'img/artist/artist4.jpg',
 
         }, {
-            image: 'img/artist/artist3.jpg',
+        image: 'img/artist/artist3.jpg',
 
         }, {
-            image: 'img/artist/artist4.jpg',
+        image: 'img/artist/artist4.jpg',
 
         }];
+})
 
-    })
+.controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
+    $scope.template = TemplateService.changecontent("sculpture");
+    $scope.menutitle = NavigationService.makeactive("Sculpture");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    $scope.artistDetailImg = [{
+        image: 'img/imagedetail/imagedetail.jpg',
+        id: ' 1527',
+        artistname: 'Arzan Khambatta',
+        title: ' Floating Dreams',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: 'Rs.1,00,000/ $6,400'
+        }];
+    $scope.images = [{
+        small: 'img/smallsculpture.jpg',
+        large: 'img/largesculpture.jpg'
+    }, {
+        small: 'img/smallsculpture.jpg',
+        large: 'img/largesculpture.jpg'
+    }, {
+        small: 'img/smallsculpture.jpg',
+        large: 'img/largesculpture.jpg'
+    }];
+    $scope.moreSculpture = [{
+        image: 'img/imagedetail/sculputure.jpg'
+        }, {
+        image: 'img/imagedetail/sculputure.jpg'
+        }, {
+        image: 'img/imagedetail/sculputure.jpg'
+        }];
+    $scope.aristImages = [{
+        image: 'img/artist/artist1.jpg',
+
+        }, {
+        image: 'img/artist/artist2.jpg',
+
+        }, {
+        image: 'img/artist/artist3.jpg',
+
+        }, {
+        image: 'img/artist/artist4.jpg',
+
+        }, {
+        image: 'img/artist/artist3.jpg',
+
+        }, {
+        image: 'img/artist/artist4.jpg',
+
+        }];
+
+})
 
 .controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("thoughtleadership");
@@ -929,107 +936,211 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.tab = 'grid';
+    $scope.pagedata = {};
+    $scope.pagedata.pagenumber = 1;
+    $scope.pagedata.pagesize = 24;
+    $scope.pagedata.search = '';
+    $scope.pagedata.searchname = '';
+    $scope.pagedata.type = '';
+    $scope.artistimage = [];
 
+    $scope.reload = function () {
+        if ($scope.pagedata.searchname != '')
+            $scope.artistimage = [];
 
+        NavigationService.getallartist($scope.pagedata, function (data, status) {
+            console.log(data);
+            _.each(data.data, function (n) {
+                $scope.artistimage.push(n);
+            })
+        })
+    }
 
+    if ($scope.artistimage.length == 0) {
+        $scope.reload();
+    }
 
-    $scope.artistimage = [{
-        image: 'img/artist/artist1.jpg',
-        name: 'S Yousuf Ali'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        name: 'Krishen Khanna'
-    }, {
-        image: 'img/artist/artist3.jpg',
-        name: 'Manjit Bawa'
-    }, {
-        image: 'img/artist/artist4.jpg',
-        name: 'Paramjit Singh'
-    }, {
-        image: 'img/artist/artist1.jpg',
-        name: 'Sidharth'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        name: 'Ajay De'
-    }, {
-        image: 'img/artist/artist3.jpg',
-        name: 'Ajay R Dhandre'
-    }, {
-        image: 'img/artist/artist5.jpg',
-        name: 'Amarnath Sharma'
-    }, {
-        image: 'img/artist/artist1.jpg',
-        name: 'S Yousuf Ali'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        name: 'Krishen Khanna'
-    }, {
-        image: 'img/artist/artist3.jpg',
-        name: 'Manjit Bawa'
-    }, {
-        image: 'img/artist/artist4.jpg',
-        name: 'Paramjit Singh'
-    }, {
-        image: 'img/artist/artist1.jpg',
-        name: 'S Yousuf Ali'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        name: 'Krishen Khanna'
-    }, {
-        image: 'img/artist/artist3.jpg',
-        name: 'Manjit Bawa'
-    }, {
-        image: 'img/artist/artist4.jpg',
-        name: 'Paramjit Singh'
-    }, {
-        image: 'img/artist/artist1.jpg',
-        name: 'Sidharth'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        name: 'Ajay De'
-    }, {
-        image: 'img/artist/artist3.jpg',
-        name: 'Ajay R Dhandre'
-    }];
-    $scope.showDetail = function () {
-        ngDialog.open({
-            template: 'views/content/quickview-artist.html'
+    $scope.getartistbyletter = function (letter) {
+
+        _.each($scope.alphabetjson, function (n) {
+            //            var index = n.name.indexOf(letter);
+            //            console.log(index);
+            if (n.name == letter) {
+                n.class = "actived";
+            } else {
+                n.class = "";
+            }
         });
+
+        if (letter == "All")
+            letter = "";
+
+        $scope.pagedata.search = letter;
+        $scope.artistimage = [];
+        $scope.reload();
+    }
+
+    $scope.makeactive = function (type) {
+        _.each($scope.typejson, function (n) {
+            var index = n.name.indexOf(type);
+            if (index != -1) {
+                n.class = "actives";
+            } else {
+                n.class = "";
+            }
+        })
+        if (type == "All")
+            type = "";
+        $scope.pagedata.type = type;
+        $scope.artistimage = [];
+        $scope.reload();
+    }
+
+    //    $scope.artistimage = [{
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'S Yousuf Ali'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Krishen Khanna'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Manjit Bawa'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        name: 'Paramjit Singh'
+    //    }, {
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'Sidharth'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Ajay De'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Ajay R Dhandre'
+    //    }, {
+    //        image: 'img/artist/artist5.jpg',
+    //        name: 'Amarnath Sharma'
+    //    }, {
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'S Yousuf Ali'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Krishen Khanna'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Manjit Bawa'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        name: 'Paramjit Singh'
+    //    }, {
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'S Yousuf Ali'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Krishen Khanna'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Manjit Bawa'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        name: 'Paramjit Singh'
+    //    }, {
+    //        image: 'img/artist/artist1.jpg',
+    //        name: 'Sidharth'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        name: 'Ajay De'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        name: 'Ajay R Dhandre'
+    //    }];
+
+    $scope.artistdetail = {};
+    $scope.showDetail = function (userid, username) {
+        var index = _.pluck(_.where($scope.artistimage, {
+            '_id': userid
+        }), 'artwork');
+        $scope.artistdetail.name = username;
+        if (index[0].length >= 4) {
+            var makeit4 = _.chunk(index[0], 4);
+            $scope.artistdetail.artworks = makeit4[0];
+        } else
+            $scope.artistdetail.artworks = index[0];
+        console.log($scope.artistdetail);
+
+        if ($scope.artistdetail.name) {
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/quickview-artist.html'
+            });
+        }
     };
 
-    $scope.artistdetail = [{
-        image: 'img/artist/artist1.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
+    //    $scope.artistdetail = [{
+    //        image: 'img/artist/artist1.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }];
+
+    $scope.alphabetjson = [{
+        name: "All",
+        class: "actived"
+    }]
+
+    for (var i = 0; i < 26; i++) {
+        $scope.alphabetjson.push({
+            name: String.fromCharCode(65 + i),
+            class: ''
+        })
+    }
+
+    $scope.typejson = [{
+        name: "All",
+        class: "actives"
     }, {
-        image: 'img/artist/artist2.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
+        name: "Paintings",
+        class: ""
     }, {
-        image: 'img/artist/artist3.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
+        name: "Sculptures",
+        class: ""
     }, {
-        image: 'img/artist/artist4.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }];
+        name: "Photographs",
+        class: ""
+    }, {
+        name: "Prints",
+        class: ""
+    }, {
+        name: "Others",
+        class: ""
+    }]
 })
 
 

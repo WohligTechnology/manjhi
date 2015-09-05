@@ -56,7 +56,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
     })
 
     .state('detail', {
-        url: "/artwork/all/detail",
+        url: "/artwork/all/detail/:artid",
         templateUrl: "views/template.html",
         controller: 'ArtistDetailImageCtrl'
     })
@@ -183,36 +183,6 @@ firstapp.directive("scroll", function ($window) {
     };
 });
 
-firstapp.directive('fixit', function ($window) {
-    return function (scope, element, attrs) {
-        var myelem = {};
-        var imagedim = {};
-        $element = $(element);
-        myelem.height = $element.height();
-        myelem.width = $element.width();
-        myelem.ratio = myelem.width / myelem.height;
-
-        $element.children("img.fix-img").load(function () {
-            imagedim.height = $(this).height();
-            imagedim.width = $(this).width();
-            imagedim.ratio = imagedim.width / imagedim.height;
-
-
-            if (myelem.ratio == imagedim.ratio) {
-                $(this).css("width", "auto");
-                $(this).css("height", myelem.height);
-            } else if (myelem.ratio > imagedim.ratio) {
-                $(this).css("width", "auto");
-                $(this).css("height", myelem.height);
-            } else {
-                $(this).css("width", "100%");
-                $(this).css("height", "auto");
-            }
-
-        });
-    };
-});
-
 firstapp.filter('rawHtml', ['$sce',
     function ($sce) {
         return function (val) {
@@ -320,7 +290,6 @@ firstapp.directive('fancyboxBox', function ($document) {
         replace: false,
         link: function ($scope, element, attr) {
             var $element = $(element);
-            dem = $element;
             $element.fancybox({
                 prevEffect: 'none',
                 nextEffect: 'none',
@@ -334,17 +303,18 @@ firstapp.directive('fancyboxBox', function ($document) {
     }
 });
 
-firstapp.directive('elevateZoom', function ($document) {
+firstapp.directive('elevateZoom', function ($document,$filter) {
     return {
         restrict: 'EA',
-        replace: false,
         link: function ($scope, element, attr) {
+            var image=$scope[attr.image];
             var $element = $(element);
-            dem = $element;
+            image=image.artwork.image[0];
             var smallimg = attr.smallImage;
             var bigimg = attr.bigImage;
-            $element.attr('src', smallimg);
-            $element.attr('data-zoom-image', bigimg);
+            
+            $element.attr('src', $filter('uploadsmallimage')(image));
+            $element.attr('data-zoom-image', $filter('uploadpath')(image));
             $element.elevateZoom();
         }
     }
@@ -362,10 +332,26 @@ firstapp.directive('zoomContainer', function () {
 
 });
 
+firstapp.filter('uploadthumbnail', function () {
+    return function (input) {
+        if (input && input != "") {
+            return adminurl + "user/resize?heigth=190&file=" + input;
+        }
+    };
+});
+
 firstapp.filter('uploadpath', function () {
     return function (input) {
         if (input && input != "") {
             return adminurl + "user/resize?file=" + input;
+        }
+    };
+});
+
+firstapp.filter('uploadsmallimage', function () {
+    return function (input) {
+        if (input && input != "") {
+            return adminurl + "user/resize?height=400&file=" + input;
         }
     };
 });
