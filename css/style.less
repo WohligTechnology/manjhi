@@ -2276,93 +2276,120 @@
         margin-left: 20px;
     }
     
-    .panel-default {
-        border-color: @color2;
-        .panel-hdr {
-            color: #fff;
-            background-color: @color2 ;
-            border-color: @color2;
-            .mr5 {
-                margin-right: 5px;
+    .cont-create {
+        .panel-default {
+            border-color: #fff;
+            box-shadow: 0px 0px 0px;
+            .panel-hdr {
+                color: @color3 ;
+                background-color: #fff;
+                border-color: #fff;
+                text-transform: uppercase;
+                font-size: 18px;
+                font-weight: 600;
+                .mr5 {
+                    margin-right: 5px;
+                }
             }
-        }
-        .panel-body {
-            padding: 15px;
-        }
-        .form-control {
-            border: 0px;
-            box-shadow: none;
-            border: 1px solid #999999;
-        }
-        .ui-select-multiple.ui-select-bootstrap {
-            height: auto;
-            padding: 3px 3px 0 3px;
-            border-radius: 0px;
-        }
-        .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
-            background-color: transparent !important;
-            border: none;
-            outline: none;
-            height: 1.666666em;
-            margin-bottom: 3px;
-        }
-        .form-control:focus {
-            border-color: @color2;
-            outline: 0;
-            color: #444;
-            box-shadow: none;
-            border-width: 2px;
-        }
-        .form-control:focus {
-            border-color: @color2;
-            outline: 0;
-            color: #444;
-            box-shadow: none;
-            border-width: 2px;
-        }
-        .btn {
-            border-radius: 0px;
-        }
-        .scroll-x {
-            width: 100%;
-            overflow-x: scroll;
-            .img-box {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -moz-box;
-                display: -ms-flexbox;
-                display: flex;
+            .panel-body {
+                padding: 15px;
             }
-        }
-        .many-img {
-            height: 150px;
-            display: inline-block;
-            -webkit-align-self: center;
-            -ms-flex-item-align: center;
-            align-self: center;
-            position: relative;
-            img {
-                height: 100%;
-                max-height: 100%;
-                padding-right: 5px;
+            .form-control {
+                border: 0px;
+                box-shadow: none;
+                border: 1px solid #999999;
             }
-            .close-btn {
-                position: absolute;
-                top: 0;
+            .ui-select-multiple.ui-select-bootstrap {
+                height: auto;
+                padding: 3px 3px 0 3px;
+                border-radius: 0px;
             }
-        }
-        .all-btn {
-            background-color: #fff;
-            -webkit-border-radius: 0;
-            -moz-border-radius: 0;
-            border-radius: 0;
-            color: @color2;
-            border: 1px solid @color2;
-            -webkit-transition: all 1s;
-            &:hover {
-                color: #fff;
+            .ui-select-multiple.ui-select-bootstrap input.ui-select-search {
+                background-color: transparent !important;
+                border: none;
+                outline: none;
+                height: 1.666666em;
+                margin-bottom: 3px;
+            }
+            .form-control {
+                &:focus {
+                    border-color: @color2!important;
+                    outline: 0;
+                    color: #444;
+                    box-shadow: none;
+                    border-width: 2px;
+                }
+            }
+            .btn {
+                border-radius: 0px;
+            }
+            .scroll-x {
+                width: 100%;
+                overflow-x: scroll;
+                .img-box {
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -moz-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                }
+            }
+            .many-img {
+                height: 150px;
+                display: inline-block;
+                -webkit-align-self: center;
+                -ms-flex-item-align: center;
+                align-self: center;
+                position: relative;
+                img {
+                    height: 100%;
+                    max-height: 100%;
+                    padding-right: 5px;
+                }
+                .close-btn {
+                    position: absolute;
+                    top: 0;
+                }
+            }
+            .all-btn {
                 background-color: @color2;
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0;
+                color: #fff;
                 border: 1px solid @color2;
+                .transition( all 1s);
+                &:hover {
+                    color: @color2;
+                    background-color: #fff;
+                    border: 1px solid @color2;
+                }
+            }
+        }
+        textarea.form-control+textarea.form-control {
+            margin-top: 10px;
+        }
+        .photo-holder {
+            border: 1px solid #999;
+            width: 190px;
+            height: 190px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 10px;
+            span {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                top: 50%;
+                .translateY(-50%);
+                overflow: hidden;
+            }
+            .image-contain {
+                height: 100%;
+                width: 100%;
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
             }
         }
     }

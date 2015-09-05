@@ -1326,9 +1326,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('CreateUserCtrl', function ($scope, TemplateService, NavigationService) {
-        $scope.template = TemplateService.changecontent("create-user");
-        $scope.menutitle = NavigationService.makeactive("Create User");
+    .controller('RegisterArtistCtrl', function ($scope, TemplateService, NavigationService) {
+        $scope.template = TemplateService.changecontent("register-artist");
+        $scope.menutitle = NavigationService.makeactive("Register Artist");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
