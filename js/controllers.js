@@ -857,76 +857,84 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService, $stateParams) {
     $scope.template = TemplateService.changecontent("artistdetail")
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
-    $scope.artistdetail = [{
-        image: 'img/artist/artist1.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist3.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist4.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Price available on request'
-    }, {
-        image: 'img/artist/artist5.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist5.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist4.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Price available on request'
-    }];
+
+    //    console.log($stateParams.artistid);
+    NavigationService.getoneartist($stateParams.artistid, function (data, status) {
+        console.log(data);
+        $scope.artistdetail = data
+    })
+
+
+    //    $scope.artistdetail = [{
+    //        image: 'img/artist/artist1.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Price available on request'
+    //    }, {
+    //        image: 'img/artist/artist5.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist5.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Price available on request'
+    //    }];
 })
 
 
@@ -995,7 +1003,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistimage = [];
         $scope.reload();
     }
-
+    
     //    $scope.artistimage = [{
     //        image: 'img/artist/artist1.jpg',
     //        name: 'S Yousuf Ali'

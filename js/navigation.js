@@ -223,6 +223,15 @@ var navigationservice = angular.module('navigationservice', [])
                 method: "POST",
                 data: pagedata
             }).success(callback);
+        },
+        getoneartist: function (artistid, callback) {
+            $http({
+                url: adminurl + "user/findone",
+                method: "POST",
+                data: {
+                    "_id": artistid
+                }
+            }).success(callback);
         }
     }
 });

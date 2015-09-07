@@ -2,7 +2,7 @@
 <div class="artist-detail">
     <div class="container">
         <div class="cont-artist">
-            <h4 class="head-team margin-no">Veguri Ravindra Babu</h4>
+            <h4 class="head-team margin-no">{{artistdetail.name}}</h4>
             <a class="readmore pull-right" ng-click="status.open = !status.open">View Profile</a>
             <accordion>
                 <accordion-group is-open="status.open">
@@ -16,27 +16,41 @@
                                 <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
                                 <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
                             </p>
-                            <p>
+                            <p ng-if="artistdetail.award">
                                 <span class="bold">Awards / Recognitions / Honors </span>
+                                <span ng-repeat="awards in artistdetail.award"><br>{{awards.year}}, {{awards.title}}, {{awards.institution}}</span>
+                                <!--
                                 <br>2006, H R D National Scholarship
-                                <br>2006, H R D National Scholarship
-                                <br>2006, H R D National Scholarship
+<br>2006, H R D National Scholarship
+-->
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <p><span class="bold">Auctions</span>
-                                <br>2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
-                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
-                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai</p>
-                            <p><span class="bold">Solo Shows</span>
-                                <br>2009, European Business Group Event, Aura Art, Taj Mahal Hotel, Mumbai
+                            <p ng-if="artistdetail.auction">
+                                <span class="bold">Auctions</span>
+                                <span ng-repeat="auction in artistdetail.auction"><br>{{auction.year}}, {{auction.auctionhouse}}, {{auction.location}}</span>
+                                <!--
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+-->
                             </p>
-                            <p><span class="bold">Group Shows</span>
-                                <br>2008, Aura Art Inaugural Show, Aura Art, Nehru Centre, Worli, Mumbai
+
+                            <p ng-if="artistdetail.soloshow">
+                                <span class="bold">Solo Shows</span>
+                                <span ng-repeat="solo in artistdetail.soloshow"><br>{{solo.year}}, {{solo.title}}, {{solo.gallery}}, {{solo.venue}}</span>
+                                <!--
+                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+                                <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
+-->
+                            </p>
+
+                            <p ng-if="artistdetail.groupshow">
+                                <span class="bold">Group Shows</span>
+                                <span ng-repeat="group in artistdetail.groupshow"><br>{{group.year}}, {{group.title}}, {{group.gallery}}, {{group.venue}}</span>
+                                <!--
                                 <br>2012, United Art Fair, Pragati Maidan, New Delhi
                                 <br>2013, The Aura Art Show 2013, Aura Art, Jehangir Art Gallery, Mumbai
+-->
                             </p>
                         </div>
                     </div>
@@ -45,33 +59,35 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail">
+            <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail.artwork">
                 <div class="artist-details">
                     <a href=""></a>
                     <div class="image-holders" fixit>
-                        <img class="fix-img" ng-src='{{artistdetails.image}}'>
+                        <img class="fix-img" ng-src='{{artistdetails.image[0]|uploadthumbnail}}'>
                     </div>
                     <div class="artist-cont-detail">
                         <p>
-                            {{artistdetails.id}}
+                            {{artistdetails.srno}}
                             <i class="fa fa-heart"></i>
                             <i class="fa fa-shopping-cart"></i>
                         </p>
                         <p>
-                            {{artistdetails.typename}}
+                            {{artistdetails.name}}
                         </p>
                         <p>
-                            {{artistdetails.madein}}
+                            {{artistdetails.subtype[0].name}}
+                        </p>
+                        <p ng-if="artistdetails.type!='Sculptures'">
+                            {{artistdetails.width}} X {{artistdetails.height}} inches
+                        </p>
+                        <p ng-if="artistdetails.type=='Sculptures'">
+                            {{artistdetails.width}} X {{artistdetails.height}} X {{artistdetails.breadth}} inches
                         </p>
                         <p>
-                            {{artistdetails.size}} inches
-
+                            {{artistdetails.yoc}}
                         </p>
                         <p>
-                            {{artistdetails.year}}
-                        </p>
-                        <p>
-                            {{artistdetails.price}}
+                            Rs {{artistdetails.gprice}}
                         </p>
                     </div>
                 </div>
