@@ -150,6 +150,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         if (type == "All")
             type = "";
         $scope.pagedata.type = type;
+        $scope.totalartcont = [];
         $scope.getartworkswithtype();
     }
 
@@ -265,8 +266,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.imageSrc = 'img/artist/artist1.jpg';
 
-    $scope.showDetails = function () {
+    //    $scope.showDetails = function () {
+    //        ngDialog.open({
+    //            scope: $scope,
+    //            template: 'views/content/quickview-imagedetail.html'
+    //        });
+    //    };
+
+    $scope.artistDetailImg = {};
+    $scope.showDetails = function (oneuser) {
+        console.log(oneuser)
+        $scope.artistDetailImg = oneuser;
         ngDialog.open({
+            scope: $scope,
             template: 'views/content/quickview-imagedetail.html'
         });
     };
@@ -1003,7 +1015,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistimage = [];
         $scope.reload();
     }
-    
+
     //    $scope.artistimage = [{
     //        image: 'img/artist/artist1.jpg',
     //        name: 'S Yousuf Ali'

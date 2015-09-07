@@ -1,11 +1,11 @@
-<div class="image-detail" ng-controller="TotalartPageCtrl">
+<div class="image-detail">
     <div class="container">
         <div class="ngdialog-close close"></div>
-        <div class="row padding-more" ng-repeat="artistDetailImgs in artistDetailImg">
+        <div class="row padding-more">
             <div class="breadcrums">
                 <div class="col-md-8">
-                    <div class="aboveimage images" fixit>
-                        <img class="fix-img" ng-src="{{imageSrc}}" />
+                    <div class="aboveimage images fixit">
+                        <img class="fix-img" ng-src="{{artistDetailImg.artwork.image[0]|uploadpath}}" style="max-width: 100%;max-height: 100%;" />
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -15,33 +15,36 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td> {{artistDetailImgs.id}}
+                                            <td> {{artistDetailImg.artwork.srno}}
                                                 <i class="fa fa-heart"></i>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Artist:</td>
-                                            <td>{{artistDetailImgs.artistname}}</td>
+                                            <td>{{artistDetailImg.name}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Title:</td>
-                                            <td>{{artistDetailImgs.title}}</td>
+                                            <td>{{artistDetailImg.artwork.name}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Medium: </td>
-                                            <td>{{artistDetailImgs.typename }}</td>
+                                            <td>{{artistDetailImg.artwork.subtype[0].name }}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Price: </td>
-                                            <td>{{artistDetailImgs.price}}</td>
+                                            <td>Rs {{artistDetailImg.artwork.gprice}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Size:</td>
-                                            <td>{{artistDetailImgs.size}}</td>
+                                            <td ng-if="artistDetailImg.artwork.type!='Sculptures'">{{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}} inches</td>
+                                            <td ng-if="artistDetailImg.artwork.type=='Sculptures'">
+                                                {{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}} X {{artistDetailImg.artwork.breadth}} inches
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Year: </td>
-                                            <td>{{artistDetailImgs.year }}</td>
+                                            <td>{{artistDetailImg.artwork.yoc }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -51,7 +54,7 @@
                         <button type="button" class="btn btn-block  uppercase">
                             VIEW ARTWORK IN YOUR ROOM
                         </button>
-                 <a href="#/cart" type="button" class="btn btn-primarys btn-block uppercase">
+                        <a href="#/cart" type="button" class="btn btn-primarys btn-block uppercase">
                         ADD TO CART
                     </a>
                     </div>

@@ -88,13 +88,13 @@
                 <div class="aristimg-grp1">
                     <div class="relative">
                         <a href="#/artwork/all/detail/{{totalartconts.artwork._id}}">
-                            <div class="image-holders fixit" >
+                            <div class="image-holders fixit">
                                 <img class="fix-img" ng-src='{{totalartconts.artwork.image[0]|uploadthumbnail}}'>
                             </div>
                         </a>
                         <div class="hover-look">
-                            <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails();">Quick View</button>
-                            <a type="submit" class="btn btn-sucesses button-small text-center" href="#/detailImage">Details</a>
+                            <button type="submit" class="btn btn-sucesses button-small text-center" ng-click="showDetails(totalartconts);">Quick View</button>
+                            <a type="submit" class="btn btn-sucesses button-small text-center" href="#/artwork/all/detail/{{totalartconts.artwork._id}}">Details</a>
                         </div>
                     </div>
                     <div class="artist-cont-detail">
