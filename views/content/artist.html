@@ -65,10 +65,10 @@
         </div>
         <div class="holder1" ng-if="tab=='list'">
             <div class="ulblock">
-                <ul class="lineul">
-                    <li ng-repeat="artistimages in artistimage"><a href="#/artist/detail/{{artistimages._id}}">{{artistimages.name}}
+                <ul class="lineul" ng-repeat="list in listview">
+                    <li ng-repeat="artistimages in list"><a href="#/artist/detail/{{artistimages._id}}">{{artistimages.name}}
                 </li>
-            </ul>   
+                </ul>   
 <!--
             <ul class="lineul">
     <li ng-repeat="artistimages in artistimage"><a href="#/artistDetail">{{artistimages.name}}

@@ -102,7 +102,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.pagenumber = 1;
     $scope.pagedata.pagesize = 20;
     $scope.totalartcont = [];
-    $scope.totalpagecount = 0;
+    $scope.maxpages = 2;
     $scope.callinfinite = true;
 
     $scope.typejson = [{
@@ -128,7 +128,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.getartworkswithtype = function () {
         NavigationService.artworktype($scope.pagedata, function (data, status) {
             console.log(data);
-            $scope.totalpagecount = data.totalpages;
+            $scope.maxpages = parseInt(data.totalpages);
             _.each(data.data, function (n) {
                 $scope.totalartcont.push(n);
             })
@@ -151,98 +151,33 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             type = "";
         $scope.pagedata.type = type;
         $scope.totalartcont = [];
+        $scope.pagedata.pagenumber = 1;
+        $scope.pagedata.search = '';
         $scope.getartworkswithtype();
     }
 
-    $scope.loadMore = function () {
-        $scope.pagedata.pagenumber++;
-        if ($scope.pagedata.pagenumber <= $scope.totalpagecount) {
-            $scope.callinfinite = true;
-            //            $scope.getartworkswithtype();
-        }
-    };
+    //    $scope.loadMore = function () {
+    //        $scope.pagedata.pagenumber++;
+    //        if ($scope.pagedata.pagenumber <= $scope.totalpagecount) {
+    //            $scope.getartworkswithtype();
+    //        }
+    //    };
 
     $scope.filterresults = function (search) {
         console.log(search);
-
+        $scope.pagedata.search = search;
+        $scope.totalartcont = [];
+        $scope.pagedata.pagenumber = 1;
+        $scope.getartworkswithtype();
     }
 
-    //    $scope.totalartcont = [{
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'S Yousuf Ali',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Krishen Khanna',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Manjit Bawa',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        name: 'Paramjit Singh',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'Sidharth',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Ajay De',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Ajay R Dhandre',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist5.jpg',
-    //        name: 'Amarnath Sharma',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'S Yousuf Ali',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Krishen Khanna',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Manjit Bawa',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        name: 'Paramjit Singh',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Krishen Khanna',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Manjit Bawa',
-    //        id: '15',
-    //        size: '135x36'
-    //        }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        name: 'Paramjit Singh',
-    //        id: '15',
-    //        size: '135x36'
-    //        }];
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+            console.log("at bottom");
+            $scope.pagedata.pagenumber++;
+            $scope.getartworkswithtype();
+        }
+    });
 
     $scope.artistDetailImg = [{
         image: 'img/imagedetail/imagedetail.jpg',
@@ -963,13 +898,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.searchname = '';
     $scope.pagedata.type = '';
     $scope.artistimage = [];
+    $scope.maxpages = 2;
 
     $scope.reload = function () {
         NavigationService.getallartist($scope.pagedata, function (data, status) {
             console.log(data);
+            $scope.maxpages = parseInt(data.totalpages);
             _.each(data.data, function (n) {
                 $scope.artistimage.push(n);
             })
+            $scope.listview = _.chunk($scope.artistimage, 24);
         })
     }
 
@@ -991,11 +929,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             letter = "";
 
         $scope.pagedata.search = letter;
+        $scope.pagedata.pagenumber = 1;
         $scope.artistimage = [];
         $scope.reload();
     }
 
     $scope.getartistbysearch = function () {
+        $scope.pagedata.pagenumber = 1;
         $scope.artistimage = [];
         $scope.reload();
     }
@@ -1012,68 +952,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         if (type == "All")
             type = "";
         $scope.pagedata.type = type;
+        $scope.pagedata.pagenumber = 1;
+        $scope.pagedata.search = '';
+        $scope.pagedata.searchname = '';
         $scope.artistimage = [];
         $scope.reload();
     }
 
-    //    $scope.artistimage = [{
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'S Yousuf Ali'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Krishen Khanna'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Manjit Bawa'
-    //    }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        name: 'Paramjit Singh'
-    //    }, {
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'Sidharth'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Ajay De'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Ajay R Dhandre'
-    //    }, {
-    //        image: 'img/artist/artist5.jpg',
-    //        name: 'Amarnath Sharma'
-    //    }, {
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'S Yousuf Ali'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Krishen Khanna'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Manjit Bawa'
-    //    }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        name: 'Paramjit Singh'
-    //    }, {
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'S Yousuf Ali'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Krishen Khanna'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Manjit Bawa'
-    //    }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        name: 'Paramjit Singh'
-    //    }, {
-    //        image: 'img/artist/artist1.jpg',
-    //        name: 'Sidharth'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        name: 'Ajay De'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        name: 'Ajay R Dhandre'
-    //    }];
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+            console.log("at bottom");
+            $scope.pagedata.pagenumber++;
+            $scope.reload();
+        }
+    });
+
 
     $scope.artistdetail = {};
     $scope.showDetail = function (userid, username) {
@@ -1095,40 +988,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     };
-
-    //    $scope.artistdetail = [{
-    //        image: 'img/artist/artist1.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }];
 
     $scope.alphabetjson = [{
         name: "All",
