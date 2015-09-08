@@ -7,10 +7,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-    $scope.slides = [
-        'img/slide1.jpg',
-        'img/slide2.jpg'
-    ];
+    $scope.slides = [];
     // set available range
     $scope.minPrice = 0;
     $scope.maxPrice = 100000;
@@ -18,6 +15,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // default the user's values to the available range
     $scope.userMinPrice = $scope.minPrice;
     $scope.userMaxPrice = $scope.maxPrice;
+
+    NavigationService.getsliderimages(function (data, status) {
+        _.each(data, function (n) {
+            $scope.slides.push(n._id);
+        })
+    });
 })
 
 .controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
