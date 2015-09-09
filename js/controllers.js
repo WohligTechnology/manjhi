@@ -1,13 +1,14 @@
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider'])
 
-.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("home");
     $scope.menutitle = NavigationService.makeactive("Home");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-    $scope.slides = [];
+    $scope.filterby = {};
+    $scope.slides = ['img/slide1.jpg', 'img/slide2.jpg'];
     // set available range
     $scope.minPrice = 0;
     $scope.maxPrice = 100000;
@@ -21,6 +22,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //            $scope.slides.push(n._id);
     //        })
     //    });
+
+    $scope.applyfilter = function () {
+        console.log($scope.filterby);
+        $location.url("/artwork/" + $scope.filterby.type);
+    }
 })
 
 .controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -93,7 +99,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog) {
+.controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("totalartwork");
     $scope.menutitle = NavigationService.makeactive("Total Artwork");
@@ -139,7 +145,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     }
 
-    $scope.getartworkswithtype();
+    //    $scope.getartworkswithtype();
 
     $scope.makeactive = function (type) {
         _.each($scope.typejson, function (n) {
@@ -220,6 +226,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             template: 'views/content/quickview-imagedetail.html'
         });
     };
+
+    $scope.makeactive($stateParams.type);
 })
 
 .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
@@ -565,6 +573,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    $scope.aristImages = [];
+
     //    $scope.artistDetailImg = {
     //        image: 'img/imagedetail/imagedetail.jpg',
     //        id: ' 1527',
@@ -579,6 +589,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
         console.log(data);
+        NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
+            console.log(artistdata);
+            _.each(artistdata.artwork, function (n) {
+                if (n._id != data[0].artwork._id) {
+                    $scope.aristImages.push(n);
+                }
+            })
+            console.log($scope.aristImages);
+        })
         $scope.artistDetailImg = data[0];
     })
 
@@ -592,25 +611,27 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         small: 'img/zoomsmall.jpg',
         large: 'img/zoomlarge.jpg'
     }];
-    $scope.aristImages = [{
-        image: 'img/artist/artist1.jpg',
 
-        }, {
-        image: 'img/artist/artist2.jpg',
+    //    $scope.aristImages = [{
+    //        image: 'img/artist/artist1.jpg',
+    //
+    //        }, {
+    //        image: 'img/artist/artist2.jpg',
+    //
+    //        }, {
+    //        image: 'img/artist/artist3.jpg',
+    //
+    //        }, {
+    //        image: 'img/artist/artist4.jpg',
+    //
+    //        }, {
+    //        image: 'img/artist/artist3.jpg',
+    //
+    //        }, {
+    //        image: 'img/artist/artist4.jpg',
+    //
+    //        }];
 
-        }, {
-        image: 'img/artist/artist3.jpg',
-
-        }, {
-        image: 'img/artist/artist4.jpg',
-
-        }, {
-        image: 'img/artist/artist3.jpg',
-
-        }, {
-        image: 'img/artist/artist4.jpg',
-
-        }];
 })
 
 .controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {

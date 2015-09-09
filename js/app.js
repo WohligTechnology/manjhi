@@ -56,7 +56,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
     })
 
     .state('detail', {
-        url: "/artwork/all/detail/:artid",
+        url: "/artwork/detail/:artid",
         templateUrl: "views/template.html",
         controller: 'ArtistDetailImageCtrl'
     })
@@ -84,7 +84,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
     })
 
     .state('totalartpage', {
-        url: "/artwork/all",
+        url: "/artwork/:type",
         templateUrl: "views/template.html",
         controller: 'TotalartWorkCtrl'
     })
@@ -303,16 +303,16 @@ firstapp.directive('fancyboxBox', function ($document) {
     }
 });
 
-firstapp.directive('elevateZoom', function ($document,$filter) {
+firstapp.directive('elevateZoom', function ($document, $filter) {
     return {
         restrict: 'EA',
         link: function ($scope, element, attr) {
-            var image=$scope[attr.image];
+            var image = $scope[attr.image];
             var $element = $(element);
-            image=image.artwork.image[0];
+            image = image.artwork.image[0];
             var smallimg = attr.smallImage;
             var bigimg = attr.bigImage;
-            
+
             $element.attr('src', $filter('uploadsmallimage')(image));
             $element.attr('data-zoom-image', $filter('uploadpath')(image));
             $element.elevateZoom();

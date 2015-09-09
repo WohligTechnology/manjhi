@@ -18,8 +18,8 @@
 -->
                     <a class="light-make light-shade" fancybox-box href="{{artistDetailImg.artwork.image[0]|uploadpath}}">Enlarge<i class="fa fa-arrows-alt"></i>
                     </a>
-                    
-                    
+
+
                     <img elevate-zoom image="artistDetailImg" ng-if="artistDetailImg" class="fix-img" />
                 </div>
             </div>
@@ -30,7 +30,7 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>{{artistDetailImg.id}}
+                                        <td>{{artistDetailImg.artwork.srno}}
                                             <i class="fa fa-heart"></i>
                                         </td>
                                     </tr>
@@ -51,11 +51,11 @@
                                         <td ng-if="artistDetailImg.artwork.type!='Sculptures'">{{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}} inches</td>
                                         <td ng-if="artistDetailImg.artwork.type=='Sculptures'">{{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}} X {{artistDetailImg.artwork.breadth}} inches</td>
                                     </tr>
-                                    <tr>
+                                    <tr ng-if="artistDetailImg.artwork.yoc!=''">
                                         <td class="labels">Year:</td>
                                         <td>{{artistDetailImg.artwork.yoc}}</td>
                                     </tr>
-                                    <tr>
+                                    <tr ng-if="artistDetailImg.artwork.gprice!=''">
                                         <td class="labels">Price:</td>
                                         <td>Rs. {{artistDetailImg.artwork.gprice}}</td>
                                     </tr>
@@ -85,7 +85,7 @@
                             <div class="aristimg-grp1">
                                 <a href="#">
                                     <div class="image-holder" fixit>
-                                        <img class="fix-img" ng-src='{{aristimages.image}}'>
+                                        <img class="fix-img" ng-src='{{aristimages.image[0]|uploadthumbnail}}'>
                                     </div>
                                 </a>
                             </div>

@@ -55,33 +55,33 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Paintings & more",
             active: "",
-            link: "#/artwork/all",
+            link: "#/artwork/All",
             classis: "active",
             subnav: [
                 {
                     name: "Paintings",
                     classis: "active",
-                    link: "#/artwork/all"
+                    link: "#/artwork/Paintings"
         }, {
                     name: "Sculptures",
                     classis: "active",
-                    link: "#/artwork/all"
+                    link: "#/artwork/Sculptures"
         }, {
                     name: "Commissioned Sculptures",
                     classis: "active",
-                    link: "#/artwork/all"
+                    link: "#/artwork/Sculptures"
         }, {
                     name: "Photographs",
                     classis: "active",
-                    link: "#/artwork/all"
+                    link: "#/artwork/Photographs"
         }, {
                     name: "Prints",
                     classis: "active",
-                    link: "#/artwork/all"
+                    link: "#/artwork/Prints"
         }, {
                     name: "Others",
                     classis: "active",
-                    link: "#/artwork/all"
+                    link: "#/artwork/Others"
         }]
     }, {
             name: "Infra Services",

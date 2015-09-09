@@ -4,7 +4,7 @@
             <div class="absolute-box">
                 <div class="accordion-upper">
                     Search
-                    <span class="pull-right go-btn">Go <i class="fa fa-angle-right"></i></span>
+                    <span class="pull-right go-btn" ng-click="applyfilter()">Go <i class="fa fa-angle-right"></i></span>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -15,15 +15,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>
-                                    <input type="checkbox" />Paintings</label>
+                                    <input type="radio" name="arttype" ng-model="filterby.type" value="Paintings" />Paintings
+                                </label>
                                 <label>
-                                    <input type="checkbox" />Sculptures</label>
+                                    <input type="radio" name="arttype" ng-model="filterby.type" value="Sculptures" />Sculptures
+                                </label>
                             </div>
                             <div class="col-md-6">
                                 <label>
-                                    <input type="checkbox" />Photographs</label>
+                                    <input type="radio" name="arttype" ng-model="filterby.type" value="Photographs" />Photographs</label>
                                 <label>
-                                    <input type="checkbox" />Prints</label>
+                                    <input type="radio" name="arttype" ng-model="filterby.type" value="Prints" />Prints</label>
                             </div>
                         </div>
 
@@ -60,7 +62,7 @@
                     </accordion-group>
                 </accordion>
                 <div class="accordion-upper">
-                    <span class="pull-right go-btn">Go <i class="fa fa-angle-right"></i></span>
+                    <span class="pull-right go-btn" ng-click="applyfilter()">Go <i class="fa fa-angle-right"></i></span>
                 </div>
             </div>
         </aside>
