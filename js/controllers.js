@@ -16,11 +16,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.userMinPrice = $scope.minPrice;
     $scope.userMaxPrice = $scope.maxPrice;
 
-    NavigationService.getsliderimages(function (data, status) {
-        _.each(data, function (n) {
-            $scope.slides.push(n._id);
-        })
-    });
+    //    NavigationService.getsliderimages(function (data, status) {
+    //        _.each(data, function (n) {
+    //            $scope.slides.push(n._id);
+    //        })
+    //    });
 })
 
 .controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -888,7 +888,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
+.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -899,7 +899,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.pagesize = 24;
     $scope.pagedata.search = '';
     $scope.pagedata.searchname = '';
-    $scope.pagedata.type = '';
     $scope.artistimage = [];
     $scope.maxpages = 2;
 
@@ -914,7 +913,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.reload();
+    //    $scope.reload();
 
     $scope.getartistbyletter = function (letter) {
 
@@ -1023,6 +1022,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         name: "Others",
         class: ""
     }]
+
+    $scope.makeactive($stateParams.type);
 })
 
 

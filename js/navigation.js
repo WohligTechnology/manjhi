@@ -28,29 +28,29 @@ var navigationservice = angular.module('navigationservice', [])
     }, {
             name: "Artists",
             active: "",
-            link: "#/artist",
+            link: "#/artist/All",
             classis: "active",
             subnav: [
                 {
                     name: "Paintings",
                     classis: "active",
-                    link: "#/paintings"
+                    link: "#/artist/Paintings"
         }, {
                     name: "Sculptures",
                     classis: "active",
-                    link: "#/sculptures"
+                    link: "#/artist/Sculptures"
         }, {
                     name: "Photographs",
                     classis: "active",
-                    link: "#/photographs"
+                    link: "#/artist/Photographs"
         }, {
                     name: "Prints",
                     classis: "active",
-                    link: "#/prints"
+                    link: "#/artist/Prints"
         }, {
                     name: "Others",
                     classis: "active",
-                    link: "#/others"
+                    link: "#/artist/Others"
         }]
     }, {
             name: "Paintings & more",
