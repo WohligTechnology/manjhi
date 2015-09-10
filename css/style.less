@@ -2249,6 +2249,11 @@
     
     .media.min-cont .input-id {
         padding-bottom: 10px;
+        .form-control {
+            &:focus {
+                border-color: #000!important;
+            }
+        }
     }
     
     .pad-btm {
@@ -2327,12 +2332,13 @@
                 margin-bottom: 3px;
             }
             .form-control {
+                border: 1px solid #ccc;
                 &:focus {
-                    border-color: @color2!important;
+                    border-color: #000!important;
                     outline: 0;
                     color: #444;
                     box-shadow: none;
-                    border-width: 2px;
+                    border-width: 1px;
                 }
             }
             .btn {

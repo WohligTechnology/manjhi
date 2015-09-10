@@ -64,11 +64,15 @@
                                             <label for="exampleInputEmail1">Select User</label>
                                             <div class="form-group">
                                                 <ui-select tagging="tagTransform" ng-model="artwork.user" title="Select User">
-                                                    <ui-select-match placeholder="Select person...">{{$select.selected.name}}</ui-select-match>
+                                                    <ui-select-match placeholder="Select person...">
+                                                        <!--                                                    {{$select.selected.name}}-->
+                                                    </ui-select-match>
                                                     <ui-select-choices repeat="person in users">
                                                         <div ng-if="person.isTag" ng-bind-html="person.name +' <small>(new)</small>'| highlight: $select.search"></div>
                                                         <div ng-if="!person.isTag" ng-bind-html="person.name + person.isTag| highlight: $select.search"></div>
-                                                        <small>email: {{person.email}}</small>
+                                                        <small>email: 
+<!--                                                        {{person.email}}-->
+                                                        </small>
                                                     </ui-select-choices>
                                                 </ui-select>
                                             </div>
@@ -81,12 +85,19 @@
                                         <div class="form-group ui-selecter">
                                             <label for="exampleInputEmail1">Medium</label>
                                             <div class="form-group">
+                                                <!--
                                                 <ui-select multiple tagging tagging-label="false" ng-model="artwork.subtype" on-select="ismatch(artwork.subtype,$select);">
-                                                    <ui-select-match placeholder="Select Artwork Medium">{{$item.name}}</ui-select-match>
+                                                    <ui-select-match placeholder="Select Artwork Medium">
+                                                                                                            {{$item.name}}
+                                                    </ui-select-match>
                                                     <ui-select-choices repeat="person in artmedium track by person._id" refresh="refreshArtMedum($select.search,artwork.type)" refresh-delay="0">
                                                         <div ng-bind-html="person.name"></div>
                                                     </ui-select-choices>
                                                 </ui-select>
+                                                
+-->
+                                                <input type="text" class="form-control" placeholder="Medium" required capitalize-first>
+
                                             </div>
                                         </div>
                                         <div class="form-group" ng-hide="showSculpture">
@@ -106,12 +117,17 @@
                                         <div class="form-group ui-selecter">
                                             <label for="exampleInputEmail1">Tag Word</label>
                                             <div class="form-group">
+                                                <!--
                                                 <ui-select tagging tagging-label="false" multiple ng-model="artwork.tag" ng-change="ismatchmed(artwork.tag,$select);">
-                                                    <ui-select-match placeholder="Select Tag">{{$item.name}}</ui-select-match>
+                                                    <ui-select-match placeholder="Select Tag">
+                                                                                                            {{$item.name}}
+                                                    </ui-select-match>
                                                     <ui-select-choices repeat="person in tag track by person._id" refresh="refreshTag($select.search,artwork.type)" refresh-delay="0">
                                                         <div ng-bind-html="person.name"></div>
                                                     </ui-select-choices>
                                                 </ui-select>
+-->
+                                                <input type="text" class="form-control" placeholder="Tag word" required capitalize-first>
                                             </div>
                                         </div>
                                     </div>
@@ -255,7 +271,8 @@
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Upload Certificate</label>
-                                    <input class="form-control" type="url" readonly ng-click="onTextClick($event);" value="{{artwork.certi | uploadpath}}" ng-if="artwork.certi">
+                                    <!--                                    <input class="form-control" type="url" readonly ng-click="onTextClick($event);" value="{{artwork.certi | uploadpath}}" ng-if="artwork.certi"> -->
+                                    <input class="form-control" type="url" readonly ng-click="onTextClick($event);" value="" ng-if="artwork.certi">
                                     <div class="upload-div">
                                         <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
                                         <div class="upload-buttons">

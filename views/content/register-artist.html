@@ -371,7 +371,9 @@
                                             <label for="exampleInputEmail1">Theme Speciality</label>
                                             <div class="form-group">
                                                 <ui-select multiple tagging tagging-label="false" ng-model="user.theme" on-select="ismatch(user.theme,$select);">
-                                                    <ui-select-match placeholder="Select Theme">{{$item.name}}</ui-select-match>
+                                                    <ui-select-match placeholder="Select Theme">
+<!--                                                    {{$item.name}}-->
+                                                    </ui-select-match>
                                                     <ui-select-choices repeat="person in theme track by person._id" refresh="refreshTheme($select.search,$select.selected)" refresh-delay="0">
                                                         <div ng-bind-html="person.name"></div>
                                                     </ui-select-choices>
@@ -384,7 +386,9 @@
                                             <label for="exampleInputEmail1">Medium Speciality</label>
                                             <div class="form-group">
                                                 <ui-select tagging tagging-label="false" multiple ng-model="user.medium" ng-change="ismatchmed(user.medium,$select);">
-                                                    <ui-select-match placeholder="Select Medium">{{$item.name}}</ui-select-match>
+                                                    <ui-select-match placeholder="Select Medium">
+<!--                                                    {{$item.name}}-->
+                                                    </ui-select-match>
                                                     <ui-select-choices repeat="person in medium track by person._id" refresh="refreshMedium($select.search,$select.selected)" refresh-delay="0">
                                                         <div ng-bind-html="person.name"></div>
                                                     </ui-select-choices>
@@ -414,7 +418,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Upload Resume</label>
-                                            <label for="exampleInputEmail1" ng-if="user.resume">{{user.resume | uploadpath}}</label>
+                                            <label for="exampleInputEmail1" ng-if="user.resume">
+<!--                                            {{user.resume | uploadpath}}-->
+                                            </label>
                                             <input type="button" ng-click="removeresume();" value="Delete" class="btn btn-danger" ng-if="user.resume">
                                         </div>
                                         <div class="form-group">
@@ -433,7 +439,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Upload Address Certificate</label>
-                                            <label for="exampleInputEmail1" ng-if="user.adcer">{{user.adcer | uploadpath}}</label>
+                                            <label for="exampleInputEmail1" ng-if="user.adcer">
+<!--                                            {{user.adcer | uploadpath}}-->
+                                            </label>
                                             <input type="button" ng-click="removeadcer();" value="Delete" class="btn btn-danger" ng-if="user.adcer">
                                         </div>
                                         <div class="form-group">
