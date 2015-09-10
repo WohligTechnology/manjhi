@@ -37,10 +37,7 @@
                                         </tr>
                                         <tr>
                                             <td class="labels">Size:</td>
-                                            <td ng-if="artistDetailImg.artwork.type!='Sculptures'">{{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}} inches</td>
-                                            <td ng-if="artistDetailImg.artwork.type=='Sculptures'">
-                                                {{artistDetailImg.artwork.width}} X {{artistDetailImg.artwork.height}} X {{artistDetailImg.artwork.breadth}} inches
-                                            </td>
+                                            <td>{{artistDetailImg.artwork|makesizestr}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Year: </td>

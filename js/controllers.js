@@ -30,74 +30,77 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("favorite");
-        $scope.menutitle = NavigationService.makeactive("Favorite");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        $scope.artistdetail = [{
-            image: 'img/artist/artist1.jpg',
-            id: '1527',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("favorite");
+    $scope.menutitle = NavigationService.makeactive("Favorite");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    $scope.artistdetail = [{
+        image: 'img/artist/artist1.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: 'Rs.1,00,000/ $6,400'
     }, {
-            image: 'img/artist/artist2.jpg',
-            id: '1527',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
+        image: 'img/artist/artist2.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: 'Rs.1,00,000/ $6,400'
     }, {
-            image: 'img/artist/artist3.jpg',
-            id: '1527',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
+        image: 'img/artist/artist3.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: 'Rs.1,00,000/ $6,400'
     }, {
-            image: 'img/artist/artist4.jpg',
-            id: '1527',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
+        image: 'img/artist/artist4.jpg',
+        id: '1527',
+        typename: 'Untitled',
+        madein: 'Oil on board',
+        size: '19.5 x 23',
+        year: '1978',
+        price: 'Rs.1,00,000/ $6,400'
     }];
-    })
-    .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("cart");
-        $scope.menutitle = NavigationService.makeactive("Cart");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-    })
+})
+
+.controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("cart");
+    $scope.menutitle = NavigationService.makeactive("Cart");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
 
 .controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("team");
-        $scope.menutitle = NavigationService.makeactive("Team");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-    })
-    .controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("artistpage");
-        $scope.menutitle = NavigationService.makeactive("Artist");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-    })
-    .controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("contactus");
-        $scope.menutitle = NavigationService.makeactive("Contact Us");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-    })
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("team");
+    $scope.menutitle = NavigationService.makeactive("Team");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+
+.controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("artistpage");
+    $scope.menutitle = NavigationService.makeactive("Artist");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+
+.controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("contactus");
+    $scope.menutitle = NavigationService.makeactive("Contact Us");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
 
 .controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams) {
     //Used to name the .html file
@@ -110,6 +113,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.type = "";
     $scope.pagedata.pagenumber = 1;
     $scope.pagedata.pagesize = 20;
+    $scope.pagedata.filter = "";
+    $scope.pagedata.sort = 1;
     $scope.totalartcont = [];
     $scope.maxpages = 2;
     $scope.callinfinite = true;
@@ -162,6 +167,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.totalartcont = [];
         $scope.pagedata.pagenumber = 1;
         $scope.pagedata.search = '';
+        $scope.pagedata.filter = "srno";
+        $scope.pagedata.sort = 1;
         $scope.getartworkswithtype();
     }
 
@@ -174,9 +181,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.filterresults = function (search) {
         console.log(search);
-        $scope.pagedata.search = search;
+        $scope.pagedata.search = _.capitalize(search);
         $scope.totalartcont = [];
         $scope.pagedata.pagenumber = 1;
+        $scope.pagedata.filter = "srno";
+        $scope.pagedata.sort = 1;
         $scope.getartworkswithtype();
     }
 
@@ -227,115 +236,125 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
+    $scope.sortBy = function (num, by) {
+        console.log("num=" + num + "   by=" + by);
+        $scope.pagedata.sort = num;
+        $scope.pagedata.filter = _.capitalize(by);
+        $scope.pagedata.pagenumber = 1;
+        $scope.totalartcont = [];
+        $scope.getartworkswithtype();
+    }
+
     $scope.makeactive($stateParams.type);
 })
 
 .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("checkout");
-        $scope.menutitle = NavigationService.makeactive("Checkout");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        //Valdr
-        $scope.checkout = [];
-        $scope.checkout.isshipping = true;
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("checkout");
+    $scope.menutitle = NavigationService.makeactive("Checkout");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    //Valdr
+    $scope.checkout = [];
+    $scope.checkout.isshipping = true;
 
-        $scope.showShipping = function (check) {
-            console.log(check);
-        }
+    $scope.showShipping = function (check) {
+        console.log(check);
+    }
 
-        valdr.addConstraints({
-            'Person': {
-                'firstName': {
-                    'size': {
-                        'min': 3,
-                        'max': 20,
-                        'message': 'First name is required to be between 3 and 20 characters.'
-                    },
-                    'required': {
-                        'message': 'First name is required.'
-                    }
+    valdr.addConstraints({
+        'Person': {
+            'firstName': {
+                'size': {
+                    'min': 3,
+                    'max': 20,
+                    'message': 'First name is required to be between 3 and 20 characters.'
+                },
+                'required': {
+                    'message': 'First name is required.'
                 }
             }
-        });
-    })
-    .controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("events");
-        $scope.menutitle = NavigationService.makeactive("Events");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+        }
+    });
+})
 
-        $scope.status = {
-            isFirstOpen: true,
-            isFirstDisabled: false
-        };
+.controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("events");
+    $scope.menutitle = NavigationService.makeactive("Events");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
 
-        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
 
-        $scope.status = {
-            isFirstOpen: true,
-            isFirstDisabled: false
-        };
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
-        $scope.event2016 = [{
-            name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
-            detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
-            img: 'img/event/event1.jpg'
+    $scope.event2016 = [{
+        name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
+        detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
+        img: 'img/event/event1.jpg'
         }, {
-            name: 'Art and Culture exchange between India & China',
-            detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
-            img: 'img/event/event2.jpg'
+        name: 'Art and Culture exchange between India & China',
+        detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
+        img: 'img/event/event2.jpg'
         }];
 
-        $scope.event2015 = [{
-            name: 'The Art Enclave at UBM Index Fairs 2014',
-            detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
-            img: 'img/event/event3.jpg'
+    $scope.event2015 = [{
+        name: 'The Art Enclave at UBM Index Fairs 2014',
+        detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
+        img: 'img/event/event3.jpg'
         }, {
-            name: 'Art Partner for The Edutainment Show 2014',
-            detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
-            img: ''
+        name: 'Art Partner for The Edutainment Show 2014',
+        detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
+        img: ''
         }, {
-            name: 'Art Partner for Yes Bank International Polo Cup',
-            detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
-            img: ''
+        name: 'Art Partner for Yes Bank International Polo Cup',
+        detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
+        img: ''
         }];
 
-        $scope.event2014 = [{
-            name: 'Art Infrastructure – nobody’s business',
-            detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
-            img: 'img/event/event4.jpg'
+    $scope.event2014 = [{
+        name: 'Art Infrastructure – nobody’s business',
+        detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
+        img: 'img/event/event4.jpg'
         }, {
-            name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
-            detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
-            img: 'img/event/event5.jpg'
+        name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
+        detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
+        img: 'img/event/event5.jpg'
         }, {
-            name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
-            detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
-            img: 'img/event/event6.jpg'
+        name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
+        detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
+        img: 'img/event/event6.jpg'
         }, {
-            name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
-            detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
-            img: ''
+        name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
+        detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
+        img: ''
         }, {
-            name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
-            detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
-            img: ''
+        name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
+        detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
+        img: ''
         }, {
-            name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
-            detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
-            img: ''
+        name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
+        detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
+        img: ''
         }, {
-            name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
-            detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
-            img: 'img/event/event7.jpg'
+        name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
+        detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
+        img: 'img/event/event7.jpg'
         }];
 
 
-    })
+})
 
 .controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
     //Used to name the .html file

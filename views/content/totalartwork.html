@@ -106,11 +106,8 @@
                         <p>
                             {{totalartconts.name}}
                         </p>
-                        <p ng-if="totalartconts.artwork.type!='Sculptures'">
-                            {{totalartconts.artwork.width}} X {{totalartconts.artwork.height}} inches
-                        </p>
-                        <p ng-if="totalartconts.artwork.type=='Sculptures'">
-                            {{totalartconts.artwork.width}} X {{totalartconts.artwork.height}} X {{totalartconts.artwork.breadth}} inches
+                        <p>
+                            {{totalartconts.artwork|makesizestr}}
                         </p>
                     </div>
                 </div>

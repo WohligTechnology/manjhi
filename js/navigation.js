@@ -202,6 +202,8 @@ var navigationservice = angular.module('navigationservice', [])
             }).success(callback);
         },
         artworktype: function (pagedata, callback) {
+//            delete pagedata.sort;
+//            delete pagedata.filter;
             $http({
                 url: adminurl + "artwork/artworktype",
                 method: "POST",

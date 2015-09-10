@@ -355,3 +355,23 @@ firstapp.filter('uploadsmallimage', function () {
         }
     };
 });
+
+firstapp.filter('makesizestr', function () {
+    return function (artobj) {
+        var size = "";
+        if (artobj && artobj != undefined) {
+            if (artobj.width && artobj.width != "") {
+                size += artobj.width;
+            }
+            if (artobj.height && artobj.height != "") {
+                size += " " + artobj.height;
+            }
+            if (artobj.breadth && artobj.breadth != "") {
+                size += " " + artobj.breadth;
+            }
+            size = size.trim();
+            size = size.split(" ").join(" X ");
+            return size += " inches";
+        }
+    };
+});

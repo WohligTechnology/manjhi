@@ -10,10 +10,10 @@
 <div class="sort">
     <div class="row">
         <div class="col-md-12">
-            <div class="active"> New to Old</div>
-            <div> Old to New</div>
-            <div> High to Low</div>
-            <div> Low to High</div>
+            <div class="active" ng-click="sortBy(-1,'yoc')"> New to Old</div>
+            <div ng-click="sortBy(1,'yoc')"> Old to New</div>
+            <div ng-click="sortBy(-1,'gprice')"> High to Low</div>
+            <div ng-click="sortBy(1,'gprice')"> Low to High</div>
         </div>
     </div>
 </div>
