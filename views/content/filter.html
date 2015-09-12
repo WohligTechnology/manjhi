@@ -7,9 +7,9 @@
         <div class="col-md-3">
             <div class="mega-cont">
                 <h4>Price</h4>
-                <div range-slider min="minPrice" max="maxPrice" model-min="userMinPrice" model-max="userMaxPrice" step="5"></div>
-                <input type="number" placeholder="0" class="maxmin">
-                <input type="number" placeholder="100000" class="maxmin pull-right">
+                <div range-slider min="minPrice" max="maxPrice" model-min="pagedata.minprice" model-max="pagedata.maxprice" step="5"></div>
+                <input type="number" placeholder="0" class="maxmin" ng-model="pagedata.minprice">
+                <input type="number" placeholder="100000" class="maxmin pull-right" ng-model="pagedata.maxprice">
             </div>
         </div>
         <div class="col-md-3">

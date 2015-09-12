@@ -8,10 +8,25 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 
     $scope.filterby = {};
+    $scope.filterby.search = "";
+    $scope.filterby.type = "";
+    $scope.filterby.pagenumber = 1;
+    $scope.filterby.pagesize = 20;
+    $scope.filterby.filter = "";
+    $scope.filterby.sort = 1;
+    $scope.filterby.minprice = 0;
+    $scope.filterby.maxprice = 10000000;
+    $scope.filterby.minwidth = '';
+    $scope.filterby.maxwidth = '';
+    $scope.filterby.minheight = '';
+    $scope.filterby.maxheight = '';
+    $scope.filterby.minbreadth = '';
+    $scope.filterby.maxbreadth = '';
+
     $scope.slides = ['img/slide1.jpg', 'img/slide2.jpg'];
     // set available range
     $scope.minPrice = 0;
-    $scope.maxPrice = 100000;
+    $scope.maxPrice = 10000000;
 
     // default the user's values to the available range
     $scope.userMinPrice = $scope.minPrice;
@@ -25,7 +40,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.applyfilter = function () {
         console.log($scope.filterby);
-        $location.url("/artwork/" + $scope.filterby.type);
+        $.jStorage.set("filterby", $scope.filterby)
+        $location.url("/artwork/-1");
     }
 })
 
@@ -115,6 +131,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.pagesize = 20;
     $scope.pagedata.filter = "";
     $scope.pagedata.sort = 1;
+    $scope.pagedata.minprice = 0;
+    $scope.pagedata.maxprice = 10000000;
+    $scope.pagedata.minwidth = 0;
+    $scope.pagedata.maxwidth = 0;
+    $scope.pagedata.minheight = 0;
+    $scope.pagedata.maxheight = 0;
+    $scope.pagedata.minbreadth = 0;
+    $scope.pagedata.maxbreadth = 0;
     $scope.totalartcont = [];
     $scope.maxpages = 2;
     $scope.callinfinite = true;
@@ -139,7 +163,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         class: ""
     }]
 
-    $scope.getartworkswithtype = function () {
+    $scope.reload = function () {
+        cfpLoadingBar.start();
         NavigationService.artworktype($scope.pagedata, function (data, status) {
             console.log(data);
             $scope.maxpages = parseInt(data.totalpages);
@@ -147,10 +172,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.totalartcont.push(n);
             })
             $scope.callinfinite = false;
+            cfpLoadingBar.complete();
         });
     }
 
-    //    $scope.getartworkswithtype();
+    //    $scope.reload();
 
     $scope.makeactive = function (type) {
         _.each($scope.typejson, function (n) {
@@ -169,13 +195,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.search = '';
         $scope.pagedata.filter = "srno";
         $scope.pagedata.sort = 1;
-        $scope.getartworkswithtype();
+        $scope.reload();
     }
 
     //    $scope.loadMore = function () {
     //        $scope.pagedata.pagenumber++;
     //        if ($scope.pagedata.pagenumber <= $scope.totalpagecount) {
-    //            $scope.getartworkswithtype();
+    //            $scope.reload();
     //        }
     //    };
 
@@ -186,14 +212,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.pagenumber = 1;
         $scope.pagedata.filter = "srno";
         $scope.pagedata.sort = 1;
-        $scope.getartworkswithtype();
+        $scope.reload();
     }
 
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
             console.log("at bottom");
             $scope.pagedata.pagenumber++;
-            $scope.getartworkswithtype();
+            $scope.reload();
         }
     });
 
@@ -211,7 +237,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     // set available range
     $scope.minPrice = 0;
-    $scope.maxPrice = 100000;
+    $scope.maxPrice = 10000000;
 
     // default the user's values to the available range
     $scope.userMinPrice = $scope.minPrice;
@@ -239,13 +265,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.sortBy = function (num, by) {
         console.log("num=" + num + "   by=" + by);
         $scope.pagedata.sort = num;
-        $scope.pagedata.filter = _.capitalize(by);
+        $scope.pagedata.filter = by;
         $scope.pagedata.pagenumber = 1;
         $scope.totalartcont = [];
-        $scope.getartworkswithtype();
+        $scope.reload();
     }
 
-    $scope.makeactive($stateParams.type);
+    if ($stateParams.type != -1)
+        $scope.makeactive($stateParams.type);
+    else {
+        $scope.pagedata = $.jStorage.get("filterby");
+        $scope.reload();
+    }
 })
 
 .controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
@@ -928,7 +959,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams) {
+.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -936,13 +967,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.tab = 'grid';
     $scope.pagedata = {};
     $scope.pagedata.pagenumber = 1;
-    $scope.pagedata.pagesize = 24;
+    $scope.pagedata.pagesize = 18;
     $scope.pagedata.search = '';
     $scope.pagedata.searchname = '';
     $scope.artistimage = [];
     $scope.maxpages = 2;
 
     $scope.reload = function () {
+        cfpLoadingBar.start();
         NavigationService.getallartist($scope.pagedata, function (data, status) {
             console.log(data);
             $scope.maxpages = parseInt(data.totalpages);
@@ -950,7 +982,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.artistimage.push(n);
             })
             $scope.listview = _.chunk($scope.artistimage, 24);
-        })
+            cfpLoadingBar.complete();
+        });
     }
 
     //    $scope.reload();
@@ -995,7 +1028,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             type = "";
         $scope.pagedata.type = type;
         $scope.pagedata.pagenumber = 1;
-        $scope.pagedata.search = '';
+        //        $scope.pagedata.search = '';
         $scope.pagedata.searchname = '';
         $scope.artistimage = [];
         $scope.reload();

@@ -9,7 +9,9 @@ var firstapp = angular.module('firstapp', [
 
 firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) {
     //Turn the spinner on or off
-    cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.includeSpinner = true;
+    cfpLoadingBarProvider.spinnerTemplate = '<div class="loadingcfp"><div><span class="fa fa-spinner" >loading...</span></div></div>';
+    cfpLoadingBarProvider.includeBar = false;
 
     $stateProvider
 
@@ -335,7 +337,7 @@ firstapp.directive('zoomContainer', function () {
 firstapp.filter('uploadthumbnail', function () {
     return function (input) {
         if (input && input != "") {
-            return adminurl + "user/resize?heigth=190&file=" + input;
+            return adminurl + "user/resize?height=190&file=" + input;
         }
     };
 });
@@ -351,7 +353,27 @@ firstapp.filter('uploadpath', function () {
 firstapp.filter('uploadsmallimage', function () {
     return function (input) {
         if (input && input != "") {
-            return adminurl + "user/resize?height=400&file=" + input;
+            return adminurl + "user/resize?width=750&file=" + input;
+        }
+    };
+});
+
+firstapp.directive('img', function ($compile, $parse) {
+    return {
+        restrict: 'EA',
+        replace: false,
+        link: function ($scope, element, attrs) {
+            var $element = $(element);
+            if (!attrs.noloading) {
+                $element.after("<img src='img/loading.gif' class='loading' />");
+                var $loading = $element.next(".loading");
+                $element.load(function () {
+                    $loading.remove();
+                    $(this).addClass("doneLoading");
+                });
+            } else {
+                $($element).addClass("doneLoading");
+            }
         }
     };
 });
@@ -371,7 +393,8 @@ firstapp.filter('makesizestr', function () {
             }
             size = size.trim();
             size = size.split(" ").join(" X ");
-            return size += " inches";
+            if (size != "")
+                return size += " inches";
         }
     };
 });
