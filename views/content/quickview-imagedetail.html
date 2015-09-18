@@ -33,7 +33,7 @@
                                         </tr>
                                         <tr>
                                             <td class="labels">Price: </td>
-                                            <td>Rs {{artistDetailImg.artwork.gprice}}</td>
+                                            <td>{{artistDetailImg.artwork.gprice|currency:"Rs "}}</td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Size:</td>
@@ -41,7 +41,7 @@
                                         </tr>
                                         <tr>
                                             <td class="labels">Year: </td>
-                                            <td>{{artistDetailImg.artwork.yoc }}</td>
+                                            <td>{{artistDetailImg.artwork.yoc}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

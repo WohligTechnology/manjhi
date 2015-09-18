@@ -12,7 +12,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.filterby.type = "";
     $scope.filterby.pagenumber = 1;
     $scope.filterby.pagesize = 20;
-    $scope.filterby.filter = "";
+    $scope.filterby.filter = "srno";
     $scope.filterby.sort = 1;
     $scope.filterby.minprice = 0;
     $scope.filterby.maxprice = 10000000;
@@ -127,6 +127,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata = {};
     $scope.pagedata.search = "";
     $scope.pagedata.type = "";
+    $scope.pagedata.medium = "";
     $scope.pagedata.pagenumber = 1;
     $scope.pagedata.pagesize = 20;
     $scope.pagedata.filter = "";
@@ -134,11 +135,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.minprice = 0;
     $scope.pagedata.maxprice = 10000000;
     $scope.pagedata.minwidth = 0;
-    $scope.pagedata.maxwidth = 0;
+    $scope.pagedata.maxwidth = 10000;
     $scope.pagedata.minheight = 0;
-    $scope.pagedata.maxheight = 0;
+    $scope.pagedata.maxheight = 10000;
     $scope.pagedata.minbreadth = 0;
-    $scope.pagedata.maxbreadth = 0;
+    $scope.pagedata.maxbreadth = 10000;
     $scope.totalartcont = [];
     $scope.maxpages = 2;
     $scope.callinfinite = true;
@@ -195,6 +196,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.search = '';
         $scope.pagedata.filter = "srno";
         $scope.pagedata.sort = 1;
+        $scope.pagedata.medium = '';
         $scope.reload();
     }
 
@@ -263,7 +265,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 
     $scope.sortBy = function (num, by) {
-        console.log("num=" + num + "   by=" + by);
         $scope.pagedata.sort = num;
         $scope.pagedata.filter = by;
         $scope.pagedata.pagenumber = 1;
@@ -271,11 +272,46 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.reload();
     }
 
-    if ($stateParams.type != -1)
+    if ($stateParams.type != -1) {
         $scope.makeactive($stateParams.type);
-    else {
+    } else {
         $scope.pagedata = $.jStorage.get("filterby");
+        if ($scope.pagedata.minprice == '')
+            $scope.pagedata.minprice = 0;
+        if ($scope.pagedata.maxprice == '')
+            $scope.pagedata.maxprice = 10000000;
+        if ($scope.pagedata.minwidth == '')
+            $scope.pagedata.minwidth = 0;
+        if ($scope.pagedata.maxwidth == '')
+            $scope.pagedata.maxwidth = 10000;
+        if ($scope.pagedata.minheight == '')
+            $scope.pagedata.minheight = 0;
+        if ($scope.pagedata.maxheight == '')
+            $scope.pagedata.maxheight = 10000;
+        if ($scope.pagedata.minbreadth == '')
+            $scope.pagedata.minbreadth = 0;
+        if ($scope.pagedata.maxbreadth == '')
+            $scope.pagedata.maxbreadth = 10000;
         $scope.reload();
+    }
+
+    $scope.clearfilters = function () {
+        $scope.pagedata.search = "";
+        $scope.pagedata.type = "";
+        $scope.pagedata.pagenumber = 1;
+        $scope.pagedata.pagesize = 20;
+        $scope.pagedata.filter = "";
+        $scope.pagedata.medium = '';
+        $scope.pagedata.sort = 1;
+        $scope.pagedata.minprice = 0;
+        $scope.pagedata.maxprice = 10000000;
+        $scope.pagedata.minwidth = 0;
+        $scope.pagedata.maxwidth = 10000;
+        $scope.pagedata.minheight = 0;
+        $scope.pagedata.maxheight = 10000;
+        $scope.pagedata.minbreadth = 0;
+        $scope.pagedata.maxbreadth = 10000;
+        $scope.makeactive('All');
     }
 })
 

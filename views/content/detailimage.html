@@ -56,7 +56,7 @@
                                     </tr>
                                     <tr ng-if="artistDetailImg.artwork.gprice!=''">
                                         <td class="labels">Price:</td>
-                                        <td>Rs. {{artistDetailImg.artwork.gprice}}</td>
+                                        <td>{{artistDetailImg.artwork.gprice|currency:"Rs "}}</td>
                                     </tr>
                                 </tbody>
                             </table>

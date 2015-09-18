@@ -1,4 +1,4 @@
-var adminurl = "http://localhost:1337/";
+//var adminurl = "http://192.168.2.22/";
 var adminurl = "http://104.197.23.70/";
 var navigationservice = angular.module('navigationservice', [])
 
@@ -202,8 +202,8 @@ var navigationservice = angular.module('navigationservice', [])
             }).success(callback);
         },
         artworktype: function (pagedata, callback) {
-//            delete pagedata.sort;
-//            delete pagedata.filter;
+            //            delete pagedata.minbreadth;
+            //            delete pagedata.maxbreadth;
             $http({
                 url: adminurl + "artwork/artworktype",
                 method: "POST",
