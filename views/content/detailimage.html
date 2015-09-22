@@ -18,9 +18,7 @@
 -->
                     <a class="light-make light-shade" fancybox-box href="{{artistDetailImg.artwork.image[0]|uploadpath}}">Enlarge<i class="fa fa-arrows-alt"></i>
                     </a>
-
-
-                    <img elevate-zoom image="artistDetailImg" ng-if="artistDetailImg" class="fix-img" />
+                    <img elevate-zoom image="artistDetailImg" ng-if="artistDetailImg && artistDetailImg.artwork" class="fix-img" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -77,12 +75,12 @@
             <div class="padding-more">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="head-more">MORE WORKS BY THIS ARTIST <a href="#" class="link-viewall">VIEW ALL</a></h4>
+                        <h4 class="head-more">MORE WORKS BY THIS ARTIST <a href="#/artwork/All" class="link-viewall">VIEW ALL</a></h4>
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-2 col-sm-4" ng-repeat="aristimages in aristImages">
                             <div class="aristimg-grp1">
-                                <a href="#">
+                                <a ng-click="showitabove(aristimages);">
                                     <div class="image-holder" fixit>
                                         <img class="fix-img" ng-src='{{aristimages.image[0]|uploadthumbnail}}'>
                                     </div>
