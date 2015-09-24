@@ -11,14 +11,18 @@
                             <p><span class="bold">Born in</span> 1983 <span class="bold">at</span> Andhra Pradesh</p>
                             <p><span class="bold">Passed away</span>
                             </p>
-                            <p><span class="bold">Education</span>
-                                <br>2006, Bachelor of Fine Arts, Andhra University, Vishakhapatnam
-                                <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
-                                <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi
+                            <p ng-if="artistdetail.edu">
+                                <span class="bold">Education</span>
+                                <span ng-repeat="edu in artistdetail.edu">
+                                <br>{{edu.year}}, {{edu.quali}}, {{edu.institu}}, {{edu.city}}
+                                </span>
+                                <!--                                <br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi-->
                             </p>
                             <p ng-if="artistdetail.award">
                                 <span class="bold">Awards / Recognitions / Honors </span>
-                                <span ng-repeat="awards in artistdetail.award"><br>{{awards.year}}, {{awards.title}}, {{awards.institution}}</span>
+                                <span ng-repeat="awards in artistdetail.award">
+                                <br>{{awards.year}}, {{awards.title}}, {{awards.institution}}
+                                </span>
                                 <!--
                                 <br>2006, H R D National Scholarship
 <br>2006, H R D National Scholarship
@@ -28,7 +32,9 @@
                         <div class="col-md-6">
                             <p ng-if="artistdetail.auction">
                                 <span class="bold">Auctions</span>
-                                <span ng-repeat="auction in artistdetail.auction"><br>{{auction.year}}, {{auction.auctionhouse}}, {{auction.location}}</span>
+                                <span ng-repeat="auction in artistdetail.auction">
+                                <br>{{auction.year}}, {{auction.auctionhouse}}, {{auction.location}}
+                                </span>
                                 <!--
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
@@ -37,7 +43,9 @@
 
                             <p ng-if="artistdetail.soloshow">
                                 <span class="bold">Solo Shows</span>
-                                <span ng-repeat="solo in artistdetail.soloshow"><br>{{solo.year}}, {{solo.title}}, {{solo.gallery}}, {{solo.venue}}</span>
+                                <span ng-repeat="solo in artistdetail.soloshow">
+                                <br>{{solo.year}}, {{solo.title}}, {{solo.gallery}}, {{solo.venue}}
+                                </span>
                                 <!--
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
@@ -46,7 +54,9 @@
 
                             <p ng-if="artistdetail.groupshow">
                                 <span class="bold">Group Shows</span>
-                                <span ng-repeat="group in artistdetail.groupshow"><br>{{group.year}}, {{group.title}}, {{group.gallery}}, {{group.venue}}</span>
+                                <span ng-repeat="group in artistdetail.groupshow">
+                                <br>{{group.year}}, {{group.title}}, {{group.gallery}}, {{group.venue}}
+                                </span>
                                 <!--
                                 <br>2012, United Art Fair, Pragati Maidan, New Delhi
                                 <br>2013, The Aura Art Show 2013, Aura Art, Jehangir Art Gallery, Mumbai
@@ -67,24 +77,49 @@
                     </div>
                     <div class="artist-cont-detail">
                         <p>
-                            {{artistdetails.srno}}
+                            <span ng-if="artistdetails.srno && artistdetails.srno!=''">
+                                    {{artistdetails.srno}}
+                                </span>
+                            <span ng-if="!artistdetails.srno || artistdetails.srno==''">
+                                    N/A
+                                </span>
                             <i class="fa fa-heart"></i>
                             <i class="fa fa-shopping-cart"></i>
                         </p>
                         <p>
-                            {{artistdetails.name}}
+                            <span ng-if="artistdetails.name && artistdetails.name!=''">
+                                    {{artistdetails.name}}
+                                </span>
+                            <span ng-if="!artistdetails.name || artistdetails.name==''">
+                                    N/A
+                                </span>
                         </p>
                         <p>
-                            {{artistdetails.subtype[0].name}}
+                            <span ng-if="artistdetails.subtype.length>0 && artistdetails.subtype[0].name!=''">
+                                    {{artistdetails.subtype[0].name}}
+                                </span>
+                            <span ng-if="!artistdetails.subtype || artistdetails.subtype.length==0">
+                                    N/A
+                                </span>
                         </p>
                         <p>
                             {{artistdetails|makesizestr}}
                         </p>
                         <p>
-                            {{artistdetails.yoc}}
+                            <span ng-if="artistdetails.yoc && artistdetails.yoc!=''">
+                                    {{artistdetails.yoc}}
+                                </span>
+                            <span ng-if="!artistdetails.yoc || artistdetails.yoc==''">
+                                    N/A
+                                </span>
                         </p>
                         <p>
-                            {{artistdetails.gprice|currency:"Rs "}}
+                            <span ng-if="artistdetails.gprice && artistdetails.gprice!='N/A'">
+                                    {{artistdetails.gprice|currency:"Rs "}}
+                                </span>
+                            <span ng-if="!artistdetails.gprice || artistdetails.gprice=='N/A'">
+                                    N/A
+                                </span>
                         </p>
                     </div>
                 </div>

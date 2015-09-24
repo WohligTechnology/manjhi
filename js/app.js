@@ -116,7 +116,7 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
     })
 
     .state('sculpture', {
-        url: "/sculpture",
+        url: "/sculpture/:artid",
         templateUrl: "views/template.html",
         controller: 'SculptureCtrl'
     })
@@ -394,13 +394,17 @@ firstapp.filter('makesizestr', function () {
             if (artobj.height && artobj.height != "") {
                 size += " " + artobj.height;
             }
-            if (artobj.breadth && artobj.breadth != "") {
+            if (artobj.breadth && artobj.breadth != "" && artobj.breadth != "N/A") {
                 size += " " + artobj.breadth;
             }
             size = size.trim();
             size = size.split(" ").join(" X ");
             if (size != "")
                 return size += " inches";
+            else
+                return "NA";
+        } else {
+            return "NA";
         }
     };
 });

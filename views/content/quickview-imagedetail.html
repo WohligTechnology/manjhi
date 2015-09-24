@@ -15,25 +15,38 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td> {{artistDetailImg.artwork.srno}}
+                                            <td>
+                                                <span ng-if="artistDetailImg.artwork.srno && artistDetailImg.artwork.srno!=''">                                                                    {{artistDetailImg.artwork.srno}}
+                                            </span>
                                                 <i class="fa fa-heart"></i>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr class="font-color3">
                                             <td class="labels">Artist:</td>
-                                            <td>{{artistDetailImg.name}}</td>
+                                            <td ng-if="artistDetailImg.name && artistDetailImg.name!=''">
+                                                {{artistDetailImg.name}}
+                                            </td>
+                                            <td ng-if="!artistDetailImg.name || artistDetailImg.name==''">
+                                                N/A
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Title:</td>
-                                            <td>{{artistDetailImg.artwork.name}}</td>
+                                            <td ng-if="artistDetailImg.artwork.name && artistDetailImg.artwork.name!=''">
+                                                {{artistDetailImg.artwork.name}}
+                                            </td>
+                                            <td ng-if="!artistDetailImg.artwork.name || artistDetailImg.artwork.name==''">
+                                                N/A
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Medium: </td>
-                                            <td>{{artistDetailImg.artwork.subtype[0].name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="labels">Price: </td>
-                                            <td>{{artistDetailImg.artwork.gprice|currency:"Rs "}}</td>
+                                            <td ng-if="artistDetailImg.artwork.subtype.length>0 && artistDetailImg.artwork.subtype[0].name!=''">
+                                                {{artistDetailImg.artwork.subtype[0].name}}
+                                            </td>
+                                            <td ng-if="!artistDetailImg.artwork.subtype || artistDetailImg.artwork.subtype.length==0">
+                                                N/A
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td class="labels">Size:</td>
@@ -41,7 +54,21 @@
                                         </tr>
                                         <tr>
                                             <td class="labels">Year: </td>
-                                            <td>{{artistDetailImg.artwork.yoc}}</td>
+                                            <td ng-if="artistDetailImg.artwork.yoc && artistDetailImg.artwork.yoc!=''">
+                                                {{artistDetailImg.artwork.yoc}}
+                                            </td>
+                                            <td ng-if="!artistDetailImg.artwork.yoc || artistDetailImg.artwork.yoc==''">
+                                                N/A
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labels">Price: </td>
+                                            <td ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
+                                                {{artistDetailImg.artwork.gprice|currency:"Rs "}}
+                                            </td>
+                                            <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
+                                                N/A
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

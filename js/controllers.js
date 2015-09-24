@@ -118,7 +118,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams) {
+.controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams, $location) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("totalartwork");
     $scope.menutitle = NavigationService.makeactive("Total Artwork");
@@ -132,14 +132,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.pagesize = 20;
     $scope.pagedata.filter = "";
     $scope.pagedata.sort = 1;
-    $scope.pagedata.minprice = 0;
-    $scope.pagedata.maxprice = 10000000;
-    $scope.pagedata.minwidth = 0;
-    $scope.pagedata.maxwidth = 10000;
-    $scope.pagedata.minheight = 0;
-    $scope.pagedata.maxheight = 10000;
-    $scope.pagedata.minbreadth = 0;
-    $scope.pagedata.maxbreadth = 10000;
+    $scope.pagedata.minprice = '';
+    $scope.pagedata.maxprice = '';
+    $scope.pagedata.minwidth = '';
+    $scope.pagedata.maxwidth = '';
+    $scope.pagedata.minheight = '';
+    $scope.pagedata.maxheight = '';
+    $scope.pagedata.minbreadth = '';
+    $scope.pagedata.maxbreadth = '';
     $scope.totalartcont = [];
     $scope.maxpages = 2;
     $scope.callinfinite = true;
@@ -163,6 +163,25 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         name: "Others",
         class: ""
     }]
+
+    $scope.checkForEmpty = function () {
+        if ($scope.pagedata.minprice == '')
+            $scope.pagedata.minprice = 0;
+        if ($scope.pagedata.maxprice == '')
+            $scope.pagedata.maxprice = 10000000;
+        if ($scope.pagedata.minwidth == '')
+            $scope.pagedata.minwidth = 0;
+        if ($scope.pagedata.maxwidth == '')
+            $scope.pagedata.maxwidth = 10000;
+        if ($scope.pagedata.minheight == '')
+            $scope.pagedata.minheight = 0;
+        if ($scope.pagedata.maxheight == '')
+            $scope.pagedata.maxheight = 10000;
+        if ($scope.pagedata.minbreadth == '')
+            $scope.pagedata.minbreadth = 0;
+        if ($scope.pagedata.maxbreadth == '')
+            $scope.pagedata.maxbreadth = 10000;
+    }
 
     $scope.reload = function () {
         cfpLoadingBar.start();
@@ -197,6 +216,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.filter = "srno";
         $scope.pagedata.sort = 1;
         $scope.pagedata.medium = '';
+        $scope.checkForEmpty();
         $scope.reload();
     }
 
@@ -214,6 +234,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.pagenumber = 1;
         $scope.pagedata.filter = "srno";
         $scope.pagedata.sort = 1;
+        $scope.checkForEmpty();
         $scope.reload();
     }
 
@@ -225,17 +246,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     });
 
-    $scope.artistDetailImg = [{
-        image: 'img/imagedetail/imagedetail.jpg',
-        id: ' 1527',
-        artistname: 'Veguri Ravindra Babu',
-        title: ' Floating Dreams',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }];
 
     // set available range
     $scope.minPrice = 0;
@@ -276,23 +286,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.makeactive($stateParams.type);
     } else {
         $scope.pagedata = $.jStorage.get("filterby");
-        if ($scope.pagedata.minprice == '')
-            $scope.pagedata.minprice = 0;
-        if ($scope.pagedata.maxprice == '')
-            $scope.pagedata.maxprice = 10000000;
-        if ($scope.pagedata.minwidth == '')
-            $scope.pagedata.minwidth = 0;
-        if ($scope.pagedata.maxwidth == '')
-            $scope.pagedata.maxwidth = 10000;
-        if ($scope.pagedata.minheight == '')
-            $scope.pagedata.minheight = 0;
-        if ($scope.pagedata.maxheight == '')
-            $scope.pagedata.maxheight = 10000;
-        if ($scope.pagedata.minbreadth == '')
-            $scope.pagedata.minbreadth = 0;
-        if ($scope.pagedata.maxbreadth == '')
-            $scope.pagedata.maxbreadth = 10000;
-        $scope.reload();
+        $scope.checkForEmpty();
+        $stateParams.type = "All";
+        $scope.makeactive($.jStorage.get("filterby").type);
     }
 
     $scope.clearfilters = function () {
@@ -312,6 +308,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.minbreadth = 0;
         $scope.pagedata.maxbreadth = 10000;
         $scope.makeactive('All');
+    }
+
+    $scope.goToDetailPage = function (artwork) {
+        console.log(artwork);
+        if (artwork.type == "Sculptures") {
+            $location.url("/sculpture/" + artwork._id);
+        } else {
+            $location.url("/artwork/detail/" + artwork._id);
+        }
     }
 })
 
@@ -661,17 +666,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     $scope.aristImages = [];
     $scope.allartworks = [];
-    //    $scope.artistDetailImg = {
-    //        image: 'img/imagedetail/imagedetail.jpg',
-    //        id: ' 1527',
-    //        artistname: 'Veguri Ravindra Babu',
-    //        title: ' Floating Dreams',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    };
 
     NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
         console.log(data);
@@ -711,81 +705,61 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $rootScope.$broadcast('changeImage', {});
     }
 
-    //    $scope.aristImages = [{
-    //        image: 'img/artist/artist1.jpg',
-    //
-    //        }, {
-    //        image: 'img/artist/artist2.jpg',
-    //
-    //        }, {
-    //        image: 'img/artist/artist3.jpg',
-    //
-    //        }, {
-    //        image: 'img/artist/artist4.jpg',
-    //
-    //        }, {
-    //        image: 'img/artist/artist3.jpg',
-    //
-    //        }, {
-    //        image: 'img/artist/artist4.jpg',
-    //
-    //        }];
-
 })
 
-.controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog) {
+.controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope) {
     $scope.template = TemplateService.changecontent("sculpture");
     $scope.menutitle = NavigationService.makeactive("Sculpture");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
-    $scope.artistDetailImg = [{
-        image: 'img/imagedetail/imagedetail.jpg',
-        id: ' 1527',
-        artistname: 'Arzan Khambatta',
-        title: ' Floating Dreams',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-        }];
+    $scope.aristImages = [];
+    $scope.allartworks = [];
+
+    NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
+        console.log(data);
+        NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
+            console.log(artistdata);
+            $scope.allartworks = artistdata;
+            _.each(artistdata.artwork, function (n) {
+                if (n._id != data[0].artwork._id) {
+                    $scope.aristImages.push(n);
+                }
+            })
+            console.log($scope.aristImages);
+        })
+        $scope.artistDetailImg = data[0];
+    })
+
     $scope.images = [{
         small: 'img/smallsculpture.jpg',
         large: 'img/largesculpture.jpg'
-    }, {
+        }, {
         small: 'img/smallsculpture.jpg',
         large: 'img/largesculpture.jpg'
-    }, {
+        }, {
         small: 'img/smallsculpture.jpg',
         large: 'img/largesculpture.jpg'
-    }];
-    $scope.moreSculpture = [{
-        image: 'img/imagedetail/sculputure.jpg'
-        }, {
-        image: 'img/imagedetail/sculputure.jpg'
-        }, {
-        image: 'img/imagedetail/sculputure.jpg'
-        }];
-    $scope.aristImages = [{
-        image: 'img/artist/artist1.jpg',
-
-        }, {
-        image: 'img/artist/artist2.jpg',
-
-        }, {
-        image: 'img/artist/artist3.jpg',
-
-        }, {
-        image: 'img/artist/artist4.jpg',
-
-        }, {
-        image: 'img/artist/artist3.jpg',
-
-        }, {
-        image: 'img/artist/artist4.jpg',
-
         }];
 
+    $scope.showitabove = function (artwork) {
+        $scope.aristImages = [];
+        delete $scope.artistDetailImg.artwork;
+        $scope.artistDetailImg.artwork = artwork;
+        _.each($scope.allartworks.artwork, function (n) {
+            if (n._id != artwork._id) {
+                $scope.aristImages.push(n);
+            }
+        })
+        $rootScope.$broadcast('changeImage', {});
+    }
+
+    $scope.activeImage = function (imagetopush) {
+        if ($scope.artistDetailImg.artwork.image.length > 1) {
+            $scope.artistDetailImg.artwork.image.splice(_.indexOf($scope.artistDetailImg.artwork.image, imagetopush), 1);
+            $scope.artistDetailImg.artwork.image.unshift(imagetopush);
+            $rootScope.$broadcast('changeImage', {});
+        }
+    }
 })
 
 .controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {

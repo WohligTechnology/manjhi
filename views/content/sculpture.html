@@ -1,7 +1,7 @@
 <div class="image-detail">
     <div class="border-top"></div>
     <div class="container">
-        <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
+        <div class="row">
             <div class="breadcrums">
                 <div class="col-md-12">
                     <p>Home / Sculpture </p>
@@ -9,9 +9,9 @@
             </div>
             <div class="col-md-8">
                 <div class="aboveimage" fixit>
-                    <a class="light-make light-shade" fancybox-box href="{{images[0].large}}">Enlarge<i class="fa fa-arrows-alt"></i>
+                    <a class="light-make light-shade" fancybox-box href="{{artistDetailImg.artwork.image[0]|uploadpath}}">Enlarge<i class="fa fa-arrows-alt"></i>
                     </a>
-                    <img elevate-zoom small-image="{{images[0].small}}" big-image="{{images[0].large}}" class="fix-img" />
+                    <img elevate-zoom image="artistDetailImg" ng-if="artistDetailImg && artistDetailImg.artwork" class="fix-img" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -21,33 +21,60 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td> {{artistDetailImgs.id}}
+                                        <td>
+                                            <span ng-if="artistDetailImg.artwork.srno && artistDetailImg.artwork.srno!=''">                                                                    {{artistDetailImg.artwork.srno}}
+                                            </span>
                                             <i class="fa fa-heart"></i>
                                         </td>
                                     </tr>
                                     <tr class="font-color3">
                                         <td class="labels">Artist:</td>
-                                        <td>{{artistDetailImgs.artistname}}</td>
+                                        <td ng-if="artistDetailImg.name && artistDetailImg.name!=''">
+                                            {{artistDetailImg.name}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.name || artistDetailImg.name==''">
+                                            NA
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Title:</td>
-                                        <td>{{artistDetailImgs.title}}</td>
+                                        <td ng-if="artistDetailImg.artwork.name && artistDetailImg.artwork.name!=''">
+                                            {{artistDetailImg.artwork.name}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.name || artistDetailImg.artwork.name==''">
+                                            NA
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Medium: </td>
-                                        <td>{{artistDetailImgs.typename }}</td>
+                                        <td ng-if="artistDetailImg.artwork.subtype.length>0 && artistDetailImg.artwork.subtype[0].name!=''">
+                                            {{artistDetailImg.artwork.subtype[0].name}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.subtype || artistDetailImg.artwork.subtype.length==0">
+                                            NA
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Size:</td>
-                                        <td>{{artistDetailImgs.size}} inches</td>
+                                        <td>{{artistDetailImg.artwork|makesizestr}}</td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Year: </td>
-                                        <td>{{artistDetailImgs.year }}</td>
+                                        <td ng-if="artistDetailImg.artwork.yoc && artistDetailImg.artwork.yoc!=''">
+                                            {{artistDetailImg.artwork.yoc}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.yoc || artistDetailImg.artwork.yoc==''">
+                                            NA
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Price: </td>
-                                        <td>{{artistDetailImgs.price}}</td>
+                                        <td ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!=''">
+                                            {{artistDetailImg.artwork.gprice|currency:"Rs "}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice==''">
+                                            NA
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -62,17 +89,11 @@
                     <button type="button" class="btn btn-primarys btn-block uppercase">
                         ADD TO CART
                     </button>
-                    <h5 class="alt">Alternate Views</h5>
+                    <h5 class="alt" ng-if="artistDetailImg.artwork.image.length>1">Alternate Views</h5>
                     <div class="row-flex row-flex row-unflex sweet-box box-more text-center margin-less">
-                        <div class="col-flex" ng-repeat="moresculptures in moreSculpture">
+                        <div class="col-flex" ng-repeat="moreviews in artistDetailImg.artwork.image track by $index" ng-if="artistDetailImg.artwork.image.length>1 && $index!=0" ng-click="activeImage(moreviews);">
                             <div class="view-box image-box">
-                                <img ng-src='{{moresculptures.image}}' alt="" class="img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-flex">
-                            <div class="view-box image-box">
-                                <img src="img/imagedetail/sculputure.jpg" alt="" class="img-responsive">
-                                <i class="fa fa-play-circle-o"></i>
+                                <img ng-src='{{moreviews|uploadthumbnail}}' alt="" class="img-responsive">
                             </div>
                         </div>
                     </div>
@@ -85,14 +106,14 @@
             <div class="padding-more">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="head-more">MORE WORKS BY THIS ARTIST<a href="#" class="link-viewall">VIEW ALL</a></h4>
+                        <h4 class="head-more">MORE WORKS BY THIS ARTIST<a href="#/artwork/All" class="link-viewall">VIEW ALL</a></h4>
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-2 col-sm-4" ng-repeat="aristimages in aristImages">
                             <div class="aristimg-grp1">
-                                <a href="#">
+                                <a ng-click="showitabove(aristimages);">
                                     <div class="image-holder" fixit>
-                                        <img class="fix-img" ng-src='{{aristimages.image}}'>
+                                        <img class="fix-img" ng-src='{{aristimages.image[0]|uploadthumbnail}}'>
                                     </div>
                                 </a>
                             </div>

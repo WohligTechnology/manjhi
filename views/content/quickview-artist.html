@@ -12,24 +12,49 @@
                         </div>
                         <div class="artist-cont-detail">
                             <p>
-                                {{artistdetails.srno}}
+                                <span ng-if="artistdetails.srno && artistdetails.srno!=''">
+                                    {{artistdetails.srno}}
+                                </span>
+                                <span ng-if="!artistdetails.srno || artistdetails.srno==''">
+                                    N/A
+                                </span>
                                 <i class="fa fa-heart"></i>
                                 <i class="fa fa-shopping-cart"></i>
                             </p>
                             <p>
-                                {{artistdetails.name}}
+                                <span ng-if="artistdetails.name && artistdetails.name!=''">
+                                    {{artistdetails.name}}
+                                </span>
+                                <span ng-if="!artistdetails.name || artistdetails.name==''">
+                                    N/A
+                                </span>
                             </p>
                             <p>
-                                {{artistdetails.subtype[0].name}}
+                                <span ng-if="artistdetails.subtype.length>0 && artistdetails.subtype[0].name!=''">
+                                    {{artistdetails.subtype[0].name}}
+                                </span>
+                                <span ng-if="!artistdetails.subtype || artistdetails.subtype.length==0">
+                                    N/A
+                                </span>
                             </p>
                             <p>
                                 {{artistdetails|makesizestr}}
                             </p>
                             <p>
-                                {{artistdetails.yoc}}
+                                <span ng-if="artistdetails.yoc && artistdetails.yoc!=''">
+                                    {{artistdetails.yoc}}
+                                </span>
+                                <span ng-if="!artistdetails.yoc || artistdetails.yoc==''">
+                                    N/A
+                                </span>
                             </p>
                             <p>
-                                {{artistdetails.gprice|currency:"Rs "}}
+                                <span ng-if="artistdetails.gprice && artistdetails.gprice!='N/A'">
+                                    {{artistdetails.gprice|currency:"Rs "}}
+                                </span>
+                                <span ng-if="!artistdetails.gprice || artistdetails.gprice=='N/A'">
+                                    N/A
+                                </span>
                             </p>
                             <!--                            <button type="submit" class="btn btn-sucesses btn-small text-center">Add to cart</button>-->
                         </div>
