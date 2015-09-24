@@ -43,6 +43,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $.jStorage.set("filterby", $scope.filterby)
         $location.url("/artwork/-1");
     }
+
+    $scope.goToArtworks = function (type) {
+        $location.url("/artwork/" + type);
+    }
+
 })
 
 .controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -351,90 +356,90 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('InviteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("invite");
-    $scope.menutitle = NavigationService.makeactive("Invite");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-	
-})
-	.controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("events");
-    $scope.menutitle = NavigationService.makeactive("Events");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("invite");
+        $scope.menutitle = NavigationService.makeactive("Invite");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
 
-    $scope.status = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-    };
+    })
+    .controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("events");
+        $scope.menutitle = NavigationService.makeactive("Events");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+
+        $scope.status = {
+            isFirstOpen: true,
+            isFirstDisabled: false
+        };
 
 
-    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
 
-    $scope.status = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-    };
+        $scope.status = {
+            isFirstOpen: true,
+            isFirstDisabled: false
+        };
 
-    $scope.event2016 = [{
-        name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
-        detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
-        img: 'img/event/event1.jpg'
+        $scope.event2016 = [{
+            name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
+            detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
+            img: 'img/event/event1.jpg'
         }, {
-        name: 'Art and Culture exchange between India & China',
-        detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
-        img: 'img/event/event2.jpg'
+            name: 'Art and Culture exchange between India & China',
+            detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
+            img: 'img/event/event2.jpg'
         }];
 
-    $scope.event2015 = [{
-        name: 'The Art Enclave at UBM Index Fairs 2014',
-        detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
-        img: 'img/event/event3.jpg'
+        $scope.event2015 = [{
+            name: 'The Art Enclave at UBM Index Fairs 2014',
+            detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
+            img: 'img/event/event3.jpg'
         }, {
-        name: 'Art Partner for The Edutainment Show 2014',
-        detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
-        img: ''
+            name: 'Art Partner for The Edutainment Show 2014',
+            detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
+            img: ''
         }, {
-        name: 'Art Partner for Yes Bank International Polo Cup',
-        detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
-        img: ''
+            name: 'Art Partner for Yes Bank International Polo Cup',
+            detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
+            img: ''
         }];
 
-    $scope.event2014 = [{
-        name: 'Art Infrastructure – nobody’s business',
-        detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
-        img: 'img/event/event4.jpg'
+        $scope.event2014 = [{
+            name: 'Art Infrastructure – nobody’s business',
+            detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
+            img: 'img/event/event4.jpg'
         }, {
-        name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
-        detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
-        img: 'img/event/event5.jpg'
+            name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
+            detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
+            img: 'img/event/event5.jpg'
         }, {
-        name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
-        detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
-        img: 'img/event/event6.jpg'
+            name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
+            detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
+            img: 'img/event/event6.jpg'
         }, {
-        name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
-        detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
-        img: ''
+            name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
+            detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
+            img: ''
         }, {
-        name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
-        detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
-        img: ''
+            name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
+            detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
+            img: ''
         }, {
-        name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
-        detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
-        img: ''
+            name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
+            detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
+            img: ''
         }, {
-        name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
-        detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
-        img: 'img/event/event7.jpg'
+            name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
+            detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
+            img: 'img/event/event7.jpg'
         }];
 
 
-})
+    })
 
 .controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
     //Used to name the .html file
@@ -1318,7 +1323,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Register Artist");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    })  
+    })
     .controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("favorite-product");
         $scope.menutitle = NavigationService.makeactive("Favorites");
