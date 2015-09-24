@@ -350,7 +350,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     });
 })
 
-.controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('InviteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("invite");
+    $scope.menutitle = NavigationService.makeactive("Invite");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+	
+})
+	.controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("events");
     $scope.menutitle = NavigationService.makeactive("Events");
@@ -1310,7 +1318,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.menutitle = NavigationService.makeactive("Register Artist");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
-    })
+    })  
     .controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("favorite-product");
         $scope.menutitle = NavigationService.makeactive("Favorites");
