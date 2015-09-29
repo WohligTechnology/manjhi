@@ -8,12 +8,12 @@
                 </div>
             </div>
         </div>
-        <div class="row" ng-repeat="artistDetailImgs in artistDetailImg">
+        <div class="row">
             <div class="col-md-8">
                 <div class="aboveimage" fixit>
-                    <a class="light-make light-shade" fancybox-box href="{{images[0].large}}">Enlarge<i class="fa fa-arrows-alt"></i>
+                    <a class="light-make light-shade" fancybox-box href="{{artistDetailImg.artwork.image[0]|uploadpath}}">Enlarge<i class="fa fa-arrows-alt"></i>
                     </a>
-                    <img elevate-zoom small-image="{{images[0].small}}" big-image="{{images[0].large}}" class="fix-img" />
+                    <img elevate-zoom image="artistDetailImg" ng-if="artistDetailImg && artistDetailImg.artwork" class="fix-img" />
                 </div>
             </div>
             <div class="col-md-4">
@@ -23,33 +23,60 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td>{{artistDetailImgs.id}}
-                                            <i class="fa fa-heart"></i>
+                                        <td>
+                                            <span ng-if="artistDetailImg.artwork.srno && artistDetailImg.artwork.srno!=''">                                                                    {{artistDetailImg.artwork.srno}}
+                                            </span>
+                                            <i class="fa fa-heart font-color3"></i>
                                         </td>
                                     </tr>
                                     <tr class="font-color3">
                                         <td class="labels">Artist:</td>
-                                        <td>{{artistDetailImgs.artistname}}</td>
+                                        <td ng-if="artistDetailImg.name && artistDetailImg.name!=''">
+                                            {{artistDetailImg.name}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.name || artistDetailImg.name==''">
+                                            N/A
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Title:</td>
-                                        <td>{{artistDetailImgs.title}}</td>
+                                        <td ng-if="artistDetailImg.artwork.name && artistDetailImg.artwork.name!=''">
+                                            {{artistDetailImg.artwork.name}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.name || artistDetailImg.artwork.name==''">
+                                            N/A
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Medium:</td>
-                                        <td>{{artistDetailImgs.typename }}</td>
+                                        <td class="labels">Medium: </td>
+                                        <td ng-if="artistDetailImg.artwork.subtype.length>0 && artistDetailImg.artwork.subtype[0].name!=''">
+                                            {{artistDetailImg.artwork.subtype[0].name}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.subtype || artistDetailImg.artwork.subtype.length==0">
+                                            N/A
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="labels">Size:</td>
-                                        <td>{{artistDetailImg.size}}</td>
+                                        <td>{{artistDetailImg.artwork|makesizestr}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Year:</td>
-                                        <td>{{artistDetailImgs.year }}</td>
+                                        <td class="labels">Year: </td>
+                                        <td ng-if="artistDetailImg.artwork.yoc && artistDetailImg.artwork.yoc!=''">
+                                            {{artistDetailImg.artwork.yoc}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.yoc || artistDetailImg.artwork.yoc==''">
+                                            N/A
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td class="labels">Price:</td>
-                                        <td>{{artistDetailImgs.price}}</td>
+                                        <td class="labels">Price: </td>
+                                        <td ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
+                                            {{artistDetailImg.artwork.gprice|currency:"Rs "}}
+                                        </td>
+                                        <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
+                                            N/A
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

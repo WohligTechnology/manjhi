@@ -56,39 +56,57 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Favorite");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
-    $scope.artistdetail = [{
-        image: 'img/artist/artist1.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist2.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist3.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }, {
-        image: 'img/artist/artist4.jpg',
-        id: '1527',
-        typename: 'Untitled',
-        madein: 'Oil on board',
-        size: '19.5 x 23',
-        year: '1978',
-        price: 'Rs.1,00,000/ $6,400'
-    }];
+    $scope.artistdetail = [];
+    $scope.allfavourites = [];
+
+    NavigationService.getMyFavourites(function (data, status) {
+        cfpLoadingBar.start();
+        console.log(data);
+        _.each(data, function (n) {
+            $scope.allfavourites.push({
+                "_id": n.wishlist.artwork
+            });
+        });
+        NavigationService.getAllFavouritesData($scope.allfavourites, function (data, status) {
+            console.log(data);
+            $scope.artistdetail = data;
+            cfpLoadingBar.complete();
+        })
+    })
+
+    //    $scope.artistdetail = [{
+    //        image: 'img/artist/artist1.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist2.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist3.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }, {
+    //        image: 'img/artist/artist4.jpg',
+    //        id: '1527',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //    }];
 })
 
 .controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -148,6 +166,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.totalartcont = [];
     $scope.maxpages = 2;
     $scope.callinfinite = true;
+    $scope.isRed = false;
+    $scope.heartClass = "fa fa-heart";
 
     $scope.typejson = [{
         name: "All",
@@ -168,6 +188,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         name: "Others",
         class: ""
     }]
+
+    $scope.changeHeartColor = function (totalartcont) {
+        if ($scope.isRed == true)
+            totalartcont.heartClass = "fa fa-heart";
+        else
+            totalartcont.heartClass = "fa fa-heart font-color3";
+        $scope.isRed = !$scope.isRed;
+    }
 
     $scope.checkForEmpty = function () {
         if ($scope.pagedata.minprice == '')
@@ -191,12 +219,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.reload = function () {
         cfpLoadingBar.start();
         NavigationService.artworktype($scope.pagedata, function (data, status) {
-            console.log(data);
             $scope.maxpages = parseInt(data.totalpages);
             _.each(data.data, function (n) {
+                n.heartClass = "fa fa-heart";
+                if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
+                    var ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', n.artwork._id);
+                    if (ispresent != -1) {
+                        n.heartClass = "fa fa-heart font-color3";
+                    }
+                }
                 $scope.totalartcont.push(n);
             })
             $scope.callinfinite = false;
+            console.log($scope.totalartcont);
             cfpLoadingBar.complete();
         });
     }
@@ -293,7 +328,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata = $.jStorage.get("filterby");
         $scope.checkForEmpty();
         $stateParams.type = "All";
-        $scope.makeactive($.jStorage.get("filterby").type);
+        if ($.jStorage.get("filterby") && $.jStorage.get("filterby").type == '')
+            $scope.makeactive("All");
+        else
+            $scope.makeactive($.jStorage.get("filterby").type);
     }
 
     $scope.clearfilters = function () {
@@ -356,90 +394,104 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('InviteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("invite");
-        $scope.menutitle = NavigationService.makeactive("Invite");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("invite");
+    $scope.menutitle = NavigationService.makeactive("Invite");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
 
-    })
-    .controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
-        //Used to name the .html file
-        $scope.template = TemplateService.changecontent("events");
-        $scope.menutitle = NavigationService.makeactive("Events");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+})
 
-        $scope.status = {
-            isFirstOpen: true,
-            isFirstDisabled: false
-        };
+.controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("events");
+    $scope.menutitle = NavigationService.makeactive("Events");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+
+    NavigationService.getupcomingevents(function (data, status) {
+        console.log(data);
+    });
+
+    NavigationService.getpresentevents(function (data, status) {
+        console.log(data);
+    });
+
+    NavigationService.getpastevents(function (data, status) {
+        console.log(data);
+    });
+
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
 
-        $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
 
-        $scope.status = {
-            isFirstOpen: true,
-            isFirstDisabled: false
-        };
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
-        $scope.event2016 = [{
-            name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
-            detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
-            img: 'img/event/event1.jpg'
+    $scope.event2016 = [{
+        name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
+        detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
+        img: 'img/event/event1.jpg'
         }, {
-            name: 'Art and Culture exchange between India & China',
-            detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
-            img: 'img/event/event2.jpg'
+        name: 'Art and Culture exchange between India & China',
+        detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
+        img: 'img/event/event2.jpg'
         }];
 
-        $scope.event2015 = [{
-            name: 'The Art Enclave at UBM Index Fairs 2014',
-            detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
-            img: 'img/event/event3.jpg'
+    $scope.event2015 = [{
+        name: 'The Art Enclave at UBM Index Fairs 2014',
+        detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
+        img: 'img/event/event3.jpg'
         }, {
-            name: 'Art Partner for The Edutainment Show 2014',
-            detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
-            img: ''
+        name: 'Art Partner for The Edutainment Show 2014',
+        detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
+        img: ''
         }, {
-            name: 'Art Partner for Yes Bank International Polo Cup',
-            detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
-            img: ''
+        name: 'Art Partner for Yes Bank International Polo Cup',
+        detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
+        img: ''
         }];
 
-        $scope.event2014 = [{
-            name: 'Art Infrastructure – nobody’s business',
-            detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
-            img: 'img/event/event4.jpg'
+    $scope.event2014 = [{
+        name: 'Art Infrastructure – nobody’s business',
+        detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
+        img: 'img/event/event4.jpg'
         }, {
-            name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
-            detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
-            img: 'img/event/event5.jpg'
+        name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
+        detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
+        img: 'img/event/event5.jpg'
         }, {
-            name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
-            detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
-            img: 'img/event/event6.jpg'
+        name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
+        detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
+        img: 'img/event/event6.jpg'
         }, {
-            name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
-            detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
-            img: ''
+        name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
+        detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
+        img: ''
         }, {
-            name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
-            detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
-            img: ''
+        name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
+        detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
+        img: ''
         }, {
-            name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
-            detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
-            img: ''
+        name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
+        detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
+        img: ''
         }, {
-            name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
-            detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
-            img: 'img/event/event7.jpg'
+        name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
+        detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
+        img: 'img/event/event7.jpg'
         }];
 
 
-    })
+})
 
 .controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
     //Used to name the .html file
@@ -1080,24 +1132,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
     $scope.artistdetail = {};
-    $scope.showDetail = function (userid, username) {
-        var index = _.pluck(_.where($scope.artistimage, {
-            '_id': userid
-        }), 'artwork');
-        $scope.artistdetail.name = username;
-        if (index[0].length >= 4) {
-            var makeit4 = _.chunk(index[0], 4);
-            $scope.artistdetail.artworks = makeit4[0];
-        } else
-            $scope.artistdetail.artworks = index[0];
-        console.log($scope.artistdetail);
+    $scope.showDetail = function (artist) {
+        console.log(artist);
+        $scope.artistdetail = artist;
+        var makeit4 = _.chunk($scope.artistdetail.artwork, 4);
+        $scope.artistdetail.artwork = makeit4[0];
 
-        if ($scope.artistdetail.name) {
-            ngDialog.open({
-                scope: $scope,
-                template: 'views/content/quickview-artist.html'
-            });
-        }
+        ngDialog.open({
+            scope: $scope,
+            template: 'views/content/quickview-artist.html'
+        });
     };
 
     $scope.alphabetjson = [{
@@ -1202,14 +1246,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.$on('event:google-plus-signin-success', function (event, authResult) {
-        // Send login to server or save into cookie
-        console.log(authResult);
-    });
-    $scope.$on('event:google-plus-signin-failure', function (event, authResult) {
-        // Auth failure or signout detected
-        console.log(authResult);
-    });
+    //    $scope.$on('event:google-plus-signin-success', function (event, authResult) {
+    //        // Send login to server or save into cookie
+    //        console.log(authResult);
+    //    });
+    //    $scope.$on('event:google-plus-signin-failure', function (event, authResult) {
+    //        // Auth failure or signout detected
+    //        console.log(authResult);
+    //    });
 
 })
 
@@ -1324,29 +1368,36 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService) {
-        $scope.template = TemplateService.changecontent("favorite-product");
-        $scope.menutitle = NavigationService.makeactive("Favorites");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-        $scope.artistDetailImg = [{
-            id: ' 1527',
-            artistname: 'Arzan Khambatta',
-            title: ' Floating Dreams',
-            typename: 'Untitled',
-            madein: 'Oil on board',
-            size: '19.5 x 23',
-            year: '1978',
-            price: 'Rs.1,00,000/ $6,400'
-        }];
-        $scope.images = [{
-            small: 'img/smallsculpture.jpg',
-            large: 'img/largesculpture.jpg'
-    }, {
-            small: 'img/smallsculpture.jpg',
-            large: 'img/largesculpture.jpg'
-    }, {
-            small: 'img/smallsculpture.jpg',
-            large: 'img/largesculpture.jpg'
-    }];
+
+.controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService, $stateParams) {
+    $scope.template = TemplateService.changecontent("favorite-product");
+    $scope.menutitle = NavigationService.makeactive("Favorites");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+
+    NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
+        $scope.artistDetailImg = data[0];
+        console.log($scope.artistDetailImg);
     });
+
+//    $scope.artistDetailImg = [{
+//        id: ' 1527',
+//        artistname: 'Arzan Khambatta',
+//        title: ' Floating Dreams',
+//        typename: 'Untitled',
+//        madein: 'Oil on board',
+//        size: '19.5 x 23',
+//        year: '1978',
+//        price: 'Rs.1,00,000/ $6,400'
+//        }];
+//    $scope.images = [{
+//        small: 'img/smallsculpture.jpg',
+//        large: 'img/largesculpture.jpg'
+//    }, {
+//        small: 'img/smallsculpture.jpg',
+//        large: 'img/largesculpture.jpg'
+//    }, {
+//        small: 'img/smallsculpture.jpg',
+//        large: 'img/largesculpture.jpg'
+//    }];
+});

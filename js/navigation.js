@@ -1,4 +1,5 @@
 //var adminurl = "http://192.168.2.22/";
+//var adminurl = "http://192.168.2.22:1337/";
 var adminurl = "http://104.197.74.227/";
 var navigationservice = angular.module('navigationservice', [])
 
@@ -232,6 +233,61 @@ var navigationservice = angular.module('navigationservice', [])
                 method: "POST",
                 data: {
                     "_id": artistid
+                }
+            }).success(callback);
+        },
+        getupcomingevents: function (callback) {
+            $http({
+                url: adminurl + "event/findevents",
+                method: "POST",
+                data: {
+                    "year": "upcoming"
+                }
+            }).success(callback);
+        },
+        getpresentevents: function (callback) {
+            $http({
+                url: adminurl + "event/findevents",
+                method: "POST",
+                data: {
+                    "year": "present"
+                }
+            }).success(callback);
+        },
+        getpastevents: function (callback) {
+            $http({
+                url: adminurl + "event/findevents",
+                method: "POST",
+                data: {
+                    "year": "past"
+                }
+            }).success(callback);
+        },
+        addToFav: function (artid, callback) {
+            $http({
+                url: adminurl + "wishlist/save",
+                method: "POST",
+                data: {
+                    "artwork": artid,
+                    "user": $.jStorage.get("user")._id
+                }
+            }).success(callback);
+        },
+        getMyFavourites: function (callback) {
+            $http({
+                url: adminurl + "wishlist/find",
+                method: "POST",
+                data: {
+                    "user": $.jStorage.get("user")._id
+                }
+            }).success(callback);
+        },
+        getAllFavouritesData: function (artarray, callback) {
+            $http({
+                url: adminurl + "artwork/favoriteartwork",
+                method: "POST",
+                data: {
+                    "artwork": artarray
                 }
             }).success(callback);
         }
