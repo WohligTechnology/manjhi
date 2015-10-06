@@ -1,6 +1,6 @@
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider'])
 
-.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location) {
+.controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("home");
     $scope.menutitle = NavigationService.makeactive("Home");
@@ -38,19 +38,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //        })
     //    });
 
-    $scope.applyfilter = function () {
+    $scope.applyfilter = function() {
         console.log($scope.filterby);
         $.jStorage.set("filterby", $scope.filterby)
         $location.url("/artwork/-1");
     }
 
-    $scope.goToArtworks = function (type) {
+    $scope.goToArtworks = function(type) {
         $location.url("/artwork/" + type);
     }
 
 })
 
-.controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("favorite");
     $scope.menutitle = NavigationService.makeactive("Favorite");
@@ -59,15 +59,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artistdetail = [];
     $scope.allfavourites = [];
 
-    NavigationService.getMyFavourites(function (data, status) {
+    NavigationService.getMyFavourites(function(data, status) {
         cfpLoadingBar.start();
         console.log(data);
-        _.each(data, function (n) {
+        _.each(data, function(n) {
             $scope.allfavourites.push({
                 "_id": n.wishlist.artwork
             });
         });
-        NavigationService.getAllFavouritesData($scope.allfavourites, function (data, status) {
+        NavigationService.getAllFavouritesData($scope.allfavourites, function(data, status) {
             console.log(data);
             $scope.artistdetail = data;
             cfpLoadingBar.complete();
@@ -109,7 +109,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //    }];
 })
 
-.controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("cart");
     $scope.menutitle = NavigationService.makeactive("Cart");
@@ -117,7 +117,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('TeamCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("team");
     $scope.menutitle = NavigationService.makeactive("Team");
@@ -125,7 +125,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('ArtistPageCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("artistpage");
     $scope.menutitle = NavigationService.makeactive("Artist");
@@ -133,7 +133,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('ContactusCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("contactus");
     $scope.menutitle = NavigationService.makeactive("Contact Us");
@@ -141,7 +141,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams, $location) {
+.controller('TotalartWorkCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams, $location) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("totalartwork");
     $scope.menutitle = NavigationService.makeactive("Total Artwork");
@@ -189,7 +189,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         class: ""
     }]
 
-    $scope.changeHeartColor = function (totalartcont) {
+    $scope.changeHeartColor = function(totalartcont) {
         if ($scope.isRed == true)
             totalartcont.heartClass = "fa fa-heart";
         else
@@ -197,7 +197,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.isRed = !$scope.isRed;
     }
 
-    $scope.checkForEmpty = function () {
+    $scope.checkForEmpty = function() {
         if ($scope.pagedata.minprice == '')
             $scope.pagedata.minprice = 0;
         if ($scope.pagedata.maxprice == '')
@@ -216,11 +216,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.pagedata.maxbreadth = 10000;
     }
 
-    $scope.reload = function () {
+    $scope.reload = function() {
         cfpLoadingBar.start();
-        NavigationService.artworktype($scope.pagedata, function (data, status) {
+        NavigationService.artworktype($scope.pagedata, function(data, status) {
             $scope.maxpages = parseInt(data.totalpages);
-            _.each(data.data, function (n) {
+            _.each(data.data, function(n) {
                 n.heartClass = "fa fa-heart";
                 if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
                     var ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', n.artwork._id);
@@ -238,8 +238,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //    $scope.reload();
 
-    $scope.makeactive = function (type) {
-        _.each($scope.typejson, function (n) {
+    $scope.makeactive = function(type) {
+        _.each($scope.typejson, function(n) {
             var index = n.name.indexOf(type);
             if (index != -1) {
                 n.class = "actives";
@@ -267,7 +267,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //        }
     //    };
 
-    $scope.filterresults = function (search) {
+    $scope.filterresults = function(search) {
         console.log(search);
         $scope.pagedata.search = _.capitalize(search);
         $scope.totalartcont = [];
@@ -278,7 +278,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.reload();
     }
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
             console.log("at bottom");
             $scope.pagedata.pagenumber++;
@@ -305,7 +305,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //    };
 
     $scope.artistDetailImg = {};
-    $scope.showDetails = function (oneuser) {
+    $scope.showDetails = function(oneuser) {
         console.log(oneuser)
         $scope.artistDetailImg = oneuser;
         ngDialog.open({
@@ -314,7 +314,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    $scope.sortBy = function (num, by) {
+    $scope.sortBy = function(num, by) {
         $scope.pagedata.sort = num;
         $scope.pagedata.filter = by;
         $scope.pagedata.pagenumber = 1;
@@ -334,7 +334,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.makeactive($.jStorage.get("filterby").type);
     }
 
-    $scope.clearfilters = function () {
+    $scope.clearfilters = function() {
         $scope.pagedata.search = "";
         $scope.pagedata.type = "";
         $scope.pagedata.pagenumber = 1;
@@ -353,7 +353,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.makeactive('All');
     }
 
-    $scope.goToDetailPage = function (artwork) {
+    $scope.goToDetailPage = function(artwork) {
         console.log(artwork);
         if (artwork.type == "Sculptures") {
             $location.url("/sculpture/" + artwork._id);
@@ -363,7 +363,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 })
 
-.controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
+.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("checkout");
     $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -373,7 +373,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.checkout = [];
     $scope.checkout.isshipping = true;
 
-    $scope.showShipping = function (check) {
+    $scope.showShipping = function(check) {
         console.log(check);
     }
 
@@ -393,7 +393,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     });
 })
 
-.controller('InviteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('InviteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("invite");
     $scope.menutitle = NavigationService.makeactive("Invite");
@@ -402,26 +402,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('EventsCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("events");
     $scope.menutitle = NavigationService.makeactive("Events");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-    NavigationService.getupcomingevents(function (data, status) {
+    NavigationService.getupcomingevents(function(data, status) {
         console.log(data);
     });
 
-    NavigationService.getpresentevents(function (data, status) {
+    NavigationService.getpresentevents(function(data, status) {
         console.log(data);
     });
 
-    NavigationService.getpastevents(function (data, status) {
+    NavigationService.getpastevents(function(data, status) {
         console.log(data);
     });
 
-    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '   Yashwant Shirwadkar'];
 
     $scope.status = {
         isFirstOpen: true,
@@ -429,7 +429,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 
 
-    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '	Yashwant Shirwadkar'];
+    $scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '   Yashwant Shirwadkar'];
 
     $scope.status = {
         isFirstOpen: true,
@@ -440,60 +440,60 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
         detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
         img: 'img/event/event1.jpg'
-        }, {
+    }, {
         name: 'Art and Culture exchange between India & China',
         detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
         img: 'img/event/event2.jpg'
-        }];
+    }];
 
     $scope.event2015 = [{
         name: 'The Art Enclave at UBM Index Fairs 2014',
         detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
         img: 'img/event/event3.jpg'
-        }, {
+    }, {
         name: 'Art Partner for The Edutainment Show 2014',
         detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
         img: ''
-        }, {
+    }, {
         name: 'Art Partner for Yes Bank International Polo Cup',
         detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
         img: ''
-        }];
+    }];
 
     $scope.event2014 = [{
         name: 'Art Infrastructure – nobody’s business',
         detail: 'Dec 14, 2013 - Dec 14, 2013 Taj Lands End',
         img: 'img/event/event4.jpg'
-        }, {
+    }, {
         name: 'Aura Art Show 2013 - Oct 15-21, 2013, Jehangir Art Gallery, Mumbai',
         detail: 'Oct 15, 2013 - Oct 21, 2013 Jehangir Art Gallery, Auditorium Hall',
         img: 'img/event/event5.jpg'
-        }, {
+    }, {
         name: 'The Indian Luxury Expo - April 26-28, 2013, Grand Hyatt, Mumbai',
         detail: 'Apr 26, 2013 - Apr 28, 2013 Grand Hyatt',
         img: 'img/event/event6.jpg'
-        }, {
+    }, {
         name: 'Wassup! Andheri, 2013 - A grand Art & Entertainment Festival',
         detail: 'Feb 28, 2013 - Mar 03, 2013 Chitrakoot Ground, Andheri',
         img: ''
-        }, {
+    }, {
         name: 'Aura Art organised live painting demo at AGP Multi Million Race Day',
         detail: 'Feb 17, 2013 - Feb 17, 2013 Mahalaxmi Race Course',
         img: ''
-        }, {
+    }, {
         name: 'Aura Art is delighted to be Exclusive Art Partner for AICOG 2013',
         detail: 'Jan 16, 2013 - Jan 20, 2013 BKC, Mumbai',
         img: ''
-        }, {
+    }, {
         name: 'Group Show at The Capital  -  Fundraiser for Cuddles Foundation',
         detail: 'Jan 15, 2013 - Jan 21, 2013 The Capital, BKC, Mumbai',
         img: 'img/event/event7.jpg'
-        }];
+    }];
 
 
 })
 
-.controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog) {
+.controller('EventdetailCtrl', function($scope, TemplateService, NavigationService, $timeout, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("eventdetail");
     $scope.menutitle = NavigationService.makeactive("Event");
@@ -535,7 +535,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.zoomposition = 0;
 
-    $scope.openModal = function (gal) {
+    $scope.openModal = function(gal) {
 
         $scope.zoomposition = $scope.gallery.indexOf(gal);
 
@@ -546,7 +546,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    $scope.nextImage = function (oldposition) {
+    $scope.nextImage = function(oldposition) {
         if (oldposition == ($scope.gallery.length - 1)) {
             $scope.zoomposition = 0;
         } else {
@@ -554,21 +554,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.previousImage = function (oldposition) {
+    $scope.previousImage = function(oldposition) {
         if (oldposition == 0) {
             $scope.zoomposition = ($scope.gallery.length - 1);
         } else {
             $scope.zoomposition--;
         }
     };
-    $scope.openBox = function (id) {
+    $scope.openBox = function(id) {
         $(id).attr('openbox', 'show');
     }
 
 
 })
 
-.controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
+.controller('FeatureCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
     $scope.template = TemplateService.changecontent("feature");
     $scope.menutitle = NavigationService.makeactive("Features");
     TemplateService.title = $scope.menutitle;
@@ -576,16 +576,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Angular Loader Example
     //Start loader
-    $scope.showLoader = function () {
+    $scope.showLoader = function() {
             cfpLoadingBar.start();
         }
         //Complete loader
-    $scope.hideLoader = function () {
+    $scope.hideLoader = function() {
         cfpLoadingBar.complete();
     }
 
     //Angular toaster
-    $scope.showToaster = function () {
+    $scope.showToaster = function() {
         toaster.pop({
             type: 'success',
             title: 'Success!',
@@ -608,7 +608,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
     //ngDialog
-    $scope.showPopup = function () {
+    $scope.showPopup = function() {
         ngDialog.open({
             template: 'demopop'
         });
@@ -640,7 +640,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('PressCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('PressCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("press");
     $scope.menutitle = NavigationService.makeactive("Press");
     TemplateService.title = $scope.menutitle;
@@ -724,7 +724,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope) {
+.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope) {
     $scope.template = TemplateService.changecontent("detailimage");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -732,12 +732,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.aristImages = [];
     $scope.allartworks = [];
 
-    NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
+    NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
         console.log(data);
-        NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
+        NavigationService.getoneartist(data[0]._id, function(artistdata, status) {
             console.log(artistdata);
             $scope.allartworks = artistdata;
-            _.each(artistdata.artwork, function (n) {
+            _.each(artistdata.artwork, function(n) {
                 if (n._id != data[0].artwork._id) {
                     $scope.aristImages.push(n);
                 }
@@ -758,11 +758,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         large: 'img/zoomlarge.jpg'
     }];
 
-    $scope.showitabove = function (artwork) {
+    $scope.showitabove = function(artwork) {
         $scope.aristImages = [];
         delete $scope.artistDetailImg.artwork;
         $scope.artistDetailImg.artwork = artwork;
-        _.each($scope.allartworks.artwork, function (n) {
+        _.each($scope.allartworks.artwork, function(n) {
             if (n._id != artwork._id) {
                 $scope.aristImages.push(n);
             }
@@ -772,7 +772,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope) {
+.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope) {
     $scope.template = TemplateService.changecontent("sculpture");
     $scope.menutitle = NavigationService.makeactive("Sculpture");
     TemplateService.title = $scope.menutitle;
@@ -780,12 +780,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.aristImages = [];
     $scope.allartworks = [];
 
-    NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
+    NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
         console.log(data);
-        NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
+        NavigationService.getoneartist(data[0]._id, function(artistdata, status) {
             console.log(artistdata);
             $scope.allartworks = artistdata;
-            _.each(artistdata.artwork, function (n) {
+            _.each(artistdata.artwork, function(n) {
                 if (n._id != data[0].artwork._id) {
                     $scope.aristImages.push(n);
                 }
@@ -798,19 +798,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.images = [{
         small: 'img/smallsculpture.jpg',
         large: 'img/largesculpture.jpg'
-        }, {
+    }, {
         small: 'img/smallsculpture.jpg',
         large: 'img/largesculpture.jpg'
-        }, {
+    }, {
         small: 'img/smallsculpture.jpg',
         large: 'img/largesculpture.jpg'
-        }];
+    }];
 
-    $scope.showitabove = function (artwork) {
+    $scope.showitabove = function(artwork) {
         $scope.aristImages = [];
         delete $scope.artistDetailImg.artwork;
         $scope.artistDetailImg.artwork = artwork;
-        _.each($scope.allartworks.artwork, function (n) {
+        _.each($scope.allartworks.artwork, function(n) {
             if (n._id != artwork._id) {
                 $scope.aristImages.push(n);
             }
@@ -818,7 +818,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $rootScope.$broadcast('changeImage', {});
     }
 
-    $scope.activeImage = function (imagetopush) {
+    $scope.activeImage = function(imagetopush) {
         if ($scope.artistDetailImg.artwork.image.length > 1) {
             $scope.artistDetailImg.artwork.image.splice(_.indexOf($scope.artistDetailImg.artwork.image, imagetopush), 1);
             $scope.artistDetailImg.artwork.image.unshift(imagetopush);
@@ -827,7 +827,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 })
 
-.controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ThoughtleadershipCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("thoughtleadership");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadership");
     TemplateService.title = $scope.menutitle;
@@ -887,7 +887,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ThoughtleadershipdetailCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ThoughtleadershipdetailCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("thoughtleadershipdetail");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadershipdetail");
     TemplateService.title = $scope.menutitle;
@@ -947,7 +947,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtInfrastructureCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("artInfrastructure");
     $scope.menutitle = NavigationService.makeactive("Art Infrastructure");
     TemplateService.title = $scope.menutitle;
@@ -966,14 +966,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService, $stateParams) {
+.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
     $scope.template = TemplateService.changecontent("artistdetail")
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
     //    console.log($stateParams.artistid);
-    NavigationService.getoneartist($stateParams.artistid, function (data, status) {
+    NavigationService.getoneartist($stateParams.artistid, function(data, status) {
         console.log(data);
         $scope.artistdetail = data
     })
@@ -1047,7 +1047,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, cfpLoadingBar) {
+.controller('ArtistCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -1061,12 +1061,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artistimage = [];
     $scope.maxpages = 2;
 
-    $scope.reload = function () {
+    $scope.reload = function() {
         cfpLoadingBar.start();
-        NavigationService.getallartist($scope.pagedata, function (data, status) {
+        NavigationService.getallartist($scope.pagedata, function(data, status) {
             console.log(data);
             $scope.maxpages = parseInt(data.totalpages);
-            _.each(data.data, function (n) {
+            _.each(data.data, function(n) {
                 $scope.artistimage.push(n);
             })
             $scope.listview = _.chunk($scope.artistimage, 24);
@@ -1076,9 +1076,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //    $scope.reload();
 
-    $scope.getartistbyletter = function (letter) {
+    $scope.getartistbyletter = function(letter) {
 
-        _.each($scope.alphabetjson, function (n) {
+        _.each($scope.alphabetjson, function(n) {
             //            var index = n.name.indexOf(letter);
             //            console.log(index);
             if (n.name == letter) {
@@ -1097,14 +1097,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.reload();
     }
 
-    $scope.getartistbysearch = function () {
+    $scope.getartistbysearch = function() {
         $scope.pagedata.pagenumber = 1;
         $scope.artistimage = [];
         $scope.reload();
     }
 
-    $scope.makeactive = function (type) {
-        _.each($scope.typejson, function (n) {
+    $scope.makeactive = function(type) {
+        _.each($scope.typejson, function(n) {
             var index = n.name.indexOf(type);
             if (index != -1) {
                 n.class = "actives";
@@ -1122,7 +1122,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.reload();
     }
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
             console.log("at bottom");
             $scope.pagedata.pagenumber++;
@@ -1132,7 +1132,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
     $scope.artistdetail = {};
-    $scope.showDetail = function (artist) {
+    $scope.showDetail = function(artist) {
         console.log(artist);
         $scope.artistdetail = artist;
         var makeit4 = _.chunk($scope.artistdetail.artwork, 4);
@@ -1180,7 +1180,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('InfiniteCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('InfiniteCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("infinite");
     $scope.menutitle = NavigationService.makeactive("Infinite Scroll");
     TemplateService.title = $scope.menutitle;
@@ -1188,7 +1188,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Infinite scroll
     $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];
-    $scope.loadMore = function () {
+    $scope.loadMore = function() {
         var last = $scope.images[$scope.images.length - 1];
         for (var i = 1; i <= 8; i++) {
             $scope.images.push(last + i);
@@ -1196,26 +1196,27 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService) {
+.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService) {
     $scope.template = TemplateService;
     var scrolled = 0;
     $scope.logintab = '1';
     $scope.login = {};
     $scope.register = {};
+    $scope.register.accesslevel = "customer";
     $scope.forgot = {};
 
-    $scope.showLogin = function () {
+    $scope.showLogin = function() {
         ngDialog.open({
             template: 'views/content/login.html'
         });
     };
-    $scope.changeTab = function (tab) {
+    $scope.changeTab = function(tab) {
         $scope.logintab = tab;
     }
 
-    $scope.userlogin = function () {
+    $scope.userlogin = function() {
         console.log($scope.login);
-        NavigationService.userlogin($scope.login, function (data, status) {
+        NavigationService.userlogin($scope.login, function(data, status) {
             console.log(data);
             if (data.value != false) {
                 $.jStorage.set("user", data);
@@ -1224,10 +1225,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     };
 
-    $scope.registeruser = function () {
+    $scope.registeruser = function() {
         console.log($scope.register);
         if ($scope.register.password === $scope.register.confirmpassword) {
-            NavigationService.registeruser($scope.register, function (data, status) {
+            NavigationService.registeruser($scope.register, function(data, status) {
                 console.log(data);
                 if (data.value == true) {
                     $scope.changeTab(1);
@@ -1236,9 +1237,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.forgotpassword = function () {
+    $scope.forgotpassword = function() {
         console.log($scope.forgot);
-        NavigationService.forgotpassword($scope.forgot, function (data, status) {
+        NavigationService.forgotpassword($scope.forgot, function(data, status) {
             console.log(data);
             if (data.value == true) {
                 $scope.changeTab(4);
@@ -1257,7 +1258,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('AccountCtrl', function ($scope, TemplateService, NavigationService) {
+.controller('AccountCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("account");
         $scope.menutitle = NavigationService.makeactive("Account");
         TemplateService.title = $scope.menutitle;
@@ -1267,7 +1268,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.formstatus = false;
         $scope.formstatussec = false;
 
-        $scope.changeTab = function (tab) {
+        $scope.changeTab = function(tab) {
             if (tab == 1) {
                 $scope.formstatus = true;
                 //                $scope.formstatussec = false;
@@ -1277,7 +1278,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
 
         }
-        $scope.closeTab = function (tab) {
+        $scope.closeTab = function(tab) {
             if (tab == 1) {
                 $scope.formstatus = false;
                 //                $scope.formstatussec = false;
@@ -1287,20 +1288,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
 
         }
-        $scope.changeTabs = function () {
+        $scope.changeTabs = function() {
             $scope.formstatussec = true;
         }
 
-        $scope.changeresi = function () {
+        $scope.changeresi = function() {
             $scope.resi = "active";
             $scope.offce = "";
         }
-        $scope.changeoffice = function () {
+        $scope.changeoffice = function() {
             $scope.resi = "";
             $scope.offce = "active";
         }
 
-        $scope.changeinfo = function () {
+        $scope.changeinfo = function() {
             $scope.info = "bolds";
             $scope.chngpass = "";
             $scope.chngadd = "";
@@ -1309,7 +1310,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.listingmsg = "";
         }
 
-        $scope.changeadress = function () {
+        $scope.changeadress = function() {
             $scope.info = "";
             $scope.chngpass = "";
             $scope.chngadd = "bolds";
@@ -1317,7 +1318,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.ordertracing = "";
             $scope.listingmsg = "";
         }
-        $scope.changechngpass = function () {
+        $scope.changechngpass = function() {
             $scope.info = "";
             $scope.chngpass = "bolds";
             $scope.chngadd = "";
@@ -1326,7 +1327,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.listingmsg = "";
         }
 
-        $scope.changemyorders = function () {
+        $scope.changemyorders = function() {
             $scope.info = "";
             $scope.chngpass = "";
             $scope.chngadd = "";
@@ -1335,7 +1336,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.listingmsg = "";
         }
 
-        $scope.changeordertracing = function () {
+        $scope.changeordertracing = function() {
             $scope.info = "";
             $scope.chngpass = "";
             $scope.chngadd = "";
@@ -1344,60 +1345,60 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.listingmsg = "";
         }
     })
-    .controller('ActivitiesCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('ActivitiesCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("activities");
         $scope.menutitle = NavigationService.makeactive("Activities");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('ReachOutCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('ReachOutCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("reach-out");
         $scope.menutitle = NavigationService.makeactive("Reach Out");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('CreateArtworkCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('CreateArtworkCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("create-artwork");
         $scope.menutitle = NavigationService.makeactive("Create Artwork");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('RegisterArtistCtrl', function ($scope, TemplateService, NavigationService) {
+    .controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("register-artist");
         $scope.menutitle = NavigationService.makeactive("Register Artist");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService, $stateParams) {
+.controller('FavoriteProductCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
     $scope.template = TemplateService.changecontent("favorite-product");
     $scope.menutitle = NavigationService.makeactive("Favorites");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-    NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
+    NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
         $scope.artistDetailImg = data[0];
         console.log($scope.artistDetailImg);
     });
 
-//    $scope.artistDetailImg = [{
-//        id: ' 1527',
-//        artistname: 'Arzan Khambatta',
-//        title: ' Floating Dreams',
-//        typename: 'Untitled',
-//        madein: 'Oil on board',
-//        size: '19.5 x 23',
-//        year: '1978',
-//        price: 'Rs.1,00,000/ $6,400'
-//        }];
-//    $scope.images = [{
-//        small: 'img/smallsculpture.jpg',
-//        large: 'img/largesculpture.jpg'
-//    }, {
-//        small: 'img/smallsculpture.jpg',
-//        large: 'img/largesculpture.jpg'
-//    }, {
-//        small: 'img/smallsculpture.jpg',
-//        large: 'img/largesculpture.jpg'
-//    }];
+    //    $scope.artistDetailImg = [{
+    //        id: ' 1527',
+    //        artistname: 'Arzan Khambatta',
+    //        title: ' Floating Dreams',
+    //        typename: 'Untitled',
+    //        madein: 'Oil on board',
+    //        size: '19.5 x 23',
+    //        year: '1978',
+    //        price: 'Rs.1,00,000/ $6,400'
+    //        }];
+    //    $scope.images = [{
+    //        small: 'img/smallsculpture.jpg',
+    //        large: 'img/largesculpture.jpg'
+    //    }, {
+    //        small: 'img/smallsculpture.jpg',
+    //        large: 'img/largesculpture.jpg'
+    //    }, {
+    //        small: 'img/smallsculpture.jpg',
+    //        large: 'img/largesculpture.jpg'
+    //    }];
 });
