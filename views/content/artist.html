@@ -7,7 +7,6 @@
                     <h4 class="head-team">Artist Index</h4>
                 </div>
                 <div class="col-md-5">
-
                     <ul class="artist-crisp">
                         <li class="" ng-click="makeactive(type.name);" ng-repeat="type in typejson">
                             <a href="" class="{{type.class}}">{{type.name}}
@@ -46,7 +45,7 @@
             </div>
         </div>
         <div class="row" infinite-scroll='addMoreItems();' infinite-scroll-distance="0" infinite-scroll-disabled="shouldscroll">
-            <div class="col-md-2 col-sm-3" ng-repeat="artistimages in artistimage" ng-if="tab=='grid'">
+            <div class="col-md-2 col-sm-3" ng-repeat="artistimages in artistimage | orderBy : 'name'" ng-if="tab=='grid'">
                 <div class="aristimg-grp1">
                     <h4 class="text-center">
                    {{artistimages.name}}
@@ -63,22 +62,12 @@
                 </div>
             </div>
         </div>
-        <div class="holder1" ng-if="tab=='list'" infinite-scroll='addMoreItems();' infinite-scroll-distance="0" infinite-scroll-disabled="shouldscroll">
-            <div class="ulblock">
+        <div class="holder1" ng-if="tab=='list'">
+            <div class="ulblock" infinite-scroll='addMoreItems();' infinite-scroll-distance="0" infinite-scroll-disabled="shouldscroll">
                 <ul class="lineul" ng-repeat="list in listview">
-                    <li ng-repeat="artistimages in list"><a href="#/artist/detail/{{artistimages._id}}">{{artistimages.name}}
+                    <li ng-repeat="artistimages in list | orderBy : 'name'"><a href="#/artist/detail/{{artistimages._id}}">{{artistimages.name}}
                 </li>
-                </ul>   
-<!--
-            <ul class="lineul">
-    <li ng-repeat="artistimages in artistimage"><a href="#/artistDetail">{{artistimages.name}}
-                </li>
-            </ul>          
-            <ul class="lineul">
-                <li ng-repeat="artistimages in artistimage"><a href="#/artistDetail">{{artistimages.name}}
-                </li>
-            </ul>
--->
+                </ul>  
             </div>
         </div>
 </div>

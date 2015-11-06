@@ -54,7 +54,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         _.each(data, function(n) {
             allartist.push(n.name);
         })
-        console.log(allartist);
         $(".js-example-data-array").select2({
             placeholder: "Select Artist",
             data: allartist
@@ -781,7 +780,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope) {
+.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location) {
     $scope.template = TemplateService.changecontent("detailimage");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -799,6 +798,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     $scope.aristImages.push(n);
                 }
             })
+            $scope.aristImages = _.chunk($scope.aristImages, 6);
+            $scope.aristImages = $scope.aristImages[0];
             console.log($scope.aristImages);
         })
         $scope.artistDetailImg = data[0];
@@ -816,20 +817,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
     $scope.showitabove = function(artwork) {
-        $scope.aristImages = [];
-        delete $scope.artistDetailImg.artwork;
-        $scope.artistDetailImg.artwork = artwork;
-        _.each($scope.allartworks.artwork, function(n) {
-            if (n._id != artwork._id) {
-                $scope.aristImages.push(n);
-            }
-        })
-        $rootScope.$broadcast('changeImage', {});
+        // $scope.aristImages = [];
+        // delete $scope.artistDetailImg.artwork;
+        // $scope.artistDetailImg.artwork = artwork;
+        // _.each($scope.allartworks.artwork, function(n) {
+        //     if (n._id != artwork._id) {
+        //         $scope.aristImages.push(n);
+        //     }
+        // })
+        // $rootScope.$broadcast('changeImage', {});
+        $location.url("/artwork/detail/" + artwork._id);
     }
 
 })
 
-.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope) {
+.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location) {
     $scope.template = TemplateService.changecontent("sculpture");
     $scope.menutitle = NavigationService.makeactive("Sculpture");
     TemplateService.title = $scope.menutitle;
@@ -847,6 +849,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     $scope.aristImages.push(n);
                 }
             })
+            $scope.aristImages = _.chunk($scope.aristImages, 6);
+            $scope.aristImages = $scope.aristImages[0];
             console.log($scope.aristImages);
         })
         $scope.artistDetailImg = data[0];
@@ -864,15 +868,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
     $scope.showitabove = function(artwork) {
-        $scope.aristImages = [];
-        delete $scope.artistDetailImg.artwork;
-        $scope.artistDetailImg.artwork = artwork;
-        _.each($scope.allartworks.artwork, function(n) {
-            if (n._id != artwork._id) {
-                $scope.aristImages.push(n);
-            }
-        })
-        $rootScope.$broadcast('changeImage', {});
+        // $scope.aristImages = [];
+        // delete $scope.artistDetailImg.artwork;
+        // $scope.artistDetailImg.artwork = artwork;
+        // _.each($scope.allartworks.artwork, function(n) {
+        //     if (n._id != artwork._id) {
+        //         $scope.aristImages.push(n);
+        //     }
+        // })
+        // $rootScope.$broadcast('changeImage', {});
+        $location.url("/artwork/detail/" + artwork._id);
     }
 
     $scope.activeImage = function(imagetopush) {
@@ -1129,6 +1134,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             _.each(data.data, function(n) {
                 $scope.artistimage.push(n);
             })
+            $scope.artistimage = _.uniq($scope.artistimage, '_id');
+            console.log($scope.artistimage);
             $scope.listview = _.chunk($scope.artistimage, 24);
             cfpLoadingBar.complete();
         });
@@ -1293,6 +1300,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.showWishlist = true;
         $scope.user.name = $.jStorage.get("user").name;
         console.log($scope.user);
+    }
+
+    $scope.logout = function() {
+        $.jStorage.flush();
+        $scope.showWishlist = false;
+        window.location.reload();
     }
 
     $scope.userlogin = function() {
