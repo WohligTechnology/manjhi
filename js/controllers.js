@@ -1135,7 +1135,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //     }
     // });
 
-     $scope.addMoreItems = function() {
+    $scope.addMoreItems = function() {
         $scope.pagedata.pagenumber++;
         $scope.reload();
     }
@@ -1206,7 +1206,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService) {
+.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService, $location) {
     $scope.template = TemplateService;
     var scrolled = 0;
     $scope.logintab = '1';
@@ -1214,6 +1214,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.register = {};
     $scope.register.accesslevel = "customer";
     $scope.forgot = {};
+    $scope.showInvalidLogin = false;
+    $scope.showAlreadyRegistered = false;
+    $scope.passwordNotMatch = false;
+    $scope.showWishlist = false;
+    $scope.user = {};
+    $scope.user.name = '';
 
     $scope.showLogin = function() {
         ngDialog.open({
@@ -1224,13 +1230,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.logintab = tab;
     }
 
+    $scope.toaccount=function(){
+        $location.url("/account");
+    }
+
+    if ($.jStorage.get("user")) {
+        $scope.showWishlist = true;
+        $scope.user.name = $.jStorage.get("user").name;
+        console.log($scope.user);
+    }
+
     $scope.userlogin = function() {
         console.log($scope.login);
         NavigationService.userlogin($scope.login, function(data, status) {
             console.log(data);
             if (data.value != false) {
+                $scope.showInvalidLogin = false;
+                $scope.showWishlist = true;
                 $.jStorage.set("user", data);
+                $scope.user.name = data.name;
                 ngDialog.closeAll();
+                window.location.reload();
+            } else {
+                $scope.showInvalidLogin = true;
             }
         })
     };
@@ -1238,12 +1260,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.registeruser = function() {
         console.log($scope.register);
         if ($scope.register.password === $scope.register.confirmpassword) {
+            $scope.passwordNotMatch = false;
             NavigationService.registeruser($scope.register, function(data, status) {
                 console.log(data);
                 if (data.value == true) {
-                    $scope.changeTab(1);
+                    $scope.showAlreadyRegistered = false;
+                    $scope.showWishlist = true;
+                    $.jStorage.set("user", data);
+                    $scope.user.name = data.name;
+                    ngDialog.closeAll();
+                    window.location.reload();
+                } else if (data.value == false && data.comment == "User already exists") {
+                    $scope.showAlreadyRegistered = true;
                 }
             })
+        } else {
+            $scope.passwordNotMatch = true;
         }
     };
 

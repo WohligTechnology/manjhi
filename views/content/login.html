@@ -25,6 +25,7 @@
                                     </div>
                                 </div>
                             </form>
+                            <p class="text-center" style="color:red" ng-show="showInvalidLogin">Invalid Login Credentials</p>
                         </div>
                     </div>
                 </div>
@@ -81,6 +82,8 @@
                                     </div>
                                 </div>
                             </form>
+                            <p class="text-center" style="color:red" ng-show="showAlreadyRegistered">Email id already registered</p>
+                            <p class="text-center" style="color:red" ng-show="passwordNotMatch">Password and confirm password mismatch</p>
                         </div>
                     </div>
                 </div>

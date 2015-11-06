@@ -40,12 +40,13 @@
                             <div class="col-flex box-height" ng-click="showLogin();">
                                 <div class="style4-bg small-box"><i class="fa fa-user"></i>
                                 </div>
-                                <div class="inline-box">Login</div>
+                                <div class="inline-box" ng-hide="showWishlist">Login</div>
+                                <div class="inline-box" ng-show="showWishlist">{{user.name}}</div>
                             </div>
                             <script type="text/ng-template" id="demopoplogin">
                                 Hello World!
                             </script>
-                            <div class="col-flex box-height">
+                            <div class="col-flex box-height" ng-show="showWishlist">
                                 <a href="#/favorite">
                                     <div class="style3-bg small-box"><i class="fa fa-heart"></i>
                                     </div>
@@ -77,7 +78,6 @@
                     </a>
                 </div>
                 <div class="col-md-9  nopad-left">
-
                     <div class="row above-nav">
                         <div class="col-md-4 col-sm-4">
                             <div class="input-group ingroup">
@@ -107,12 +107,18 @@
                                     <div class="inline-box">Reach Out</div>
                                 </a>
                             </div>
-                            <div class="col-flex box-height" ng-click="showLogin();">
+                            <div class="col-flex box-height" ng-click="showLogin();" ng-hide="showWishlist">
                                 <div class="style4-bg small-box"><i class="fa fa-user"></i>
                                 </div>
                                 <div class="inline-box">Login</div>
+                                <div class="inline-box" ng-show="showWishlist">{{user.name}}</div>
                             </div>
-                            <div class="col-flex box-height">
+                            <div class="col-flex box-height" ng-click="toaccount();" ng-show="showWishlist">
+                                <div class="style4-bg small-box"><i class="fa fa-user"></i>
+                                </div>
+                                <div class="inline-box">{{user.name}}</div>
+                            </div>
+                            <div class="col-flex box-height" ng-show="showWishlist">
                                 <a href="#/favorite">
                                     <div class="style3-bg small-box"><i class="fa fa-heart"></i>
                                     </div>
@@ -120,7 +126,6 @@
                                     </div>
                                 </a>
                             </div>
-
                             <div class="col-flex box-height list-cart" ng-controller="cartdropctrl" ng-click="showcart(0)" ng-mouseleave="hidecart(0)">
                                 <div class="style2-bg small-box"></div>
                                 <div class="">
@@ -134,7 +139,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--Nav bar-->
                     <nav class="navbar">
                         <div class="navbar-header">
@@ -145,7 +149,6 @@
                                 <span class="icon-bar"></span>
                             </button>
                         </div>
-
                         <div class="collapse navbar-collapse nopad" id="nav-collapse">
                             <div ng-include="template.menu" class="template menu"></div>
                         </div>
