@@ -278,13 +278,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.reload();
     }
 
-    $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            console.log("at bottom");
-            $scope.pagedata.pagenumber++;
-            $scope.reload();
-        }
-    });
+    // $(window).scroll(function() {
+    //     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+    //         console.log("at bottom");
+    //         $scope.pagedata.pagenumber++;
+    //         $scope.reload();
+    //     }
+    // });
+
+    $scope.addMoreItems = function() {
+        $scope.pagedata.pagenumber++;
+        $scope.reload();
+    }
 
 
     // set available range
@@ -1122,13 +1127,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.reload();
     }
 
-    $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            console.log("at bottom");
-            $scope.pagedata.pagenumber++;
-            $scope.reload();
-        }
-    });
+    // $(window).scroll(function() {
+    //     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+    //         console.log("at bottom");
+    //         $scope.pagedata.pagenumber++;
+    //         $scope.reload();
+    //     }
+    // });
+
+     $scope.addMoreItems = function() {
+        $scope.pagedata.pagenumber++;
+        $scope.reload();
+    }
 
 
     $scope.artistdetail = {};
