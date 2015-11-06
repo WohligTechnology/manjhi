@@ -1,166 +1,179 @@
 <div ng-controller="headerctrl">
-    <header class="stickyheader" scroll>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 nopad-right text-center">
-                    <a href="#/home">
-                        <img src="img/logofixed.jpg" alt="logo" class="img-responsive logo">
-                    </a>
-                </div>
-                <div class="col-md-9  nopad-left">
-                    <div class="row above-nav">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="input-group ingroup">
-                                <input type="search" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-3">
-                            <div class="social-icons">
-                                <ul>
-                                    <li><i class="fa fa-facebook-square"></i>
-                                    </li>
-                                    <li><i class="fa fa-twitter-square"></i>
-                                    </li>
-                                    <li><i class="fa fa-google-plus-square"></i>
-                                    </li>
-                                    <li><i class="fa fa-youtube-square"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-5 row-flex login-head">
-                            <div class="col-flex box-height">
-                                <a href="#/reach-out">
-                                    <div class="style1-bg small-box"><i class="fa fa-phone"></i>
-                                    </div>
-                                    <div class="inline-box">Reach Out</div>
-                                </a>
-                            </div>
-                            <div class="col-flex box-height" ng-click="showLogin();" ng-hide="showWishlist">
-                                <div class="style4-bg small-box"><i class="fa fa-user"></i>
-                                </div>
-                                <div class="inline-box">Login</div>
-                                <div class="inline-box" ng-show="showWishlist">{{user.name}}</div>
-                            </div>
-                            <div class="col-flex box-height" ng-click="toaccount();" ng-show="showWishlist">
-                                <div class="style4-bg small-box"><i class="fa fa-user"></i>
-                                </div>
-                                <div class="inline-box">{{user.name}}</div>
-                            </div>
-                            <script type="text/ng-template" id="demopoplogin">
-                                Hello World!
-                            </script>
-                            <div class="col-flex box-height" ng-show="showWishlist">
-                                <a href="#/favorite">
-                                    <div class="style3-bg small-box"><i class="fa fa-heart"></i>
-                                    </div>
-                                    <div class="inline-box"><span class="">Favorite</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-flex box-height list-cart" ng-controller="cartdropctrl" ng-click="showcart(0)" ng-mouseleave="hidecart(0)">
-                                <div class="style2-bg small-box"></div>
-                                <div class="inline-box">
-                                    My Cart
-                                    <br><span class="light-shade">Rs.0</span>
-                                </div>
-                                <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 nopad-right text-center">
-                    <a href="#/home">
-                        <img src="img/logo.jpg" alt="logo" class="img-responsive logo">
-                    </a>
-                </div>
-                <div class="col-md-9  nopad-left">
-                    <div class="row above-nav">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="input-group ingroup">
-                                <input type="search" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-3">
-                            <div class="social-icons">
-                                <ul>
-                                    <li><i class="fa fa-facebook-square"></i>
-                                    </li>
-                                    <li><i class="fa fa-twitter-square"></i>
-                                    </li>
-                                    <li><i class="fa fa-google-plus-square"></i>
-                                    </li>
-                                    <li><i class="fa fa-youtube-square"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-5 row-flex login-head">
-                            <div class="col-flex box-height">
-                                <a href="#/reach-out">
-                                    <div class="style1-bg small-box"><i class="fa fa-phone"></i>
-                                    </div>
-                                    <div class="inline-box">Reach Out</div>
-                                </a>
-                            </div>
-                            <div class="col-flex box-height" ng-click="showLogin();" ng-hide="showWishlist">
-                                <div class="style4-bg small-box"><i class="fa fa-user"></i>
-                                </div>
-                                <div class="inline-box">Login</div>
-                                <div class="inline-box" ng-show="showWishlist">{{user.name}}</div>
-                            </div>
-                            <div class="col-flex box-height" ng-click="toaccount();" ng-show="showWishlist">
-                                <div class="style4-bg small-box"><i class="fa fa-user"></i>
-                                </div>
-                                <div class="inline-box">{{user.name}}</div>
-                            </div>
-                            <div class="col-flex box-height" ng-show="showWishlist">
-                                <a href="#/favorite">
-                                    <div class="style3-bg small-box"><i class="fa fa-heart"></i>
-                                    </div>
-                                    <div class="inline-box"><span class="">Favorite</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-flex box-height list-cart" ng-controller="cartdropctrl" ng-click="showcart(0)" ng-mouseleave="hidecart(0)">
-                                <div class="style2-bg small-box"></div>
-                                <div class="">
-                                    <div class="inline-box">
-                                        My Cart
-                                        <br><span class="light-shade">Rs.0</span>
-                                    </div>
-                                    <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Nav bar-->
-                    <nav class="navbar">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
-                                <span class="sr-only">Menu</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="collapse navbar-collapse nopad" id="nav-collapse">
-                            <div ng-include="template.menu" class="template menu"></div>
-                        </div>
-                    </nav>
-                    <!--Nav bar-->
-                </div>
-            </div>
-        </div>
-    </header>
+	<header class="stickyheader" scroll>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 nopad-right text-center">
+					<a href="#/home">
+						<img src="img/logofixed.jpg" alt="logo" class="img-responsive logo">
+					</a>
+				</div>
+				<div class="col-md-9  nopad-left">
+					<div class="row above-nav">
+						<div class="col-md-4 col-sm-4">
+							<div class="input-group ingroup">
+								<input type="search" class="form-control" placeholder="Search...">
+								<span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="social-icons">
+								<ul>
+									<li><i class="fa fa-facebook-square"></i>
+									</li>
+									<li><i class="fa fa-twitter-square"></i>
+									</li>
+									<li><i class="fa fa-google-plus-square"></i>
+									</li>
+									<li><i class="fa fa-youtube-square"></i>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-5 row-flex login-head">
+							<div class="col-flex box-height">
+								<a href="#/reach-out">
+									<div class="style1-bg small-box"><i class="fa fa-phone"></i>
+									</div>
+									<div class="inline-box">Reach Out</div>
+								</a>
+							</div>
+							<div class="col-flex box-height" ng-click="showLogin();" ng-hide="showWishlist">
+								<div class="style4-bg small-box"><i class="fa fa-user"></i>
+								</div>
+								<div class="inline-box">Login</div>
+								<div class="inline-box" ng-show="showWishlist">{{user.name}}</div>
+								<div class="sub-menu logout">
+									<div class="style3-bg small-box">
+										<i class="fa fa-sign-out"></i>
+									</div>
+									<div class="inline-box">Logout</div>
+								</div>
+							</div>
+							<div class="col-flex box-height" ng-click="toaccount();" ng-show="showWishlist">
+								<div class="style4-bg small-box"><i class="fa fa-user"></i>
+								</div>
+								<div class="inline-box">{{user.name}}</div>
+							</div>
+							<script type="text/ng-template" id="demopoplogin">
+								Hello World!
+							</script>
+							<div class="col-flex box-height" ng-show="showWishlist">
+								<a href="#/favorite">
+									<div class="style3-bg small-box"><i class="fa fa-heart"></i>
+									</div>
+									<div class="inline-box"><span class="">Favorite</span>
+									</div>
+								</a>
+							</div>
+							<div class="col-flex box-height list-cart" ng-controller="cartdropctrl" ng-click="showcart(0)" ng-mouseleave="hidecart(0)">
+								<div class="style2-bg small-box"></div>
+								<div class="inline-box">
+									My Cart
+									<br><span class="light-shade">Rs.0</span>
+								</div>
+								<div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 nopad-right text-center">
+					<a href="#/home">
+						<img src="img/logo.jpg" alt="logo" class="img-responsive logo">
+					</a>
+				</div>
+				<div class="col-md-9  nopad-left">
+					<div class="row above-nav">
+						<div class="col-md-4 col-sm-4">
+							<div class="input-group ingroup">
+								<input type="search" class="form-control" placeholder="Search...">
+								<span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button></span>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-3">
+							<div class="social-icons">
+								<ul>
+									<li><i class="fa fa-facebook-square"></i>
+									</li>
+									<li><i class="fa fa-twitter-square"></i>
+									</li>
+									<li><i class="fa fa-google-plus-square"></i>
+									</li>
+									<li><i class="fa fa-youtube-square"></i>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-5 row-flex login-head">
+							<div class="col-flex box-height">
+								<a href="#/reach-out">
+									<div class="style1-bg small-box"><i class="fa fa-phone"></i>
+									</div>
+									<div class="inline-box">Reach Out</div>
+								</a>
+							</div>
+							<div class="col-flex box-height" ng-click="showLogin();" ng-hide="showWishlist">
+								<div class="style4-bg small-box">
+									<i class="fa fa-user"></i>
+								</div>
+								<div class="inline-box">Login</div>
+								<div class="inline-box" ng-show="showWishlist">{{user.name}}</div>
+								<div class="sub-menu logout">
+									<div class="style3-bg small-box">
+										<i class="fa fa-sign-out"></i>
+									</div>
+									<div class="inline-box">Logout</div>
+								</div>
+							</div>
+							<div class="col-flex box-height" ng-click="toaccount();" ng-show="showWishlist">
+								<div class="style4-bg small-box"><i class="fa fa-user"></i>
+								</div>
+								<div class="inline-box">{{user.name}}</div>
+							</div>
+							<div class="col-flex box-height" ng-show="showWishlist">
+								<a href="#/favorite">
+									<div class="style3-bg small-box"><i class="fa fa-heart"></i>
+									</div>
+									<div class="inline-box"><span class="">Favorite</span>
+									</div>
+								</a>
+							</div>
+							<div class="col-flex box-height list-cart" ng-controller="cartdropctrl" ng-click="showcart(0)" ng-mouseleave="hidecart(0)">
+								<div class="style2-bg small-box"></div>
+								<div class="">
+									<div class="inline-box">
+										My Cart
+										<br><span class="light-shade">Rs.0</span>
+									</div>
+									<div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--Nav bar-->
+					<nav class="navbar">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
+								<span class="sr-only">Menu</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="collapse navbar-collapse nopad" id="nav-collapse">
+							<div ng-include="template.menu" class="template menu"></div>
+						</div>
+					</nav>
+					<!--Nav bar-->
+				</div>
+			</div>
+		</div>
+	</header>
 </div>
