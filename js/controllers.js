@@ -48,6 +48,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $location.url("/artwork/" + type);
     }
 
+    var allartist = [];
+
+    NavigationService.getAllArtistDrop(function(data) {
+        _.each(data, function(n) {
+            allartist.push(n.name);
+        })
+        console.log(allartist);
+        $(".js-example-data-array").select2({
+            placeholder: "Select Artist",
+            data: allartist
+        })
+    })
+
 })
 
 .controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -58,21 +71,32 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     $scope.artistdetail = [];
     $scope.allfavourites = [];
+    $scope.noFavs = false;
 
-    NavigationService.getMyFavourites(function(data, status) {
+    if ($.jStorage.get("user")) {
         cfpLoadingBar.start();
-        console.log(data);
-        _.each(data, function(n) {
-            $scope.allfavourites.push({
-                "_id": n.wishlist.artwork
-            });
-        });
-        NavigationService.getAllFavouritesData($scope.allfavourites, function(data, status) {
+        NavigationService.getMyFavourites(function(data, status) {
             console.log(data);
-            $scope.artistdetail = data;
-            cfpLoadingBar.complete();
+            if (data.value != false && data.comment != "No data found") {
+                $scope.noFavs = false;
+                _.each(data, function(n) {
+                    $scope.allfavourites.push({
+                        "_id": n.wishlist.artwork
+                    });
+                });
+
+                NavigationService.getAllFavouritesData($scope.allfavourites, function(data, status) {
+                    console.log(data);
+                    $scope.artistdetail = data;
+                    $scope.totalfav = data.length;
+                    cfpLoadingBar.complete();
+                })
+            } else {
+                $scope.noFavs = true;
+                cfpLoadingBar.complete();
+            }
         })
-    })
+    }
 
     //    $scope.artistdetail = [{
     //        image: 'img/artist/artist1.jpg',
@@ -197,6 +221,34 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.isRed = !$scope.isRed;
     }
 
+    $scope.makeFav = function(art) {
+        if ($.jStorage.get("user")) {
+            NavigationService.addToFav(art.artwork._id, function(data) {
+                console.log(data);
+                if ($scope.isRed == true)
+                    art.heartClass = "fa fa-heart";
+                else
+                    art.heartClass = "fa fa-heart font-color3";
+                $scope.isRed = !$scope.isRed;
+                var xyz = ngDialog.open({
+                    template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                    plain: true
+                });
+                $timeout(function() {
+                    xyz.close();
+                }, 3000)
+            })
+        } else {
+            var xyz = ngDialog.open({
+                template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                plain: true
+            });
+            $timeout(function() {
+                xyz.close();
+            }, 3000)
+        }
+    }
+
     $scope.checkForEmpty = function() {
         if ($scope.pagedata.minprice == '')
             $scope.pagedata.minprice = 0;
@@ -252,7 +304,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.type = type;
         $scope.totalartcont = [];
         $scope.pagedata.pagenumber = 1;
-        $scope.pagedata.search = '';
+        // $scope.pagedata.search = '';
         $scope.pagedata.filter = "srno";
         $scope.pagedata.sort = 1;
         $scope.pagedata.medium = '';
@@ -971,7 +1023,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
+.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location) {
     $scope.template = TemplateService.changecontent("artistdetail")
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
@@ -983,6 +1035,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistdetail = data
     })
 
+    $scope.goToDetail = function(artid) {
+        $location.url("/artwork/detail/" + artid);
+    }
 
     //    $scope.artistdetail = [{
     //        image: 'img/artist/artist1.jpg',
@@ -1230,7 +1285,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.logintab = tab;
     }
 
-    $scope.toaccount=function(){
+    $scope.toaccount = function() {
         $location.url("/account");
     }
 

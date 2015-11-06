@@ -40,7 +40,6 @@
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
 -->
                             </p>
-
                             <p ng-if="artistdetail.soloshow">
                                 <span class="bold">Solo Shows</span>
                                 <span ng-repeat="solo in artistdetail.soloshow">
@@ -51,7 +50,6 @@
                                 <br>2011, High Street Phoenix, Aura Art, Lower Parel, Mumbai
 -->
                             </p>
-
                             <p ng-if="artistdetail.groupshow">
                                 <span class="bold">Group Shows</span>
                                 <span ng-repeat="group in artistdetail.groupshow">
@@ -67,10 +65,9 @@
                 </accordion-group>
             </accordion>
         </div>
-
         <div class="row">
             <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail.artwork">
-                <div class="artist-details">
+                <div class="artist-details" ng-click="goToDetail(artistdetails._id);">
                     <a href=""></a>
                     <div class="image-holders" fixit>
                         <img class="fix-img" ng-src='{{artistdetails.image[0]|uploadthumbnail}}'>
