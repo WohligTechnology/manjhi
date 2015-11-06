@@ -1266,8 +1266,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 if (data.value == true) {
                     $scope.showAlreadyRegistered = false;
                     $scope.showWishlist = true;
-                    $.jStorage.set("user", data);
-                    $scope.user.name = data.name;
+                    $.jStorage.set("user", data.id);
+                    $scope.user.name = data.id.name;
                     ngDialog.closeAll();
                     window.location.reload();
                 } else if (data.value == false && data.comment == "User already exists") {

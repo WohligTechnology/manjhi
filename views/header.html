@@ -37,11 +37,16 @@
                                     <div class="inline-box">Reach Out</div>
                                 </a>
                             </div>
-                            <div class="col-flex box-height" ng-click="showLogin();">
+                            <div class="col-flex box-height" ng-click="showLogin();" ng-hide="showWishlist">
                                 <div class="style4-bg small-box"><i class="fa fa-user"></i>
                                 </div>
-                                <div class="inline-box" ng-hide="showWishlist">Login</div>
+                                <div class="inline-box">Login</div>
                                 <div class="inline-box" ng-show="showWishlist">{{user.name}}</div>
+                            </div>
+                            <div class="col-flex box-height" ng-click="toaccount();" ng-show="showWishlist">
+                                <div class="style4-bg small-box"><i class="fa fa-user"></i>
+                                </div>
+                                <div class="inline-box">{{user.name}}</div>
                             </div>
                             <script type="text/ng-template" id="demopoplogin">
                                 Hello World!
