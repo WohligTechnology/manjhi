@@ -45,14 +45,14 @@
                     <accordion-group heading="Search By Size (inches)">
                         <div class="min-max">
                             <h5>Height</h5>
-                            <input type="number" placeholder="Min Height" class="maxmin" ng-model="filterby.minheight">
-                            <input type="number" placeholder="Max Height" class="maxmin pull-right" ng-model="filterby.maxheight">
+                            <input type="number" placeholder="Min Height" class="maxmin" ng-model="filterby.minheight" min="1">
+                            <input type="number" placeholder="Max Height" class="maxmin pull-right" ng-model="filterby.maxheight" min="1">
                             <h5>Width</h5>
-                            <input type="number" placeholder="Min Width" class="maxmin" ng-model="filterby.minwidth">
-                            <input type="number" placeholder="Max Width" class="maxmin pull-right" ng-model="filterby.maxwidth">
+                            <input type="number" placeholder="Min Width" class="maxmin" ng-model="filterby.minwidth" min="1">
+                            <input type="number" placeholder="Max Width" class="maxmin pull-right" ng-model="filterby.maxwidth" min="1">
                             <h5>Depth</h5>
-                            <input type="number" placeholder="Min Depth" class="maxmin" ng-model="filterby.minbreadth">
-                            <input type="number" placeholder="Max Depth" class="maxmin pull-right" ng-model="filterby.maxbreadth">
+                            <input type="number" placeholder="Min Depth" class="maxmin" ng-model="filterby.minbreadth" min="1">
+                            <input type="number" placeholder="Max Depth" class="maxmin pull-right" ng-model="filterby.maxbreadth" min="1">
                         </div>
                     </accordion-group>
                     <accordion-group heading="Search By Medium">
