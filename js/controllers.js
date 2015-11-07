@@ -191,6 +191,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.callinfinite = true;
     $scope.isRed = false;
     $scope.heartClass = "fa fa-heart";
+    var lastpage = 2;
 
     $scope.typejson = [{
         name: "All",
@@ -222,21 +223,45 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.makeFav = function(art) {
         if ($.jStorage.get("user")) {
-            NavigationService.addToFav(art.artwork._id, function(data) {
-                console.log(data);
-                if ($scope.isRed == true)
-                    art.heartClass = "fa fa-heart";
-                else
-                    art.heartClass = "fa fa-heart font-color3";
-                $scope.isRed = !$scope.isRed;
-                var xyz = ngDialog.open({
-                    template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-                    plain: true
-                });
-                $timeout(function() {
-                    xyz.close();
-                }, 3000)
-            })
+            if (art.heartClass == "fa fa-heart") {
+                NavigationService.addToFav(art.artwork._id, function(data) {
+                    console.log(data);
+                    if (!data.value) {
+                        $.jStorage.set("user", data);
+                        art.heartClass = "fa fa-heart font-color3";
+                        var xyz = ngDialog.open({
+                            template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                            plain: true
+                        });
+                        $timeout(function() {
+                            xyz.close();
+                        }, 3000);
+                    } else if (data.value == true && data.comment == "Data already updated") {
+                        var xyz = ngDialog.open({
+                            template: '<div class="pop-up"><h5 class="popup-wishlist">Already added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                            plain: true
+                        });
+                        $timeout(function() {
+                            xyz.close();
+                        }, 3000);
+                    }
+                })
+            } else if (art.heartClass == "fa fa-heart font-color3") {
+                NavigationService.deleteFromFav(art.artwork._id, function(data) {
+                    console.log(data);
+                    if (!data.value) {
+                        $.jStorage.set("user", data);
+                        art.heartClass = "fa fa-heart";
+                        var xyz = ngDialog.open({
+                            template: '<div class="pop-up"><h5 class="popup-wishlist">Removed from favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                            plain: true
+                        });
+                        $timeout(function() {
+                            xyz.close();
+                        }, 3000);
+                    }
+                })
+            }
         } else {
             var xyz = ngDialog.open({
                 template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
@@ -270,7 +295,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.reload = function() {
         cfpLoadingBar.start();
         NavigationService.artworktype($scope.pagedata, function(data, status) {
-            $scope.maxpages = parseInt(data.totalpages);
+            lastpage = parseInt(data.totalpages);
             _.each(data.data, function(n) {
                 n.heartClass = "fa fa-heart";
                 if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
@@ -338,8 +363,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // });
 
     $scope.addMoreItems = function() {
-        $scope.pagedata.pagenumber++;
-        $scope.reload();
+        if (lastpage > $scope.pagedata.pagenumber) {
+            $scope.pagedata.pagenumber++;
+            $scope.reload();
+        }
     }
 
 
@@ -496,25 +523,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         name: 'AURA ART CONNECTS THE TWO WORLDS OF ART AND FASHION',
         detail: ' ITC Grand-Maratha, Sahar Road, Mumbai',
         img: 'img/event/event1.jpg'
-    }, {
-        name: 'Art and Culture exchange between India & China',
-        detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
-        img: 'img/event/event2.jpg'
-    }];
+    }
+    // , {
+    //     name: 'Art and Culture exchange between India & China',
+    //     detail: 'Mar 31, 2015 - Mar 31, 2015 ITC Grand-Maratha, Sahar Road, Mumbai',
+    //     img: 'img/event/event2.jpg'
+    // }
+    ];
 
     $scope.event2015 = [{
         name: 'The Art Enclave at UBM Index Fairs 2014',
         detail: ' Oct 09, 2014 - Oct 12, 2014 MMRDA Exhibition Centre, BKC, Mumbai',
         img: 'img/event/event3.jpg'
-    }, {
-        name: 'Art Partner for The Edutainment Show 2014',
-        detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
-        img: ''
-    }, {
-        name: 'Art Partner for Yes Bank International Polo Cup',
-        detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
-        img: ''
-    }];
+    }
+    // , {
+    //     name: 'Art Partner for The Edutainment Show 2014',
+    //     detail: 'Apr 26, 2014 - Apr 27, 2014 JW Marriott Hotel Mumbai',
+    //     img: ''
+    // }
+    // , {
+    //     name: 'Art Partner for Yes Bank International Polo Cup',
+    //     detail: 'Mar 22, 2014 - Mar 22, 2014 Mahalaxmi Race Course, Mumbai',
+    //     img: ''
+    // }
+    ];
 
     $scope.event2014 = [{
         name: 'Art Infrastructure – nobody’s business',
@@ -780,7 +812,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location) {
+.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, cfpLoadingBar, $timeout) {
     $scope.template = TemplateService.changecontent("detailimage");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -788,6 +820,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.aristImages = [];
     $scope.allartworks = [];
 
+    cfpLoadingBar.start();
+    $timeout(function() {
+        cfpLoadingBar.complete();
+    }, 5000);
     NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
         console.log(data);
         NavigationService.getoneartist(data[0]._id, function(artistdata, status) {
@@ -801,6 +837,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.aristImages = _.chunk($scope.aristImages, 6);
             $scope.aristImages = $scope.aristImages[0];
             console.log($scope.aristImages);
+            cfpLoadingBar.complete();
         })
         $scope.artistDetailImg = data[0];
     })
@@ -1124,19 +1161,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.pagedata.search = '';
     $scope.pagedata.searchname = '';
     $scope.artistimage = [];
-    $scope.maxpages = 2;
+    var lastpage = 2;
+
+    NavigationService.getAllArtistDrop(function(data, status) {
+        console.log(data);
+        $scope.listview = _.uniq(data, '_id');
+        $scope.listview = _.chunk($scope.listview, $scope.listview.length / 6);
+        console.log($scope.listview);
+    });
 
     $scope.reload = function() {
         cfpLoadingBar.start();
         NavigationService.getallartist($scope.pagedata, function(data, status) {
             console.log(data);
-            $scope.maxpages = parseInt(data.totalpages);
+            lastpage = parseInt(data.totalpages);
             _.each(data.data, function(n) {
                 $scope.artistimage.push(n);
             })
             $scope.artistimage = _.uniq($scope.artistimage, '_id');
             console.log($scope.artistimage);
-            $scope.listview = _.chunk($scope.artistimage, 24);
+            // $scope.listview = _.chunk($scope.artistimage, $scope.artistimage.length / 6);
             cfpLoadingBar.complete();
         });
     }
@@ -1144,7 +1188,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //    $scope.reload();
 
     $scope.getartistbyletter = function(letter) {
-
         _.each($scope.alphabetjson, function(n) {
             //            var index = n.name.indexOf(letter);
             //            console.log(index);
@@ -1198,8 +1241,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // });
 
     $scope.addMoreItems = function() {
-        $scope.pagedata.pagenumber++;
-        $scope.reload();
+        if (lastpage >= $scope.pagedata.pagenumber) {
+            $scope.pagedata.pagenumber++;
+            $scope.reload();
+        }
     }
 
 
@@ -1268,7 +1313,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService, $location) {
+.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar) {
     $scope.template = TemplateService;
     var scrolled = 0;
     $scope.logintab = '1';
@@ -1282,6 +1327,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.showWishlist = false;
     $scope.user = {};
     $scope.user.name = '';
+    $scope.art = {};
+    $scope.art.search = '';
+    $scope.art.pagenumber = 1;
+    $scope.art.pagesize = 5;
+
+    $scope.getSearchedArt = function() {
+        console.log($scope.art);
+        if ($scope.art.search != '') {
+            cfpLoadingBar.start();
+            NavigationService.getArtworkbySearch($scope.art, function(data) {
+                console.log(data);
+                $.jStorage.set("searchObj", $scope.art);
+                $.jStorage.set("searchResults", data);
+                $location.url("/searchresults");
+                cfpLoadingBar.complete();
+            })
+        }
+    }
 
     $scope.showLogin = function() {
         ngDialog.open({
@@ -1331,11 +1394,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.passwordNotMatch = false;
             NavigationService.registeruser($scope.register, function(data, status) {
                 console.log(data);
-                if (data.value == true) {
+                if (data.value != false) {
                     $scope.showAlreadyRegistered = false;
                     $scope.showWishlist = true;
-                    $.jStorage.set("user", data.id);
-                    $scope.user.name = data.id.name;
+                    $.jStorage.set("user", data);
+                    $scope.user.name = data.name;
                     ngDialog.closeAll();
                     window.location.reload();
                 } else if (data.value == false && data.comment == "User already exists") {
@@ -1511,4 +1574,114 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //        small: 'img/smallsculpture.jpg',
     //        large: 'img/largesculpture.jpg'
     //    }];
+})
+
+.controller('SearchResultsCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, ngDialog, $timeout) {
+    $scope.template = TemplateService.changecontent("searchresults");
+    $scope.menutitle = NavigationService.makeactive("Search Results");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    $scope.totalartcont = [];
+
+    if ($.jStorage.get("searchObj"))
+        $scope.art = $.jStorage.get("searchObj");
+
+    if ($.jStorage.get("searchResults")) {
+        $scope.artworks = $.jStorage.get("searchResults");
+        console.log($scope.artworks);
+        _.each($scope.artworks.data, function(n) {
+            if (n.artwork) {
+                _.each(n.artwork, function(m) {
+                    var item = {};
+                    item._id = n._id;
+                    item.name = n.name;
+                    item.artwork = m;
+                    var ispresent = '';
+                    if ($.jStorage.get("user"))
+                        ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', m._id);
+                    else
+                        ispresent = -1;
+                    if (ispresent != -1) {
+                        item.heartClass = "fa fa-heart font-color3";
+                    } else {
+                        item.heartClass = "fa fa-heart";
+                    }
+                    $scope.totalartcont.push(item);
+                })
+            }
+        })
+        $scope.totalartcont = _.uniq($scope.totalartcont, 'artwork._id');
+        console.log($scope.totalartcont);
+    }
+
+    $scope.showDetails = function(oneuser) {
+        console.log(oneuser)
+        $scope.artistDetailImg = oneuser;
+        ngDialog.open({
+            scope: $scope,
+            template: 'views/content/quickview-imagedetail.html'
+        });
+    };
+
+    $scope.goToDetailPage = function(artwork) {
+        console.log(artwork);
+        if (artwork.type == "Sculptures") {
+            $location.url("/sculpture/" + artwork._id);
+        } else {
+            $location.url("/artwork/detail/" + artwork._id);
+        }
+    }
+
+    $scope.makeFav = function(art) {
+        if ($.jStorage.get("user")) {
+            if (art.heartClass == "fa fa-heart") {
+                NavigationService.addToFav(art.artwork._id, function(data) {
+                    console.log(data);
+                    if (!data.value) {
+                        $.jStorage.set("user", data);
+                        art.heartClass = "fa fa-heart font-color3";
+                        var xyz = ngDialog.open({
+                            template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                            plain: true
+                        });
+                        $timeout(function() {
+                            xyz.close();
+                        }, 3000);
+                    } else if (data.value == true && data.comment == "Data already updated") {
+                        var xyz = ngDialog.open({
+                            template: '<div class="pop-up"><h5 class="popup-wishlist">Already added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                            plain: true
+                        });
+                        $timeout(function() {
+                            xyz.close();
+                        }, 3000);
+                    }
+                })
+            } else if (art.heartClass == "fa fa-heart font-color3") {
+                NavigationService.deleteFromFav(art.artwork._id, function(data) {
+                    console.log(data);
+                    if (!data.value) {
+                        $.jStorage.set("user", data);
+                        art.heartClass = "fa fa-heart";
+                        var xyz = ngDialog.open({
+                            template: '<div class="pop-up"><h5 class="popup-wishlist">Removed from favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                            plain: true
+                        });
+                        $timeout(function() {
+                            xyz.close();
+                        }, 3000);
+                    }
+                })
+            }
+        } else {
+            var xyz = ngDialog.open({
+                template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                plain: true
+            });
+            $timeout(function() {
+                xyz.close();
+            }, 3000)
+        }
+    }
+
 });

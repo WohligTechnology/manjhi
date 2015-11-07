@@ -1,6 +1,6 @@
 //var adminurl = "http://192.168.2.22/";
 var adminurl = "http://192.168.0.121:1337/";
-var adminurl = "http://146.148.34.49/";
+// var adminurl = "http://146.148.34.49/";
 var navigationservice = angular.module('navigationservice', [])
 
 .factory('NavigationService', function($http) {
@@ -265,6 +265,16 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
+        deleteFromFav: function(artid, callback) {
+            $http({
+                url: adminurl + "wishlist/delete",
+                method: "POST",
+                data: {
+                    "artwork": artid,
+                    "user": $.jStorage.get("user")._id
+                }
+            }).success(callback);
+        },
         getMyFavourites: function(callback) {
             $http({
                 url: adminurl + "wishlist/find",
@@ -292,5 +302,16 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
+        getArtworkbySearch: function(pagedata, callback) {
+            $http({
+                url: adminurl + "artwork/searchartwork",
+                method: "POST",
+                data: {
+                    "search": pagedata.search,
+                    "pagenumber": pagedata.pagenumber,
+                    "pagesize": pagedata.pagesize
+                }
+            }).success(callback);
+        }
     }
 });
