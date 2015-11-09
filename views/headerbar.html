@@ -1,9 +1,13 @@
 <div class="row above-nav">
     <div class="col-md-4 col-sm-4">
+      <form ng-submit="getSearchedArt();">
         <div class="input-group ingroup">
             <input type="search" class="form-control" placeholder="Search..." ng-model="art.search">
-            <span class="input-group-btn"><button class="btn btn-default" type="submit" ng-click="getSearchedArt();"><i class="fa fa-search"></i></button></span>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+            </span>
         </div>
+      </form>
     </div>
     <div class="col-md-2 col-sm-3">
         <div class="social-icons">

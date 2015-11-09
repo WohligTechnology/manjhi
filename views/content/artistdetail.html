@@ -2,8 +2,9 @@
 <div class="artist-detail">
     <div class="container">
         <div class="cont-artist">
-            <h4 class="head-team margin-no">{{artistdetail.name}}</h4>
-            <a class="readmore pull-right" ng-click="status.open = !status.open">View Profile</a>
+            <h4 class="head-team margin-no">{{artistdetail.name}}
+              <a class="readmore" ng-click="status.open = !status.open">View Profile</a>
+            </h4>
             <accordion>
                 <accordion-group is-open="status.open">
                     <div class="row">

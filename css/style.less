@@ -735,7 +735,6 @@ h4 {
           margin-left: -1px;
           display: inline-block;
           padding: 6px 12px;
-          line-height: 1.42857143;
           text-align: center;
           vertical-align: middle;
           -ms-touch-action: manipulation;
@@ -746,7 +745,6 @@ h4 {
           user-select: none;
           border: 0;
           background: #fff;
-          padding: 2px 12px;
         }
       }
       .form-control {
@@ -759,8 +757,6 @@ h4 {
         background-color: transparent;
         display: table-cell;
         border: 0;
-        padding: 0 12px;
-        line-height: 3.3;
       }
     }
   }
@@ -1249,10 +1245,8 @@ body.ngdialog-open {
   a.readmore {
     color: #000;
     cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 225px;
-    width: 200px;
+    font-size: 12px;
+    margin-left: 15px;
   }
   p {
     text-align: justify;
@@ -1972,6 +1966,7 @@ a.readmore {
   display: block;
   padding-top: 25px;
   ul.lineul {
+    .column-count(6);
     list-style: none;
     padding: 0;
     padding-right: 15px;
@@ -2360,6 +2355,14 @@ img.fancybox-image {
 .head {
   font-size: 13px;
   font-weight: 700;
+}
+
+.content {
+  min-height: 500px;
+}
+
+.panel-group .panel {
+  border-radius: 0px;
 }
 /*Mobile Less*/
 //@import "other.less";
