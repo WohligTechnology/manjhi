@@ -96,7 +96,7 @@ header.stickyheader {
   width: 100%;
   background: #fff;
   position: fixed;
-  z-index: 9999;
+  z-index: 999;
   padding-bottom: 5px;
   .translateY(-100%);
   .transition(all 300ms ease);
@@ -1918,6 +1918,10 @@ a.readmore {
     right: 10px;
     top: 0;
     cursor: pointer;
+    background-color: rgba(255,255,255,0.50);
+    padding: 5px 10px;
+    text-transform: uppercase;
+    color: #555;
     i {
       font-size: 13px;
       padding-left: 10px;
@@ -2119,9 +2123,6 @@ a {
 }
 .relative {
   position: relative;
-}
-.fancybox-wrap.fancybox-desktop.fancybox-type-image.fancybox-opened {
-  top: 80px!important;
 }
 .zoomWindow {
   margin-left: 20px;
@@ -2360,6 +2361,9 @@ img.fancybox-image {
   cursor: pointer;
 }
 .panel-group .panel {
+  border-radius: 0;
+}
+.fancybox-skin {
   border-radius: 0;
 }
 /*Mobile Less*/

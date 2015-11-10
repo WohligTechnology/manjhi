@@ -1051,7 +1051,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService) {
-    $scope.template = TemplateService.changecontent("artInfrastructure");
+    $scope.template = TemplateService.changecontent("artinfrastructure");
     $scope.menutitle = NavigationService.makeactive("Art Infrastructure");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
