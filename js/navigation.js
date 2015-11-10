@@ -301,6 +301,15 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
+        getAllArtistByAccess: function(callback) {
+            $http({
+                url: adminurl + "user/findbyaccess",
+                method: "POST",
+                data: {
+                    "accesslevel": "artist"
+                }
+            }).success(callback);
+        },
         getArtworkbySearch: function(pagedata, callback) {
             $http({
                 url: adminurl + "artwork/searchartwork",

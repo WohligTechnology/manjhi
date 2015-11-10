@@ -1168,7 +1168,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.listview = [];
     var lastpage = 2;
 
-    NavigationService.getAllArtistDrop(function(data, status) {
+    NavigationService.getAllArtistByAccess(function(data, status) {
         console.log("All List of Artist");
         $scope.listview = _.uniq(data, '_id');
         console.log($scope.listview);
