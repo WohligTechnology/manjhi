@@ -429,7 +429,7 @@ firstapp.filter('makesizestr', function() {
         size += " " + artobj.breadth;
       }
       size = size.trim();
-      size = size.split(" ").join(" X ");
+      size = size.split(" ").join(" x ");
       if (size != "")
         return size += " inches";
       else
