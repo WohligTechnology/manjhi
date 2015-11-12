@@ -172,7 +172,6 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
     templateUrl: "views/template.html",
     controller: 'ReachOutCtrl'
   })
-
   .state('register-artist', {
     url: "/register-artist",
     templateUrl: "views/template.html",

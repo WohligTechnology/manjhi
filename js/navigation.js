@@ -1,8 +1,8 @@
 // var adminurl = "http://192.168.0.121:1337/";
 var adminurl = "http://146.148.34.49/";
-var navigationservice = angular.module('navigationservice', [])
+var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
-.factory('NavigationService', function($http) {
+.factory('NavigationService', function ($http, ngDialog) {
     var navigation = [{
         name: "Home",
         active: "",
@@ -17,11 +17,13 @@ var navigationservice = angular.module('navigationservice', [])
         subnav: [{
             name: "Team",
             classis: "active",
-            link: "#/team"
+            link: "#/team",
+            clickopen: ""
         }, {
             name: "Activities",
             classis: "active",
-            link: "#/activities"
+            link: "#/activities",
+            clickopen: ""
         }]
     }, {
         name: "Artists",
@@ -31,23 +33,28 @@ var navigationservice = angular.module('navigationservice', [])
         subnav: [{
             name: "Paintings",
             classis: "active",
-            link: "#/artist/Paintings"
+            link: "#/artist/Paintings",
+            clickopen: ""
         }, {
             name: "Sculptures",
             classis: "active",
-            link: "#/artist/Sculptures"
+            link: "#/artist/Sculptures",
+            clickopen: ""
         }, {
             name: "Photographs",
             classis: "active",
-            link: "#/artist/Photographs"
+            link: "#/artist/Photographs",
+            clickopen: ""
         }, {
             name: "Prints",
             classis: "active",
-            link: "#/artist/Prints"
+            link: "#/artist/Prints",
+            clickopen: ""
         }, {
             name: "Others",
             classis: "active",
-            link: "#/artist/Others"
+            link: "#/artist/Others",
+            clickopen: ""
         }]
     }, {
         name: "Paintings & more",
@@ -57,27 +64,33 @@ var navigationservice = angular.module('navigationservice', [])
         subnav: [{
             name: "Paintings",
             classis: "active",
-            link: "#/artwork/Paintings"
+            link: "#/artwork/Paintings",
+            clickopen: ""
         }, {
             name: "Sculptures",
             classis: "active",
-            link: "#/artwork/Sculptures"
+            link: "#/artwork/Sculptures",
+            clickopen: ""
         }, {
             name: "Commissioned Sculptures",
             classis: "active",
-            link: "#/artwork/Sculptures"
+            link: "#/artwork/Sculptures",
+            clickopen: ""
         }, {
             name: "Photographs",
             classis: "active",
-            link: "#/artwork/Photographs"
+            link: "#/artwork/Photographs",
+            clickopen: ""
         }, {
             name: "Prints",
             classis: "active",
-            link: "#/artwork/Prints"
+            link: "#/artwork/Prints",
+            clickopen: ""
         }, {
             name: "Others",
             classis: "active",
-            link: "#/artwork/Others"
+            link: "#/artwork/Others",
+            clickopen: ""
         }]
     }, {
         name: "Infra Services",
@@ -121,15 +134,18 @@ var navigationservice = angular.module('navigationservice', [])
         subnav: [{
             name: "Current Events",
             classis: "active",
-            link: "#/events"
+            link: "#/events",
+            clickopen: ""
         }, {
             name: "Upcoming Events",
             classis: "active",
-            link: "#/events"
+            link: "#/events",
+            clickopen: ""
         }, {
             name: "Past Events",
             classis: "active",
-            link: "#/events"
+            link: "#/events",
+            clickopen: ""
         }]
     }, {
         name: "Press",
@@ -145,7 +161,11 @@ var navigationservice = angular.module('navigationservice', [])
         subnav: [{
             name: "Join our mailing list",
             classis: "active",
-            link: ""
+            function: function () {
+                ngDialog.open({
+                    template: 'views/content/join-mail.html'
+                });
+            }
         }, {
             name: "Reach out for artworks",
             classis: "active",
@@ -154,14 +174,15 @@ var navigationservice = angular.module('navigationservice', [])
             name: "Contact Details",
             classis: "active",
             link: "#/contactus"
+
         }]
     }];
 
     return {
-        getnav: function() {
+        getnav: function () {
             return navigation;
         },
-        makeactive: function(menuname) {
+        makeactive: function (menuname) {
             for (var i = 0; i < navigation.length; i++) {
                 if (navigation[i].name == menuname) {
                     navigation[i].classis = "active";
@@ -171,7 +192,7 @@ var navigationservice = angular.module('navigationservice', [])
             }
             return menuname;
         },
-        registeruser: function(register, callback) {
+        registeruser: function (register, callback) {
             delete register.confirmpassword
             $http({
                 url: adminurl + "user/save",
@@ -179,21 +200,21 @@ var navigationservice = angular.module('navigationservice', [])
                 data: register
             }).success(callback);
         },
-        userlogin: function(login, callback) {
+        userlogin: function (login, callback) {
             $http({
                 url: adminurl + "user/login",
                 method: "POST",
                 data: login
             }).success(callback);
         },
-        forgotpassword: function(forgot, callback) {
+        forgotpassword: function (forgot, callback) {
             $http({
                 url: adminurl + "user/forgotpassword",
                 method: "POST",
                 data: forgot
             }).success(callback);
         },
-        artworktype: function(pagedata, callback) {
+        artworktype: function (pagedata, callback) {
             //            delete pagedata.minbreadth;
             //            delete pagedata.maxbreadth;
             $http({
@@ -202,7 +223,7 @@ var navigationservice = angular.module('navigationservice', [])
                 data: pagedata
             }).success(callback);
         },
-        getartworkdetail: function(artid, callback) {
+        getartworkdetail: function (artid, callback) {
             $http({
                 url: adminurl + "artwork/findbyid",
                 method: "POST",
@@ -211,14 +232,14 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getallartist: function(pagedata, callback) {
+        getallartist: function (pagedata, callback) {
             $http({
                 url: adminurl + "user/findbyletter",
                 method: "POST",
                 data: pagedata
             }).success(callback);
         },
-        getoneartist: function(artistid, callback) {
+        getoneartist: function (artistid, callback) {
             $http({
                 url: adminurl + "user/findone",
                 method: "POST",
@@ -227,7 +248,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getupcomingevents: function(callback) {
+        getupcomingevents: function (callback) {
             $http({
                 url: adminurl + "event/findevents",
                 method: "POST",
@@ -236,7 +257,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getpresentevents: function(callback) {
+        getpresentevents: function (callback) {
             $http({
                 url: adminurl + "event/findevents",
                 method: "POST",
@@ -245,7 +266,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getpastevents: function(callback) {
+        getpastevents: function (callback) {
             $http({
                 url: adminurl + "event/findevents",
                 method: "POST",
@@ -254,7 +275,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        addToFav: function(artid, callback) {
+        addToFav: function (artid, callback) {
             $http({
                 url: adminurl + "wishlist/save",
                 method: "POST",
@@ -264,7 +285,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        deleteFromFav: function(artid, callback) {
+        deleteFromFav: function (artid, callback) {
             $http({
                 url: adminurl + "wishlist/delete",
                 method: "POST",
@@ -274,7 +295,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getMyFavourites: function(callback) {
+        getMyFavourites: function (callback) {
             $http({
                 url: adminurl + "wishlist/find",
                 method: "POST",
@@ -283,7 +304,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getAllFavouritesData: function(artarray, callback) {
+        getAllFavouritesData: function (artarray, callback) {
             $http({
                 url: adminurl + "artwork/favoriteartwork",
                 method: "POST",
@@ -292,7 +313,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getAllArtistDrop: function(searchtext, callback) {
+        getAllArtistDrop: function (searchtext, callback) {
             $http({
                 url: adminurl + "user/findUser",
                 method: "POST",
@@ -301,7 +322,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getAllArtistByAccess: function(callback) {
+        getAllArtistByAccess: function (callback) {
             $http({
                 url: adminurl + "user/findbyaccess",
                 method: "POST",
@@ -310,7 +331,7 @@ var navigationservice = angular.module('navigationservice', [])
                 }
             }).success(callback);
         },
-        getArtworkbySearch: function(pagedata, callback) {
+        getArtworkbySearch: function (pagedata, callback) {
             $http({
                 url: adminurl + "artwork/searchartwork",
                 method: "POST",
