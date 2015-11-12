@@ -53,10 +53,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.allartist = [];
+
+    NavigationService.getAllArtistByAccess(function(data, status) {
+        $scope.allartist = _.uniq(data, '_id');
+    });
+
     $scope.getDropdown = function(search) {
         if (search.length >= 3) {
             NavigationService.getAllArtistDrop(search, function(data) {
-                $scope.allartist = data;
+                if (data && data.value != false) {
+                    $scope.allartist = data;
+                } else {
+                    $scope.allartist = [];
+                }
             });
         } else {
             $scope.allartist = [];
