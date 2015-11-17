@@ -1,5 +1,5 @@
-// var adminurl = "http://192.168.0.121:1337/";
 var adminurl = "http://146.148.34.49/";
+var adminurl = "http://192.168.0.121:1337/";
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
 .factory('NavigationService', function ($http, ngDialog) {
@@ -196,6 +196,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
             delete register.confirmpassword
             $http({
                 url: adminurl + "user/save",
+                method: "POST",
+                data: register
+            }).success(callback);
+        },
+        changePassword: function (register, callback) {
+            $http({
+                url: adminurl + "user/changepassword",
                 method: "POST",
                 data: register
             }).success(callback);
