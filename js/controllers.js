@@ -47,20 +47,82 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.goToArtworks = function(type) {
         $location.url("/artwork/" + type);
     }
-
+    $scope.changetype = function(chang) {
+        if (chang == 1) {
+            $scope.filterby.type = "Paintings";
+            $scope.getallartist();
+            $scope.getmedium();
+        } else if (chang == 2) {
+            $scope.filterby.type = "Sculptures";
+            $scope.getallartist();
+            $scope.getmedium();
+        } else if (chang == 3) {
+            $scope.filterby.type = "Photographs";
+            $scope.getallartist();
+            $scope.getmedium();
+        } else if (chang == 4) {
+            $scope.filterby.type = "Prints";
+            $scope.getallartist();
+            $scope.getmedium();
+        }
+    }
     $scope.setSearch = function(select) {
         $scope.filterby.search = select.selected.name;
     }
-
+    $scope.setMediumSearch = function(select) {
+        $scope.filterby.medium = select.selected.name;
+    }
     $scope.allartist = [];
-
-    NavigationService.getAllArtistByAccess(function(data, status) {
-        $scope.allartist = _.uniq(data, '_id');
-    });
-
+    $scope.allmedium = [];
+    $scope.getmedium = function() {
+        if ($scope.filterby.type == "") {
+            console.log("in if");
+            $scope.change = {};
+            NavigationService.getallmedium($scope.change, function(data, status) {
+                if (data && data.value != false) {
+                    $scope.allmedium = _.uniq(data, '_id');
+                } else {
+                    $scope.allmedium = [];
+                }
+            });
+        } else {
+            console.log("in else");
+            $scope.change = {};
+            $scope.change.type = $scope.filterby.type;
+            NavigationService.getallmedium($scope.change, function(data, status) {
+                if (data && data.value != false) {
+                    $scope.allmedium = _.uniq(data, '_id');
+                } else {
+                    $scope.allmedium = [];
+                }
+            });
+        }
+    }
+    $scope.getallartist = function() {
+        if ($scope.filterby.type == "") {
+            NavigationService.getAllArtistByAccess(function(data, status) {
+                if (data && data.value != false) {
+                    $scope.allartist = _.uniq(data, '_id');
+                } else {
+                    $scope.allartist = [];
+                }
+            });
+        } else {
+            NavigationService.userbytype($scope.filterby.type, function(data, status) {
+                if (data && data.value != false) {
+                    $scope.allartist = data;
+                } else {
+                    $scope.allartist = [];
+                }
+            });
+        }
+    }
     $scope.getDropdown = function(search) {
         if (search.length >= 3) {
-            NavigationService.getAllArtistDrop(search, function(data) {
+            $scope.change = {};
+            $scope.change.type = $scope.filterby.type;
+            $scope.change.search = search;
+            NavigationService.getAllArtistDrop($scope.change, function(data) {
                 if (data && data.value != false) {
                     $scope.allartist = data;
                 } else {
@@ -68,7 +130,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 }
             });
         } else {
-            $scope.allartist = [];
+            $scope.getallartist();
+        }
+    }
+    $scope.getDropdownMedium = function(search) {
+        if (search.length >= 3) {
+            $scope.change = {};
+            $scope.change.type = $scope.filterby.type;
+            $scope.change.search = search;
+            NavigationService.getallmedium($scope.change, function(data) {
+                if (data && data.value != false) {
+                    $scope.allmedium = data;
+                } else {
+                    $scope.allmedium = [];
+                }
+            });
+        } else {
+            $scope.getmedium();
         }
     }
 
@@ -344,7 +422,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         // $scope.pagedata.search = '';
         $scope.pagedata.filter = "srno";
         $scope.pagedata.sort = 1;
-        $scope.pagedata.medium = '';
+        // $scope.pagedata.medium = '';
         $scope.checkForEmpty();
         $scope.reload();
     }
@@ -1521,10 +1599,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         }, 3000);
                     }
                 });
-
             } else {
                 $scope.ismatch = true;
             }
+        }
+        $scope.saveAddress = function() {
+            $scope.user._id = $.jStorage.get('user')._id;
+            NavigationService.registeruser($scope.user, function(data) {
+                console.log(data);
+                if (data.value == true) {
+                    $scope.reload();
+                    $scope.closeTab(1);
+                    $scope.showSuccess = true;
+                    $timeout(function() {
+                        $scope.showSuccess = false;
+                    }, 3000);
+                } else {
+                    $scope.reload();
+                    $scope.showFail = true;
+                    $timeout(function() {
+                        $scope.showFail = false;
+                    }, 3000);
+                }
+            });
         }
         $scope.changeTab = function(tab) {
             if (tab == 1) {
@@ -1539,6 +1636,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.closeTab = function(tab) {
             if (tab == 1) {
                 $scope.formstatus = false;
+                $scope.reload();
                 //                $scope.formstatussec = false;
             } else {
                 //                $scope.formstatus = false;

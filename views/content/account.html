@@ -342,11 +342,15 @@
                         <div class="input-id">
                             <input type="number" class="form-control" placeholder="Pincode" required ng-model="user.pincode">
                         </div>
-                        <a class="btn btn-sucesses">Save</a>
+                        <a class="btn btn-sucesses" ng-click="saveAddress();">Save</a>
                         <a class="btn btn-sucesses" ng-click="closeTab(1)">Cancel</a>
                     </div>
                     <div class="accadd" ng-if="!formstatus">
-                        {{user.regadd}}
+                        <p ng-if="user.regadd">{{user.regadd}},</p>
+                        <p ng-if="user.city">{{user.city}},</p>
+                        <p ng-if="user.state">{{user.state}},</p>
+                        <p ng-if="user.country">{{user.country}},</p>
+                        <p ng-if="user.pincode">{{user.pincode}}</p>
                     </div>
                 </div>
             </div>
