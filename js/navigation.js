@@ -377,6 +377,16 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
 				    "search":search
 			    }
 		    }).success(callback)
+	    },
+	    nextPrev: function(srno, type, callback) {
+		    $http({
+			    url: adminurl + "artwork/nextartwork",
+			    method: "POST",
+			    data:{
+				    "srno":srno,
+				    "type":type
+			    }
+		    }).success(callback);
 	    }
 	    
     }

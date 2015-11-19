@@ -34,7 +34,7 @@
                 <accordion close-others="true">
                     <accordion-group heading="Search By Artist">
                         <div class="form-group">
-                            <ui-select ng-model="filterby.search" on-select="setSearch($select);" tagging tagging-label="false">
+                            <ui-select uiselect-autofocus class="sel" ng-model="filterby.search" on-select="setSearch($select);" tagging tagging-label="false">
                                 <ui-select-match class="text-capitalize" placeholder="Select Artist">{{filterby.search}}</ui-select-match>
                                 <ui-select-choices refresh-delay="0" refresh="getDropdown($select.search)" repeat="person in allartist track by person._id">
                                     <div ng-bind-html="person.name| highlight: $select.search"></div>

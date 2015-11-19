@@ -230,6 +230,57 @@ firstapp.directive('readmores', function ($window) {
     };
 });*/
 
+firstapp.directive('focusMe', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+      scope.$watch(attrs.focusMe, function(value) {
+        if(value === true) { 
+          console.log('value=',value);
+          //$timeout(function() {
+            element[0].focus();
+            scope[attrs.focusMe] = false;
+          //});
+        }
+      });
+    }
+  };
+});
+
+firstapp.directive("uiselectAutofocus", function ($timeout) {
+    return {
+        restrict: 'A',
+        require: 'uiSelect',
+        link: function (scope, elem, attr) {
+            $timeout(function() {
+                var input = elem.find('input');
+//                if (attr.uiselectAutofocus == 'open')
+//                    input.click();
+//
+                input.focus()
+            }, 0);
+        }
+    }
+});
+
+firstapp.directive('focus',
+	function($timeout) {
+		return {
+			scope : {
+				trigger : '@focus'
+			},
+			link : function(scope, element) {
+				scope.$watch('trigger', function(value) {
+					if (value === "true") {
+						$timeout(function() {
+							element[0].focus();
+						},1000);
+					}
+				});
+			}
+		};
+	}
+); 
+
 firstapp.directive('googlePlusSignin', ['$window',
     function($window) {
         var ending = /\.apps\.googleusercontent\.com$/;
@@ -313,7 +364,6 @@ firstapp.directive('fancyboxBox', function($document) {
         replace: false,
         link: function(scope, element, attr) {
             var $element = $(element);
-
             if (attr.rel) {
                 var target = $("[rel='" + attr.rel + "']");
             } else {
@@ -337,6 +387,7 @@ firstapp.directive('elevateZoom', function($document, $filter) {
     return {
         restrict: 'EA',
         link: function($scope, element, attr) {
+		   $scope.$watch(attr.image,function(){
             $scope.changeImage = function() {
                 var image = $scope[attr.image];
                 var $element = $(element);
@@ -352,6 +403,7 @@ firstapp.directive('elevateZoom', function($document, $filter) {
                 $scope.changeImage();
             });
             $scope.changeImage();
+	   })
         }
     }
 });
@@ -413,7 +465,26 @@ firstapp.directive('img', function($compile, $parse) {
         }
     };
 });
+firstapp.directive('numbersOnly', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attr, ngModelCtrl) {
+            function fromUser(text) {
+                if (text) {
+                    var transformedInput = text.replace(/[^a-z]/gi, '');
 
+                    if (transformedInput !== text) {
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                    }
+                    return transformedInput;
+                }
+                return undefined;
+            }            
+            ngModelCtrl.$parsers.push(fromUser);
+        }
+    };
+});
 firstapp.filter('makesizestr', function() {
     return function(artobj) {
         var size = "";
@@ -435,28 +506,6 @@ firstapp.filter('makesizestr', function() {
                 return "NA";
         } else {
             return "NA";
-        }
-    };
-});
-
-firstapp.directive('onlyDigits', function() {
-    return {
-        require: 'ngModel',
-        restrict: 'A',
-        link: function(scope, element, attr, ctrl) {
-            function inputValue(val) {
-                if (val) {
-                    var digits = val.replace(/[^0-9]/g, '');
-
-                    if (digits !== val) {
-                        ctrl.$setViewValue(digits);
-                        ctrl.$render();
-                    }
-                    return parseInt(digits, 10);
-                }
-                return undefined;
-            }
-            ctrl.$parsers.push(inputValue);
         }
     };
 });

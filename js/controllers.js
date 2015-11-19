@@ -943,8 +943,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$timeout(function () {
 		cfpLoadingBar.complete();
 	}, 5000);
-	NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
-		console.log(data);
+	
+	$scope.loadArtWork = function(id){
+	NavigationService.getartworkdetail(id, function (data, status) {
+		$scope.aristImages = [];
 		$scope.artid = data[0]._id;
 		NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
 			console.log(artistdata);
@@ -960,8 +962,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			cfpLoadingBar.complete();
 		})
 		$scope.artistDetailImg = data[0];
+		
 	})
-
+	}
+	
+	$scope.loadArtWork($stateParams.artid);
 	$scope.images = [{
 		small: 'img/zoomsmall.jpg',
 		large: 'img/zoomlarge.jpg'
@@ -972,6 +977,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		small: 'img/zoomsmall.jpg',
 		large: 'img/zoomlarge.jpg'
     }];
+	
+	$scope.artPrev = function(){
+		NavigationService.nextPrev($scope.artistDetailImg.artwork.srno,'prev',function(data){
+			$scope.artistDetailImg = data;
+		})
+	}
+	
+	$scope.artNext = function(){
+		NavigationService.nextPrev($scope.artistDetailImg.artwork.srno,'next',function(data){
+			$scope.artistDetailImg = data;
+		})
+	}
 
 	$scope.showitabove = function (artwork) {
 		// $scope.aristImages = [];
@@ -1490,8 +1507,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 	
 	$scope.onSearchChange = function(search) {
+		console.log(search);
 		NavigationService.getSearchDrop(search, function(data){
-			console.log(data);
 			if(data.value == false){
 				$scope.showDropDown = true;
 			}else{
