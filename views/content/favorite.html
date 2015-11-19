@@ -19,7 +19,7 @@
                 <div class="col-md-10">
                     <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail" ng-if="artistdetail.length>0">
                         <div class="artist-details">
-                            <a href="#/favorite-product/{{artistdetails.artwork._id}}">
+                            <a ui-sref="favorite-product({artid:artistdetails.artwork._id})">
                                 <div class="image-holders">
                                     <img class="fix-img" ng-src='{{artistdetails.artwork.image[0]|uploadthumbnail}}'>
                                 </div>

@@ -16,17 +16,17 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label>
-                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Paintings" ng-change="changetype(1);" />Paintings
+                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Paintings" ng-change="changetype(1)" ng-click="onclick($event)" />Paintings
                                 </label>
                                 <label>
-                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Sculptures" ng-change="changetype(2);" />Sculptures
+                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Sculptures" ng-change="changetype(2);" ng-click="onclick($event)" />Sculptures
                                 </label>
                             </div>
                             <div class="col-md-6">
                                 <label>
-                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Photographs" ng-change="changetype(3);" />Photographs</label>
+                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Photographs" ng-change="changetype(3);" ng-click="onclick($event)" />Photographs</label>
                                 <label>
-                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Prints" ng-change="changetype(4);" />Prints</label>
+                                    <input name="arttype" ng-model="filterby.type" type="radio" value="Prints" ng-change="changetype(4);" ng-click="onclick($event)" />Prints</label>
                             </div>
                         </div>
                     </div>
@@ -81,9 +81,9 @@
         </aside>
         <div class="col-md-9 nopad-left">
             <div class="slider-holder">
-                <flex-slider animation-loop="true" animation="fade" class="carousel" flex-slide="s in slides">
+                <flex-slider animation-loop="true" animation="fade" class="carousel" flex-slide="s in slides.image track by $index">
                     <li>
-                        <img alt="" class="img-responsive" ng-src="{{s}}">
+                        <img alt="" class="img-responsive" ng-src="{{s | uploadpath}}">
                     </li>
                 </flex-slider>
                 <!--                <img src="img/slide1.jpg" alt="" class="img-responsive">-->
@@ -119,7 +119,7 @@
             <div class="info-holder">
                 <h4>Thought leadership &amp; developments</h4>
                 <p>An Exclusive Fine Art Section at UBM Index Trade Fairs, Mumbai.An Exclusive Fine Art Section at UBM Index Trade Fairs, Mumbai.An Exclusive Fine Art Section at UBM Index Trade Fairs, Mumbai.</p>
-                <a class="more" href="#/thoughtleadership">Know more...</a>
+                <a class="more" ui-sref="thoughtleadership">Know more...</a>
             </div>
         </div>
     </div>

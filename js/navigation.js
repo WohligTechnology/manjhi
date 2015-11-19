@@ -362,6 +362,22 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                     "pagesize": pagedata.pagesize
                 }
             }).success(callback);
-        }
+        },
+	    getSlider: function(callback) {
+		    $http({
+			    url: adminurl + "slider/find",
+			    method: "POST"
+		    }).success(callback)
+	    },
+	    getSearchDrop: function(search, callback) {
+		    $http({
+			    url: adminurl + "artwork/searchdrop",
+			    method: "POST",
+			    data:{
+				    "search":search
+			    }
+		    }).success(callback)
+	    }
+	    
     }
 });

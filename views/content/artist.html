@@ -52,14 +52,14 @@
           <h4 class="text-center">
             {{artistimages.name}}
           </h4>
-          <a href="#/artist/detail/{{artistimages._id}}">
+          <a ui-sref="artistdetail({artistid:artistimages._id})">
             <div class="image-holder">
               <img class="fix-img" ng-src='{{artistimages.artwork[0].image[0]|uploadthumbnail}}'>
             </div>
           </a>
           <div class="hover-look">
             <button class="btn btn-sucesses button-small text-center" ng-click="showDetail(artistimages);" type="submit">Quick View</button>
-            <a class="btn btn-sucesses button-small text-center" href="#/artist/detail/{{artistimages._id}}" type="submit">All Works</a>
+            <a class="btn btn-sucesses button-small text-center" ui-sref="artistdetail({artistid:artistimages._id})" type="submit">All Works</a>
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
       <div class="ulblock">
         <ul class="lineul">
           <li ng-repeat="artist in listview">
-            <a href="#/artist/detail/{{artist._id}}">{{artist.name}}</a>
+            <a ui-sref="artistdetail({artistid:artist._id})">{{artist.name}}</a>
           </li>
         </ul>
       </div>

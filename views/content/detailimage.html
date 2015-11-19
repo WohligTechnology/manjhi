@@ -98,7 +98,7 @@
                     <button type="button" class="btn btn-block uppercase">
                         VIEW ARTWORK IN YOUR ROOM
                     </button>
-                    <a href="#/cart" type="button" class="btn btn-primarys btn-block uppercase">
+                    <a ui-serf="cart" type="button" class="btn btn-primarys btn-block uppercase">
                         ADD TO CART
                     </a>
                 </div>
@@ -110,7 +110,7 @@
             <div class="padding-more">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4 class="head-more">MORE WORKS BY THIS ARTIST <a href="#/artwork/All" class="link-viewall">VIEW ALL</a></h4>
+                        <h4 class="head-more">MORE WORKS BY THIS ARTIST <a ui-sref="artistdetail({artistid:artid})" class="link-viewall">VIEW ALL</a></h4>
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-2 col-sm-4" ng-repeat="aristimages in aristImages">
