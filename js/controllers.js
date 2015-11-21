@@ -1335,8 +1335,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	$scope.reload = function () {
 		cfpLoadingBar.start();
+		if ($scope.pagedata.type == "All"){
+			$scope.pagedata.type = "";
+		}
 		NavigationService.getallartist($scope.pagedata, function (data, status) {
-
+			console.log(data);
 			lastpage = parseInt(data.totalpages);
 			_.each(data.data, function (n) {
 				$scope.artistimage.push(n);
@@ -1349,8 +1352,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 
 	//    $scope.reload();
-
 	$scope.getartistbyletter = function (letter) {
+		console.log(letter);
 		_.each($scope.alphabetjson, function (n) {
 			//            var index = n.name.indexOf(letter);
 			//			            console.log(index);
@@ -1361,16 +1364,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			}
 		});
 
-		if (letter == "All")
+		if (letter == "All"){
 			letter = "";
-
+		}
+		
 		$scope.pagedata.search = letter;
 		$scope.pagedata.pagenumber = 1;
 		$scope.artistimage = [];
 		$scope.listview = [];
 		$scope.reload();
 	}
-
+	
+	$scope.getartistbyletter('All');
 	$scope.getartistbysearch = function () {
 		$scope.pagedata.pagenumber = 1;
 		$scope.artistimage = [];
@@ -1380,6 +1385,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	$scope.makeactive = function (type) {
 		console.log(type);
+		console.log($scope.typejson);
 		_.each($scope.typejson, function (n) {
 			var index = n.name.indexOf(type);
 			if (index != -1) {
@@ -1388,11 +1394,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				n.class = "";
 			}
 		})
-		if (type == "All")
-			type = "";
-		else {
-			$scope.getartistbyletter(type);
-		}
+//		if (type == "All")
+//			type = "";
+		$scope.getartistbyletter('All');
+//		else {
+//			$scope.getartistbyletter(type);
+//		}
 		$scope.pagedata.type = type;
 		$scope.pagedata.pagenumber = 1;
 		//        $scope.pagedata.search = '';
@@ -1509,7 +1516,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.reachOutForm.srno = "";
 	$scope.reachOutForm.to = "harmeet@auraart.in; rishiraj@auraart.in";
 	$scope.reachOutForm.action = "1";
-
+	$scope.searchData = [];
 
 
 	$scope.reachOutArtistId = 0;
@@ -1541,6 +1548,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.selectSearch = function (name) {
 		$scope.art.search = name;
 		$('#topsearch').focus();
+		$scope.getSearchedArt();
 	}
 
 	$scope.reachOutInner = function (id) {
@@ -1640,12 +1648,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
 	}
 	$scope.resetReachOut = function(){
-		console.log("jane kahase aaya re");
-		console.log($scope.allvalidation);
-		_.each($scope.allvalidation, function(n,key){
-//			if(key != 0){
-			n.field = "";
-//			}
+		_.each($scope.reachOutForm, function(n, key){
+			if(key!=0 || key!=2 || key!=3 || key!=4){
+				$scope.reachOutForm[key] = "";
+			}
 		});
 	}
 	

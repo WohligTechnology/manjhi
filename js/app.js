@@ -536,21 +536,11 @@ var formvalidation = function(allvalidation) {
 };
 
 
-var formvalidation = function(allvalidation) {
+var clearFields = function(allvalidation) {
     var isvalid2 = true;
     var error = '';
     for (var i = 0; i < allvalidation.length; i++) {
-        console.log("checking");
-        console.log(allvalidation[i].field);
-        if (allvalidation[i].field == "" || !allvalidation[i].field) {
-            allvalidation[i].validation = "ng-dirty";
-            if (error == '') {
-                error += allvalidation[i].name;
-            } else {
-                error += " , " + allvalidation[i].name;
-            }
-            isvalid2 = false;
-        }
+	    allvalidation[i].field = "";
     }
     return isvalid2;
 };
