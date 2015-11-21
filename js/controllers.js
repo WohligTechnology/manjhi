@@ -1641,11 +1641,39 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             validation: ""
         }];
 	$scope.submitReachOut = function(){
+		$scope.allvalidation = [{
+            field: $scope.reachOutForm.to,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.from,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.action,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.address,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.number,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.person,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.remarks,
+            validation: ""
+        }];
         var check = formvalidation($scope.allvalidation);
         if (check) {
             NavigationService.reachOutArtist($scope.reachOutForm, function(data){
+			  console.log(data);
+			  if(data.value==true){
+				  alert("Thank you! Your query has been successfully submited.");
+			  }
 		  });
-        }
+        }else{
+		   alert("Enter all data");
+	   }
 	}
 	$scope.resetReachOut = function(){
 		_.each($scope.reachOutForm, function(n, key){

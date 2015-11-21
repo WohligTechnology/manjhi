@@ -517,10 +517,10 @@ firstapp.filter('makesizestr', function() {
 });
 
 var formvalidation = function(allvalidation) {
+	console.log(allvalidation);
     var isvalid2 = true;
     var error = '';
     for (var i = 0; i < allvalidation.length; i++) {
-        console.log("checking");
         console.log(allvalidation[i].field);
         if (allvalidation[i].field == "" || !allvalidation[i].field) {
             allvalidation[i].validation = "ng-dirty";

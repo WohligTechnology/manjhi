@@ -260,7 +260,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
 			   url: adminurl + "reachout/save",
 			   method:"POST",
 			   data:reachout
-		   })
+		   }).success(callback);
 	   },
         getupcomingevents: function(callback) {
             $http({
