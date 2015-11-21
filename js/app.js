@@ -248,9 +248,14 @@ firstapp.directive('focusMe', function($timeout) {
 
 firstapp.directive("uiselectAutofocus", function ($timeout) {
     return {
-        restrict: 'A',
+        restrict: 'EA',
         require: 'uiSelect',
         link: function (scope, elem, attr) {
+//		   scope.$watch(attr.)
+		   scope.$watch(attr.demo,function(){
+		   console.log(attr.demo);
+		   
+		   
             $timeout(function() {
                 var input = elem.find('input');
 //                if (attr.uiselectAutofocus == 'open')
@@ -258,6 +263,7 @@ firstapp.directive("uiselectAutofocus", function ($timeout) {
 //
                 input.focus()
             }, 0);
+		 })
         }
     }
 });
@@ -509,3 +515,42 @@ firstapp.filter('makesizestr', function() {
         }
     };
 });
+
+var formvalidation = function(allvalidation) {
+    var isvalid2 = true;
+    var error = '';
+    for (var i = 0; i < allvalidation.length; i++) {
+        console.log("checking");
+        console.log(allvalidation[i].field);
+        if (allvalidation[i].field == "" || !allvalidation[i].field) {
+            allvalidation[i].validation = "ng-dirty";
+            if (error == '') {
+                error += allvalidation[i].name;
+            } else {
+                error += " , " + allvalidation[i].name;
+            }
+            isvalid2 = false;
+        }
+    }
+    return isvalid2;
+};
+
+
+var formvalidation = function(allvalidation) {
+    var isvalid2 = true;
+    var error = '';
+    for (var i = 0; i < allvalidation.length; i++) {
+        console.log("checking");
+        console.log(allvalidation[i].field);
+        if (allvalidation[i].field == "" || !allvalidation[i].field) {
+            allvalidation[i].validation = "ng-dirty";
+            if (error == '') {
+                error += allvalidation[i].name;
+            } else {
+                error += " , " + allvalidation[i].name;
+            }
+            isvalid2 = false;
+        }
+    }
+    return isvalid2;
+};

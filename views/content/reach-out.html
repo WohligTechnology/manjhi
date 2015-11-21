@@ -1,67 +1,78 @@
 <section class="favorites cart">
-  <div class="container">
-    <form ng-submit="">
-      <div class="media min-cont">
-        <h4 class="head-team">Reach Out For Artworks</h4>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <div class="input-id">
-                <input class="form-control" readonly type="email" value="harmeet@auraart.in; rishiraj@auraart.in">
-              </div>
-              <div class="input-id">
-                <input class="form-control" placeholder="From" type="text">
-              </div>
-              <div class="input-id">
-                <input class="form-control" placeholder="Enter Artist Name" type="text">
-              </div>
-              <div class="input-id">
-                <input class="form-control" placeholder="Painting Interested" type="text">
-              </div>
-              <div class="input-id">
-                <h4>Action step</h4>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="action">
-                    Request for Price
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="action">
-                    Shoud we call or come to meet you
-                  </label>
+	<div class="container">
+		<form>
+			<div class="media min-cont">
+				<h4 class="head-team">Reach Out For Artworks</h4>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<div class="input-id">
+								<input class="form-control" readonly type="email" ng-model="reachOutForm.to" ng-class="allvalidation[0].validation">
+							</div>
+							<div class="input-id">
+								<input class="form-control" ng-model="reachOutForm.from" placeholder="From" type="email" ng-class="allvalidation[1].validation">
+							</div>
+							<div class="input-id">
+								<div class="form-group">
+									<ui-select uiselect-autofocus demo="{{onfock}}" ng-model="reachOutForm.artist" on-select="setSearch($select);" tagging tagging-label="false">
+										<ui-select-match class="text-capitalize" placeholder="Select Artist">{{reachOutForm.artist}}</ui-select-match>
+										<ui-select-choices refresh-delay="0" refresh="getDropdown($select.search)" repeat="person in allartist track by person._id">
+											<div ng-bind-html="person.name| highlight: $select.search"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+							</div>
+							<div class="input-id">
+								<div class="form-group">
+									<ui-select uiselect-autofocus ng-model="reachOutForm.srno" on-select="setSearchSrno($select);" tagging tagging-label="false">
+										<ui-select-match class="text-capitalize" placeholder="Select Srno.">{{reachOutForm.srno}}</ui-select-match>
+										<ui-select-choices refresh-delay="0" refresh="getDropdown($select.search)" repeat="person in artworkInterested track by person._id">
+											<div ng-bind-html="person.srno| highlight: $select.search"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+							</div>
+							<div class="input-id">
+								<h4>Action step{{reachOutForm.action}}</h4>
+								<div class="radio">
+									<label>
+										<input type="radio" name="action" ng-model = "reachOutForm.action" value="1" checked = "true" ng-class="allvalidation[2].validation"> Request for Price
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" ng-model = "reachOutForm.action" value="2" name="action" ng-class="allvalidation[2].validation"> Shoud we call or come to meet you
+									</label>
 
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="action">
-                    Would you like to schedule a visit to our Gallary
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <div class="input-id">
-                <input class="form-control" placeholder="Address (Office / Residence)" type="text">
-              </div>
-              <div class="input-id">
-                <input class="form-control" placeholder="Contact Number" type="tel">
-              </div>
-              <div class="input-id">
-                <input class="form-control" placeholder="Contact Person" type="text">
-              </div>
-              <div class="input-id">
-                <textarea class="form-control" placeholder="Remarks/Comments" rows="5"></textarea>
-              </div>
-              <button class="btn btn-sucesses" type="Submit">Submit</button>
-              <button class="btn btn-primarys" type="Reset">Reset</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" ng-model = "reachOutForm.action" value="3" name="action" ng-class="allvalidation[2].validation"> Would you like to schedule a visit to our Gallary
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<div class="input-id">
+								<input class="form-control" placeholder="Address (Office / Residence)" ng-model="reachOutForm.address" type="text" ng-class="allvalidation[3].validation">
+							</div>
+							<div class="input-id">
+								<input class="form-control" placeholder="Contact Number" ng-model="reachOutForm.number" type="tel" ng-class="allvalidation[4].validation">
+							</div>
+							<div class="input-id">
+								<input class="form-control" placeholder="Contact Person" ng-model="reachOutForm.person"  type="text" ng-class="allvalidation[5].validation">
+							</div>
+							<div class="input-id">
+								<textarea class="form-control" placeholder="Remarks/Comments" ng-model="reachOutForm.remarks" rows="5" ng-class="allvalidation[6].validation"></textarea>
+							</div>
+							<button class="btn btn-sucesses" type="Submit" ng-click="submitReachOut()">Submit</button>
+							<button class="btn btn-primarys" ng-click="resetReachOut()">Reset</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </section>

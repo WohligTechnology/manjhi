@@ -2,12 +2,12 @@
     <div class="col-md-4 col-sm-4">
       <form ng-submit="getSearchedArt();" class="">
         <div class="input-group ingroup x rel">
-            <input type="search" class="form-control" numbers-only required id="topsearch" placeholder="Search..." ng-model="art.search" ng-change="onSearchChange(art.search)">
+            <input type="search" class="form-control" autocomplete="off" numbers-only required id="topsearch" placeholder="Search..." ng-model="art.search" ng-change="onSearchChange(art.search)">
             <span class="input-group-btn">
               <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
             </span> 
             <ul class="posa" ng-hide="showDropDown">
-			  <li ng-repeat = "data in searchData" ng-click="art.search = data.name"><span class="pull-right"> {{data.type}}</span>{{data.name}}</li>
+			  <li ng-repeat = "data in searchData" ng-click="selectSearch(data.name)"><span class="pull-right"> {{data.type}}</span>{{data.name}}</li>
             </ul>
         </div>
       </form>
@@ -28,7 +28,7 @@
     </div>
     <div class="col-md-6 col-sm-5 row-flex login-head">
         <div class="col-flex box-height">
-            <a href="#/reach-out">
+            <a ng-click="reachOut()">
                 <div class="style1-bg small-box"><i class="fa fa-phone"></i>
                 </div>
                 <div class="inline-box">Reach Out</div>

@@ -255,6 +255,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
+	   reachOutArtist: function(reachout, callback) {
+		   $http({
+			   url: adminurl + "reachout/save",
+			   method:"POST",
+			   data:reachout
+		   })
+	   },
         getupcomingevents: function(callback) {
             $http({
                 url: adminurl + "event/findevents",

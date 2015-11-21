@@ -26,14 +26,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.filterby.maxheight = '';
 	$scope.filterby.minbreadth = '';
 	$scope.filterby.maxbreadth = '';
-	NavigationService.getSlider(function(data){
+	NavigationService.getSlider(function (data) {
 		$scope.slides = data;
 	})
-	
-	dataNextPre.setData = function(data){
-		console.log(data);
+	$scope.onfock = "";
+	$scope.oon = function () {
+		if ($scope.onfock == "") {
+			$scope.onfock = "sdfs";
+		} else {
+			$scope.onfock = "";
+		}
 	}
-	 
+	dataNextPre.setData = function (data) {
+		//		console.log(data);
+	}
+	$scope.changeUI = 0;
 	// set available range
 	$scope.minPrice = 0;
 	$scope.maxPrice = 10000000;
@@ -49,15 +56,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	//    });
 
 	$scope.applyfilter = function () {
-		console.log($scope.filterby);
+		//		console.log($scope.filterby);
 		$.jStorage.set("filterby", $scope.filterby)
-//		$location.url("/artwork/-1");
-		$state.go('totalartpage',{type:-1});
+			//		$location.url("/artwork/-1");
+		$state.go('totalartpage', {
+			type: -1
+		});
 	}
 
 	$scope.goToArtworks = function (type) {
-//		$location.url("/artwork/" + type);
-		$state.go('totalartpage',{type:type});
+		//		$location.url("/artwork/" + type);
+		$state.go('totalartpage', {
+			type: type
+		});
 	}
 	$scope.onclick = function (value) {
 		$scope.filterby.checked
@@ -101,7 +112,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.allmedium = [];
 	$scope.getmedium = function () {
 		if ($scope.filterby.type == "") {
-			console.log("in if");
+			//			console.log("in if");
 			$scope.change = {};
 			NavigationService.getallmedium($scope.change, function (data, status) {
 				if (data && data.value != false) {
@@ -111,7 +122,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				}
 			});
 		} else {
-			console.log("in else");
+			//			console.log("in else");
 			$scope.change = {};
 			$scope.change.type = $scope.filterby.type;
 			NavigationService.getallmedium($scope.change, function (data, status) {
@@ -190,7 +201,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	if ($.jStorage.get("user")) {
 		cfpLoadingBar.start();
 		NavigationService.getMyFavourites(function (data, status) {
-			console.log(data);
+			//			console.log(data);
 			if (data.value != false && data.comment != "No data found") {
 				$scope.noFavs = false;
 				_.each(data, function (n) {
@@ -200,7 +211,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				});
 
 				NavigationService.getAllFavouritesData($scope.allfavourites, function (data, status) {
-					console.log(data);
+					//					console.log(data);
 					$scope.artistdetail = data;
 					$scope.totalfav = data.length;
 					cfpLoadingBar.complete();
@@ -340,7 +351,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		if ($.jStorage.get("user")) {
 			if (art.heartClass == "fa fa-heart") {
 				NavigationService.addToFav(art.artwork._id, function (data) {
-					console.log(data);
+					//					console.log(data);
 					if (!data.value) {
 						$.jStorage.set("user", data);
 						art.heartClass = "fa fa-heart font-color3";
@@ -363,7 +374,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				})
 			} else if (art.heartClass == "fa fa-heart font-color3") {
 				NavigationService.deleteFromFav(art.artwork._id, function (data) {
-					console.log(data);
+					//					console.log(data);
 					if (!data.value) {
 						$.jStorage.set("user", data);
 						art.heartClass = "fa fa-heart";
@@ -409,7 +420,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	$scope.reload = function () {
 		cfpLoadingBar.start();
-		console.log($scope.pagedata);
+		//		console.log($scope.pagedata);
 		NavigationService.artworktype($scope.pagedata, function (data, status) {
 			lastpage = parseInt(data.totalpages);
 			_.each(data.data, function (n) {
@@ -423,7 +434,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				$scope.totalartcont.push(n);
 			})
 			$scope.callinfinite = false;
-			console.log($scope.totalartcont);
+			//			console.log($scope.totalartcont);
 			cfpLoadingBar.complete();
 		});
 	}
@@ -431,7 +442,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	//    $scope.reload();
 
 	$scope.makeactive = function (type) {
-		console.log(type);
+		//		console.log(type);
 		_.each($scope.typejson, function (n) {
 			var index = n.name.indexOf(type);
 			if (index != -1) {
@@ -461,7 +472,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	//    };
 
 	$scope.filterresults = function (search) {
-		console.log(search);
+		//		console.log(search);
 		$scope.pagedata.search = _.capitalize(search);
 		$scope.totalartcont = [];
 		$scope.pagedata.pagenumber = 1;
@@ -506,7 +517,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	$scope.artistDetailImg = {};
 	$scope.showDetails = function (oneuser) {
-		console.log(oneuser)
+		//		console.log(oneuser)
 		$scope.artistDetailImg = oneuser;
 		ngDialog.open({
 			scope: $scope,
@@ -554,13 +565,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 
 	$scope.goToDetailPage = function (artwork) {
-		console.log(artwork);
+		//		console.log(artwork);
 		if (artwork.type == "Sculptures") {
-//			$location.url("/sculpture/" + artwork._id);
-			$state.go('sculpture',{artid:artwork._id});
+			//			$location.url("/sculpture/" + artwork._id);
+			$state.go('sculpture', {
+				artid: artwork._id
+			});
 		} else {
-//			$location.url("/artwork/detail/" + artwork._id);
-			$state.go('detail',{artid:artwork._id});
+			//			$location.url("/artwork/detail/" + artwork._id);
+			$state.go('detail', {
+				artid: artwork._id
+			});
 		}
 	}
 })
@@ -576,7 +591,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.checkout.isshipping = true;
 
 	$scope.showShipping = function (check) {
-		console.log(check);
+		//		console.log(check);
 	}
 
 	valdr.addConstraints({
@@ -612,15 +627,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.navigation = NavigationService.getnav();
 
 	NavigationService.getupcomingevents(function (data, status) {
-		console.log(data);
+		//		console.log(data);
 	});
 
 	NavigationService.getpresentevents(function (data, status) {
-		console.log(data);
+		//		console.log(data);
 	});
 
 	NavigationService.getpastevents(function (data, status) {
-		console.log(data);
+		//		console.log(data);
 	});
 
 	$scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '   Yashwant Shirwadkar'];
@@ -938,34 +953,36 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.navigation = NavigationService.getnav();
 	$scope.aristImages = [];
 	$scope.allartworks = [];
-	
+
 	cfpLoadingBar.start();
 	$timeout(function () {
 		cfpLoadingBar.complete();
 	}, 5000);
-	
-	$scope.loadArtWork = function(id){
-	NavigationService.getartworkdetail(id, function (data, status) {
-		$scope.aristImages = [];
-		$scope.artid = data[0]._id;
-		NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
-			console.log(artistdata);
-			$scope.allartworks = artistdata;
-			_.each(artistdata.artwork, function (n) {
-				if (n._id != data[0].artwork._id) {
-					$scope.aristImages.push(n);
-				}
+
+	$scope.loadArtWork = function (id) {
+		NavigationService.getartworkdetail(id, function (data, status) {
+			$scope.aristImages = [];
+			$scope.artid = data[0]._id;
+			NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
+				//				console.log(artistdata);
+				$.jStorage.set("reachout", artistdata);
+				dataNextPre.reachout = artistdata;
+				$scope.allartworks = artistdata;
+				_.each(artistdata.artwork, function (n) {
+					if (n._id != data[0].artwork._id) {
+						$scope.aristImages.push(n);
+					}
+				})
+				$scope.aristImages = _.chunk($scope.aristImages, 6);
+				$scope.aristImages = $scope.aristImages[0];
+				//				console.log($scope.aristImages);
+				cfpLoadingBar.complete();
 			})
-			$scope.aristImages = _.chunk($scope.aristImages, 6);
-			$scope.aristImages = $scope.aristImages[0];
-			console.log($scope.aristImages);
-			cfpLoadingBar.complete();
+			$scope.artistDetailImg = data[0];
+
 		})
-		$scope.artistDetailImg = data[0];
-		
-	})
 	}
-	
+
 	$scope.loadArtWork($stateParams.artid);
 	$scope.images = [{
 		small: 'img/zoomsmall.jpg',
@@ -977,15 +994,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		small: 'img/zoomsmall.jpg',
 		large: 'img/zoomlarge.jpg'
     }];
-	
-	$scope.artPrev = function(){
-		NavigationService.nextPrev($scope.artistDetailImg.artwork.srno,'prev',function(data){
+
+	$scope.artPrev = function () {
+		NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function (data) {
 			$scope.artistDetailImg = data;
 		})
 	}
-	
-	$scope.artNext = function(){
-		NavigationService.nextPrev($scope.artistDetailImg.artwork.srno,'next',function(data){
+
+	$scope.artNext = function () {
+		NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function (data) {
 			$scope.artistDetailImg = data;
 		})
 	}
@@ -1000,8 +1017,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		//     }
 		// })
 		// $rootScope.$broadcast('changeImage', {});
-//		$location.url("/artwork/detail/" + artwork._id);
-		$state.go('detail',{artid:artwork._id})
+		//		$location.url("/artwork/detail/" + artwork._id);
+		$state.go('detail', {
+			artid: artwork._id
+		})
 	}
 
 })
@@ -1015,9 +1034,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.allartworks = [];
 
 	NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
-		console.log(data);
+		//		console.log(data);
 		NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
-			console.log(artistdata);
+			//			console.log(artistdata);
 			$scope.allartworks = artistdata;
 			_.each(artistdata.artwork, function (n) {
 				if (n._id != data[0].artwork._id) {
@@ -1026,7 +1045,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			})
 			$scope.aristImages = _.chunk($scope.aristImages, 6);
 			$scope.aristImages = $scope.aristImages[0];
-			console.log($scope.aristImages);
+			//			console.log($scope.aristImages);
 		})
 		$scope.artistDetailImg = data[0];
 	})
@@ -1052,8 +1071,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		//     }
 		// })
 		// $rootScope.$broadcast('changeImage', {});
-//		$location.url("/artwork/detail/" + artwork._id);
-		$state.go('detail',{artid:artwork._id});
+		//		$location.url("/artwork/detail/" + artwork._id);
+		$state.go('detail', {
+			artid: artwork._id
+		});
 	}
 
 	$scope.activeImage = function (imagetopush) {
@@ -1210,15 +1231,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	TemplateService.title = $scope.menutitle;
 	$scope.navigation = NavigationService.getnav();
 
-	//    console.log($stateParams.artistid);
 	NavigationService.getoneartist($stateParams.artistid, function (data, status) {
-		console.log(data);
+		$.jStorage.set("reachout", data);
 		$scope.artistdetail = data
+		dataNextPre.reachout = data;
 	})
 
 	$scope.goToDetail = function (artid) {
-//		$location.url("/artwork/detail/" + artid);
-		$state.go('detail',{artid:artid});
+		//		$location.url("/artwork/detail/" + artid);
+		$state.go('detail', {
+			artid: artid
+		});
 	}
 
 	//    $scope.artistdetail = [{
@@ -1303,18 +1326,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.artistimage = [];
 	$scope.listview = [];
 	var lastpage = 2;
-	
+
 	NavigationService.getAllArtistByAccess(function (data, status) {
-		console.log("All List of Artist");
+		//		console.log("All List of Artist");
 		$scope.listview = _.uniq(data, '_id');
-		console.log($scope.listview);
+		//		console.log($scope.listview);
 	});
 
 	$scope.reload = function () {
 		cfpLoadingBar.start();
 		NavigationService.getallartist($scope.pagedata, function (data, status) {
-			console.log("All artist data");
-			console.log(data);
+
 			lastpage = parseInt(data.totalpages);
 			_.each(data.data, function (n) {
 				$scope.artistimage.push(n);
@@ -1331,7 +1353,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.getartistbyletter = function (letter) {
 		_.each($scope.alphabetjson, function (n) {
 			//            var index = n.name.indexOf(letter);
-			//            console.log(index);
+			//			            console.log(index);
 			if (n.name == letter) {
 				n.class = "actived";
 			} else {
@@ -1368,7 +1390,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		})
 		if (type == "All")
 			type = "";
-		else{
+		else {
 			$scope.getartistbyletter(type);
 		}
 		$scope.pagedata.type = type;
@@ -1382,7 +1404,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	// $(window).scroll(function() {
 	//     if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-	//         console.log("at bottom");
+	//	         console.log("at bottom");
 	//         $scope.pagedata.pagenumber++;
 	//         $scope.reload();
 	//     }
@@ -1462,7 +1484,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	};
 })
 
-.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar, $state, $stateParams) {
+.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar, $state, $stateParams, $timeout) {
 	$scope.template = TemplateService;
 	var scrolled = 0;
 	$scope.logintab = '1';
@@ -1481,42 +1503,152 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.art.pagenumber = 1;
 	$scope.art.pagesize = 5;
 	$scope.showDropDown = true;
-	if($.jStorage.get("searchObj")){
+	$scope.filterby = {};
+	$scope.artworkInterested = [];
+	$scope.reachOutForm = {};
+	$scope.reachOutForm.srno = "";
+	$scope.reachOutForm.to = "harmeet@auraart.in; rishiraj@auraart.in";
+	$scope.reachOutForm.action = "1";
+
+
+
+	$scope.reachOutArtistId = 0;
+	if ($.jStorage.get("searchObj")) {
 		$scope.art.search = $.jStorage.get("searchObj").search;
-	}else{
+	} else {
 		$scope.art.search = "";
 	}
-	
-//	$scope.art.search = $.jStorage.get("searchObj").search;
+
+	NavigationService.getAllArtistByAccess(function (data, status) {
+		if (data && data.value != false) {
+			$scope.allartist = _.uniq(data, '_id');
+		} else {
+			$scope.allartist = [];
+		}
+//		console.log($scope.allartist);
+		$scope.reachOutForm.artist = $scope.allartist[0].name;
+	});
+
+
+	$scope.setSearch = function (select) {
+		$scope.reachOutForm.artist = select.selected.name;
+		$scope.reachOutInner(select.selected._id);
+	}
+
+	$scope.setSearchSrno = function (select) {
+		$scope.reachOutForm.srno = select.selected.srno;
+	}
+	$scope.selectSearch = function (name) {
+		$scope.art.search = name;
+		$('#topsearch').focus();
+	}
+
+	$scope.reachOutInner = function (id) {
+		NavigationService.getoneartist(id, function (data) {
+			$scope.artworkInterested = data.artwork;
+			if(data.artwork != ""){
+				$scope.reachOutForm.srno = data.artwork[0].srno;
+			}else{
+				$scope.reachOutForm.srno = "";
+			}
+		});
+	}
+
+	$scope.changeArtist = function (data) {
+
+	}
+
+	$scope.reachOut = function () {
+		var reachOutArtist = window.location.hash.split('l/');
+		if (reachOutArtist[0] == "#/artist/detai" || reachOutArtist[0] == "#/artwork/detai") {
+			$scope.reachOutArtistId = reachOutArtist[1];
+			$scope.artworkInterested = dataNextPre.reachout.artwork;
+			$scope.reachOutForm.srno = $scope.artworkInterested[0].srno;
+			if (dataNextPre.reachout) {
+				$scope.reachOutForm.artist = dataNextPre.reachout.name;
+				$scope.reachOutInner(dataNextPre.reachout._id)
+			}
+		} else {
+			
+			$scope.reachOutInner($scope.allartist[0]._id);
+		}
+		ngDialog.open({
+			scope: $scope,
+			template: 'views/content/reach-out.html'
+		});
+	}
+
+	//	$scope.art.search = $.jStorage.get("searchObj").search;
 	$scope.getSearchedArt = function () {
 		console.log($scope.art);
-		
+
 		if ($scope.art.search != '') {
 			cfpLoadingBar.start();
 			NavigationService.getArtworkbySearch($scope.art, function (data) {
 				console.log(data);
 				$.jStorage.set("searchObj", $scope.art);
 				$.jStorage.set("searchResults", data);
-				
+
 				window.location.reload();
-//				$location.url("/searchresults");
+				//				$location.url("/searchresults");
 				$state.go('searchresults');
 				cfpLoadingBar.complete();
 			})
 		}
 	}
-	
-	$scope.onSearchChange = function(search) {
+
+	$scope.onSearchChange = function (search) {
 		console.log(search);
-		NavigationService.getSearchDrop(search, function(data){
-			if(data.value == false){
+		NavigationService.getSearchDrop(search, function (data) {
+			if (data.value == false) {
 				$scope.showDropDown = true;
-			}else{
+			} else {
 				$scope.showDropDown = false;
 				$scope.searchData = data;
 			}
 		})
 	}
+	
+	// reach out submit
+	$scope.allvalidation = [{
+            field: $scope.reachOutForm.to,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.from,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.action,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.address,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.number,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.person,
+            validation: ""
+        },{
+            field: $scope.reachOutForm.remarks,
+            validation: ""
+        }];
+	$scope.submitReachOut = function(){
+        var check = formvalidation($scope.allvalidation);
+        if (check) {
+            NavigationService.reachOutArtist($scope.reachOutForm, function(data){
+		  });
+        }
+	}
+	$scope.resetReachOut = function(){
+		console.log("jane kahase aaya re");
+		console.log($scope.allvalidation);
+		_.each($scope.allvalidation, function(n,key){
+//			if(key != 0){
+			n.field = "";
+//			}
+		});
+	}
+	
 
 	$scope.showLogin = function () {
 		ngDialog.open({
@@ -1528,7 +1660,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 
 	$scope.toaccount = function () {
-//		$location.url("/account");
+		//		$location.url("/account");
 		$state.go('account');
 	}
 
@@ -1541,7 +1673,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		$.jStorage.flush();
 		$scope.showWishlist = false;
 		if (window.location.hash == "#/account") {
-//			$location.url("/home");
+			//			$location.url("/home");
 			$state.go('home');
 		}
 		window.location.reload();
@@ -1598,11 +1730,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	//    $scope.$on('event:google-plus-signin-success', function (event, authResult) {
 	//        // Send login to server or save into cookie
-	//        console.log(authResult);
+	//	        console.log(authResult);
 	//    });
 	//    $scope.$on('event:google-plus-signin-failure', function (event, authResult) {
 	//        // Auth failure or signout detected
-	//        console.log(authResult);
+	//	        console.log(authResult);
 	//    });
 
 })
@@ -1888,11 +2020,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.goToDetailPage = function (artwork) {
 		console.log(artwork);
 		if (artwork.type == "Sculptures") {
-//			$location.url("/sculpture/" + artwork._id);
-			$state.go('sculpture',{artid:artwork._id});
+			//			$location.url("/sculpture/" + artwork._id);
+			$state.go('sculpture', {
+				artid: artwork._id
+			});
 		} else {
-//			$location.url("/artwork/detail/" + artwork._id);
-			$state.go('detail',{artid:artwork._id});
+			//			$location.url("/artwork/detail/" + artwork._id);
+			$state.go('detail', {
+				artid: artwork._id
+			});
 		}
 	}
 
