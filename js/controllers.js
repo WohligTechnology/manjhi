@@ -350,40 +350,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		$scope.isRed = !$scope.isRed;
 	}
 
-	var messageBox = function (msg) {
-		var xyz = ngDialog.open({
-			template: '<div class="pop-up"><h5 class="popup-wishlist">'+msg+'</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-			plain: true
-		});
-		$timeout(function () {
-			xyz.close();
-		}, 3000);
-	}
+
 
 	$scope.makeFav = function (art) {
-		if ($.jStorage.get("user")) {
-			if (art.heartClass == "fa fa-heart") {
-				NavigationService.addToFav(art.artwork._id, function (data) {
-					if (!data.value) {
-						$.jStorage.set("user", data);
-						art.heartClass = "fa fa-heart font-color3";
-						messageBox("Added to favourites");
-					} else if (data.value == true && data.comment == "Data already updated") {
-						messageBox("Already added to favourites");
-					}
-				})
-			} else if (art.heartClass == "fa fa-heart font-color3") {
-				NavigationService.deleteFromFav(art.artwork._id, function (data) {
-					if (!data.value) {
-						$.jStorage.set("user", data);
-						art.heartClass = "fa fa-heart";
-						messageBox("Removed from favourites");
-					}
-				})
-			}
-		} else {
-			messageBox("Please login to add to favourites");
-		}
+		dataNextPre.favorite(art);
 	}
 
 	$scope.checkForEmpty = function () {
@@ -411,13 +381,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		NavigationService.artworktype($scope.pagedata, function (data, status) {
 			lastpage = parseInt(data.totalpages);
 			_.each(data.data, function (n) {
-				//				n.heartClass = "fa fa-heart";
-				//				if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
-				//					var ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', n.artwork._id);
-				//					if (ispresent != -1) {
-				//						n.heartClass = "fa fa-heart font-color3";
-				//					}
-				//				}
+				//								n.heartClass = "fa fa-heart";
+				//								if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
+				//									var ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', n.artwork._id);
+				//									if (ispresent != -1) {
+				//										n.heartClass = "fa fa-heart font-color3";
+				//									}
+				//								}
 				$scope.totalartcont.push(n);
 			})
 			$scope.callinfinite = false;
@@ -951,7 +921,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			$scope.aristImages = [];
 			$scope.artid = data[0]._id;
 			NavigationService.getoneartist(data[0]._id, function (artistdata, status) {
-				//				console.log(artistdata);
+				console.log(artistdata);
 				$.jStorage.set("reachout", artistdata);
 				dataNextPre.reachout = artistdata;
 				$scope.allartworks = artistdata;
@@ -1520,7 +1490,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			$scope.allartist = [];
 		}
 		//		console.log($scope.allartist);
-//		$scope.reachOutForm.artist = $scope.allartist[0].name;
+		//		$scope.reachOutForm.artist = $scope.allartist[0].name;
 	});
 
 
@@ -1542,7 +1512,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		NavigationService.getoneartist(id, function (data) {
 			$scope.artworkInterested = data.artwork;
 			if (data.artwork != "") {
-//				$scope.reachOutForm.srno = data.artwork[0].srno;
+				//				$scope.reachOutForm.srno = data.artwork[0].srno;
 			} else {
 				$scope.reachOutForm.srno = "";
 			}
@@ -1701,7 +1671,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 
 	$scope.userlogin = function () {
-		console.log($scope.login);
 		NavigationService.userlogin($scope.login, function (data, status) {
 			console.log(data);
 			if (data.value != false) {
@@ -1718,7 +1687,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	};
 
 	$scope.registeruser = function () {
-		console.log($scope.register);
 		if ($scope.register.password === $scope.register.confirmpassword) {
 			$scope.passwordNotMatch = false;
 			NavigationService.registeruser($scope.register, function (data, status) {
@@ -1757,6 +1725,45 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	//        // Auth failure or signout detected
 	//	        console.log(authResult);
 	//    });
+
+
+	//common function
+	dataNextPre.messageBox = function (msg) {
+		var xyz = ngDialog.open({
+			template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+			plain: true
+		});
+		$timeout(function () {
+			xyz.close();
+		}, 3000);
+	}
+	dataNextPre.favorite = function (art) {
+		if ($.jStorage.get("user")) {
+			if (art.heartClass == "fa fa-heart") {
+				NavigationService.addToFav(art.artwork._id, function (data) {
+					if (!data.value) {
+						$.jStorage.set("user", data);
+						art.heartClass = "fa fa-heart font-color3";
+						dataNextPre.messageBox("Added to favourites");
+					} else if (data.value == true && data.comment == "Data already updated") {
+						dataNextPre.messageBox("Already added to favourites");
+					}
+				})
+			} else if (art.heartClass == "fa fa-heart font-color3") {
+				console.log(art.heartClass);
+				NavigationService.deleteFromFav(art.artwork._id, function (data) {
+					if (!data.value) {
+						$.jStorage.set("user", data);
+						art.heartClass = "fa fa-heart";
+						dataNextPre.messageBox("Removed from favourites");
+					}
+				})
+			}
+		} else {
+			dataNextPre.messageBox("Please login to add to favourites");
+		}
+	}
+
 
 })
 
@@ -2003,7 +2010,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	if ($.jStorage.get("searchResults")) {
 		$scope.artworks = $.jStorage.get("searchResults");
-		console.log($scope.artworks);
 		_.each($scope.artworks.data, function (n) {
 			if (n.artwork) {
 				_.each(n.artwork, function (m) {
@@ -2011,16 +2017,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 					item._id = n._id;
 					item.name = n.name;
 					item.artwork = m;
-					var ispresent = '';
-					if ($.jStorage.get("user"))
-						ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', m._id);
-					else
-						ispresent = -1;
-					if (ispresent != -1) {
-						item.heartClass = "fa fa-heart font-color3";
-					} else {
-						item.heartClass = "fa fa-heart";
-					}
 					$scope.totalartcont.push(item);
 				})
 			}
@@ -2054,55 +2050,56 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 
 	$scope.makeFav = function (art) {
-		if ($.jStorage.get("user")) {
-			if (art.heartClass == "fa fa-heart") {
-				NavigationService.addToFav(art.artwork._id, function (data) {
-					console.log(data);
-					if (!data.value) {
-						$.jStorage.set("user", data);
-						art.heartClass = "fa fa-heart font-color3";
-						var xyz = ngDialog.open({
-							template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-							plain: true
-						});
-						$timeout(function () {
-							xyz.close();
-						}, 3000);
-					} else if (data.value == true && data.comment == "Data already updated") {
-						var xyz = ngDialog.open({
-							template: '<div class="pop-up"><h5 class="popup-wishlist">Already added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-							plain: true
-						});
-						$timeout(function () {
-							xyz.close();
-						}, 3000);
-					}
-				})
-			} else if (art.heartClass == "fa fa-heart font-color3") {
-				NavigationService.deleteFromFav(art.artwork._id, function (data) {
-					console.log(data);
-					if (!data.value) {
-						$.jStorage.set("user", data);
-						art.heartClass = "fa fa-heart";
-						var xyz = ngDialog.open({
-							template: '<div class="pop-up"><h5 class="popup-wishlist">Removed from favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-							plain: true
-						});
-						$timeout(function () {
-							xyz.close();
-						}, 3000);
-					}
-				})
-			}
-		} else {
-			var xyz = ngDialog.open({
-				template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-				plain: true
-			});
-			$timeout(function () {
-				xyz.close();
-			}, 3000)
-		}
+		dataNextPre.favorite(art);
+		//		if ($.jStorage.get("user")) {
+		//			if (art.heartClass == "fa fa-heart") {
+		//				NavigationService.addToFav(art.artwork._id, function (data) {
+		//					console.log(data);
+		//					if (!data.value) {
+		//						$.jStorage.set("user", data);
+		//						art.heartClass = "fa fa-heart font-color3";
+		//						var xyz = ngDialog.open({
+		//							template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+		//							plain: true
+		//						});
+		//						$timeout(function () {
+		//							xyz.close();
+		//						}, 3000);
+		//					} else if (data.value == true && data.comment == "Data already updated") {
+		//						var xyz = ngDialog.open({
+		//							template: '<div class="pop-up"><h5 class="popup-wishlist">Already added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+		//							plain: true
+		//						});
+		//						$timeout(function () {
+		//							xyz.close();
+		//						}, 3000);
+		//					}
+		//				})
+		//			} else if (art.heartClass == "fa fa-heart font-color3") {
+		//				NavigationService.deleteFromFav(art.artwork._id, function (data) {
+		//					console.log(data);
+		//					if (!data.value) {
+		//						$.jStorage.set("user", data);
+		//						art.heartClass = "fa fa-heart";
+		//						var xyz = ngDialog.open({
+		//							template: '<div class="pop-up"><h5 class="popup-wishlist">Removed from favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+		//							plain: true
+		//						});
+		//						$timeout(function () {
+		//							xyz.close();
+		//						}, 3000);
+		//					}
+		//				})
+		//			}
+		//		} else {
+		//			var xyz = ngDialog.open({
+		//				template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+		//				plain: true
+		//			});
+		//			$timeout(function () {
+		//				xyz.close();
+		//			}, 3000)
+		//		}
 	}
 
 });
