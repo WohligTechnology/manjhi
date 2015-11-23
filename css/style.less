@@ -69,6 +69,10 @@ h6 {
 	font-family: @font-family-head;
 }
 
+.btn {
+	border-radius: 0px;
+}
+
 .border-top {
 	border-top: 1px solid@abbr-border-color;
 	margin-top: 5px;
@@ -333,6 +337,11 @@ a.link-page {
 		display: block;
 		.user-select(none);
 		cursor: pointer;
+		&.above {
+			font-size: 11px;
+			margin: 10px 0 0;
+			font-weight: bold;
+		}
 	}
 	input[type="checkbox"] {
 		border: 1px solid #666;
@@ -1320,6 +1329,7 @@ body.ngdialog-open {
 .maxmin {
 	width: 49%;
 	padding: 6px 12px;
+	display: inline-table;
 }
 
 .min-max h5 {
@@ -2641,7 +2651,16 @@ img.fancybox-image {
 	}
 }
 
+.ui-select-bootstrap .ui-select-choices-row.active>a {
+    background-color: @color2;
+}
+.ui-select-bootstrap .ui-select-choices-row>a {
+    padding: 5px 10px;
+	}
 
+.no-margin {
+	margin: 0 !important;
+}
 /*Mobile Less*/
 
 //@import "other.less";

@@ -42,24 +42,27 @@
 									<div ng-bind-html="person.name| highlight: $select.search"></div>
 								</ui-select-choices>
 							</ui-select>
+
 						</div>
 					</accordion-group>
 					<accordion-group heading="Search By Price">
-<!--						<div max="maxPrice" min="minPrice" model-max="filterby.maxprice" model-min="filterby.minprice" range-slider step="5"></div>-->
-						<input class="maxmin" maxlength="1000" ng-model="filterby.minprice" placeholder="0" type="number">
-						<input class="maxmin pull-right" max="100000" ng-model="filterby.maxprice" placeholder="10000000" type="number">
+						<label class="above no-margin pull-right">Max</label>
+						<label class="above no-margin">Min</label>
+
+						<input class="maxmin form-control" maxlength="1000" ng-model="filterby.minprice" placeholder="0" type="number">
+						<input class="maxmin form-control pull-right" max="100000" ng-model="filterby.maxprice" placeholder="10000000" type="number">
 					</accordion-group>
 					<accordion-group heading="Search By Size (inches)">
 						<div class="min-max">
-							<h5>Height</h5>
-							<input class="maxmin" min="1" ng-model="filterby.minheight" placeholder="Min Height" type="number">
-							<input class="maxmin pull-right" min="1" ng-model="filterby.maxheight" placeholder="Max Height" type="number">
-							<h5>Width</h5>
-							<input class="maxmin" min="1" ng-model="filterby.minwidth" placeholder="Min Width" type="number">
-							<input class="maxmin pull-right" min="1" ng-model="filterby.maxwidth" placeholder="Max Width" type="number">
-							<h5>Depth</h5>
-							<input class="maxmin" min="1" ng-model="filterby.minbreadth" placeholder="Min Depth" type="number">
-							<input class="maxmin pull-right" min="1" ng-model="filterby.maxbreadth" placeholder="Max Depth" type="number">
+							<label class="above no-margin">Height</label>
+							<input class="maxmin form-control" min="1" ng-model="filterby.minheight" placeholder="Min Height" type="number">
+							<input class="maxmin form-control pull-right" min="1" ng-model="filterby.maxheight" placeholder="Max Height" type="number">
+							<label class="above">Width</label>
+							<input class="maxmin form-control" min="1" ng-model="filterby.minwidth" placeholder="Min Width" type="number">
+							<input class="maxmin form-control pull-right" min="1" ng-model="filterby.maxwidth" placeholder="Max Width" type="number">
+							<label class="above">Depth</label>
+							<input class="maxmin form-control" min="1" ng-model="filterby.minbreadth" placeholder="Min Depth" type="number">
+							<input class="maxmin form-control pull-right" min="1" ng-model="filterby.maxbreadth" placeholder="Max Depth" type="number">
 						</div>
 					</accordion-group>
 					<accordion-group heading="Search By Medium">
@@ -73,12 +76,40 @@
 							</ui-select>
 						</div>
 					</accordion-group>
+					<accordion-group heading="Search By Keywords">
+						<div class="form-group">
+							<label class="above no-margin">Color</label>
+							<ui-select ng-model="filterby.tag" on-select="setMediumSearch($select);" tagging tagging-label="false">
+								<ui-select-match class="text-capitalize" placeholder="eg. red, green..">{{filterby.tag}}</ui-select-match>
+								<ui-select-choices refresh-delay="0" refresh="getDropdownMedium($select.search)" repeat="person in allmedium track by person._id">
+									<div ng-bind-html="person.name| highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+
+							<label class="above">Style</label>
+							<ui-select ng-model="filterby.tag" on-select="setMediumSearch($select);" tagging tagging-label="false">
+								<ui-select-match class="text-capitalize" placeholder="eg. ">{{filterby.tag}}</ui-select-match>
+								<ui-select-choices refresh-delay="0" refresh="getDropdownMedium($select.search)" repeat="person in allmedium track by person._id">
+									<div ng-bind-html="person.name| highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+
+							<label class="above">Elements</label>
+							<ui-select ng-model="filterby.tag" on-select="setMediumSearch($select);" tagging tagging-label="false">
+								<ui-select-match class="text-capitalize" placeholder="eg. ">{{filterby.tag}}</ui-select-match>
+								<ui-select-choices refresh-delay="0" refresh="getDropdownMedium($select.search)" repeat="person in allmedium track by person._id">
+									<div ng-bind-html="person.name| highlight: $select.search"></div>
+								</ui-select-choices>
+							</ui-select>
+
+						</div>
+					</accordion-group>
 				</accordion>
-				<div class="accordion-upper">
+				<!-- <div class="accordion-upper">
 					<span class="pull-right go-btn" ng-click="applyfilter()">Go
             <i class="fa fa-angle-right"></i>
           </span>
-				</div>
+				</div> -->
 			</div>
 		</aside>
 		<div class="col-md-9 nopad-left">
