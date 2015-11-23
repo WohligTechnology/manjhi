@@ -1,44 +1,69 @@
 <div class="filter">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <h4>Artist</h4>
             <input type="text" class="form-control" placeholder="Artist Name" ng-model="pagedata.search">
+            <h4>Medium</h4>
+            <input type="text" class="form-control" placeholder="Medium" ng-model="pagedata.medium">
+            <h4>Price</h4>
+            <input type="number" placeholder="Min" class="maxmin form-control" ng-model="pagedata.minprice">
+            <input type="number" placeholder="Max" class="maxmin form-control pull-right" ng-model="pagedata.maxprice">
         </div>
-        <div class="col-md-3">
-            <div class="mega-cont">
-                <h4>Price</h4>
-                <div range-slider min="minPrice" max="maxPrice" model-min="pagedata.minprice" model-max="pagedata.maxprice" step="5"></div>
-                <input type="number" placeholder="0" class="maxmin" ng-model="pagedata.minprice">
-                <input type="number" placeholder="100000" class="maxmin pull-right" ng-model="pagedata.maxprice">
-            </div>
-        </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="mega-cont">
                 <h4>Size</h4>
                 <div class="min-max">
-                    <h5>Height</h5>
-                    <input type="number" placeholder="min-height" class="maxmin" ng-model="pagedata.minheight">
-                    <input type="number" placeholder="max-height" class="maxmin pull-right" ng-model="pagedata.maxheight">
-                    <h5>Width</h5>
-                    <input type="number" placeholder="min-width" class="maxmin" ng-model="pagedata.minwidth">
-                    <input type="number" placeholder="max-width" class="maxmin pull-right" ng-model="pagedata.maxwidth">
-                    <h5>Depth</h5>
-                    <input type="number" placeholder="min-Depth" class="maxmin" ng-model="pagedata.minbreadth">
-                    <input type="number" placeholder="max-Depth" class="maxmin pull-right" ng-model="pagedata.maxbreadth">
+                    <label class="above">Height</label>
+                    <input type="number" placeholder="Min" class="maxmin form-control" ng-model="pagedata.minheight">
+                    <input type="number" placeholder="Max" class="maxmin form-control pull-right" ng-model="pagedata.maxheight">
+                    <label class="above">Width</label>
+                    <input type="number" placeholder="Min" class="maxmin form-control" ng-model="pagedata.minwidth">
+                    <input type="number" placeholder="Max" class="maxmin form-control pull-right" ng-model="pagedata.maxwidth">
+                    <label class="above">Depth</label>
+                    <input type="number" placeholder="Min" class="maxmin form-control" ng-model="pagedata.minbreadth">
+                    <input type="number" placeholder="Max" class="maxmin form-control pull-right" ng-model="pagedata.maxbreadth">
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="mega-cont">
-                <h4>Medium</h4>
-                <input type="text" class="form-control" placeholder="Medium" ng-model="pagedata.medium">
+              <h4>Keywords</h4>
+              <label class="above">Color</label>
+              <ui-select ng-model="filterby.tag" on-select="setMediumSearch($select);" tagging tagging-label="false">
+                <ui-select-match class="text-capitalize" placeholder="eg. red, green..">{{filterby.tag}}</ui-select-match>
+                <ui-select-choices refresh-delay="0" refresh="getDropdownMedium($select.search)" repeat="person in allmedium track by person._id">
+                  <div ng-bind-html="person.name| highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+
+              <label class="above">Style</label>
+              <ui-select ng-model="filterby.tag" on-select="setMediumSearch($select);" tagging tagging-label="false">
+                <ui-select-match class="text-capitalize" placeholder="eg. ">{{filterby.tag}}</ui-select-match>
+                <ui-select-choices refresh-delay="0" refresh="getDropdownMedium($select.search)" repeat="person in allmedium track by person._id">
+                  <div ng-bind-html="person.name| highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+
+              <label class="above">Elements</label>
+              <ui-select ng-model="filterby.tag" on-select="setMediumSearch($select);" tagging tagging-label="false">
+                <ui-select-match class="text-capitalize" placeholder="eg. ">{{filterby.tag}}</ui-select-match>
+                <ui-select-choices refresh-delay="0" refresh="getDropdownMedium($select.search)" repeat="person in allmedium track by person._id">
+                  <div ng-bind-html="person.name| highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+
             </div>
         </div>
-        <div class="btn-main pull-right">
-            <button class="btn btn-sucesses" ng-click="filterresults(pagedata.search);">Go</button>
-        </div>
-        <div class="btn-main pull-right">
-            <button class="btn btn-sucesses" ng-click="clearfilters();">Clear</button>
+
+
+<div class="clearfix"></div>
+        <div class="pad-top">
+          <div class="btn-main pull-right">
+              <button class="btn btn-sucesses" ng-click="filterresults(pagedata.search);">Go</button>
+          </div>
+          <div class="btn-main pull-right">
+              <button class="btn btn-sucesses" ng-click="clearfilters();">Clear</button>
+          </div>
         </div>
     </div>
 </div>
