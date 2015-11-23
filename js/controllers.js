@@ -319,6 +319,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.heartClass = "fa fa-heart";
 	var lastpage = 2;
 
+	//get user details
+
+
 	$scope.typejson = [{
 		name: "All",
 		class: "actives"
@@ -347,55 +350,39 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		$scope.isRed = !$scope.isRed;
 	}
 
+	var messageBox = function (msg) {
+		var xyz = ngDialog.open({
+			template: '<div class="pop-up"><h5 class="popup-wishlist">'+msg+'</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+			plain: true
+		});
+		$timeout(function () {
+			xyz.close();
+		}, 3000);
+	}
+
 	$scope.makeFav = function (art) {
 		if ($.jStorage.get("user")) {
 			if (art.heartClass == "fa fa-heart") {
 				NavigationService.addToFav(art.artwork._id, function (data) {
-					//					console.log(data);
 					if (!data.value) {
 						$.jStorage.set("user", data);
 						art.heartClass = "fa fa-heart font-color3";
-						var xyz = ngDialog.open({
-							template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-							plain: true
-						});
-						$timeout(function () {
-							xyz.close();
-						}, 3000);
+						messageBox("Added to favourites");
 					} else if (data.value == true && data.comment == "Data already updated") {
-						var xyz = ngDialog.open({
-							template: '<div class="pop-up"><h5 class="popup-wishlist">Already added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-							plain: true
-						});
-						$timeout(function () {
-							xyz.close();
-						}, 3000);
+						messageBox("Already added to favourites");
 					}
 				})
 			} else if (art.heartClass == "fa fa-heart font-color3") {
 				NavigationService.deleteFromFav(art.artwork._id, function (data) {
-					//					console.log(data);
 					if (!data.value) {
 						$.jStorage.set("user", data);
 						art.heartClass = "fa fa-heart";
-						var xyz = ngDialog.open({
-							template: '<div class="pop-up"><h5 class="popup-wishlist">Removed from favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-							plain: true
-						});
-						$timeout(function () {
-							xyz.close();
-						}, 3000);
+						messageBox("Removed from favourites");
 					}
 				})
 			}
 		} else {
-			var xyz = ngDialog.open({
-				template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-				plain: true
-			});
-			$timeout(function () {
-				xyz.close();
-			}, 3000)
+			messageBox("Please login to add to favourites");
 		}
 	}
 
@@ -424,13 +411,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		NavigationService.artworktype($scope.pagedata, function (data, status) {
 			lastpage = parseInt(data.totalpages);
 			_.each(data.data, function (n) {
-				n.heartClass = "fa fa-heart";
-				if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
-					var ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', n.artwork._id);
-					if (ispresent != -1) {
-						n.heartClass = "fa fa-heart font-color3";
-					}
-				}
+				//				n.heartClass = "fa fa-heart";
+				//				if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
+				//					var ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', n.artwork._id);
+				//					if (ispresent != -1) {
+				//						n.heartClass = "fa fa-heart font-color3";
+				//					}
+				//				}
 				$scope.totalartcont.push(n);
 			})
 			$scope.callinfinite = false;
@@ -1335,7 +1322,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	$scope.reload = function () {
 		cfpLoadingBar.start();
-		if ($scope.pagedata.type == "All"){
+		if ($scope.pagedata.type == "All") {
 			$scope.pagedata.type = "";
 		}
 		NavigationService.getallartist($scope.pagedata, function (data, status) {
@@ -1364,17 +1351,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			}
 		});
 
-		if (letter == "All"){
+		if (letter == "All") {
 			letter = "";
 		}
-		
+
 		$scope.pagedata.search = letter;
 		$scope.pagedata.pagenumber = 1;
 		$scope.artistimage = [];
 		$scope.listview = [];
 		$scope.reload();
 	}
-	
+
 	$scope.getartistbyletter('All');
 	$scope.getartistbysearch = function () {
 		$scope.pagedata.pagenumber = 1;
@@ -1387,19 +1374,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		console.log(type);
 		console.log($scope.typejson);
 		_.each($scope.typejson, function (n) {
-			var index = n.name.indexOf(type);
-			if (index != -1) {
-				n.class = "actives";
-			} else {
-				n.class = "";
-			}
-		})
-//		if (type == "All")
-//			type = "";
+				var index = n.name.indexOf(type);
+				if (index != -1) {
+					n.class = "actives";
+				} else {
+					n.class = "";
+				}
+			})
+			//		if (type == "All")
+			//			type = "";
 		$scope.getartistbyletter('All');
-//		else {
-//			$scope.getartistbyletter(type);
-//		}
+		//		else {
+		//			$scope.getartistbyletter(type);
+		//		}
 		$scope.pagedata.type = type;
 		$scope.pagedata.pagenumber = 1;
 		//        $scope.pagedata.search = '';
@@ -1532,8 +1519,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		} else {
 			$scope.allartist = [];
 		}
-//		console.log($scope.allartist);
-		$scope.reachOutForm.artist = $scope.allartist[0].name;
+		//		console.log($scope.allartist);
+//		$scope.reachOutForm.artist = $scope.allartist[0].name;
 	});
 
 
@@ -1554,9 +1541,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.reachOutInner = function (id) {
 		NavigationService.getoneartist(id, function (data) {
 			$scope.artworkInterested = data.artwork;
-			if(data.artwork != ""){
-				$scope.reachOutForm.srno = data.artwork[0].srno;
-			}else{
+			if (data.artwork != "") {
+//				$scope.reachOutForm.srno = data.artwork[0].srno;
+			} else {
 				$scope.reachOutForm.srno = "";
 			}
 		});
@@ -1577,7 +1564,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				$scope.reachOutInner(dataNextPre.reachout._id)
 			}
 		} else {
-			
+
 			$scope.reachOutInner($scope.allartist[0]._id);
 		}
 		ngDialog.open({
@@ -1616,73 +1603,73 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			}
 		})
 	}
-	
+
 	// reach out submit
 	$scope.allvalidation = [{
-            field: $scope.reachOutForm.to,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.from,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.action,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.address,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.number,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.person,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.remarks,
-            validation: ""
+		field: $scope.reachOutForm.to,
+		validation: ""
+        }, {
+		field: $scope.reachOutForm.from,
+		validation: ""
+        }, {
+		field: $scope.reachOutForm.action,
+		validation: ""
+        }, {
+		field: $scope.reachOutForm.address,
+		validation: ""
+        }, {
+		field: $scope.reachOutForm.number,
+		validation: ""
+        }, {
+		field: $scope.reachOutForm.person,
+		validation: ""
+        }, {
+		field: $scope.reachOutForm.remarks,
+		validation: ""
         }];
-	$scope.submitReachOut = function(){
+	$scope.submitReachOut = function () {
 		$scope.allvalidation = [{
-            field: $scope.reachOutForm.to,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.from,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.action,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.address,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.number,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.person,
-            validation: ""
-        },{
-            field: $scope.reachOutForm.remarks,
-            validation: ""
+			field: $scope.reachOutForm.to,
+			validation: ""
+        }, {
+			field: $scope.reachOutForm.from,
+			validation: ""
+        }, {
+			field: $scope.reachOutForm.action,
+			validation: ""
+        }, {
+			field: $scope.reachOutForm.address,
+			validation: ""
+        }, {
+			field: $scope.reachOutForm.number,
+			validation: ""
+        }, {
+			field: $scope.reachOutForm.person,
+			validation: ""
+        }, {
+			field: $scope.reachOutForm.remarks,
+			validation: ""
         }];
-        var check = formvalidation($scope.allvalidation);
-        if (check) {
-            NavigationService.reachOutArtist($scope.reachOutForm, function(data){
-			  console.log(data);
-			  if(data.value==true){
-				  alert("Thank you! Your query has been successfully submited.");
-			  }
-		  });
-        }else{
-		   alert("Enter all data");
-	   }
+		var check = formvalidation($scope.allvalidation);
+		if (check) {
+			NavigationService.reachOutArtist($scope.reachOutForm, function (data) {
+				console.log(data);
+				if (data.value == true) {
+					alert("Thank you! Your query has been successfully submited.");
+				}
+			});
+		} else {
+			alert("Enter all data");
+		}
 	}
-	$scope.resetReachOut = function(){
-		_.each($scope.reachOutForm, function(n, key){
-			if(key!=0 || key!=2 || key!=3 || key!=4){
+	$scope.resetReachOut = function () {
+		_.each($scope.reachOutForm, function (n, key) {
+			if (key != 0 || key != 2 || key != 3 || key != 4) {
 				$scope.reachOutForm[key] = "";
 			}
 		});
 	}
-	
+
 
 	$scope.showLogin = function () {
 		ngDialog.open({
