@@ -26,6 +26,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.filterby.maxheight = '';
 	$scope.filterby.minbreadth = '';
 	$scope.filterby.maxbreadth = '';
+//	$scope.filterby.color = '';
+//	$scope.filterby.style = '';
+//	$scope.filterby.element = '';
 	NavigationService.getSlider(function (data) {
 		$scope.slides = data;
 	})
@@ -57,6 +60,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	$scope.applyfilter = function () {
 		//		console.log($scope.filterby);
+		console.log($scope.filterby);
 		$.jStorage.set("filterby", $scope.filterby)
 			//		$location.url("/artwork/-1");
 		$state.go('totalartpage', {
@@ -88,18 +92,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			$scope.filterby.type = "Paintings";
 			$scope.getallartist();
 			$scope.getmedium();
+			$scope.getClr();
+			$scope.getElm();
+			$scope.getStl();
 		} else if (chang == 2) {
 			$scope.filterby.type = "Sculptures";
 			$scope.getallartist();
 			$scope.getmedium();
+			$scope.getClr();
+			$scope.getElm();
+			$scope.getStl();
 		} else if (chang == 3) {
 			$scope.filterby.type = "Photographs";
 			$scope.getallartist();
 			$scope.getmedium();
+			$scope.getClr();
+			$scope.getElm();
+			$scope.getStl();
 		} else if (chang == 4) {
 			$scope.filterby.type = "Prints";
 			$scope.getallartist();
 			$scope.getmedium();
+			$scope.getClr();
+			$scope.getElm();
+			$scope.getStl();
 		}
 	}
 	$scope.setSearch = function (select) {
@@ -108,12 +124,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.setMediumSearch = function (select) {
 		$scope.filterby.medium = select.selected.name;
 	}
+	$scope.setColorSearch = function (select) {
+		$scope.filterby.color = select.selected.name;
+	}
+	$scope.setStyleSearch = function (select) {
+		$scope.filterby.style = select.selected.name;
+	}
+	$scope.setElementSearch = function (select) {
+		$scope.filterby.element = select.selected.name;
+	}
 	$scope.allartist = [];
 	$scope.allmedium = [];
 	$scope.getmedium = function () {
 		if ($scope.filterby.type == "") {
 			//			console.log("in if");
-			$scope.change = {};
+			$scope.change = "";
 			NavigationService.getallmedium($scope.change, function (data, status) {
 				if (data && data.value != false) {
 					$scope.allmedium = _.uniq(data, '_id');
@@ -134,11 +159,115 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			});
 		}
 	}
+
+	$scope.getClr = function () {
+		if ($scope.filterby.type == "") {
+			//			console.log("in if");
+			$scope.change = "";
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allColor = _.uniq(data, '_id');
+					$scope.allColor.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allColor = [];
+				}
+			});
+		} else {
+			//			console.log("in else");
+			$scope.change = {};
+			$scope.change.type = $scope.filterby.type;
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allColor = _.uniq(data, '_id');
+					$scope.allColor.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allColor = [];
+				}
+			});
+		}
+	}
+	$scope.getStl = function () {
+		if ($scope.filterby.type == "") {
+			//			console.log("in if");
+			$scope.change = "";
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allStyle = _.uniq(data, '_id');
+					$scope.allStyle.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allStyle = [];
+				}
+			});
+		} else {
+			//			console.log("in else");
+			$scope.change = {};
+			$scope.change.type = $scope.filterby.type;
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allStyle = _.uniq(data, '_id');
+					$scope.allStyle.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allStyle = [];
+				}
+			});
+		}
+	}
+	$scope.getElm = function () {
+		if ($scope.filterby.type == "") {
+			//			console.log("in if");
+			$scope.change = "";
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allElement = _.uniq(data, '_id');
+					$scope.allElement.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allElement = [];
+				}
+			});
+		} else {
+			//			console.log("in else");
+			$scope.change = {};
+			$scope.change.type = $scope.filterby.type;
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allElement = _.uniq(data, '_id');
+					$scope.allElement.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allElement = [];
+				}
+			});
+		}
+	}
+	$scope.getClr();
+	$scope.getElm();
+	$scope.getStl();
 	$scope.getallartist = function () {
 		if ($scope.filterby.type == "") {
 			NavigationService.getAllArtistByAccess(function (data, status) {
 				if (data && data.value != false) {
 					$scope.allartist = _.uniq(data, '_id');
+					$scope.allartist.unshift({
+						"_id": "0",
+						name: ""
+					});
 				} else {
 					$scope.allartist = [];
 				}
@@ -147,6 +276,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			NavigationService.userbytype($scope.filterby.type, function (data, status) {
 				if (data && data.value != false) {
 					$scope.allartist = data;
+					$scope.allartist.unshift({
+						"_id": "0",
+						name: ""
+					});
 				} else {
 					$scope.allartist = [];
 				}
@@ -161,6 +294,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			NavigationService.getAllArtistDrop($scope.change, function (data) {
 				if (data && data.value != false) {
 					$scope.allartist = data;
+					$scope.allartist.unshift({
+						"_id": "0",
+						name: ""
+					});
 				} else {
 					$scope.allartist = [];
 				}
@@ -177,12 +314,58 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			NavigationService.getallmedium($scope.change, function (data) {
 				if (data && data.value != false) {
 					$scope.allmedium = data;
+					$scope.allmedium.unshift({
+						"_id": "0",
+						name: ""
+					});
 				} else {
 					$scope.allmedium = [];
 				}
 			});
 		} else {
 			$scope.getmedium();
+		}
+	}
+
+	//search by keyword
+
+	$scope.getColorDropdown = function (search) {
+		if (search.length >= 3) {
+			NavigationService.tagSearchType($scope.filterby.type, search, function (data) {
+				if (data && data.value != false) {
+					$scope.allColor = data;
+				} else {
+					$scope.allColor = [];
+				}
+			});
+		} else {
+			$scope.getClr();
+		}
+	}
+	$scope.getStyleDropdown = function (search) {
+		if (search.length >= 3) {
+			NavigationService.tagSearchType($scope.filterby.type, search, function (data) {
+				if (data && data.value != false) {
+					$scope.allStyle = data;
+				} else {
+					$scope.allStyle = [];
+				}
+			});
+		} else {
+			$scope.getStl();
+		}
+	}
+	$scope.getElementDropdown = function (search) {
+		if (search.length >= 3) {
+			NavigationService.tagSearchType($scope.filterby.type, search, function (data) {
+				if (data && data.value != false) {
+					$scope.allElement = data;
+				} else {
+					$scope.allElement = [];
+				}
+			});
+		} else {
+			$scope.getElm();
 		}
 	}
 
@@ -320,6 +503,157 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	var lastpage = 2;
 
 	//get user details
+	$scope.setColorSearch = function (select) {
+		$scope.pagedata.color = select.selected.name;
+	}
+	$scope.setStyleSearch = function (select) {
+		$scope.pagedata.style = select.selected.name;
+	}
+	$scope.setElementSearch = function (select) {
+		$scope.pagedata.element = select.selected.name;
+	}
+	
+	
+	
+	$scope.getClr = function () {
+		if ($scope.pagedata.type == "") {
+			//			console.log("in if");
+			$scope.change = "";
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allColor = _.uniq(data, '_id');
+					$scope.allColor.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allColor = [];
+				}
+			});
+		} else {
+			//			console.log("in else");
+			$scope.change = {};
+			$scope.change.type = $scope.pagedata.type;
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allColor = _.uniq(data, '_id');
+					$scope.allColor.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allColor = [];
+				}
+			});
+		}
+	}
+	$scope.getStl = function () {
+		if ($scope.pagedata.type == "") {
+			//			console.log("in if");
+			$scope.change = "";
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allStyle = _.uniq(data, '_id');
+					$scope.allStyle.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allStyle = [];
+				}
+			});
+		} else {
+			//			console.log("in else");
+			$scope.change = {};
+			$scope.change.type = $scope.pagedata.type;
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allStyle = _.uniq(data, '_id');
+					$scope.allStyle.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allStyle = [];
+				}
+			});
+		}
+	}
+	$scope.getElm = function () {
+		if ($scope.pagedata.type == "") {
+			//			console.log("in if");
+			$scope.change = "";
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allElement = _.uniq(data, '_id');
+					$scope.allElement.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allElement = [];
+				}
+			});
+		} else {
+			//			console.log("in else");
+			$scope.change = {};
+			$scope.change.type = $scope.pagedata.type;
+			NavigationService.tagSearchType($scope.change, "", function (data, status) {
+				if (data && data.value != false) {
+					$scope.allElement = _.uniq(data, '_id');
+					$scope.allElement.unshift({
+						"_id": "0",
+						name: ""
+					});
+				} else {
+					$scope.allElement = [];
+				}
+			});
+		}
+	}
+	$scope.getClr();
+	$scope.getElm();
+	$scope.getStl();
+	
+	$scope.getColorDropdown = function (search) {
+		if (search.length >= 3) {
+			NavigationService.tagSearchType($scope.pagedata.type, search, function (data) {
+				if (data && data.value != false) {
+					$scope.allColor = data;
+				} else {
+					$scope.allColor = [];
+				}
+			});
+		} else {
+			$scope.getClr();
+		}
+	}
+	$scope.getStyleDropdown = function (search) {
+		if (search.length >= 3) {
+			NavigationService.tagSearchType($scope.pagedata.type, search, function (data) {
+				if (data && data.value != false) {
+					$scope.allStyle = data;
+				} else {
+					$scope.allStyle = [];
+				}
+			});
+		} else {
+			$scope.getStl();
+		}
+	}
+	$scope.getElementDropdown = function (search) {
+		if (search.length >= 3) {
+			NavigationService.tagSearchType($scope.pagedata.type, search, function (data) {
+				if (data && data.value != false) {
+					$scope.allElement = data;
+				} else {
+					$scope.allElement = [];
+				}
+			});
+		} else {
+			$scope.getElm();
+		}
+	}
 
 
 	$scope.typejson = [{
