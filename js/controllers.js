@@ -1830,6 +1830,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 	$scope.setSearch = function (select) {
 		$scope.reachOutForm.artist = select.selected.name;
+		cfpLoadingBar.start();
 		$scope.reachOutInner(select.selected._id);
 	}
 
@@ -1850,6 +1851,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			} else {
 				$scope.reachOutForm.srno = "";
 			}
+			cfpLoadingBar.complete();
 		});
 	}
 
@@ -1968,7 +1970,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 	$scope.resetReachOut = function () {
 		_.each($scope.reachOutForm, function (n, key) {
-			if (key != 0 || key != 2 || key != 3 || key != 4) {
+			if (key != 'srno' && key != 'to' && key != 'action') {
 				$scope.reachOutForm[key] = "";
 			}
 		});
