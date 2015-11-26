@@ -365,6 +365,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 method: "POST",
                 data: {
                     "search": pagedata.search,
+				 "type": pagedata.type,
                     "pagenumber": pagedata.pagenumber,
                     "pagesize": pagedata.pagesize
                 }

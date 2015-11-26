@@ -1838,7 +1838,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 		$scope.reachOutForm.srno = select.selected.srno;
 	}
 	$scope.selectSearch = function (name) {
-		$scope.art.search = name;
+		console.log("on search");
+		console.log(name);
+		$scope.art.search = name.name;
+		$scope.art.type = name.type;
 		$('#topsearch').focus();
 		$scope.getSearchedArt();
 	}
