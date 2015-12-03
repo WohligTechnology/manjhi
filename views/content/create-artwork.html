@@ -1,91 +1,91 @@
 <div class="create-artwork cont-create">
-    <div class="container">
-        <div class="page">
-            <h2 class="title">
-               </h2>
+  <div class="container">
+    <div class="page">
+      <h2 class="title">
+      </h2>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <section class="panel panel-default" style="border-radius:0px;">
-                        <div class="panel-heading panel-hdr">Create Artwork
+      <div class="row">
+        <div class="col-md-12">
+          <section class="panel panel-default" style="border-radius:0px;">
+            <div class="panel-heading panel-hdr">Create Artwork
+            </div>
+            <div class="panel-body">
+              <form name="form_constraints" class="form-validation" data-ng-submit="createartwork()">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>Sr. No.</label>
+                          <input type="text" class="form-control" ng-model="artwork.srno" readonly>
                         </div>
-                        <div class="panel-body">
-                            <form name="form_constraints" class="form-validation" data-ng-submit="createartwork()">
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Sr. No.</label>
-                                                    <input type="text" class="form-control" ng-model="artwork.srno" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Artwork Type / Category</label>
-                                                    <select class="form-control" ng-model="artwork.type" ng-change="isSculpture(artwork.type);" required>
-                                                        <option value="painting">Paintings</option>
-                                                        <option value="sculpture">Sculptures</option>
-                                                        <option value="photograph">Photographs</option>
-                                                        <option value="print">Prints</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Artwork Type / Category</label>
+                          <select class="form-control" ng-model="artwork.type" ng-change="isSculpture(artwork.type);" required>
+                            <option value="painting">Paintings</option>
+                            <option value="sculpture">Sculptures</option>
+                            <option value="photograph">Photographs</option>
+                            <option value="print">Prints</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
 
 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Title</label>
-                                            <input type="text" class="form-control" ng-model="artwork.name" placeholder="Title" required capitalize-first>
-                                        </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Title</label>
+                      <input type="text" class="form-control" ng-model="artwork.name" placeholder="Title" required capitalize-first>
+                    </div>
 
-                                    </div>
-                                    <div class="col-md-6">
+                  </div>
+                  <div class="col-md-6">
 
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Status</label>
-                                            <div>
-                                                <select class="form-control" ng-model="artwork.status">
-                                                    <option value="" selected>Select status</option>
-                                                    <option value="all">All</option>
-                                                    <option value="pending">Pending for Review</option>
-                                                    <option value="revert">Artist to Revert</option>
-                                                    <option value="screened">Screened</option>
-                                                    <option value="hold">Hold</option>
-                                                    <option value="reject">Reject</option>
-                                                    <option value="approve">Approve</option>
-                                                    <option value="sold">Sold</option>
-                                                    <option value="unpublish">Unpublished</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Select User</label>
-                                            <div class="form-group">
-                                                <ui-select tagging="tagTransform" ng-model="artwork.user" title="Select User">
-                                                    <ui-select-match placeholder="Select person...">
-                                                        <!--                                                    {{$select.selected.name}}-->
-                                                    </ui-select-match>
-                                                    <ui-select-choices repeat="person in users">
-                                                        <div ng-if="person.isTag" ng-bind-html="person.name +' <small>(new)</small>'| highlight: $select.search"></div>
-                                                        <div ng-if="!person.isTag" ng-bind-html="person.name + person.isTag| highlight: $select.search"></div>
-                                                        <small>email: 
-<!--                                                        {{person.email}}-->
-                                                        </small>
-                                                    </ui-select-choices>
-                                                </ui-select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Status</label>
+                      <div>
+                        <select class="form-control" ng-model="artwork.status">
+                          <option value="" selected>Select status</option>
+                          <option value="all">All</option>
+                          <option value="pending">Pending for Review</option>
+                          <option value="revert">Artist to Revert</option>
+                          <option value="screened">Screened</option>
+                          <option value="hold">Hold</option>
+                          <option value="reject">Reject</option>
+                          <option value="approve">Approve</option>
+                          <option value="sold">Sold</option>
+                          <option value="unpublish">Unpublished</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Select User</label>
+                      <div class="form-group">
+                        <ui-select tagging="tagTransform" ng-model="artwork.user" title="Select User">
+                          <ui-select-match placeholder="Select person...">
+                            <!--                                                    {{$select.selected.name}}-->
+                          </ui-select-match>
+                          <ui-select-choices repeat="person in users">
+                            <div ng-if="person.isTag" ng-bind-html="person.name +' <small>(new)</small>'| highlight: $select.search"></div>
+                            <div ng-if="!person.isTag" ng-bind-html="person.name + person.isTag| highlight: $select.search"></div>
+                            <small>email:
+                              <!--                                                        {{person.email}}-->
+                            </small>
+                          </ui-select-choices>
+                        </ui-select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group ui-selecter">
-                                            <label for="exampleInputEmail1">Medium</label>
-                                            <div class="form-group">
-                                                <!--
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group ui-selecter">
+                      <label for="exampleInputEmail1">Medium</label>
+                      <div class="form-group">
+                        <!--
                                                 <ui-select multiple tagging tagging-label="false" ng-model="artwork.subtype" on-select="ismatch(artwork.subtype,$select);">
                                                     <ui-select-match placeholder="Select Artwork Medium">
                                                                                                             {{$item.name}}
@@ -94,30 +94,30 @@
                                                         <div ng-bind-html="person.name"></div>
                                                     </ui-select-choices>
                                                 </ui-select>
-                                                
--->
-                                                <input type="text" class="form-control" placeholder="Medium" required capitalize-first>
 
-                                            </div>
-                                        </div>
-                                        <div class="form-group" ng-hide="showSculpture">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="frame" ng-model="artwork.frame" value="framed">Framed</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="frame" ng-model="artwork.frame" value="unframed">Unframed</label>
-                                        </div>
-                                        <div class="form-group" ng-show="showSculpture">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="pedestal" ng-model="artwork.pedestal" value="wpedestal">With Pedestal</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="pedestal" ng-model="artwork.pedestal" value="woedestal">Without Pedestal</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group ui-selecter">
-                                            <label for="exampleInputEmail1">Tag Word</label>
-                                            <div class="form-group">
-                                                <!--
+-->
+                        <input type="text" class="form-control" placeholder="Medium" required capitalize-first>
+
+                      </div>
+                    </div>
+                    <div class="form-group" ng-hide="showSculpture">
+                      <label class="radio-inline">
+                        <input type="radio" name="frame" ng-model="artwork.frame" value="framed">Framed</label>
+                      <label class="radio-inline">
+                        <input type="radio" name="frame" ng-model="artwork.frame" value="unframed">Unframed</label>
+                    </div>
+                    <div class="form-group" ng-show="showSculpture">
+                      <label class="radio-inline">
+                        <input type="radio" name="pedestal" ng-model="artwork.pedestal" value="wpedestal">With Pedestal</label>
+                      <label class="radio-inline">
+                        <input type="radio" name="pedestal" ng-model="artwork.pedestal" value="woedestal">Without Pedestal</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group ui-selecter">
+                      <label for="exampleInputEmail1">Tag Word</label>
+                      <div class="form-group">
+                        <!--
                                                 <ui-select tagging tagging-label="false" multiple ng-model="artwork.tag" ng-change="ismatchmed(artwork.tag,$select);">
                                                     <ui-select-match placeholder="Select Tag">
                                                                                                             {{$item.name}}
@@ -127,177 +127,197 @@
                                                     </ui-select-choices>
                                                 </ui-select>
 -->
-                                                <input type="text" class="form-control" placeholder="Tag word" required capitalize-first>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Width (inches)</label>
-                                            <input type="text" class="form-control" ng-model="artwork.width" placeholder="Width" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Height (inches)</label>
-                                            <input type="text" class="form-control" ng-model="artwork.height" placeholder="Height" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" ng-show="showBreadth">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Breadth (inches)</label>
-                                            <input type="text" class="form-control" ng-model="artwork.breadth" placeholder="Breadth">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3" ng-show="showBreadth">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Weight (kg)</label>
-                                            <input type="text" class="form-control" ng-model="artwork.weight" placeholder="Weight">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Artist Price (in Rs.)</label>
-                                            <input type="number" class="form-control" ng-model="artwork.price" placeholder="Artist Price" required ng-change="calculateprice();">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Gallery Commission (in %)</label>
-                                            <input type="number" class="form-control" ng-model="artwork.comm" placeholder="Gallery Commission" required ng-change="calculateprice();">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Gallery Price (in Rs.)</label>
-                                            <input type="number" class="form-control" ng-model="artwork.gprice" placeholder="Gallery Price" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Year of Creation</label>
-                                            <input type="text" class="form-control" ng-model="artwork.year" placeholder="Year">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Owned / Consigned</label>
-
-                                            <select class="form-control" ng-model="artwork.owncon">
-                                                <option value="">Please select</option>
-                                                <option value="owned">Owned</option>
-                                                <option value="consigned">Consigned</option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group" ng-hide="showBreadth">
-                                            <label for="exampleInputEmail1">Framing Status</label>
-                                            <div>
-                                                <select class="form-control" ng-model="artwork.fstatus">
-                                                    <option value="">Please select</option>
-                                                    <option value="rolled">Rolled</option>
-                                                    <option value="stretched">Stretched</option>
-                                                    <option value="framed">Framed</option>
-                                                    <option value="framedwglass">Framed (with glass)</option>
-                                                    <option value="framedwacrylic">Framed (with acrylic sheet)</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Description</label>
-                                            <textarea class="form-control" ng-model="artwork.description" placeholder="Description"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Registered Address</label>
-                                            <textarea class="form-control" ng-model="artwork.address" placeholder="Registered Address"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Artwork Location Address</label>
-                                            <textarea class="form-control" ng-model="artwork.locaddress" placeholder="Artwork Location Address"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Image</label>
-
-                                    <div class="scroll-x">
-                                        <div class="img-box">
-                                            <div ng-repeat="bill in artwork.image" class="many-img">
-                                                <img src="{{bill | uploadpath}}" ng-if="artwork.image.length!=0">
-                                                <button type="button" ng-click="removeimage(artwork.image.indexOf(bill));" class="btn btn-danger close-btn" ng-if="artwork.image.length!=0"><i class="glyphicon glyphicon-trash"></i>
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="upload-div">
-                                        <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
-                                        <div class="upload-buttons">
-                                            <input type="file" name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null" multiple>
-                                        </div>
-                                        <div class="response" ng-show="uploadResult.length > 0">
-                                            <span ng-repeat="result in uploadResult">
-                                                <div ng-init="">
-               <!--                                        {{result}}-->
-                                                </div>
-                                        </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Upload Certificate</label>
-                                    <!--                                    <input class="form-control" type="url" readonly ng-click="onTextClick($event);" value="{{artwork.certi | uploadpath}}" ng-if="artwork.certi"> -->
-                                    <input class="form-control" type="url" readonly ng-click="onTextClick($event);" value="" ng-if="artwork.certi">
-                                    <div class="upload-div">
-                                        <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
-                                        <div class="upload-buttons">
-                                            <input type="file" name="file" ng-file-select="onFileSelect($files,2)" onclick="this.value=null">
-                                        </div>
-                                        <div class="response" ng-show="uploadResult.length > 0">
-                                            <span ng-repeat="result in uploadResult">
-                                                <div ng-init="">
-               <!--{{result}}-->
-                                                </div>
-                                        </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center" style="padding-bottom:20px;">
-                                    <button type="submit" class="btn btn-primary all-btn">Submit</button>
-                                </div>
-                                <div class="text-center" style="padding-bottom:20px;" ng-show="showerror">
-                                    <p style="font-size: medium;color: red;font-weight: 500;">Please Select User</p>
-                                </div>
-                            </form>
-                    </section>
+                        <input type="text" class="form-control" placeholder="Tag word" required capitalize-first>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </div>
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Height (inches)</label>
+                      <input type="text" class="form-control" ng-model="artwork.height" placeholder="Height" required>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Width (inches)</label>
+                      <input type="text" class="form-control" ng-model="artwork.width" placeholder="Width" required>
+                    </div>
+                  </div>
+                  <div class="col-md-3" ng-show="showBreadth">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Breadth (inches)</label>
+                      <input type="text" class="form-control" ng-model="artwork.breadth" placeholder="Breadth">
+                    </div>
+                  </div>
+                  <div class="col-md-3" ng-show="showBreadth">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Weight (kg)</label>
+                      <input type="text" class="form-control" ng-model="artwork.weight" placeholder="Weight">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Dimension</label>
+                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="artwork.dim" placeholder="Dimension">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Area sq. feet</label>
+                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="artwork.area" placeholder="Area sq. feet">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Price sq. feet</label>
+                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="artwork.pricesq" placeholder="Price sq. feet">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Frame Size</label>
+                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="artwork.framesize" placeholder="Frame Size">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Year of Creation</label>
+                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="artwork.year" placeholder="Year">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                       <label>Artwork Owned/Consigned</label><br>
+                      <label class="radio-inline">
+                        <input type="radio" name="gender" ng-model="artwork.art" value="Owned" class="ng-pristine ng-untouched ng-valid">Owned
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="gender" ng-model="artwork.art" value="Consigned" class="ng-pristine ng-untouched ng-valid">Consigned
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group" ng-hide="showBreadth">
+                      <label for="exampleInputEmail1">Framing Status</label>
+                      <div>
+                        <select class="form-control ng-pristine ng-untouched ng-valid" ng-model="artwork.fstatus">
+                          <option value="">Please select</option>
+                          <option value="rolled">Rolled</option>
+                          <option value="stretched">Stretched</option>
+                          <option value="framed">Framed</option>
+                          <option value="framedwglass">Framed (with glass)</option>
+                          <option value="framedwacrylic">Framed (with acrylic sheet)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Artist Price (in Rs.)</label>
+                      <input type="number" class="form-control" ng-model="artwork.price" placeholder="Artist Price" required ng-change="calculateprice();">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Gallery Commission (in %)</label>
+                      <input type="number" class="form-control" ng-model="artwork.comm" placeholder="Gallery Commission" required ng-change="calculateprice();">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Gallery Price (in Rs.)</label>
+                      <input type="number" class="form-control" ng-model="artwork.gprice" placeholder="Gallery Price">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Description</label>
+                      <textarea class="form-control" ng-model="artwork.description" placeholder="Description"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Registered Address</label>
+                      <textarea class="form-control" ng-model="artwork.address" placeholder="Registered Address"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Artwork Location Address</label>
+                      <textarea class="form-control" ng-model="artwork.locaddress" placeholder="Artwork Location Address"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Image</label>
+
+                  <div class="scroll-x">
+                    <div class="img-box">
+                      <div ng-repeat="bill in artwork.image" class="many-img">
+                        <img src="{{bill | uploadpath}}" ng-if="artwork.image.length!=0">
+                        <button type="button" ng-click="removeimage(artwork.image.indexOf(bill));" class="btn btn-danger close-btn" ng-if="artwork.image.length!=0"><i class="glyphicon glyphicon-trash"></i>
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="upload-div">
+                    <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
+                    <div class="upload-buttons">
+                      <input type="file" name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null" multiple>
+                    </div>
+                    <div class="response" ng-show="uploadResult.length > 0">
+                      <span ng-repeat="result in uploadResult">
+                        <div ng-init="">
+                          <!--                                        {{result}}-->
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Upload Certificate</label>
+                  <!--                                    <input class="form-control" type="url" readonly ng-click="onTextClick($event);" value="{{artwork.certi | uploadpath}}" ng-if="artwork.certi"> -->
+                  <input class="form-control" type="url" readonly ng-click="onTextClick($event);" value="" ng-if="artwork.certi">
+                  <div class="upload-div">
+                    <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
+                    <div class="upload-buttons">
+                      <input type="file" name="file" ng-file-select="onFileSelect($files,2)" onclick="this.value=null">
+                    </div>
+                    <div class="response" ng-show="uploadResult.length > 0">
+                      <span ng-repeat="result in uploadResult">
+                        <div ng-init="">
+                          <!--{{result}}-->
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center" style="padding-bottom:20px;">
+                  <button type="submit" class="btn btn-primary all-btn">Submit</button>
+                </div>
+                <div class="text-center" style="padding-bottom:20px;" ng-show="showerror">
+                  <p style="font-size: medium;color: red;font-weight: 500;">Please Select User</p>
+                </div>
+              </form>
+          </section>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
