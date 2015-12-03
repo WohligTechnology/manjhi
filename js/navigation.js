@@ -325,6 +325,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
           }).success(callback);
         },
+        logout: function() {
+          $http({
+              url: adminurl + "user/logout",
+              method: "POST",
+
+          });
+        },
         getAllFavouritesData: function(artarray, callback) {
             $http({
                 url: adminurl + "artwork/favoriteartwork",

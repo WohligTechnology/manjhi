@@ -1784,6 +1784,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar, $state, $stateParams, $timeout) {
 	$scope.template = TemplateService;
+
+	$scope.adminurl = adminurl;
+
+
 	var scrolled = 0;
 	$scope.logintab = '1';
 	$scope.login = {};
@@ -2011,13 +2015,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	}
 
 	$scope.logout = function () {
-		$.jStorage.flush();
+		console.log("Logout");
+		NavigationService.logout();
 		$scope.showWishlist = false;
-		if (window.location.hash == "#/account") {
-			//			$location.url("/home");
-			$state.go('home');
-		}
-		window.location.reload();
+		$state.go('home');
 	}
 
 	$scope.userlogin = function () {
