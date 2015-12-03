@@ -1592,10 +1592,13 @@ a.readmore {
       cursor: pointer;
       i {
         font-size: 18px;
+        padding: 4px 15px;
+        width: 45px;
+            float: left;
       }
-      .fa {
+      span {
+        line-height: 1.5;
         float: left;
-        padding: 4px 20px 10px;
       }
     }
     .gplus {
@@ -1631,7 +1634,7 @@ a.readmore {
     font-size: 15px;
     text-align: center;
     height: 45px;
-    border: none;
+    border: 1px solid #d4ae70;
     &:hover {
       background-color: #fff;
       border: 1px solid @color2;
@@ -1639,6 +1642,7 @@ a.readmore {
     }
     &:active {
       background-color: @color2;
+      color: #fff;
     }
   }
   input.form-control {
