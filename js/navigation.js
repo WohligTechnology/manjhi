@@ -332,6 +332,12 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
           });
         },
+        pressFind:function(callback) {
+            $http({
+                url: adminurl + "press/find",
+                method: "POST",
+            }).success(callback);
+        },
         getAllFavouritesData: function(artarray, callback) {
             $http({
                 url: adminurl + "artwork/favoriteartwork",

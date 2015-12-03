@@ -1159,6 +1159,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	TemplateService.title = $scope.menutitle;
 	$scope.navigation = NavigationService.getnav();
 
+	$scope.press = [];
+
+	function getPress(data ) {
+		console.log(data);
+		if(data.value != false)
+		{
+			$scope.press = data;
+		}
+	}
+	NavigationService.pressFind(getPress);
+
 	$scope.oneAtATime = true;
 
 	$scope.status = {
