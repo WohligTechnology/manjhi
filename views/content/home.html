@@ -290,46 +290,46 @@
 				<div class="col-md-3">
 					<div class="events">
 						<h3 class="home-header font-color3">Events</h3>
-						<p class="bold">The Art Enclave (October 2015)
+						<p class="bold">{{upcomingEvent.name}}
 						</p>
 						<p>
 							<span class="bold">Date:</span>
-							<span class="eventdate">15-10-2015</span>
+							<span class="eventdate">{{upcomingEvent.startdate}}</span>
 						</p>
 						<p>
 							<span class="bold">Time:</span>
-							<span class="eventtime">5.30 pm</span>
+							<span class="eventtime">{{upcomingEvent.starttime}}</span>
 						</p>
 						<p>
 							<span class="bold">Venue:</span>
-							<span class="eventvenue">MMRDA Exhibition Center</span>
+							<span class="eventvenue">{{upcomingEvent.venue}}</span>
 						</p>
 					</div>
 				</div>
 				<div class="col-md-9">
 					<div class="some-image">
 						<div class="row-flex row-unflex image-box text-center">
-							<div class="col-flex" fancybox-box href="img/home/event/Event_Invite.jpg">
+							<div class="col-flex" fancybox-box href="{{upcomingEvent.invitation|uploadthumbnail}}">
 								<h6>INVITE</h6>
-								<img alt="" class="img-responsive" src="img/home/event/Event_Invite.jpg">
+								<img alt="" class="img-responsive" ng-src="{{upcomingEvent.invitation|uploadthumbnail}}">
 							</div>
 							<div class="col-flex">
 								<h6>CATALOGUE</h6>
-								<a href="http://www.auraart.in/AuraArtShow2013/Catalogue.html" target="_blank">
+								<a href="{{upcomingEvent.catalogue}}" target="_blank">
 									<img alt="" class="img-responsive" src="img/vc.jpg">
 								</a>
 							</div>
-							<div class="col-flex" fancybox-box href="img/home/event/Event_Photo.jpg">
+							<div class="col-flex" fancybox-box href="{{upcomingEvent.photos[0]|uploadthumbnail}}">
 								<h6>PHOTO</h6>
-								<img alt="" class="img-responsive" src="img/home/event/Event_Photo.jpg">
+								<img alt="" class="img-responsive" src="{{upcomingEvent.photos[0]|uploadthumbnail}}">
 							</div>
-							<div class="col-flex" fancybox-box href="img/home/event/Event_Press.jpg">
+							<div ng-if="upcomingEvent.pressphoto" class="col-flex" fancybox-box href="{{upcomingEvent.pressphoto|uploadthumbnail}}">
 								<h6>PRESS</h6>
-								<img alt="" class="img-responsive" src="img/home/event/Event_Press.jpg">
+								<img alt="" class="img-responsive" src="{{upcomingEvent.pressphoto|uploadthumbnail}}">
 							</div>
-							<div class="col-flex" fancybox-box href="https://www.youtube.com/embed/ZgwIe-QW5f8">
+							<div class="col-flex" ng-if="upcomingEvent.videos" fancybox-box href="https://www.youtube.com/embed/{{upcomingEvent.videos}}">
 								<h6>VIDEO</h6>
-								<iframe allowfullscreen frameborder="0" height="130" src="https://www.youtube.com/embed/ZgwIe-QW5f8" width="100%"></iframe>
+								<iframe  allowfullscreen frameborder="0" height="130" src="{{'https://www.youtube.com/embed/'+upcomingEvent.videos}}" width="100%"></iframe>
 							</div>
 						</div>
 					</div>
@@ -342,46 +342,12 @@
 	<div class="padding-more">
 		<h3 class="home-header font-color3">Press</h3>
 		<div class="row-flex row-unflex image-box">
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/Art&Deal.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/Art&Deal.jpg">
+			<div class="col-flex" ng-repeat="pressSin in press" >
+				<a class="col-press" fancybox-box href="{{pressSin.photos|uploadthumbnail}}" rel="press">
+					<img alt="demo" class="img-responsive" ng-src="{{pressSin.photos|uploadthumbnail}}">
 				</a>
 			</div>
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/Art&Deal-Cover.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/Art&Deal-Cover.jpg">
-				</a>
-			</div>
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/BT3.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/BT3.jpg">
-				</a>
-			</div>
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/AMIR.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/AMIR.jpg">
-				</a>
-			</div>
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/2DesignMatrix.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/2DesignMatrix.jpg">
-				</a>
-			</div>
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/AsianAge.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/AsianAge.jpg">
-				</a>
-			</div>
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/Bombay_Times_Jan31_2008.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/Bombay_Times_Jan31_2008.jpg">
-				</a>
-			</div>
-			<div class="col-flex">
-				<a class="col-press" fancybox-box href="img/home/press/G2.jpg" rel="press">
-					<img alt="demo" class="img-responsive" src="img/home/press/G2.jpg">
-				</a>
-			</div>
+
 		</div>
 	</div>
 </div>

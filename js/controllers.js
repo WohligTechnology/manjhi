@@ -31,7 +31,25 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 //	$scope.filterby.element = '';
 	NavigationService.getSlider(function (data) {
 		$scope.slides = data;
-	})
+	});
+
+	function getPress(data ) {
+
+
+
+		if(data.value != false)
+		{
+			$scope.press = data
+			console.log(data);
+		}
+	}
+	NavigationService.pressFind(getPress);
+
+	NavigationService.getupcomingevents(function(data) {
+		$scope.upcomingEvent = data;
+		console.log(data);
+	});
+
 	$scope.onfock = "";
 	$scope.oon = function () {
 		if ($scope.onfock == "") {
@@ -912,22 +930,45 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
 	//Used to name the .html file
+
+
+
 	$scope.template = TemplateService.changecontent("events");
 	$scope.menutitle = NavigationService.makeactive("Events");
 	TemplateService.title = $scope.menutitle;
 	$scope.navigation = NavigationService.getnav();
 
-	NavigationService.getupcomingevents(function (data, status) {
-		//		console.log(data);
+	NavigationService.getAllEvents(function (data, status) {
+				console.log(data);
+				var events = _.groupBy(data,function(n) {
+						return n.year;
+				});
+				$scope.currentYear = parseInt(moment().get("year"));
+
+				console.log($scope.events);
+
+				$scope.events = _.groupBy(events,function(key,value){
+					if(parseInt(value) > $scope.currentYear)
+					{
+						return "upcoming";
+					}
+					else if (parseInt(value) == $scope.currentYear) {
+						return "present"
+					}
+					else if (parseInt(value) < $scope.currentYear) {
+						return "past"
+					}
+				});
+
+
+				$scope.events.past = _.sortBy($scope.events.past, function(n) {
+					return -1*n[0].year;
+				});
+
+				console.log($scope.events);
 	});
 
-	NavigationService.getpresentevents(function (data, status) {
-		//		console.log(data);
-	});
 
-	NavigationService.getpastevents(function (data, status) {
-		//		console.log(data);
-	});
 
 	$scope.availableAritist = ['Krishen Khanna', 'Manjit Bawa', 'Paramjit Singh', 'S Yousuf Ali', 'Umesh Varma', 'Arunanshu Chowdhury', '   Yashwant Shirwadkar'];
 
@@ -1162,10 +1203,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.press = [];
 
 	function getPress(data ) {
-		console.log(data);
+
+
+
 		if(data.value != false)
 		{
-			$scope.press = data;
+
+			data2 = _.groupBy(data, function(n) {
+				var year = moment(n.date).get("year");
+				return year;
+			},true);
+			$scope.pressYear = _.keys(data2);
+			console.log($scope.pressYear);
+
+			$scope.press = data2;
+			console.log(data2);
 		}
 	}
 	NavigationService.pressFind(getPress);

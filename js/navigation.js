@@ -262,15 +262,6 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
 			   data:reachout
 		   }).success(callback);
 	   },
-        getupcomingevents: function(callback) {
-            $http({
-                url: adminurl + "event/findevents",
-                method: "POST",
-                data: {
-                    "year": "upcoming"
-                }
-            }).success(callback);
-        },
         getpresentevents: function(callback) {
             $http({
                 url: adminurl + "event/findevents",
@@ -331,6 +322,32 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
               method: "POST",
 
           });
+        },
+        getAllEvents : function(callback) {
+          $http({
+              url: adminurl + "event/find",
+              method: "POST",
+
+          }).success(callback);
+        },
+        getOneEvents : function(id,callback) {
+          $http({
+              url: adminurl + "event/findone",
+              method: "POST",
+              data: {
+                "_id":id
+              }
+          }).success(callback);
+        },
+
+        getupcomingevents: function(callback) {
+           $http({
+               url: adminurl + "event/findevents",
+               method: "POST",
+               data: {
+                   "year": "upcoming"
+               }
+           }).success(callback);
         },
         pressFind:function(callback) {
             $http({
