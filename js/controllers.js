@@ -512,9 +512,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.setElementSearch = function (select) {
 		$scope.pagedata.element = select.selected.name;
 	}
-	
-	
-	
+
+
+
 	$scope.getClr = function () {
 		if ($scope.pagedata.type == "") {
 			//			console.log("in if");
@@ -614,7 +614,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	$scope.getClr();
 	$scope.getElm();
 	$scope.getStl();
-	
+
 	$scope.getColorDropdown = function (search) {
 		if (search.length >= 3) {
 			NavigationService.tagSearchType($scope.pagedata.type, search, function (data) {
@@ -1828,6 +1828,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 	});
 
 
+	NavigationService.getuserprofile(function(data) {
+		console.log(data);
+		if(data.name)
+		{
+			$scope.user.name = data.name;
+
+			$scope.showWishlist = true;
+		}
+
+	});
+
 	$scope.setSearch = function (select) {
 		$scope.reachOutForm.artist = select.selected.name;
 		cfpLoadingBar.start();
@@ -2015,7 +2026,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 			if (data.value != false) {
 				$scope.showInvalidLogin = false;
 				$scope.showWishlist = true;
-				$.jStorage.set("user", data);
+				//$.jStorage.set("user", data);
 				$scope.user.name = data.name;
 				ngDialog.closeAll();
 				window.location.reload();
@@ -2033,7 +2044,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 				if (data.value != false) {
 					$scope.showAlreadyRegistered = false;
 					$scope.showWishlist = true;
-					$.jStorage.set("user", data);
+					//$.jStorage.set("user", data);
 					$scope.user.name = data.name;
 					ngDialog.closeAll();
 					window.location.reload();

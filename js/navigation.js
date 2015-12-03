@@ -1,4 +1,4 @@
-var adminurl = "http://146.148.34.49/";
+var adminurl = "http://vignesh.com:1337/";
 //var adminurl = "http://192.168.0.121:82/";
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
@@ -318,6 +318,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
+        getuserprofile: function(callback) {
+          $http({
+              url: adminurl + "user/profile",
+              method: "POST",
+
+          }).success(callback);
+        },
         getAllFavouritesData: function(artarray, callback) {
             $http({
                 url: adminurl + "artwork/favoriteartwork",
@@ -406,6 +413,6 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
 			    }
 		    }).success(callback);
 	    }
-	    
+
     }
 });
