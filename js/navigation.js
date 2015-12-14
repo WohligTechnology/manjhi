@@ -1,6 +1,8 @@
 // var adminurl = "http://vignesh.com:1337/";
 // var adminurl = "http://192.168.0.121:82/";
 var adminurl = "http://146.148.34.49/";
+var adminurl = "http://smartsnap.in/";
+
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
 .factory('NavigationService', function($http, ngDialog) {
