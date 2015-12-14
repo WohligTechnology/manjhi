@@ -50,173 +50,169 @@
             </div>
         </div>
         <div class="clear-fix"></div>
-        <div class="making">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Billing Information</h3>
-                </div>
-                <div class="panel-body">
-                    <form>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2 col-md-4">
-                                <input type="text" class="form-control asteric" id="" placeholder="First Name">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="Last Name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="Company">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="email" class="form-control" id="" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-8 col-md-offset-2 ">
-                                <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="City">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="State/Provision">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="tel" class="form-control" id="" placeholder="Telephone Number">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="row">
-                        <div class="form-group col-md-offset-2  col-md-8">
-                            <div class="checkbox">
-                                <label>
-<!--                                    <input type="checkbox" ng-model="checkout.isshipping" name="check" ng-click="showShipping(checkout.isshipping)">-->
-                                    <input type="checkbox" ng-model="checked" ng-init="checked=false">
-                                    Ship to different address</label>
-                            </div>
-                        </div>
-                    </div>
-<!--                    <div class="row" ng-if="checkout.isshipping == true" class="animate-if">-->
-                    <div ng-if="checked" class="animate-if row">
-                        <div class="form-group col-md-offset-2 col-md-8">
-                            <h4>Ship to this Address</h4>
-                        </div>
-                        <form>
-                            <div class="row">
-                                <div class="form-group col-md-offset-2 col-md-4">
-                                    <input type="text" class="form-control asteric" id="" placeholder="Shipping Name">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="tel" class="form-control" id="" placeholder="Telephone">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-8 col-md-offset-2 ">
-                                    <textarea class="form-control" rows="3" id="address" placeholder="Address"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-offset-2  col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="City">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="State/Provision">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-offset-2  col-md-4">
-                                    <input type="number" class="form-control" id="" placeholder="Zip/Postal Code">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="Country">
-                                </div>
-                            </div>
-                        </form>
-                        <div class="row">
-                            <div class="col-md-offset-2  col-md-8">
-                                <button class="btn btn-cont pull-right">Continue</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <form ng-submit="toPayment();">
             <div class="making">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Billing Information</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="cart check">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Product Image</th>
-                                        <th>Product id</th>
-                                        <th>Artist Name</th>
-                                        <th>Product Name</th>
-                                        <th>Unit Price</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- ngRepeat: singlecart in cart -->
-                                    <tr class="cart-details">
-                                        <td class="cart-img">
-                                            <span class="mobile">Product Image</span>
-                                            <img src="img/artist/artist2.jpg" class="img-box">
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Product Id</span> 11
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Artist Name</span> Untitled
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Product Name</span> Untitled
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Unit Price</span> Rs 5000000
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Action</span>
-                                            <i class="fa fa-trash-o"></i>
-                                        </td>
-                                    </tr>
-                                    <!-- end ngRepeat: singlecart in cart -->
-                                </tbody>
-                            </table>
-                            <hr>
-                            <div class="col-md-offset-8 col-md-4">
-                                <table class="table table-bordered ">
+                        <div class="row">
+                            <div class="form-group col-md-offset-2 col-md-4">
+                                <input type="text" class="form-control asteric" id="" placeholder="First Name" ng-model="payment.billing.fname" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="Last Name" ng-model="payment.billing.lname" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="Company" ng-model="payment.billing.company">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="email" class="form-control" id="" placeholder="Email" required ng-model="payment.billing.email">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8 col-md-offset-2 ">
+                                <textarea class="form-control" rows="3" id="address" placeholder="Address" ng-model="payment.billing.address" required></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="City" required ng-model="payment.billing.city">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" id="" placeholder="State/Provision" required ng-model="payment.billing.state">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-4">
+                                <input type="number" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.billing.pincode">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="tel" class="form-control" id="" placeholder="Telephone Number" required ng-model="payment.billing.contact">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-offset-2  col-md-8">
+                                <div class="checkbox">
+                                    <label>
+                                        <!--                                    <input type="checkbox" ng-model="checkout.isshipping" name="check" ng-click="showShipping(checkout.isshipping)">-->
+                                        <input type="checkbox" ng-model="checked" ng-init="checked=false"> Ship to different address</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                    <div class="row" ng-if="checkout.isshipping == true" class="animate-if">-->
+                        <div ng-if="checked" class="animate-if row">
+                            <div class="form-group col-md-offset-2 col-md-8">
+                                <h4>Ship to this Address</h4>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-offset-2 col-md-4">
+                                    <input type="text" class="form-control asteric" id="" placeholder="Shipping Name" required ng-model="payment.shipping.name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="tel" class="form-control" id="" placeholder="Telephone" required ng-model="payment.shipping.contact">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-8 col-md-offset-2 ">
+                                    <textarea class="form-control" rows="3" id="address" placeholder="Address" required ng-model="payment.shipping.address"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-offset-2  col-md-4">
+                                    <input type="text" class="form-control" id="" placeholder="City" required ng-model="payment.shipping.city">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" id="" placeholder="State/Provision" required ng-model="payment.shipping.state">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-offset-2  col-md-4">
+                                    <input type="number" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.shipping.pincode">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" id="" placeholder="Country" required ng-model="payment.shipping.country">
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                            <div class="col-md-offset-2  col-md-8">
+                                <button class="btn btn-cont pull-right">Continue</button>
+                            </div>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="making">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Billing Information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="cart check">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Image</th>
+                                            <th>Product id</th>
+                                            <th>Artist Name</th>
+                                            <th>Product Name</th>
+                                            <th>Unit Price</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
                                     <tbody>
-                                        <tr>
-                                            <th>Discount</th>
-                                            <th>Shipping</th>
-                                            <th>Grand Total</th>
+                                        <!-- ngRepeat: singlecart in cart -->
+                                        <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
+                                            <td class="cart-img">
+                                                <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
+                                            </td>
+                                            <td>
+                                                <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
+                                            </td>
+                                            <td>
+                                                <span class="mobile">Artist Name</span> {{artwork.name}}
+                                            </td>
+                                            <td>
+                                                <span class="mobile">Title</span> {{artwork.artwork.name}}
+                                            </td>
+                                            <td>
+                                                <span class="mobile">Unit Price</span> Rs.{{artwork.artwork.gprice|number:0}}
+                                            </td>
+                                            <td>
+                                                <span class="mobile">Action</span>
+                                                <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>Rs 0.00</td>
-                                            <td>Rs 0.00</td>
-                                            <td>Rs 2450.00</td>
-                                        </tr>
+                                        <!-- end ngRepeat: singlecart in cart -->
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="col-md-offset-4 col-md-8">
-                                <a ui-sref="checkout" class="btn btn-cont pull-right">Proceed &#38; Payment</a>
+                                <hr>
+                                <div class="col-md-offset-8 col-md-4">
+                                    <table class="table table-bordered ">
+                                        <tbody>
+                                            <tr>
+                                                <th>Discount</th>
+                                                <th>Shipping</th>
+                                                <th>Grand Total</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Rs {{totalCartPrice | number:0}}</td>
+                                                <td>Rs 0.00</td>
+                                                <td>Rs {{totalCartPrice | number:0}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-offset-4 col-md-8">
+                                    <button type="submit" class="btn btn-cont pull-right">Proceed &#38; Payment</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>

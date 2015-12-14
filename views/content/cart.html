@@ -15,25 +15,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="cart-details">
+                    <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
                         <td class="cart-img">
-                            <img src="img/artist/artist2.jpg" class="img-box">
+                            <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
                         </td>
                         <td>
-                            <span class="mobile">Product Id</span> 11
+                            <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
                         </td>
                         <td>
-                            <span class="mobile">Artist Name</span> Untitled
+                            <span class="mobile">Artist Name</span> {{artwork.name}}
                         </td>
                         <td>
-                            <span class="mobile">Title</span> Untitled
+                            <span class="mobile">Title</span> {{artwork.artwork.name}}
                         </td>
                         <td>
-                            <span class="mobile">Unit Price</span> Rs.1,00,000/ $6,400
+                            <span class="mobile">Unit Price</span> Rs.{{artwork.artwork.gprice|number:0}}
                         </td>
                         <td>
                             <span class="mobile">Action</span>
-                            <i class="fa fa-trash-o"></i>
+                            <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -60,9 +60,9 @@
                                 <th>Grand Total</th>
                             </tr>
                             <tr>
-                                <td class="ng-binding">Rs 12500.00</td>
+                                <td class="ng-binding">Rs {{totalCartPrice | number:0}}</td>
                                 <td class="ng-binding">Rs 0.00</td>
-                                <td class="ng-binding">Rs 12500.00</td>
+                                <td class="ng-binding">Rs {{totalCartPrice | number:0}}</td>
                             </tr>
                         </tbody>
                     </table>

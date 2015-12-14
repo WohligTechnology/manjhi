@@ -1,16 +1,16 @@
 <div class="row above-nav">
     <div class="col-md-4 col-sm-4">
-      <form ng-submit="getSearchedArt();" class="">
-        <div class="input-group ingroup x rel">
-            <input type="search" class="form-control" autocomplete="off" numbers-only required id="topsearch" placeholder="Search..." ng-model="art.search" ng-change="onSearchChange(art.search)">
-            <span class="input-group-btn">
+        <form ng-submit="getSearchedArt();" class="">
+            <div class="input-group ingroup x rel">
+                <input type="search" class="form-control" autocomplete="off" numbers-only required id="topsearch" placeholder="Search..." ng-model="art.search" ng-change="onSearchChange(art.search)">
+                <span class="input-group-btn">
               <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
             </span>
-            <ul class="posa" ng-if="searchData!=''">
-			  <li ng-repeat = "data in searchData" ng-click="selectSearch(data)"><span class="pull-right"> {{data.type}}</span>{{data.name}}</li>
-            </ul>
-        </div>
-      </form>
+                <ul class="posa" ng-if="searchData!=''">
+                    <li ng-repeat="data in searchData" ng-click="selectSearch(data)"><span class="pull-right"> {{data.type}}</span>{{data.name}}</li>
+                </ul>
+            </div>
+        </form>
     </div>
     <div class="col-md-2 col-sm-3">
         <div class="social-icons">
@@ -42,7 +42,7 @@
         <div class="col-flex box-height" ng-show="showWishlist">
             <div class="style4-bg small-box"><i class="fa fa-user"></i>
             </div>
-            <div class="inline-box" ng-click="toaccount();" >{{user.name}}</div>
+            <div class="inline-box" ng-click="toaccount();">{{user.name}}</div>
             <div class="sub-menu logout" ng-click="logout();">
                 <!-- <div class="style3-bg small-box">
                     <i class="fa fa-sign-out"></i>
@@ -62,10 +62,10 @@
             </a>
         </div>
         <div class="col-flex box-height list-cart" ng-controller="cartdropctrl" ng-click="showcart(0)" ng-mouseleave="hidecart(0)">
-            <div class="style2-bg small-box"></div>
+            <div class="style2-bg small-box">{{cartItems.length}}</div>
             <div class="inline-box">
                 My Cart
-                <br><span class="light-shade">Rs.0</span>
+                <br><span class="light-shade">Rs.{{totalCartPrice | number:0}}</span>
             </div>
             <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
             </div>

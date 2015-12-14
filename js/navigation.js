@@ -1,8 +1,7 @@
-// var adminurl = "http://vignesh.com:1337/";
+var adminurl = "http://vignesh.com:82/";
 // var adminurl = "http://192.168.0.121:82/";
-var adminurl = "http://146.148.34.49/";
-var adminurl = "http://smartsnap.in/";
-
+// var adminurl = "http://146.148.34.49/";
+// var adminurl = "http://smartsnap.in/";
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
 .factory('NavigationService', function($http, ngDialog) {
@@ -224,13 +223,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: forgot
             }).success(callback);
         },
-        artworktype: function(pagedata, callback) {
+        artworktype: function(filterdata, callback) {
             //            delete pagedata.minbreadth;
             //            delete pagedata.maxbreadth;
             $http({
                 url: adminurl + "artwork/artworktype",
                 method: "POST",
-                data: pagedata
+                data: filterdata
             }).success(callback);
         },
         getartworkdetail: function(artid, callback) {
@@ -312,6 +311,30 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
+        addToCart: function(artid, callback) {
+            $http({
+                url: adminurl + "cart/save",
+                method: "POST",
+                data: {
+                    "artwork": artid
+                }
+            }).success(callback);
+        },
+        removeFromCart: function(artid, callback) {
+            $http({
+                url: adminurl + "cart/delete",
+                method: "POST",
+                data: {
+                    "artwork": artid
+                }
+            }).success(callback);
+        },
+        getCartItems: function(callback) {
+            $http({
+                url: adminurl + "cart/find",
+                method: "POST"
+            }).success(callback);
+        },
         getuserprofile: function(callback) {
             $http({
                 url: adminurl + "user/profile",
@@ -319,12 +342,12 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
             }).success(callback);
         },
-        logout: function() {
+        logout: function(callback) {
             $http({
                 url: adminurl + "user/logout",
                 method: "POST",
 
-            });
+            }).success(callback);
         },
         getAllEvents: function(callback) {
             $http({

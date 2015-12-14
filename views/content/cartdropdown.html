@@ -1,6 +1,26 @@
 <div class="drop-cart">
     <!-- ngRepeat: cat in cart -->
-    <ul class="img-namess">
+    <ul class="img-namess" ng-repeat=" artwork in cartItems">
+        <li class="cart-img">
+            <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}">
+        </li>
+        <li class="">
+            <h5>{{artwork.artwork.type}}</h5>
+        </li>
+        <li class="">
+            <p>Artist:<span> {{artwork.name}}</span>
+            </p>
+        </li>
+        <li class="">
+            <p>Name:<span> {{artwork.artwork.name}}</span>
+            </p>
+        </li>
+        <li class="">
+            <p>Price:<span> Rs {{artwork.artwork.gprice|number:0}} </span>
+            </p>
+        </li>
+    </ul>
+    <!-- <ul class="img-namess">
         <li class="cart-img">
             <img src="img/painting1.jpg">
         </li>
@@ -39,29 +59,9 @@
             <p>Price:<span> Rs 10990 /$ 6.400 </span>
             </p>
         </li>
-    </ul>
-    <ul class="img-namess">
-        <li class="cart-img">
-            <img src="img/painting1.jpg">
-        </li>
-        <li class="">
-            <h5>Painting</h5>
-        </li>
-        <li class="">
-            <p>Artist:<span> Nagubabu</span>
-            </p>
-        </li>
-        <li class="">
-            <p>Name:<span> Untitled</span>
-            </p>
-        </li>
-        <li class="">
-            <p>Price:<span> Rs 10990 /$ 6.400 </span>
-            </p>
-        </li>
-    </ul>
+    </ul> -->
     <!-- end ngRepeat: cat in cart -->
     <div class="link-cart">
-        <button type="submit" class="btn btn-sucesses button-small pull-right">View Cart</button>
+        <a href="#/cart"><button class="btn btn-sucesses button-small pull-right">View Cart</button></a>
     </div>
 </div>

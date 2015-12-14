@@ -480,7 +480,7 @@ firstapp.directive('numbersOnly', function() {
         link: function(scope, element, attr, ngModelCtrl) {
             function fromUser(text) {
                 if (text) {
-                    var transformedInput = text.replace(/[^a-z]/gi, '');
+                    var transformedInput = text.replace(/[^a-z\s]/gi, '');
 
                     if (transformedInput !== text) {
                         ngModelCtrl.$setViewValue(transformedInput);
@@ -521,16 +521,7 @@ firstapp.filter('makesizestr', function() {
 
 
 firstapp.filter('showheart', function(NavigationService) {
-    var userProfile = {};
     return function(input) {
-        NavigationService.getuserprofile(function(data) {
-            if (data.id) {
-                userProfile = data;
-                NavigationService.getMyFavourites(data.id, function(favorite) {
-                    userProfile.wishlist = favorite;
-                })
-            }
-        })
         if (userProfile.id && userProfile.wishlist) {
             var ispresent = _.findIndex(userProfile.wishlist, 'artwork', input);
             if (ispresent != -1) {
