@@ -1,5 +1,6 @@
-var adminurl = "http://vignesh.com:1337/";
-//var adminurl = "http://192.168.0.121:82/";
+// var adminurl = "http://vignesh.com:1337/";
+// var adminurl = "http://192.168.0.121:82/";
+var adminurl = "http://146.148.34.49/";
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
 .factory('NavigationService', function($http, ngDialog) {
@@ -255,13 +256,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-	   reachOutArtist: function(reachout, callback) {
-		   $http({
-			   url: adminurl + "reachout/save",
-			   method:"POST",
-			   data:reachout
-		   }).success(callback);
-	   },
+        reachOutArtist: function(reachout, callback) {
+            $http({
+                url: adminurl + "reachout/save",
+                method: "POST",
+                data: reachout
+            }).success(callback);
+        },
         getpresentevents: function(callback) {
             $http({
                 url: adminurl + "event/findevents",
@@ -280,13 +281,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        addToFav: function(artid, callback) {
+        addToFav: function(userid, artid, callback) {
             $http({
                 url: adminurl + "wishlist/save",
                 method: "POST",
                 data: {
                     "artwork": artid,
-                    "user": $.jStorage.get("user")._id
+                    "user": userid
                 }
             }).success(callback);
         },
@@ -300,56 +301,56 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getMyFavourites: function(callback) {
+        getMyFavourites: function(userid, callback) {
             $http({
                 url: adminurl + "wishlist/find",
                 method: "POST",
                 data: {
-                    "user": $.jStorage.get("user")._id
+                    "user": userid
                 }
             }).success(callback);
         },
         getuserprofile: function(callback) {
-          $http({
-              url: adminurl + "user/profile",
-              method: "POST",
+            $http({
+                url: adminurl + "user/profile",
+                method: "POST",
 
-          }).success(callback);
+            }).success(callback);
         },
         logout: function() {
-          $http({
-              url: adminurl + "user/logout",
-              method: "POST",
+            $http({
+                url: adminurl + "user/logout",
+                method: "POST",
 
-          });
+            });
         },
-        getAllEvents : function(callback) {
-          $http({
-              url: adminurl + "event/find",
-              method: "POST",
+        getAllEvents: function(callback) {
+            $http({
+                url: adminurl + "event/find",
+                method: "POST",
 
-          }).success(callback);
+            }).success(callback);
         },
-        getOneEvents : function(id,callback) {
-          $http({
-              url: adminurl + "event/findone",
-              method: "POST",
-              data: {
-                "_id":id
-              }
-          }).success(callback);
+        getOneEvents: function(id, callback) {
+            $http({
+                url: adminurl + "event/findone",
+                method: "POST",
+                data: {
+                    "_id": id
+                }
+            }).success(callback);
         },
 
         getupcomingevents: function(callback) {
-           $http({
-               url: adminurl + "event/findevents",
-               method: "POST",
-               data: {
-                   "year": "upcoming"
-               }
-           }).success(callback);
+            $http({
+                url: adminurl + "event/findevents",
+                method: "POST",
+                data: {
+                    "year": "upcoming"
+                }
+            }).success(callback);
         },
-        pressFind:function(callback) {
+        pressFind: function(callback) {
             $http({
                 url: adminurl + "press/find",
                 method: "POST",
@@ -402,47 +403,47 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 method: "POST",
                 data: {
                     "search": pagedata.search,
-				 "type": pagedata.type,
+                    "type": pagedata.type,
                     "pagenumber": pagedata.pagenumber,
                     "pagesize": pagedata.pagesize
                 }
             }).success(callback);
         },
-	    getSlider: function(callback) {
-		    $http({
-			    url: adminurl + "slider/find",
-			    method: "POST"
-		    }).success(callback)
-	    },
-	    getSearchDrop: function(search, callback) {
-		    $http({
-			    url: adminurl + "artwork/searchdrop",
-			    method: "POST",
-			    data:{
-				    "search":search
-			    }
-		    }).success(callback)
-	    },
-	    nextPrev: function(srno, type, callback) {
-		    $http({
-			    url: adminurl + "artwork/nextartwork",
-			    method: "POST",
-			    data:{
-				    "srno":srno,
-				    "type":type
-			    }
-		    }).success(callback);
-	    },
-	    tagSearchType: function(type, search, callback) {
-		    $http({
-			    url: adminurl + "tag/gettag",
-			    method: "POST",
-			    data:{
-				    "type":type,
-				    "search":search
-			    }
-		    }).success(callback);
-	    }
+        getSlider: function(callback) {
+            $http({
+                url: adminurl + "slider/find",
+                method: "POST"
+            }).success(callback)
+        },
+        getSearchDrop: function(search, callback) {
+            $http({
+                url: adminurl + "artwork/searchdrop",
+                method: "POST",
+                data: {
+                    "search": search
+                }
+            }).success(callback)
+        },
+        nextPrev: function(srno, type, callback) {
+            $http({
+                url: adminurl + "artwork/nextartwork",
+                method: "POST",
+                data: {
+                    "srno": srno,
+                    "type": type
+                }
+            }).success(callback);
+        },
+        tagSearchType: function(type, search, callback) {
+            $http({
+                url: adminurl + "tag/gettag",
+                method: "POST",
+                data: {
+                    "type": type,
+                    "search": search
+                }
+            }).success(callback);
+        }
 
     }
 });
