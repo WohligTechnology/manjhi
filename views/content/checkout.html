@@ -105,7 +105,7 @@
                         </div>
                         <!--                    <div class="row" ng-if="checkout.isshipping == true" class="animate-if">-->
                         <div ng-if="checked" class="animate-if row">
-                            <div class="form-group col-md-offset-2 col-md-8">
+                            <div class="form-group col-md-8">
                                 <h4>Ship to this Address</h4>
                             </div>
                             <div class="row">
@@ -145,15 +145,57 @@
                         </div>
                     </div>
                 </div>
-                <div class="making">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Billing Information</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="cart check">
-                                <table class="table table-hover">
-                                    <thead>
+            </div>
+            <div class="making">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Order Review</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="cart check">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Product Image</th>
+                                        <th>Product id</th>
+                                        <th>Artist Name</th>
+                                        <th>Product Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: singlecart in cart -->
+                                    <tr class="cart-details">
+                                        <td class="cart-img">
+                                            <span class="mobile">Product Image</span>
+                                            <img src="img/artist/artist2.jpg" class="img-box">
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Product Id</span> 11
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Artist Name</span> Untitled
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Product Name</span> Untitled
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Unit Price</span> Rs 5000000
+                                        </td>
+                                        <td>
+                                            <span class="mobile">Action</span>
+                                            <i class="fa fa-trash-o"></i>
+                                        </td>
+                                    </tr>
+                                    <!-- end ngRepeat: singlecart in cart -->
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div class="col-md-offset-8 col-md-4">
+                                <table class="table table-bordered ">
+                                    <tbody>
+                                        >>>>>>> origin/master
                                         <tr>
                                             <th>Product Image</th>
                                             <th>Product id</th>
@@ -162,32 +204,32 @@
                                             <th>Unit Price</th>
                                             <th>Action</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- ngRepeat: singlecart in cart -->
-                                        <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
-                                            <td class="cart-img">
-                                                <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
-                                            </td>
-                                            <td>
-                                                <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
-                                            </td>
-                                            <td>
-                                                <span class="mobile">Artist Name</span> {{artwork.name}}
-                                            </td>
-                                            <td>
-                                                <span class="mobile">Title</span> {{artwork.artwork.name}}
-                                            </td>
-                                            <td>
-                                                <span class="mobile">Unit Price</span> Rs.{{artwork.artwork.gprice|number:0}}
-                                            </td>
-                                            <td>
-                                                <span class="mobile">Action</span>
-                                                <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
-                                            </td>
-                                        </tr>
-                                        <!-- end ngRepeat: singlecart in cart -->
-                                    </tbody>
+                                        </thead>
+                                        <tbody>
+                                            <!-- ngRepeat: singlecart in cart -->
+                                            <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
+                                                <td class="cart-img">
+                                                    <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
+                                                </td>
+                                                <td>
+                                                    <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
+                                                </td>
+                                                <td>
+                                                    <span class="mobile">Artist Name</span> {{artwork.name}}
+                                                </td>
+                                                <td>
+                                                    <span class="mobile">Title</span> {{artwork.artwork.name}}
+                                                </td>
+                                                <td>
+                                                    <span class="mobile">Unit Price</span> Rs.{{artwork.artwork.gprice|number:0}}
+                                                </td>
+                                                <td>
+                                                    <span class="mobile">Action</span>
+                                                    <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
+                                                </td>
+                                            </tr>
+                                            <!-- end ngRepeat: singlecart in cart -->
+                                        </tbody>
                                 </table>
                                 <hr>
                                 <div class="col-md-offset-8 col-md-4">
