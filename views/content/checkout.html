@@ -166,26 +166,25 @@
                                 </thead>
                                 <tbody>
                                     <!-- ngRepeat: singlecart in cart -->
-                                    <tr class="cart-details">
+                                    <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
                                         <td class="cart-img">
-                                            <span class="mobile">Product Image</span>
-                                            <img src="img/artist/artist2.jpg" class="img-box">
+                                            <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
                                         </td>
                                         <td>
-                                            <span class="mobile">Product Id</span> 11
+                                            <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
                                         </td>
                                         <td>
-                                            <span class="mobile">Artist Name</span> Untitled
+                                            <span class="mobile">Artist Name</span> {{artwork.name}}
                                         </td>
                                         <td>
-                                            <span class="mobile">Product Name</span> Untitled
+                                            <span class="mobile">Title</span> {{artwork.artwork.name}}
                                         </td>
                                         <td>
-                                            <span class="mobile">Unit Price</span> Rs 5000000
+                                            <span class="mobile">Unit Price</span> Rs.{{artwork.artwork.gprice|number:0}}
                                         </td>
                                         <td>
                                             <span class="mobile">Action</span>
-                                            <i class="fa fa-trash-o"></i>
+                                            <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
                                         </td>
                                     </tr>
                                     <!-- end ngRepeat: singlecart in cart -->
@@ -195,66 +194,26 @@
                             <div class="col-md-offset-8 col-md-4">
                                 <table class="table table-bordered ">
                                     <tbody>
-                                        >>>>>>> origin/master
                                         <tr>
-                                            <th>Product Image</th>
-                                            <th>Product id</th>
-                                            <th>Artist Name</th>
-                                            <th>Product Name</th>
-                                            <th>Unit Price</th>
-                                            <th>Action</th>
+                                            <th>Discount</th>
+                                            <th>Shipping</th>
+                                            <th>Grand Total</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- ngRepeat: singlecart in cart -->
-                                            <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
-                                                <td class="cart-img">
-                                                    <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
-                                                </td>
-                                                <td>
-                                                    <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
-                                                </td>
-                                                <td>
-                                                    <span class="mobile">Artist Name</span> {{artwork.name}}
-                                                </td>
-                                                <td>
-                                                    <span class="mobile">Title</span> {{artwork.artwork.name}}
-                                                </td>
-                                                <td>
-                                                    <span class="mobile">Unit Price</span> Rs.{{artwork.artwork.gprice|number:0}}
-                                                </td>
-                                                <td>
-                                                    <span class="mobile">Action</span>
-                                                    <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
-                                                </td>
-                                            </tr>
-                                            <!-- end ngRepeat: singlecart in cart -->
-                                        </tbody>
+                                        <tr>
+                                            <td>Rs {{totalCartPrice | number:0}}</td>
+                                            <td>Rs 0.00</td>
+                                            <td>Rs {{totalCartPrice | number:0}}</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
-                                <hr>
-                                <div class="col-md-offset-8 col-md-4">
-                                    <table class="table table-bordered ">
-                                        <tbody>
-                                            <tr>
-                                                <th>Discount</th>
-                                                <th>Shipping</th>
-                                                <th>Grand Total</th>
-                                            </tr>
-                                            <tr>
-                                                <td>Rs {{totalCartPrice | number:0}}</td>
-                                                <td>Rs 0.00</td>
-                                                <td>Rs {{totalCartPrice | number:0}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-md-offset-4 col-md-8">
-                                    <button type="submit" class="btn btn-cont pull-right">Proceed &#38; Payment</button>
-                                </div>
+                            </div>
+                            <div class="col-md-offset-4 col-md-8">
+                                <button type="submit" class="btn btn-cont pull-right">Proceed &#38; Payment</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
     </div>
+    </form>
+</div>
