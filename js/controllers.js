@@ -438,62 +438,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    // if (userProfile) {
-    //     cfpLoadingBar.start();
-    //     NavigationService.getMyFavourites(userProfile.id, function(data, status) {
-    //         if (data.value != false && data.comment != "No data found") {
-    //             $scope.noFavs = false;
-    //             _.each(data, function(n) {
-    //                 $scope.allfavourites.push({
-    //                     "_id": n.wishlist.artwork
-    //                 });
-    //             });
-    //             NavigationService.getAllFavouritesData($scope.allfavourites, function(data, status) {
-    //                 //                  console.log(data);
-    //                 $scope.artistdetail = data;
-    //                 $scope.totalfav = data.length;
-    //                 cfpLoadingBar.complete();
-    //             })
-    //         } else {
-    //             $scope.noFavs = true;
-    //             cfpLoadingBar.complete();
-    //         }
-    //     })
-    // }
+    $scope.addToCart = function(art) {
+        dataNextPre.addToCart(art);
+    }
 
-    //    $scope.artistdetail = [{
-    //        image: 'img/artist/artist1.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }];
 })
 
 .controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
@@ -1090,7 +1038,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 })
 
-.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr) {
+.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr, $state) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("checkout");
     $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -1099,10 +1047,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //Valdr
     $scope.checkout = [];
     $scope.checkout.isshipping = true;
-
     $scope.payment = {};
     $scope.payment.billing = {};
     $scope.payment.shipping = {};
+    $scope.showMobErr = false;
+    $scope.showPinErr = false;
+    $scope.checkoutRadio = 'guest';
+
+    $scope.showLoginDiv = true;
+    NavigationService.getuserprofile(function(data) {
+        console.log(data);
+        if (data.id) {
+            $scope.showLoginDiv = false;
+            $scope.payment.billing = data;
+            var splited = data.name.split(' ');
+            if (splited[0])
+                $scope.payment.billing.fname = splited[0];
+            if (splited[1])
+                $scope.payment.billing.lname = splited[1];
+        }
+    })
 
     $scope.showShipping = function(check) {
         //      console.log(check);
@@ -1154,7 +1118,32 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.toPayment = function() {
-        console.log("djk");
+        console.log($scope.cartItems);
+        if ($scope.payment.billing.mob.toString().length == 10 && $scope.payment.billing.pincode.toString().length == 6) {
+            console.log("djk");
+        } else {
+            if ($scope.payment.billing.mob.toString().length != 10) {
+                $scope.showMobErr = true;
+            } else {
+                $scope.showMobErr = false;
+            }
+            if ($scope.payment.billing.pincode.toString().length != 6) {
+                $scope.showPinErr = true;
+            } else {
+                $scope.showPinErr = false;
+            }
+        }
+        $scope.user = userProfile;
+        $scope.user.cart = $scope.cartItems;
+        NavigationService.placeOrder(function(data) {
+            if (data.value == true) {
+                dataNextPre.messageBox("Your order is placed. Thank You !!");
+                $timeout(function() {
+                    $state.go('account');
+                }, 3000);
+
+            }
+        });
     }
 
 })
@@ -1551,6 +1540,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.loadArtWork = function(id) {
         NavigationService.getartworkdetail(id, function(data, status) {
+            console.log(data);
             $scope.aristImages = [];
             $scope.artid = data[0]._id;
             NavigationService.getoneartist(data[0]._id, function(artistdata, status) {
@@ -1569,7 +1559,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 cfpLoadingBar.complete();
             })
             $scope.artistDetailImg = data[0];
-
+            console.log($scope.artistDetailImg);
         })
     }
 
@@ -1598,19 +1588,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.showitabove = function(artwork) {
-        // $scope.aristImages = [];
-        // delete $scope.artistDetailImg.artwork;
-        // $scope.artistDetailImg.artwork = artwork;
-        // _.each($scope.allartworks.artwork, function(n) {
-        //     if (n._id != artwork._id) {
-        //         $scope.aristImages.push(n);
-        //     }
-        // })
-        // $rootScope.$broadcast('changeImage', {});
-        //      $location.url("/artwork/detail/" + artwork._id);
         $state.go('detail', {
             artid: artwork._id
         })
+    }
+
+    $scope.addToCart = function(art) {
+        dataNextPre.addToCart(art);
+    }
+
+    $scope.addToFav = function(art) {
+        dataNextPre.favorite(art);
     }
 
 })
@@ -1827,6 +1815,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         dataNextPre.reachout = data;
     })
 
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            userProfile = data;
+            NavigationService.getMyFavourites(data.id, function(favorite) {
+                userProfile.wishlist = favorite;
+            })
+        }
+    })
+
     $scope.goToDetail = function(artid) {
         //      $location.url("/artwork/detail/" + artid);
         $state.go('detail', {
@@ -1834,71 +1831,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     }
 
-    //    $scope.artistdetail = [{
-    //        image: 'img/artist/artist1.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist3.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Price available on request'
-    //    }, {
-    //        image: 'img/artist/artist5.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist2.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist5.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //    }, {
-    //        image: 'img/artist/artist4.jpg',
-    //        id: '1527',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Price available on request'
-    //    }];
+    $scope.addToCart = function(art) {
+        var test = {}
+        test.artwork = art;
+        dataNextPre.addToCart(test);
+    }
+
+    $scope.addToFav = function(art) {
+        console.log(art);
+        var test = {}
+        test.artwork = art;
+        test.heartClass = art.heartClass;
+        console.log(test);
+        dataNextPre.favorite(test)
+    }
 })
 
 
@@ -2121,6 +2067,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // } else {
     //     $scope.art.search = "";
     // }
+
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            userProfile = data;
+            NavigationService.getMyFavourites(data.id, function(favorite) {
+                userProfile.wishlist = favorite;
+            })
+        }
+    })
 
     NavigationService.getAllArtistByAccess(function(data, status) {
         if (data && data.value != false) {
@@ -2473,11 +2428,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.ismatch = "";
         $scope.formstatussec = false;
         $scope.user = "";
+        $scope.shipping = {};
+
+        $scope.pagedata = {};
+        $scope.pagedata.pagesize = 20;
+        $scope.pagedata.pagenumber = 1;
 
         NavigationService.getuserprofile(function(data) {
             if (data.id) {
                 userProfile = data;
+                $scope.reload();
             }
+        })
+
+        NavigationService.getMyOrders($scope.pagedata, function(data) {
+            console.log(data);
         })
 
         $scope.reload = function() {
@@ -2485,28 +2450,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.getoneartist(userProfile.id, function(data) {
                 console.log(data);
                 $scope.user = data;
+                $scope.shipping = data.shipping;
             });
         }
         $scope.edituser = function() {
             $scope.user._id = userProfile.id;
             NavigationService.registeruser($scope.user, function(data) {
                 console.log(data);
+                $scope.closeTab(2);
                 if (data.value == true) {
-                    $scope.reload();
+                    // $scope.reload();
                     $scope.showSuccess = true;
                     $timeout(function() {
                         $scope.showSuccess = false;
-                    }, 3000);
+                    }, 5000);
                 } else {
-                    $scope.reload();
+                    // $scope.reload();
                     $scope.showFail = true;
                     $timeout(function() {
                         $scope.showFail = false;
-                    }, 3000);
+                    }, 5000);
                 }
             });
         }
-        $scope.reload();
+
         $scope.changepassword = function() {
             $scope.user._id = userProfile.id;
             if ($scope.user.editpassword === $scope.user.cnfrmpassword) {
@@ -2520,14 +2487,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         $scope.user.editpassword = "";
                         $timeout(function() {
                             $scope.showSuccess = false;
-                        }, 3000);
+                        }, 5000);
                     } else if (data.value == false && data.comment == "Same password") {
                         $scope.showPass = true;
                         $scope.user.password = "";
                         $scope.user.editpassword = "";
                         $timeout(function() {
                             $scope.showPass = false;
-                        }, 3000);
+                        }, 5000);
                     } else {
                         $scope.showFail = true;
                         $scope.user.password = "";
@@ -2546,21 +2513,27 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.registeruser($scope.user, function(data) {
                 console.log(data);
                 if (data.value == true) {
-                    $scope.reload();
+                    // $scope.reload();
                     $scope.closeTab(1);
                     $scope.showSuccess = true;
                     $timeout(function() {
                         $scope.showSuccess = false;
-                    }, 3000);
+                    }, 5000);
                 } else {
-                    $scope.reload();
+                    // $scope.reload();
                     $scope.showFail = true;
                     $timeout(function() {
                         $scope.showFail = false;
-                    }, 3000);
+                    }, 5000);
                 }
             });
         }
+
+        $scope.saveShipping = function() {
+            $scope.user.shipping = $scope.shipping;
+            $scope.edituser();
+        }
+
         $scope.changeTab = function(tab) {
             if (tab == 1) {
                 $scope.formstatus = true;
@@ -2675,26 +2648,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.artistDetailImg);
     });
 
-    //    $scope.artistDetailImg = [{
-    //        id: ' 1527',
-    //        artistname: 'Arzan Khambatta',
-    //        title: ' Floating Dreams',
-    //        typename: 'Untitled',
-    //        madein: 'Oil on board',
-    //        size: '19.5 x 23',
-    //        year: '1978',
-    //        price: 'Rs.1,00,000/ $6,400'
-    //        }];
-    //    $scope.images = [{
-    //        small: 'img/smallsculpture.jpg',
-    //        large: 'img/largesculpture.jpg'
-    //    }, {
-    //        small: 'img/smallsculpture.jpg',
-    //        large: 'img/largesculpture.jpg'
-    //    }, {
-    //        small: 'img/smallsculpture.jpg',
-    //        large: 'img/largesculpture.jpg'
-    //    }];
+    $scope.addToCart = function(art) {
+        dataNextPre.addToCart(art);
+    }
+
 })
 
 .controller('SearchResultsCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, ngDialog, $timeout, $state) {

@@ -32,7 +32,7 @@
                                     <span ng-if="!artistdetails.artwork.srno || artistdetails.artwork.srno==''">
                                     N/A
                                 </span>
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
                                 </p>
                                 <p>
                                     <span ng-if="artistdetails.artwork.name && artistdetails.artwork.name!=''">

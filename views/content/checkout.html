@@ -3,7 +3,7 @@
     <div class="main-cont">
         <div class="cont-main">
             <h3 class="font-color3 home-header">Checkout</h3>
-            <div class="panel panel-default">
+            <div class="panel panel-default" ng-show="showLoginDiv">
                 <div class="panel-heading">
                     <h3 class="panel-title">Checkout Method</h3>
                 </div>
@@ -17,11 +17,13 @@
                                     <div class="form-group col-md-8">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="optradio">Checkout as guest</label>
+                                                <input type="radio" name="optradio" value="guest" ng-model="checkoutRadio">Checkout as guest
+                                            </label>
                                         </div>
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="optradio">Register</label>
+                                                <input type="radio" name="optradio" value="register" ng-model="checkoutRadio">Register
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +77,7 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-md-8 col-md-offset-2 ">
-                                <textarea class="form-control" rows="3" id="address" placeholder="Address" ng-model="payment.billing.address" required></textarea>
+                                <textarea class="form-control" rows="3" id="address" placeholder="Address" ng-model="payment.billing.regadd" required></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -88,10 +90,10 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="number" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.billing.pincode">
+                                <input type="text" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.billing.pincode" only-digits ng-trim="false" maxlength="6" min="100000">
                             </div>
                             <div class="form-group col-md-4">
-                                <input type="tel" class="form-control" id="" placeholder="Telephone Number" required ng-model="payment.billing.contact">
+                                <input type="text" class="form-control" id="" placeholder="Telephone Number" required ng-model="payment.billing.mob" only-digits ng-trim="false" maxlength="10">
                             </div>
                         </div>
                         <div class="row">
@@ -113,7 +115,7 @@
                                     <input type="text" class="form-control asteric" id="" placeholder="Shipping Name" required ng-model="payment.shipping.name">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <input type="tel" class="form-control" id="" placeholder="Telephone" required ng-model="payment.shipping.contact">
+                                    <input type="text" class="form-control" id="" placeholder="Telephone" required ng-model="payment.shipping.contact" only-digits ng-trim="false" maxlength="10">
                                 </div>
                             </div>
                             <div class="row">
@@ -131,7 +133,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-offset-2  col-md-4">
-                                    <input type="number" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.shipping.pincode">
+                                    <input type="text" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.shipping.pincode" only-digits ng-trim="false" maxlength="6">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <input type="text" class="form-control" id="" placeholder="Country" required ng-model="payment.shipping.country">
@@ -207,6 +209,12 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="text-center" ng-show="showPinErr">
+                                <p>Please enter a valid pincode</p>
+                            </div>
+                            <div class="text-center" ng-show="showMobErr">
+                                <p>Please enter a valid contact number</p>
+                            </div>
                             <div class="col-md-offset-4 col-md-8">
                                 <button type="submit" class="btn btn-cont pull-right">Proceed &#38; Payment</button>
                             </div>
@@ -214,6 +222,6 @@
                     </div>
                 </div>
             </div>
+        </form>
     </div>
-    </form>
 </div>

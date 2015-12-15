@@ -24,7 +24,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <span ng-if="artistDetailImg.artwork.srno && artistDetailImg.artwork.srno!=''">                                                                    {{artistDetailImg.artwork.srno}}
+                                            <span ng-if="artistDetailImg.artwork.srno && artistDetailImg.artwork.srno!=''">{{artistDetailImg.artwork.srno}}
                                             </span>
                                             <i class="fa fa-heart font-color3"></i>
                                         </td>
@@ -85,7 +85,7 @@
                     <button type="button" class="btn btn-block uppercase">
                         VIEW ARTWORK IN YOUR ROOM
                     </button>
-                    <a ui-sref="cart" type="button" class="btn btn-primarys btn-block uppercase">
+                    <a type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);">
                         ADD TO CART
                     </a>
                 </div>

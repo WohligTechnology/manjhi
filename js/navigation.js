@@ -468,7 +468,19 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                     "search": search
                 }
             }).success(callback);
+        },
+        placeOrder: function(callback) {
+            $http({
+                url: adminurl + "order/save",
+                method: "POST"
+            }).success(callback);
+        },
+        getMyOrders: function(pagedata, callback) {
+            $http({
+                url: adminurl + "order/find",
+                method: "POST",
+                data: pagedata
+            }).success(callback);
         }
-
     }
 });

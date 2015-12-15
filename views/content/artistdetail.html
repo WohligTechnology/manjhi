@@ -68,11 +68,12 @@
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail.artwork">
-                <div class="artist-details" ng-click="goToDetail(artistdetails._id);">
-                    <a href=""></a>
-                    <div class="image-holders" fixit>
-                        <img class="fix-img" ng-src='{{artistdetails.image[0]|uploadthumbnail}}'>
-                    </div>
+                <div class="artist-details">
+                    <a ng-click="goToDetail(artistdetails._id);">
+                        <div class="image-holders" fixit>
+                            <img class="fix-img" ng-src='{{artistdetails.image[0]|uploadthumbnail}}'>
+                        </div>
+                    </a>
                     <div class="artist-cont-detail">
                         <p>
                             <span ng-if="artistdetails.srno && artistdetails.srno!=''">
@@ -81,8 +82,8 @@
                             <span ng-if="!artistdetails.srno || artistdetails.srno==''">
                                     N/A
                                 </span>
-                            <i class="fa fa-heart"></i>
-                            <i class="fa fa-shopping-cart"></i>
+                            <i class="{{artistdetails.heartClass = (artistdetails._id | showheart)}}" ng-click="addToFav(artistdetails);"></i>
+                            <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
                         </p>
                         <p>
                             <span ng-if="artistdetails.name && artistdetails.name!=''">
