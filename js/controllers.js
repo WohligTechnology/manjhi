@@ -451,18 +451,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.totalCartPrice = 0;
-
+    $scope.noCartItems = false;
     cfpLoadingBar.start();
 
     $scope.getCartItems = function() {
         NavigationService.getCartItems(function(data) {
             console.log(data);
-            $scope.cartItems = data;
-            $scope.totalCartPrice = 0;
-            _.each($scope.cartItems, function(n) {
-                if (n.artwork.gprice != 'N/A')
-                    $scope.totalCartPrice += n.artwork.gprice;
-            });
+            if (data.length == 0) {
+                $scope.noCartItems = true;
+            } else {
+                $scope.noCartItems = false;
+                $scope.cartItems = data;
+                $scope.totalCartPrice = 0;
+                _.each($scope.cartItems, function(n) {
+                    if (n.artwork.gprice != 'N/A')
+                        $scope.totalCartPrice += n.artwork.gprice;
+                });
+            }
             cfpLoadingBar.complete();
         });
     }
@@ -545,8 +550,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.setElementSearch = function(select) {
         $scope.pagedata.element = select.selected.name;
     }
-
-
 
     $scope.getClr = function() {
         if ($scope.pagedata.type == "") {
@@ -818,8 +821,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.isRed = !$scope.isRed;
     }
 
-
-
     $scope.makeFav = function(art) {
         dataNextPre.favorite(art);
     }
@@ -876,17 +877,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.artworktype(filterdata, function(data, status) {
             lastpage = parseInt(data.totalpages);
             _.each(data.data, function(n) {
-                //                              n.heartClass = "fa fa-heart";
-                //                              if ($.jStorage.get("user") && $.jStorage.get("user").wishlist) {
-                //                                  var ispresent = _.findIndex($.jStorage.get("user").wishlist, 'artwork', n.artwork._id);
-                //                                  if (ispresent != -1) {
-                //                                      n.heartClass = "fa fa-heart font-color3";
-                //                                  }
-                //                              }
                 $scope.totalartcont.push(n);
             })
             $scope.callinfinite = false;
-            //          console.log($scope.totalartcont);
             cfpLoadingBar.complete();
         });
     }

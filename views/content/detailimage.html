@@ -31,7 +31,7 @@
                                         <td>
                                             <span ng-if="artistDetailImg.artwork.srno && artistDetailImg.artwork.srno!=''">{{artistDetailImg.artwork.srno}}
                                             </span>
-                                            <i class="fa fa-heart" class="{{artistDetailImg.heartClass = (artistDetailImg.artwork._id | showheart)}}" ng-click="addToFav(artistDetailImg);"></i>
+                                            <i class="{{artistDetailImg.artwork._id | showheart}}" ng-click="addToFav(artistDetailImg);"></i>
                                         </td>
                                         <td>
                                             <div class="pull-right">
