@@ -292,13 +292,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        deleteFromFav: function(artid, callback) {
+        deleteFromFav: function(userid, artid, callback) {
             $http({
                 url: adminurl + "wishlist/delete",
                 method: "POST",
                 data: {
                     "artwork": artid,
-                    "user": $.jStorage.get("user")._id
+                    "user": userid
                 }
             }).success(callback);
         },
@@ -469,18 +469,21 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        placeOrder: function(callback) {
+        placeOrder: function(order, callback) {
             $http({
                 url: adminurl + "order/save",
+                method: "POST",
+                data: order
+            }).success(callback);
+        },
+        getMyOrders: function(callback) {
+            $http({
+                url: adminurl + "order/find",
                 method: "POST"
             }).success(callback);
         },
-        getMyOrders: function(pagedata, callback) {
-            $http({
-                url: adminurl + "order/find",
-                method: "POST",
-                data: pagedata
-            }).success(callback);
+        getCountryJson: function(callback) {
+            $http.get('js/countries.json').success(callback);
         }
     }
 });

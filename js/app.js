@@ -253,7 +253,7 @@ firstapp.directive("uiselectAutofocus", function($timeout) {
         restrict: 'EA',
         require: 'uiSelect',
         link: function(scope, elem, attr) {
-            //		   scope.$watch(attr.)
+            //         scope.$watch(attr.)
             scope.$watch(attr.demo, function() {
                 console.log(attr.demo);
 
@@ -522,15 +522,17 @@ firstapp.filter('makesizestr', function() {
 
 firstapp.filter('showheart', function(NavigationService) {
     return function(input) {
-        if (userProfile.id && userProfile.wishlist) {
-            var ispresent = _.findIndex(userProfile.wishlist, 'artwork', input);
-            if (ispresent != -1) {
-                return "fa fa-heart font-color3";
+        if (input) {
+            if (userProfile.id && userProfile.wishlist) {
+                var ispresent = _.findIndex(userProfile.wishlist, 'artwork', input);
+                if (ispresent != -1) {
+                    return "fa fa-heart font-color3";
+                } else {
+                    return "fa fa-heart";
+                }
             } else {
                 return "fa fa-heart";
             }
-        } else {
-            return "fa fa-heart";
         }
     };
 });

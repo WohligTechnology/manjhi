@@ -540,6 +540,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.heartClass = "fa fa-heart";
     var lastpage = 2;
 
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            userProfile = data;
+            NavigationService.getMyFavourites(data.id, function(favorite) {
+                userProfile.wishlist = favorite;
+            })
+        }
+    })
+
     //get user details
     $scope.setColorSearch = function(select) {
         $scope.pagedata.color = select.selected.name;
@@ -1128,7 +1137,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
         $scope.user = userProfile;
         $scope.user.cart = $scope.cartItems;
-        NavigationService.placeOrder(function(data) {
+        $scope.order = {};
+        $scope.order.price = $scope.totalCartPrice;
+        $scope.order.discount = 0;
+        NavigationService.placeOrder($scope.order, function(data) {
             if (data.value == true) {
                 dataNextPre.messageBox("Your order is placed. Thank You !!");
                 $timeout(function() {
@@ -1518,13 +1530,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, cfpLoadingBar, $timeout, $state) {
+.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, cfpLoadingBar, $timeout, $state, $filter) {
     $scope.template = TemplateService.changecontent("detailimage");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.aristImages = [];
     $scope.allartworks = [];
+
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            userProfile = data;
+            NavigationService.getMyFavourites(data.id, function(favorite) {
+                userProfile.wishlist = favorite;
+                $scope.loadArtWork($stateParams.artid);
+            })
+        }
+    })
 
     cfpLoadingBar.start();
     $timeout(function() {
@@ -1552,11 +1574,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 cfpLoadingBar.complete();
             })
             $scope.artistDetailImg = data[0];
+            $scope.artistDetailImg.heartClass = $filter('showheart')($scope.artistDetailImg.artwork._id);
             console.log($scope.artistDetailImg);
         })
     }
 
-    $scope.loadArtWork($stateParams.artid);
     $scope.images = [{
         small: 'img/zoomsmall.jpg',
         large: 'img/zoomlarge.jpg'
@@ -2354,7 +2376,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 })
             } else if (art.heartClass == "fa fa-heart font-color3") {
                 console.log(art.heartClass);
-                NavigationService.deleteFromFav(art.artwork._id, function(data) {
+                NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function(data) {
                     if (!data.value) {
                         // $.jStorage.set("user", data);
                         art.heartClass = "fa fa-heart";
@@ -2423,10 +2445,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.user = "";
         $scope.shipping = {};
 
-        $scope.pagedata = {};
-        $scope.pagedata.pagesize = 20;
-        $scope.pagedata.pagenumber = 1;
-
         NavigationService.getuserprofile(function(data) {
             if (data.id) {
                 userProfile = data;
@@ -2434,7 +2452,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         })
 
-        NavigationService.getMyOrders($scope.pagedata, function(data) {
+        NavigationService.getCountryJson(function(data) {
+            $scope.allcountries = data;
+        })
+
+        NavigationService.getMyOrders(function(data) {
             console.log(data);
         })
 
