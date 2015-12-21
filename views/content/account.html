@@ -22,6 +22,10 @@
             <li class="cat-list cpointer" ng-class="chngadd" ng-click="changeadress()">My Address Book</li>
             <li class="cat-list cpointer" ng-class="myorders" ng-click="changemyorders()">My Orders</li>
             <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Trace Your Order</li>
+            <li class="cat-list cpointer" ng-class="favorites" ng-click="changefavorites()">My Favorites
+              <span>({{totalfav}})</span>
+            </li>
+            <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()">Banking Details</li>
           </ul>
         </div>
       </div>
@@ -149,11 +153,11 @@
         </div>
       </div>
       <div class="col-md-10" ng-if="myorders=='bolds'">
-        <div class="cart orders" ng-repeat="orders in myorderedproducts" ng-if="myorderedproducts.length>0">
+        <div class="cart orders">
           <h5>
-            <span class="bold">Order Id:</span> {{orders.orderid}}
+            <span class="bold">Order Id:</span> #34521289
             <span class="pull-right">
-              <span class="bold">Date:</span> {{orders.timestamp | date:'MMMM dd, yyyy'}}</span>
+              <span class="bold">Date:</span> 24th January 2015</span>
           </h5>
           <table class="table table-hover content-static">
             <thead>
@@ -166,14 +170,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="artwork in orders.artwork">
-                <td fancybox-box href="{{artwork.artwork.image[0] | uploadthumbnail}}">
-                  <img src="{{artwork.artwork.image[0] | uploadsmallimage}}" height="30" />
+              <tr>
+                <td fancybox-box href="http://smartsnap.in/user/resize?height=190&file=171.jpg">
+                  <img src="http://smartsnap.in/user/resize?height=190&file=171.jpg" height="30" />
                 </td>
-                <td>{{artwork.name}}</td>
+                <td>Title</td>
                 <td>AADPL</td>
-                <td>{{orders.status}}</td>
-                <td class="pull-right">{{artwork.artwork.gprice | number:0}}</td>
+                <td>Dispatched</td>
+                <td>Rs. 50, 000</td>
               </tr>
             </tbody>
             <tfoot class="bold">
@@ -181,28 +185,80 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Sub Total</td>
-                <td class="pull-right">{{orders.price | number:0}}</td>
+                <td>Total</td>
+                <td>Rs. 40,000</td>
               </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="cart orders">
+          <h5>
+            <span class="bold">Order Id:</span> #34521289
+            <span class="pull-right">
+              <span class="bold">Date:</span> 24th January 2015</span>
+          </h5>
+          <table class="table table-hover content-static">
+            <thead>
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Discount</td>
-                <td class="pull-right">- {{orders.discount | number:0}}</td>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Seller</th>
+                <th>Status</th>
+                <th>Price</th>
               </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td fancybox-box href="http://smartsnap.in/user/resize?height=190&file=171.jpg">
+                  <img src="http://smartsnap.in/user/resize?height=190&file=171.jpg" height="30" />
+                </td>
+                <td>Title</td>
+                <td>AADPL</td>
+                <td>Dispatched</td>
+                <td>Rs. 50, 000</td>
+              </tr>
+            </tbody>
+            <tfoot class="bold">
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td class="pull-right">Rs. {{orders.price | number:0}}</td>
+                <td>Rs. 40,000</td>
               </tr>
             </tfoot>
           </table>
         </div>
-        <div class="text-center" ng-if="myorderedproducts.length==0">
-          <h4>No Orders Yet !</h4>
+        <div class="nav-page">
+          <nav class="pagination-artist">
+            <ul class="pagination margin-remove">
+              <li class="actived">
+                <a aria-label="Previous" href="#">
+                  <span aria-hidden="true">Prev</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">1</a>
+              </li>
+              <li>
+                <a href="#">2</a>
+              </li>
+              <li>
+                <a href="#">3</a>
+              </li>
+              <li>
+                <a href="#">4</a>
+              </li>
+              <li>
+                <a href="#">5</a>
+              </li>
+              <li class="actived">
+                <a aria-label="Next" href="#">
+                  <span aria-hidden="true">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
       <div class="col-md-4" ng-if="ordertracing=='bolds'">
@@ -217,6 +273,107 @@
           <br>
           <span class="normal">The shipment was sent through: Ekart Logistics Shipment Tracking ID: WSRC4251982428</span>
         </p>
+      </div>
+      <div class="col-md-8" ng-if="bankingdetails=='bolds'">
+        <div class="trck-order">
+          <h5 class="title-color">Bank Details</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name of Account Holder as it appears in the Account</label>
+              <input type="text" class="form-control" ng-model="user.aname" placeholder="Name of Account Holder as it appears in the Account">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Type of Account</label>
+              <div>
+                <select class="form-control" ng-model="user.atype">
+                  <option value="savings">Savings</option>
+                  <option value="current">Current</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name of Bank</label>
+              <input type="text" class="form-control" ng-model="user.nbank" placeholder="Name of Bank">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Bank Branch Address</label>
+              <textarea class="form-control" ng-model="user.badd" placeholder="Bank Branch Address"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Address of Account Holder (if different from stated above)</label>
+              <textarea class="form-control" ng-model="user.aadd" placeholder="Address of Account Holder (if different from stated above)"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Account Number</label>
+              <input type="text" class="form-control" ng-model="user.anum" placeholder="Account Number">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">RTGS / NEFT IFS Code</label>
+              <input type="text" class="form-control" ng-model="user.ifsc" placeholder="RTGS / NEFT IFS Code">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8" ng-if="favorites=='bolds'">
+        <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail track by $index" ng-if="artistdetail.length>0">
+          <div class="artist-details">
+            <a ui-sref="favorite-product({artid:artistdetails.artwork._id})">
+              <div class="image-holders">
+                <img class="fix-img" ng-src='{{artistdetails.artwork.image[0]|uploadthumbnail}}'>
+              </div>
+            </a>
+            <div class="artist-cont-detail-fav artist-cont-detail">
+              <p>
+                <span ng-if="artistdetails.artwork.srno && artistdetails.artwork.srno!=''">
+                  {{artistdetails.artwork.srno}}
+                </span>
+                <span ng-if="!artistdetails.artwork.srno || artistdetails.artwork.srno==''">
+                  N/A
+                </span>
+                <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
+              </p>
+              <p>
+                <span ng-if="artistdetails.artwork.name && artistdetails.artwork.name!=''">
+                  {{artistdetails.artwork.name}}
+                </span>
+                <span ng-if="!artistdetails.artwork.name || artistdetails.artwork.name==''">
+                  N/A
+                </span>
+              </p>
+              <p>
+                <span ng-if="artistdetails.artwork.subtype.length>0 && artistdetails.artwork.subtype[0].name!=''">
+                  {{artistdetails.artwork.subtype[0].name}}
+                </span>
+                <span ng-if="!artistdetails.artwork.subtype || artistdetails.artwork.subtype.length==0">
+                  N/A
+                </span>
+              </p>
+              <p>
+                {{artistdetails.artwork|makesizestr}}
+              </p>
+              <p>
+                <span ng-if="artistdetails.artwork.yoc && artistdetails.artwork.yoc!=''">
+                  {{artistdetails.artwork.yoc}}
+                </span>
+                <span ng-if="!artistdetails.artwork.yoc || artistdetails.artwork.yoc==''">
+                  N/A
+                </span>
+              </p>
+              <p>
+                <span ng-if="artistdetails.artwork.gprice && artistdetails.artwork.gprice!='N/A'">
+                  {{artistdetails.artwork.gprice|currency:"Rs "}}
+                </span>
+                <span ng-if="!artistdetails.artwork.gprice || artistdetails.artwork.gprice=='N/A'">
+                  N/A
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

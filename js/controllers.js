@@ -2444,7 +2444,44 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.formstatussec = false;
     $scope.user = "";
     $scope.shipping = {};
+    $scope.artistdetail = [];
+    $scope.allfavourites = [];
+    $scope.noFavs = false;
 
+    NavigationService.getuserprofile(function(data) {
+      if (data.id) {
+        userProfile = data;
+        NavigationService.getMyFavourites(data.id, function(favorite) {
+          console.log(favorite);
+          if (favorite.value != false) {
+            $scope.noFavs = false;
+            userProfile.wishlist = favorite;
+            _.each(favorite, function(n) {
+              $scope.allfavourites.push({
+                "_id": n.artwork
+              });
+            });
+            getFavorite($scope.allfavourites)
+          } else {
+            $scope.noFavs = true;
+          }
+        })
+      }
+    })
+
+    function getFavorite(allfavourites) {
+      NavigationService.getAllFavouritesData(allfavourites, function(datas, status) {
+        console.log("favorite data");
+        console.log(datas)
+        $scope.artistdetail = datas;
+        $scope.totalfav = datas.length;
+        cfpLoadingBar.complete();
+      })
+    }
+
+    $scope.addToCart = function(art) {
+      dataNextPre.addToCart(art);
+    }
     NavigationService.getuserprofile(function(data) {
       if (data.id) {
         userProfile = data;
@@ -2591,6 +2628,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.myorders = "";
       $scope.ordertracing = "";
       $scope.listingmsg = "";
+      $scope.bankingdetails = "";
+      $scope.favorites = "";
     }
 
     $scope.changeadress = function() {
@@ -2600,6 +2639,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.myorders = "";
       $scope.ordertracing = "";
       $scope.listingmsg = "";
+      $scope.bankingdetails = "";
+      $scope.favorites = "";
     }
     $scope.changechngpass = function() {
       $scope.info = "";
@@ -2608,6 +2649,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.myorders = "";
       $scope.ordertracing = "";
       $scope.listingmsg = "";
+      $scope.bankingdetails = "";
+      $scope.favorites = "";
     }
 
     $scope.changemyorders = function() {
@@ -2617,6 +2660,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.myorders = "bolds";
       $scope.ordertracing = "";
       $scope.listingmsg = "";
+      $scope.bankingdetails = "";
+      $scope.favorites = "";
     }
 
     $scope.changeordertracing = function() {
@@ -2626,6 +2671,28 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.myorders = "";
       $scope.ordertracing = "bolds";
       $scope.listingmsg = "";
+      $scope.bankingdetails = "";
+      $scope.favorites = "";
+    }
+    $scope.changebankingdetails = function() {
+      $scope.info = "";
+      $scope.chngpass = "";
+      $scope.chngadd = "";
+      $scope.myorders = "";
+      $scope.ordertracing = "";
+      $scope.listingmsg = "";
+      $scope.bankingdetails = "bolds";
+      $scope.favorites = "";
+    }
+    $scope.changefavorites = function() {
+      $scope.info = "";
+      $scope.chngpass = "";
+      $scope.chngadd = "";
+      $scope.myorders = "";
+      $scope.ordertracing = "";
+      $scope.listingmsg = "";
+      $scope.bankingdetails = "";
+      $scope.favorites = "bolds";
     }
   })
   .controller('ActivitiesCtrl', function($scope, TemplateService, NavigationService) {

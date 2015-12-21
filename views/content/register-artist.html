@@ -40,12 +40,12 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email Address</label>
-                      <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email" required>
+                      <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email address" required>
                       <span ng-if="isValidEmail==0" style="color:red;">Email id already exists.</span>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email Address</label>
-                      <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email" required>
+                      <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email address" required>
                       <span ng-if="isValidEmail==0" style="color:red;">Email id already exists.</span>
                     </div>
                     <div class="form-group">
@@ -112,6 +112,127 @@
                 </div>
 
                 <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Date / Year of Birth</label>
+                      <input type="text" onfocus="(this.type='date')" class="form-control" ng-model="user.dob" placeholder="Date of birth" required>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Place / City / State of Birth</label>
+                      <input type="text" class="form-control" ng-model="user.stateofb" placeholder="State of Birth">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Year of Demise (if applicable)</label>
+                      <input type="text" class="form-control" ng-model="user.passedaway" placeholder="Year of Demise (if applicable)">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <h4 class="title-color">Address</h4>
+                <hr>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Residence</label>
+                    </div>
+                    <div class="form-group">
+                      <div class="tel-box">
+                        <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
+                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Landmark" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Street" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Locality" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.city" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.pincode" placeholder="Pincode">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.state" placeholder="State">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.country" placeholder="Country">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Studio</label>
+                    </div>
+                    <div class="form-group">
+                      <div class="tel-box">
+                        <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
+                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Landmark" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Street" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Locality" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.city" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.pincode" placeholder="Pincode">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.state" placeholder="State">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.country" placeholder="Country">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Any Other</label>
+                    </div>
+                    <div class="form-group">
+                      <div class="tel-box">
+                        <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
+                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Landmark" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Street" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.regadd" placeholder="Locality" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.city" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.pincode" placeholder="Pincode">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.state" placeholder="State">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" ng-model="user.country" placeholder="Country">
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Address</label>
@@ -142,29 +263,7 @@
                       <input type="text" class="form-control" ng-model="user.country" placeholder="Country">
                     </div>
                   </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Date / Year of Birth</label>
-                      <input type="text" onfocus="(this.type='date')" class="form-control" ng-model="user.dob" placeholder="Date of birth" required>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Place / City / State of Birth</label>
-                      <input type="text" class="form-control" ng-model="user.stateofb" placeholder="State of Birth">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Year of Demise (if applicable)</label>
-                      <input type="text" class="form-control" ng-model="user.passedaway" placeholder="Year of Demise (if applicable)">
-                    </div>
-                  </div>
-                </div>
-
+                </div> -->
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -406,49 +505,6 @@
                   </div>
                 </div>
                 <br>
-                <h4 class="title-color">Bank Details</h4>
-                <hr>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Name of Account Holder</label>
-                      <input type="text" class="form-control" ng-model="user.aname" placeholder="Name of Account Holder">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Type of Account</label>
-                      <div>
-                        <select class="form-control" ng-model="user.atype">
-                          <option value="savings">Savings</option>
-                          <option value="current">Current</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Name of Bank</label>
-                      <input type="text" class="form-control" ng-model="user.nbank" placeholder="Name of Bank">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Bank Address</label>
-                      <textarea class="form-control" ng-model="user.badd" placeholder="Bank Address"></textarea>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Address of Account Holder (if different from stated above)</label>
-                      <textarea class="form-control" ng-model="user.aadd" placeholder="Address of Account Holder(if different from stated above)"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Account Number</label>
-                      <input type="text" class="form-control" ng-model="user.anum" placeholder="Account Number">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">IFSC Code</label>
-                      <input type="text" class="form-control" ng-model="user.ifsc" placeholder="IFSC Code">
-                    </div>
-
-                  </div>
-                </div>
-                <br>
                 <h4 class="title-color">Artist's Artwork Details</h4>
                 <hr>
                 <div class="row">
@@ -532,15 +588,57 @@
                     </div>
                   </div>
                 </div>
+                <br>
+                <h4 class="title-color">Bank Details</h4>
+                <hr>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Name of Account Holder as it appears in the Account</label>
+                      <input type="text" class="form-control" ng-model="user.aname" placeholder="Name of Account Holder as it appears in the Account">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Type of Account</label>
+                      <div>
+                        <select class="form-control" ng-model="user.atype">
+                          <option value="savings">Savings</option>
+                          <option value="current">Current</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Name of Bank</label>
+                      <input type="text" class="form-control" ng-model="user.nbank" placeholder="Name of Bank">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Bank Branch Address</label>
+                      <textarea class="form-control" ng-model="user.badd" placeholder="Bank Branch Address"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Address of Account Holder (if different from stated above)</label>
+                      <textarea class="form-control" ng-model="user.aadd" placeholder="Address of Account Holder (if different from stated above)"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Account Number</label>
+                      <input type="text" class="form-control" ng-model="user.anum" placeholder="Account Number">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">RTGS / NEFT IFS Code</label>
+                      <input type="text" class="form-control" ng-model="user.ifsc" placeholder="RTGS / NEFT IFS Code">
+                    </div>
+
+                  </div>
+                </div>
                 <div class="form-group">
+                  <p>Please go through Terms and Conditions <a href="#">(by clicking on hyperlink).</a></p>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" ng-model="user.checkboxModel" ng-change="checking();">I am the artist and I own the copyright for this work.
+                      <input type="checkbox" ng-model="user.checkboxModel" ng-change="checking();">I have clicked on the check box after having read all the Terms and Conditions and agreeing to abide by them.
                       <span ng-if="checked==1" style="color:red;">Please accept the terms.</span>
                     </label>
                   </div>
-                  <p>I agree that all pieces of uploaded artworks are my original works and not reproductions of other artist’s work. I have the right to sell these artworks.
-                  </p>
                 </div>
                 <div class="text-center" style="padding-bottom:20px;">
                   <button type="submit" class="btn btn-primary all-btn">Submit</button>
