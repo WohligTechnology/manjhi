@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-md-12">
           <section class="panel panel-default" style="border-radius:0px;">
-            <div class="panel-heading panel-hdr">Register Artist
+            <div class="panel-heading panel-hdr">Register Artist Form
             </div>
             <div class="panel-body">
               <form name="form_constraints" class="form-validation" data-ng-submit="submitForm()">
@@ -24,7 +24,7 @@
                                 </div>
 -->
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Name</label>
+                      <label for="exampleInputEmail1">Name*</label>
                       <input type="text" class="form-control" ng-model="user.name" placeholder="Name" required capitalize-first>
                     </div>
                     <div class="form-group">
@@ -39,7 +39,12 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
+                      <label for="exampleInputEmail1">Email Address</label>
+                      <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email" required>
+                      <span ng-if="isValidEmail==0" style="color:red;">Email id already exists.</span>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email Address</label>
                       <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email" required>
                       <span ng-if="isValidEmail==0" style="color:red;">Email id already exists.</span>
                     </div>
@@ -74,24 +79,34 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Mobile Number</label>
-                      <input type="tel" class="form-control" ng-model="user.mob" placeholder="Mobile Number">
+                      <div class="tel-box">
+                        <input type="tel" class="form-control tel-country" ng-model="user,mob" placeholder="Country Code" value="+91">
+                        <input type="tel" class="form-control tel-number" ng-model="user.mob" placeholder="Mobile Number">
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Work Number</label>
-                      <input type="tel" class="form-control" ng-model="user.work" placeholder="Work Number">
+                      <div class="tel-box">
+                        <input type="tel" class="form-control tel-country" ng-model="user,mob" placeholder="Country Code" value="+91">
+                        <input type="tel" class="form-control tel-city" ng-model="user.mob" placeholder="City Code">
+                        <input type="tel" class="form-control tel-numbers" ng-model="user.work" placeholder="Work Number">
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Home Number</label>
-                      <input type="tel" class="form-control" ng-model="user.home" placeholder="Home Number">
+                      <label for="exampleInputEmail1">Residence Number</label>
+                      <div class="tel-box">
+                        <input type="tel" class="form-control tel-country" ng-model="user,mob" placeholder="Country Code" value="+91">
+                        <input type="tel" class="form-control tel-city" ng-model="user.mob" placeholder="City Code">
+                        <input type="tel" class="form-control tel-numbers" ng-model="user.home" placeholder="Residence Number">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -99,7 +114,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Registered Address</label>
+                      <label for="exampleInputEmail1">Address</label>
                       <textarea class="form-control" ng-model="user.regadd" placeholder="Registered Address"></textarea>
                       <textarea class="form-control" ng-model="user.add1" placeholder="Address 1"></textarea>
                       <textarea class="form-control" ng-model="user.add2" placeholder="Address 2"></textarea>
@@ -132,7 +147,7 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Date / Year of birth</label>
+                      <label for="exampleInputEmail1">Date / Year of Birth</label>
                       <input type="text" onfocus="(this.type='date')" class="form-control" ng-model="user.dob" placeholder="Date of birth" required>
                     </div>
                   </div>
@@ -144,42 +159,8 @@
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Year of Demise(if applicable)</label>
-                      <input type="text" class="form-control" ng-model="user.passedaway" placeholder="Year of Demise(if applicable)">
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Upload Resume</label>
-                      <!-- ngIf: user.resume -->
-                      <!-- ngIf: user.resume -->
-                    </div>
-                    <div class="form-group">
-                      <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
-                      <div class="upload-buttons">
-                        <input type="file" name="file">
-                      </div>
-                      <div class="response ng-hide">
-                        <!-- ngRepeat: result in uploadResult -->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Upload Address Certificate</label>
-                      <!-- ngIf: user.adcer -->
-                      <!-- ngIf: user.adcer -->
-                    </div>
-                    <div class="form-group">
-                      <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
-                      <div class="upload-buttons">
-                        <input type="file">
-                      </div>
-                      <div class="response ng-hide" ng-show="uploadResult.length > 0">
-                        <!-- ngRepeat: result in uploadResult -->
-                      </div>
+                      <label for="exampleInputEmail1">Year of Demise (if applicable)</label>
+                      <input type="text" class="form-control" ng-model="user.passedaway" placeholder="Year of Demise (if applicable)">
                     </div>
                   </div>
                 </div>
@@ -187,24 +168,24 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Artist Description</label>
-                      <textarea class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.artistdesc" placeholder="Artist Description"></textarea>
+                      <label for="exampleInputEmail1">Overview of Artist's concepts / thought process (Limited to 200 words)</label>
+                      <textarea class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.artistdesc" maxlength="200" placeholder="Overview of Artist's concepts / thought process (Limited to 200 words)"></textarea>
                     </div>
                   </div>
                 </div>
                 <br>
-                <h4 class="title-color">Qualification, Shows &amp; Award Details</h4>
+                <h4 class="title-color">Education, Shows, Awards and Auctions</h4>
                 <hr class="hr-color">
                 <div class="form-group">
-                  <label>Educational Background</label>
+                  <label>Educational Qualifications</label>
                   <a ng-click="addedu(user);" class="btn btn-success pull-right">Add Qualification</a>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <td>Year Of Passing</td>
+                        <td>Year of Completion</td>
                         <td>Qualification</td>
-                        <td>Organisation</td>
-                        <td>Educational City</td>
+                        <td>Name of Institution</td>
+                        <td>Name of Institution</td>
                         <td>Action</td>
                       </tr>
                     </thead>
@@ -250,15 +231,16 @@
                 </div> -->
 
                 <div class="form-group">
-                  <label>Solo Show</label>
+                  <label>Solo Shows</label>
                   <a ng-click="addsolo(user);" class="btn btn-success pull-right">Add Solo Show</a>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <td>Year</td>
-                        <td>Title</td>
+                        <td>Title of Show</td>
                         <td>Gallery</td>
                         <td>Venue</td>
+                        <td>City / Country</td>
                         <td>Action</td>
                       </tr>
                     </thead>
@@ -277,6 +259,9 @@
                           <input type="text" class="form-control" ng-model="solo.venue" placeholder="Venue">
                         </td>
                         <td>
+                          <input type="text" class="form-control" ng-model="solo.city" placeholder="City">
+                        </td>
+                        <td>
                           <input class="btn btn-danger" type="button" ng-click="removesolo(user.soloshow.indexOf(solo),user.soloshow);" value="Delete">
                         </td>
                       </tr>
@@ -285,15 +270,16 @@
                 </div>
 
                 <div class="form-group">
-                  <label>Group Show</label>
+                  <label>Group Shows</label>
                   <a ng-click="addgroup(user);" class="btn btn-success pull-right">Add Group Show</a>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <td>Year</td>
-                        <td>Title</td>
+                        <td>Title of Show</td>
                         <td>Gallery</td>
                         <td>Venue</td>
+                        <td>City / Country</td>
                         <td>Action</td>
                       </tr>
                     </thead>
@@ -312,6 +298,9 @@
                           <input type="text" class="form-control" ng-model="group.venue" placeholder="Venue">
                         </td>
                         <td>
+                          <input type="text" class="form-control" ng-model="solo.city" placeholder="City">
+                        </td>
+                        <td>
                           <input class="btn btn-danger" type="button" ng-click="removegroup(user.groupshow.indexOf(group),user.groupshow);" value="Delete">
                         </td>
                       </tr>
@@ -327,7 +316,7 @@
                       <tr>
                         <td>Year</td>
                         <td>Title</td>
-                        <td>Institution</td>
+                        <td>Institution Giving Award</td>
                         <td>Action</td>
                       </tr>
                     </thead>
@@ -358,8 +347,9 @@
                     <thead>
                       <tr>
                         <td>Year</td>
-                        <td>Title</td>
-                        <td>Institution</td>
+                        <td>Auction House</td>
+                        <td>City / Country</td>
+                        <td>Price and Details of Work</td>
                         <td>Action</td>
                       </tr>
                     </thead>
@@ -380,6 +370,40 @@
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Upload Resume</label>
+                      <!-- ngIf: user.resume -->
+                      <!-- ngIf: user.resume -->
+                    </div>
+                    <div class="form-group">
+                      <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
+                      <div class="upload-buttons">
+                        <input type="file" name="file">
+                      </div>
+                      <div class="response ng-hide">
+                        <!-- ngRepeat: result in uploadResult -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Upload Address Certificate</label>
+                      <!-- ngIf: user.adcer -->
+                      <!-- ngIf: user.adcer -->
+                    </div>
+                    <div class="form-group">
+                      <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
+                      <div class="upload-buttons">
+                        <input type="file">
+                      </div>
+                      <div class="response ng-hide" ng-show="uploadResult.length > 0">
+                        <!-- ngRepeat: result in uploadResult -->
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <br>
                 <h4 class="title-color">Bank Details</h4>
@@ -410,7 +434,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Address of Account Holder(if different from stated above)</label>
+                      <label for="exampleInputEmail1">Address of Account Holder (if different from stated above)</label>
                       <textarea class="form-control" ng-model="user.aadd" placeholder="Address of Account Holder(if different from stated above)"></textarea>
                     </div>
                     <div class="form-group">

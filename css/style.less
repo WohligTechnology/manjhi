@@ -1596,7 +1596,7 @@ a.readmore {
         font-size: 18px;
         padding: 4px 15px;
         width: 45px;
-            float: left;
+        float: left;
       }
       span {
         line-height: 1.5;
@@ -1649,6 +1649,7 @@ a.readmore {
   }
   input.form-control {
     &:focus {
+
       // border: 1px solid #ccc;
     }
   }
@@ -2486,7 +2487,26 @@ img.fancybox-image {
     font-size: 16px;
     margin: 0;
     padding-bottom: 12px;
+  }
 }
+.tel-box {
+  display: block;
+  .tel-country {
+    width: 20%;
+    display: inline-block;
+  }
+  .tel-number {
+    width:79% ;
+    display: inline-block;
+  }
+  .tel-city {
+    width:29% ;
+    display: inline-block;
+  }
+  .tel-numbers {
+    width:49% ;
+    display: inline-block;
+  }
 }
 /*Mobile Less*/
 //@import "other.less";
