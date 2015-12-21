@@ -478,7 +478,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         },
         getMyOrders: function(callback) {
             $http({
-                url: adminurl + "order/find",
+                url: adminurl + "order/findOrders",
                 method: "POST"
             }).success(callback);
         },
