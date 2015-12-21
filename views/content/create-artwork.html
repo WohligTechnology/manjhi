@@ -14,32 +14,19 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label>Sr. No.</label>
-                          <input type="text" class="form-control" ng-model="artwork.srno" readonly>
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Artwork Type / Category</label>
-                          <select class="form-control" ng-model="artwork.type" ng-change="isSculpture(artwork.type);" required>
-                            <option value="painting">Paintings</option>
-                            <option value="sculpture">Sculptures</option>
-                            <option value="photograph">Photographs</option>
-                            <option value="print">Prints</option>
-                          </select>
-                        </div>
-                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Artwork Type / Category</label>
+                      <select class="form-control" ng-model="artwork.type" ng-change="isSculpture(artwork.type);" required>
+                        <option value="painting">Paintings</option>
+                        <option value="sculpture">Sculptures</option>
+                        <option value="photograph">Photographs</option>
+                        <option value="print">Prints</option>
+                      </select>
                     </div>
-
-
                     <div class="form-group">
                       <label for="exampleInputEmail1">Title</label>
                       <input type="text" class="form-control" ng-model="artwork.name" placeholder="Title" required capitalize-first>
                     </div>
-
                   </div>
                   <div class="col-md-6">
 
@@ -194,7 +181,8 @@
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                       <label>Artwork Owned/Consigned</label><br>
+                      <label>Artwork Owned/Consigned</label>
+                      <br>
                       <label class="radio-inline">
                         <input type="radio" name="gender" ng-model="artwork.art" value="Owned" class="ng-pristine ng-untouched ng-valid">Owned
                       </label>

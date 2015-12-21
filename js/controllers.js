@@ -35,8 +35,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   function getPress(data) {
 
-
-
     if (data.value != false) {
       $scope.press = data
       console.log(data);
@@ -2712,6 +2710,47 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Create Artwork");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+
+
+    $scope.isSculpture = function(type) {
+        console.log($scope.artwork.subtype);
+        $scope.artwork.subtype = [];
+        console.log($scope.artwork.subtype);
+        $scope.show = 0;
+        $scope.showmed = 0;
+        if (type == "Sculptures") {
+            $scope.showBreadth = true;
+        } else {
+            $scope.showBreadth = false;
+        }
+
+        switch (type) {
+            case "Paintings":
+                $scope.showPaintings = true;
+                $scope.showSculpture = false;
+                $scope.showPrints = false;
+                $scope.showPhotography = false;
+                break;
+            case "Sculptures":
+                $scope.showPaintings = false;
+                $scope.showSculpture = true;
+                $scope.showPrints = false;
+                $scope.showPhotography = false;
+                break;
+            case "Photographs":
+                $scope.showPaintings = false;
+                $scope.showSculpture = false;
+                $scope.showPrints = false;
+                $scope.showPhotography = true;
+                break;
+            case "Prints":
+                $scope.showPaintings = false;
+                $scope.showSculpture = false;
+                $scope.showPrints = true;
+                $scope.showPhotography = false;
+                break;
+        }
+    }
   })
   .controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("register-artist");
