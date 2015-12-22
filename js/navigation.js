@@ -484,6 +484,21 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         },
         getCountryJson: function(callback) {
             $http.get('js/countries.json').success(callback);
-        }
+        },
+        getAllThoughts: function(callback) {
+            $http({
+                url: adminurl + "thought/find",
+                method: "POST"
+            }).success(callback);
+        },
+        getOneThought: function(id, callback) {
+            $http({
+                url: adminurl + 'thought/findone',
+                method: 'POST',
+                data: {
+                    '_id': id
+                }
+            }).success(callback);
+        },
     }
 });

@@ -1659,6 +1659,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
+    NavigationService.getAllThoughts(function(data) {
+        console.log(data);
+        $scope.thoughts = data;
+    })
+
     $scope.table = [{
         sr: '1',
         date: '06/07/2013',
@@ -1713,11 +1718,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ThoughtleadershipdetailCtrl', function($scope, TemplateService, NavigationService) {
+.controller('ThoughtleadershipdetailCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
     $scope.template = TemplateService.changecontent("thoughtleadershipdetail");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadershipdetail");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+
+    NavigationService.getOneThought($stateParams.id, function(data) {
+        console.log(data);
+        $scope.thoughtdetail = data;
+    })
 
     $scope.table = [{
         sr: '1',

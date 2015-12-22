@@ -128,7 +128,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
     })
 
     .state('thoughtleadershipdetail', {
-        url: "/thoughtleadershipdetail",
+        url: "/thoughtleadershipdetail/:id",
         templateUrl: "views/template.html",
         controller: 'ThoughtleadershipdetailCtrl'
     })

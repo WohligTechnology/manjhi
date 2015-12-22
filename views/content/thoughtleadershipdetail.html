@@ -2,27 +2,21 @@
 <div class="container leader">
     <div class="media leaderdetail-set">
         <h3 class="font-color3 home-header">Thought Leadership</h3>
-<!--        <a href="#/thoughtleadership">back</a>-->
+        <!--        <a href="#/thoughtleadership">back</a>-->
     </div>
-
-   <div class="margintop media " >
-    <div class="detailname">
-        <h5>Investing in Art - article in DNA Money </h5>
-    </div>
-    <div class="leaderdetail">
-        <p>date: <span> 27/07/2007</span></p>
-        <div class="detailimg">
-            <img src="img/leadrship.jpg">
+    <div class="margintop media ">
+        <div class="detailname">
+            <h5>{{thoughtdetail.title}}</h5>
         </div>
-        <div class="detailtext">
-            <p>If you have a sizeable investible corpus, and are investment savvy, don't be surprised if that looks like a piece of your portfolio. As the economy expands, as incomes rise, your investment options will widen beyond the traditional two-pillared world of equity and debt. </p>
-            <p>
-
-The signs of alternative investments making their way into the financial mainstream are there. In the past two years, we have seen the launch of five art funds —investment vehicles that invest in artworks and are modelled on the lines of a mutual fund. Even as we wait for Sebi to announce the modalities of real estate investment trusts (REITs), several real estate venture capital funds have been targeting HNI money. While the Blackstones make the headlines, many HNIs, helped by investment banks, are picking up small stakes in new businesses. 
-</p>
+        <div class="leaderdetail">
+            <p>date: <span>{{thoughtdetail.date|date:'mediumDate'}}</span></p>
+            <div class="detailimg">
+                <img ng-src="{{thoughtdetail.image[0]|uploadpath}}">
+            </div>
+            <div class="detailtext">
+                <p ng-bind-html="thoughtdetail.desc | rawHtml"></p>
+            </div>
         </div>
     </div>
-</div>
-
 </div>
 <div class="border-top"></div>

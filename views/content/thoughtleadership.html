@@ -6,7 +6,6 @@
             <h5>Click on Title to view details</h5>
         </div>
     </div>
-
     <div class="row media">
         <div class="leader-detail">
             <div class="col-md-8">
@@ -20,10 +19,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="tab in table">
-                                <td>{{tab.sr}}</td>
-                                <td>{{tab.date}}</td>
-                                <td><a ui-sref="thoughtleadershipdetail">{{tab.title}}</a></td>
+                            <tr ng-repeat="tab in thoughts">
+                                <td>{{$index+1}}</td>
+                                <td>{{tab.date|date:'mediumDate'}}</td>
+                                <td><a ui-sref="thoughtleadershipdetail({id:tab._id})">{{tab.title}}</a></td>
                             </tr>
                         </tbody>
                     </table>
