@@ -2469,23 +2469,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     function getFavorite(allfavourites) {
       NavigationService.getAllFavouritesData(allfavourites, function(datas, status) {
-        console.log("favorite data");
-        console.log(datas)
         $scope.artistdetail = datas;
         $scope.totalfav = datas.length;
         cfpLoadingBar.complete();
       })
     }
-
-    $scope.addToCart = function(art) {
-      dataNextPre.addToCart(art);
-    }
-    NavigationService.getuserprofile(function(data) {
-      if (data.id) {
-        userProfile = data;
-        $scope.reload();
-      }
-    })
 
     NavigationService.getCountryJson(function(data) {
       $scope.allcountries = data;
@@ -2627,7 +2615,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.ordertracing = "";
       $scope.listingmsg = "";
       $scope.bankingdetails = "";
-      $scope.favorites = "";
     }
 
     $scope.changeadress = function() {
@@ -2638,7 +2625,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.ordertracing = "";
       $scope.listingmsg = "";
       $scope.bankingdetails = "";
-      $scope.favorites = "";
     }
     $scope.changechngpass = function() {
       $scope.info = "";
@@ -2648,7 +2634,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.ordertracing = "";
       $scope.listingmsg = "";
       $scope.bankingdetails = "";
-      $scope.favorites = "";
     }
 
     $scope.changemyorders = function() {
@@ -2659,7 +2644,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.ordertracing = "";
       $scope.listingmsg = "";
       $scope.bankingdetails = "";
-      $scope.favorites = "";
     }
 
     $scope.changeordertracing = function() {
@@ -2670,7 +2654,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.ordertracing = "bolds";
       $scope.listingmsg = "";
       $scope.bankingdetails = "";
-      $scope.favorites = "";
     }
     $scope.changebankingdetails = function() {
       $scope.info = "";
@@ -2680,17 +2663,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       $scope.ordertracing = "";
       $scope.listingmsg = "";
       $scope.bankingdetails = "bolds";
-      $scope.favorites = "";
-    }
-    $scope.changefavorites = function() {
-      $scope.info = "";
-      $scope.chngpass = "";
-      $scope.chngadd = "";
-      $scope.myorders = "";
-      $scope.ordertracing = "";
-      $scope.listingmsg = "";
-      $scope.bankingdetails = "";
-      $scope.favorites = "bolds";
     }
   })
   .controller('ActivitiesCtrl', function($scope, TemplateService, NavigationService) {
@@ -2711,45 +2683,73 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-
+    // $scope.changePaintings = function() {
+    //   $scope.showPaintings = "bolds";
+    //   $scope.showSculpture = "";
+    //   $scope.showPrints = "";
+    //   $scope.showPhotography = "";
+    // }
+    // $scope.changeSculpture = function() {
+    //   $scope.showPaintings = "";
+    //   $scope.showSculpture = "bolds";
+    //   $scope.showPrints = "";
+    //   $scope.showPhotography = "";
+    // }
+    // $scope.changePrints = function() {
+    //   $scope.showPaintings = "";
+    //   $scope.showSculpture = "";
+    //   $scope.showPrints = "bolds";
+    //   $scope.showPhotography = "";
+    // }
+    // $scope.changePhotography = function() {
+    //   $scope.showPaintings = "";
+    //   $scope.showSculpture = "";
+    //   $scope.showPrints = "";
+    //   $scope.showPhotography = "bolds";
+    // }
+    $scope.artwork = {};
+    $scope.artwork.user = [];
+    $scope.artwork.reseller = [];
+    $scope.artwork.subtype = [];
+    $scope.artwork.tag = [];
     $scope.isSculpture = function(type) {
-        console.log($scope.artwork.subtype);
-        $scope.artwork.subtype = [];
-        console.log($scope.artwork.subtype);
-        $scope.show = 0;
-        $scope.showmed = 0;
-        if (type == "Sculptures") {
-            $scope.showBreadth = true;
-        } else {
-            $scope.showBreadth = false;
-        }
+      console.log($scope.artwork.subtype);
+      $scope.artwork.subtype = [];
+      console.log($scope.artwork.subtype);
+      $scope.show = 0;
+      $scope.showmed = 0;
+      if (type == "Sculptures") {
+        $scope.showBreadth = true;
+      } else {
+        $scope.showBreadth = false;
+      }
 
-        switch (type) {
-            case "Paintings":
-                $scope.showPaintings = true;
-                $scope.showSculpture = false;
-                $scope.showPrints = false;
-                $scope.showPhotography = false;
-                break;
-            case "Sculptures":
-                $scope.showPaintings = false;
-                $scope.showSculpture = true;
-                $scope.showPrints = false;
-                $scope.showPhotography = false;
-                break;
-            case "Photographs":
-                $scope.showPaintings = false;
-                $scope.showSculpture = false;
-                $scope.showPrints = false;
-                $scope.showPhotography = true;
-                break;
-            case "Prints":
-                $scope.showPaintings = false;
-                $scope.showSculpture = false;
-                $scope.showPrints = true;
-                $scope.showPhotography = false;
-                break;
-        }
+      switch (type) {
+        case "Paintings":
+          $scope.showPaintings = true;
+          $scope.showSculpture = false;
+          $scope.showPrints = false;
+          $scope.showPhotography = false;
+          break;
+        case "Sculptures":
+          $scope.showPaintings = false;
+          $scope.showSculpture = true;
+          $scope.showPrints = false;
+          $scope.showPhotography = false;
+          break;
+        case "Photographs":
+          $scope.showPaintings = false;
+          $scope.showSculpture = false;
+          $scope.showPrints = false;
+          $scope.showPhotography = true;
+          break;
+        case "Prints":
+          $scope.showPaintings = false;
+          $scope.showSculpture = false;
+          $scope.showPrints = true;
+          $scope.showPhotography = false;
+          break;
+      }
     }
   })
   .controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService) {

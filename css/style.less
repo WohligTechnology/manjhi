@@ -5,7 +5,7 @@
 
 /*Author Wohlig Technology*/
 @color1: #e6e7e9;
-@color2: #d4ae70;
+@color2: #D4AE70;
 @color3: #ff4f4f;
 @color4: #0fba66;
 @color-base: #313131;
@@ -1839,17 +1839,24 @@ a.forgetlink {
   .info-cont {
     border-right: 1px solid @color2;
     position: relative;
-    height: 300px;
-    padding-left: 10px;
+    min-height: 300px;
+    padding: 0 10px;
     ul.info-li {
       list-style: none;
       padding-top: 15px;
-      padding-right: 15px;
       padding-left: 0;
       li {
         padding: 8px 0;
         cursor: pointer;
         text-transform: uppercase;
+        i {
+          padding-left: 5px;
+          opacity: 0;
+          .transition (all ease 300ms);
+        }
+        &:hover i {
+          opacity: 1;
+        }
       }
       li.cat-list.cpointer.bolds {
         color: @color2;
@@ -1865,10 +1872,14 @@ a.forgetlink {
           width: 0;
           z-index: 0;
           top: 9px;
-          right: -30px;
+          right: -25px;
         }
       }
     }
+  }
+  button.btn.btn-primary.btn-outline {
+    padding: 4px 6px 5px;
+    font-size: 12px;
   }
   .myaccnthead {
     h4 {
@@ -2512,6 +2523,32 @@ img.fancybox-image {
     padding: 0 10px;
   }
 }
+.btn-primary {
+  color: #D4AE70;
+  background-color: #fff;
+  border-color: #D4AE70;
+  &:hover {
+    color: #fff;
+    background-color: #D4AE70;
+    border-color: #D4AE70;
+  }
+  &:focus {
+    color: #fff;
+    background-color: #D4AE70;
+    border-color: #D4AE70;
+  }
+  &:active:focus {
+    color: #fff;
+    background-color: #D4AE70;
+    border-color: #D4AE70;
+  }
+  &:active:hover {
+    color: #fff;
+    background-color: #D4AE70;
+    border-color: #D4AE70;
+  }
+}
+
 /*Mobile Less*/
 //@import "other.less";
 @import "mobile.less";

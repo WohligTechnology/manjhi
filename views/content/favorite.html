@@ -1,82 +1,83 @@
 <div class="border-top"></div>
 <section class="favorites cart">
-    <div class="container">
-        <h4 class="head-team">Favorites</h4>
-        <div class="info fav">
-            <div class="row" ng-hide="noFavs">
-                <div class="col-xs-12">
-                    <div class="btn-right">
-                        <button type="submit" class="btn pull-right">Create Folder</button>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="info-cont pull-right">
-                        <ul class="info-li">
-                            <li class="cat-list cpointer bolds">My Favorites <span>({{totalfav}})</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-10">
-                    <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail track by $index" ng-if="artistdetail.length>0">
-                        <div class="artist-details">
-                            <a ui-sref="favorite-product({artid:artistdetails.artwork._id})">
-                                <div class="image-holders">
-                                    <img class="fix-img" ng-src='{{artistdetails.artwork.image[0]|uploadthumbnail}}'>
-                                </div>
-                            </a>
-                            <div class="artist-cont-detail-fav artist-cont-detail">
-                                <p>
-                                    <span ng-if="artistdetails.artwork.srno && artistdetails.artwork.srno!=''">
-                                    {{artistdetails.artwork.srno}}
-                                </span>
-                                    <span ng-if="!artistdetails.artwork.srno || artistdetails.artwork.srno==''">
-                                    N/A
-                                </span>
-                                    <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
-                                </p>
-                                <p>
-                                    <span ng-if="artistdetails.artwork.name && artistdetails.artwork.name!=''">
-                                    {{artistdetails.artwork.name}}
-                                </span>
-                                    <span ng-if="!artistdetails.artwork.name || artistdetails.artwork.name==''">
-                                    N/A
-                                </span>
-                                </p>
-                                <p>
-                                    <span ng-if="artistdetails.artwork.subtype.length>0 && artistdetails.artwork.subtype[0].name!=''">
-                                    {{artistdetails.artwork.subtype[0].name}}
-                                </span>
-                                    <span ng-if="!artistdetails.artwork.subtype || artistdetails.artwork.subtype.length==0">
-                                    N/A
-                                </span>
-                                </p>
-                                <p>
-                                    {{artistdetails.artwork|makesizestr}}
-                                </p>
-                                <p>
-                                    <span ng-if="artistdetails.artwork.yoc && artistdetails.artwork.yoc!=''">
-                                    {{artistdetails.artwork.yoc}}
-                                </span>
-                                    <span ng-if="!artistdetails.artwork.yoc || artistdetails.artwork.yoc==''">
-                                    N/A
-                                </span>
-                                </p>
-                                <p>
-                                    <span ng-if="artistdetails.artwork.gprice && artistdetails.artwork.gprice!='N/A'">
-                                    {{artistdetails.artwork.gprice|currency:"Rs "}}
-                                </span>
-                                    <span ng-if="!artistdetails.artwork.gprice || artistdetails.artwork.gprice=='N/A'">
-                                    N/A
-                                </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <div class="container">
+    <h4 class="head-team">Favorites</h4>
+    <div class="info fav">
+      <div class="row" ng-hide="noFavs">
+        <div class="col-md-2">
+          <div class="info-cont">
+            <ul class="info-li">
+              <li class="cat-list cpointer bolds">My Favorites
+                <span>({{totalfav}})</span>
+                <i class="fa fa-share-alt"></i>
+               </li>
+            </ul>
+            <div class="btn-right">
+              <button type="submit" class="btn btn-primary btn-outline"><i class="fa fa-plus"></i> Create Folder</button>
             </div>
-            <div class="row" ng-show="noFavs">
-                <p class="text-center" style="font-size: medium;">No Favourites Found</p>
-            </div>
+          </div>
         </div>
+        <div class="col-md-10">
+          <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail track by $index" ng-if="artistdetail.length>0">
+            <div class="artist-details">
+              <a ui-sref="favorite-product({artid:artistdetails.artwork._id})">
+                <div class="image-holders">
+                  <img class="fix-img" ng-src='{{artistdetails.artwork.image[0]|uploadthumbnail}}'>
+                </div>
+              </a>
+              <div class="artist-cont-detail-fav artist-cont-detail">
+                <p>
+                  <span ng-if="artistdetails.artwork.srno && artistdetails.artwork.srno!=''">
+                    {{artistdetails.artwork.srno}}
+                  </span>
+                  <span ng-if="!artistdetails.artwork.srno || artistdetails.artwork.srno==''">
+                    N/A
+                  </span>
+                  <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
+                </p>
+                <p>
+                  <span ng-if="artistdetails.artwork.name && artistdetails.artwork.name!=''">
+                    {{artistdetails.artwork.name}}
+                  </span>
+                  <span ng-if="!artistdetails.artwork.name || artistdetails.artwork.name==''">
+                    N/A
+                  </span>
+                </p>
+                <p>
+                  <span ng-if="artistdetails.artwork.subtype.length>0 && artistdetails.artwork.subtype[0].name!=''">
+                    {{artistdetails.artwork.subtype[0].name}}
+                  </span>
+                  <span ng-if="!artistdetails.artwork.subtype || artistdetails.artwork.subtype.length==0">
+                    N/A
+                  </span>
+                </p>
+                <p>
+                  {{artistdetails.artwork|makesizestr}}
+                </p>
+                <p>
+                  <span ng-if="artistdetails.artwork.yoc && artistdetails.artwork.yoc!=''">
+                    {{artistdetails.artwork.yoc}}
+                  </span>
+                  <span ng-if="!artistdetails.artwork.yoc || artistdetails.artwork.yoc==''">
+                    N/A
+                  </span>
+                </p>
+                <p>
+                  <span ng-if="artistdetails.artwork.gprice && artistdetails.artwork.gprice!='N/A'">
+                    {{artistdetails.artwork.gprice|currency:"Rs "}}
+                  </span>
+                  <span ng-if="!artistdetails.artwork.gprice || artistdetails.artwork.gprice=='N/A'">
+                    N/A
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-show="noFavs">
+        <p class="text-center" style="font-size: medium;">No Favourites Found</p>
+      </div>
     </div>
+  </div>
 </section>

@@ -22,7 +22,7 @@
             <li class="cat-list cpointer" ng-class="chngadd" ng-click="changeadress()">My Address Book</li>
             <li class="cat-list cpointer" ng-class="myorders" ng-click="changemyorders()">My Orders</li>
             <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Trace Your Order</li>
-            <li class="cat-list cpointer" ng-class="favorites" ng-click="changefavorites()">My Favorites
+            <li class="cat-list cpointer"><a href="#/favorite">My Favorites</a>
               <span>({{totalfav}})</span>
             </li>
             <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()">Banking Details</li>
@@ -57,6 +57,56 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-4" ng-if="chngpass=='bolds'">
+        <form ng-submit="changepassword()">
+          <div class="chngpswd-cont">
+            <div class="form-group">
+              <div class="input-id">
+                <input class="form-control" ng-model="user.password" placeholder="Old Password" required type="password">
+              </div>
+              <div class="input-id">
+                <input class="form-control" ng-model="user.editpassword" placeholder="New Password" required type="password">
+              </div>
+              <div class="input-id">
+                <input class="form-control" ng-model="user.cnfrmpassword" placeholder="Confirm Password" required type="password">
+                <span ng-show="ismatch" style="color:red;">Password did not match!!</span>
+              </div>
+              <button class="btn btn-sucesses" type="submit">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- <div class="col-md-4" ng-if="chngadd=='bolds'">
+        <div class="chngpswd-cont">
+          <div class="addcat">
+            <h5 class="displ">Default Billing Address</h5>
+          </div>
+          <div class="form-group">
+            <div class="input-id">
+              <textarea class="form-control" id="comment" ng-model="user.regadd" placeholder="Address" rows="5"></textarea>
+            </div>
+            <div class="input-id">
+              <input class="form-control" ng-model="user.city" placeholder="City" required type="text">
+            </div>
+            <div class="input-id">
+              <input class="form-control" ng-model="user.state" placeholder="State" required type="text">
+            </div>
+            <div class="input-id">
+              <select class="form-control" ng-model="user.country" placeholder="Country" required>
+                <option value="">Select Country</option>
+                <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
+              </select>
+            </div>
+            <div class="input-id">
+              <input class="form-control" ng-model="user.pincode" placeholder="Pincode" required type="number">
+            </div>
+            <a class="btn btn-sucesses" ng-click="saveAddress();">Save</a>
+            <a class="btn btn-sucesses" ng-click="closeTab(1)">Cancel</a>
+          </div>
+        </div>
+      </div> -->
+
       <div class="col-md-4" ng-if="chngpass=='bolds'">
         <form ng-submit="changepassword()">
           <div class="chngpswd-cont">
@@ -83,27 +133,44 @@
             <!-- <a class="displ righ" ng-click="changeTab(1)" ng-if="!formstatus">Edit Address</a> -->
           </div>
           <div class="form-group">
-            <div class="input-id">
-              <textarea class="form-control" id="comment" ng-model="user.regadd" placeholder="Address" rows="5"></textarea>
+            <div class="tel-box">
+              <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
+              <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
             </div>
-            <div class="input-id">
-              <input class="form-control" ng-model="user.city" placeholder="City" required type="text">
-            </div>
-            <div class="input-id">
-              <input class="form-control" ng-model="user.state" placeholder="State" required type="text">
-            </div>
-            <div class="input-id">
-              <select class="form-control" ng-model="user.country" placeholder="Country" required>
-                <option value="">Select Country</option>
-                <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
-              </select>
-            </div>
-            <div class="input-id">
-              <input class="form-control" ng-model="user.pincode" placeholder="Pincode" required type="number">
-            </div>
-            <a class="btn btn-sucesses" ng-click="saveAddress();">Save</a>
-            <a class="btn btn-sucesses" ng-click="closeTab(1)">Cancel</a>
           </div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="user.regadd" placeholder="Landmark" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="user.regadd" placeholder="Street" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="user.regadd" placeholder="Locality" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="user.city" placeholder="City">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="user.pincode" placeholder="Pincode">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="user.state" placeholder="State">
+          </div>
+          <div class="input-id">
+            <select class="form-control" ng-model="shipping.country" placeholder="Country" required>
+              <option value="">Select Country</option>
+              <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
+            </select>
+          </div>
+          <div class="accadd" ng-if="!formstatussec">
+            <p ng-if="user.shipping.address">{{user.shipping.address}},</p>
+            <p ng-if="user.shipping.city">{{user.shipping.city}},</p>
+            <p ng-if="user.shipping.state">{{user.shipping.state}},</p>
+            <p ng-if="user.shipping.country">{{user.shipping.country}},</p>
+            <p ng-if="user.shipping.pincode">{{user.shipping.pincode}}</p>
+          </div>
+          <button class="btn btn-sucesses" type="submit">Save</button>
+          <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
           <!-- <div class="accadd" ng-if="!formstatus">
                         <p ng-if="user.regadd">{{user.regadd}},</p>
                         <p ng-if="user.city">{{user.city}},</p>
@@ -113,11 +180,59 @@
                     </div> -->
         </div>
       </div>
+
+
       <div class="col-md-4" ng-if="chngadd=='bolds'">
         <div class="chngpswd-cont">
           <div class="addcat">
             <h5 class="displ">Default Shipping Address</h5>
-            <!-- <a class="displ righ" href="" ng-click="changeTab(2)" ng-if="!formstatussec">Edit Address</a> -->
+            <div class="form-group">
+              <div class="tel-box">
+                <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
+                <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.regadd" placeholder="Landmark" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.regadd" placeholder="Street" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.regadd" placeholder="Locality" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.city" placeholder="City">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.pincode" placeholder="Pincode">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.state" placeholder="State">
+            </div>
+            <div class="input-id">
+              <select class="form-control" ng-model="shipping.country" placeholder="Country" required>
+                <option value="">Select Country</option>
+                <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
+              </select>
+            </div>
+            <div class="accadd" ng-if="!formstatussec">
+              <p ng-if="user.shipping.address">{{user.shipping.address}},</p>
+              <p ng-if="user.shipping.city">{{user.shipping.city}},</p>
+              <p ng-if="user.shipping.state">{{user.shipping.state}},</p>
+              <p ng-if="user.shipping.country">{{user.shipping.country}},</p>
+              <p ng-if="user.shipping.pincode">{{user.shipping.pincode}}</p>
+            </div>
+            <button class="btn btn-sucesses" type="submit">Save</button>
+            <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="chngpswd-cont">
+          <div class="addcat">
+            <h5 class="displ"></h5>
+
           </div>
           <div class="form-group">
             <form ng-submit="saveShipping();">
@@ -139,19 +254,11 @@
               <div class="input-id">
                 <input class="form-control" maxlength="6" ng-model="shipping.pincode" ng-trim="false" only-digits placeholder="Pincode" required required type="text">
               </div>
-              <button class="btn btn-sucesses" type="submit">Save</button>
-              <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
             </form>
           </div>
-          <div class="accadd" ng-if="!formstatussec">
-            <p ng-if="user.shipping.address">{{user.shipping.address}},</p>
-            <p ng-if="user.shipping.city">{{user.shipping.city}},</p>
-            <p ng-if="user.shipping.state">{{user.shipping.state}},</p>
-            <p ng-if="user.shipping.country">{{user.shipping.country}},</p>
-            <p ng-if="user.shipping.pincode">{{user.shipping.pincode}}</p>
-          </div>
+
         </div>
-      </div>
+      </div> -->
       <div class="col-md-10" ng-if="myorders=='bolds'">
         <div class="cart orders">
           <h5>
@@ -314,63 +421,6 @@
             <div class="form-group">
               <label for="exampleInputEmail1">RTGS / NEFT IFS Code</label>
               <input type="text" class="form-control" ng-model="user.ifsc" placeholder="RTGS / NEFT IFS Code">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-8" ng-if="favorites=='bolds'">
-        <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail track by $index" ng-if="artistdetail.length>0">
-          <div class="artist-details">
-            <a ui-sref="favorite-product({artid:artistdetails.artwork._id})">
-              <div class="image-holders">
-                <img class="fix-img" ng-src='{{artistdetails.artwork.image[0]|uploadthumbnail}}'>
-              </div>
-            </a>
-            <div class="artist-cont-detail-fav artist-cont-detail">
-              <p>
-                <span ng-if="artistdetails.artwork.srno && artistdetails.artwork.srno!=''">
-                  {{artistdetails.artwork.srno}}
-                </span>
-                <span ng-if="!artistdetails.artwork.srno || artistdetails.artwork.srno==''">
-                  N/A
-                </span>
-                <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
-              </p>
-              <p>
-                <span ng-if="artistdetails.artwork.name && artistdetails.artwork.name!=''">
-                  {{artistdetails.artwork.name}}
-                </span>
-                <span ng-if="!artistdetails.artwork.name || artistdetails.artwork.name==''">
-                  N/A
-                </span>
-              </p>
-              <p>
-                <span ng-if="artistdetails.artwork.subtype.length>0 && artistdetails.artwork.subtype[0].name!=''">
-                  {{artistdetails.artwork.subtype[0].name}}
-                </span>
-                <span ng-if="!artistdetails.artwork.subtype || artistdetails.artwork.subtype.length==0">
-                  N/A
-                </span>
-              </p>
-              <p>
-                {{artistdetails.artwork|makesizestr}}
-              </p>
-              <p>
-                <span ng-if="artistdetails.artwork.yoc && artistdetails.artwork.yoc!=''">
-                  {{artistdetails.artwork.yoc}}
-                </span>
-                <span ng-if="!artistdetails.artwork.yoc || artistdetails.artwork.yoc==''">
-                  N/A
-                </span>
-              </p>
-              <p>
-                <span ng-if="artistdetails.artwork.gprice && artistdetails.artwork.gprice!='N/A'">
-                  {{artistdetails.artwork.gprice|currency:"Rs "}}
-                </span>
-                <span ng-if="!artistdetails.artwork.gprice || artistdetails.artwork.gprice=='N/A'">
-                  N/A
-                </span>
-              </p>
             </div>
           </div>
         </div>
