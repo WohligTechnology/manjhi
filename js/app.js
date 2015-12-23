@@ -537,6 +537,15 @@ firstapp.filter('showheart', function(NavigationService) {
     };
 });
 
+firstapp.filter('indollars', function(NavigationService) {
+    return function(input) {
+        if (input && dollarPrice) {
+            var price = parseFloat(input) / parseFloat(dollarPrice);
+            return price.toFixed(2);
+        }
+    };
+});
+
 firstapp.directive('onlyDigits', function() {
     return {
         require: 'ngModel',

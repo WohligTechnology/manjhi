@@ -500,5 +500,11 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
+        getDollarPrice: function(callback) {
+            $http({
+                url: adminurl + 'dollar/find',
+                method: 'POST'
+            }).success(callback);
+        },
     }
 });

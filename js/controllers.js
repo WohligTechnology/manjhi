@@ -1,5 +1,6 @@
 var dataNextPre = {};
 var userProfile = {};
+var dollarPrice = '';
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider'])
 
 //.controller('AppCtrl')
@@ -1514,6 +1515,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     $scope.aristImages = [];
     $scope.allartworks = [];
+    cfpLoadingBar.start();
 
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
@@ -1522,13 +1524,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 userProfile.wishlist = favorite;
                 $scope.loadArtWork($stateParams.artid);
             })
+        } else {
+            $scope.loadArtWork($stateParams.artid);
         }
     })
 
-    cfpLoadingBar.start();
-    $timeout(function() {
-        cfpLoadingBar.complete();
-    }, 5000);
+    // $timeout(function() {
+    //     cfpLoadingBar.complete();
+    // }, 5000);
 
     $scope.loadArtWork = function(id) {
         NavigationService.getartworkdetail(id, function(data, status) {
@@ -2038,7 +2041,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.adminurl = adminurl;
 
-
     var scrolled = 0;
     $scope.logintab = '1';
     $scope.login = {};
@@ -2073,6 +2075,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // } else {
     //     $scope.art.search = "";
     // }
+
+    NavigationService.getDollarPrice(function(data) {
+        if (data.value != false) {
+            dollarPrice = data[0].price;
+            console.log("Dollar = " + data[0].price);
+        }
+    })
 
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
