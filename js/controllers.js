@@ -407,7 +407,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artistdetail = [];
     $scope.allfavourites = [];
     $scope.noFavs = false;
-
+    cfpLoadingBar.start();
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
             userProfile = data;
@@ -1167,13 +1167,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 .controller('EventsCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
-
-
-
     $scope.template = TemplateService.changecontent("events");
     $scope.menutitle = NavigationService.makeactive("Events");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    cfpLoadingBar.start();
 
     NavigationService.getAllEvents(function(data, status) {
         console.log(data);
@@ -1194,12 +1192,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         });
 
-
         $scope.events.past = _.sortBy($scope.events.past, function(n) {
             return -1 * n[0].year;
         });
-
         console.log($scope.events);
+        cfpLoadingBar.complete();
+
     });
 
 
@@ -1281,16 +1279,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('EventdetailCtrl', function($scope, TemplateService, NavigationService, $timeout, ngDialog, $stateParams) {
+.controller('EventdetailCtrl', function($scope, TemplateService, NavigationService, $timeout, ngDialog, $stateParams, cfpLoadingBar) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("eventdetail");
     $scope.menutitle = NavigationService.makeactive("Event");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    cfpLoadingBar.start();
 
     NavigationService.getOneEvents($stateParams.id, function(data) {
         console.log(data);
         $scope.eventDetail = data;
+        cfpLoadingBar.complete();
     })
 
 
@@ -1403,7 +1403,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('PressCtrl', function($scope, TemplateService, NavigationService) {
+.controller('PressCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("press");
     $scope.menutitle = NavigationService.makeactive("Press");
     TemplateService.title = $scope.menutitle;
@@ -1411,7 +1411,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.press = [];
 
+    cfpLoadingBar.start();
+
     function getPress(data) {
+        cfpLoadingBar.complete();
         if (data.value != false) {
             data2 = _.groupBy(data, function(n) {
                 var year = moment(n.date).get("year");
@@ -1653,15 +1656,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 })
 
-.controller('ThoughtleadershipCtrl', function($scope, TemplateService, NavigationService) {
+.controller('ThoughtleadershipCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("thoughtleadership");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadership");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    cfpLoadingBar.start();
 
     NavigationService.getAllThoughts(function(data) {
         console.log(data);
         $scope.thoughts = data;
+        cfpLoadingBar.complete();
     })
 
     $scope.table = [{
@@ -1718,15 +1723,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ThoughtleadershipdetailCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
+.controller('ThoughtleadershipdetailCtrl', function($scope, TemplateService, NavigationService, $stateParams, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("thoughtleadershipdetail");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadershipdetail");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    cfpLoadingBar.start();
 
     NavigationService.getOneThought($stateParams.id, function(data) {
         console.log(data);
         $scope.thoughtdetail = data;
+        cfpLoadingBar.complete();
     })
 
     $scope.table = [{
