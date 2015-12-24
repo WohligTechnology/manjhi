@@ -506,5 +506,42 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 method: 'POST'
             }).success(callback);
         },
+        lastSr: function(callback) {
+            $http({
+                url: adminurl + "artwork/lastsr",
+                method: "POST"
+            }).success(callback);
+        },
+        getAllResellerDrop: function(searchtext, callback) {
+            $http({
+                url: adminurl + "user/findCust",
+                method: "POST",
+                data: {
+                    "search": searchtext
+                }
+            }).success(callback);
+        },
+        findArtMedium: function(data, artmedium, category, callback) {
+            $http({
+                url: adminurl + "artmedium/find",
+                method: "POST",
+                data: {
+                    search: data,
+                    category: category,
+                    artmedium: artmedium
+                }
+            }).success(callback);
+        },
+        findTag: function(data, tag, category, callback) {
+            $http({
+                url: adminurl + "tag/find",
+                method: "POST",
+                data: {
+                    search: data,
+                    category: category,
+                    tag: tag
+                }
+            }).success(callback);
+        },
     }
 });

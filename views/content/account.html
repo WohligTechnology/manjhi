@@ -279,12 +279,12 @@
             <tbody>
               <tr ng-repeat="artwork in orders.artwork">
                 <td fancybox-box href="{{artwork.artwork.image[0] | uploadthumbnail}}">
-                  <img src="{{artwork.artwork.image[0] | uploadsmallimage}}" height="30" />
+                  <img ng-src="{{artwork.artwork.image[0] | uploadsmallimage}}" height="30" />
                 </td>
                 <td>{{artwork.name}}</td>
-                <td>AADPL</td>
+                <td>{{artwork.artwork.reseller.name}}</td>
                 <td>{{orders.status}}</td>
-                <td class="pull-right">{{artwork.artwork.gprice | number:0}}</td>
+                <td class="pull-right">Rs. {{artwork.artwork.gprice | number:0}} / $ {{artwork.artwork.gprice|indollars}}</td>
               </tr>
             </tbody>
             <tfoot class="bold">
@@ -293,21 +293,21 @@
                 <td></td>
                 <td></td>
                 <td>Sub Total</td>
-                <td class="pull-right">{{orders.price | number:0}}</td>
+                <td class="pull-right">Rs. {{orders.price | number:0}} / $ {{orders.price|indollars}}</td>
               </tr>
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>Discount</td>
-                <td class="pull-right">- {{orders.discount | number:0}}</td>
+                <td class="pull-right">- Rs. {{orders.discount | number:0}} / $ 0.00</td>
               </tr>
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td class="pull-right">Rs. {{orders.price | number:0}}</td>
+                <td class="pull-right">Rs. {{orders.price | number:0}} / $ {{orders.price|indollars}}</td>
               </tr>
             </tfoot>
           </table>

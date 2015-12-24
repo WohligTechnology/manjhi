@@ -1,10 +1,10 @@
 var dataNextPre = {};
 var userProfile = {};
+var uploadres = [];
 var dollarPrice = '';
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider','angularFileUpload'])
 
 //.controller('AppCtrl')
-
 .controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("home");
@@ -2487,7 +2487,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('AccountCtrl', function($scope, TemplateService, NavigationService, $timeout) {
+.controller('AccountCtrl', function($scope, TemplateService, NavigationService, $timeout, cfpLoadingBar) {
         $scope.template = TemplateService.changecontent("account");
         $scope.menutitle = NavigationService.makeactive("Account");
         TemplateService.title = $scope.menutitle;
@@ -2737,87 +2737,391 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('CreateArtworkCtrl', function($scope, TemplateService, NavigationService) {
-        $scope.template = TemplateService.changecontent("create-artwork");
-        $scope.menutitle = NavigationService.makeactive("Create Artwork");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
 
-        // $scope.changePaintings = function() {
-        //   $scope.showPaintings = "bolds";
-        //   $scope.showSculpture = "";
-        //   $scope.showPrints = "";
-        //   $scope.showPhotography = "";
-        // }
-        // $scope.changeSculpture = function() {
-        //   $scope.showPaintings = "";
-        //   $scope.showSculpture = "bolds";
-        //   $scope.showPrints = "";
-        //   $scope.showPhotography = "";
-        // }
-        // $scope.changePrints = function() {
-        //   $scope.showPaintings = "";
-        //   $scope.showSculpture = "";
-        //   $scope.showPrints = "bolds";
-        //   $scope.showPhotography = "";
-        // }
-        // $scope.changePhotography = function() {
-        //   $scope.showPaintings = "";
-        //   $scope.showSculpture = "";
-        //   $scope.showPrints = "";
-        //   $scope.showPhotography = "bolds";
-        // }
-        $scope.artwork = {};
-        $scope.artwork.user = [];
-        $scope.artwork.reseller = [];
-        $scope.artwork.subtype = [];
-        $scope.artwork.tag = [];
-        $scope.isSculpture = function(type) {
-            console.log($scope.artwork.subtype);
-            $scope.artwork.subtype = [];
-            console.log($scope.artwork.subtype);
-            $scope.show = 0;
-            $scope.showmed = 0;
-            if (type == "Sculptures") {
-                $scope.showBreadth = true;
-            } else {
-                $scope.showBreadth = false;
+.controller('CreateArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http) {
+    $scope.template = TemplateService.changecontent("create-artwork");
+    $scope.menutitle = NavigationService.makeactive("Create Artwork");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+    window.uploadUrl = 'http://smartsnap.in/user/uploadfile';
+    // window.uploadUrl = 'http://192.168.0.119:1337/user/uploadfile';
+    // $scope.usr = $routeParams.id;
+    $scope.artwork = {};
+    $scope.artwork.type = "Paintings";
+    $scope.artwork.subtype = [];
+    $scope.artwork.tag = [];
+    $scope.showBreadth = false;
+    $scope.onTextClick = function($event) {
+        $event.target.select();
+    }
+    $scope.select2options = {
+        maximumSelectionSize: 5,
+        placeholder: "Select A Medium"
+    };
+    $scope.select2optionstag = {
+        maximumSelectionSize: 5,
+        placeholder: "Select A Tag Word"
+    };
+    $scope.variable = "";
+    $scope.artwork.comm = 33;
+    $scope.artwork.price = 0;
+    $scope.artwork.gprice = 0;
+    $scope.showPaintings = true;
+    $scope.showSculpture = false;
+    $scope.showPrints = false;
+    $scope.showPhotography = false;
+    $scope.artmedium = [];
+    $scope.tag = [];
+    abc = $scope;
+    $scope.access = "artist";
+
+    $scope.allartist = [];
+    $scope.getDropdown = function(search) {
+        if (search.length >= 3) {
+            $scope.change = {};
+            $scope.change.type = $scope.artwork.type;
+            $scope.change.search = search;
+            NavigationService.getAllArtistDrop($scope.change, function(data) {
+                if (data && data.value != false) {
+                    $scope.allartist = data;
+                } else {
+                    $scope.allartist = [];
+                }
+            });
+        } else {
+            $scope.allartist = [];
+        }
+    }
+
+    $scope.resellers = [];
+    $scope.getDropdownReseller = function(search) {
+        if (search.length >= 3) {
+            NavigationService.getAllResellerDrop(search, function(data) {
+                if (data && data.value != false) {
+                    $scope.resellers = data;
+                } else {
+                    $scope.resellers = [];
+                }
+            });
+        } else {
+            $scope.resellers = [];
+        }
+    }
+
+    $scope.setSearch = function(select) {
+        $scope.variable = select.selected.name;
+        $scope.artwork.user = select.selected._id;
+    }
+
+    $scope.setSearchReseller = function(select) {
+        $scope.variableReseller = select.selected.name;
+    }
+
+    NavigationService.lastSr(function(data, status) {
+        $scope.artwork.srno = parseInt(data[0].count) + 1;
+    });
+
+    $scope.calculateprice = function(flag) {
+        $scope.artwork.price = parseFloat($scope.artwork.price);
+        $scope.artwork.gprice = parseFloat($scope.artwork.gprice);
+        $scope.artwork.comm = parseFloat($scope.artwork.comm);
+
+        if ($scope.artwork.comm > 100 && flag == 1) {
+            $scope.artwork.comm = 100;
+        } else if ($scope.artwork.comm < 1 && flag == 1) {
+            $scope.artwork.comm = 1;
+        }
+        if (_.isNumber($scope.artwork.comm) && _.isNumber($scope.artwork.price) && flag == 1) {
+            console.log("first if");
+            $scope.artwork.gprice = Math.round($scope.artwork.price + ($scope.artwork.price * $scope.artwork.comm / 100));
+        }
+        if (_.isNumber($scope.artwork.gprice) && _.isNumber($scope.artwork.price) && flag == 2) {
+            $scope.artwork.price = Math.round($scope.artwork.gprice / (1 + ($scope.artwork.comm / 100)));
+        }
+    }
+
+    $scope.removeimage = function(i) {
+        $scope.artwork.image.splice(i, 1);
+    };
+
+    $scope.show = 0;
+    $scope.showmed = 0;
+
+    $scope.ismatch = function(data, select) {
+        abc.select = select;
+        console.log(select.selected);
+        _.each(data, function(n, key) {
+            if (typeof n == 'string') {
+                var item = {
+                    _id: _.now(),
+                    name: _.capitalize(n),
+                    category: $scope.artwork.type
+                };
+                NavigationService.saveartMedium(item, function(data, status) {
+                    if (data.value == true) {
+                        item._id = data.id;
+                    }
+                });
+                select.selected = _.without(select.selected, n);
+                select.selected.push(item);
+                $scope.artwork.subtype = select.selected;
             }
+        });
+        console.log($scope.artwork.subtype);
+    }
+    $scope.ismatchmed = function(data, select) {
+        abc.select = select;
+        _.each(data, function(n, key) {
+            if (typeof n == 'string') {
+                // var item = {
+                //     _id: _.now(),
+                //     name: _.capitalize(n),
+                //     category: $scope.artwork.type
+                // };
+                var item = {
+                    _id: _.now(),
+                    name: _.capitalize(n)
+                };
+                NavigationService.saveTag(item, function(data, status) {
+                    if (data.value == true) {
+                        item._id = data.id;
+                    }
+                });
+                select.selected = _.without(select.selected, n);
+                select.selected.push(item);
+                $scope.artwork.tag = select.selected;
+            }
+        });
+        console.log($scope.artwork.tag);
+    }
 
-            switch (type) {
-                case "Paintings":
-                    $scope.showPaintings = true;
-                    $scope.showSculpture = false;
-                    $scope.showPrints = false;
-                    $scope.showPhotography = false;
-                    break;
-                case "Sculptures":
-                    $scope.showPaintings = false;
-                    $scope.showSculpture = true;
-                    $scope.showPrints = false;
-                    $scope.showPhotography = false;
-                    break;
-                case "Photographs":
-                    $scope.showPaintings = false;
-                    $scope.showSculpture = false;
-                    $scope.showPrints = false;
-                    $scope.showPhotography = true;
-                    break;
-                case "Prints":
-                    $scope.showPaintings = false;
-                    $scope.showSculpture = false;
-                    $scope.showPrints = true;
-                    $scope.showPhotography = false;
-                    break;
+    //imageupload
+    var imagejstupld = "";
+    $scope.artwork.image = [];
+    $scope.artwork.certi = "";
+    $scope.usingFlash = FileAPI && FileAPI.upload != null;
+    $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+    $scope.uploadRightAway = true;
+    $scope.changeAngularVersion = function() {
+        window.location.hash = $scope.angularVersion;
+        window.location.reload(true);
+    };
+    $scope.hasUploader = function(index) {
+        return $scope.upload[index] != null;
+    };
+    $scope.abort = function(index) {
+        $scope.upload[index].abort();
+        $scope.upload[index] = null;
+    };
+    $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
+        window.location.hash.substring(2) : window.location.hash.substring(1)) : '1.2.20';
+    $scope.onFileSelect = function($files, whichone) {
+        $scope.selectedFiles = [];
+        $scope.progress = [];
+        console.log($files);
+        if ($scope.upload && $scope.upload.length > 0) {
+            for (var i = 0; i < $scope.upload.length; i++) {
+                if ($scope.upload[i] != null) {
+                    $scope.upload[i].abort();
+                }
             }
         }
-    })
-    .controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService) {
-        $scope.template = TemplateService.changecontent("register-artist");
-        $scope.menutitle = NavigationService.makeactive("Register Artist");
-        TemplateService.title = $scope.menutitle;
-        $scope.navigation = NavigationService.getnav();
-    })
+        $scope.upload = [];
+        $scope.uploadResult = uploadres;
+        $scope.selectedFiles = $files;
+        $scope.dataUrls = [];
+        for (var i = 0; i < $files.length; i++) {
+            var $file = $files[i];
+            if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL($files[i]);
+                var loadFile = function(fileReader, index) {
+                    fileReader.onload = function(e) {
+                        $timeout(function() {
+                            $scope.dataUrls[index] = e.target.result;
+                        });
+                    }
+                }(fileReader, i);
+            }
+            $scope.progress[i] = -1;
+            if ($scope.uploadRightAway) {
+                $scope.start(i, whichone);
+            }
+        }
+    };
+
+    $scope.start = function(index, whichone) {
+        $scope.progress[index] = 0;
+        $scope.errorMsg = null;
+        console.log($scope.howToSend = 1);
+        if ($scope.howToSend == 1) {
+            $scope.upload[index] = $upload.upload({
+                url: 'http://smartsnap.in/user/uploadfile',
+                method: $scope.httpMethod,
+                headers: {
+                    'Content-Type': 'Content-Type'
+                },
+                data: {
+                    myModel: $scope.myModel
+                },
+                file: $scope.selectedFiles[index],
+                fileFormDataName: 'file'
+            });
+            $scope.upload[index].then(function(response) {
+                $timeout(function() {
+                    $scope.uploadResult.push(response.data);
+                    imagejstupld = response.data;
+                    if (whichone == 1) {
+                        if (imagejstupld != "") {
+                            $scope.artwork.image.push(imagejstupld.files[0].fd);
+                            imagejstupld = "";
+                        }
+                    } else if (whichone == 2) {
+                        if (imagejstupld != "") {
+                            $scope.artwork.certi = imagejstupld.files[0].fd;
+                            imagejstupld = "";
+                        }
+                    }
+                });
+            }, function(response) {
+                if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+            }, function(evt) {
+                $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+            $scope.upload[index].xhr(function(xhr) {});
+        } else {
+            var fileReader = new FileReader();
+            fileReader.onload = function(e) {
+                $scope.upload[index] = $upload.http({
+                    url: 'http://smartsnap.in/user/uploadfile',
+                    headers: {
+                        'Content-Type': $scope.selectedFiles[index].type
+                    },
+                    data: e.target.result
+                }).then(function(response) {
+                    $scope.uploadResult.push(response.data);
+                }, function(response) {
+                    if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+                }, function(evt) {
+                    $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                });
+            }
+            fileReader.readAsArrayBuffer($scope.selectedFiles[index]);
+        }
+    };
+
+    $scope.dragOverClass = function($event) {
+        var items = $event.dataTransfer.items;
+        var hasFile = false;
+        if (items != null) {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].kind == 'file') {
+                    hasFile = true;
+                    break;
+                }
+            }
+        } else {
+            hasFile = true;
+        }
+        return hasFile ? "dragover" : "dragover-err";
+    };
+    ////
+
+
+    $scope.isSculpture = function(type) {
+        console.log($scope.artwork.subtype);
+        $scope.artwork.subtype = [];
+        console.log($scope.artwork.subtype);
+        $scope.show = 0;
+        $scope.showmed = 0;
+        if (type == "Sculptures") {
+            $scope.showBreadth = true;
+        } else {
+            $scope.showBreadth = false;
+        }
+
+        switch (type) {
+            case "Paintings":
+                $scope.showPaintings = true;
+                $scope.showSculpture = false;
+                $scope.showPrints = false;
+                $scope.showPhotography = false;
+                break;
+            case "Sculptures":
+                $scope.showPaintings = false;
+                $scope.showSculpture = true;
+                $scope.showPrints = false;
+                $scope.showPhotography = false;
+                break;
+            case "Photographs":
+                $scope.showPaintings = false;
+                $scope.showSculpture = false;
+                $scope.showPrints = false;
+                $scope.showPhotography = true;
+                break;
+            case "Prints":
+                $scope.showPaintings = false;
+                $scope.showSculpture = false;
+                $scope.showPrints = true;
+                $scope.showPhotography = false;
+                break;
+        }
+    }
+
+    $scope.showerror = false;
+    $scope.createartwork = function() {
+        console.log($scope.artwork);
+        if ($scope.artwork.type != "Sculptures") {
+            $scope.artwork.breadth = "";
+            $scope.artwork.weight = "";
+        }
+        if ($scope.artwork.user) {
+            $scope.showerror = false;
+            $scope.artwork.user = $scope.artwork.user._id;
+            if ($scope.artwork.tag.length == 0) {
+                $scope.artwork.tag[0] = {
+                    _id: "",
+                    name: "",
+                    category: ""
+                };
+            }
+            NavigationService.saveArtwork($scope.artwork, function(data, status) {
+                console.log(data);
+                $location.url("/artworkout");
+            });
+        } else {
+            $scope.showerror = true;
+        }
+    }
+
+    $scope.refreshArtMedum = function(search, category) {
+        $scope.artmedium = [];
+        if (search) {
+            if (!$scope.artwork.subtype)
+                $scope.artwork.subtype = [];
+            NavigationService.findArtMedium(search, $scope.artwork.subtype, category, function(data, status) {
+                $scope.artmedium = data;
+            });
+        }
+    };
+    $scope.refreshTag = function(search, category) {
+        $scope.tag = [];
+        if (search) {
+            if (!$scope.artwork.tag)
+                $scope.artwork.tag = [];
+            NavigationService.findTag(search, $scope.artwork.tag, category, function(data, status) {
+                $scope.tag = _.uniq(data, '_id');
+            });
+        }
+    };
+})
+
+.controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService) {
+    $scope.template = TemplateService.changecontent("register-artist");
+    $scope.menutitle = NavigationService.makeactive("Register Artist");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
 
 .controller('FavoriteProductCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
     $scope.template = TemplateService.changecontent("favorite-product");
