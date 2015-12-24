@@ -2392,8 +2392,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
     dataNextPre.favorite = function(art) {
         if ($scope.userProfile.id) {
+            cfpLoadingBar.start();
             if (art.heartClass == "fa fa-heart") {
                 NavigationService.addToFav($scope.userProfile.id, art.artwork._id, function(data) {
+                    cfpLoadingBar.complete();
                     if (!data.value) {
                         // $.jStorage.set("user", data);
                         art.heartClass = "fa fa-heart font-color3";
@@ -2403,6 +2405,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     }
                 })
             } else if (art.heartClass == "fa fa-heart font-color3") {
+                cfpLoadingBar.complete();
                 console.log(art.heartClass);
                 NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function(data) {
                     if (!data.value) {
@@ -2432,14 +2435,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     dataNextPre.getCartItems();
 
     dataNextPre.addToCart = function(art) {
+        cfpLoadingBar.start();
         console.log(art);
         NavigationService.addToCart(art.artwork._id, function(data) {
             console.log(data);
+            cfpLoadingBar.complete();
             if (data.value == true) {
                 dataNextPre.messageBox("Added to cart");
                 dataNextPre.getCartItems();
             } else if (data.value == false) {
-                dataNextPre.messageBox("Already added to cart");
+                dataNextPre.messageBox("Already in cart");
             }
         })
     }
