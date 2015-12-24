@@ -1603,30 +1603,56 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, $state) {
+.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, $state, cfpLoadingBar, $filter) {
     $scope.template = TemplateService.changecontent("sculpture");
     $scope.menutitle = NavigationService.makeactive("Sculpture");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     $scope.aristImages = [];
     $scope.allartworks = [];
+    cfpLoadingBar.start();
 
-    NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
-        //      console.log(data);
-        NavigationService.getoneartist(data[0]._id, function(artistdata, status) {
-            //          console.log(artistdata);
-            $scope.allartworks = artistdata;
-            _.each(artistdata.artwork, function(n) {
-                if (n._id != data[0].artwork._id) {
-                    $scope.aristImages.push(n);
-                }
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            userProfile = data;
+            NavigationService.getMyFavourites(data.id, function(favorite) {
+                userProfile.wishlist = favorite;
+                $scope.loadArtWork($stateParams.artid);
             })
-            $scope.aristImages = _.chunk($scope.aristImages, 6);
-            $scope.aristImages = $scope.aristImages[0];
-            //          console.log($scope.aristImages);
-        })
-        $scope.artistDetailImg = data[0];
+        } else {
+            $scope.loadArtWork($stateParams.artid);
+        }
     })
+
+    // $timeout(function() {
+    //     cfpLoadingBar.complete();
+    // }, 5000);
+
+    $scope.loadArtWork = function(id) {
+        NavigationService.getartworkdetail(id, function(data, status) {
+            console.log(data);
+            $scope.aristImages = [];
+            $scope.artid = data[0]._id;
+            NavigationService.getoneartist(data[0]._id, function(artistdata, status) {
+                console.log(artistdata);
+                $.jStorage.set("reachout", artistdata);
+                dataNextPre.reachout = artistdata;
+                $scope.allartworks = artistdata;
+                _.each(artistdata.artwork, function(n) {
+                    if (n._id != data[0].artwork._id) {
+                        $scope.aristImages.push(n);
+                    }
+                })
+                $scope.aristImages = _.chunk($scope.aristImages, 6);
+                $scope.aristImages = $scope.aristImages[0];
+                //              console.log($scope.aristImages);
+                cfpLoadingBar.complete();
+            })
+            $scope.artistDetailImg = data[0];
+            $scope.artistDetailImg.heartClass = $filter('showheart')($scope.artistDetailImg.artwork._id);
+            console.log($scope.artistDetailImg);
+        })
+    }
 
     $scope.images = [{
         small: 'img/smallsculpture.jpg',
@@ -1640,17 +1666,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
     $scope.showitabove = function(artwork) {
-        // $scope.aristImages = [];
-        // delete $scope.artistDetailImg.artwork;
-        // $scope.artistDetailImg.artwork = artwork;
-        // _.each($scope.allartworks.artwork, function(n) {
-        //     if (n._id != artwork._id) {
-        //         $scope.aristImages.push(n);
-        //     }
-        // })
-        // $rootScope.$broadcast('changeImage', {});
-        //      $location.url("/artwork/detail/" + artwork._id);
-        $state.go('detail', {
+        $state.go('sculpture', {
             artid: artwork._id
         });
     }
@@ -1662,6 +1678,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $rootScope.$broadcast('changeImage', {});
         }
     }
+
+    $scope.addToCart = function(art) {
+        dataNextPre.addToCart(art);
+    }
+
+    $scope.addToFav = function(art) {
+        dataNextPre.favorite(art);
+    }
+
 })
 
 .controller('ThoughtleadershipCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar) {

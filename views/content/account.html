@@ -260,11 +260,11 @@
         </div>
       </div> -->
       <div class="col-md-10" ng-if="myorders=='bolds'">
-        <div class="cart orders">
+        <div class="cart orders" ng-repeat="orders in myorderedproducts" ng-if="myorderedproducts.length>0">
           <h5>
-            <span class="bold">Order Id:</span> #34521289
+            <span class="bold">Order Id:</span> {{orders.orderid}}
             <span class="pull-right">
-              <span class="bold">Date:</span> 24th January 2015</span>
+              <span class="bold">Date:</span> {{orders.timestamp | date:'MMMM dd, yyyy'}}</span>
           </h5>
           <table class="table table-hover content-static">
             <thead>
@@ -277,14 +277,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td fancybox-box href="http://smartsnap.in/user/resize?height=190&file=171.jpg">
-                  <img src="http://smartsnap.in/user/resize?height=190&file=171.jpg" height="30" />
+              <tr ng-repeat="artwork in orders.artwork">
+                <td fancybox-box href="{{artwork.artwork.image[0] | uploadthumbnail}}">
+                  <img src="{{artwork.artwork.image[0] | uploadsmallimage}}" height="30" />
                 </td>
-                <td>Title</td>
+                <td>{{artwork.name}}</td>
                 <td>AADPL</td>
-                <td>Dispatched</td>
-                <td>Rs. 50, 000</td>
+                <td>{{orders.status}}</td>
+                <td class="pull-right">{{artwork.artwork.gprice | number:0}}</td>
               </tr>
             </tbody>
             <tfoot class="bold">
@@ -292,80 +292,28 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Total</td>
-                <td>Rs. 40,000</td>
+                <td>Sub Total</td>
+                <td class="pull-right">{{orders.price | number:0}}</td>
               </tr>
-            </tfoot>
-          </table>
-        </div>
-        <div class="cart orders">
-          <h5>
-            <span class="bold">Order Id:</span> #34521289
-            <span class="pull-right">
-              <span class="bold">Date:</span> 24th January 2015</span>
-          </h5>
-          <table class="table table-hover content-static">
-            <thead>
               <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Seller</th>
-                <th>Status</th>
-                <th>Price</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Discount</td>
+                <td class="pull-right">- {{orders.discount | number:0}}</td>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td fancybox-box href="http://smartsnap.in/user/resize?height=190&file=171.jpg">
-                  <img src="http://smartsnap.in/user/resize?height=190&file=171.jpg" height="30" />
-                </td>
-                <td>Title</td>
-                <td>AADPL</td>
-                <td>Dispatched</td>
-                <td>Rs. 50, 000</td>
-              </tr>
-            </tbody>
-            <tfoot class="bold">
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>Total</td>
-                <td>Rs. 40,000</td>
+                <td class="pull-right">Rs. {{orders.price | number:0}}</td>
               </tr>
             </tfoot>
           </table>
         </div>
-        <div class="nav-page">
-          <nav class="pagination-artist">
-            <ul class="pagination margin-remove">
-              <li class="actived">
-                <a aria-label="Previous" href="#">
-                  <span aria-hidden="true">Prev</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">1</a>
-              </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
-              <li class="actived">
-                <a aria-label="Next" href="#">
-                  <span aria-hidden="true">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+        <div class="text-center" ng-if="myorderedproducts.length==0">
+          <h4>No Orders Yet !</h4>
         </div>
       </div>
       <div class="col-md-4" ng-if="ordertracing=='bolds'">
