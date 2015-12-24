@@ -114,11 +114,44 @@ header.stickyheader {
 .light-shade {
   color: #8f9fab;
 }
+@mixin(@width) {
+  .flex(0 0 @width);
+  max-width: @width;
+}
 .row-flex {
   .display(flex);
+  width: 100%;
 }
 .col-flex {
   .flex(1);
+  width: 100%;
+}
+.col-flex-10 {
+  .mixin(10%);
+}
+.col-flex-20 {
+  .mixin(20%);
+}
+.col-flex-25 {
+  .mixin(25%);
+}
+.col-flex-33 {
+  .mixin(33.3333%);
+}
+.col-flex-50 {
+  .mixin(50%);
+}
+.col-flex-67 {
+  .mixin(	66.6666%);
+}
+.col-flex-75 {
+  .mixin(75%);
+}
+.col-flex-80 {
+  .mixin(80%);
+}
+.col-flex-90 {
+  .mixin(90%);
 }
 .style1-bg {
   background-color: @color1;
