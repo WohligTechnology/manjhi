@@ -1,227 +1,262 @@
 <div class="border-top"></div>
 <div class="container">
-    <div class="main-cont">
-        <div class="cont-main">
-            <h3 class="font-color3 home-header">Checkout</h3>
-            <div class="panel panel-default" ng-show="showLoginDiv">
+  <div class="main-cont checkout-form">
+    <div class="cont-main">
+      <h3 class="font-color3 home-header">Checkout</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-default" ng-show="showLoginDiv">
+            <div class="panel-heading">
+              <h3 class="panel-title">Checkout Method</h3>
+            </div>
+            <div class="panel-body">
+
+                  <h5>LOGIN</h5>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <input class="form-control asteric" class="form-control" placeholder="Username or email" required type="text">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <input class="form-control asteric" class="form-control" placeholder="Password" required type="password">
+                    </div>
+                  </div>
+                  <a class="forgetlink" href="">Forgot password ?</a>
+                  <button class="btn btn-sucesses pull-right" type="submit">Login</button>
+
+                  <div class="clearfix"></div>
+
+
+                    <div class="form-group">
+                      <div class="radio">
+                        <label>
+                          <input name="optradio" ng-model="checkoutRadio" type="radio" value="guest">Checkout as guest
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input name="optradio" ng-model="checkoutRadio" type="radio" value="register">Register
+                        </label>
+                      </div>
+                    </div>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <form ng-submit="">
+            <div class="making">
+              <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Checkout Method</h3>
+                  <h3 class="panel-title">Billing Information</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>CHECKOUT AS A GUEST OR REGISTER</h5>
-                                <p>Register with us for future convenience:</p>
-                                <div class="row">
-                                    <div class="form-group col-md-8">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optradio" value="guest" ng-model="checkoutRadio">Checkout as guest
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optradio" value="register" ng-model="checkoutRadio">Register
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--{{form}}-->
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>LOGIN</h5>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <input type="text" class="form-control asteric" placeholder="Username or email" class="form-control" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <input type="password" class="form-control asteric" placeholder="Password" class="form-control" required>
-                                    </div>
-                                </div>
-                                <a href="" class="forgetlink">Forgot password ?</a>
-                                <!--                                <button href class="btn btn-primary pull-right">Login</button>-->
-                                <button type="submit" class="btn btn-sucesses pull-right"> Login</button>
-                            </div>
-                        </div>
+                  <div class="form-group row-flex">
+                    <div class="col-flex">
+                      <input class="form-control" ng-model="user.regadd" placeholder="First Name" required type="text">
                     </div>
+                    <div class="col-flex">
+                      <input class="form-control" ng-model="user.regadd" placeholder="Last Name" required type="text">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.regadd" placeholder="Email" required type="email">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.regadd" placeholder="Company" required type="text">
+                  </div>
+                  <div class="form-group">
+                    <div class="tel-box">
+                      <input class="form-control tel-country" ng-model="user.regadd" placeholder="Country Code" required type="tel">
+                      <input class="form-control tel-number" ng-model="user.regadd" placeholder="Mobile Number" required type="tel">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="tel-box">
+                      <input class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required type="text">
+                      <input class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required type="text">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.regadd" placeholder="Landmark" required type="text">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.regadd" placeholder="Street" required type="text">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.regadd" placeholder="Locality" required type="text">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.city" placeholder="City" type="text">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.pincode" placeholder="Pincode" type="text">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.state" placeholder="State" type="text">
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" ng-model="user.country" placeholder="Country" type="text">
+                  </div>
+                  <label>
+                    <input ng-init="checked=false" ng-model="checked" type="checkbox"> Same as shipping</label>
                 </div>
+              </div>
             </div>
+          </form>
         </div>
-        <div class="clear-fix"></div>
-        <form ng-submit="toPayment();">
-            <div class="making">
+        <div class="col-md-4">
+            <form ng-submit="">
+              <div class="making">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Billing Information</h3>
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Shipping Information</h3>
+                  </div>
+                  <div class="panel-body">
+                    <div class="form-group row-flex">
+                      <div class="col-flex">
+                        <input class="form-control" ng-model="user.regadd" placeholder="First Name" required type="text">
+                      </div>
+                      <div class="col-flex">
+                        <input class="form-control" ng-model="user.regadd" placeholder="Last Name" required type="text">
+                      </div>
                     </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="form-group col-md-offset-2 col-md-4">
-                                <input type="text" class="form-control asteric" id="" placeholder="First Name" ng-model="payment.billing.fname" required>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="Last Name" ng-model="payment.billing.lname" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="Company" ng-model="payment.billing.company">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="email" class="form-control" id="" placeholder="Email" required ng-model="payment.billing.email">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-8 col-md-offset-2 ">
-                                <textarea class="form-control" rows="3" id="address" placeholder="Address" ng-model="payment.billing.regadd" required></textarea>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="City" required ng-model="payment.billing.city">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="State/Provision" required ng-model="payment.billing.state">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.billing.pincode" only-digits ng-trim="false" maxlength="6" min="100000">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="" placeholder="Telephone Number" required ng-model="payment.billing.mob" only-digits ng-trim="false" maxlength="10">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-offset-2  col-md-8">
-                                <div class="checkbox">
-                                    <label>
-                                        <!--                                    <input type="checkbox" ng-model="checkout.isshipping" name="check" ng-click="showShipping(checkout.isshipping)">-->
-                                        <input type="checkbox" ng-model="checked" ng-init="checked=false"> Ship to different address</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--                    <div class="row" ng-if="checkout.isshipping == true" class="animate-if">-->
-                        <div ng-if="checked" class="animate-if row">
-                            <div class="form-group col-md-8">
-                                <h4>Ship to this Address</h4>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-offset-2 col-md-4">
-                                    <input type="text" class="form-control asteric" id="" placeholder="Shipping Name" required ng-model="payment.shipping.name">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="Telephone" required ng-model="payment.shipping.contact" only-digits ng-trim="false" maxlength="10">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-8 col-md-offset-2 ">
-                                    <textarea class="form-control" rows="3" id="address" placeholder="Address" required ng-model="payment.shipping.address"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-offset-2  col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="City" required ng-model="payment.shipping.city">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="State/Provision" required ng-model="payment.shipping.state">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-offset-2  col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="Zip/Postal Code" required ng-model="payment.shipping.pincode" only-digits ng-trim="false" maxlength="6">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <input type="text" class="form-control" id="" placeholder="Country" required ng-model="payment.shipping.country">
-                                </div>
-                            </div>
-                            <!-- <div class="row">
-                            <div class="col-md-offset-2  col-md-8">
-                                <button class="btn btn-cont pull-right">Continue</button>
-                            </div>
-                        </div> -->
-                        </div>
+                    <div class="form-group">
                     </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.regadd" placeholder="Email" required type="email">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.regadd" placeholder="Company" required type="text">
+                    </div>
+                    <div class="form-group">
+                      <div class="tel-box">
+                        <input class="form-control tel-country" ng-model="user.regadd" placeholder="Country Code" required type="tel">
+                        <input class="form-control tel-number" ng-model="user.regadd" placeholder="Mobile Number" required type="tel">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="tel-box">
+                        <input class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required type="text">
+                        <input class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required type="text">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.regadd" placeholder="Landmark" required type="text">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.regadd" placeholder="Street" required type="text">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.regadd" placeholder="Locality" required type="text">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.city" placeholder="City" type="text">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.pincode" placeholder="Pincode" type="text">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.state" placeholder="State" type="text">
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" ng-model="user.country" placeholder="Country" type="text">
+                    </div>
+                  </div>
                 </div>
+              </div>
+            </form>
+        </div>
+      </div>
+
+      <div class="clear-fix"></div>
+      <form ng-submit="toPayment();">
+        <div class="making">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Order Review</h3>
             </div>
-            <div class="making">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Order Review</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="cart check">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Product Image</th>
-                                        <th>Product id</th>
-                                        <th>Artist Name</th>
-                                        <th>Product Name</th>
-                                        <th>Unit Price</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- ngRepeat: singlecart in cart -->
-                                    <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
-                                        <td class="cart-img">
-                                            <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Artist Name</span> {{artwork.name}}
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Title</span> {{artwork.artwork.name}}
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Unit Price</span> Rs.{{artwork.artwork.gprice|number:0}} / $ {{artwork.artwork.gprice|indollars}}
-                                        </td>
-                                        <td>
-                                            <span class="mobile">Action</span>
-                                            <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
-                                        </td>
-                                    </tr>
-                                    <!-- end ngRepeat: singlecart in cart -->
-                                </tbody>
-                            </table>
-                            <hr>
-                            <div class="col-md-offset-8 col-md-4">
-                                <table class="table table-bordered ">
-                                    <tbody>
-                                        <tr>
-                                            <th>Discount</th>
-                                            <th>Shipping</th>
-                                            <th>Grand Total</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Rs {{totalCartPrice | number:0}} / $ {{totalCartPrice|indollars}}</td>
-                                            <td>Rs 0.00 / $ 0.00</td>
-                                            <td>Rs {{totalCartPrice | number:0}} / $ {{totalCartPrice|indollars}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="text-center" ng-show="showPinErr">
-                                <p>Please enter a valid pincode</p>
-                            </div>
-                            <div class="text-center" ng-show="showMobErr">
-                                <p>Please enter a valid contact number</p>
-                            </div>
-                            <div class="col-md-offset-4 col-md-8">
-                                <button type="submit" class="btn btn-cont pull-right">Proceed &#38; Payment</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="panel-body">
+              <div class="cart check">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Product Image</th>
+                      <th>Product id</th>
+                      <th>Artist Name</th>
+                      <th>Product Name</th>
+                      <th>Unit Price</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- ngRepeat: singlecart in cart -->
+                    <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
+                      <td class="cart-img">
+                        <img class="img-box" ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}">
+                      </td>
+                      <td>
+                        <span class="mobile">Product Id</span>
+                        {{artwork.artwork.srno}}
+                      </td>
+                      <td>
+                        <span class="mobile">Artist Name</span>
+                        {{artwork.name}}
+                      </td>
+                      <td>
+                        <span class="mobile">Title</span>
+                        {{artwork.artwork.name}}
+                      </td>
+                      <td>
+                        <span class="mobile">Unit Price</span>
+                        Rs.{{artwork.artwork.gprice|number:0}}
+                        / $
+                        {{artwork.artwork.gprice|indollars}}
+                      </td>
+                      <td>
+                        <span class="mobile">Action</span>
+                        <i class="fa fa-trash-o" ng-click="removeFromCart(artwork.artwork._id);"></i>
+                      </td>
+                    </tr>
+                    <!-- end ngRepeat: singlecart in cart -->
+                  </tbody>
+                </table>
+                <hr>
+                <div class="col-md-offset-8 col-md-4">
+                  <table class="table table-bordered ">
+                    <tbody>
+                      <tr>
+                        <th>VAT</th>
+                        <th>Shipping</th>
+                        <th>Grand Total</th>
+                      </tr>
+                      <tr>
+                        <td>Rs.{{totalCartPrice | number:0}}
+                          / ${{totalCartPrice|indollars}}</td>
+                        <td>Rs.0 / $0.00</td>
+                        <td>Rs.{{totalCartPrice | number:0}}
+                          / ${{totalCartPrice|indollars}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+                <div class="text-center" ng-show="showPinErr">
+                  <p>Please enter a valid pincode</p>
+                </div>
+                <div class="text-center" ng-show="showMobErr">
+                  <p>Please enter a valid contact number</p>
+                </div>
+                <div class="col-md-offset-4 col-md-8">
+                  <button class="btn btn-cont pull-right" type="submit">Proceed &amp; Pay</button>
+                </div>
+              </div>
             </div>
-        </form>
+          </div>
+        </div>
+      </form>
     </div>
-</div>
+  </div>

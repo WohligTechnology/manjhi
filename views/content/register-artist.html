@@ -142,7 +142,7 @@
                     <div class="form-group">
                       <div class="tel-box">
                         <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
-                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
+                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required>
                       </div>
                     </div>
                     <div class="form-group">
@@ -174,7 +174,7 @@
                     <div class="form-group">
                       <div class="tel-box">
                         <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
-                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
+                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required>
                       </div>
                     </div>
                     <div class="form-group">
@@ -206,7 +206,7 @@
                     <div class="form-group">
                       <div class="tel-box">
                         <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
-                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name Of Buliding" required>
+                        <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required>
                       </div>
                     </div>
                     <div class="form-group">
@@ -588,54 +588,12 @@
                     </div>
                   </div>
                 </div>
-                <br>
-                <h4 class="title-color">Bank Details</h4>
-                <hr>
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Name of Account Holder as it appears in the Account</label>
-                      <input type="text" class="form-control" ng-model="user.aname" placeholder="Name of Account Holder as it appears in the Account">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Type of Account</label>
-                      <div>
-                        <select class="form-control" ng-model="user.atype">
-                          <option value="savings">Savings</option>
-                          <option value="current">Current</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Name of Bank</label>
-                      <input type="text" class="form-control" ng-model="user.nbank" placeholder="Name of Bank">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Bank Branch Address</label>
-                      <textarea class="form-control" ng-model="user.badd" placeholder="Bank Branch Address"></textarea>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Address of Account Holder (if different from stated above)</label>
-                      <textarea class="form-control" ng-model="user.aadd" placeholder="Address of Account Holder (if different from stated above)"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Account Number</label>
-                      <input type="text" class="form-control" ng-model="user.anum" placeholder="Account Number">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">RTGS / NEFT IFS Code</label>
-                      <input type="text" class="form-control" ng-model="user.ifsc" placeholder="RTGS / NEFT IFS Code">
-                    </div>
 
-                  </div>
-                </div>
                 <div class="form-group">
-                  <p>Please go through Terms and Conditions <a href="#">(by clicking on hyperlink).</a></p>
+                  <p>Please go through <a href="#/terms" class="font-color2" target="_blank">Terms and Conditions.</a></p>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" ng-model="user.checkboxModel" ng-change="checking();">I have clicked on the check box after having read all the Terms and Conditions and agreeing to abide by them.
+                      <input type="checkbox" ng-model="user.checkboxModel" ng-change="checking();">I have clicked on the check box after having read all the <a href="#/terms" class="font-color2" target="_blank">Terms and Conditions</a> and agreeing to abide by them.
                       <span ng-if="checked==1" style="color:red;">Please accept the terms.</span>
                     </label>
                   </div>
