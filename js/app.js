@@ -540,8 +540,13 @@ firstapp.filter('showheart', function(NavigationService) {
 firstapp.filter('indollars', function(NavigationService) {
     return function(input) {
         if (input && dollarPrice) {
-            var price = parseFloat(input) / parseFloat(dollarPrice);
-            return price.toFixed(2);
+            if (input != "0") {
+                var price = parseFloat(input) / parseFloat(dollarPrice);
+                return price.toFixed(2);
+            } else
+                return 0.00;
+        } else {
+            return 0.00;
         }
     };
 });
@@ -563,6 +568,24 @@ firstapp.directive('onlyDigits', function() {
                 return undefined;
             }
             ngModelCtrl.$parsers.push(fromUser);
+        }
+    };
+});
+
+firstapp.directive('youtube', function($sce) {
+    return {
+        restrict: 'A',
+        scope: {
+            code: '='
+        },
+        replace: true,
+        template: '<iframe id="popup-youtube-player" style="overflow:hidden;width:100%" width="100%" height="130px" src="{{url}}" frameborder="0" allowscriptaccess="always" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>',
+        link: function(scope) {
+            scope.$watch('code', function(newVal) {
+                if (newVal) {
+                    scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + newVal);
+                }
+            });
         }
     };
 });

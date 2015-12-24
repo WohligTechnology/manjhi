@@ -18,8 +18,8 @@
                                 <span ng-if="!artistdetails.srno || artistdetails.srno==''">
                                     N/A
                                 </span>
-                                <i class="fa fa-heart"></i>
-                                <i class="fa fa-shopping-cart"></i>
+                                <i class="{{artistdetails.heartClass = (artistdetails._id | showheart)}}" ng-click="addToFav(artistdetails);"></i>
+                                <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
                             </p>
                             <p>
                                 <span ng-if="artistdetails.name && artistdetails.name!=''">
@@ -50,7 +50,7 @@
                             </p>
                             <p>
                                 <span ng-if="artistdetails.gprice && artistdetails.gprice!='N/A'">
-                                    Rs.{{artistdetails.gprice|number:0}}
+                                    Rs.{{artistdetails.gprice|number:0}} / $ {{artistdetails.gprice|indollars}}
                                 </span>
                                 <span ng-if="!artistdetails.gprice || artistdetails.gprice=='N/A'">
                                     N/A

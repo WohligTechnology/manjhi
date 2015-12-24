@@ -102,6 +102,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             type: type
         });
     }
+
+    $scope.goToEvents = function() {
+        $state.go('events');
+    }
+
     $scope.onclick = function(value) {
         $scope.filterby.checked
     }
@@ -1872,6 +1877,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.listview = [];
     var lastpage = 2;
 
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            userProfile = data;
+            NavigationService.getMyFavourites(data.id, function(favorite) {
+                userProfile.wishlist = favorite;
+            })
+        }
+    })
+
     NavigationService.getAllArtistByAccess(function(data, status) {
         //      console.log("All List of Artist");
         $scope.listview = _.uniq(data, '_id');
@@ -2017,6 +2031,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }]
 
     $scope.makeactive($stateParams.type);
+
+    $scope.addToCart = function(art) {
+        var test = {}
+        test.artwork = art;
+        dataNextPre.addToCart(test);
+    }
+
+    $scope.addToFav = function(art) {
+        var test = {}
+        test.artwork = art;
+        test.heartClass = art.heartClass;
+        dataNextPre.favorite(test)
+    }
+
 })
 
 

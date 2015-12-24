@@ -18,7 +18,7 @@
                                             <td>
                                                 <span ng-if="artistDetailImg.artwork.srno && artistDetailImg.artwork.srno!=''">                                                                    {{artistDetailImg.artwork.srno}}
                                             </span>
-                                                <i class="fa fa-heart" ng-click="makeFav(artistDetailImg);"></i>
+                                                <i class="{{artistDetailImg.heartClass = (artistDetailImg.artwork._id | showheart)}}" ng-click="makeFav(artistDetailImg);"></i>
                                             </td>
                                         </tr>
                                         <tr class="font-color3">
@@ -64,7 +64,7 @@
                                         <tr>
                                             <td class="labels">Price: </td>
                                             <td ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
-                                                Rs.{{artistDetailImg.artwork.gprice|number:0}}
+                                                Rs.{{artistDetailImg.artwork.gprice|number:0}} / $ {{artistDetailImg.artwork.gprice|indollars}}
                                             </td>
                                             <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
                                                 N/A
