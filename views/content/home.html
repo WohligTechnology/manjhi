@@ -287,15 +287,15 @@
                         </p>
                         <p>
                             <span class="bold">Date:</span>
-                            <span class="eventdate">{{upcomingEvent.startdate}}</span>
+                            <span class="">{{upcomingEvent.startdate | date : 'mediumDate'}}</span>
                         </p>
                         <p>
                             <span class="bold">Time:</span>
-                            <span class="eventtime">{{upcomingEvent.starttime}}</span>
+                            <span class="">{{upcomingEvent.starttime}}</span>
                         </p>
                         <p>
                             <span class="bold">Venue:</span>
-                            <span class="eventvenue">{{upcomingEvent.venue}}</span>
+                            <span class="">{{upcomingEvent.venue}}</span>
                         </p>
                     </div>
                 </div>
@@ -322,7 +322,8 @@
                             </div>
                             <div class="col-flex" ng-if="upcomingEvent.videos" fancybox-box href="https://www.youtube.com/embed/{{upcomingEvent.videos}}">
                                 <h6>VIDEO</h6>
-                                <div youtube code="upcomingEvent.videos"></div>
+                                <!-- <div youtube code="upcomingEvent.videos"></div> -->
+                                <img ng-src="http://img.youtube.com/vi/{{upcomingEvent.videos}}/default.jpg" />
                             </div>
                         </div>
                     </div>
@@ -335,7 +336,7 @@
     <div class="padding-more">
         <h3 class="home-header font-color3">Press</h3>
         <div class="row-flex row-unflex image-box">
-            <div class="col-flex" ng-repeat="pressSin in press">
+            <div class="col-flex col-flex-20" ng-repeat="pressSin in press">
                 <a class="col-press" fancybox-box href="{{pressSin.photos|uploadpath}}" rel="press">
                     <img alt="demo" class="img-responsive" ng-src="{{pressSin.photos|uploadthumbnail}}">
                 </a>
