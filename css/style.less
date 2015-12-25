@@ -1056,6 +1056,12 @@ a.link-viewall {
   }
 }
 .event-set {
+
+  .head {
+    border-bottom: 1px solid #E6E7E9;
+    padding: 0 0px 10px 10px;
+    margin: 0 0 20px;
+  }
   .up-event {
     padding: 20px 80px;
   }
@@ -1080,12 +1086,19 @@ a.link-viewall {
     }
   }
   .event-detail {
+    h6 {
+      font-size: 13px;
+      margin: 0 0 5px;
+    }
     .event-img {
-      width: 150px;
+      width: 100%;
       margin: 0 auto;
-      height: 212px;
+      height: 215px;
+      overflow: hidden;
+
       img {
-        max-height: 212px;
+        max-height: 100%;
+        max-width: 100%
       }
     }
     p {
@@ -1094,7 +1107,6 @@ a.link-viewall {
     }
     .data {
       padding-bottom: 10px;
-      min-height: 100px;
     }
   }
 }
@@ -2398,12 +2410,11 @@ img.fancybox-image {
   .transform(translate(-50%, -50%));
   h5.popup-wishlist {
     padding: 10% 3%;
-    border: 2px solid @color3;
+    // border: 2px solid @color3;
     background-color: #fff;
-    font-size: 15px !important;
+    font-size: 14px !important;
     text-transform: capitalize;
     text-align: center;
-    letter-spacing: 2px;
     i {
       color: @color3;
     }
