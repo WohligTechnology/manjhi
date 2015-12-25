@@ -2,7 +2,7 @@ var dataNextPre = {};
 var userProfile = {};
 var uploadres = [];
 var dollarPrice = '';
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider','angularFileUpload'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
 
 //.controller('AppCtrl')
 .controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams) {
@@ -292,39 +292,50 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.getClr();
     $scope.getElm();
     $scope.getStl();
+    var countcall = 0;
     $scope.getallartist = function() {
         if ($scope.filterby.type == "") {
-            NavigationService.getAllArtistByAccess(function(data, status) {
-                if (data && data.value != false) {
-                    $scope.allartist = _.uniq(data, '_id');
-                    $scope.allartist.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
+            NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+                if (n == countcall) {
+                    if (data && data.value != false) {
+                        $scope.allartist = _.uniq(data, '_id');
+                        $scope.allartist.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allartist = [];
+                    }
                 } else {
                     $scope.allartist = [];
                 }
             });
         } else {
-            NavigationService.userbytype($scope.filterby.type, function(data, status) {
-                if (data && data.value != false) {
-                    $scope.allartist = data;
-                    $scope.allartist.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
+            NavigationService.userbytype($scope.filterby.type, ++countcall, function(data, status, n) {
+                if (n == countcall) {
+                    if (data && data.value != false) {
+                        $scope.allartist = data;
+                        $scope.allartist.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allartist = [];
+                    }
                 } else {
                     $scope.allartist = [];
                 }
+
             });
         }
     }
     $scope.getDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
             $scope.change.search = search;
             NavigationService.getAllArtistDrop($scope.change, function(data) {
+                console.log(data);
                 if (data && data.value != false) {
                     $scope.allartist = data;
                     $scope.allartist.unshift({
@@ -340,7 +351,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     $scope.getDropdownMedium = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
             $scope.change.search = search;
@@ -363,7 +374,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //search by keyword
 
     $scope.getColorDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
                 if (data && data.value != false) {
                     $scope.allColor = data;
@@ -376,7 +387,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     $scope.getStyleDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
                 if (data && data.value != false) {
                     $scope.allStyle = data;
@@ -389,7 +400,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     $scope.getElementDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
                 if (data && data.value != false) {
                     $scope.allElement = data;
@@ -668,7 +679,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.getStl();
 
     $scope.getColorDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
                 if (data && data.value != false) {
                     $scope.allColor = data;
@@ -681,7 +692,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     $scope.getStyleDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
                 if (data && data.value != false) {
                     $scope.allStyle = data;
@@ -694,7 +705,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     $scope.getElementDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
                 if (data && data.value != false) {
                     $scope.allElement = data;
@@ -706,28 +717,36 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.getElm();
         }
     }
-
+    var countcall = 0;
     $scope.getallartist = function() {
         if ($scope.pagedata.type == "") {
-            NavigationService.getAllArtistByAccess(function(data, status) {
-                if (data && data.value != false) {
-                    $scope.allartist = _.uniq(data, '_id');
-                    $scope.allartist.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
+            NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+                if (n == countcall) {
+                    if (data && data.value != false) {
+                        $scope.allartist = _.uniq(data, '_id');
+                        $scope.allartist.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allartist = [];
+                    }
                 } else {
                     $scope.allartist = [];
                 }
             });
         } else {
-            NavigationService.userbytype($scope.pagedata.type, function(data, status) {
-                if (data && data.value != false) {
-                    $scope.allartist = data;
-                    $scope.allartist.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
+            NavigationService.userbytype($scope.pagedata.type, ++countcall, function(data, status, n) {
+                if (n == countcall) {
+                    if (data && data.value != false) {
+                        $scope.allartist = data;
+                        $scope.allartist.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allartist = [];
+                    }
                 } else {
                     $scope.allartist = [];
                 }
@@ -759,11 +778,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
-
+    $scope.getallartist();
     $scope.getDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             $scope.change = {};
-            $scope.change.type = $scope.filterby.type;
+            $scope.change.type = $scope.pagedata.type;
             $scope.change.search = search;
             NavigationService.getAllArtistDrop($scope.change, function(data) {
                 if (data && data.value != false) {
@@ -782,7 +801,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.getDropdownMedium = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
             $scope.change.search = search;
@@ -1863,11 +1882,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    $scope.goToDetail = function(artid) {
-        //      $location.url("/artwork/detail/" + artid);
-        $state.go('detail', {
-            artid: artid
-        });
+    $scope.goToDetail = function(artwork) {
+        console.log(artwork);
+        if (artwork.type == "Sculptures") {
+            //          $location.url("/sculpture/" + artwork._id);
+            $state.go('sculpture', {
+                artid: artwork._id
+            });
+        } else {
+            //          $location.url("/artwork/detail/" + artwork._id);
+            $state.go('detail', {
+                artid: artwork._id
+            });
+        }
     }
 
     $scope.addToCart = function(art) {
@@ -1911,11 +1938,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    NavigationService.getAllArtistByAccess(function(data, status) {
-        //      console.log("All List of Artist");
-        $scope.listview = _.uniq(data, '_id');
-        //      console.log($scope.listview);
-    });
+    var countcall = 0;
+
+    function getAllArtistByAccess() {
+        NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+            if (n == countcall) {
+                $scope.listview = _.uniq(data, '_id');
+            } else {
+                $scope.listview = [];
+            }
+        });
+    }
+    getAllArtistByAccess();
 
     $scope.reload = function() {
         cfpLoadingBar.start();
@@ -1927,10 +1961,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             lastpage = parseInt(data.totalpages);
             _.each(data.data, function(n) {
                 $scope.artistimage.push(n);
-                $scope.listview.push(n);
+                if ($scope.pagedata.search != "")
+                    $scope.listview.push(n);
             })
             $scope.artistimage = _.uniq($scope.artistimage, '_id');
-            $scope.listview = _.uniq($scope.listview, '_id');
+            if ($scope.pagedata.search != "")
+                $scope.listview = _.uniq($scope.listview, '_id');
+            else {
+                getAllArtistByAccess();
+            }
             cfpLoadingBar.complete();
         });
     }
@@ -2144,10 +2183,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             })
         }
     })
-
-    NavigationService.getAllArtistByAccess(function(data, status) {
-        if (data && data.value != false) {
-            $scope.allartist = _.uniq(data, '_id');
+    var countcall = 0;
+    NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+        if (n == countcall) {
+            if (data && data.value != false) {
+                $scope.allartist = _.uniq(data, '_id');
+            } else {
+                $scope.allartist = [];
+            }
         } else {
             $scope.allartist = [];
         }
@@ -2239,15 +2282,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             })
         }
     }
-
+    var countcall = 0;
     $scope.onSearchChange = function(search) {
-        console.log(search);
-        NavigationService.getSearchDrop(search, function(data) {
-            if (data.value == false) {
-                $scope.showDropDown = true;
+        NavigationService.getSearchDrop(search, ++countcall, function(data, n) {
+            if (n == countcall) {
+                if (data.value == false) {
+                    $scope.showDropDown = true;
+                } else {
+                    $scope.showDropDown = false;
+                    $scope.searchData = data;
+                }
             } else {
-                $scope.showDropDown = false;
-                $scope.searchData = data;
+                $scope.showDropDown = true;
             }
         })
     }
@@ -2777,7 +2823,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.allartist = [];
     $scope.getDropdown = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.artwork.type;
             $scope.change.search = search;
@@ -2795,7 +2841,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.resellers = [];
     $scope.getDropdownReseller = function(search) {
-        if (search.length >= 3) {
+        if (search.length >= 1) {
             NavigationService.getAllResellerDrop(search, function(data) {
                 if (data && data.value != false) {
                     $scope.resellers = data;
@@ -3193,55 +3239,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.makeFav = function(art) {
         dataNextPre.favorite(art);
-        //      if ($.jStorage.get("user")) {
-        //          if (art.heartClass == "fa fa-heart") {
-        //              NavigationService.addToFav(art.artwork._id, function (data) {
-        //                  console.log(data);
-        //                  if (!data.value) {
-        //                      $.jStorage.set("user", data);
-        //                      art.heartClass = "fa fa-heart font-color3";
-        //                      var xyz = ngDialog.open({
-        //                          template: '<div class="pop-up"><h5 class="popup-wishlist">Added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-        //                          plain: true
-        //                      });
-        //                      $timeout(function () {
-        //                          xyz.close();
-        //                      }, 3000);
-        //                  } else if (data.value == true && data.comment == "Data already updated") {
-        //                      var xyz = ngDialog.open({
-        //                          template: '<div class="pop-up"><h5 class="popup-wishlist">Already added to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-        //                          plain: true
-        //                      });
-        //                      $timeout(function () {
-        //                          xyz.close();
-        //                      }, 3000);
-        //                  }
-        //              })
-        //          } else if (art.heartClass == "fa fa-heart font-color3") {
-        //              NavigationService.deleteFromFav(art.artwork._id, function (data) {
-        //                  console.log(data);
-        //                  if (!data.value) {
-        //                      $.jStorage.set("user", data);
-        //                      art.heartClass = "fa fa-heart";
-        //                      var xyz = ngDialog.open({
-        //                          template: '<div class="pop-up"><h5 class="popup-wishlist">Removed from favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-        //                          plain: true
-        //                      });
-        //                      $timeout(function () {
-        //                          xyz.close();
-        //                      }, 3000);
-        //                  }
-        //              })
-        //          }
-        //      } else {
-        //          var xyz = ngDialog.open({
-        //              template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-        //              plain: true
-        //          });
-        //          $timeout(function () {
-        //              xyz.close();
-        //          }, 3000)
-        //      }
+    }
+
+    $scope.addToCart = function(art) {
+        dataNextPre.addToCart(art);
     }
 
 });

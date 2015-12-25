@@ -609,6 +609,42 @@ var formvalidation = function(allvalidation) {
     return isvalid2;
 };
 
+firstapp.filter('addhighlight', function() {
+    return function(str, searchkey) {
+        if (!str) {
+            return str;
+        }
+        if (!searchkey) {
+            return str;
+        }
+        var newstr = str.toLowerCase();
+        var smallSearchkey = searchkey.toLowerCase();
+        var num = 0;
+        var check = false;
+        var string2 = "";
+        if (smallSearchkey && smallSearchkey != "") {
+            var split = newstr.split(" ");
+            _.each(split, function(n) {
+                var subst = n.substr(0, searchkey.length);
+                var subst2 = n.substr(searchkey.length);
+                var abc = "";
+                if (smallSearchkey == subst) {
+                    check = true;
+                    abc = "<span class='ui-select-highlight'>" + searchkey + "</span>" + subst2;
+                } else {
+                    abc = n + " ";
+                }
+                string2 += abc + " ";
+            })
+        }
+        if (check) {
+            return string2;
+        } else {
+            return str;
+        }
+    }
+})
+
 
 var clearFields = function(allvalidation) {
     var isvalid2 = true;

@@ -69,7 +69,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail.artwork">
                 <div class="artist-details">
-                    <a ng-click="goToDetail(artistdetails._id);">
+                    <a ng-click="goToDetail(artistdetails);">
                         <div class="image-holders" fixit>
                             <img class="fix-img" ng-src='{{artistdetails.image[0]|uploadthumbnail}}'>
                         </div>

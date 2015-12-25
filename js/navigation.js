@@ -404,23 +404,27 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: data
             }).success(callback);
         },
-        userbytype: function(searchtext, callback) {
+        userbytype: function(searchtext, n, callback) {
             $http({
                 url: adminurl + "user/userbytype",
                 method: "POST",
                 data: {
                     "type": searchtext
                 }
-            }).success(callback);
+            }).success(function(data, status) {
+                callback(data, status, n);
+            });
         },
-        getAllArtistByAccess: function(callback) {
+        getAllArtistByAccess: function(n, callback) {
             $http({
                 url: adminurl + "user/findbyaccess",
                 method: "POST",
                 data: {
                     "accesslevel": "artist"
                 }
-            }).success(callback);
+            }).success(function(data, status) {
+                callback(data, status, n);
+            });
         },
         getArtworkbySearch: function(pagedata, callback) {
             $http({
@@ -440,14 +444,16 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 method: "POST"
             }).success(callback)
         },
-        getSearchDrop: function(search, callback) {
+        getSearchDrop: function(search, n, callback) {
             $http({
                 url: adminurl + "artwork/searchdrop",
                 method: "POST",
                 data: {
                     "search": search
                 }
-            }).success(callback)
+            }).success(function(data) {
+                callback(data, n);
+            })
         },
         nextPrev: function(srno, type, callback) {
             $http({
