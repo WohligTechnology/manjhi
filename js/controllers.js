@@ -2,7 +2,7 @@ var dataNextPre = {};
 var userProfile = {};
 var uploadres = [];
 var dollarPrice = '';
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngTagsInput', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
 
 //.controller('AppCtrl')
 .controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams) {
@@ -334,18 +334,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
             $scope.change.search = search;
-            NavigationService.getAllArtistDrop($scope.change, function(data) {
-                console.log(data);
-                if (data && data.value != false) {
-                    $scope.allartist = data;
-                    $scope.allartist.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
-                } else {
-                    $scope.allartist = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.getAllArtistDrop($scope.change, function(data) {
+                    console.log(data);
+                    if (data && data.value != false) {
+                        $scope.allartist = data;
+                        $scope.allartist.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allartist = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getallartist();
         }
@@ -355,17 +357,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
             $scope.change.search = search;
-            NavigationService.getallmedium($scope.change, function(data) {
-                if (data && data.value != false) {
-                    $scope.allmedium = data;
-                    $scope.allmedium.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
-                } else {
-                    $scope.allmedium = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.getallmedium($scope.change, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allmedium = data;
+                        $scope.allmedium.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allmedium = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getmedium();
         }
@@ -375,39 +379,45 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.getColorDropdown = function(search) {
         if (search.length >= 1) {
-            NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
-                if (data && data.value != false) {
-                    $scope.allColor = data;
-                } else {
-                    $scope.allColor = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allColor = data;
+                    } else {
+                        $scope.allColor = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getClr();
         }
     }
     $scope.getStyleDropdown = function(search) {
         if (search.length >= 1) {
-            NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
-                if (data && data.value != false) {
-                    $scope.allStyle = data;
-                } else {
-                    $scope.allStyle = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allStyle = data;
+                    } else {
+                        $scope.allStyle = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getStl();
         }
     }
     $scope.getElementDropdown = function(search) {
         if (search.length >= 1) {
-            NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
-                if (data && data.value != false) {
-                    $scope.allElement = data;
-                } else {
-                    $scope.allElement = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allElement = data;
+                    } else {
+                        $scope.allElement = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getElm();
         }
@@ -415,7 +425,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $state) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("favorite");
     $scope.menutitle = NavigationService.makeactive("Favorite");
@@ -440,6 +450,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     });
                     getFavorite($scope.allfavourites)
                 } else {
+                    cfpLoadingBar.complete();
                     $scope.noFavs = true;
                 }
             })
@@ -458,6 +469,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.addToCart = function(art) {
         dataNextPre.addToCart(art);
+    }
+
+    $scope.goToDetail = function(artwork) {
+        console.log(artwork);
+        if (artwork.type == "Sculptures") {
+            //          $location.url("/sculpture/" + artwork._id);
+            $state.go('sculpture', {
+                artid: artwork._id
+            });
+        } else {
+            //          $location.url("/artwork/detail/" + artwork._id);
+            $state.go('detail', {
+                artid: artwork._id
+            });
+        }
     }
 
 })
@@ -680,39 +706,45 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.getColorDropdown = function(search) {
         if (search.length >= 1) {
-            NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
-                if (data && data.value != false) {
-                    $scope.allColor = data;
-                } else {
-                    $scope.allColor = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allColor = data;
+                    } else {
+                        $scope.allColor = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getClr();
         }
     }
     $scope.getStyleDropdown = function(search) {
         if (search.length >= 1) {
-            NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
-                if (data && data.value != false) {
-                    $scope.allStyle = data;
-                } else {
-                    $scope.allStyle = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allStyle = data;
+                    } else {
+                        $scope.allStyle = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getStl();
         }
     }
     $scope.getElementDropdown = function(search) {
         if (search.length >= 1) {
-            NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
-                if (data && data.value != false) {
-                    $scope.allElement = data;
-                } else {
-                    $scope.allElement = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allElement = data;
+                    } else {
+                        $scope.allElement = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getElm();
         }
@@ -784,17 +816,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
             $scope.change.search = search;
-            NavigationService.getAllArtistDrop($scope.change, function(data) {
-                if (data && data.value != false) {
-                    $scope.allartist = data;
-                    $scope.allartist.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
-                } else {
-                    $scope.allartist = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.getAllArtistDrop($scope.change, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allartist = data;
+                        $scope.allartist.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allartist = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getallartist();
         }
@@ -805,17 +839,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
             $scope.change.search = search;
-            NavigationService.getallmedium($scope.change, function(data) {
-                if (data && data.value != false) {
-                    $scope.allmedium = data;
-                    $scope.allmedium.unshift({
-                        "_id": "0",
-                        name: ""
-                    });
-                } else {
-                    $scope.allmedium = [];
-                }
-            });
+            $timeout(function() {
+                NavigationService.getallmedium($scope.change, function(data) {
+                    if (data && data.value != false) {
+                        $scope.allmedium = data;
+                        $scope.allmedium.unshift({
+                            "_id": "0",
+                            name: ""
+                        });
+                    } else {
+                        $scope.allmedium = [];
+                    }
+                });
+            }, 1000);
         } else {
             $scope.getmedium();
         }
@@ -1566,6 +1602,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 console.log(artistdata);
                 $.jStorage.set("reachout", artistdata);
                 dataNextPre.reachout = artistdata;
+                $scope.artistdetail = artistdata;
                 $scope.allartworks = artistdata;
                 _.each(artistdata.artwork, function(n) {
                     if (n._id != data[0].artwork._id) {
@@ -1596,13 +1633,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.artPrev = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
-            $scope.artistDetailImg = data;
+            // $scope.artistDetailImg = data;
+            $state.go("detail", {
+                "artid": data.artwork._id
+            });
         })
     }
 
     $scope.artNext = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
-            $scope.artistDetailImg = data;
+            // $scope.artistDetailImg = data;
+            $state.go("detail", {
+                "artid": data.artwork._id
+            });
         })
     }
 
@@ -1656,6 +1699,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 console.log(artistdata);
                 $.jStorage.set("reachout", artistdata);
                 dataNextPre.reachout = artistdata;
+                $scope.artistdetail = artistdata;
                 $scope.allartworks = artistdata;
                 _.each(artistdata.artwork, function(n) {
                     if (n._id != data[0].artwork._id) {
@@ -1861,16 +1905,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, $state) {
+.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, $state, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("artistdetail")
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
+    cfpLoadingBar.start();
     NavigationService.getoneartist($stateParams.artistid, function(data, status) {
         $.jStorage.set("reachout", data);
         $scope.artistdetail = data
         dataNextPre.reachout = data;
+        cfpLoadingBar.complete();
     })
 
     NavigationService.getuserprofile(function(data) {
@@ -2254,14 +2300,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.reachOutForm.artist = dataNextPre.reachout.name;
                 $scope.reachOutInner(dataNextPre.reachout._id)
             }
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/reach-out.html'
+            });
         } else {
-
-            $scope.reachOutInner($scope.allartist[0]._id);
+            NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+                if (n == countcall) {
+                    if (data && data.value != false) {
+                        $scope.allartist = _.uniq(data, '_id');
+                        $scope.reachOutInner($scope.allartist[0]._id);
+                    } else {
+                        $scope.allartist = [];
+                    }
+                    ngDialog.open({
+                        scope: $scope,
+                        template: 'views/content/reach-out.html'
+                    });
+                } else {
+                    $scope.allartist = [];
+                }
+                //      console.log($scope.allartist);
+                //      $scope.reachOutForm.artist = $scope.allartist[0].name;
+            });
         }
-        ngDialog.open({
-            scope: $scope,
-            template: 'views/content/reach-out.html'
-        });
     }
 
     //  $scope.art.search = $.jStorage.get("searchObj").search;
@@ -2284,18 +2346,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
     var countcall = 0;
     $scope.onSearchChange = function(search) {
-        NavigationService.getSearchDrop(search, ++countcall, function(data, n) {
-            if (n == countcall) {
-                if (data.value == false) {
-                    $scope.showDropDown = true;
-                } else {
-                    $scope.showDropDown = false;
-                    $scope.searchData = data;
-                }
-            } else {
-                $scope.showDropDown = true;
-            }
-        })
+        if (search != undefined && search != '') {
+            $timeout(function() {
+                NavigationService.getSearchDrop(search, ++countcall, function(data, n) {
+                    if (n == countcall) {
+                        if (data.value == false) {
+                            $scope.showDropDown = true;
+                        } else {
+                            $scope.showDropDown = false;
+                            $scope.searchData = data;
+                        }
+                    } else {
+                        $scope.showDropDown = true;
+                    }
+                })
+            }, 1000);
+        } else {
+            $scope.searchData = '';
+        }
     }
 
     // reach out submit
@@ -2555,6 +2623,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.getuserprofile(function(data) {
             if (data.id) {
                 userProfile = data;
+                $scope.user = data;
                 NavigationService.getMyFavourites(data.id, function(favorite) {
                     console.log(favorite);
                     if (favorite.value != false) {

@@ -12,7 +12,7 @@
         <div class="alert alert-warning" ng-show="showPass">
           <strong>Warning!</strong> Don't use same password. Please use different password.
         </div>
-        <h4>My Account</h4>
+        <h4>My Account <span class="pull-right regular-link"><a href="#/create-artwork"><i class="fa fa-upload"></i> Upload Artwork</a></span></h4>
       </div>
       <div class="col-md-2">
         <div class="info-cont pull-right">
@@ -22,9 +22,7 @@
             <li class="cat-list cpointer" ng-class="chngadd" ng-click="changeadress()">My Address Book</li>
             <li class="cat-list cpointer" ng-class="myorders" ng-click="changemyorders()">My Orders</li>
             <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Trace Your Order</li>
-            <li class="cat-list cpointer"><a href="#/favorite">My Favorites</a>
-              <span>({{totalfav}})</span>
-            </li>
+            <li class="cat-list cpointer"><a href="#/favorite">My Favorites <span>({{totalfav}})</span></a></li>
             <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()">Banking Details</li>
           </ul>
         </div>
@@ -107,25 +105,6 @@
         </div>
       </div> -->
 
-      <div class="col-md-4" ng-if="chngpass=='bolds'">
-        <form ng-submit="changepassword()">
-          <div class="chngpswd-cont">
-            <div class="form-group">
-              <div class="input-id">
-                <input class="form-control" ng-model="user.password" placeholder="Old Password" required type="password">
-              </div>
-              <div class="input-id">
-                <input class="form-control" ng-model="user.editpassword" placeholder="New Password" required type="password">
-              </div>
-              <div class="input-id">
-                <input class="form-control" ng-model="user.cnfrmpassword" placeholder="Confirm Password" required type="password">
-                <span ng-show="ismatch" style="color:red;">Password did not match!!</span>
-              </div>
-              <button class="btn btn-sucesses" type="submit">Save</button>
-            </div>
-          </div>
-        </form>
-      </div>
       <div class="col-md-4" ng-if="chngadd=='bolds'">
         <div class="chngpswd-cont">
           <div class="addcat">

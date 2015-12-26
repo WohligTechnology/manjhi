@@ -1,4 +1,4 @@
-<div class="create-user cont-create">
+<div class="create-user cont-create compact-form">
   <div class="container">
     <div class="page">
       <h2 class="title">
@@ -84,7 +84,7 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Mobile Number</label>
                       <div class="tel-box">
-                        <input type="tel" class="form-control tel-country" ng-model="user,mob" placeholder="Country Code" value="+91">
+                        <input type="tel" class="form-control tel-country" ng-model="user.mob" placeholder="Country Code" value="+91">
                         <input type="tel" class="form-control tel-number" ng-model="user.mob" placeholder="Mobile Number">
                       </div>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Work Number</label>
                       <div class="tel-box">
-                        <input type="tel" class="form-control tel-country" ng-model="user,mob" placeholder="Country Code" value="+91">
+                        <input type="tel" class="form-control tel-country" ng-model="user.mob" placeholder="Country Code" value="+91">
                         <input type="tel" class="form-control tel-city" ng-model="user.mob" placeholder="City Code">
                         <input type="tel" class="form-control tel-numbers" ng-model="user.work" placeholder="Work Number">
                       </div>
@@ -103,7 +103,7 @@
                     <div class="form-group">
                       <label for="exampleInputEmail1">Residence Number</label>
                       <div class="tel-box">
-                        <input type="tel" class="form-control tel-country" ng-model="user,mob" placeholder="Country Code" value="+91">
+                        <input type="tel" class="form-control tel-country" ng-model="user.mob" placeholder="Country Code" value="+91">
                         <input type="tel" class="form-control tel-city" ng-model="user.mob" placeholder="City Code">
                         <input type="tel" class="form-control tel-numbers" ng-model="user.home" placeholder="Residence Number">
                       </div>
@@ -138,8 +138,6 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Residence</label>
-                    </div>
-                    <div class="form-group">
                       <div class="tel-box">
                         <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
                         <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required>
@@ -170,8 +168,6 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Studio</label>
-                    </div>
-                    <div class="form-group">
                       <div class="tel-box">
                         <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
                         <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required>
@@ -202,8 +198,6 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Any Other</label>
-                    </div>
-                    <div class="form-group">
                       <div class="tel-box">
                         <input type="text" class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required>
                         <input type="text" class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required>
@@ -568,9 +562,9 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Per Square feet gallery price of representative body of works
+                      <label for="exampleInputEmail1">Per square feet Gallery Price of representative body of works
                       </label>
-                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.pricing" placeholder="Per Square feet gallery price of representative body of works">
+                      <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.pricing" placeholder="Per square feet Gallery Price of representative body of works">
                     </div>
                   </div>
                 </div>
