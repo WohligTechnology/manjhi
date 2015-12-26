@@ -58,6 +58,9 @@ a {
   text-decoration: none !important;
   .transition(all 300ms ease);
 }
+i {
+  .transition(all 300ms ease);
+}
 .flexslider {
   margin: 0;
 }
@@ -699,8 +702,8 @@ h4 {
   right: 0 !important;
 }
 .list-cart {
-  div.megamenu {
-    width: 280px;
+  .megamenu {
+    width: 350px;
   }
 }
 .artist {
@@ -1492,7 +1495,7 @@ ul.artist-crisp.pad-less {
 .margin-no {
   margin: 0;
 }
-div.megamenu {
+.megamenu {
   position: absolute;
   width: auto;
   z-index: 9999;
@@ -1500,8 +1503,8 @@ div.megamenu {
   padding: 10px 20px;
   margin: 0 auto;
   top: 32px;
-  left: 50%;
-  .translateX(-50%);
+  right: 0;
+  // .translateX(-50%);
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   -webkit-background-clip: padding-box;
@@ -1809,7 +1812,7 @@ a.forgetlink {
         font-size: 20px;
         cursor: pointer;
         &:hover {
-          color: darken(@color3, 10%);
+          color: @color3;
         }
       }
     }
@@ -2153,6 +2156,11 @@ a {
   .btn-comt {
     margin-top: 5px;
   }
+}.scroll-cart {
+    max-height: 200px;
+    overflow-y: scroll;
+    border-bottom: 1px solid @abbr-border-color;
+    margin-bottom: 10px;
 }
 .drop-cart {
   ul {
@@ -2160,9 +2168,15 @@ a {
     list-style: none;
     padding: 0;
     min-height: 100px;
-    border-bottom: 1px solid @abbr-border-color;
+    + ul {
+      border-top: 1px solid @abbr-border-color;
+
+    }
     li.cart-img {
-      width: 40% !important;
+      width: 90px !important;
+      height: 90px;
+      margin-right: 15px;
+      padding: 10px 0;
     }
     li {
       color: #000!important;
@@ -2170,14 +2184,19 @@ a {
       float: left;
       p {
         margin: 0;
+        font-size: 12px;
       }
       h5 {
-        margin: 5px 0 2px;
+        margin: 10px 0 5px;
+        text-transform: uppercase;
+        font-size: 11px;
+        font-weight: bold;
       }
       img {
-        width: 90px;
-        padding: 5px;
-        height: 90px;
+        max-width: 100%;
+        padding: 0;
+        height: auto;
+        max-height: 100%;
       }
     }
   }
