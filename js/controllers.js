@@ -1633,13 +1633,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.artPrev = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
-            $scope.artistDetailImg = data;
+            // $scope.artistDetailImg = data;
+            $state.go("detail", {
+                "artid": data.artwork._id
+            });
         })
     }
 
     $scope.artNext = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
-            $scope.artistDetailImg = data;
+            // $scope.artistDetailImg = data;
+            $state.go("detail", {
+                "artid": data.artwork._id
+            });
         })
     }
 
@@ -2340,7 +2346,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
     var countcall = 0;
     $scope.onSearchChange = function(search) {
-        if (search != undefined) {
+        if (search != undefined && search != '') {
             $timeout(function() {
                 NavigationService.getSearchDrop(search, ++countcall, function(data, n) {
                     if (n == countcall) {
