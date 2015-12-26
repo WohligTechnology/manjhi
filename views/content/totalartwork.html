@@ -16,31 +16,11 @@
                     </ul>
                 </div>
                 <div class="col-md-5 full-mega">
-                    <ul class="artist-filter" ng-click="showfilter(0)" ng-mouseleave="hidefilter(0)">
-                        <li class=""><i class="fa fa-filter"></i>
-                        </li>
-                        <li class=""> FILTER BY</li>
-                        <li class="">
-                            <a href="">ARTIST</a>
-                        </li>
-                        <li class="">
-                            /</li>
-                        <li class="">
-                            <a href="">PRICE</a>
-                        </li>
-                        <li class="">
-                            /</li>
-                        <li class="">
-                            <a href=""> SIZE</a>
-                        </li>
-                        <li class="">
-                            /</li>
-                        <li class="">
-                            <a href=""> MEDIUM</a>
-                        </li>
-                        <div class="megamenu" ng-include src="filterval[0]" ng-show="filters[0]">
-                        </div>
-                    </ul>
+                  <div class="text-uppercase filter-padding" ng-click="showfilter(0)" ng-mouseleave="hidefilter(0)">
+                    <i class="fa fa-filter"></i> Filter by Artist / Price / Size / Medium
+                    <div class="megamenu" ng-include src="filterval[0]" ng-show="filters[0]">
+                  </div>
+                  </div>
                 </div>
                 <div class="col-md-2">
                     <div class="sort-by" ng-click="showfilter(1)" ng-mouseleave="hidefilter(1)">
