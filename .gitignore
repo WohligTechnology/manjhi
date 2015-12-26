@@ -4,3 +4,4 @@ w/
 appengine/
 production/
 production.zip
+*.zip
