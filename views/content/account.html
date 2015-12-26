@@ -107,25 +107,6 @@
         </div>
       </div> -->
 
-      <div class="col-md-4" ng-if="chngpass=='bolds'">
-        <form ng-submit="changepassword()">
-          <div class="chngpswd-cont">
-            <div class="form-group">
-              <div class="input-id">
-                <input class="form-control" ng-model="user.password" placeholder="Old Password" required type="password">
-              </div>
-              <div class="input-id">
-                <input class="form-control" ng-model="user.editpassword" placeholder="New Password" required type="password">
-              </div>
-              <div class="input-id">
-                <input class="form-control" ng-model="user.cnfrmpassword" placeholder="Confirm Password" required type="password">
-                <span ng-show="ismatch" style="color:red;">Password did not match!!</span>
-              </div>
-              <button class="btn btn-sucesses" type="submit">Save</button>
-            </div>
-          </div>
-        </form>
-      </div>
       <div class="col-md-4" ng-if="chngadd=='bolds'">
         <div class="chngpswd-cont">
           <div class="addcat">

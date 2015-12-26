@@ -2617,6 +2617,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.getuserprofile(function(data) {
             if (data.id) {
                 userProfile = data;
+                $scope.user = data;
                 NavigationService.getMyFavourites(data.id, function(favorite) {
                     console.log(favorite);
                     if (favorite.value != false) {
