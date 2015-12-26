@@ -2279,14 +2279,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.reachOutForm.artist = dataNextPre.reachout.name;
                 $scope.reachOutInner(dataNextPre.reachout._id)
             }
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/reach-out.html'
+            });
         } else {
-
-            $scope.reachOutInner($scope.allartist[0]._id);
+            NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+                if (n == countcall) {
+                    if (data && data.value != false) {
+                        $scope.allartist = _.uniq(data, '_id');
+                        $scope.reachOutInner($scope.allartist[0]._id);
+                    } else {
+                        $scope.allartist = [];
+                    }
+                    ngDialog.open({
+                        scope: $scope,
+                        template: 'views/content/reach-out.html'
+                    });
+                } else {
+                    $scope.allartist = [];
+                }
+                //      console.log($scope.allartist);
+                //      $scope.reachOutForm.artist = $scope.allartist[0].name;
+            });
         }
-        ngDialog.open({
-            scope: $scope,
-            template: 'views/content/reach-out.html'
-        });
     }
 
     //  $scope.art.search = $.jStorage.get("searchObj").search;
