@@ -767,6 +767,9 @@ h4 {
       li {
         display: inline-block;
         position: relative;
+        text-transform: uppercase !important;
+        width: 100%;
+
         a {
           color: @color-base;
           padding: 8px 4px;
@@ -2133,6 +2136,8 @@ a {
 .sort-by {
   padding: 6px 0 20px;
   cursor: pointer;
+  text-align: center;
+  
   i {
     font-size: 12px;
   }
@@ -2141,9 +2146,9 @@ a {
     .appearance(none);
     background: #fff;
   }
-  div.megamenu {
+  .megamenu {
     top: 25px;
-    left: 25%;
+    right: 0;
     min-width: 170px;
     text-align: center;
   }
@@ -2554,6 +2559,9 @@ img.fancybox-image {
     }
   }
 }
+.ui-select-container {
+    overflow: hidden;
+}
 .mega-cont {
   label.above {
     display: block;
@@ -2688,6 +2696,10 @@ h4 {
     a {
       color: @color2;
     }
+}
+.filter-padding {
+    padding: 7px 0 15px;
+    cursor: pointer;
 }
 /*Mobile Less*/
 //@import "other.less";
