@@ -425,7 +425,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $state) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("favorite");
     $scope.menutitle = NavigationService.makeactive("Favorite");
@@ -469,6 +469,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.addToCart = function(art) {
         dataNextPre.addToCart(art);
+    }
+
+    $scope.goToDetail = function(artwork) {
+        console.log(artwork);
+        if (artwork.type == "Sculptures") {
+            //          $location.url("/sculpture/" + artwork._id);
+            $state.go('sculpture', {
+                artid: artwork._id
+            });
+        } else {
+            //          $location.url("/artwork/detail/" + artwork._id);
+            $state.go('detail', {
+                artid: artwork._id
+            });
+        }
     }
 
 })
