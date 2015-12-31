@@ -12,7 +12,11 @@
         <div class="alert alert-warning" ng-show="showPass">
           <strong>Warning!</strong> Don't use same password. Please use different password.
         </div>
-        <h4>My Account <span class="pull-right regular-link"><a href="#/create-artwork"><i class="fa fa-upload"></i> Upload Artwork</a></span></h4>
+        <h4>My Account
+          <span class="pull-right regular-link">
+            <!-- <a href="#/create-artwork"><i class="fa fa-upload"></i> Upload Artwork</a> -->
+          </span>
+        </h4>
       </div>
       <div class="col-md-2">
         <div class="info-cont pull-right">
@@ -24,6 +28,7 @@
             <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Trace Your Order</li>
             <li class="cat-list cpointer"><a href="#/favorite">My Favorites <span>({{totalfav}})</span></a></li>
             <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()">Banking Details</li>
+            <li class="cat-list cpointer"> <a href="#/create-artwork">Upload Artwork</a></li>
           </ul>
         </div>
       </div>
