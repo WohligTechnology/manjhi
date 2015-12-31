@@ -1,33 +1,58 @@
 <div class="border-top"></div>
 <div class="container ">
-    <div class="eventpad">
-        <div class="row">
-            <div class="eventdetail">
-                <a class="font-color3 pull-right event-invite" ui-sref="invite({img:eventDetail.invitation})">invite</a>
-                <h3 class="font-color3 home-header">{{eventDetail.name}}</h3>
-                <p><span>Event Venue</span> : {{eventDetail.venue}}</p>
-                <p><span>Period of show </span> : {{eventDetail.startdate|date:'EEEE, MMMM d, y'}} - {{eventDetail.enddate|date:'EEEE, MMMM d, y'}}</p>
-                <p><span>Event Time</span> : {{eventDetail.starttime}} to {{eventDetail.endtime}}</p>
+   <div class="eventpad">
+      <div class="row">
+         <div class="eventdetail">
+            <a class="font-color3 pull-right event-invite" ui-sref="invite({img:eventDetail.invitation})">invite</a>
+            <h3 class="font-color3 home-header">{{eventDetail.name}}</h3>
+            <p>
+               <span>Event Venue</span> : {{eventDetail.venue}}</p>
+            <p>
+               <span>Period of show </span> : {{eventDetail.startdate|date:'EEEE, MMMM d, y'}} - {{eventDetail.enddate|date:'EEEE, MMMM d, y'}}</p>
+            <p>
+               <span>Event Time</span> : {{eventDetail.starttime}} to {{eventDetail.endtime}}</p>
+         </div>
+      </div>
+      <div class="row">
+         <div class=" details">
+            <span>Details :</span>
+            <p ng-bind-html="eventDetail.details"></p </div>
+         </div>
+         <div class="row-flex event-descp">
+            <div class="col-flex" ng-if="eventDetail.desc1">
+               <div class="pad10">
+                  <p class="text-justify" ng-bind-html="eventDetail.desc1 | rawHtml"></p>
+               </div>
             </div>
-        </div>
-        <div class="row">
-            <div class=" details">
-                <span>Details :</span>
-                <p ng-bind-html="eventDetail.desc1 | rawHtml"></p>
-                <p ng-bind-html="eventDetail.desc2 | rawHtml"></p>
-                <p ng-bind-html="eventDetail.desc3 | rawHtml"></p>
-                <p ng-bind-html="eventDetail.desc4 | rawHtml"></p>
-                <p ng-bind-html="eventDetail.desc5 | rawHtml"></p>
+            <div class="col-flex" ng-if="eventDetail.desc2">
+               <div class="pad10">
+                  <p class="text-justify" ng-bind-html="eventDetail.desc2 | rawHtml"></p>
+               </div>
             </div>
-        </div>
-        <div class="row">
+            <div class="col-flex" ng-if="eventDetail.desc3">
+               <div class="pad10">
+                  <p class="text-justify" ng-bind-html="eventDetail.desc3 | rawHtml"></p>
+               </div>
+            </div>
+            <div class="col-flex" ng-if="eventDetail.desc4">
+               <div class="pad10">
+                  <p class="text-justify" ng-bind-html="eventDetail.desc4 | rawHtml"></p>
+               </div>
+            </div>
+            <div class="col-flex" ng-if="eventDetail.desc5">
+               <div class="pad10">
+                  <p class="text-justify" ng-bind-html="eventDetail.desc5 | rawHtml"></p>
+               </div>
+            </div>
+         </div>
+         <div class="row">
             <div class="eventgallery">
-                <div class="col-md-3" ng-repeat="gal in eventDetail.photos">
-                    <div class="event-pic" fixit>
-                        <img class="fix-img" ng-src="{{gal|uploadpath}}" ng-click="openModal(gal);">
-                    </div>
-                </div>
+               <div class="col-md-3" ng-repeat="gal in eventDetail.photos">
+                  <div class="event-pic" fixit>
+                     <img class="fix-img" ng-src="{{gal|uploadpath}}" ng-click="openModal(gal);">
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-</div>
+         </div>
+      </div>
+   </div>
