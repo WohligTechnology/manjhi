@@ -1,5 +1,5 @@
 // var adminurl = "http://vignesh.com:82/";
-// var adminurl = "http://192.168.0.121:82/";
+// var adminurl = "http://192.168.0.125:82/";
 // var adminurl = "http://146.148.34.49/";
 var adminurl = "http://smartsnap.in/";
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
@@ -369,10 +369,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         getupcomingevents: function(callback) {
             $http({
                 url: adminurl + "event/findevents",
-                method: "POST",
-                data: {
-                    "year": "upcoming"
-                }
+                method: "POST"
             }).success(callback);
         },
         pressFind: function(callback) {
