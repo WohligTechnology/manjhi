@@ -3602,7 +3602,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
 })
-
+.controller('TermConditionCtrl', function($scope, TemplateService, NavigationService) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("termcondition");
+    $scope.menutitle = NavigationService.makeactive("Term Condition");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+  })
 .controller('SearchResultsCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, ngDialog, $timeout, $state) {
     $scope.template = TemplateService.changecontent("searchresults");
     $scope.menutitle = NavigationService.makeactive("Search Results");

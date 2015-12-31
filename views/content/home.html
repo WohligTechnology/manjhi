@@ -302,17 +302,17 @@
                 <div class="col-md-9">
                     <div class="some-image">
                         <div class="row-flex row-unflex image-box text-center">
-                            <div class="col-flex" fancybox-box href="{{upcomingEvent.invitation|uploadpath}}">
+                            <div class="col-flex pointer" fancybox-box href="{{upcomingEvent.invitation|uploadpath}}">
                                 <h6>INVITE</h6>
                                 <img alt="" class="img-responsive" ng-src="{{upcomingEvent.invitation|uploadthumbnail}}">
                             </div>
-                            <div class="col-flex">
+                            <div class="col-flex pointer">
                                 <h6>CATALOGUE</h6>
                                 <a href="{{upcomingEvent.catalogue|uploadpath}}" target="_blank">
                                     <img alt="" class="img-responsive" src="img/vc.jpg">
                                 </a>
                             </div>
-                            <div class="col-flex" fancybox-box href="{{upcomingEvent.photos[0]|uploadpath}}">
+                            <div class="col-flex pointer" fancybox-box href="{{upcomingEvent.photos[0]|uploadpath}}">
                                 <h6>PHOTO</h6>
                                 <img alt="" class="img-responsive" ng-src="{{upcomingEvent.photos[0]|uploadthumbnail}}">
                             </div>
@@ -320,7 +320,7 @@
                                 <h6>PRESS</h6>
                                 <img alt="" class="img-responsive" ng-src="{{upcomingEvent.pressphoto|uploadthumbnail}}">
                             </div>
-                            <div class="col-flex fancybox.iframe" ng-if="upcomingEvent.videos" fancybox-box ng-href="http://www.youtube.com/embed/{{upcomingEvent.videos}}?autoplay=1">
+                            <div class="col-flex pointer fancybox.iframe" ng-if="upcomingEvent.videos" fancybox-box ng-href="http://www.youtube.com/embed/{{upcomingEvent.videos}}?autoplay=1">
                                 <h6>VIDEO</h6>
                                 <img ng-src="http://img.youtube.com/vi/{{upcomingEvent.videos}}/default.jpg" />
                             </div>
@@ -401,9 +401,9 @@
                                 <br>Vile Parle (W)
                                 <br>Mumbai - 400 049
                             </p>
-                            <button class="btn style1-bg btn-block">
+                            <a class="btn style1-bg btn-block" href="#/termcondition">
                               Become a Seller
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
