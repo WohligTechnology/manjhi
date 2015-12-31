@@ -2292,36 +2292,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.reachOut = function() {
         var reachOutArtist = window.location.hash.split('l/');
-        if (reachOutArtist[0] == "#/artist/detai" || reachOutArtist[0] == "#/artwork/detai") {
+        if (reachOutArtist[0] == "#/artist/detai" || reachOutArtist[0] == "#/artwork/detai" || reachOutArtist[0].indexOf("sculpture") != -1) {
             $scope.reachOutArtistId = reachOutArtist[1];
             $scope.artworkInterested = dataNextPre.reachout.artwork;
-            $scope.reachOutForm.srno = $scope.artworkInterested[0].srno;
+            if (reachOutArtist[0] != "#/artist/detai")
+                $scope.reachOutForm.srno = $scope.artworkInterested[0].srno;
             if (dataNextPre.reachout) {
                 $scope.reachOutForm.artist = dataNextPre.reachout.name;
-                $scope.reachOutInner(dataNextPre.reachout._id)
+                if (reachOutArtist[0] != "#/artist/detai")
+                    $scope.reachOutInner(dataNextPre.reachout._id)
             }
             ngDialog.open({
                 scope: $scope,
                 template: 'views/content/reach-out.html'
             });
         } else {
-            NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
-                if (n == countcall) {
-                    if (data && data.value != false) {
-                        $scope.allartist = _.uniq(data, '_id');
-                        $scope.reachOutInner($scope.allartist[0]._id);
-                    } else {
-                        $scope.allartist = [];
-                    }
-                    ngDialog.open({
-                        scope: $scope,
-                        template: 'views/content/reach-out.html'
-                    });
-                } else {
-                    $scope.allartist = [];
-                }
-                //      console.log($scope.allartist);
-                //      $scope.reachOutForm.artist = $scope.allartist[0].name;
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/reach-out.html'
             });
         }
     }
@@ -2376,18 +2364,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }, {
         field: $scope.reachOutForm.action,
         validation: ""
-    }, {
-        field: $scope.reachOutForm.address,
-        validation: ""
-    }, {
-        field: $scope.reachOutForm.number,
-        validation: ""
-    }, {
-        field: $scope.reachOutForm.person,
-        validation: ""
-    }, {
-        field: $scope.reachOutForm.remarks,
-        validation: ""
     }];
     $scope.submitReachOut = function() {
         $scope.allvalidation = [{
@@ -2398,18 +2374,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             validation: ""
         }, {
             field: $scope.reachOutForm.action,
-            validation: ""
-        }, {
-            field: $scope.reachOutForm.address,
-            validation: ""
-        }, {
-            field: $scope.reachOutForm.number,
-            validation: ""
-        }, {
-            field: $scope.reachOutForm.person,
-            validation: ""
-        }, {
-            field: $scope.reachOutForm.remarks,
             validation: ""
         }];
         var check = formvalidation($scope.allvalidation);
