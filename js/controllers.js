@@ -3587,85 +3587,119 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('FavoriteProductCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
-    $scope.template = TemplateService.changecontent("favorite-product");
-    $scope.menutitle = NavigationService.makeactive("Favorites");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
+        $scope.template = TemplateService.changecontent("favorite-product");
+        $scope.menutitle = NavigationService.makeactive("Favorites");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
 
-    NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
-        $scope.artistDetailImg = data[0];
-        console.log($scope.artistDetailImg);
-    });
+        NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
+            $scope.artistDetailImg = data[0];
+            console.log($scope.artistDetailImg);
+        });
 
-    $scope.addToCart = function(art) {
-        dataNextPre.addToCart(art);
-    }
+        $scope.addToCart = function(art) {
+            dataNextPre.addToCart(art);
+        }
 
-})
-.controller('TermConditionCtrl', function($scope, TemplateService, NavigationService) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("termcondition");
-    $scope.menutitle = NavigationService.makeactive("Term Condition");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-  })
-.controller('SearchResultsCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, ngDialog, $timeout, $state) {
-    $scope.template = TemplateService.changecontent("searchresults");
-    $scope.menutitle = NavigationService.makeactive("Search Results");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-    $scope.totalartcont = [];
+    })
+    .controller('TermConditionCtrl', function($scope, TemplateService, NavigationService) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("termcondition");
+        $scope.menutitle = NavigationService.makeactive("Term Condition");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
+    .controller('SearchResultsCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, ngDialog, $timeout, $state, cfpLoadingBar) {
+        $scope.template = TemplateService.changecontent("searchresults");
+        $scope.menutitle = NavigationService.makeactive("Search Results");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+        $scope.totalartcont = [];
+        var lastpage = 0;
+        if ($.jStorage.get("searchObj")) {
+            $scope.art = $.jStorage.get("searchObj");
+        }
 
-    if ($.jStorage.get("searchObj"))
-        $scope.art = $.jStorage.get("searchObj");
+        if ($.jStorage.get("searchResults")) {
+            $scope.artworks = $.jStorage.get("searchResults");
+            lastpage = $scope.artworks.totalpages;
+            _.each($scope.artworks.data, function(n) {
+                if (n.artwork) {
+                    _.each(n.artwork, function(m) {
+                        var item = {};
+                        item._id = n._id;
+                        item.name = n.name;
+                        item.artwork = m;
+                        $scope.totalartcont.push(item);
+                    })
+                }
+            })
+            $scope.totalartcont = _.uniq($scope.totalartcont, 'artwork._id');
+            console.log($scope.totalartcont);
+        }
 
-    if ($.jStorage.get("searchResults")) {
-        $scope.artworks = $.jStorage.get("searchResults");
-        _.each($scope.artworks.data, function(n) {
-            if (n.artwork) {
-                _.each(n.artwork, function(m) {
-                    var item = {};
-                    item._id = n._id;
-                    item.name = n.name;
-                    item.artwork = m;
-                    $scope.totalartcont.push(item);
+        $scope.getSearchedArt = function() {
+            console.log(lastpage);
+            if ($scope.art.search != '' && lastpage >= $scope.art.pagenumber) {
+                cfpLoadingBar.start();
+                NavigationService.getArtworkbySearch($scope.art, function(data) {
+                    console.log(data);
+                    if (data.value != false) {
+                        lastpage = data.totalpages;
+                        $scope.artworks = data;
+                        _.each($scope.artworks.data, function(n) {
+                            if (n.artwork) {
+                                _.each(n.artwork, function(m) {
+                                    var item = {};
+                                    item._id = n._id;
+                                    item.name = n.name;
+                                    item.artwork = m;
+                                    $scope.totalartcont.push(item);
+                                })
+                            }
+                        })
+                        $scope.totalartcont = _.uniq($scope.totalartcont, 'artwork._id');
+                    }
+                    cfpLoadingBar.complete();
                 })
             }
-        })
-        $scope.totalartcont = _.uniq($scope.totalartcont, 'artwork._id');
-        console.log($scope.totalartcont);
-    }
-
-    $scope.showDetails = function(oneuser) {
-        console.log(oneuser)
-        $scope.artistDetailImg = oneuser;
-        ngDialog.open({
-            scope: $scope,
-            template: 'views/content/quickview-imagedetail.html'
-        });
-    };
-
-    $scope.goToDetailPage = function(artwork) {
-        console.log(artwork);
-        if (artwork.type == "Sculptures") {
-            //          $location.url("/sculpture/" + artwork._id);
-            $state.go('sculpture', {
-                artid: artwork._id
-            });
-        } else {
-            //          $location.url("/artwork/detail/" + artwork._id);
-            $state.go('detail', {
-                artid: artwork._id
-            });
         }
-    }
 
-    $scope.makeFav = function(art) {
-        dataNextPre.favorite(art);
-    }
+        $scope.addMoreItems = function() {
+            $scope.art.pagenumber++;
+            $scope.getSearchedArt();
+        }
 
-    $scope.addToCart = function(art) {
-        dataNextPre.addToCart(art);
-    }
+        $scope.showDetails = function(oneuser) {
+            console.log(oneuser)
+            $scope.artistDetailImg = oneuser;
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/quickview-imagedetail.html'
+            });
+        };
 
-});
+        $scope.goToDetailPage = function(artwork) {
+            console.log(artwork);
+            if (artwork.type == "Sculptures") {
+                //          $location.url("/sculpture/" + artwork._id);
+                $state.go('sculpture', {
+                    artid: artwork._id
+                });
+            } else {
+                //          $location.url("/artwork/detail/" + artwork._id);
+                $state.go('detail', {
+                    artid: artwork._id
+                });
+            }
+        }
+
+        $scope.makeFav = function(art) {
+            dataNextPre.favorite(art);
+        }
+
+        $scope.addToCart = function(art) {
+            dataNextPre.addToCart(art);
+        }
+
+    });
