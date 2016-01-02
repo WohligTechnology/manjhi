@@ -27,12 +27,18 @@
               </a>
               <div class="artist-cont-detail-fav artist-cont-detail">
                 <p>
-                  <span ng-if="artistdetails.artwork.srno && artistdetails.artwork.srno!=''">
+                  <!-- <span ng-if="artistdetails.artwork.srno && artistdetails.artwork.srno!=''">
                     {{artistdetails.artwork.srno}}
                   </span>
                   <span ng-if="!artistdetails.artwork.srno || artistdetails.artwork.srno==''">
                     N/A
-                  </span>
+                  </span> -->
+                  <span ng-if="artistdetails.artwork.imageno && artistdetails.artwork.imageno.length>0">
+                          {{artistdetails.artwork.imageno[0]}}
+                      </span>
+                  <span ng-if="!artistdetails.artwork.imageno || artistdetails.artwork.imageno.length==0">
+                          N/A
+                      </span>
                   <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
                 </p>
                 <p>

@@ -24,7 +24,8 @@
                     </div>
                     <div class="artist-cont-detail">
                         <p>
-                            {{totalartconts.artwork.srno}}
+                            <!-- {{totalartconts.artwork.srno}} -->
+                            {{totalartconts.artwork.imageno[0]}}
                             <i class="{{totalartconts.heartClass = (totalartconts.artwork._id | showheart)}}" ng-click="makeFav(totalartconts);"></i>
                             <i class="fa fa-shopping-cart" ng-click="addToCart(totalartconts);"></i>
                         </p>

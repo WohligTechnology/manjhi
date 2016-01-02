@@ -76,10 +76,16 @@
                     </a>
                     <div class="artist-cont-detail">
                         <p>
-                            <span ng-if="artistdetails.srno && artistdetails.srno!=''">
+                            <!-- <span ng-if="artistdetails.srno && artistdetails.srno!=''">
                                     {{artistdetails.srno}}
                                 </span>
                             <span ng-if="!artistdetails.srno || artistdetails.srno==''">
+                                    N/A
+                                </span> -->
+                            <span ng-if="artistdetails.imageno && artistdetails.imageno.length>0">
+                                    {{artistdetails.imageno[0]}}
+                                </span>
+                            <span ng-if="!artistdetails.imageno || artistdetails.imageno.length==0">
                                     N/A
                                 </span>
                             <i class="{{artistdetails.heartClass = (artistdetails._id | showheart)}}" ng-click="addToFav(artistdetails);"></i>
