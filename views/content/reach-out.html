@@ -10,7 +10,7 @@
 								<input class="form-control" readonly type="email" ng-model="reachOutForm.to" ng-class="allvalidation[0].validation">
 							</div>
 							<div class="input-id">
-								<input class="form-control" ng-model="reachOutForm.from" placeholder="Your Email Id *" type="email" ng-class="allvalidation[1].validation">
+								<input class="form-control" ng-model="reachOutForm.from" placeholder="Your Email Address*" type="email" ng-class="allvalidation[1].validation">
 							</div>
 							<div class="input-id">
 								<input class="form-control" ng-model="reachOutForm.artist" placeholder="Artist Name" type="text">
@@ -35,7 +35,7 @@
 								</div> -->
 							</div>
 							<div class="input-id">
-								<h4>Action step{{reachOutForm.action}}</h4>
+								<h4>Action step {{reachOutForm.action}}</h4>
 								<div class="radio">
 									<label>
 										<input type="radio" name="action" ng-model="reachOutForm.action" value="1" checked="true" ng-class="allvalidation[2].validation"> Request for Price
@@ -67,7 +67,7 @@
 								<input class="form-control" placeholder="Contact Person" ng-model="reachOutForm.person" type="text">
 							</div>
 							<div class="input-id">
-								<textarea class="form-control" placeholder="Remarks/Comments" ng-model="reachOutForm.remarks" rows="5"></textarea>
+								<textarea class="form-control" placeholder="Remarks / Comments" ng-model="reachOutForm.remarks" rows="5"></textarea>
 							</div>
 							<button class="btn btn-sucesses" type="Submit" ng-click="submitReachOut()">Submit</button>
 							<button class="btn btn-primarys" ng-click="resetReachOut()">Reset</button>

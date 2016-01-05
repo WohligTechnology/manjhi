@@ -168,6 +168,9 @@ header.stickyheader {
 .style1-bg {
   background-color: @color1;
 }
+.white-bg {
+  background-color: white;
+}
 .style2-bg {
   background-color: @color2;
   color: #131313;
@@ -507,6 +510,11 @@ ul.decimal {
   }
   p {
     text-align: justify;
+  }
+  &.no-justify {
+    p {
+      text-align: left;
+    }
   }
   ol,
   ul {
@@ -1954,6 +1962,9 @@ a.forgetlink {
   margin-top: 0;
   margin-bottom: 20px;
   color: @color3;
+}
+.text-upper {
+  text-transform: uppercase;
 }
 div.read-morecont {
   .transition(all 1s);
