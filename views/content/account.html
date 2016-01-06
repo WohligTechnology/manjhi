@@ -26,7 +26,7 @@
             <li class="cat-list cpointer" ng-class="chngadd" ng-click="changeadress()">My Address Book</li>
             <li class="cat-list cpointer" ng-class="myorders" ng-click="changemyorders()">My Orders</li>
             <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Trace Your Order</li>
-            <li class="cat-list cpointer"><a href="#/favorite">My Favorites <span>({{totalfav}})</span></a></li>
+            <li class="cat-list cpointer"><a href="#/favorite">My Favorites</a></li>
             <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()">Banking Details</li>
             <li class="cat-list cpointer"> <a href="#/create-artwork">Upload Artwork</a></li>
           </ul>
@@ -297,7 +297,7 @@
           </table>
         </div>
         <div class="text-center" ng-if="myorderedproducts.length==0">
-          <h4>No Orders Yet !</h4>
+          <p class="text-center font-special">You haven't placed any orders yet.<br><a href="#/artwork/All" class="btn btn-sucesses">Shop Now</a></p>
         </div>
       </div>
       <div class="col-md-4" ng-if="ordertracing=='bolds'">

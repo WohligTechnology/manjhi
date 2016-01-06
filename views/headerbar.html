@@ -39,10 +39,10 @@
             </div>
             <div class="inline-box">Login</div>
         </div>
-        <div class="col-flex box-height" ng-show="showWishlist">
+        <div class="col-flex box-height" ng-show="showWishlist" ng-click="toaccount();">
             <div class="style4-bg small-box"><i class="fa fa-user"></i>
             </div>
-            <div class="inline-box" ng-click="toaccount();">{{user.name}}</div>
+            <div class="inline-box">{{user.name}}</div>
             <div class="sub-menu logout" ng-click="logout();">
                 <!-- <div class="style3-bg small-box">
                     <i class="fa fa-sign-out"></i>

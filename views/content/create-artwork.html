@@ -38,12 +38,25 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Title</label>
                       <input type="text" class="form-control" ng-model="artwork.name" placeholder="Title" required capitalize-first>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Select Reseller</label>
+                      <div class="form-group">
+                        <ui-select ng-model="artwork.reseller" on-select="setSearchReseller($select);" tagging tagging-label="false">
+                          <ui-select-match class="text-capitalize" placeholder="Select Reseller">{{variableReseller}}</ui-select-match>
+                          <ui-select-choices refresh-delay="0" refresh="getDropdownReseller($select.search)" repeat="person in resellers track by person._id">
+                            <div ng-bind-html="person.name| highlight: $select.search"></div>
+                          </ui-select-choices>
+                        </ui-select>
+                      </div>
                     </div>
                   </div>
                   <!-- <div class="form-group">
@@ -77,17 +90,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Select Reseller</label>
-                  <div class="form-group">
-                    <ui-select ng-model="artwork.reseller" on-select="setSearchReseller($select);" tagging tagging-label="false">
-                      <ui-select-match class="text-capitalize" placeholder="Select Reseller">{{variableReseller}}</ui-select-match>
-                      <ui-select-choices refresh-delay="0" refresh="getDropdownReseller($select.search)" repeat="person in resellers track by person._id">
-                        <div ng-bind-html="person.name| highlight: $select.search"></div>
-                      </ui-select-choices>
-                    </ui-select>
-                  </div>
-                </div>
+
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group ui-selecter">
