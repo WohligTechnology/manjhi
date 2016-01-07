@@ -845,6 +845,9 @@ h4 {
         border-top: 0;
         font-size: 11px;
         line-height: 120%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       i.fa.fa-heart {
         padding-left: 8px;
@@ -2739,6 +2742,11 @@ img.fancybox-image {
   line-height: 200%;
   padding: 50px 0 0;
   font-size: 14px;
+}
+
+.golden-slim {
+  font-weight: normal;
+  color: @color2;
 }
 /*Mobile Less*/
 //@import "other.less";
