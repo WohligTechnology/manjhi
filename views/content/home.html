@@ -334,7 +334,7 @@
 <div class="padding-more">
   <h3 class="home-header font-color3">Press</h3>
   <div class="row-flex row-unflex image-box">
-    <div class="col-flex col-flex-20" ng-repeat="pressSin in press">
+    <div class="col-flex col-flex-20" ng-repeat="pressSin in press" ng-if="$index<=4">
       <a class="col-press" fancybox-box href="{{pressSin.photos|uploadpath}}" rel="press">
         <img alt="demo" class="img-responsive" ng-src="{{pressSin.photos|uploadsmallimage}}">
       </a>

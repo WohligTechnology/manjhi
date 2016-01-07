@@ -9,12 +9,12 @@
                <span>Event Venue</span> : {{eventDetail.venue}}</p>
             <p>
                <span>Period of show </span> : {{eventDetail.startdate|date:'EEEE, MMMM d, y'}} - {{eventDetail.enddate|date:'EEEE, MMMM d, y'}}</p>
-            <p>
+            <p ng-if="eventDetail.starttime!='undefined:undefined undefined' && eventDetail.endtime!='undefined:undefined undefined'">
                <span>Event Time</span> : {{eventDetail.starttime}} to {{eventDetail.endtime}}</p>
          </div>
       </div>
       <div class="row">
-         <div class=" details">
+         <div class=" details" ng-if="eventDetail.details">
             <span>Details :</span>
             <p class="intwo" ng-bind-html="eventDetail.details"></p </div>
          </div>

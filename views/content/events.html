@@ -172,7 +172,8 @@
                                     <h6 class="font-color2">{{event.name}}</h6>
                                     <p>{{event.detail}}</p>
                                 </div>
-                                <a ui-sref="eventdetail({id:event[0]._id})">
+                                <a ui-sref="eventdetail({id:event._id})">
+                                  <!-- {{event}} -->
                                     <div class="event-img text-center">
                                         <figure>
                                             <img ng-src="{{event.photos[0]|uploadthumbnail}}" class="img-responsive">
