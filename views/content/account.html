@@ -313,7 +313,7 @@
           <span class="normal">The shipment was sent through: Ekart Logistics Shipment Tracking ID: WSRC4251982428</span>
         </p>
       </div>
-      <div class="col-md-8" ng-if="bankingdetails=='bolds'">
+      <div class="col-md-9" ng-if="bankingdetails=='bolds'">
         <div class="trck-order">
           <h5 class="title-color">Bank Details</h5>
         </div>
@@ -353,6 +353,10 @@
             <div class="form-group">
               <label for="exampleInputEmail1">RTGS / NEFT IFS Code</label>
               <input type="text" class="form-control" ng-model="user.ifsc" placeholder="RTGS / NEFT IFS Code">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Upload canceled cheque</label>
+              <input type="file" class="form-control" ng-model="user.cheque">
             </div>
           </div>
         </div>
