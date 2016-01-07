@@ -563,7 +563,7 @@ h4 {
 .image-box {
   margin: 0 -10px;
   .col-flex {
-    margin: 0 10px;
+    padding: 0 10px;
 
     //        align-self: center;
   }
@@ -2747,6 +2747,49 @@ img.fancybox-image {
 .golden-slim {
   font-weight: normal;
   color: @color2;
+}
+
+.comment-box {
+  border: 1px solid @color2;
+
+  .comment-head {
+    background-color: @color2;
+    padding: 6px 5px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .bubble {
+    padding: 5px 10px;
+  }
+  .name {
+    font-weight: 600;
+  }
+  .comment-area {
+    height: 250px;
+    overflow-x: hidden;
+  }
+  .send-box {
+    background-color: #E6E7E9;
+    padding: 6px 5px 0px;
+    textarea {
+      border: none;
+      width: 75%;
+      height: 42px;
+    }
+    button {
+      width: 100%;
+      font-size: 12px;
+      padding: 3px;
+      margin-top: 0;
+      border: 0;
+      text-transform: uppercase;
+      color: @color3;
+      height: 42px;
+      width: 23%;
+      float: right;
+    }
+}
 }
 /*Mobile Less*/
 //@import "other.less";

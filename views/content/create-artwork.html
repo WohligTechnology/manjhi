@@ -3,10 +3,9 @@
     <div class="page">
       <h2 class="title"></h2>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
           <section class="panel panel-default" style="border-radius:0px;">
-            <div class="panel-heading panel-hdr"></span>Upload Artwork
-          </div>
+            <div class="panel-heading panel-hdr"></span>Upload Artwork</div>
           <div class="panel-body">
             <form class="form-validation" data-ng-submit="createartwork()" name="form_constraints">
               <div class="row">
@@ -78,7 +77,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Select Artist
-                      <a href="#/register-artist" class="golden-slim">(Register Artist)</a>
+                      <a class="golden-slim" href="#/register-artist">(Register Artist)</a>
                     </label>
                     <div class="form-group">
                       <ui-select ng-model="artwork.user" on-select="setSearch($select);" tagging tagging-label="false">
@@ -304,7 +303,35 @@
                 <p style="font-size: medium;color: red;font-weight: 500;">Please Select User</p>
               </div>
             </form>
-          </section>
+        </div>
+      </section>
+      </div>
+      <div class="col-md-3">
+        <div class="comment-box">
+          <div class="comment-head">Comments</div>
+          <div class="comment-area">
+
+            <!--Aura arts comment  -->
+            <div class="style1-bg bubble">
+              <div class="name">AADPL (Aura Art):</div>
+              <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+            </div>
+            <!--Aura arts comment-->
+
+            <!--Artists comment-->
+            <div class="bubble">
+              <div class="name">DJ Bagga (You):</div>
+              <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+            </div>
+            <!--Artists comment-->
+
+          </div>
+          <div class="send-box">
+            <form ng-submit="">
+              <textarea rows="2"></textarea>
+              <button class="btn btn-default" type="submit">Send</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
