@@ -83,7 +83,7 @@
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Mobile Number</label>
                                  <div class="tel-box">
-                                    <input type="tel" class="form-control tel-country" ng-model="user.personal.countrycode" placeholder="Country Code" value="+91">
+                                    <input type="tel" class="form-control tel-country" ng-model="user.personal.countrycode" placeholder="eg. +91" value="+91">
                                     <input type="text" class="form-control tel-number" ng-model="user.personal.mob" placeholder="Mobile Number" maxlength="10" only-digits>
                                  </div>
                               </div>
@@ -92,8 +92,8 @@
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Work Number</label>
                                  <div class="tel-box">
-                                    <input type="tel" class="form-control tel-country" ng-model="user.work.countrycode" placeholder="Country Code" value="+91">
-                                    <input type="tel" class="form-control tel-city" ng-model="user.work.citycode" placeholder="City Code">
+                                    <input type="tel" class="form-control tel-country" ng-model="user.work.countrycode" placeholder="eg. +91" value="+91">
+                                    <input type="tel" class="form-control tel-city" ng-model="user.work.citycode" placeholder="eg. 22 (Mumbai)">
                                     <input type="tel" class="form-control tel-numbers" ng-model="user.work.work" placeholder="Work Number" maxlength="8" only-digits>
                                  </div>
                               </div>
@@ -102,8 +102,8 @@
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Residence Number</label>
                                  <div class="tel-box">
-                                    <input type="tel" class="form-control tel-country" ng-model="user.residence.countrycode" placeholder="Country Code" value="+91">
-                                    <input type="tel" class="form-control tel-city" ng-model="user.residence.citycode" placeholder="City Code">
+                                    <input type="tel" class="form-control tel-country" ng-model="user.residence.countrycode" placeholder="eg. +91" value="+91">
+                                    <input type="tel" class="form-control tel-city" ng-model="user.residence.citycode" placeholder="eg. 22 (Mumbai)">
                                     <input type="tel" class="form-control tel-numbers" ng-model="user.residence.home" placeholder="Residence Number" maxlength="8" only-digits>
                                  </div>
                               </div>
@@ -137,8 +137,8 @@
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Residence</label>
                                  <div class="tel-box">
-                                    <input type="text" class="form-control tel-country" ng-model="user.residence.flatno" placeholder="Flat No" required>
-                                    <input type="text" class="form-control tel-number" ng-model="user.residence.bldgname" placeholder="Name of Buliding" required>
+                                    <input type="text" class="form-control tel-country" ng-model="user.residence.flatno" placeholder="House No" required>
+                                    <input type="text" class="form-control tel-number" ng-model="user.residence.bldgname" placeholder="Name of Building / Society" required>
                                  </div>
                               </div>
                               <div class="form-group">
@@ -167,8 +167,8 @@
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Studio</label>
                                  <div class="tel-box">
-                                    <input type="text" class="form-control tel-country" ng-model="user.work.flatno" placeholder="Flat No" required>
-                                    <input type="text" class="form-control tel-number" ng-model="user.work.bldgname" placeholder="Name of Buliding" required>
+                                    <input type="text" class="form-control tel-country" ng-model="user.work.flatno" placeholder="House No" required>
+                                    <input type="text" class="form-control tel-number" ng-model="user.work.bldgname" placeholder="Name of Building / Society" required>
                                  </div>
                               </div>
                               <div class="form-group">
@@ -197,8 +197,8 @@
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Any Other</label>
                                  <div class="tel-box">
-                                    <input type="text" class="form-control tel-country" ng-model="user.other.flatno" placeholder="Flat No" required>
-                                    <input type="text" class="form-control tel-number" ng-model="user.other.bldgname" placeholder="Name of Buliding" required>
+                                    <input type="text" class="form-control tel-country" ng-model="user.other.flatno" placeholder="House No" required>
+                                    <input type="text" class="form-control tel-number" ng-model="user.other.bldgname" placeholder="Name of Building / Society" required>
                                  </div>
                               </div>
                               <div class="form-group">
@@ -256,16 +256,33 @@
                     </div>
                   </div>
                 </div> -->
+<br>
                         <div class="row">
-                           <div class="col-md-12">
+                          <div class="col-md-4">
+                             <div class="form-group">
+                                <label for="exampleInputEmail1">Upload Address Certificate</label>
+                                <!-- ngIf: user.adcer -->
+                                <!-- ngIf: user.adcer -->
+                             </div>
+                             <div class="form-group">
+                                <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
+                                <div class="upload-buttons">
+                                   <input type="file">
+                                </div>
+                                <div class="response ng-hide" ng-show="uploadResult.length > 0">
+                                   <!-- ngRepeat: result in uploadResult -->
+                                </div>
+                             </div>
+                          </div>
+                           <div class="col-md-8">
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Overview of Artist's concepts / thought process (Limited to 200 words)</label>
-                                 <textarea class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.artistdesc" maxlength="200" placeholder="Overview of Artist's concepts / thought process (Limited to 200 words)"></textarea>
+                                 <textarea rows="3" class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.artistdesc" maxlength="200" placeholder="Overview of Artist's concepts / thought process (Limited to 200 words)"></textarea>
                               </div>
                            </div>
                         </div>
                         <br>
-                        <h4 class="title-color">Education, Shows, Awards and Auctions</h4>
+                        <h4 class="title-color">Education, Shows, Awards and Auctions (Each limited to 3)</h4>
                         <hr class="hr-color">
                         <div class="form-group">
                            <label>Educational Qualifications</label>
@@ -276,7 +293,7 @@
                                     <td>Year of Completion</td>
                                     <td>Qualification</td>
                                     <td>Name of Institution</td>
-                                    <td>Name of Institution</td>
+                                    <td>City of Institution</td>
                                     <td>Action</td>
                                  </tr>
                               </thead>
@@ -459,22 +476,6 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Upload Address Certificate</label>
-                                 <!-- ngIf: user.adcer -->
-                                 <!-- ngIf: user.adcer -->
-                              </div>
-                              <div class="form-group">
-                                 <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
-                                 <div class="upload-buttons">
-                                    <input type="file">
-                                 </div>
-                                 <div class="response ng-hide" ng-show="uploadResult.length > 0">
-                                    <!-- ngRepeat: result in uploadResult -->
-                                 </div>
-                              </div>
-                           </div>
                         </div>
                         <br>
                         <h4 class="title-color">Artist's Artwork Details</h4>
@@ -483,10 +484,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group ui-selecter">
-                                    <label for="exampleInputEmail1">Theme Speciality</label>
+                                    <label for="exampleInputEmail1">Typical Style</label>
                                     <div class="form-group">
                                         <ui-select multiple tagging tagging-label="false" ng-model="user.theme" on-select="ismatch(user.theme,$select);">
-                                            <ui-select-match placeholder="Select Theme">{{$item.name}}</ui-select-match>
+                                            <ui-select-match placeholder="Select Style">{{$item.name}}</ui-select-match>
                                             <ui-select-choices repeat="person in theme track by person._id" refresh="refreshTheme($select.search,$select.selected)" refresh-delay="0">
                                                 <div ng-bind-html="person.name"></div>
                                             </ui-select-choices>
@@ -496,7 +497,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group ui-selecter">
-                                    <label for="exampleInputEmail1">Medium Speciality</label>
+                                    <label for="exampleInputEmail1">Typical Medium</label>
                                     <div class="form-group">
                                         <ui-select tagging tagging-label="false" multiple ng-model="user.medium" ng-change="ismatchmed(user.medium,$select);">
                                             <ui-select-match placeholder="Select Medium">{{$item.name}}</ui-select-match>
@@ -526,10 +527,18 @@
                         <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
+                                 <label for="exampleInputEmail1">Galleries / Websites</label>
+                                 <input type="text" class="form-control" ng-model="user.galleries" placeholder="Galleries  / Websites">
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <div class="form-group">
                                  <label for="exampleInputEmail1">Online Catalogue Link</label>
                                  <input type="text" class="form-control" ng-model="user.clink" placeholder="Online Catalogue Link">
                               </div>
                            </div>
+                        </div>
+                        <div class="row">
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label for="exampleInputEmail1">eBook Link</label>
@@ -538,6 +547,7 @@
                            </div>
                         </div>
 
+<br>
                         <div class="form-group">
                            <!-- <p>Please go through <a href="#/terms" class="font-color2" target="_blank">Terms and Conditions.</a></p> -->
                            <div class="checkbox">
