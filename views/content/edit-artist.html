@@ -44,7 +44,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Date / Year of Birth</label>
-                      <input class="form-control" ng-model="user.dob" onfocus="(this.type='date')" placeholder="Date of birth" required type="text">
+                      <input class="form-control" ng-model="user.dob" onfocus="(this.type='date')" placeholder="Date of Birth" required type="text">
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -70,7 +70,7 @@
                   </div>
                 </div>
                 <br>
-                <h4 class="title-color">Education, Shows, Awards and Auctions</h4>
+                <h4 class="title-color">Education, Shows, Awards and Auctions (EACH LIMITED TO 3)</h4>
                 <hr class="hr-color">
                 <div class="form-group">
                   <label>Educational Qualifications</label>
@@ -81,7 +81,7 @@
                         <td>Year of Completion</td>
                         <td>Qualification</td>
                         <td>Name of Institution</td>
-                        <td>Name of Institution</td>
+                        <td>City of Institution</td>
                         <td>Action</td>
                       </tr>
                     </thead>
@@ -253,10 +253,10 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group ui-selecter">
-                      <label for="exampleInputEmail1">Theme Speciality</label>
+                      <label for="exampleInputEmail1">Typical Style</label>
                       <div class="form-group">
                         <ui-select multiple ng-model="user.theme" on-select="ismatch(user.theme,$select);" tagging tagging-label="false">
-                          <ui-select-match placeholder="Select Theme">{{$item.name}}</ui-select-match>
+                          <ui-select-match placeholder="Select Style">{{$item.name}}</ui-select-match>
                           <ui-select-choices refresh-delay="0" refresh="refreshTheme($select.search,$select.selected)" repeat="person in theme track by person._id">
                             <div ng-bind-html="person.name"></div>
                           </ui-select-choices>
@@ -266,7 +266,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group ui-selecter">
-                      <label for="exampleInputEmail1">Medium Speciality</label>
+                      <label for="exampleInputEmail1">Typical Medium</label>
                       <div class="form-group">
                         <ui-select multiple ng-change="ismatchmed(user.medium,$select);" ng-model="user.medium" tagging tagging-label="false">
                           <ui-select-match placeholder="Select Medium">{{$item.name}}</ui-select-match>
@@ -296,10 +296,19 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
+                      <label for="exampleInputEmail1">Galleries / Websites</label>
+                      <input class="form-control" ng-model="user.clink" placeholder="Galleries / Websites" type="text">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
                       <label for="exampleInputEmail1">Online Catalogue Link</label>
                       <input class="form-control" ng-model="user.clink" placeholder="Online Catalogue Link" type="text">
                     </div>
                   </div>
+                </div>
+
+                  <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">eBook Link</label>
@@ -307,7 +316,7 @@
                     </div>
                   </div>
                 </div>
-
+<br>
                 <div class="form-group">
                   <!-- <p>Please go through <a href="#/terms" class="font-color2" target="_blank">Terms and Conditions.</a></p> -->
                   <div class="checkbox">
