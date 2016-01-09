@@ -48,9 +48,9 @@
          <div class="row">
             <div class="eventgallery">
                <div class="col-md-3" ng-repeat="gal in eventDetail.photos">
-                  <div class="event-pic" fixit>
-                     <img class="fix-img" ng-src="{{gal|uploadpath}}" ng-click="openModal(gal);">
-                  </div>
+                  <a class="event-pic" fancybox-box ng-href="{{gal|uploadpath}}" rel="events">
+                     <img class="fix-img" ng-src="{{gal|uploadpath}}">
+                  </a>
                </div>
             </div>
          </div>
