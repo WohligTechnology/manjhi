@@ -21,18 +21,19 @@
             <div class="col-md-2">
                 <div class="info-cont pull-right">
                     <ul class="info-li">
-                        <li class="cat-list cpointer" ng-class="info" ng-click="changeinfo()">Personal Info</li>
-                        <li class="cat-list cpointer" ng-class="chngpass" ng-click="changechngpass()">Change password</li>
-                        <li class="cat-list cpointer" ng-class="chngadd" ng-click="changeadress()">My Address Book</li>
-                        <li class="cat-list cpointer" ng-class="myorders" ng-click="changemyorders()">My Orders</li>
-                        <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Trace Your Order</li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'info'}" ng-click="changeTab('info');">Personal Info</li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'cpassword'}" ng-click="changeTab('cpassword');">Change password</li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'address'}" ng-click="changeTab('address');">My Address Book</li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'orders'}" ng-click="changeTab('orders');">My Orders</li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'trace'}" ng-click="changeTab('trace');">Trace Your Order</li>
                         <li class="cat-list cpointer" ng-if="user.accesslevel=='reseller'"><a href="#/favorite">My Favorites</a></li>
-                        <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()" ng-if="user.accesslevel=='reseller'">Banking Details</li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'banking'}" ng-click="changeTab('banking');" ng-if="user.accesslevel=='reseller'">Banking Details</li>
                         <li class="cat-list cpointer" ng-if="user.accesslevel=='reseller'"> <a href="#/create-artwork">Upload Artwork</a></li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'myartworks'}" ng-click="changeTab('myartworks');">My Artworks</li>
                     </ul>
                 </div>
             </div>
-            <div class="col-md-5" ng-if="info=='bolds'">
+            <div class="col-md-5" ng-if="activeTab == 'info'">
                 <div class="chngpswd-cont">
                     <div class="form-group">
                         <div class="input-id">
@@ -60,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" ng-if="chngpass=='bolds'">
+            <div class="col-md-4" ng-if="activeTab == 'cpassword'">
                 <form ng-submit="changepassword()">
                     <div class="chngpswd-cont">
                         <div class="form-group">
@@ -79,7 +80,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4" ng-if="chngadd=='bolds'">
+            <div class="col-md-4" ng-if="activeTab == 'address'">
                 <form ng-submit="saveAddress();">
                     <div class="chngpswd-cont">
                         <div class="addcat">
@@ -120,7 +121,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4" ng-if="chngadd=='bolds'">
+            <div class="col-md-4" ng-if="activeTab == 'address'">
                 <form ng-submit="saveAddress();">
                     <div class="chngpswd-cont">
                         <div class="addcat">
@@ -192,7 +193,7 @@
 
         </div>
       </div> -->
-            <div class="col-md-10" ng-if="myorders=='bolds'">
+            <div class="col-md-10" ng-if="activeTab == 'orders'">
                 <div class="cart orders" ng-repeat="orders in myorderedproducts" ng-if="myorderedproducts.length>0">
                     <h5>
             <span class="bold">Order Id:</span> {{orders.orderid}}
@@ -250,7 +251,7 @@
                         <br><a href="#/artwork/All" class="btn btn-sucesses">Shop Now</a></p>
                 </div>
             </div>
-            <div class="col-md-4" ng-if="ordertracing=='bolds'">
+            <div class="col-md-4" ng-if="activeTab == 'trace'">
                 <div class="trck-order">
                     <h5>Trace Your Order:</h5>
                     <input class="form-control displ wseve paddbtm" placeholder="Enter Order Id" type="text">
@@ -263,7 +264,7 @@
                     <span class="normal">The shipment was sent through: Ekart Logistics Shipment Tracking ID: WSRC4251982428</span>
                 </p>
             </div>
-            <div class="col-md-9" ng-if="bankingdetails=='bolds'">
+            <div class="col-md-9" ng-if="activeTab == 'banking'">
                 <div class="trck-order">
                     <h5 class="title-color">Bank Details</h5>
                 </div>
@@ -311,6 +312,11 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-10" ng-if="activeTab == 'myartworks';">
+              <div ng-include="tab.url"></div>
+            </div>
+
         </div>
     </div>
 </div>
