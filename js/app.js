@@ -444,8 +444,8 @@ firstapp.directive('zoomContainer', function () {
 firstapp.filter('uploadthumbnail', function () {
 	return function (input) {
 		if (input && input != "") {
-			return adminurl + "user/resize?height=190&file=" + input;
-			// return adminurl + "user/resize?file=" + input;
+			// return adminurl + "user/resize?height=190&file=" + input;
+			return adminurl + "user/resize?file=" + input;
 		} else {
 			return "img/noimg.jpg";
 		}
@@ -465,8 +465,8 @@ firstapp.filter('uploadpath', function () {
 firstapp.filter('uploadsmallimage', function () {
 	return function (input) {
 		if (input && input != "") {
-			// return adminurl + "user/resize?file=" + input;
-			return adminurl + "user/resize?width=750&file=" + input;
+			return adminurl + "user/resize?file=" + input;
+			// return adminurl + "user/resize?width=750&file=" + input;
 		} else {
 			return "img/noimg.jpg";
 		}

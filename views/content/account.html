@@ -26,9 +26,9 @@
             <li class="cat-list cpointer" ng-class="chngadd" ng-click="changeadress()">My Address Book</li>
             <li class="cat-list cpointer" ng-class="myorders" ng-click="changemyorders()">My Orders</li>
             <li class="cat-list cpointer" ng-class="ordertracing" ng-click="changeordertracing()">Trace Your Order</li>
-            <li class="cat-list cpointer"><a href="#/favorite">My Favorites</a></li>
-            <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()">Banking Details</li>
-            <li class="cat-list cpointer"> <a href="#/create-artwork">Upload Artwork</a></li>
+            <li class="cat-list cpointer" ng-if="user.accesslevel=='reseller'"><a href="#/favorite">My Favorites</a></li>
+            <li class="cat-list cpointer" ng-class="bankingdetails" ng-click="changebankingdetails()" ng-if="user.accesslevel=='reseller'">Banking Details</li>
+            <li class="cat-list cpointer" ng-if="user.accesslevel=='reseller'"> <a href="#/create-artwork">Upload Artwork</a></li>
           </ul>
         </div>
       </div>
