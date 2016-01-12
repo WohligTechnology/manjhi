@@ -26,10 +26,10 @@
                         <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'address'}" ng-click="changeTab('address');">My Address Book</li>
                         <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'orders'}" ng-click="changeTab('orders');">My Orders</li>
                         <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'trace'}" ng-click="changeTab('trace');">Trace Your Order</li>
-                        <li class="cat-list cpointer" ng-if="user.accesslevel=='reseller'"><a href="#/favorite">My Favorites</a></li>
+                        <li class="cat-list cpointer"><a href="#/favorite">My Favorites</a></li>
                         <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'banking'}" ng-click="changeTab('banking');" ng-if="user.accesslevel=='reseller'">Banking Details</li>
                         <li class="cat-list cpointer" ng-if="user.accesslevel=='reseller'"> <a href="#/create-artwork">Upload Artwork</a></li>
-                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'myartworks'}" ng-click="changeTab('myartworks');">My Artworks</li>
+                        <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'myartworks'}" ng-click="changeTab('myartworks');" ng-if="user.accesslevel=='reseller'">My Artworks</li>
                     </ul>
                 </div>
             </div>
@@ -268,77 +268,93 @@
                 <div class="trck-order">
                     <h5 class="title-color">Bank Details</h5>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name of Account Holder as it appears in the Account</label>
-                            <input type="text" class="form-control" ng-model="user.aname" placeholder="Name of Account Holder as it appears in the Account">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Type of Account</label>
-                            <div>
-                                <select class="form-control" ng-model="user.atype">
-                                    <option value="savings">Savings</option>
-                                    <option value="current">Current</option>
-                                </select>
+                <form ng-submit="edituser();">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name of Account Holder as it appears in the Account</label>
+                                <input type="text" class="form-control" ng-model="user.bank.holderName" placeholder="Name of Account Holder as it appears in the Account">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Type of Account</label>
+                                <div>
+                                    <select class="form-control" ng-model="user.bank.accountType">
+                                        <option value="">Please Select</option>
+                                        <option value="savings">Savings</option>
+                                        <option value="current">Current</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name of Bank</label>
+                                <input type="text" class="form-control" ng-model="user.bank.bankName" placeholder="Name of Bank">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Bank Branch Address</label>
+                                <textarea class="form-control" ng-model="user.bank.branchAdd" placeholder="Bank Branch Address"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name of Bank</label>
-                            <input type="text" class="form-control" ng-model="user.nbank" placeholder="Name of Bank">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Address of Account Holder (if different from stated above)</label>
+                                <textarea class="form-control" ng-model="user.bank.holderAdd" placeholder="Address of Account Holder (if different from stated above)"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Account Number</label>
+                                <input type="text" class="form-control" ng-model="user.bank.accountNumber" placeholder="Account Number">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">RTGS / NEFT IFSC Code</label>
+                                <input type="text" class="form-control" ng-model="user.bank.ifsc" placeholder="RTGS / NEFT IFS Code">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Upload canceled cheque</label>
+                                <!-- <input type="file" class="form-control" ng-model="user.cheque"> -->
+                                <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
+                                <input multiple name="file" class="form-control" ng-file-select="onFileSelect($files,1)" onclick="this.value=null" type="file">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Bank Branch Address</label>
-                            <textarea class="form-control" ng-model="user.badd" placeholder="Bank Branch Address"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Address of Account Holder (if different from stated above)</label>
-                            <textarea class="form-control" ng-model="user.aadd" placeholder="Address of Account Holder (if different from stated above)"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Account Number</label>
-                            <input type="text" class="form-control" ng-model="user.anum" placeholder="Account Number">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">RTGS / NEFT IFS Code</label>
-                            <input type="text" class="form-control" ng-model="user.ifsc" placeholder="RTGS / NEFT IFS Code">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Upload canceled cheque</label>
-                            <input type="file" class="form-control" ng-model="user.cheque">
+                        <div class="row text-center">
+                            <button class="btn btn-sucesses" type="submit">Save</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-
             <div class="col-md-10" ng-if="activeTab == 'myartworks';">
-              <!-- <div ng-include="tab.url"></div> -->
-              <div class="artist">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-xs-4">
-                      <div class="aristimg-grp1">
-                        <div class="relative">
-                          <div class="image-holders">
-                            <img src="http://smartsnap.in/user/resize?height=190&file=65.jpg" alt="my-artwork"/>
-                          </div>
+                <!-- <div ng-include="tab.url"></div> -->
+                <div class="artist">
+                    <div class="">
+                        <div class="row" ng-repeat="artworks in myArtworks">
+                            <div class="col-xs-4" ng-repeat="artwork in artworks" ng-click="editArtwork(artwork.artwork._id);">
+                                <div class="aristimg-grp1">
+                                    <div class="relative">
+                                        <div class="image-holders">
+                                            <img ng-src="{{artwork.artwork.image[0]|uploadpath}}" alt="my-artwork" />
+                                        </div>
+                                    </div>
+                                    <div class="artist-cont-detail">
+                                        <p>{{artwork.artwork.imageno[0]}}</p>
+                                        <p>{{artwork.name}}</p>
+                                        <p>{{artwork.artwork.dim}}</p>
+                                        <div class="status-color">{{artwork.artwork.status}}</div>
+                                    </div>
+                                    <!-- <div class="relative">
+                                        <div class="image-holders">
+                                            <img src="http://smartsnap.in/user/resize?height=190&file=65.jpg" alt="my-artwork" />
+                                        </div>
+                                    </div>
+                                    <div class="artist-cont-detail">
+                                        <p>65</p>
+                                        <p>Amarnath Sharma</p>
+                                        <p>60" x 87" inches</p>
+                                        <div class="status-color">In Review</div>
+                                    </div> -->
+                                </div>
+                            </div>
                         </div>
-                        <div class="artist-cont-detail">
-                          <p>65</p>
-                          <p>Amarnath Sharma</p>
-                          <p>60" x 87" inches</p>
-                          <div class="status-color">In Review</div>
-                        </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-
             </div>
-
         </div>
     </div>
 </div>

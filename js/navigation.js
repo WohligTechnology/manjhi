@@ -2,6 +2,8 @@
 var adminurl = "http://192.168.0.122:81/";
 // var adminurl = "http://146.148.34.49/";
 // var adminurl = "http://smartsnap.in/";
+var imgUploadUrl = adminurl + "user/uploadfile";
+
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
 .factory('NavigationService', function($http, ngDialog) {
@@ -583,6 +585,12 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                     search: data,
                     medium: medium
                 }
+            }).success(callback);
+        },
+        findMyArtwork: function(callback) {
+            $http({
+                url: adminurl + "artwork/findMyArtwork",
+                method: "POST"
             }).success(callback);
         },
     }
