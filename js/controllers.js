@@ -36,7 +36,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.becomeSeller = function() {
         if ($scope.isLoggedIn == true) {
-            $state.go("termcondition");
+            if (userProfile && userProfile.accesslevel == "reseller") {
+                $state.go("create-artwork");
+            } else {
+                $state.go("termcondition");
+            }
         } else {
             ngDialog.open({
                 template: 'views/content/sellerRegister.html'
@@ -2810,8 +2814,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     window.uploadUrl = 'http://smartsnap.in/user/uploadfile';
 
-    // var imgUploadUrl="http://smartsnap.in/user/uploadfile";
-    var imgUploadUrl = "http://192.168.0.122:1337/user/uploadfile";
+    var imgUploadUrl="http://smartsnap.in/user/uploadfile";
+    // var imgUploadUrl = "http://192.168.0.122:1337/user/uploadfile";
     // window.uploadUrl = 'http://192.168.0.119:1337/user/uploadfile';
     // $scope.usr = $routeParams.id;
     $scope.artwork = {};
@@ -2890,7 +2894,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     NavigationService.lastSr(function(data, status) {
-    	console.log(data);
+        console.log(data);
         $scope.artwork.srno = parseInt(data.srno) + 1;
     });
 
