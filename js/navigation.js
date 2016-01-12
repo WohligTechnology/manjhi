@@ -1,7 +1,7 @@
 // var adminurl = "http://vignesh.com:82/";
-// var adminurl = "http://192.168.0.122:1337/";
+var adminurl = "http://192.168.0.122:81/";
 // var adminurl = "http://146.148.34.49/";
-var adminurl = "http://smartsnap.in/";
+// var adminurl = "http://smartsnap.in/";
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
 .factory('NavigationService', function($http, ngDialog) {
@@ -554,6 +554,35 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 url: adminurl + "artwork/save",
                 method: "POST",
                 data: data
+            }).success(callback);
+        },
+        getOneemail: function(myemail, callback) {
+            $http({
+                url: adminurl + "user/searchmail",
+                method: "POST",
+                data: {
+                    "email": myemail
+                }
+            }).success(callback);
+        },
+        findTheme: function(data, theme, callback) {
+            $http({
+                url: adminurl + "theme/find",
+                method: "POST",
+                data: {
+                    search: data,
+                    theme: theme
+                }
+            }).success(callback);
+        },
+        findMedium: function(data, medium, callback) {
+            $http({
+                url: adminurl + "medium/find",
+                method: "POST",
+                data: {
+                    search: data,
+                    medium: medium
+                }
             }).success(callback);
         },
     }

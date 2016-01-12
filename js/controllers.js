@@ -2814,9 +2814,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     window.uploadUrl = 'http://smartsnap.in/user/uploadfile';
 
-    var imgUploadUrl="http://smartsnap.in/user/uploadfile";
+    var imgUploadUrl = "http://smartsnap.in/user/uploadfile";
     // var imgUploadUrl = "http://192.168.0.122:1337/user/uploadfile";
-    // window.uploadUrl = 'http://192.168.0.119:1337/user/uploadfile';
+    // window.uploadUrl = 'http://192.168.0.122:1337/user/uploadfile';
     // $scope.usr = $routeParams.id;
     $scope.artwork = {};
     $scope.artwork.type = "Paintings";
@@ -2844,11 +2844,31 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.showPhotography = false;
     $scope.artmedium = [];
     $scope.tag = [];
-    abc = $scope;
     $scope.access = "artist";
+    $scope.chat = {};
 
     $scope.otherDetails = "eg. Diptych, Triptych";
 
+    NavigationService.getuserprofile(function(data) {
+        $scope.userData = data;
+    })
+
+    $scope.submitComment = function() {
+        if (!$scope.artwork.chat) {
+            $scope.artwork.chat = [{
+                "name": $scope.userData.name,
+                "comment": $scope.chat.comment,
+                "accesslevel": "artist"
+            }];
+        } else {
+            $scope.artwork.chat.push({
+                "name": $scope.userData.name,
+                "comment": $scope.chat.comment,
+                "accesslevel": "artist"
+            });
+        }
+        $scope.chat.comment = '';
+    }
 
     $scope.allartist = [];
     $scope.getDropdown = function(search) {
@@ -2925,7 +2945,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.showmed = 0;
 
     $scope.ismatch = function(data, select) {
-        abc.select = select;
         console.log(select.selected);
         _.each(data, function(n, key) {
             if (typeof n == 'string') {
@@ -2947,7 +2966,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.artwork.subtype);
     }
     $scope.ismatchmed = function(data, select) {
-        abc.select = select;
         _.each(data, function(n, key) {
             if (typeof n == 'string') {
                 // var item = {
@@ -3169,10 +3187,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.createartwork = function() {
         NavigationService.getuserprofile(function(data) {
             if (data.id && $scope.artwork.user) {
-                $scope.artwork.reseller = {
+                if (!$scope.artwork.chat) {
+                    $scope.artwork.chat = [];
+                }
+                $scope.artwork.reseller = [{
                     "_id": data.id,
                     "name": data.name
-                };
+                }];
                 $scope.artwork.status = "pending";
                 if (!$scope.artwork.subtype)
                     $scope.artwork.subtype = [];
@@ -3236,16 +3257,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('EditArtistCtrl', function($scope, TemplateService, NavigationService) {
+// .controller('EditArtistCtrl', function($scope, TemplateService, NavigationService) {
+//     $scope.template = TemplateService.changecontent("edit-artist");
+//     $scope.menutitle = NavigationService.makeactive("Edit Artist");
+//     TemplateService.title = $scope.menutitle;
+//     $scope.navigation = NavigationService.getnav();
+// })
+
+.controller('EditArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http) {
     $scope.template = TemplateService.changecontent("edit-artist");
     $scope.menutitle = NavigationService.makeactive("Edit Artist");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
-
-.controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService) {
-    $scope.template = TemplateService.changecontent("register-artist");
-    $scope.menutitle = NavigationService.makeactive("Register Artist");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
@@ -3273,7 +3294,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.show = 0;
     $scope.showmed = 0;
     $scope.ismatch = function(data, select) {
-        abc.select = select;
         _.each(data, function(n, key) {
             if (typeof n == 'string') {
                 var item = {
@@ -3293,7 +3313,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.user.theme);
     }
     $scope.ismatchmed = function(data, select) {
-        abc.select = select;
         _.each(data, function(n, key) {
             if (typeof n == 'string') {
                 var item = {
@@ -3315,9 +3334,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.email = function(myemail) {
         if (myemail) {
-            console.log("check email");
             NavigationService.getOneemail(myemail, function(data, status) {
-                console.log(data);
                 if (data.value == true) {
                     console.log("if");
                     $scope.isValidEmail = 0;
@@ -3456,6 +3473,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.user.adcer = "";
     };
     //imageupload
+    // var imgUploadUrl = "http://smartsnap.in/user/uploadfile";
+    // var imgUploadUrl = "http://192.168.0.122:1337/user/uploadfile";
+    var imgUploadUrl = "http://192.168.0.122:81/user/uploadfile";
     var imagejstupld = "";
     $scope.usingFlash = FileAPI && FileAPI.upload != null;
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
@@ -3514,7 +3534,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.howToSend = 1);
         if ($scope.howToSend == 1) {
             $scope.upload[index] = $upload.upload({
-                url: uploadUrl,
+                url: imgUploadUrl,
                 method: $scope.httpMethod,
                 headers: {
                     'Content-Type': 'Content-Type'
@@ -3556,7 +3576,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             var fileReader = new FileReader();
             fileReader.onload = function(e) {
                 $scope.upload[index] = $upload.http({
-                    url: uploadUrl,
+                    url: imgUploadUrl,
                     headers: {
                         'Content-Type': $scope.selectedFiles[index].type
                     },
@@ -3593,21 +3613,458 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //DEVELOPMENT
 
-    $scope.user.accesslevel = "customer";
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            $scope.userData = data;
+            $scope.isLoggedIn = true;
+        } else {
+            $scope.isLoggedIn = false;
+        }
+    })
 
     //save user
+    $scope.disableSubmit = false;
     $scope.submitForm = function() {
-        $scope.user.accesslevel = "artist";
-        if ($scope.isValidEmail == 1 && $scope.user.checkboxModel) {
-            NavigationService.saveUser($scope.user, function(data, status) {
-                console.log(data);
-                $location.url("/user");
-            });
-        } else {
-            if (!$scope.user.checkboxModel) {
-                $scope.checked = 1;
+        console.log($scope.user);
+        if ($scope.isLoggedIn == true) {
+            $scope.user.accesslevel = "artist";
+            $scope.user.status = "pending";
+            $scope.user.reseller = [{
+                "_id": $scope.userData.id,
+                "name": $scope.userData.name
+            }]
+            if ($scope.isValidEmail == 1 && $scope.user.checkboxModel) {
+            	delete $scope.user.checkboxModel
+                NavigationService.registeruser($scope.user, function(data, status) {
+                    console.log(data);
+                    if (data.value != false) {
+                        dataNextPre.messageBox("Artist has been registerd and is in review");
+                        $scope.disableSubmit = true;
+                    }
+                    // $location.url("/user");
+                });
+            } else {
+                if (!$scope.user.checkboxModel) {
+                    $scope.checked = 1;
+                }
+                console.log("not");
             }
-            console.log("not");
+        } else {
+            dataNextPre.messageBox("Please login to register an artist");
+        }
+    };
+
+    $scope.refreshMedium = function(search) {
+        $scope.medium = [];
+        if (search) {
+            if (!$scope.user.medium)
+                $scope.user.medium = [];
+            NavigationService.findMedium(search, $scope.user.medium, function(data, status) {
+                $scope.medium = data;
+            });
+        }
+    };
+    $scope.refreshTheme = function(search) {
+        $scope.theme = [];
+        if (search) {
+            if (!$scope.user.theme)
+                $scope.user.theme = [];
+            NavigationService.findTheme(search, $scope.user.theme, function(data, status) {
+                $scope.theme = data;
+            });
+        }
+    };
+
+})
+
+
+.controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http) {
+    $scope.template = TemplateService.changecontent("register-artist");
+    $scope.menutitle = NavigationService.makeactive("Register Artist");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+
+    $scope.user = {};
+    $scope.user.personal = {};
+    $scope.user.work = {};
+    $scope.user.residence = {};
+    $scope.user.other = {};
+    $scope.user.medium = [];
+    $scope.user.theme = [];
+
+    $scope.isValidEmail = 1;
+    $scope.checked = 0;
+    $scope.medium = [];
+    $scope.theme = [];
+
+    $scope.select2options = {
+        maximumSelectionSize: 5,
+        placeholder: "Select A Theme"
+    };
+    $scope.select2optionsmed = {
+        maximumSelectionSize: 5,
+        placeholder: "Select A Medium"
+    };
+    $scope.show = 0;
+    $scope.showmed = 0;
+    $scope.ismatch = function(data, select) {
+        _.each(data, function(n, key) {
+            if (typeof n == 'string') {
+                var item = {
+                    _id: _.now(),
+                    name: _.capitalize(n)
+                };
+                NavigationService.saveTheme(item, function(data, status) {
+                    if (data.value == true) {
+                        item._id = data.id;
+                    }
+                });
+                select.selected = _.without(select.selected, n);
+                select.selected.push(item);
+                $scope.user.theme = select.selected;
+            }
+        });
+        console.log($scope.user.theme);
+    }
+    $scope.ismatchmed = function(data, select) {
+        _.each(data, function(n, key) {
+            if (typeof n == 'string') {
+                var item = {
+                    _id: _.now(),
+                    name: _.capitalize(n)
+                };
+                NavigationService.saveMedium(item, function(data, status) {
+                    if (data.value == true) {
+                        item._id = data.id;
+                    }
+                });
+                select.selected = _.without(select.selected, n);
+                select.selected.push(item);
+                $scope.user.medium = select.selected;
+            }
+        });
+        console.log($scope.user.medium);
+    }
+
+    $scope.email = function(myemail) {
+        if (myemail) {
+            NavigationService.getOneemail(myemail, function(data, status) {
+                if (data.value == true) {
+                    console.log("if");
+                    $scope.isValidEmail = 0;
+                } else {
+                    console.log("else");
+                    $scope.isValidEmail = 1;
+                }
+            });
+        }
+    }
+    $scope.checking = function() {
+        if ($scope.user.checkboxModel) {
+            $scope.checked = 0;
+        } else {
+            $scope.checked = 1;
+        }
+    }
+
+    $scope.addsolo = function(crdv) {
+        if (!crdv.soloshow) {
+            crdv.soloshow = [{
+                "year": "",
+                "title": "",
+                "gallery": "",
+                "venue": ""
+            }];
+        } else {
+            if (crdv.soloshow.length < 3) {
+                crdv.soloshow.push({
+                    "year": "",
+                    "title": "",
+                    "gallery": "",
+                    "venue": ""
+                });
+            }
+        }
+    };
+    $scope.removesolo = function(i, dev) {
+        dev.splice(i, 1);
+    };
+
+    $scope.addedu = function(crdv) {
+        if (!crdv.edu) {
+            crdv.edu = [{
+                "year": "",
+                "quali": "",
+                "institu": "",
+                "city": ""
+            }];
+        } else {
+            if (crdv.edu.length < 3) {
+                crdv.edu.push({
+                    "year": "",
+                    "quali": "",
+                    "institu": "",
+                    "city": ""
+                });
+            }
+        }
+    };
+    $scope.removeedu = function(i, dev) {
+        dev.splice(i, 1);
+    };
+
+    $scope.addgroup = function(crdv) {
+        if (!crdv.groupshow) {
+            crdv.groupshow = [{
+                "year": "",
+                "title": "",
+                "gallery": "",
+                "venue": ""
+            }];
+        } else {
+            if (crdv.groupshow.length < 3) {
+                crdv.groupshow.push({
+                    "year": "",
+                    "title": "",
+                    "gallery": "",
+                    "venue": ""
+                });
+            }
+        }
+    };
+    $scope.removegroup = function(i, dev) {
+        dev.splice(i, 1);
+    };
+
+    $scope.addauction = function(crdv) {
+        if (!crdv.auction) {
+            crdv.auction = [{
+                "year": "",
+                "auctionhouse": "",
+                "location": ""
+            }];
+        } else {
+            if (crdv.auction.length < 3) {
+                crdv.auction.push({
+                    "year": "",
+                    "auctionhouse": "",
+                    "location": ""
+                });
+            }
+        }
+    };
+    $scope.removeauction = function(i, dev) {
+        dev.splice(i, 1);
+    };
+    $scope.addaward = function(crdv) {
+        if (!crdv.award) {
+            crdv.award = [{
+                "year": "",
+                "title": "",
+                "institution": ""
+            }];
+        } else {
+            if (crdv.award.length < 3) {
+                crdv.award.push({
+                    "year": "",
+                    "title": "",
+                    "institution": ""
+                });
+            }
+        }
+    };
+    $scope.removeaward = function(i, dev) {
+        dev.splice(i, 1);
+    };
+
+    $scope.removeimage = function(i) {
+        $scope.user.image = "";;
+    };
+    $scope.removeresume = function(i) {
+        $scope.user.resume = "";
+    };
+    $scope.removeadcer = function(i) {
+        $scope.user.adcer = "";
+    };
+    //imageupload
+    // var imgUploadUrl = "http://smartsnap.in/user/uploadfile";
+    // var imgUploadUrl = "http://192.168.0.122:1337/user/uploadfile";
+    var imgUploadUrl = "http://192.168.0.122:81/user/uploadfile";
+    var imagejstupld = "";
+    $scope.usingFlash = FileAPI && FileAPI.upload != null;
+    $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+    $scope.uploadRightAway = true;
+    $scope.changeAngularVersion = function() {
+        window.location.hash = $scope.angularVersion;
+        window.location.reload(true);
+    };
+    $scope.hasUploader = function(index) {
+        return $scope.upload[index] != null;
+    };
+    $scope.abort = function(index) {
+        $scope.upload[index].abort();
+        $scope.upload[index] = null;
+    };
+    $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
+        window.location.hash.substring(2) : window.location.hash.substring(1)) : '1.2.20';
+    $scope.onFileSelect = function($files, whichone) {
+        $scope.selectedFiles = [];
+        $scope.progress = [];
+        console.log($files);
+        if ($scope.upload && $scope.upload.length > 0) {
+            for (var i = 0; i < $scope.upload.length; i++) {
+                if ($scope.upload[i] != null) {
+                    $scope.upload[i].abort();
+                }
+            }
+        }
+        $scope.upload = [];
+        $scope.uploadResult = uploadres;
+        $scope.selectedFiles = $files;
+        $scope.dataUrls = [];
+        for (var i = 0; i < $files.length; i++) {
+            var $file = $files[i];
+            if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL($files[i]);
+                var loadFile = function(fileReader, index) {
+                    fileReader.onload = function(e) {
+                        $timeout(function() {
+                            $scope.dataUrls[index] = e.target.result;
+                        });
+                    }
+                }(fileReader, i);
+            }
+            $scope.progress[i] = -1;
+            if ($scope.uploadRightAway) {
+                $scope.start(i, whichone);
+            }
+        }
+    };
+
+    $scope.start = function(index, whichone) {
+        $scope.progress[index] = 0;
+        $scope.errorMsg = null;
+        console.log($scope.howToSend = 1);
+        if ($scope.howToSend == 1) {
+            $scope.upload[index] = $upload.upload({
+                url: imgUploadUrl,
+                method: $scope.httpMethod,
+                headers: {
+                    'Content-Type': 'Content-Type'
+                },
+                data: {
+                    myModel: $scope.myModel
+                },
+                file: $scope.selectedFiles[index],
+                fileFormDataName: 'file'
+            });
+            $scope.upload[index].then(function(response) {
+                $timeout(function() {
+                    $scope.uploadResult.push(response.data);
+                    imagejstupld = response.data;
+                    if (whichone == 1) {
+                        if (imagejstupld != "") {
+                            $scope.user.image = imagejstupld.files[0].fd;
+                            imagejstupld = "";
+                        }
+                    } else if (whichone == 2) {
+                        if (imagejstupld != "") {
+                            $scope.user.resume = imagejstupld.files[0].fd;
+                            imagejstupld = "";
+                        }
+                    } else if (whichone == 3) {
+                        if (imagejstupld != "") {
+                            $scope.user.adcer = imagejstupld.files[0].fd;
+                            imagejstupld = "";
+                        }
+                    }
+                });
+            }, function(response) {
+                if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+            }, function(evt) {
+                $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            });
+            $scope.upload[index].xhr(function(xhr) {});
+        } else {
+            var fileReader = new FileReader();
+            fileReader.onload = function(e) {
+                $scope.upload[index] = $upload.http({
+                    url: imgUploadUrl,
+                    headers: {
+                        'Content-Type': $scope.selectedFiles[index].type
+                    },
+                    data: e.target.result
+                }).then(function(response) {
+                    $scope.uploadResult.push(response.data);
+                }, function(response) {
+                    if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
+                }, function(evt) {
+                    $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+                });
+            }
+            fileReader.readAsArrayBuffer($scope.selectedFiles[index]);
+        }
+    };
+
+    $scope.dragOverClass = function($event) {
+        var items = $event.dataTransfer.items;
+        var hasFile = false;
+        if (items != null) {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].kind == 'file') {
+                    hasFile = true;
+                    break;
+                }
+            }
+        } else {
+            hasFile = true;
+        }
+        return hasFile ? "dragover" : "dragover-err";
+    };
+    ////
+
+
+    //DEVELOPMENT
+
+    NavigationService.getuserprofile(function(data) {
+        if (data.id) {
+            $scope.userData = data;
+            $scope.isLoggedIn = true;
+        } else {
+            $scope.isLoggedIn = false;
+        }
+    })
+
+    //save user
+    $scope.disableSubmit = false;
+    $scope.submitForm = function() {
+        console.log($scope.user);
+        if ($scope.isLoggedIn == true) {
+            $scope.user.accesslevel = "artist";
+            $scope.user.status = "pending";
+            $scope.user.reseller = [{
+                "_id": $scope.userData.id,
+                "name": $scope.userData.name
+            }]
+            if ($scope.isValidEmail == 1 && $scope.user.checkboxModel) {
+            	delete $scope.user.checkboxModel
+                NavigationService.registeruser($scope.user, function(data, status) {
+                    console.log(data);
+                    if (data.value != false) {
+                        dataNextPre.messageBox("Artist has been registerd and is in review");
+                        $scope.disableSubmit = true;
+                    }
+                    // $location.url("/user");
+                });
+            } else {
+                if (!$scope.user.checkboxModel) {
+                    $scope.checked = 1;
+                }
+                console.log("not");
+            }
+        } else {
+            dataNextPre.messageBox("Please login to register an artist");
         }
     };
 
