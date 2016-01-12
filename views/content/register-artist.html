@@ -11,71 +11,80 @@
                   <div class="panel-body">
                      <form name="form_constraints" class="form-validation" data-ng-submit="submitForm()">
                         <div class="row">
-                           <div class="col-md-6">
-                              <!--
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Access Level</label>
-                                    <select class="form-control" ng-model="user.accesslevel" required>
-                                        <option selected value="customer">Customer</option>
-                                        <option value="artist">Artist</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
+                           <div class="col-md-9">
+                              <div class="row">
+                                <div class="col-md-7">
+                                  <div class="form-group">
+                                     <label for="exampleInputEmail1">Full Name</label>
+                                     <input type="text" class="form-control" ng-model="user.name" placeholder="Full Name" required capitalize-first>
+                                  </div>
+                                  <div class="form-group">
+                                     <label for="exampleInputEmail1">Gender</label>
+                                     <div>
+                                        <label class="radio-inline">
+                                           <input type="radio" name="gender" ng-model="user.gender" value="male">Male
+                                        </label>
+                                        <label class="radio-inline">
+                                           <input type="radio" name="gender" ng-model="user.gender" value="female">Female
+                                        </label>
+                                     </div>
+                                  </div>
+                                  <div class="form-group">
+                                     <label for="exampleInputEmail1">Email Address</label>
+                                     <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email address" required>
+                                     <span ng-if="isValidEmail==0" style="color:red;">Email id already exists.</span>
+                                  </div>
                                 </div>
--->
-                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Name</label>
-                                 <input type="text" class="form-control" ng-model="user.name" placeholder="Name" required capitalize-first>
+                                <div class="col-md-5">
+                                  <div class="form-group">
+                                     <label for="exampleInputEmail1">Image</label>
+                                     <div class="photo-holder">
+                                        <span ng-hide="user.image">Artist Photo</span>
+                                        <div class="image-contain" style="background-image:url('{{user.image | uploadpath}}');"></div>
+                                     </div>
+                                     <input type="button" ng-click="removeimage();" value="Delete" class="btn btn-danger" ng-if="user.image">
+                                  </div>
+                                  <div class="upload-div">
+                                     <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
+                                     <div class="upload-buttons">
+                                        <input type="file" name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null">
+                                     </div>
+                                     <div class="response" ng-show="uploadResult.length > 0">
+                                        <span ng-repeat="result in uploadResult">
+                                           <div ng-init=""></div>
+                                        </span>
+                                     </div>
+                                  </div>
+                                </div>
                               </div>
-                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Gender</label>
-                                 <div>
-                                    <label class="radio-inline">
-                                       <input type="radio" name="gender" ng-model="user.gender" value="male">Male
-                                    </label>
-                                    <label class="radio-inline">
-                                       <input type="radio" name="gender" ng-model="user.gender" value="female">Female
-                                    </label>
-                                 </div>
-                              </div>
-                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Email Address</label>
-                                 <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email address" required>
-                                 <span ng-if="isValidEmail==0" style="color:red;">Email id already exists.</span>
-                              </div>
-                              <!-- <div class="form-group">
-                                 <label for="exampleInputEmail1">Email Address</label>
-                                 <input type="email" class="form-control" ng-model="user.email" ng-change="email(user.email)" placeholder="Enter email address" required>
-                                 <span ng-if="isValidEmail==0" style="color:red;">Email id already exists.</span>
-                              </div> -->
-                              <!-- <div class="form-group">
-                                 <label class="radio-inline">
-                                    <input type="radio" name="focus" ng-model="user.focused" value="focused" class="ng-pristine ng-untouched ng-valid">Focused
-                                 </label>
-                                 <label class="radio-inline">
-                                    <input type="radio" name="focus" ng-model="user.focused" value="nonfocused" class="ng-pristine ng-untouched ng-valid">Non-Focused
-                                 </label>
-                              </div> -->
                            </div>
-                           <div class="col-md-6">
-                              <div class="form-group">
-                                 <label for="exampleInputEmail1">Image</label>
-                                 <div class="photo-holder">
-                                    <span ng-hide="user.image">Artist Photo</span>
-                                    <div class="image-contain" style="background-image:url('{{user.image | uploadpath}}');"></div>
+                           <div class="col-md-3">
+                             <div class="comment-box">
+                               <div class="comment-head">Comments</div>
+                               <div class="comment-area">
+
+                                 <!--Aura arts comment  -->
+                                 <div class="style1-bg bubble">
+                                   <div class="name">AADPL (Aura Art):</div>
+                                   <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
                                  </div>
-                                 <input type="button" ng-click="removeimage();" value="Delete" class="btn btn-danger" ng-if="user.image">
-                              </div>
-                              <div class="upload-div">
-                                 <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
-                                 <div class="upload-buttons">
-                                    <input type="file" name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null">
+                                 <!--Aura arts comment-->
+
+                                 <!--Artists comment-->
+                                 <div class="bubble">
+                                   <div class="name">DJ Bagga (You):</div>
+                                   <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
                                  </div>
-                                 <div class="response" ng-show="uploadResult.length > 0">
-                                    <span ng-repeat="result in uploadResult">
-                                       <div ng-init=""></div>
-                                    </span>
-                                 </div>
-                              </div>
+                                 <!--Artists comment-->
+
+                               </div>
+                               <div class="send-box">
+                                 <form ng-submit="">
+                                   <textarea rows="2"></textarea>
+                                   <button class="btn btn-default" type="submit">Send</button>
+                                 </form>
+                               </div>
+                             </div>
                            </div>
                         </div>
                         <div class="row">
