@@ -173,7 +173,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
             classis: "active",
             link: "#/reach-out"
         }, {
-            name: "Become A Seller",
+            name: "Upload Artworks for Sale",
             classis: "active",
             link: "#/termcondition"
         }, {
