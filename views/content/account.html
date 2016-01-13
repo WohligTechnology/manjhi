@@ -168,30 +168,30 @@
                         </div>
                         <div class="form-group">
                           <div class="tel-box">
-                            <input type="text" class="form-control tel-country" ng-model="user.billing.flatno" placeholder="House No" required>
-                            <input type="text" class="form-control tel-number" ng-model="user.billing.bldgname" placeholder="Name Of Buliding" required>
+                            <input type="text" class="form-control tel-country" ng-model="user.work.flatno" placeholder="House No" required>
+                            <input type="text" class="form-control tel-number" ng-model="user.work.bldgname" placeholder="Name Of Buliding" required>
                           </div>
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.landmark" placeholder="Landmark" required>
+                          <input type="text" class="form-control" ng-model="user.work.landmark" placeholder="Landmark" required>
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.street" placeholder="Street" required>
+                          <input type="text" class="form-control" ng-model="user.work.street" placeholder="Street" required>
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.locality" placeholder="Locality" required>
+                          <input type="text" class="form-control" ng-model="user.work.locality" placeholder="Locality" required>
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.city" placeholder="City" required>
+                          <input type="text" class="form-control" ng-model="user.work.city" placeholder="City" required>
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
+                          <input type="text" class="form-control" ng-model="user.work.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
                         </div>
                         <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.state" placeholder="State" required>
+                          <input type="text" class="form-control" ng-model="user.work.state" placeholder="State" required>
                         </div>
                         <div class="input-id">
-                          <select class="form-control" ng-model="user.billing.country" placeholder="Country" required>
+                          <select class="form-control" ng-model="user.work.country" placeholder="Country" required>
                             <option value="">Select Country</option>
                             <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
                           </select>
