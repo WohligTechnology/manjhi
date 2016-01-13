@@ -43,7 +43,7 @@
                                                 <ui-select ng-model="artwork.user" on-select="setSearch($select);" tagging tagging-label="false" required>
                                                     <ui-select-match class="text-capitalize" placeholder="Select Artist">{{variable}}</ui-select-match>
                                                     <ui-select-choices refresh-delay="0" refresh="getDropdown($select.search)" repeat="person in allartist track by person._id">
-                                                        <div ng-bind-html="person.name| highlight: $select.search"></div>
+                                                        <div ng-bind-html="person.name| addhighlight: $select.search"></div>
                                                     </ui-select-choices>
                                                 </ui-select>
                                             </div>
@@ -107,7 +107,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Year of Creation</label>
-                                            <input class="form-control" ng-model="artwork.year" placeholder="Year" type="text" only-digits ng-trim="false">
+                                            <input class="form-control" ng-model="artwork.yoc" placeholder="Year" type="text" only-digits ng-trim="false">
                                         </div>
                                     </div>
                                 </div>
@@ -310,11 +310,6 @@
                                         <div class="upload-buttons">
                                             <input multiple name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null" type="file">
                                         </div>
-                                        <div class="response" ng-show="uploadResult.length > 0">
-                                            <span ng-repeat="result in uploadResult">
-                        <div ng-init=""></div>
-                      </span>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -324,11 +319,6 @@
                                         <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
                                         <div class="upload-buttons">
                                             <input name="file" ng-file-select="onFileSelect($files,2)" onclick="this.value=null" type="file">
-                                        </div>
-                                        <div class="response" ng-show="uploadResult.length > 0">
-                                            <span ng-repeat="result in uploadResult">
-                        <div ng-init=""></div>
-                      </span>
                                         </div>
                                     </div>
                                 </div>
@@ -347,22 +337,24 @@
                     <div class="comment-box">
                         <div class="comment-head">Comments</div>
                         <div class="comment-area">
-                            <!--Aura arts comment  -->
-                            <div class="style1-bg bubble">
-                                <div class="name">AADPL (Aura Art):</div>
-                                <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+                            <div class="" ng-repeat="chat in artwork.chat" ng-if="artwork.chat.length>0">
+                                <!--Aura arts comment  -->
+                                <div class="style1-bg bubble" ng-if="chat.accesslevel=='admin'">
+                                    <div class="name">AADPL (Aura Art):</div>
+                                    <div class="comment-text">{chat.comment}}</div>
+                                </div>
+                                <!--Aura arts comment-->
+                                <!--Artists comment-->
+                                <div class="bubble" ng-if="chat.accesslevel=='artist'">
+                                    <div class="name">{{chat.name}} (You):</div>
+                                    <div class="comment-text">{{chat.comment}}</div>
+                                </div>
+                                <!--Artists comment-->
                             </div>
-                            <!--Aura arts comment-->
-                            <!--Artists comment-->
-                            <div class="bubble">
-                                <div class="name">DJ Bagga (You):</div>
-                                <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                            </div>
-                            <!--Artists comment-->
                         </div>
                         <div class="send-box">
-                            <form ng-submit="">
-                                <textarea rows="2"></textarea>
+                            <form ng-submit="submitComment();">
+                                <textarea rows="2" ng-model="chat.comment"></textarea>
                                 <button class="btn btn-default" type="submit">Send</button>
                             </form>
                         </div>
