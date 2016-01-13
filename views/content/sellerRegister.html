@@ -3,7 +3,7 @@
 
       <!--       Registration   -->
 
-      <div class="holder1">
+      <div class="holder1" ng-hide="showLogin">
          <div class="ngdialog-close close"></div>
          <h3 class="createtitle">Registration</h3>
          <div class="row">
@@ -42,6 +42,46 @@
                   </div>
                </div>
             </div>
+         </div>
+         <div class="border1">
+             <p class="abc"><span class="already">Already Registered ? Click <a class="forgetlink" ng-class="loginholder" ng-click="changeTab(2)">here</a> to  create one </span>
+             </p>
+         </div>
+      </div>
+      <!--       Login   -->
+
+      <div class="holder1" ng-show="showLogin">
+         <div class="ngdialog-close close"></div>
+         <h3 class="createtitle">Login</h3>
+         <div class="row">
+            <div class="col-md-12">
+               <div class="signin">
+                  <div class="">
+                     <form class="form-horizontal" ng-submit="userlogin();">
+                        <div class="form-group">
+                           <div class="col-sm-12">
+                              <input type="email" class="form-control" placeholder="Enter your email *" required="" ng-model="login.email">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-sm-12">
+                              <input type="password" class="form-control" placeholder="Password *" required="" ng-model="login.password">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-sm-12">
+                              <button type="submit" class="btn-sucess">Login</button>
+                           </div>
+                        </div>
+                     </form>
+                     <p class="text-center" style="color:red" ng-show="showInvalidLogin">Invalid Login Credentials</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="border1">
+             <p class="abc"><span class="already">Don't have an account ? Click <a class="forgetlink" ng-class="loginholder" ng-click="changeTab(1)">here</a> to  create one </span>
+             </p>
          </div>
       </div>
    </div>

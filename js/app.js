@@ -188,7 +188,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
     })
 
     .state('editartist', {
-        url: "/edit-artist",
+        url: "/edit-artist/:id",
         templateUrl: "views/template.html",
         controller: 'EditArtistCtrl'
     })

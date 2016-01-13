@@ -4,6 +4,7 @@
         <div class="cont-artist">
             <h4 class="head-team margin-no">{{artistdetail.name}}
               <a class="readmore" ng-click="status.open = !status.open">View Profile</a>
+              <a class="readmore" ui-sref="editartist({id:artistid})">Edit</a>
             </h4>
             <accordion>
                 <accordion-group is-open="status.open">

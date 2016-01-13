@@ -28,6 +28,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.filterby.maxheight = '';
     $scope.filterby.minbreadth = '';
     $scope.filterby.maxbreadth = '';
+      $scope.showInvalidLogin = false;
     //  $scope.filterby.color = '';
     //  $scope.filterby.style = '';
     //  $scope.filterby.element = '';
@@ -69,6 +70,46 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.passwordNotMatch = true;
         }
     };
+
+    $scope.userlogin = function() {
+        NavigationService.userlogin($scope.login, function(data, status) {
+          if (data.value != false) {
+            $scope.showInvalidLogin = false;
+            NavigationService.getuserprofile(function(data) {
+              ngDialog.closeAll();
+                if (data.id && data.accesslevel == "reseller") {
+                    $state.go("create-artwork");
+                } else {
+                    $state.go("termcondition");
+                }
+            })
+          }else {
+            $scope.showInvalidLogin = true;
+          }
+
+
+            // if (data.value != false) {
+            //     $scope.showInvalidLogin = false;
+            //     $scope.showWishlist = true;
+            //     //$.jStorage.set("user", data);
+            //     $scope.user.name = data.name;
+            //     ngDialog.closeAll();
+            //     window.location.reload();
+            // } else {
+            //     $scope.showInvalidLogin = true;
+            // }
+        })
+    };
+
+$scope.showLogin = true;
+    $scope.changeTab = function(tab){
+      console.log(tab);
+      if (tab==1) {
+        $scope.showLogin = false;
+      }else {
+        $scope.showLogin = true;
+      }
+    }
 
     function getPress(data) {
 
@@ -1949,6 +1990,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+    $scope.artistid = $stateParams.artistid;
 
     cfpLoadingBar.start();
     NavigationService.getoneartist($stateParams.artistid, function(data, status) {
@@ -3860,7 +3902,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('EditArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http) {
+.controller('EditArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams) {
     $scope.template = TemplateService.changecontent("edit-artist");
     $scope.menutitle = NavigationService.makeactive("Edit Artist");
     TemplateService.title = $scope.menutitle;
@@ -3878,6 +3920,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.checked = 0;
     $scope.medium = [];
     $scope.theme = [];
+
+    NavigationService.getoneartist($stateParams.id, function(data){
+      console.log(data);
+      $scope.user = data;
+    });
 
     $scope.select2options = {
         maximumSelectionSize: 5,
@@ -4226,24 +4273,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 "_id": $scope.userData.id,
                 "name": $scope.userData.name
             }]
-            if ($scope.isValidEmail == 1 && $scope.user.checkboxModel) {
                 delete $scope.user.checkboxModel
                 NavigationService.registeruser($scope.user, function(data, status) {
                     console.log(data);
                     if (data.value != false) {
-                        dataNextPre.messageBox("Artist has been registerd and is in review");
+                        dataNextPre.messageBox("Artist has been updated");
                         $scope.disableSubmit = true;
                     }
-                    // $location.url("/user");
                 });
-            } else {
-                if (!$scope.user.checkboxModel) {
-                    $scope.checked = 1;
-                }
-                console.log("not");
-            }
         } else {
-            dataNextPre.messageBox("Please login to register an artist");
+            dataNextPre.messageBox("Please login to update an artist");
         }
     };
 
