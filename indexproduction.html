@@ -2,27 +2,53 @@
 <html lang="en" ng-app="firstapp">
 
 <head ng-controller="headerctrl">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title ng-bind="'Aura Art - '+template.title">Aura Art</title>
+  <title ng-bind="'Aura Art - '+template.title">Aura Art</title>
 
-    <link rel="shortcut icon" href="img/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="p/w.gz.css" />
-    <script src="p/w.gz.js"></script>
-    
-    <!--[if IE]>
+  <link rel="shortcut icon" href="img/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="p/w.gz.css" />
+  <script src="p/w.gz.js"></script>
+
+  <!--[if IE]>
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 </head>
 
 <body zoom-container>
-    <div class="repeated-item" ui-view></div>
+  <div class="repeated-item" ui-view></div>
+  
+  <!--Start of Zopim Live Chat Script-->
+  <script type="text/javascript">
+    window.$zopim || (function(d, s) {
+      var z = $zopim = function(c) {
+          z._.push(c)
+        },
+        $ = z.s =
+        d.createElement(s),
+        e = d.getElementsByTagName(s)[0];
+      z.set = function(o) {
+        z.set.
+        _.push(o)
+      };
+      z._ = [];
+      z.set._ = [];
+      $.async = !0;
+      $.setAttribute('charset', 'utf-8');
+      $.src = '//v2.zopim.com/?3cFV0GUt4f8WF5Ngbrb2OZaIhyP3rZ5S';
+      z.t = +new Date;
+      $.
+      type = 'text/javascript';
+      e.parentNode.insertBefore($, e)
+    })(document, 'script');
+  </script>
+  <!--End of Zopim Live Chat Script-->
 </body>
 
 </html>
