@@ -3439,7 +3439,7 @@ $scope.showLogin = true;
 })
 
 .controller('EditArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams) {
-    $scope.template = TemplateService.changecontent("create-artwork");
+    $scope.template = TemplateService.changecontent("edit-artwork");
     $scope.menutitle = NavigationService.makeactive("Upload Artwork");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
