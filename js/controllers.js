@@ -3395,6 +3395,9 @@ $scope.showLogin = true;
                             category: ""
                         };
                     }
+                    NavigationService.registeruser($scope.userData, function(data){
+                      console.log(data);
+                    });
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
