@@ -3395,6 +3395,7 @@ $scope.showLogin = true;
                             category: ""
                         };
                     }
+                    $scope.userData._id = $scope.userData.id;
                     NavigationService.registeruser($scope.userData, function(data){
                       console.log(data);
                     });
@@ -3489,6 +3490,8 @@ $scope.showLogin = true;
         console.log(data);
         if (data.value != false) {
             $scope.artwork = data[0].artwork;
+            $scope.changingStatus($scope.artwork.fstatus);
+            $scope.isSculpture($scope.artwork.type);
             $scope.artwork.user = {
                 "_id": data[0]._id,
                 "name": data[0].name
@@ -3862,6 +3865,10 @@ $scope.showLogin = true;
                             category: ""
                         };
                     }
+                    $scope.userData._id = $scope.userData.id;
+                    NavigationService.registeruser($scope.userData, function(data){
+                      console.log(data);
+                    });
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
