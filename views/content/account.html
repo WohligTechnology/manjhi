@@ -13,7 +13,7 @@
                     <strong>Warning!</strong> Don't use same password. Please use different password.
                 </div>
                 <h4>My Account
-          <span class="pull-right regular-link">
+          <span class="pull-right regular-link" ng-if="user.accesslevel!='reseller'" ng-click="becomeSeller()">
             <i class="fa fa-upload"></i> Upload Artwork for sale
           </span>
         </h4>

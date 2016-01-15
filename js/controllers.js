@@ -2723,7 +2723,7 @@ $scope.showLogin = true;
 
 })
 
-.controller('AccountCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, cfpLoadingBar, $state) {
+.controller('AccountCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, cfpLoadingBar, $state, ngDialog) {
 
     $scope.template = TemplateService.changecontent("account");
     $scope.menutitle = NavigationService.makeactive("Account");
@@ -2746,14 +2746,15 @@ $scope.showLogin = true;
     $scope.user.bank.cancelCheck = '';
     $scope.tab = '';
     $scope.tab.url = "views/content/my-artworks.html";
+    $scope.isLoggedIn = false;
 
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
             userProfile = data;
             $scope.user = data;
             $scope.reload();
+            $scope.isLoggedIn = true;
             NavigationService.getMyFavourites(data.id, function(favorite) {
-                console.log(favorite);
                 if (favorite.value != false) {
                     $scope.noFavs = false;
                     userProfile.wishlist = favorite;
@@ -3053,6 +3054,72 @@ $scope.showLogin = true;
             hasFile = true;
         }
         return hasFile ? "dragover" : "dragover-err";
+    };
+
+
+    $scope.becomeSeller = function() {
+        if ($scope.isLoggedIn == true) {
+            if (userProfile && userProfile.accesslevel == "reseller") {
+                $state.go("create-artwork");
+            } else {
+                $state.go("termcondition");
+            }
+        } else {
+            ngDialog.open({
+                template: 'views/content/sellerRegister.html'
+            });
+        }
+    }
+
+    $scope.registeruser = function() {
+        if ($scope.register.password === $scope.register.confirmpassword) {
+            $scope.passwordNotMatch = false;
+            $scope.register.accesslevel = "customer";
+            NavigationService.registeruser($scope.register, function(data, status) {
+                console.log(data);
+                if (data.value != false) {
+                    $scope.showAlreadyRegistered = false;
+                    $scope.showWishlist = true;
+                    //$.jStorage.set("user", data);
+                    ngDialog.closeAll();
+                    $state.go("termcondition");
+                } else if (data.value == false && data.comment == "User already exists") {
+                    $scope.showAlreadyRegistered = true;
+                }
+            })
+        } else {
+            $scope.passwordNotMatch = true;
+        }
+    };
+
+    $scope.userlogin = function() {
+        NavigationService.userlogin($scope.login, function(data, status) {
+          if (data.value != false) {
+            $scope.showInvalidLogin = false;
+            NavigationService.getuserprofile(function(data) {
+              ngDialog.closeAll();
+                if (data.id && data.accesslevel == "reseller") {
+                    $state.go("create-artwork");
+                } else {
+                    $state.go("termcondition");
+                }
+            })
+          }else {
+            $scope.showInvalidLogin = true;
+          }
+
+
+            // if (data.value != false) {
+            //     $scope.showInvalidLogin = false;
+            //     $scope.showWishlist = true;
+            //     //$.jStorage.set("user", data);
+            //     $scope.user.name = data.name;
+            //     ngDialog.closeAll();
+            //     window.location.reload();
+            // } else {
+            //     $scope.showInvalidLogin = true;
+            // }
+        })
     };
 
 })
