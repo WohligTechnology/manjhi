@@ -92,7 +92,7 @@ h3.home-header {
   font-family: @font-family-head;
   color: @color-shade-light;
   padding: 25px 0;
-  
+
   p {
     margin: 0;
     font-size: 12px;
@@ -2806,6 +2806,24 @@ img.fancybox-image {
 }
 .lowercase {
     text-transform: lowercase;
+}
+.alert {
+  border-radius: 0px;
+  &.alert-success{
+    color: white;
+    background-color: @color4;
+    border-color: @color4;
+  }
+  &.alert-danger{
+    color: white;
+    background-color: @color3;
+    border-color: @color3;
+  }
+  &.alert-warning {
+    color: white;
+    background-color: @color2;
+    border-color: @color2;
+  }
 }
 /*Mobile Less*/
 //@import "other.less";
