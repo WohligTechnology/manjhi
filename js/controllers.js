@@ -2806,10 +2806,13 @@ $scope.showLogin = true;
         });
     }
 
-    $scope.editArtwork = function(id) {
+    $scope.editArtwork = function(status,id) {
+      console.log(status);
+      if (status==='revert') {
         $state.go("edit-artwork", {
             "id": id
         });
+      }
     }
 
     $scope.changeTab = function(tab) {
@@ -3001,6 +3004,7 @@ $scope.showLogin = true;
     // $scope.usr = $routeParams.id;
     $scope.artwork = {};
     $scope.artwork.type = "Paintings";
+    $scope.multiplesel = false;
     $scope.artwork.subtype = [];
     $scope.artwork.tag = [];
     $scope.showBreadth = false;
@@ -3341,24 +3345,28 @@ $scope.showLogin = true;
                 $scope.showSculpture = false;
                 $scope.showPrints = false;
                 $scope.showPhotography = false;
+                $scope.multiplesel = false;
                 break;
             case "Sculptures":
                 $scope.showPaintings = false;
                 $scope.showSculpture = true;
                 $scope.showPrints = false;
                 $scope.showPhotography = false;
+                $scope.multiplesel = true;
                 break;
             case "Photographs":
                 $scope.showPaintings = false;
                 $scope.showSculpture = false;
                 $scope.showPrints = false;
                 $scope.showPhotography = true;
+                $scope.multiplesel = false;
                 break;
             case "Prints":
                 $scope.showPaintings = false;
                 $scope.showSculpture = false;
                 $scope.showPrints = true;
                 $scope.showPhotography = false;
+                $scope.multiplesel = false;
                 break;
         }
     }
@@ -3454,6 +3462,7 @@ $scope.showLogin = true;
     // $scope.usr = $routeParams.id;
     $scope.artwork = {};
     $scope.artwork.type = "Paintings";
+    $scope.multiplesel = false;
     $scope.artwork.subtype = [];
     $scope.artwork.tag = [];
     $scope.showBreadth = false;
@@ -3481,6 +3490,8 @@ $scope.showLogin = true;
     $scope.access = "artist";
     $scope.chat = {};
 
+    $scope.disableSubmit = false;
+
     $scope.otherDetails = "eg. Diptych, Triptych";
 
     NavigationService.getuserprofile(function(data) {
@@ -3498,6 +3509,9 @@ $scope.showLogin = true;
                 "name": data[0].name
             };
             $scope.variable = data[0].name;
+            if ($scope.artwork.status == "pending") {
+              $scope.disableSubmit = true;
+            }
             // console.log($scope.artwork)
         }
     })
@@ -3810,30 +3824,33 @@ $scope.showLogin = true;
                 $scope.showSculpture = false;
                 $scope.showPrints = false;
                 $scope.showPhotography = false;
+                $scope.multiplesel = false;
                 break;
             case "Sculptures":
                 $scope.showPaintings = false;
                 $scope.showSculpture = true;
                 $scope.showPrints = false;
                 $scope.showPhotography = false;
+                $scope.multiplesel = true;
                 break;
             case "Photographs":
                 $scope.showPaintings = false;
                 $scope.showSculpture = false;
                 $scope.showPrints = false;
                 $scope.showPhotography = true;
+                $scope.multiplesel = false;
                 break;
             case "Prints":
                 $scope.showPaintings = false;
                 $scope.showSculpture = false;
                 $scope.showPrints = true;
                 $scope.showPhotography = false;
+                $scope.multiplesel = false;
                 break;
         }
     }
 
     $scope.showerror = false;
-    $scope.disableSubmit = false;
     $scope.createartwork = function() {
         NavigationService.getuserprofile(function(data) {
             if (data.id && $scope.artwork.user) {

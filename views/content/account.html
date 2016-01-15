@@ -339,7 +339,7 @@
                 <div class="artist">
                     <div class="">
                         <div class="row" ng-repeat="artworks in myArtworks">
-                            <div class="col-xs-4" ng-repeat="artwork in artworks" ng-click="editArtwork(artwork.artwork._id);">
+                            <div class="col-xs-4" ng-repeat="artwork in artworks" ng-click="editArtwork(artwork.artwork.status,artwork.artwork._id);">
                                 <div class="aristimg-grp1">
                                     <div class="relative">
                                         <div class="image-holders">

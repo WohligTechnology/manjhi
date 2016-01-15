@@ -371,8 +371,9 @@
                                     </div>
                                     <div class="upload-div" ng-hide="artwork.type!='Sculptures' && artwork.image.length>=1">
                                         <div ng-init="httpMethod = 'POST';howToSend = 1;"></div>
-                                        <div class="upload-buttons" ng-init="data = (artwork.type=='Sculptures') ? 'multiple' : ''; ">
-                                            <input data name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null" type="file">
+                                        <div class="upload-buttons">
+                                            <input name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null" type="file" ng-hide="multiplesel">
+                                            <input multiple name="file" ng-file-select="onFileSelect($files,1)" onclick="this.value=null" type="file" ng-show="multiplesel">
                                         </div>
                                     </div>
                                 </div>
