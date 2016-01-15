@@ -2287,6 +2287,7 @@ $scope.showLogin = true;
     $scope.userProfile = {};
     $scope.cartItems = [];
     $scope.totalCartPrice = 0;
+    $scope.isLoggedIn == false;
 
     $scope.reachOutArtistId = 0;
     // if ($.jStorage.get("searchObj")) {
@@ -2294,6 +2295,79 @@ $scope.showLogin = true;
     // } else {
     //     $scope.art.search = "";
     // }
+
+    $scope.subMenuClick = function(link){
+      $scope.redirectu = link.split('/')[1];
+      if ($scope.redirectu == 'termcondition') {
+        if ($scope.isLoggedIn == true) {
+            if (userProfile && userProfile.accesslevel == "reseller") {
+                $state.go("create-artwork");
+            } else {
+                $state.go("termcondition");
+            }
+        } else {
+            ngDialog.open({
+                template: 'views/content/sellerRegister.html'
+            });
+        }
+      }else {
+        $state.go($scope.redirectu);
+      }
+
+    }
+
+    $scope.registeruser = function() {
+        if ($scope.register.password === $scope.register.confirmpassword) {
+            $scope.passwordNotMatch = false;
+            $scope.register.accesslevel = "customer";
+            NavigationService.registeruser($scope.register, function(data, status) {
+                console.log(data);
+                if (data.value != false) {
+                    $scope.showAlreadyRegistered = false;
+                    $scope.showWishlist = true;
+                    //$.jStorage.set("user", data);
+                    ngDialog.closeAll();
+                    $state.go("termcondition");
+                } else if (data.value == false && data.comment == "User already exists") {
+                    $scope.showAlreadyRegistered = true;
+                }
+            })
+        } else {
+            $scope.passwordNotMatch = true;
+        }
+    };
+
+    $scope.userlogin = function() {
+        NavigationService.userlogin($scope.login, function(data, status) {
+          if (data.value != false) {
+            $scope.showInvalidLogin = false;
+            NavigationService.getuserprofile(function(data) {
+              ngDialog.closeAll();
+                if (data.id && data.accesslevel == "reseller") {
+                    $state.go("create-artwork");
+                } else {
+                    $state.go("termcondition");
+                }
+            })
+          }else {
+            $scope.showInvalidLogin = true;
+          }
+
+
+            // if (data.value != false) {
+            //     $scope.showInvalidLogin = false;
+            //     $scope.showWishlist = true;
+            //     //$.jStorage.set("user", data);
+            //     $scope.user.name = data.name;
+            //     ngDialog.closeAll();
+            //     window.location.reload();
+            // } else {
+            //     $scope.showInvalidLogin = true;
+            // }
+        })
+    };
+
+
 
     NavigationService.getDollarPrice(function(data) {
         if (data.value != false) {
@@ -2304,10 +2378,13 @@ $scope.showLogin = true;
 
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
+          $scope.isLoggedIn = true;
             userProfile = data;
             NavigationService.getMyFavourites(data.id, function(favorite) {
                 userProfile.wishlist = favorite;
             })
+        }else {
+          $scope.isLoggedIn = false;
         }
     })
     var countcall = 0;
@@ -2993,7 +3070,7 @@ $scope.showLogin = true;
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('CreateArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http) {
+.controller('CreateArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $state) {
     $scope.template = TemplateService.changecontent("create-artwork");
     $scope.menutitle = NavigationService.makeactive("Upload Artwork");
     TemplateService.title = $scope.menutitle;
@@ -3412,7 +3489,10 @@ $scope.showLogin = true;
                         console.log(data);
                         if (data.value == true) {
                             $scope.disableSubmit = true;
-                            dataNextPre.messageBox("Your art work has been submitted for review.")
+                            dataNextPre.messageBox("Your art work has been submitted for review.");
+                            $timeout(function() {
+                                $state.go('account');
+                            }, 3000);
                         }
                         // $location.url("/artworkout");
                     });
