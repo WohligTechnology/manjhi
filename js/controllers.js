@@ -3399,6 +3399,7 @@ $scope.showLogin = true;
                     NavigationService.registeruser($scope.userData, function(data){
                       console.log(data);
                     });
+                    $scope.artwork.status = 'pending';
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
