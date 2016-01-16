@@ -597,6 +597,16 @@ firstapp.directive('onlyDigits', function() {
     };
 });
 
+firstapp.directive('clickme', function() {
+  return function(scope, element, attrs) {
+    var clickingCallback = function() {
+    console.log(userProfile);
+      alert(userProfile);
+    };
+    element.bind('click', clickingCallback);
+  }
+});
+
 firstapp.directive('youtube', function($sce) {
     return {
         restrict: 'A',

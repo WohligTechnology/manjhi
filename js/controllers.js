@@ -2,6 +2,7 @@ var dataNextPre = {};
 var userProfile = {};
 var uploadres = [];
 var dollarPrice = '';
+var globalFunction = {};
 
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
 
@@ -639,6 +640,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.menutitle = NavigationService.makeactive("Contact Us");
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
+
+  $scope.becomeSeller = function(){
+    globalFunction.becomeSeller();
+  }
 })
 
 .controller('TotalartWorkCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams, $location, $state) {
@@ -2302,8 +2307,37 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   //     $scope.art.search = "";
   // }
 
+  $scope.becomeSeller = function() {
+    globalFunction.becomeSeller();
+    // if ($scope.isLoggedIn == true) {
+    //   if (userProfile && userProfile.accesslevel == "reseller") {
+    //     $state.go("create-artwork");
+    //   } else {
+    //     $state.go("termcondition");
+    //   }
+    // } else {
+    //   ngDialog.open({
+    //     template: 'views/content/sellerRegister.html'
+    //   });
+    // }
+  }
+  globalFunction.becomeSeller = function() {
+    if ($scope.isLoggedIn == true) {
+      if (userProfile && userProfile.accesslevel == "reseller") {
+        $state.go("create-artwork");
+      } else {
+        $state.go("termcondition");
+      }
+    } else {
+      ngDialog.open({
+        template: 'views/content/sellerRegister.html'
+      });
+    }
+  }
+
   $scope.subMenuClick = function(link) {
     $scope.redirectu = link.split('/')[1];
+    console.log($scope.redirectu);
     if ($scope.redirectu == 'termcondition') {
       if ($scope.isLoggedIn == true) {
         if (userProfile && userProfile.accesslevel == "reseller") {
@@ -2818,7 +2852,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     NavigationService.registeruser($scope.user, function(data) {
       console.log(data);
       $scope.closeTab(2);
-      if (data.value == true) {
+      if (data.value != false) {
         // $scope.reload();
         $scope.showSuccess = true;
         $timeout(function() {

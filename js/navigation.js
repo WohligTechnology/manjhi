@@ -177,7 +177,9 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         }, {
             name: "Upload Artworks for Sale",
             classis: "active",
-            link: "#/termcondition"
+            function: function() {
+                globalFunction.becomeSeller();
+            }
         }, {
             name: "Contact Details",
             classis: "active",
