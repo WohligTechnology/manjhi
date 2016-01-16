@@ -2329,7 +2329,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   globalFunction.becomeSeller = function() {
     if ($scope.isLoggedIn == true) {
       if (userProfile && userProfile.accesslevel == "reseller") {
-        $state.go("create-artwork");
+        $state.go("account");
       } else {
         $state.go("termcondition");
       }
