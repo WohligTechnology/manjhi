@@ -44,17 +44,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   };
 
   $scope.becomeSeller = function() {
-    if ($scope.isLoggedIn == true) {
-      if (userProfile && userProfile.accesslevel == "reseller") {
-        $state.go("create-artwork");
-      } else {
-        $state.go("termcondition");
-      }
-    } else {
-      ngDialog.open({
-        template: 'views/content/sellerRegister.html'
-      });
-    }
+    globalFunction.becomeSeller();
+    // if ($scope.isLoggedIn == true) {
+    //   if (userProfile && userProfile.accesslevel == "reseller") {
+    //     $state.go("create-artwork");
+    //   } else {
+    //     $state.go("termcondition");
+    //   }
+    // } else {
+    //   ngDialog.open({
+    //     template: 'views/content/sellerRegister.html'
+    //   });
+    // }
   }
 
   $scope.registeruser = function() {
@@ -3105,17 +3106,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
   $scope.becomeSeller = function() {
-    if ($scope.isLoggedIn == true) {
-      if (userProfile && userProfile.accesslevel == "reseller") {
-        $state.go("create-artwork");
-      } else {
-        $state.go("termcondition");
-      }
-    } else {
-      ngDialog.open({
-        template: 'views/content/sellerRegister.html'
-      });
-    }
+    globalFunction.becomeSeller();
+    // if ($scope.isLoggedIn == true) {
+    //   if (userProfile && userProfile.accesslevel == "reseller") {
+    //     $state.go("create-artwork");
+    //   } else {
+    //     $state.go("termcondition");
+    //   }
+    // } else {
+    //   ngDialog.open({
+    //     template: 'views/content/sellerRegister.html'
+    //   });
+    // }
   }
 
   $scope.registeruser = function() {
