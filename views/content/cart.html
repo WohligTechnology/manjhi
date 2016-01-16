@@ -25,7 +25,7 @@
                             <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
                         </td>
                         <td>
-                            <span class="mobile">Product Id</span> {{artwork.artwork.srno}}
+                            <span class="mobile">Product Id</span> {{artwork.artwork.imageno[0]}}
                         </td>
                         <td>
                             <span class="mobile">Artist Name</span> {{artwork.name}}
@@ -34,10 +34,10 @@
                             <span class="mobile">Title</span> {{artwork.artwork.name}}
                         </td>
                         <td>
-                            <span class="mobile">Size</span> {{artwork.artwork.gprice|number:0}}
+                            <span class="mobile">Size</span> {{artwork.artwork.dim}} inches
                         </td>
                         <td>
-                            <span class="mobile">Price</span> Rs.{{artwork.artwork.gprice|number:0}} / ${{artwork.artwork.gprice|indollars}}
+                            <span class="mobile">Price</span> Rs.{{artwork.artwork.gprice|number:0}} / ${{artwork.artwork.gprice|indollars}} <span>(excluding VAT)</span>
                         </td>
 
                         <td>

@@ -2309,7 +2309,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   // }
 
   $scope.joinUs = function(){
-    
+
   }
 
   $scope.becomeSeller = function() {
@@ -2792,11 +2792,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.tab = '';
   $scope.tab.url = "views/content/my-artworks.html";
   $scope.isLoggedIn = false;
+  cfpLoadingBar.start();
 
   NavigationService.getuserprofile(function(data) {
     if (data.id) {
       userProfile = data;
       $scope.user = data;
+      cfpLoadingBar.complete();
       $scope.reload();
       $scope.isLoggedIn = true;
       NavigationService.getMyFavourites(data.id, function(favorite) {
