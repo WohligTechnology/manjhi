@@ -9,25 +9,19 @@
               <form class="form-validation" data-ng-submit="submitForm()" name="form_constraints">
                 <div class="row">
                   <div class="col-md-6">
-                    <!--
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Access Level</label>
-                                    <select class="form-control" ng-model="user.accesslevel" required>
-                                        <option selected value="customer">Customer</option>
-                                        <option value="artist">Artist</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
--->
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Name</label>
-                      <input capitalize-first class="form-control" ng-model="user.name" placeholder="Name" required type="text">
+                      <label>Your Email Address*</label>
+                      <input type="email" class="form-control" placeholder="Your Email Address*" required capitalize-first>
+                    </div>
+                    <div class="form-group">
+                      <label>Artist Name</label>
+                      <input capitalize-first class="form-control" ng-model="user.name" placeholder="Artist Name" required type="text">
                     </div>
 
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Gender</label>
+                      <label>Gender</label>
                       <div>
                         <label class="radio-inline">
                           <input name="gender" ng-model="user.gender" type="radio" value="male">Male
@@ -43,19 +37,19 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Date / Year of Birth</label>
+                      <label>Date / Year of Birth</label>
                       <input class="form-control" ng-model="user.dob" onfocus="(this.type='date')" placeholder="Date of Birth" required type="text">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Place / City / State of Birth</label>
+                      <label>Place / City / State of Birth</label>
                       <input class="form-control" ng-model="user.stateofb" placeholder="State of Birth" type="text">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Year of Demise (if applicable)</label>
+                      <label>Year of Demise (if applicable)</label>
                       <input class="form-control" ng-model="user.passedaway" placeholder="Year of Demise (if applicable)" type="text">
                     </div>
                   </div>
@@ -64,7 +58,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Overview of Artist's concepts / thought process (Limited to 200 words)</label>
+                      <label>Overview of Artist's concepts / thought process (Limited to 200 words)</label>
                       <textarea class="form-control ng-pristine ng-untouched ng-valid" maxlength="200" ng-model="user.artistdesc" placeholder="Overview of Artist's concepts / thought process (Limited to 200 words)"></textarea>
                     </div>
                   </div>
@@ -253,7 +247,7 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group ui-selecter">
-                      <label for="exampleInputEmail1">Typical Style</label>
+                      <label>Typical Style</label>
                       <div class="form-group">
                         <ui-select multiple ng-model="user.theme" on-select="ismatch(user.theme,$select);" tagging tagging-label="false">
                           <ui-select-match placeholder="Select Style">{{$item.name}}</ui-select-match>
@@ -266,7 +260,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group ui-selecter">
-                      <label for="exampleInputEmail1">Typical Medium</label>
+                      <label>Typical Medium</label>
                       <div class="form-group">
                         <ui-select multiple ng-change="ismatchmed(user.medium,$select);" ng-model="user.medium" tagging tagging-label="false">
                           <ui-select-match placeholder="Select Medium">{{$item.name}}</ui-select-match>
@@ -281,13 +275,13 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Website of Artist</label>
+                      <label>Website of Artist</label>
                       <input class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.woa" placeholder="Website of Artist" type="text">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Per square feet Gallery Price of representative body of works
+                      <label>Per square feet Gallery Price of representative body of works
                       </label>
                       <input class="form-control ng-pristine ng-untouched ng-valid" ng-model="user.pricing" placeholder="Per square feet Gallery Price of representative body of works" type="text">
                     </div>
@@ -296,28 +290,28 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Galleries / Websites where works are typically displayed</label>
+                      <label>Galleries / Websites where works are typically displayed</label>
                       <input class="form-control" ng-model="user.wlink" placeholder="Galleries / Websites where works are typically displayed" type="text">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Online Catalogue Link</label>
+                      <label>Online Catalogue Link</label>
                       <input class="form-control" ng-model="user.clink" placeholder="Online Catalogue Link" type="text">
                     </div>
                   </div>
                 </div>
 
-                  <div class="row">
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">eBook Link</label>
+                      <label>eBook Link</label>
                       <input class="form-control" ng-model="user.eblink" placeholder="eBook Link" type="text">
                     </div>
                   </div>
                 </div>
-<hr>
-                  <div class="row">
+                <hr>
+                <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Comments</label>
@@ -325,7 +319,7 @@
                     </div>
                   </div>
                 </div>
-<br>
+                <br>
                 <div class="form-group">
                   <!-- <p>Please go through <a href="#/terms" class="font-color2" target="_blank">Terms and Conditions.</a></p> -->
                   <div class="checkbox">
