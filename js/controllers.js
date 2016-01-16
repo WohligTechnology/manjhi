@@ -37,12 +37,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.slides = data;
   });
 
-  $scope.lauchedSoon = function() {
-    ngDialog.open({
-      template: 'views/content/modal-launch.html'
-    });
-  };
-
   $scope.becomeSeller = function() {
     globalFunction.becomeSeller();
     // if ($scope.isLoggedIn == true) {
@@ -77,6 +71,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     } else {
       $scope.passwordNotMatch = true;
     }
+  };
+
+  $scope.lauchedSoon = function() {
+    ngDialog.open({
+      template: 'views/content/modal-launch.html'
+    });
+    $timeout(function() {
+      ngDialog.closeAll();
+    }, 3000);
   };
 
   $scope.userlogin = function() {
@@ -1685,6 +1688,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   //     cfpLoadingBar.complete();
   // }, 5000);
 
+  $scope.lauchedSoon = function() {
+    ngDialog.open({
+      template: 'views/content/modal-launch.html'
+    });
+    $timeout(function() {
+      ngDialog.closeAll();
+    }, 3000);
+  };
+
   $scope.loadArtWork = function(id) {
     NavigationService.getartworkdetail(id, function(data, status) {
       console.log(data);
@@ -1757,7 +1769,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, $state, cfpLoadingBar, $filter) {
+.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, $state, cfpLoadingBar, $filter, $timeout) {
   $scope.template = TemplateService.changecontent("sculpture");
   $scope.menutitle = NavigationService.makeactive("Sculpture");
   TemplateService.title = $scope.menutitle;
@@ -1781,6 +1793,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   // $timeout(function() {
   //     cfpLoadingBar.complete();
   // }, 5000);
+
+  $scope.lauchedSoon = function() {
+    ngDialog.open({
+      template: 'views/content/modal-launch.html'
+    });
+    $timeout(function() {
+      ngDialog.closeAll();
+    }, 3000);
+  };
 
   $scope.loadArtWork = function(id) {
     NavigationService.getartworkdetail(id, function(data, status) {
