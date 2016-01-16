@@ -413,6 +413,9 @@ a.link-page {
 .margin {
   margin: 20px;
 }
+.margin-ten {
+  margin: 10px 0;
+}
 ul.decimal {
   list-style-type: decimal;
 }
@@ -507,6 +510,11 @@ ul.decimal {
 }
 .padding-more {
   padding: @padding-box 0;
+
+  .ui-select-choices {
+    padding: 0;
+    text-transform: capitalize;
+  }
 
   .panel-body{
     padding: 0 !important;
@@ -1920,6 +1928,11 @@ a.forgetlink {
     position: relative;
     min-height: 300px;
     padding: 0 10px;
+
+    .line {
+      margin: 10px 0px 10px -10px;
+    }
+
     ul.info-li {
       list-style: none;
       padding-top: 15px;
