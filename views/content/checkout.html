@@ -4,8 +4,8 @@
     <div class="cont-main">
       <h3 class="font-color3 home-header">Checkout</h3>
       <div class="row">
-        <div class="col-md-4">
-          <div class="panel panel-default" ng-show="showLoginDiv">
+        <div class="col-md-4" ng-show="showLoginDiv">
+          <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Checkout Method</h3>
             </div>
@@ -55,52 +55,54 @@
                 <div class="panel-body">
                   <div class="form-group row-flex">
                     <div class="col-flex">
-                      <input class="form-control" ng-model="user.regadd" placeholder="First Name" required type="text">
+                      <input class="form-control" ng-model="user.fname" placeholder="First Name*" required type="text">
                     </div>
                     <div class="col-flex">
-                      <input class="form-control" ng-model="user.regadd" placeholder="Last Name" required type="text">
+                      <input class="form-control" ng-model="user.lastname" placeholder="Last Name" required type="text">
                     </div>
                   </div>
                   <div class="form-group">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.regadd" placeholder="Email" required type="email">
+                    <input class="form-control" ng-model="user.email" placeholder="Email*" required type="email">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.regadd" placeholder="Company" required type="text">
+                    <input class="form-control" ng-model="user.company" placeholder="Company" required type="text">
                   </div>
                   <div class="form-group">
                     <div class="tel-box">
-                      <input class="form-control tel-country" ng-model="user.regadd" placeholder="Country Code" required type="tel">
-                      <input class="form-control tel-number" ng-model="user.regadd" placeholder="Mobile Number" required type="tel">
+                      <input class="form-control tel-country" ng-model="user.countrycode" placeholder="eg. +91*" required type="tel">
+                      <input class="form-control tel-number" ng-model="user.mobileno" placeholder="Mobile Number*" required type="tel">
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="tel-box">
-                      <input class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required type="text">
-                      <input class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required type="text">
+                    <div class="tel-box house-box">
+                      <input class="form-control one" ng-model="user.houseno" placeholder="House No*" required type="text">
+                      <input class="form-control two" ng-model="user.buildingname" placeholder="Name of Buliding*" required type="text">
                     </div>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.regadd" placeholder="Landmark" required type="text">
+                    <input class="form-control" ng-model="user.landmark" placeholder="Landmark*" required type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.regadd" placeholder="Street" required type="text">
+                    <input class="form-control" ng-model="user.street" placeholder="Street*" required type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.regadd" placeholder="Locality" required type="text">
+                    <input class="form-control" ng-model="user.regadd" placeholder="Locality*" required type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.city" placeholder="City" type="text">
+                    <input class="form-control" ng-model="user.city" placeholder="City*" type="text">
                   </div>
                   <div class="form-group">
                     <input class="form-control" ng-model="user.pincode" placeholder="Pincode" type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.state" placeholder="State" type="text">
+                    <input class="form-control" ng-model="user.state" placeholder="State*" type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.country" placeholder="Country" type="text">
+                    <select class="form-control">
+                      <option value="">Select Country*</option>
+                    </select>
                   </div>
                   <label>
                     <input ng-init="checked=false" ng-model="checked" type="checkbox"> Same as shipping</label>
@@ -119,52 +121,54 @@
                   <div class="panel-body">
                     <div class="form-group row-flex">
                       <div class="col-flex">
-                        <input class="form-control" ng-model="user.regadd" placeholder="First Name" required type="text">
+                        <input class="form-control" ng-model="user.fname" placeholder="First Name*" required type="text">
                       </div>
                       <div class="col-flex">
-                        <input class="form-control" ng-model="user.regadd" placeholder="Last Name" required type="text">
+                        <input class="form-control" ng-model="user.lastname" placeholder="Last Name" required type="text">
                       </div>
                     </div>
                     <div class="form-group">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.regadd" placeholder="Email" required type="email">
+                      <input class="form-control" ng-model="user.email" placeholder="Email*" required type="email">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.regadd" placeholder="Company" required type="text">
+                      <input class="form-control" ng-model="user.company" placeholder="Company" required type="text">
                     </div>
                     <div class="form-group">
                       <div class="tel-box">
-                        <input class="form-control tel-country" ng-model="user.regadd" placeholder="Country Code" required type="tel">
-                        <input class="form-control tel-number" ng-model="user.regadd" placeholder="Mobile Number" required type="tel">
+                        <input class="form-control tel-country" ng-model="user.countrycode" placeholder="eg. +91*" required type="tel">
+                        <input class="form-control tel-number" ng-model="user.mobileno" placeholder="Mobile Number*" required type="tel">
                       </div>
                     </div>
                     <div class="form-group">
-                      <div class="tel-box">
-                        <input class="form-control tel-country" ng-model="user.regadd" placeholder="Flat No" required type="text">
-                        <input class="form-control tel-number" ng-model="user.regadd" placeholder="Name of Buliding" required type="text">
+                      <div class="tel-box house-box">
+                        <input class="form-control one" ng-model="user.houseno" placeholder="House No*" required type="text">
+                        <input class="form-control two" ng-model="user.buildingname" placeholder="Name of Buliding*" required type="text">
                       </div>
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.regadd" placeholder="Landmark" required type="text">
+                      <input class="form-control" ng-model="user.landmark" placeholder="Landmark*" required type="text">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.regadd" placeholder="Street" required type="text">
+                      <input class="form-control" ng-model="user.street" placeholder="Street*" required type="text">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.regadd" placeholder="Locality" required type="text">
+                      <input class="form-control" ng-model="user.regadd" placeholder="Locality*" required type="text">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.city" placeholder="City" type="text">
+                      <input class="form-control" ng-model="user.city" placeholder="City*" type="text">
                     </div>
                     <div class="form-group">
                       <input class="form-control" ng-model="user.pincode" placeholder="Pincode" type="text">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.state" placeholder="State" type="text">
+                      <input class="form-control" ng-model="user.state" placeholder="State*" type="text">
                     </div>
                     <div class="form-group">
-                      <input class="form-control" ng-model="user.country" placeholder="Country" type="text">
+                      <select class="form-control">
+                        <option value="">Select Country*</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -185,11 +189,12 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th>Product Image</th>
-                      <th>Product id</th>
+                      <th>Artwork Image</th>
+                      <th>Artwork No</th>
                       <th>Artist Name</th>
-                      <th>Product Name</th>
-                      <th>Unit Price</th>
+                      <th>Title</th>
+                      <th>Size</th>
+                      <th>Price</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -200,7 +205,7 @@
                         <img class="img-box" ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}">
                       </td>
                       <td>
-                        <span class="mobile">Product Id</span>
+                        <span class="mobile">Artwork No</span>
                         {{artwork.artwork.srno}}
                       </td>
                       <td>
@@ -212,7 +217,11 @@
                         {{artwork.artwork.name}}
                       </td>
                       <td>
-                        <span class="mobile">Unit Price</span>
+                        <span class="mobile">Size</span>
+                        {{artwork.artwork.gprice|number:0}}
+                      </td>
+                      <td>
+                        <span class="mobile">Price</span>
                         Rs.{{artwork.artwork.gprice|number:0}}
                         / $
                         {{artwork.artwork.gprice|indollars}}
@@ -226,7 +235,7 @@
                   </tbody>
                 </table>
                 <hr>
-                <div class="col-md-offset-8 col-md-4">
+                <div class="col-md-offset-6 col-md-6">
                   <table class="table table-bordered ">
                     <tbody>
                       <tr>
