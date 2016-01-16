@@ -65,11 +65,10 @@
                 </div>
             </a>
         </div>
-        <div class="col-flex box-height list-cart" ng-controller="cartdropctrl" ng-click="showcart(0)" ng-mouseleave="hidecart(0)">
+        <div class="col-flex box-height list-cart" ui-sref="cart" ng-controller="cartdropctrl" ng-mouseover="showcart(0)" ng-mouseleave="hidecart(0)">
             <div class="style2-bg small-box">{{cartItems.length}}</div>
             <div class="inline-box">
                 My Cart
-                <!-- <br><span class="light-shade">Rs.{{totalCartPrice | number:0}} / $ {{totalCartPrice|indollars}}</span> -->
             </div>
             <div class="megamenu" ng-include src="cartval[0]" ng-show="carts[0]">
             </div>
