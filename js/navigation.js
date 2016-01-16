@@ -257,7 +257,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         },
         getoneartist: function(artistid, callback) {
             $http({
-                url: adminurl + "user/findone",
+                url: adminurl + "user/findoneArtist",
                 method: "POST",
                 data: {
                     "_id": artistid

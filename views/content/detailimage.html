@@ -121,12 +121,9 @@
                         <accordion-group is-open="status.open">
                            <div class="row">
                               <div class="col-md-6">
-                                 <p>
-                                    <span class="bold">Born in</span> 1983
-                                    <span class="bold">at</span> Andhra Pradesh</p>
-                                 <p>
-                                    <span class="bold">Passed away</span>
-                                 </p>
+                                <p><span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">Born </span> <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">in </span> {{artistdetail.dob}} <span class="bold" ng-if="artistdetail.stateofb && artistdetail.stateofb!=''">at</span> {{artistdetail.stateofb}}</p>
+                                <p ng-if="artistdetail.passedaway && artistdetail.passedaway!=''"><span class="bold">Passed away</span>
+                                </p>
                                  <p ng-if="artistdetail.edu">
                                     <span class="bold">Education</span>
                                     <span ng-repeat="edu in artistdetail.edu">
