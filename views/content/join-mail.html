@@ -3,14 +3,14 @@
    <div class="ngdialog-close close"></div>
    <h3 class="createtitle text-center">Join Our Mailing List</h3>
         <div class="row">
+          <form action="">
             <div class="col-md-10 nomgpd">
-                <form action="">
-                    <input type="text" class="form-control" placeholder="Enter your email">
-                </form>
+                    <input type="text" class="form-control" ng-model="joinus.email" placeholder="Enter your email" required>
             </div>
             <div class="col-md-2 nomgpd">
-                <button type="button" class="btn btn-primarys">Join Now</button>
+                <button type="submit" class="btn btn-primarys" ng-click="joinUs()">Join Now</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

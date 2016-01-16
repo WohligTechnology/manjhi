@@ -2299,6 +2299,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.cartItems = [];
   $scope.totalCartPrice = 0;
   $scope.isLoggedIn == false;
+  $scope.joinus = {};
 
   $scope.reachOutArtistId = 0;
   // if ($.jStorage.get("searchObj")) {
@@ -2306,6 +2307,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   // } else {
   //     $scope.art.search = "";
   // }
+
+  $scope.joinUs = function(){
+    
+  }
 
   $scope.becomeSeller = function() {
     globalFunction.becomeSeller();

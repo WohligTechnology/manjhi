@@ -160,11 +160,11 @@
                       </div>
                     </form>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6" ng-if="user.accesslevel!='customer'">
                     <form ng-submit="saveAddress();">
                       <div class="chngpswd-cont">
                         <div class="addcat">
-                          <h5 class="displ">Studio Address (Incase of Artist)</h5>
+                          <h5 class="displ">Studio Address</h5>
                         </div>
                         <div class="form-group">
                           <div class="tel-box">
