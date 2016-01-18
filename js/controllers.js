@@ -1858,6 +1858,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
   }
 
+
+    $scope.artPrev = function() {
+      NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
+        // $scope.artistDetailImg = data;
+        $state.go("detail", {
+          "artid": data.artwork._id
+        });
+      })
+    }
+
+    $scope.artNext = function() {
+      NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
+        // $scope.artistDetailImg = data;
+        $state.go("detail", {
+          "artid": data.artwork._id
+        });
+      })
+    }
+
+
   $scope.addToCart = function(art) {
     dataNextPre.addToCart(art);
   }
