@@ -1780,6 +1780,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   NavigationService.getuserprofile(function(data) {
     if (data.id) {
+      console.log("%%%%%%%%%%%%%%%%%%%%%%%");
+      console.log(data);
       userProfile = data;
       NavigationService.getMyFavourites(data.id, function(favorite) {
         userProfile.wishlist = favorite;
@@ -4166,9 +4168,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.medium = [];
   $scope.theme = [];
 
+  //DEVELOPMENT
+
+  NavigationService.getuserprofile(function(data) {
+    if (data.id) {
+      $scope.userData = data;
+
+      $scope.isLoggedIn = true;
+    } else {
+      $scope.isLoggedIn = false;
+    }
+  })
+
   NavigationService.getoneartist($stateParams.id, function(data) {
     console.log(data);
     $scope.user = data;
+    $scope.user.selleremail = $scope.userData.email;
   });
 
   $scope.select2options = {
@@ -4496,16 +4511,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   ////
 
 
-  //DEVELOPMENT
-
-  NavigationService.getuserprofile(function(data) {
-    if (data.id) {
-      $scope.userData = data;
-      $scope.isLoggedIn = true;
-    } else {
-      $scope.isLoggedIn = false;
-    }
-  })
 
   //save user
   $scope.disableSubmit = false;

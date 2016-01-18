@@ -121,7 +121,11 @@
                         <accordion-group is-open="status.open">
                            <div class="row">
                               <div class="col-md-6">
-                                <p><span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">Born </span> <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">in </span> {{artistdetail.dob}} <span class="bold" ng-if="artistdetail.stateofb && artistdetail.stateofb!=''">at</span> {{artistdetail.stateofb}}</p>
+                                <p>
+                                  <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">Born </span>
+                                   <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">in </span> {{artistdetail.dob}}
+                                   <span class="bold" ng-if="artistdetail.stateofb && artistdetail.stateofb!=''">at</span> {{artistdetail.stateofb}}
+                                 </p>
                                 <p ng-if="artistdetail.passedaway && artistdetail.passedaway!=''"><span class="bold">Passed away</span>
                                 </p>
                                  <p ng-if="artistdetail.edu">
