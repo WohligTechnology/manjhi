@@ -5,7 +5,7 @@ var dollarPrice = '';
 var globalFunction = {};
 globalFunction.tab = "info";
 
-angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
+angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'duScroll','toaster', 'ngAnimate', 'ngAutocomplete', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
 
 //.controller('AppCtrl')
 .controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
@@ -646,7 +646,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   TemplateService.title = $scope.menutitle;
   $scope.navigation = NavigationService.getnav();
 
-  $scope.becomeSeller = function(){
+  $scope.becomeSeller = function() {
     globalFunction.becomeSeller();
   }
 })
@@ -2002,7 +2002,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService) {
+.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService,$location) {
   $scope.template = TemplateService.changecontent("artinfrastructure");
   $scope.menutitle = NavigationService.makeactive("Art Infrastructure");
   TemplateService.title = $scope.menutitle;
@@ -2018,6 +2018,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     year: '1978',
     price: 'Rs.1,00,000/ $6,400'
   }];
+  $scope.changeURL = function(id) {
+    $state.transitionTo('artInfrastructure', {
+      id: id
+    }, {
+      notify: false
+    });
+    makeAnimation(id);
+    $location.replace();
+  };
+  // $scope.changeURL = function(id) {
+  //   console.log(id);
+  //   $location.path("" + id);
+  // };
 })
 
 
@@ -2333,7 +2346,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   //     $scope.art.search = "";
   // }
 
-  $scope.joinUs = function(){
+  $scope.joinUs = function() {
 
   }
 

@@ -78,6 +78,7 @@ module.exports = function(grunt) {
           './bower_components/ui-select/dist/select.min.js',
           './bower_components/lodash/lodash.min.js',
           './bower_components/angular-rangeslider/angular.rangeSlider.js',
+          './bower_components/angular-scroll/angular-scroll.min.js',
           './lib/js/angular-file-upload.js',
           './lib/js/FileAPI.min.js',
           './lib/js/upload.js',
