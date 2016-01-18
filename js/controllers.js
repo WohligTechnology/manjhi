@@ -3,6 +3,7 @@ var userProfile = {};
 var uploadres = [];
 var dollarPrice = '';
 var globalFunction = {};
+globalFunction.tab = "info";
 
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
 
@@ -2818,6 +2819,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.isLoggedIn = false;
   cfpLoadingBar.start();
 
+
   NavigationService.getuserprofile(function(data) {
     if (data.id) {
       userProfile = data;
@@ -2998,7 +3000,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.offce = "active";
   }
 
-  $scope.activeTab = 'info';
+  $scope.activeTab = globalFunction.tab;
   $scope.changeTab = function(data) {
     $scope.activeTab = data;
   }
@@ -3629,6 +3631,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if (data.value == true) {
               $scope.disableSubmit = true;
               dataNextPre.messageBox("Your art work has been submitted for review.");
+              globalFunction.tab = "myartworks";
               $timeout(function() {
                 $state.go('account');
               }, 3000);
@@ -4110,7 +4113,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             console.log(data);
             if (data.value == true) {
               $scope.disableSubmit = true;
-              dataNextPre.messageBox("Your art work has been submitted for review.")
+              dataNextPre.messageBox("Your art work has been submitted for review.");
+              globalFunction.tab = "myartworks";
+              $timeout(function() {
+                $state.go('account');
+              }, 3000);
             }
             // $location.url("/artworkout");
           });
