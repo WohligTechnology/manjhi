@@ -615,6 +615,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.getCartItems();
 
   $scope.toCheckout = function(){
+    $scope.checkCheckout = true;
+    _.each($scope.cartItems, function(n) {
+      if (n.artwork.status == "sold") {
+        $scope.checkCheckout = false;
+      }
+    });
     if ($scope.checkCheckout == false) {
       dataNextPre.messageBox("Item in cart already sold, Recheck cart");
     }else {
@@ -1210,7 +1216,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   }
 })
 
-.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr, $state) {
+.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr, $state, ngDialog) {
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("checkout");
   $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -1225,6 +1231,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.showMobErr = false;
   $scope.showPinErr = false;
   $scope.checkoutRadio = 'guest';
+  $scope.showInvalidLogin = false;
+  $scope.passwordNotMatch = false;
+  $scope.showAlreadyRegistered = false;
+  $scope.login = {};
 
   $scope.showLoginDiv = true;
   NavigationService.getuserprofile(function(data) {
@@ -1239,6 +1249,54 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.payment.billing.lname = splited[1];
     }
   })
+
+
+    $scope.registeruser = function() {
+      if ($scope.register.password === $scope.register.confirmpassword) {
+        $scope.passwordNotMatch = false;
+        $scope.register.accesslevel = "customer";
+        NavigationService.registeruser($scope.register, function(data, status) {
+          console.log(data);
+          if (data.value != false) {
+            ngDialog.closeAll();
+            window.location.reload();
+          } else if (data.value == false && data.comment == "User already exists") {
+            $scope.showAlreadyRegistered = true;
+          }
+        })
+      } else {
+        $scope.passwordNotMatch = true;
+      }
+    };
+
+    $scope.userlogin = function() {
+      NavigationService.userlogin($scope.login, function(data, status) {
+        if (data.value != false) {
+          $scope.showInvalidLogin = false;
+          NavigationService.getuserprofile(function(data) {
+            console.log("login successfully");
+            ngDialog.closeAll();
+            window.location.reload();
+          })
+        } else {
+          $scope.showInvalidLogin = true;
+        }
+
+
+        // if (data.value != false) {
+        //     $scope.showInvalidLogin = false;
+        //     $scope.showWishlist = true;
+        //     //$.jStorage.set("user", data);
+        //     $scope.user.name = data.name;
+        //     ngDialog.closeAll();
+        //     window.location.reload();
+        // } else {
+        //     $scope.showInvalidLogin = true;
+        // }
+      })
+    };
+
+
 
   $scope.showShipping = function(check) {
     //      console.log(check);
@@ -2478,17 +2536,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.showInvalidLogin = true;
       }
 
-
-      // if (data.value != false) {
-      //     $scope.showInvalidLogin = false;
-      //     $scope.showWishlist = true;
-      //     //$.jStorage.set("user", data);
-      //     $scope.user.name = data.name;
-      //     ngDialog.closeAll();
-      //     window.location.reload();
-      // } else {
-      //     $scope.showInvalidLogin = true;
-      // }
     })
   };
 
