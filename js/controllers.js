@@ -1022,38 +1022,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     cfpLoadingBar.start();
     //      console.log($scope.pagedata);
     var filterdata = $scope.pagedata;
-    if (filterdata.minprice == '') {
-      filterdata.minprice = 0;
+    if (filterdata.minprice == 0) {
+      filterdata.minprice = '';
       $scope.pagedata.minprice = '';
     }
-    if (filterdata.maxprice == '') {
-      filterdata.maxprice = 10000000;
+    if (filterdata.maxprice == 10000000) {
+      filterdata.maxprice = '';
       $scope.pagedata.maxprice = '';
     }
-    if (filterdata.minwidth == '') {
-      filterdata.minwidth = 0;
-      $scope.pagedata.minwidth = '';
-    }
-    if (filterdata.maxwidth == '') {
-      filterdata.maxwidth = 10000;
-      $scope.pagedata.maxwidth = '';
-    }
-    if (filterdata.minheight == '') {
-      filterdata.minheight = 0;
-      $scope.pagedata.minheight = '';
-    }
-    if (filterdata.maxheight == '') {
-      filterdata.maxheight = 10000;
-      $scope.pagedata.maxheight = '';
-    }
-    if (filterdata.minbreadth == '') {
-      filterdata.minbreadth = 0;
-      $scope.pagedata.minbreadth = '';
-    }
-    if (filterdata.maxbreadth == '') {
-      filterdata.maxbreadth = 10000;
-      $scope.pagedata.maxbreadth = '';
-    }
+
     if (filterdata.sort == 1) {
       $scope.lotactive = '';
       $scope.htlactive = '';
