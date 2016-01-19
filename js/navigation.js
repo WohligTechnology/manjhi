@@ -346,6 +346,14 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         }
       }).success(callback);
     },
+    checkout: function(order, callback) {
+      console.log(order);
+      // $http({
+      //   url: adminurl + "order/save",
+      //   method: "POST",
+      //   data: order
+      // }).success(callback);
+    },
     getCartItems: function(callback) {
       $http({
         url: adminurl + "cart/find",
