@@ -5210,4 +5210,37 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     dataNextPre.addToCart(art);
   }
 
-});
+})
+
+.controller('ThankYouCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+  //Used to name the .html file
+  $scope.template = TemplateService.changecontent("thankyou");
+  $scope.menutitle = NavigationService.makeactive("Thank You");
+  TemplateService.title = $scope.menutitle;
+  $scope.navigation = NavigationService.getnav();
+})
+
+.controller('SorryCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+  //Used to name the .html file
+  $scope.template = TemplateService.changecontent("sorry");
+  $scope.menutitle = NavigationService.makeactive("Sorry");
+  TemplateService.title = $scope.menutitle;
+  $scope.navigation = NavigationService.getnav();
+})
+
+.controller('Error404Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+  //Used to name the .html file
+  $scope.template = TemplateService.changecontent("error404");
+  $scope.menutitle = NavigationService.makeactive("Home");
+  TemplateService.title = $scope.menutitle;
+  $scope.navigation = NavigationService.getnav();
+})
+
+.controller('Error500Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+  //Used to name the .html file
+  $scope.template = TemplateService.changecontent("error500");
+  $scope.menutitle = NavigationService.makeactive("Home");
+  TemplateService.title = $scope.menutitle;
+  $scope.navigation = NavigationService.getnav();
+})
+;

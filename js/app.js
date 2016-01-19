@@ -211,6 +211,30 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
         controller: 'SearchResultsCtrl'
     })
 
+    .state('thankyou', {
+        url: "/thankyou",
+        templateUrl: "views/template.html",
+        controller: 'ThankYouCtrl'
+    })
+
+    .state('sorry', {
+        url: "/sorry",
+        templateUrl: "views/template.html",
+        controller: 'SorryCtrl'
+    })
+
+    .state('error404', {
+        url: "/error404",
+        templateUrl: "views/template.html",
+        controller: 'Error404Ctrl'
+    })
+
+    .state('error500', {
+        url: "/error500",
+        templateUrl: "views/template.html",
+        controller: 'Error500Ctrl'
+    })
+
     $urlRouterProvider.otherwise("/home");
 
 });
