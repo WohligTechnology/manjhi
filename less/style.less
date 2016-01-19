@@ -1634,6 +1634,48 @@ a.readmore {
 }
 
 //other less
+.gogbtn {
+  .btnsoc {
+    font-size: 15px;
+    padding: 10px 0 0;
+    color: #fff;
+    margin-top: 10px;
+    width: 100%;
+    display: block;
+    text-align: center;
+    height: 45px;
+    cursor: pointer;
+    i {
+      font-size: 18px;
+      padding: 4px 15px;
+      width: 45px;
+      float: left;
+    }
+    span {
+      line-height: 1.5;
+      float: left;
+    }
+  }
+  .gplus {
+    background: #dd4d3b;
+    margin-top: 0;
+    &:hover {
+      background: #bf4233;
+    }
+  }
+  .fbook {
+    background: #3c5a98;
+    &:hover {
+      background: #2f4675;
+    }
+  }
+  .twit {
+    background: #4099ff;
+    &:hover {
+      background: #3c89e2;
+    }
+  }
+}
 .ngdialog-open {
   .popup-dialogbox {
     position: absolute;
@@ -1665,48 +1707,7 @@ a.readmore {
       padding-top: 12px;
     }
   }
-  .gogbtn {
-    .btnsoc {
-      font-size: 15px;
-      padding: 10px 0 0;
-      color: #fff;
-      margin-top: 10px;
-      width: 100%;
-      display: block;
-      text-align: center;
-      height: 45px;
-      cursor: pointer;
-      i {
-        font-size: 18px;
-        padding: 4px 15px;
-        width: 45px;
-        float: left;
-      }
-      span {
-        line-height: 1.5;
-        float: left;
-      }
-    }
-    .gplus {
-      background: #dd4d3b;
-      margin-top: 0;
-      &:hover {
-        background: #bf4233;
-      }
-    }
-    .fbook {
-      background: #3c5a98;
-      &:hover {
-        background: #2f4675;
-      }
-    }
-    .twit {
-      background: #4099ff;
-      &:hover {
-        background: #3c89e2;
-      }
-    }
-  }
+
   .btn-sucess {
     background: @color2;
     color: #fff;
@@ -2700,6 +2701,20 @@ img.fancybox-image {
       width: 21%;
     }
   }
+  .gogbtn {
+    .btnsoc {
+      font-size: 13px;
+      height: 34px;
+      margin: 0;
+      line-height: 12px;
+      i {
+         float: none;
+         width: auto;
+         padding: 0 3px 0 0;
+         font-size: inherit;
+     }
+    }
+  }
 }
 .compact-form {
   font-size: 12px;
@@ -2874,6 +2889,17 @@ img.fancybox-image {
 }
 .padding-bottom {
   padding-bottom: 20px;
+}
+.padding-vertical {
+  padding: 10px 0;
+}
+.center-radio {
+  display: inline-block;
+
+  .radio {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }
 /*Mobile Less*/
 //@import "other.less";
