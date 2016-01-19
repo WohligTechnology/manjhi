@@ -2147,15 +2147,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   })
 
   var countcall = 0;
+  var pno = 1;
+  var totalpages = 2;
 
   function getAllArtistByAccess() {
-    NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
-      if (n == countcall) {
-        $scope.listview = _.uniq(data, '_id');
-      } else {
-        $scope.listview = [];
-      }
-    });
+    console.log("sdfahskj");
+    var toList = $scope.pagedata;
+    toList.pagenumber = pno;
+      NavigationService.getallartist(toList, function(data, status) {
+        if (data.data) {
+          _.each(data.data, function(n){
+            $scope.listview.push(n);
+          });
+          pno++;
+          getAllArtistByAccess();
+        }
+      })
   }
   getAllArtistByAccess();
 
@@ -2169,15 +2176,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       lastpage = parseInt(data.totalpages);
       _.each(data.data, function(n) {
         $scope.artistimage.push(n);
-        if ($scope.pagedata.search != "")
-          $scope.listview.push(n);
+        // if ($scope.pagedata.search != "")
+        //   $scope.listview.push(n);
       })
       $scope.artistimage = _.uniq($scope.artistimage, '_id');
-      if ($scope.pagedata.search != "")
-        $scope.listview = _.uniq($scope.listview, '_id');
-      else {
-        getAllArtistByAccess();
-      }
+      // if ($scope.pagedata.search != "")
+      //   $scope.listview = _.uniq($scope.listview, '_id');
+      // else {
+      //   getAllArtistByAccess();
+      // }
+      pno = 1;
+      totalpages = 2;
+      getAllArtistByAccess();
       cfpLoadingBar.complete();
     });
   }

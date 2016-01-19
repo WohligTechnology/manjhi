@@ -47,7 +47,7 @@
 
     <!-- GRID VIEW -->
     <div class="row" infinite-scroll-disabled="shouldscroll" infinite-scroll-distance="0" infinite-scroll='addMoreItems();' ng-if="tab=='grid'">
-      <div class="col-md-2 col-sm-3" ng-repeat="artistimages in artistimage | orderBy : 'name'">
+      <div class="col-md-2 col-sm-3" ng-repeat="artistimages in artistimage">
         <div class="aristimg-grp1">
           <h4 class="text-center">
             {{artistimages.name}}
