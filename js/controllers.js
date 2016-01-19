@@ -580,7 +580,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $state) {
   //Used to name the .html file
   $scope.template = TemplateService.changecontent("cart");
   $scope.menutitle = NavigationService.makeactive("Cart");
@@ -589,6 +589,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.totalCartPrice = 0;
   $scope.noCartItems = false;
   cfpLoadingBar.start();
+  $scope.checkCheckout = true;
 
   $scope.getCartItems = function() {
     NavigationService.getCartItems(function(data) {
@@ -600,6 +601,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.cartItems = data;
         $scope.totalCartPrice = 0;
         _.each($scope.cartItems, function(n) {
+          if (n.artwork.status == "sold") {
+            $scope.checkCheckout = false;
+          }
           if (n.artwork.gprice != 'N/A')
             $scope.totalCartPrice += n.artwork.gprice;
         });
@@ -609,6 +613,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   }
 
   $scope.getCartItems();
+
+  $scope.toCheckout = function(){
+    if ($scope.checkCheckout == false) {
+      dataNextPre.messageBox("Item in cart already sold, Recheck cart");
+    }else {
+      $state.go("checkout");
+    }
+  }
 
   $scope.removeFromCart = function(artid) {
     NavigationService.removeFromCart(artid, function(data) {
