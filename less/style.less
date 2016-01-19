@@ -1810,6 +1810,18 @@ a.forgetlink {
 }
 .cart {
   padding-top: 20px;
+
+  .checkout {
+    padding-top: 20px;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 30px;
+    border-bottom: 1px solid @abbr-border-color;
+
+    table {
+      margin-bottom: 10px;
+    }
+  }
+
   tr {
     th {
       background-color: @color2;
@@ -1844,13 +1856,6 @@ a.forgetlink {
           color: @color3;
         }
       }
-    }
-  }
-  .checkout.row {
-    padding: 20px 0;
-    border-bottom: 1px solid @abbr-border-color;
-    table {
-      margin-bottom: 10px;
     }
   }
   input.form-control.discountcoupon {
@@ -2107,7 +2112,7 @@ a.readmore {
 .ulblock {
   display: block;
   padding-top: 25px;
-  ul.lineul {
+  .lineul {
     .column-count(6);
     list-style: none;
     padding: 0;
@@ -2116,8 +2121,8 @@ a.readmore {
     li {
       a {
         text-transform: capitalize;
-        font-size: 14px;
-        font-family: 'Open Sans';
+        font-size: 13px;
+
         &:hover {
           color: @color2;
         }
@@ -2867,6 +2872,9 @@ img.fancybox-image {
 .ui-select-multiple.ui-select-bootstrap .ui-select-match-item {
   white-space: normal;
   text-align: left;
+}
+.padding-bottom {
+  padding-bottom: 20px;
 }
 /*Mobile Less*/
 //@import "other.less";
