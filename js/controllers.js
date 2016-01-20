@@ -1346,15 +1346,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.toPayment = function() {
     console.log($scope.cartItems);
 	  $scope.user.cart = [];
-    // if ($scope.payment.billing.mob.toString().length == 10 && $scope.payment.billing.pincode.toString().length == 6) {
+    // if ($scope.user.billing.mob.toString().length == 10 && $scope.user.billing.pincode.toString().length == 6) {
     //   console.log("djk");
     // } else {
-    //   if ($scope.payment.billing.mob.toString().length != 10) {
+    //   if ($scope.user.billing.mob.toString().length != 10) {
     //     $scope.showMobErr = true;
     //   } else {
     //     $scope.showMobErr = false;
     //   }
-    //   if ($scope.payment.billing.pincode.toString().length != 6) {
+    //   if ($scope.user.billing.pincode.toString().length != 6) {
     //     $scope.showPinErr = true;
     //   } else {
     //     $scope.showPinErr = false;
