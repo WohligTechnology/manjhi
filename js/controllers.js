@@ -607,6 +607,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
           if (n.artwork.gprice != 'N/A')
             $scope.totalCartPrice += n.artwork.gprice;
         });
+		 $scope.vat = ($scope.totalCartPrice/100)*12.4;
       }
       cfpLoadingBar.complete();
     });
@@ -1214,8 +1215,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
   $scope.login = {};
   $scope.register = {};
   $scope.user = {};
+	$scope.checked = false;
+	$scope.showShipping = false;
 
   $scope.showLoginDiv = true;
+
+  NavigationService.getCountryJson(function(data){
+    $scope.countries = data;
+  });
+
   NavigationService.getuserprofile(function(data) {
     console.log(data);
     $scope.user = data;
@@ -1277,11 +1285,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 
 
-
-  $scope.showShipping = function(check) {
-    //      console.log(check);
-  }
-
   valdr.addConstraints({
     'Person': {
       'firstName': {
@@ -1299,6 +1302,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   $scope.totalCartPrice = 0;
 
+	$scope.changeAddress = function(check){
+		console.log(check);
+		if(check == false){
+			$scope.showShipping = false;
+		}else{
+			$scope.showShipping = true;
+		}
+	}
+
   cfpLoadingBar.start();
 
   $scope.getCartItems = function() {
@@ -1312,7 +1324,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         if (n.artwork.gprice != 'N/A')
           $scope.totalCartPrice += n.artwork.gprice;
       });
+	    $scope.vat = ($scope.totalCartPrice/100)*12.5;
       cfpLoadingBar.complete();
+
     });
   }
 
@@ -1331,6 +1345,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
   $scope.toPayment = function() {
     console.log($scope.cartItems);
+	  $scope.user.cart = [];
     // if ($scope.payment.billing.mob.toString().length == 10 && $scope.payment.billing.pincode.toString().length == 6) {
     //   console.log("djk");
     // } else {
@@ -1345,11 +1360,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //     $scope.showPinErr = false;
     //   }
     // }
-    $scope.user = userProfile;
-    $scope.user.cart = $scope.cartItems;
-    $scope.order = {};
-    $scope.order.price = $scope.totalCartPrice;
-    $scope.order.discount = 0;
+//    $scope.user = userProfile;
+if ($scope.checked==true) {
+  $scope.user.shipping = $scope.user.billing;
+}
+		  $scope.user.cart=$scope.cartItems;
+    $scope.user.subTotal = $scope.totalCartPrice;
+	  $scope.user.vat = $scope.vat;
+	  $scope.user.grantTotal = $scope.totalCartPrice + $scope.vat;
+    $scope.user.discount = 0;
+	  delete $scope.user.id;
     NavigationService.checkout($scope.user, function(data) {
       if (data.value == true) {
         dataNextPre.messageBox("Your order is placed. Thank You !!");

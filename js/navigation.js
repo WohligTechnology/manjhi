@@ -348,11 +348,11 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
     },
     checkout: function(order, callback) {
       console.log(order);
-      // $http({
-      //   url: adminurl + "order/save",
-      //   method: "POST",
-      //   data: order
-      // }).success(callback);
+       $http({
+         url: adminurl + "order/save",
+         method: "POST",
+         data: order
+       }).success(callback);
     },
     getCartItems: function(callback) {
       $http({

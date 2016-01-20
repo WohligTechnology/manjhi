@@ -227,13 +227,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="artwork in orders.artwork">
+                            <tr ng-repeat="artwork in orders.cart track by $index">
                                 <td fancybox-box href="{{artwork.artwork.image[0] | uploadthumbnail}}">
                                     <img ng-src="{{artwork.artwork.image[0] | uploadsmallimage}}" height="30" />
                                 </td>
                                 <td>{{artwork.name}}</td>
                                 <td>{{artwork.artwork.reseller.name}}</td>
-                                <td>{{orders.status}}</td>
+                                <td>{{artwork.status}}</td>
                                 <td class="pull-right">Rs. {{artwork.artwork.gprice | number:0}} / $ {{artwork.artwork.gprice|indollars}}</td>
                             </tr>
                         </tbody>
@@ -243,7 +243,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>Sub Total</td>
-                                <td class="pull-right">Rs. {{orders.price | number:0}} / $ {{orders.price|indollars}}</td>
+                                <td class="pull-right">Rs. {{orders.subTotal | number:0}} / $ {{orders.subTotal|indollars}}</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -257,7 +257,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>Total</td>
-                                <td class="pull-right">Rs. {{orders.price | number:0}} / $ {{orders.price|indollars}}</td>
+                                <td class="pull-right">Rs. {{orders.grantTotal  | number:0}} / $ {{orders.grantTotal |indollars}}</td>
                             </tr>
                         </tfoot>
                     </table>
