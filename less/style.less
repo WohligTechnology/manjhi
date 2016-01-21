@@ -18,6 +18,7 @@
 @color2: #D4AE70;
 @color3: #ff4f4f;
 @color4: #0fba66;
+@color-gray: #e6e7e9;
 @color-base: #313131;
 @color-base-light: #666;
 @color-shade-light: #666;
@@ -2531,6 +2532,7 @@ img.fancybox-image {
 }
 .content {
   min-height: 500px;
+  position: relative;
 }
 .pointer {
   cursor: pointer;
@@ -2900,6 +2902,45 @@ img.fancybox-image {
     margin-top: 5px;
     margin-bottom: 5px;
   }
+}
+.margin-top {
+  margin-top: 0;
+}
+.btn.btn-gray {
+  background-color: @color-gray;
+  .border-radius(0px);
+  margin-bottom: 10px;
+  text-align: center;
+  outline: 0;
+  &:hover,&:active  {
+    background-color: darken(@color-gray, 10%);;
+  }
+}
+.btn.btn-gold {
+  background-color: @color2;
+  .border-radius(0px);
+  margin-bottom: 10px;
+  text-align: center;
+  outline: 0;
+  color: white;
+  &:hover,&:active  {
+    background-color: darken(@color2, 10%);;
+  }
+}
+.super-margin {
+  margin-top: 40px;
+}
+.middle-align {
+  .translateY(-50%);
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+}
+.padded-box {
+  padding: 10px;
+  min-width: 200px;
+  display: inline-block;
 }
 /*Mobile Less*/
 //@import "other.less";
