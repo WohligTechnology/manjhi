@@ -5085,7 +5085,9 @@ if ($scope.checked==true) {
       });
     }
   };
-
+  $scope.dosub = function(){
+    console.log(angular.copy($scope.user));
+  }
 })
 
 .controller('FavoriteProductCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
