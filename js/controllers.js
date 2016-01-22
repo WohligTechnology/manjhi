@@ -4693,7 +4693,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.user.medium = [];
     $scope.user.theme = [];
 
-    $scope.isValidEmail = 1;
     $scope.checked = 0;
     $scope.medium = [];
     $scope.theme = [];
@@ -4747,19 +4746,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.user.medium);
     }
 
-    $scope.email = function(myemail) {
-        if (myemail) {
-            NavigationService.getOneemail(myemail, function(data, status) {
-                if (data.value == true) {
-                    console.log("if");
-                    $scope.isValidEmail = 0;
-                } else {
-                    console.log("else");
-                    $scope.isValidEmail = 1;
-                }
-            });
-        }
-    }
     $scope.checking = function() {
         if ($scope.user.checkboxModel) {
             $scope.checked = 0;
@@ -5045,9 +5031,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 "_id": $scope.userData.id,
                 "name": $scope.userData.name
             }]
-            if ($scope.isValidEmail == 1 && $scope.user.checkboxModel) {
+            if ($scope.user.checkboxModel) {
                 delete $scope.user.checkboxModel
-                NavigationService.registeruser($scope.user, function(data, status) {
+                NavigationService.registerArtist($scope.user, function(data, status) {
                     console.log(data);
                     if (data.value != false) {
                         dataNextPre.messageBox("Artist has been registerd and is in review");

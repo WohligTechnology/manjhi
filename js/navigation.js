@@ -209,6 +209,14 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: register
             }).success(callback);
         },
+        registerArtist: function(register, callback) {
+            delete register.confirmpassword
+            $http({
+                url: adminurl + "user/saveArtist",
+                method: "POST",
+                data: register
+            }).success(callback);
+        },
         changePassword: function(register, callback) {
             $http({
                 url: adminurl + "user/changepassword",
