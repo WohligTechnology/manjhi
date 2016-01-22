@@ -5014,6 +5014,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
             $scope.userData = data;
+            $scope.user.selleremail = $scope.userData.email;
             $scope.isLoggedIn = true;
         } else {
             $scope.isLoggedIn = false;
@@ -5072,9 +5073,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     };
-    $scope.dosub = function() {
-        console.log(angular.copy($scope.user));
-    }
 })
 
 .controller('FavoriteProductCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
