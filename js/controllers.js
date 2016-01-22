@@ -4642,8 +4642,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 "_id": $scope.userData.id,
                 "name": $scope.userData.name
             }]
-            delete $scope.user.checkboxModel
-            NavigationService.registeruser($scope.user, function(data, status) {
+            delete $scope.user.checkboxModel;
+            NavigationService.registerArtist($scope.user, function(data, status) {
                 console.log(data);
                 if (data.value != false) {
                     dataNextPre.messageBox("Artist has been updated");
