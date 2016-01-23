@@ -3869,7 +3869,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                             dataNextPre.messageBox("Your art work has been submitted for review.");
                             globalFunction.tab = "myartworks";
                             $timeout(function() {
-                                // $state.go('account');
+                                $state.go('account');
                             }, 3000);
                         }
                         // $location.url("/artworkout");
