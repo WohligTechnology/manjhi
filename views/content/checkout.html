@@ -13,12 +13,12 @@
             <div class="form-group">
               <div class="radio">
                 <label>
-                  <input name="optradio" ng-model="checkoutRadio" type="radio" value="login">Login
+                  <input name="optradio" ng-model="checkoutRadio" type="radio" value="login" ng-click="loginRegClick()">Login
                 </label>
               </div>
               <div class="radio">
                 <label>
-                  <input name="optradio" ng-model="checkoutRadio" type="radio" value="register">Register
+                  <input name="optradio" ng-model="checkoutRadio" type="radio" value="register" ng-click="loginRegClick()">Register
                 </label>
               </div>
               <div class="radio">
@@ -27,6 +27,8 @@
                 </label>
               </div>
             </div>
+            <hr>
+            <button class="btn btn-sucesses pull-right" type="submit" ng-if="checkoutRadio=='guest'" ng-click="continueGuest()">Continue</button>
 
             <div ng-if="checkoutRadio=='login'">
               <h5 class="bold">Login</h5>
@@ -95,8 +97,8 @@
 
           </div>
         </div>
-        <div class="col-md-4">
-          <form ng-submit="checkout()">
+        <div class="col-md-4" ng-show="showShipping">
+          <form ng-submit="toPayment()">
             <div class="making">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -152,10 +154,10 @@
                 </div>
               </div>
             </div>
-          </form>
+          <!-- </form> -->
         </div>
-        <div class="col-md-4" ng-show="!showShipping">
-          <form ng-submit="">
+        <div class="col-md-4" ng-show="showShipping">
+          <!-- <form ng-submit=""> -->
             <div class="making">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -208,12 +210,12 @@
                 </div>
               </div>
             </div>
-          </form>
+          <!-- </form> -->
         </div>
       </div>
 
       <div class="clear-fix"></div>
-      <form ng-submit="toPayment();">
+      <!-- <form ng-submit="toPayment();"> -->
         <div class="making">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -326,7 +328,7 @@
                   <p>Please enter a valid contact number</p>
                 </div>
                 <div class="col-md-offset-4 col-md-8">
-                  <button class="btn btn-cont pull-right" type="submit">Proceed &amp; Pay</button>
+                  <button class="btn btn-cont pull-right" type="submit" ng-click="toPayment()">Proceed &amp; Pay</button>
                 </div>
               </div>
             </div>

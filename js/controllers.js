@@ -1238,6 +1238,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
+    $scope.continueGuest = function(){
+      console.log($scope.checkoutRadio);
+      console.log($scope.showShipping);
+      if ($scope.checkoutRadio == 'guest') {
+        $scope.showShipping = true;
+      }else {
+        $scope.showShipping = false;
+      }
+    }
+    $scope.loginRegClick = function(){
+      $scope.showShipping = false;
+    }
 
     $scope.registeruser = function() {
         if ($scope.register.password === $scope.register.confirmpassword) {
@@ -1344,23 +1356,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.toPayment = function() {
+      $scope.allvalidation = [{
+          field: $scope.reachOutForm.to,
+          validation: ""
+      }, {
+          field: $scope.reachOutForm.from,
+          validation: ""
+      }, {
+          field: $scope.reachOutForm.action,
+          validation: ""
+      }];
+      var check = formvalidation($scope.allvalidation);
+      if (check) {
         console.log($scope.cartItems);
         $scope.user.cart = [];
-        // if ($scope.user.billing.mob.toString().length == 10 && $scope.user.billing.pincode.toString().length == 6) {
-        //   console.log("djk");
-        // } else {
-        //   if ($scope.user.billing.mob.toString().length != 10) {
-        //     $scope.showMobErr = true;
-        //   } else {
-        //     $scope.showMobErr = false;
-        //   }
-        //   if ($scope.user.billing.pincode.toString().length != 6) {
-        //     $scope.showPinErr = true;
-        //   } else {
-        //     $scope.showPinErr = false;
-        //   }
-        // }
-        //    $scope.user = userProfile;
         if ($scope.checked == true) {
             $scope.user.shipping = $scope.user.billing;
         }
@@ -1381,6 +1390,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
             }
         });
+      }
     }
 
     $scope.checkout = function() {
@@ -5244,7 +5254,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 })
-
+.controller('PrivacyPolicyCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent("privacy-policy");
+    $scope.menutitle = NavigationService.makeactive("Privacy Policy");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
 .controller('Error500Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("error500");
