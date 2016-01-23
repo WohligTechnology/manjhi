@@ -44,9 +44,14 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
             controller: 'InfiniteCtrl'
         })
         .state('termcondition', {
-            url: "/termcondition",
+            url: "/terms-condition",
             templateUrl: "views/template.html",
             controller: 'TermConditionCtrl'
+        })
+        .state('privacypolicy', {
+            url: "/privacy-policy",
+            templateUrl: "views/template.html",
+            controller: 'PrivacyPolicyCtrl'
         })
 
     .state('cart', {
