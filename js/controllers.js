@@ -1371,11 +1371,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.user.discount = 0;
         delete $scope.user.id;
         NavigationService.checkout($scope.user, function(data) {
-            if (data.value == true) {
-                dataNextPre.messageBox("Your order is placed. Thank You !!");
-                $timeout(function() {
-                    $state.go('account');
-                }, 3000);
+            // console.log("incheck");
+            if (data.value !=false) {
+              $state.go('thankyou');
+                // dataNextPre.messageBox("Your order is placed. Thank You !!");
+                // $timeout(function() {
+                //     $state.go('thankyou');
+                // }, 3000);
 
             }
         });
