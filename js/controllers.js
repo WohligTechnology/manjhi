@@ -4644,8 +4644,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 "_id": $scope.userData.id,
                 "name": $scope.userData.name
             }]
-            delete $scope.user.checkboxModel
-            NavigationService.registeruser($scope.user, function(data, status) {
+            delete $scope.user.checkboxModel;
+            NavigationService.registerArtist($scope.user, function(data, status) {
                 console.log(data);
                 if (data.value != false) {
                     dataNextPre.messageBox("Artist has been updated");
@@ -5016,6 +5016,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
             $scope.userData = data;
+            $scope.user.selleremail = $scope.userData.email;
             $scope.isLoggedIn = true;
         } else {
             $scope.isLoggedIn = false;
@@ -5074,9 +5075,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     };
-    $scope.dosub = function() {
-        console.log(angular.copy($scope.user));
-    }
 })
 
 .controller('FavoriteProductCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
