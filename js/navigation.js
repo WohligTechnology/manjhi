@@ -1,7 +1,7 @@
 // var adminurl = "http://vignesh.com:82/";
 // var adminurl = "http://192.168.0.122:81/";
 // var adminurl = "http://146.148.34.49/";
-var adminurl = "http://smartsnap.in/";
+var adminurl = "http://smartsnap.in:81/";
 var imgUploadUrl = adminurl + "user/uploadfile";
 
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
@@ -587,7 +587,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         },
         saveArtwork: function(data, callback) {
             $http({
-                url: adminurl + "artwork/save",
+                url: adminurl + "artwork/saveFront",
                 method: "POST",
                 data: data
             }).success(callback);

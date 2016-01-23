@@ -1215,6 +1215,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.login = {};
     $scope.register = {};
     $scope.user = {};
+    $scope.user.shipping = {};
+    $scope.user.shipping.name = "";
+    $scope.user.billing = {};
+    $scope.user.billing = {};
     $scope.checked = false;
     $scope.showShipping = false;
     $scope.showCartEnable = false;
@@ -1230,9 +1234,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     NavigationService.getuserprofile(function(data) {
         console.log(data);
-        $scope.user = data;
+
         if (data.id) {
+          $scope.user = data;
             $scope.showShipping = true;
+            $scope.showLoginDiv = false;
             $scope.payment.billing = data;
             var splited = data.name.split(' ');
             if (splited[0])
@@ -1317,9 +1323,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     });
 
     $scope.totalCartPrice = 0;
+    $scope.sameAsBilling = false;
 
     $scope.changeAddress = function(check) {
-        $scope.user.shipping = $scope.user.billing;
+      if (check==true) {
+        $scope.sameAsBilling = true;
+      }else {
+        $scope.sameAsBilling = false;
+      }
+
     }
 
     cfpLoadingBar.start();
@@ -1354,20 +1366,88 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.toPayment = function() {
+    $scope.paymentFunc = function(){
       $scope.allvalidation = [{
-          field: $scope.reachOutForm.to,
+          field: $scope.user.billing.name,
           validation: ""
       }, {
-          field: $scope.reachOutForm.from,
+          field: $scope.user.billing.email,
           validation: ""
       }, {
-          field: $scope.reachOutForm.action,
+          field: $scope.user.billing.countrycode,
+          validation: ""
+      }, {
+          field: $scope.user.billing.mobileno,
+          validation: ""
+      }, {
+          field: $scope.user.billing.flatno,
+          validation: ""
+      }, {
+          field: $scope.user.billing.bldgname,
+          validation: ""
+      }, {
+          field: $scope.user.billing.landmark,
+          validation: ""
+      }, {
+          field: $scope.user.billing.street,
+          validation: ""
+      }, {
+          field: $scope.user.billing.regadd,
+          validation: ""
+      }, {
+          field: $scope.user.billing.city,
+          validation: ""
+      }, {
+          field: $scope.user.billing.pincode,
+          validation: ""
+      }, {
+          field: $scope.user.billing.state,
+          validation: ""
+      }, {
+          field: $scope.user.billing.country,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.name,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.email,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.countrycode,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.mobileno,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.flatno,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.bldgname,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.landmark,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.street,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.regadd,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.city,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.pincode,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.state,
+          validation: ""
+      }, {
+          field: $scope.user.shipping.country,
           validation: ""
       }];
       var check = formvalidation($scope.allvalidation);
       if (check) {
-        $scope.showCart();
         console.log($scope.cartItems);
         $scope.user.cart = [];
         if ($scope.checked == true) {
@@ -1388,9 +1468,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 //     $state.go('thankyou');
                 // }, 3000);
 
+            }else {
+              $state.go('sorry');
             }
         });
+      }else {
+          // alert("Fill all manditory * Fields");
+          dataNextPre.messageBox("Fill all manditory * Fields");
       }
+    }
+
+    $scope.toPayment = function(checked) {
+      if (checked==true) {
+        $scope.user.shipping = _.cloneDeep($scope.user.billing);
+        $scope.paymentFunc();
+      }else {
+        $scope.paymentFunc();
+      }
+
+    }
+
+    //after implementing paymentgateway topayment and viewcart will replace
+    $scope.viewCart = function(){
+        $scope.showCart();
     }
 
     $scope.checkout = function() {
@@ -3371,7 +3471,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artmedium = [];
     $scope.tag = [];
     $scope.access = "artist";
-    $scope.chat = {};
+    $scope.comment = '';
 
     $scope.otherDetails = "eg. Diptych, Triptych";
 
@@ -3380,20 +3480,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
 
     $scope.submitComment = function() {
+      console.log($scope.userData);
         if (!$scope.artwork.chat) {
             $scope.artwork.chat = [{
                 "name": $scope.userData.name,
-                "comment": $scope.chat.comment,
+                "comment": $scope.comment,
                 "accesslevel": "artist"
             }];
         } else {
             $scope.artwork.chat.push({
                 "name": $scope.userData.name,
-                "comment": $scope.chat.comment,
+                "comment": $scope.comment,
                 "accesslevel": "artist"
             });
         }
-        $scope.chat.comment = '';
+        $scope.comment = '';
     }
 
     $scope.allartist = [];
@@ -3433,6 +3534,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log(select.selected);
         $scope.variable = select.selected.name;
         $scope.artwork.user = select.selected;
+        $scope.artwork.artistname = select.selected.name;
+
+        if (select.selected.email) {
+          $scope.artwork.email = select.selected.email;
+        }else {
+          $scope.artwork.email = "";
+        }
+
     }
 
     $scope.setSearchReseller = function(select) {
@@ -3717,9 +3826,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.createartwork = function() {
         NavigationService.getuserprofile(function(data) {
             if (data.id && $scope.artwork.user) {
-                if (!$scope.artwork.chat) {
-                    $scope.artwork.chat = [];
-                }
+              console.log($scope.comment);
+              $scope.submitComment();
+                // if (!$scope.artwork.chat) {
+                //     $scope.artwork.chat = [];
+                // }
                 $scope.artwork.reseller = [{
                     "_id": data.id,
                     "name": data.name
@@ -3744,11 +3855,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                             category: ""
                         };
                     }
-                    $scope.userData._id = $scope.userData.id;
-                    NavigationService.registeruser($scope.userData, function(data) {
-                        console.log(data);
-                    });
+                    // $scope.userData._id = $scope.userData.id;
+                    // NavigationService.registeruser($scope.userData, function(data) {
+                    //     console.log(data);
+                    // });
                     $scope.artwork.status = 'pending';
+                    $scope.artwork.selleremail = $scope.userData.email;
+                    $scope.artwork.sellerename = $scope.userData.name;
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
@@ -3756,7 +3869,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                             dataNextPre.messageBox("Your art work has been submitted for review.");
                             globalFunction.tab = "myartworks";
                             $timeout(function() {
-                                $state.go('account');
+                                // $state.go('account');
                             }, 3000);
                         }
                         // $location.url("/artworkout");

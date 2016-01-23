@@ -97,7 +97,7 @@
 
           </div>
         </div>
-        <form ng-submit="toPayment()">
+        <form>
         <div class="col-md-4" ng-show="showShipping">
 
             <div class="making">
@@ -141,7 +141,7 @@
                     <input class="form-control" ng-model="user.billing.city" placeholder="City*" required type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.billing.pincode" placeholder="Pincode" type="text">
+                    <input class="form-control" ng-model="user.billing.pincode" placeholder="Pincode*" type="text">
                   </div>
                   <div class="form-group">
                     <input class="form-control" ng-model="user.billing.state" placeholder="State*" required type="text">
@@ -157,7 +157,7 @@
             </div>
           <!-- </form> -->
         </div>
-        <div class="col-md-4" ng-show="showShipping">
+        <div class="col-md-4" ng-show="showShipping && !sameAsBilling">
           <!-- <form ng-submit=""> -->
             <div class="making">
               <div class="panel panel-default">
@@ -212,10 +212,13 @@
               </div>
             </div>
           <!-- </form> -->
-          <button class="btn btn-sucesses pull-right" type="submit">Continue</button>
         </div>
+
       </form>
+
       </div>
+      <hr ng-show="showShipping">
+      <button class="btn btn-sucesses pull-right" type="submit" ng-show="showShipping" ng-click="viewCart()">Continue</button>
 
 
 
@@ -333,7 +336,7 @@
                   <p>Please enter a valid contact number</p>
                 </div>
                 <div class="col-md-offset-4 col-md-8">
-                  <button class="btn btn-cont pull-right" type="submit" ng-click="toPayment()">Proceed &amp; Pay</button>
+                  <button class="btn btn-cont pull-right" type="submit" ng-click="toPayment(checked)">Proceed &amp; Pay</button>
                 </div>
               </div>
             </div>
