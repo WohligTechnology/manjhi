@@ -1217,18 +1217,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.user = {};
     $scope.checked = false;
     $scope.showShipping = false;
-
+    $scope.showCartEnable = false;
     $scope.showLoginDiv = true;
 
     NavigationService.getCountryJson(function(data) {
         $scope.countries = data;
     });
 
+    $scope.showCart = function(){
+      $scope.showCartEnable = true;
+    }
+
     NavigationService.getuserprofile(function(data) {
         console.log(data);
         $scope.user = data;
         if (data.id) {
-            $scope.showLoginDiv = false;
+            $scope.showShipping = true;
             $scope.payment.billing = data;
             var splited = data.name.split(' ');
             if (splited[0])
@@ -1315,12 +1319,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.totalCartPrice = 0;
 
     $scope.changeAddress = function(check) {
-        console.log(check);
-        if (check == false) {
-            $scope.showShipping = false;
-        } else {
-            $scope.showShipping = true;
-        }
+        $scope.user.shipping = $scope.user.billing;
     }
 
     cfpLoadingBar.start();
@@ -1368,6 +1367,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       }];
       var check = formvalidation($scope.allvalidation);
       if (check) {
+        $scope.showCart();
         console.log($scope.cartItems);
         $scope.user.cart = [];
         if ($scope.checked == true) {

@@ -97,8 +97,9 @@
 
           </div>
         </div>
+        <form ng-submit="toPayment()">
         <div class="col-md-4" ng-show="showShipping">
-          <form ng-submit="toPayment()">
+
             <div class="making">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -211,12 +212,16 @@
               </div>
             </div>
           <!-- </form> -->
+          <button class="btn btn-sucesses pull-right" type="submit">Continue</button>
         </div>
+      </form>
       </div>
+
+
 
       <div class="clear-fix"></div>
       <!-- <form ng-submit="toPayment();"> -->
-        <div class="making">
+        <div class="making" ng-if="showCartEnable">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Order Review</h3>
@@ -334,6 +339,6 @@
             </div>
           </div>
         </div>
-      </form>
+      <!-- </form> -->
     </div>
   </div>
