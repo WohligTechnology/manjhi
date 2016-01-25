@@ -268,7 +268,7 @@
                       </td>
                       <td>
                         <span class="mobile">Price</span>
-                        Rs.{{artwork.artwork.gprice|number:0}}
+                        Rs {{artwork.artwork.gprice|number:0}}
                         / $
                         {{artwork.artwork.gprice|indollars}}
                       </td>
@@ -320,10 +320,10 @@
                         <p>Grand Total:</p>
                       </div>
                       <div class="col-xs-6">
-                        <p>Rs.{{totalCartPrice | number:0}}/ ${{totalCartPrice|indollars}}</p>
-                        <p>Rs.{{vat | number:0}} / ${{vat | indollars}}</p>
-                        <p>Rs.0 / $0.00</p>
-                        <p>Rs.{{totalCartPrice+vat | number:0}}/ ${{totalCartPrice+vat|indollars}}</p>
+                        <p>Rs {{totalCartPrice | number:0}}/ ${{totalCartPrice|indollars}}</p>
+                        <p>Rs {{vat | number:0}} / ${{vat | indollars}}</p>
+                        <p>Rs 0 / $0.00</p>
+                        <p>Rs {{totalCartPrice+vat | number:0}}/ ${{totalCartPrice+vat|indollars}}</p>
                       </div>
                     </div>
                   </div>

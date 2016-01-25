@@ -122,7 +122,7 @@
                         </p>
                         <p>
                             <span ng-if="artistdetails.gprice && artistdetails.gprice!='N/A'">
-                                    Rs.{{artistdetails.gprice|number:0}} / $ {{artistdetails.gprice|indollars}}
+                                    Rs {{artistdetails.gprice|number:0}} / $ {{artistdetails.gprice|indollars}}
                                 </span>
                             <span ng-if="!artistdetails.gprice || artistdetails.gprice=='N/A'">
                                     N/A

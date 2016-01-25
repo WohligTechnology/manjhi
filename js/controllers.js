@@ -1174,6 +1174,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.pagedata.filter = "";
         $scope.pagedata.medium = '';
         $scope.pagedata.sort = 1;
+        $scope.pagedata.minheight = "";
+        $scope.pagedata.maxheight = "";
+        $scope.pagedata.minwidth = "";
+        $scope.pagedata.maxwidth = "";
+        $scope.pagedata.minbreadth = "";
+        $scope.pagedata.maxbreadth = "";
+        $scope.pagedata.minprice = "";
+        $scope.pagedata.maxprice = "";
+        $scope.pagedata.color = "";
+        $scope.pagedata.style = "";
+        $scope.pagedata.element = "";
 
         $scope.makeactive('All');
     }
@@ -2339,6 +2350,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     $scope.listview.push(n);
                 });
                 pno++;
+                $scope.listview = _.uniq($scope.listview, '_id');
                 getAllArtistByAccess();
             }
         })
