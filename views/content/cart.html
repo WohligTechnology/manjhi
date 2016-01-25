@@ -3,8 +3,8 @@
   <div class="container">
     <h4 class="head-team">Shopping Cart</h4>
     <div class="text-center" ng-show="noCartItems">
-      <p>No artworks in your cart.</p>
-      <a href="#/artwork/All" class="btn btn-sucesses">Shop Now</a>
+      <p>No Artwork in your Cart.</p>
+      <a href="#/artwork/All" class="btn btn-sucesses margin-btm">Shop Now</a>
     </div>
     <div class="table-cart" ng-hide="noCartItems">
       <table class="table table-hover cart-table">
@@ -71,9 +71,9 @@
                 <p>Grand Total:</p>
               </div>
               <div class="col-xs-6">
-                <p>Rs {{totalCartPrice | number:0}} / ${{totalCartPrice|indollars}}</p>
-                <p>Rs {{vat | number:0}} / ${{vat|indollars}}</p>
-                <p>Rs {{totalCartPrice + vat | number:0 }} / ${{totalCartPrice|indollars}}</p>
+                <p>Rs {{totalCartPrice | number:0}} / $ {{totalCartPrice|indollars}}</p>
+                <p>Rs {{vat | number:0}} / $ {{vat|indollars}}</p>
+                <p>Rs {{totalCartPrice + vat | number:0 }} / $ {{totalCartPrice|indollars}}</p>
               </div>
             </div>
           </div>

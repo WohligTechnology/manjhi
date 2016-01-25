@@ -221,6 +221,7 @@
                             <tr>
                                 <th>Image</th>
                                 <th>Title</th>
+                                <th>Artist Name</th>
                                 <th>Seller</th>
                                 <th>Status</th>
                                 <th>Price</th>
@@ -232,35 +233,31 @@
                                     <img ng-src="{{artwork.artwork.image[0] | uploadsmallimage}}" height="30" />
                                 </td>
                                 <td>{{artwork.name}}</td>
+                                <td>{{artwork.name}}</td>
                                 <td>{{artwork.artwork.reseller.name}}</td>
                                 <td>{{artwork.status}}</td>
-                                <td class="pull-right">Rs {{artwork.artwork.gprice | number:0}} / $ {{artwork.artwork.gprice|indollars}}</td>
+                                <td>Rs {{artwork.artwork.gprice | number:0}} / $ {{artwork.artwork.gprice|indollars}}</td>
                             </tr>
                         </tbody>
-                        <tfoot class="bold">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Sub Total</td>
-                                <td class="pull-right">Rs {{orders.subTotal | number:0}} / $ {{orders.subTotal|indollars}}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Discount</td>
-                                <td class="pull-right">- Rs {{orders.discount | number:0}} / $ 0.00</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Total</td>
-                                <td class="pull-right">Rs {{orders.grantTotal  | number:0}} / $ {{orders.grantTotal |indollars}}</td>
-                            </tr>
-                        </tfoot>
                     </table>
+
+                      <div class="row">
+                        <div class="col-md-offset-8 col-md-4">
+
+                          <div class="padding-bottom">
+                            <div class="row">
+                              <div class="col-xs-6 font-color2 text-right bold">
+                                <p>Grand Total:</p>
+                              </div>
+                              <div class="col-xs-6">
+                                <p>Rs {{orders.grantTotal  | number:0}} / $ {{orders.grantTotal |indollars}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
                 </div>
                 <div class="text-center" ng-if="myorderedproducts.length==0">
                     <p class="text-center font-special">You haven't placed any orders yet.
