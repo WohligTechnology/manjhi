@@ -433,6 +433,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: searchtext
             }).success(callback);
         },
+        getAllArtistDropArtist: function(searchtext, callback) {
+            $http({
+                url: adminurl + "user/findforart",
+                method: "POST",
+                data: searchtext
+            }).success(callback);
+        },
         getallmedium: function(data, callback) {
             $http({
                 url: adminurl + "artmedium/getmedium",

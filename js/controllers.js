@@ -3483,7 +3483,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artmedium = [];
     $scope.tag = [];
     $scope.access = "artist";
-    $scope.comment = '';
+    $scope.commentsub = '';
+
 
     $scope.otherDetails = "eg. Diptych, Triptych";
 
@@ -3492,21 +3493,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
 
     $scope.submitComment = function() {
-      console.log($scope.userData);
         if (!$scope.artwork.chat) {
             $scope.artwork.chat = [{
                 "name": $scope.userData.name,
-                "comment": $scope.comment,
+                "comment": $scope.artwork.comment,
                 "accesslevel": "artist"
             }];
-        } else {
-            $scope.artwork.chat.push({
-                "name": $scope.userData.name,
-                "comment": $scope.comment,
-                "accesslevel": "artist"
-            });
         }
-        $scope.comment = '';
+        // $scope.comment = '';
     }
 
     $scope.allartist = [];
@@ -3515,7 +3509,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.change = {};
             $scope.change.type = $scope.artwork.type;
             $scope.change.search = search;
-            NavigationService.getAllArtistDrop($scope.change, function(data) {
+            NavigationService.getAllArtistDropArtist($scope.change, function(data) {
                 if (data && data.value != false) {
                     $scope.allartist = data;
                 } else {
@@ -3784,10 +3778,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.isSculpture = function(type) {
-        console.log($scope.artwork.subtype);
-        console.log($scope.artwork.type);
         $scope.artwork.subtype = [];
-        console.log($scope.artwork.subtype);
         $scope.show = 0;
         $scope.showmed = 0;
         if (type == "Sculptures") {
@@ -3838,7 +3829,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.createartwork = function() {
         NavigationService.getuserprofile(function(data) {
             if (data.id && $scope.artwork.user) {
-              console.log($scope.comment);
               $scope.submitComment();
                 // if (!$scope.artwork.chat) {
                 //     $scope.artwork.chat = [];
@@ -3873,7 +3863,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     // });
                     $scope.artwork.status = 'pending';
                     $scope.artwork.selleremail = $scope.userData.email;
-                    $scope.artwork.sellerename = $scope.userData.name;
+                    $scope.artwork.sellername = $scope.userData.name;
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
@@ -4010,7 +4000,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.change = {};
             $scope.change.type = $scope.artwork.type;
             $scope.change.search = search;
-            NavigationService.getAllArtistDrop($scope.change, function(data) {
+            NavigationService.getAllArtistDropArtist($scope.change, function(data) {
                 if (data && data.value != false) {
                     $scope.allartist = data;
                 } else {
