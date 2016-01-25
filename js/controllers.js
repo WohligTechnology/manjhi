@@ -1802,6 +1802,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 return year;
             }, true);
             $scope.pressYear = _.keys(data2);
+            // $scope.pressYear = _.orderBy($scope.pressYear,'asc');
             console.log($scope.pressYear);
 
             $scope.press = data2;

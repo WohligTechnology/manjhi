@@ -4,7 +4,7 @@
         <h3 class="font-color3 home-header">Press</h3>
     </div>
     <div class="row media">
-        <div class="all-events search-box media mediacov" ng-repeat="year in pressYear">
+        <div class="all-events search-box media mediacov" ng-repeat="year in pressYear | orderBy:'year':true">
             <p class="head">Media Coverage {{year}}</p>
             <div class="row">
                 <div class="col-md-3" ng-repeat="media in press[year]">
