@@ -1230,15 +1230,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.user = {};
     $scope.user.shipping = {};
     $scope.user.shipping.name = "";
+    $scope.user.shipping.country = "";
     $scope.user.billing = {};
     $scope.user.billing = {};
     $scope.checked = false;
     $scope.showShipping = false;
+    $scope.showShippingContinue = false;
     $scope.showCartEnable = false;
     $scope.showLoginDiv = true;
 
     NavigationService.getCountryJson(function(data) {
         $scope.countries = data;
+        $scope.countries.unshift({
+            "name": "Select Country",
+            "code": ""
+        });
     });
 
     $scope.showCart = function(){
@@ -1251,6 +1257,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         if (data.id) {
           $scope.user = data;
             $scope.showShipping = true;
+            $scope.showShippingContinue = true;
             $scope.showLoginDiv = false;
             $scope.payment.billing = data;
             var splited = data.name.split(' ');
@@ -1266,12 +1273,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       console.log($scope.showShipping);
       if ($scope.checkoutRadio == 'guest') {
         $scope.showShipping = true;
+        $scope.showShippingContinue = true;
       }else {
         $scope.showShipping = false;
+        $scope.showShippingContinue = false;
       }
     }
     $scope.loginRegClick = function(){
       $scope.showShipping = false;
+      $scope.showShippingContinue = false;
     }
 
     $scope.registeruser = function() {
@@ -1380,6 +1390,54 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.paymentFunc = function(){
+      var num = 0;
+      _.each($scope.cartItems, function(n){
+        if (n.artwork.form) {
+          num++;
+        }
+      });
+      if (num == $scope.cartItems.length) {
+        $scope.user.cart = [];
+        $scope.user.cart = $scope.cartItems;
+        $scope.user.subTotal = $scope.totalCartPrice;
+        $scope.user.vat = $scope.vat;
+        $scope.user.grantTotal = $scope.totalCartPrice + $scope.vat;
+        $scope.user.discount = 0;
+        delete $scope.user.id;
+        NavigationService.checkout($scope.user, function(data) {
+            // console.log("incheck");
+            if (data.value !=false) {
+              $state.go('thankyou');
+                // dataNextPre.messageBox("Your order is placed. Thank You !!");
+                // $timeout(function() {
+                //     $state.go('thankyou');
+                // }, 3000);
+
+            }else {
+              $state.go('sorry');
+            }
+        });
+      }else {
+          // alert("Fill all manditory * Fields");
+          dataNextPre.messageBox("Please select in what Form (Rolled or Framed) you want to receive the artwork.");
+      }
+    }
+
+    $scope.toPayment = function(checked) {
+      if (checked==true) {
+        $scope.user.shipping = _.cloneDeep($scope.user.billing);
+        $scope.paymentFunc();
+      }else {
+        $scope.paymentFunc();
+      }
+
+    }
+
+    //after implementing paymentgateway topayment and viewcart will replace
+    $scope.viewCart = function(checked){
+      if (checked==true) {
+        $scope.user.shipping = _.cloneDeep($scope.user.billing);
+      }
       $scope.allvalidation = [{
           field: $scope.user.billing.name,
           validation: ""
@@ -1461,49 +1519,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
       }];
       var check = formvalidation($scope.allvalidation);
       if (check) {
-        console.log($scope.cartItems);
-        $scope.user.cart = [];
-        if ($scope.checked == true) {
-            $scope.user.shipping = $scope.user.billing;
-        }
-        $scope.user.cart = $scope.cartItems;
-        $scope.user.subTotal = $scope.totalCartPrice;
-        $scope.user.vat = $scope.vat;
-        $scope.user.grantTotal = $scope.totalCartPrice + $scope.vat;
-        $scope.user.discount = 0;
-        delete $scope.user.id;
-        NavigationService.checkout($scope.user, function(data) {
-            // console.log("incheck");
-            if (data.value !=false) {
-              $state.go('thankyou');
-                // dataNextPre.messageBox("Your order is placed. Thank You !!");
-                // $timeout(function() {
-                //     $state.go('thankyou');
-                // }, 3000);
-
-            }else {
-              $state.go('sorry');
-            }
-        });
-      }else {
-          // alert("Fill all manditory * Fields");
-          dataNextPre.messageBox("Fill all manditory * Fields");
-      }
-    }
-
-    $scope.toPayment = function(checked) {
-      if (checked==true) {
-        $scope.user.shipping = _.cloneDeep($scope.user.billing);
-        $scope.paymentFunc();
-      }else {
-        $scope.paymentFunc();
-      }
-
-    }
-
-    //after implementing paymentgateway topayment and viewcart will replace
-    $scope.viewCart = function(){
         $scope.showCart();
+        $scope.showShippingContinue = false;
+      }else {
+        dataNextPre.messageBox("Fill all manditory * Fields");
+      }
     }
 
     $scope.checkout = function() {
@@ -1876,6 +1896,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.aristImages = [];
     $scope.allartworks = [];
     cfpLoadingBar.start();
+    $scope.nextButton = false;
 
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
@@ -1943,19 +1964,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artPrev = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
             // $scope.artistDetailImg = data;
+            if (data.value!=false) {
             $state.go("detail", {
                 "artid": data.artwork._id
             });
+          }
         })
     }
 
     $scope.artNext = function() {
-        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
-            // $scope.artistDetailImg = data;
-            $state.go("detail", {
-                "artid": data.artwork._id
-            });
-        })
+          NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
+            if (data.value!=false) {
+              $state.go("detail", {
+                  "artid": data.artwork._id
+              });
+            }
+
+          })
     }
 
     $scope.showitabove = function(artwork) {

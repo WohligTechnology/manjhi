@@ -1,7 +1,7 @@
 // var adminurl = "http://vignesh.com:82/";
 // var adminurl = "http://192.168.0.122:81/";
 // var adminurl = "http://146.148.34.49/";
-var adminurl = "http://smartsnap.in:81/";
+var adminurl = "http://smartsnap.in/";
 var imgUploadUrl = adminurl + "user/uploadfile";
 
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
@@ -276,6 +276,12 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         getoneartist: function(artistid, callback) {
             $http({
                 url: adminurl + "user/findone",
+                method: "POST"
+            }).success(callback);
+        },
+        getLastArtwork: function(callback) {
+            $http({
+                url: adminurl + "artwork/lastsr",
                 method: "POST"
             }).success(callback);
         },

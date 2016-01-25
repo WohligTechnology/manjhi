@@ -402,16 +402,16 @@
                     <div class="comment-box">
                         <div class="comment-head">Comments</div>
                         <div class="comment-area">
-                            <div class="" ng-repeat="chat in artwork.chat" ng-if="artwork.chat.length>0">
+                            <div class="" ng-repeat="chat in artwork.chat track by $index" ng-if="artwork.chat.length>0">
                                 <!--Aura arts comment  -->
                                 <div class="style1-bg bubble" ng-if="chat.accesslevel=='admin'">
-                                    <div class="name">AADPL (Aura Art):</div>
-                                    <div class="comment-text">{chat.comment}}</div>
+                                    <div class="name" ng-if="chat.name!=artwork.chat[$index-1].name">AADPL (Aura Art):</div>
+                                    <div class="comment-text">{{chat.comment}}</div>
                                 </div>
                                 <!--Aura arts comment-->
                                 <!--Artists comment-->
                                 <div class="bubble" ng-if="chat.accesslevel=='artist'">
-                                    <div class="name">{{chat.name}} (You):</div>
+                                    <div class="name" ng-if="chat.name!=artwork.chat[$index-1].name">{{chat.name}} (You):</div>
                                     <div class="comment-text">{{chat.comment}}</div>
                                 </div>
                                 <!--Artists comment-->
