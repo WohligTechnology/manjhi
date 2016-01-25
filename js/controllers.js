@@ -1896,7 +1896,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.aristImages = [];
     $scope.allartworks = [];
     cfpLoadingBar.start();
-    $scope.nextButton = false;
+    $scope.nextButton = true;
+    $scope.prevButton = true;
 
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
@@ -1968,6 +1969,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $state.go("detail", {
                 "artid": data.artwork._id
             });
+          }else {
+            $scope.prevButton = false;
           }
         })
     }
@@ -1978,6 +1981,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
               $state.go("detail", {
                   "artid": data.artwork._id
               });
+            }else {
+              $scope.nextButton = false;
             }
 
           })
