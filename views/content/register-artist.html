@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                           <label>Artist Email Address</label>
-                          <input type="email" class="form-control" ng-model="user.email" placeholder="Enter email address" required>
+                          <input type="email" class="form-control" ng-model="user.email" placeholder="Enter email address">
                         </div>
                       </div>
                       <div class="col-md-5">
@@ -91,7 +91,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label>Date / Year of Birth</label>
-                      <input type="text" onfocus="(this.type='date')" class="form-control" ng-model="user.dob" placeholder="Date of Birth" required>
+                      <input type="text" class="form-control" ng-model="user.dob" placeholder="Date of Birth" maxlength="10" only-digits>
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -103,7 +103,7 @@
                   <div class="col-md-4">
                     <div class="form-group">
                       <label>Year of Demise (if applicable)</label>
-                      <input type="text" class="form-control" ng-model="user.passedaway" placeholder="Year of Demise (if applicable)">
+                      <input type="text" class="form-control" ng-model="user.passedaway" placeholder="Year of Demise (if applicable)" maxlength="10" only-digits>
                     </div>
                   </div>
                 </div>
@@ -115,18 +115,18 @@
                     <div class="form-group">
                       <label>Residence</label>
                       <div class="tel-box">
-                        <input type="text" class="form-control tel-country" ng-model="user.residence.flatno" placeholder="House No" required>
-                        <input type="text" class="form-control tel-number" ng-model="user.residence.bldgname" placeholder="Name of Building / Society" required>
+                        <input type="text" class="form-control tel-country" ng-model="user.residence.flatno" placeholder="House No">
+                        <input type="text" class="form-control tel-number" ng-model="user.residence.bldgname" placeholder="Name of Building / Society">
                       </div>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.residence.landmark" placeholder="Landmark" required>
+                      <input type="text" class="form-control" ng-model="user.residence.landmark" placeholder="Landmark">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.residence.street" placeholder="Street" required>
+                      <input type="text" class="form-control" ng-model="user.residence.street" placeholder="Street">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.residence.locality" placeholder="Locality" required>
+                      <input type="text" class="form-control" ng-model="user.residence.locality" placeholder="Locality">
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" ng-model="user.residence.city" placeholder="City">
@@ -147,18 +147,18 @@
                     <div class="form-group">
                       <label>Studio</label>
                       <div class="tel-box">
-                        <input type="text" class="form-control tel-country" ng-model="user.work.flatno" placeholder="House No" required>
-                        <input type="text" class="form-control tel-number" ng-model="user.work.bldgname" placeholder="Name of Building / Society" required>
+                        <input type="text" class="form-control tel-country" ng-model="user.work.flatno" placeholder="House No">
+                        <input type="text" class="form-control tel-number" ng-model="user.work.bldgname" placeholder="Name of Building / Society">
                       </div>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.work.landmark" placeholder="Landmark" required>
+                      <input type="text" class="form-control" ng-model="user.work.landmark" placeholder="Landmark">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.work.street" placeholder="Street" required>
+                      <input type="text" class="form-control" ng-model="user.work.street" placeholder="Street">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.work.locality" placeholder="Locality" required>
+                      <input type="text" class="form-control" ng-model="user.work.locality" placeholder="Locality">
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" ng-model="user.work.city" placeholder="City">
@@ -179,18 +179,18 @@
                     <div class="form-group">
                       <label>Any Other</label>
                       <div class="tel-box">
-                        <input type="text" class="form-control tel-country" ng-model="user.other.flatno" placeholder="House No" required>
-                        <input type="text" class="form-control tel-number" ng-model="user.other.bldgname" placeholder="Name of Building / Society" required>
+                        <input type="text" class="form-control tel-country" ng-model="user.other.flatno" placeholder="House No">
+                        <input type="text" class="form-control tel-number" ng-model="user.other.bldgname" placeholder="Name of Building / Society">
                       </div>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.other.landmark" placeholder="Landmark" required>
+                      <input type="text" class="form-control" ng-model="user.other.landmark" placeholder="Landmark">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.other.street" placeholder="Street" required>
+                      <input type="text" class="form-control" ng-model="user.other.street" placeholder="Street">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="user.other.locality" placeholder="Locality" required>
+                      <input type="text" class="form-control" ng-model="user.other.locality" placeholder="Locality">
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control" ng-model="user.other.city" placeholder="City">

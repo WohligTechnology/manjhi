@@ -1949,6 +1949,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.artistDetailImg = data[0];
             $scope.artistDetailImg.heartClass = $filter('showheart')($scope.artistDetailImg.artwork._id);
             console.log($scope.artistDetailImg);
+            if ($scope.artistDetailImg.artwork.srno==1) {
+              $scope.prevButton = false;
+            }
+            NavigationService.lastSr(function(data){
+              if (data.srno == $scope.artistDetailImg.artwork.srno) {
+                $scope.nextButton = false;
+              }
+            });
         })
     }
 
@@ -4800,14 +4808,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.user.status = "pending";
             $scope.user.reseller = [{
                 "_id": $scope.userData.id,
-                "name": $scope.userData.name
+                "name": $scope.userData.name,
+                "email":$scope.userData.email
             }]
             delete $scope.user.checkboxModel;
             NavigationService.registerArtist($scope.user, function(data, status) {
                 console.log(data);
                 if (data.value != false) {
-                    dataNextPre.messageBox("Artist has been updated");
+                    dataNextPre.messageBox("Your information has been send to AURA");
                     $scope.disableSubmit = true;
+
                 }
             });
         } else {
@@ -4839,7 +4849,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http) {
+.controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $state) {
     $scope.template = TemplateService.changecontent("register-artist");
     $scope.menutitle = NavigationService.makeactive("Register Artist");
     TemplateService.title = $scope.menutitle;
@@ -5190,7 +5200,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.user.status = "pending";
             $scope.user.reseller = [{
                 "_id": $scope.userData.id,
-                "name": $scope.userData.name
+                "name": $scope.userData.name,
+                "email":$scope.userData.email
             }]
             if ($scope.user.checkboxModel) {
                 delete $scope.user.checkboxModel
@@ -5199,6 +5210,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     if (data.value != false) {
                         dataNextPre.messageBox("Artist has been registerd and is in review");
                         $scope.disableSubmit = true;
+                        $timeout(function(){
+                          $state.go("create-artwork");
+                        },3000)
                     }
                     // $location.url("/user");
                 });
