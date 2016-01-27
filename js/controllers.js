@@ -2976,31 +2976,53 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             xyz.close();
         }, 3000);
     }
+
     dataNextPre.favorite = function(art) {
+      // art.heartClass = "fa fa-heart font-color3";
         if ($scope.userProfile.id) {
             cfpLoadingBar.start();
-            if (art.heartClass == "fa fa-heart") {
-                NavigationService.addToFav($scope.userProfile.id, art.artwork._id, function(data) {
+            console.log(art.heartClass);
+            switch (art.heartClass) {
+              case "fa fa-heart":
+                {
+                  console.log("in if");
+                  art.heartClass = "fa fa-heart font-color3";
+                    NavigationService.addToFav($scope.userProfile.id, art.artwork._id, function(data) {
+                        cfpLoadingBar.complete();
+                        if (!data.value) {
+                            // $.jStorage.set("user", data);
+                            art.heartClass = "fa fa-heart font-color3";
+                            dataNextPre.messageBox("Added to favourites");
+                        } else if (data.value == true && data.comment == "Data already updated") {
+                            dataNextPre.messageBox("Already added to favourites");
+                        }
+                    })
+                }
+                break;
+                case "fa fa-heart font-color3":
+                {
+                  console.log('in second if');
                     cfpLoadingBar.complete();
-                    if (!data.value) {
-                        // $.jStorage.set("user", data);
-                        art.heartClass = "fa fa-heart font-color3";
-                        dataNextPre.messageBox("Added to favourites");
-                    } else if (data.value == true && data.comment == "Data already updated") {
-                        dataNextPre.messageBox("Already added to favourites");
-                    }
-                })
-            } else if (art.heartClass == "fa fa-heart font-color3") {
-                cfpLoadingBar.complete();
-                console.log(art.heartClass);
-                NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function(data) {
-                    if (!data.value) {
-                        // $.jStorage.set("user", data);
-                        art.heartClass = "fa fa-heart";
-                        dataNextPre.messageBox("Removed from favourites");
-                    }
-                })
+                    NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function(data) {
+                        if (!data.value) {
+                            // $.jStorage.set("user", data);
+                            art.heartClass = "fa fa-heart";
+                            dataNextPre.messageBox("Removed from favourites");
+                        }
+                    })
+                }
+                break;
+              default:
+
             }
+            NavigationService.getuserprofile(function(data) {
+                if (data.id) {
+                    userProfile = data;
+                    NavigationService.getMyFavourites(data.id, function(favorite) {
+                        userProfile.wishlist = favorite;
+                    })
+                }
+            })
         } else {
             dataNextPre.messageBox("Please login to add to favourites");
         }
