@@ -232,10 +232,10 @@
                                 <td fancybox-box href="{{artwork.artwork.image[0] | uploadthumbnail}}">
                                     <img ng-src="{{artwork.artwork.image[0] | uploadsmallimage}}" height="30" />
                                 </td>
+                                <td>{{artwork.artwork.name}}</td>
                                 <td>{{artwork.name}}</td>
-                                <td>{{artwork.name}}</td>
-                                <td>{{artwork.artwork.reseller.name}}</td>
-                                <td>{{artwork.status}}</td>
+                                <td>{{artwork.artwork.reseller[0].name}}</td>
+                                <td>{{orders.status}}</td>
                                 <td>Rs {{artwork.artwork.gprice | number:0}} / $ {{artwork.artwork.gprice|indollars}}</td>
                             </tr>
                         </tbody>

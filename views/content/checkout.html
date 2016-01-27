@@ -118,8 +118,8 @@
                   </div>
                   <div class="form-group">
                     <div class="tel-box">
-                      <input class="form-control tel-country" ng-model="user.billing.countrycode" placeholder="eg. +91*" required type="tel">
-                      <input class="form-control tel-number" ng-model="user.billing.mobileno" placeholder="Mobile Number*" required type="tel">
+                      <input class="form-control tel-country" ng-model="user.billing.countrycode" placeholder="eg. +91*" required only-digits maxlength="8" type="tel">
+                      <input class="form-control tel-number" ng-model="user.billing.mobileno" placeholder="Mobile Number*" only-digits maxlength="11" required type="tel">
                     </div>
                   </div>
                   <div class="form-group">
@@ -141,13 +141,13 @@
                     <input class="form-control" ng-model="user.billing.city" placeholder="City*" required type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.billing.pincode" placeholder="Pincode*" type="text">
+                    <input class="form-control" ng-model="user.billing.pincode" placeholder="Pincode*" only-digits maxlength="6" type="text">
                   </div>
                   <div class="form-group">
                     <input class="form-control" ng-model="user.billing.state" placeholder="State*" required type="text">
                   </div>
                   <div class="form-group">
-                    <select class="form-control" ng-options="country.code as country.name for country in countries" ng-model="user.billing.country"></select>
+                    <select class="form-control" ng-options="country.code as country.name for country in countries" ng-model="user.billing.country" value=""></select>
                   </div>
                   <label>
                     <input ng-model="checked" ng-change="changeAddress(checked)" type="checkbox">
@@ -177,8 +177,8 @@
                   </div>
                   <div class="form-group">
                     <div class="tel-box">
-                      <input class="form-control tel-country" ng-model="user.shipping.countrycode" placeholder="eg. +91*" required type="tel">
-                      <input class="form-control tel-number" ng-model="user.shipping.mobileno" placeholder="Mobile Number*" required type="tel">
+                      <input class="form-control tel-country" ng-model="user.shipping.countrycode" placeholder="eg. +91*" only-digits maxlength="8" required type="tel">
+                      <input class="form-control tel-number" ng-model="user.shipping.mobileno" placeholder="Mobile Number*" only-digits maxlength="11" required type="tel">
                     </div>
                   </div>
                   <div class="form-group">
@@ -200,7 +200,7 @@
                     <input class="form-control" ng-model="user.shipping.city" placeholder="City*" required type="text">
                   </div>
                   <div class="form-group">
-                    <input class="form-control" ng-model="user.shipping.pincode" placeholder="Pincode*" required type="text">
+                    <input class="form-control" ng-model="user.shipping.pincode" placeholder="Pincode*" only-digits maxlength="6" required type="text">
                   </div>
                   <div class="form-group">
                     <input class="form-control" ng-model="user.shipping.state" placeholder="State*" required type="text">
@@ -319,7 +319,7 @@
                       </td>
                       <td>
                         <span class="mobile">Size</span>
-                        {{artwork.artwork.gprice|number:0}}
+                        {{artwork.artwork.dim}}
                       </td>
                       <td>
                         <span class="mobile">Price</span>

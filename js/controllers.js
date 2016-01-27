@@ -1256,6 +1256,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
         if (data.id) {
             $scope.user = data;
+            if (!$scope.user.billing) {
+              $scope.user.billing = {};
+              $scope.user.billing.country = "";
+            }
+            if (!$scope.user.shipping) {
+              $scope.user.shipping = {};
+              $scope.user.shipping.country = "";
+            }
             $scope.showShipping = true;
             $scope.showShippingContinue = true;
             $scope.showLoginDiv = false;
@@ -1389,6 +1397,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
+    $scope.calculateShipping = function(artwork){
+      console.log(artwork);
+    }
+
     $scope.paymentFunc = function() {
         var num = 0;
         _.each($scope.cartItems, function(n) {
@@ -1438,6 +1450,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         if (checked == true) {
             $scope.user.shipping = _.cloneDeep($scope.user.billing);
         }
+        try{
         $scope.allvalidation = [{
             field: $scope.user.billing.name,
             validation: ""
@@ -1521,9 +1534,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         if (check) {
             $scope.showCart();
             $scope.showShippingContinue = false;
+            $(window).scrollTop($(window).height());
         } else {
             dataNextPre.messageBox("Fill all manditory * Fields");
         }
+      }catch(e){
+        dataNextPre.messageBox("Fill all manditory * Fields");
+      }
     }
 
     $scope.checkout = function() {

@@ -610,9 +610,15 @@ firstapp.directive('onlyDigits', function() {
         require: 'ngModel',
         restrict: 'A',
         link: function(scope, element, attr, ctrl) {
+          console.log(attr);
             function inputValue(val) {
                 if (val) {
+                  if (attr.type == "tel") {
+                    var digits = val.replace(/[^0-9\+\\]/g, '');
+                  }else {
                     var digits = val.replace(/[^0-9\-\\]/g, '');
+                  }
+
 
                     if (digits !== val) {
                         ctrl.$setViewValue(digits);
