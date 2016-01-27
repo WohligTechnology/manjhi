@@ -1247,15 +1247,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     });
 
-    $scope.showCart = function(){
-      $scope.showCartEnable = true;
+    $scope.showCart = function() {
+        $scope.showCartEnable = true;
     }
 
     NavigationService.getuserprofile(function(data) {
         console.log(data);
 
         if (data.id) {
-          $scope.user = data;
+            $scope.user = data;
             $scope.showShipping = true;
             $scope.showShippingContinue = true;
             $scope.showLoginDiv = false;
@@ -1268,20 +1268,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    $scope.continueGuest = function(){
-      console.log($scope.checkoutRadio);
-      console.log($scope.showShipping);
-      if ($scope.checkoutRadio == 'guest') {
-        $scope.showShipping = true;
-        $scope.showShippingContinue = true;
-      }else {
+    $scope.continueGuest = function() {
+        console.log($scope.checkoutRadio);
+        console.log($scope.showShipping);
+        if ($scope.checkoutRadio == 'guest') {
+            $scope.showShipping = true;
+            $scope.showShippingContinue = true;
+        } else {
+            $scope.showShipping = false;
+            $scope.showShippingContinue = false;
+        }
+    }
+    $scope.loginRegClick = function() {
         $scope.showShipping = false;
         $scope.showShippingContinue = false;
-      }
-    }
-    $scope.loginRegClick = function(){
-      $scope.showShipping = false;
-      $scope.showShippingContinue = false;
     }
 
     $scope.registeruser = function() {
@@ -1349,11 +1349,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.sameAsBilling = false;
 
     $scope.changeAddress = function(check) {
-      if (check==true) {
-        $scope.sameAsBilling = true;
-      }else {
-        $scope.sameAsBilling = false;
-      }
+        if (check == true) {
+            $scope.sameAsBilling = true;
+        } else {
+            $scope.sameAsBilling = false;
+        }
 
     }
 
@@ -1389,141 +1389,141 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.paymentFunc = function(){
-      var num = 0;
-      _.each($scope.cartItems, function(n){
-        if (n.artwork.form) {
-          num++;
-        }
-      });
-      if (num == $scope.cartItems.length) {
-        $scope.user.cart = [];
-        $scope.user.cart = $scope.cartItems;
-        $scope.user.subTotal = $scope.totalCartPrice;
-        $scope.user.vat = $scope.vat;
-        $scope.user.grantTotal = $scope.totalCartPrice + $scope.vat;
-        $scope.user.discount = 0;
-        delete $scope.user.id;
-        NavigationService.checkout($scope.user, function(data) {
-            // console.log("incheck");
-            if (data.value !=false) {
-              $state.go('thankyou');
-                // dataNextPre.messageBox("Your order is placed. Thank You !!");
-                // $timeout(function() {
-                //     $state.go('thankyou');
-                // }, 3000);
-
-            }else {
-              $state.go('sorry');
+    $scope.paymentFunc = function() {
+        var num = 0;
+        _.each($scope.cartItems, function(n) {
+            if (n.artwork.form) {
+                num++;
             }
         });
-      }else {
-          // alert("Fill all manditory * Fields");
-          dataNextPre.messageBox("Please select in what Form (Rolled or Framed) you want to receive the artwork.");
-      }
+        if (num == $scope.cartItems.length) {
+            $scope.user.cart = [];
+            $scope.user.cart = $scope.cartItems;
+            $scope.user.subTotal = $scope.totalCartPrice;
+            $scope.user.vat = $scope.vat;
+            $scope.user.grantTotal = $scope.totalCartPrice + $scope.vat;
+            $scope.user.discount = 0;
+            delete $scope.user.id;
+            NavigationService.checkout($scope.user, function(data) {
+                // console.log("incheck");
+                if (data.value != false) {
+                    $state.go('thankyou');
+                    // dataNextPre.messageBox("Your order is placed. Thank You !!");
+                    // $timeout(function() {
+                    //     $state.go('thankyou');
+                    // }, 3000);
+
+                } else {
+                    $state.go('sorry');
+                }
+            });
+        } else {
+            // alert("Fill all manditory * Fields");
+            dataNextPre.messageBox("Please select in what Form (Rolled or Framed) you want to receive the artwork.");
+        }
     }
 
     $scope.toPayment = function(checked) {
-      if (checked==true) {
-        $scope.user.shipping = _.cloneDeep($scope.user.billing);
-        $scope.paymentFunc();
-      }else {
-        $scope.paymentFunc();
-      }
+        if (checked == true) {
+            $scope.user.shipping = _.cloneDeep($scope.user.billing);
+            $scope.paymentFunc();
+        } else {
+            $scope.paymentFunc();
+        }
 
     }
 
     //after implementing paymentgateway topayment and viewcart will replace
-    $scope.viewCart = function(checked){
-      if (checked==true) {
-        $scope.user.shipping = _.cloneDeep($scope.user.billing);
-      }
-      $scope.allvalidation = [{
-          field: $scope.user.billing.name,
-          validation: ""
-      }, {
-          field: $scope.user.billing.email,
-          validation: ""
-      }, {
-          field: $scope.user.billing.countrycode,
-          validation: ""
-      }, {
-          field: $scope.user.billing.mobileno,
-          validation: ""
-      }, {
-          field: $scope.user.billing.flatno,
-          validation: ""
-      }, {
-          field: $scope.user.billing.bldgname,
-          validation: ""
-      }, {
-          field: $scope.user.billing.landmark,
-          validation: ""
-      }, {
-          field: $scope.user.billing.street,
-          validation: ""
-      }, {
-          field: $scope.user.billing.regadd,
-          validation: ""
-      }, {
-          field: $scope.user.billing.city,
-          validation: ""
-      }, {
-          field: $scope.user.billing.pincode,
-          validation: ""
-      }, {
-          field: $scope.user.billing.state,
-          validation: ""
-      }, {
-          field: $scope.user.billing.country,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.name,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.email,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.countrycode,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.mobileno,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.flatno,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.bldgname,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.landmark,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.street,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.regadd,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.city,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.pincode,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.state,
-          validation: ""
-      }, {
-          field: $scope.user.shipping.country,
-          validation: ""
-      }];
-      var check = formvalidation($scope.allvalidation);
-      if (check) {
-        $scope.showCart();
-        $scope.showShippingContinue = false;
-      }else {
-        dataNextPre.messageBox("Fill all manditory * Fields");
-      }
+    $scope.viewCart = function(checked) {
+        if (checked == true) {
+            $scope.user.shipping = _.cloneDeep($scope.user.billing);
+        }
+        $scope.allvalidation = [{
+            field: $scope.user.billing.name,
+            validation: ""
+        }, {
+            field: $scope.user.billing.email,
+            validation: ""
+        }, {
+            field: $scope.user.billing.countrycode,
+            validation: ""
+        }, {
+            field: $scope.user.billing.mobileno,
+            validation: ""
+        }, {
+            field: $scope.user.billing.flatno,
+            validation: ""
+        }, {
+            field: $scope.user.billing.bldgname,
+            validation: ""
+        }, {
+            field: $scope.user.billing.landmark,
+            validation: ""
+        }, {
+            field: $scope.user.billing.street,
+            validation: ""
+        }, {
+            field: $scope.user.billing.regadd,
+            validation: ""
+        }, {
+            field: $scope.user.billing.city,
+            validation: ""
+        }, {
+            field: $scope.user.billing.pincode,
+            validation: ""
+        }, {
+            field: $scope.user.billing.state,
+            validation: ""
+        }, {
+            field: $scope.user.billing.country,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.name,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.email,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.countrycode,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.mobileno,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.flatno,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.bldgname,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.landmark,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.street,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.regadd,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.city,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.pincode,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.state,
+            validation: ""
+        }, {
+            field: $scope.user.shipping.country,
+            validation: ""
+        }];
+        var check = formvalidation($scope.allvalidation);
+        if (check) {
+            $scope.showCart();
+            $scope.showShippingContinue = false;
+        } else {
+            dataNextPre.messageBox("Fill all manditory * Fields");
+        }
     }
 
     $scope.checkout = function() {
@@ -1949,13 +1949,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.artistDetailImg = data[0];
             $scope.artistDetailImg.heartClass = $filter('showheart')($scope.artistDetailImg.artwork._id);
             console.log($scope.artistDetailImg);
-            if ($scope.artistDetailImg.artwork.srno==1) {
-              $scope.prevButton = false;
+            if ($scope.artistDetailImg.artwork.srno == 1) {
+                $scope.prevButton = false;
             }
-            NavigationService.lastSr(function(data){
-              if (data.srno == $scope.artistDetailImg.artwork.srno) {
-                $scope.nextButton = false;
-              }
+            NavigationService.lastSr(function(data) {
+                if (data.srno == $scope.artistDetailImg.artwork.srno) {
+                    $scope.nextButton = false;
+                }
             });
         })
     }
@@ -1974,27 +1974,27 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artPrev = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
             // $scope.artistDetailImg = data;
-            if (data.value!=false) {
-            $state.go("detail", {
-                "artid": data.artwork._id
-            });
-          }else {
-            $scope.prevButton = false;
-          }
+            if (data.value != false) {
+                $state.go("detail", {
+                    "artid": data.artwork._id
+                });
+            } else {
+                $scope.prevButton = false;
+            }
         })
     }
 
     $scope.artNext = function() {
-          NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
-            if (data.value!=false) {
-              $state.go("detail", {
-                  "artid": data.artwork._id
-              });
-            }else {
-              $scope.nextButton = false;
+        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
+            if (data.value != false) {
+                $state.go("detail", {
+                    "artid": data.artwork._id
+                });
+            } else {
+                $scope.nextButton = false;
             }
 
-          })
+        })
     }
 
     $scope.showitabove = function(artwork) {
@@ -2382,22 +2382,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     var totalpages = 2;
 
     function getAllArtistByAccess() {
-        var toList = $scope.pagedata;
-        toList.pagenumber = pno;
+        var toList = _.cloneDeep($scope.pagedata);
+        toList.pagenumber = 1;
+        toList.pagesize = 100000000000;
         NavigationService.getallartist(toList, function(data, status) {
             if (data.data) {
-                _.each(data.data, function(n) {
-                    $scope.listview.push(n);
-                });
-                pno++;
+                $scope.listview = data.data;
                 $scope.listview = _.uniq($scope.listview, '_id');
-                getAllArtistByAccess();
             }
         })
     }
     getAllArtistByAccess();
 
     $scope.reload = function() {
+        console.log("reload");
         cfpLoadingBar.start();
         if ($scope.pagedata.type == "All") {
             $scope.pagedata.type = "";
@@ -2406,19 +2404,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             lastpage = parseInt(data.totalpages);
             _.each(data.data, function(n) {
                 $scope.artistimage.push(n);
-                // if ($scope.pagedata.search != "")
-                //   $scope.listview.push(n);
             })
             $scope.artistimage = _.uniq($scope.artistimage, '_id');
-            console.log($scope.artistimage.length);
-            // if ($scope.pagedata.search != "")
-            //   $scope.listview = _.uniq($scope.listview, '_id');
-            // else {
-            //   getAllArtistByAccess();
-            // }
-            pno = 1;
-            totalpages = 2;
-            // getAllArtistByAccess();
             cfpLoadingBar.complete();
         });
     }
@@ -2426,24 +2413,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //    $scope.reload();
     $scope.getartistbyletter = function(letter) {
         _.each($scope.alphabetjson, function(n) {
-            //            var index = n.name.indexOf(letter);
-            //                      console.log(index);
             if (n.name == letter) {
                 n.class = "actived";
             } else {
                 n.class = "";
             }
         });
-
         if (letter == "All") {
             letter = "";
         }
-
         $scope.pagedata.search = letter;
         $scope.pagedata.pagenumber = 1;
         $scope.artistimage = [];
         $scope.listview = [];
         $scope.reload();
+        getAllArtistByAccess();
     }
 
     $scope.getartistbyletter('All');
@@ -2452,6 +2436,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artistimage = [];
         $scope.listview = [];
         $scope.reload();
+        getAllArtistByAccess();
     }
 
     $scope.makeactive = function(type) {
@@ -2487,9 +2472,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // });
 
     $scope.addMoreItems = function() {
-      console.log("loading loading");
-      console.log(lastpage);
-      console.log($scope.pagedata.pagenumber);
         if (lastpage >= $scope.pagedata.pagenumber) {
             $scope.pagedata.pagenumber++;
             $scope.reload();
@@ -3581,9 +3563,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artwork.artistname = select.selected.name;
 
         if (select.selected.email) {
-          $scope.artwork.email = select.selected.email;
-        }else {
-          $scope.artwork.email = "";
+            $scope.artwork.email = select.selected.email;
+        } else {
+            $scope.artwork.email = "";
         }
 
     }
@@ -3867,7 +3849,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.createartwork = function() {
         NavigationService.getuserprofile(function(data) {
             if (data.id && $scope.artwork.user) {
-              $scope.submitComment();
+                $scope.submitComment();
                 // if (!$scope.artwork.chat) {
                 //     $scope.artwork.chat = [];
                 // }
@@ -4806,7 +4788,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.user.reseller = [{
                 "_id": $scope.userData.id,
                 "name": $scope.userData.name,
-                "email":$scope.userData.email
+                "email": $scope.userData.email
             }]
             delete $scope.user.checkboxModel;
             NavigationService.registerArtist($scope.user, function(data, status) {
@@ -5198,7 +5180,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.user.reseller = [{
                 "_id": $scope.userData.id,
                 "name": $scope.userData.name,
-                "email":$scope.userData.email
+                "email": $scope.userData.email
             }]
             if ($scope.user.checkboxModel) {
                 delete $scope.user.checkboxModel
@@ -5207,9 +5189,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     if (data.value != false) {
                         dataNextPre.messageBox("Artist has been registerd and is in review");
                         $scope.disableSubmit = true;
-                        $timeout(function(){
-                          $state.go("create-artwork");
-                        },3000)
+                        $timeout(function() {
+                            $state.go("create-artwork");
+                        }, 3000)
                     }
                     // $location.url("/user");
                 });
@@ -5416,23 +5398,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 .controller('Error404Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("error404");
-    $scope.menutitle = NavigationService.makeactive("Home");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
-.controller('PrivacyPolicyCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("privacy-policy");
-    $scope.menutitle = NavigationService.makeactive("Privacy Policy");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-})
-.controller('Error500Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
-    //Used to name the .html file
-    $scope.template = TemplateService.changecontent("error500");
-    $scope.menutitle = NavigationService.makeactive("Home");
-    TemplateService.title = $scope.menutitle;
-    $scope.navigation = NavigationService.getnav();
-});
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("error404");
+        $scope.menutitle = NavigationService.makeactive("Home");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
+    .controller('PrivacyPolicyCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("privacy-policy");
+        $scope.menutitle = NavigationService.makeactive("Privacy Policy");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    })
+    .controller('Error500Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+        //Used to name the .html file
+        $scope.template = TemplateService.changecontent("error500");
+        $scope.menutitle = NavigationService.makeactive("Home");
+        TemplateService.title = $scope.menutitle;
+        $scope.navigation = NavigationService.getnav();
+    });
