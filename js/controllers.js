@@ -2382,7 +2382,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     var totalpages = 2;
 
     function getAllArtistByAccess() {
-        console.log("sdfahskj");
         var toList = $scope.pagedata;
         toList.pagenumber = pno;
         NavigationService.getallartist(toList, function(data, status) {
@@ -2404,7 +2403,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.pagedata.type = "";
         }
         NavigationService.getallartist($scope.pagedata, function(data, status) {
-            console.log(data);
             lastpage = parseInt(data.totalpages);
             _.each(data.data, function(n) {
                 $scope.artistimage.push(n);
@@ -2412,6 +2410,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 //   $scope.listview.push(n);
             })
             $scope.artistimage = _.uniq($scope.artistimage, '_id');
+            console.log($scope.artistimage.length);
             // if ($scope.pagedata.search != "")
             //   $scope.listview = _.uniq($scope.listview, '_id');
             // else {
@@ -2419,14 +2418,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             // }
             pno = 1;
             totalpages = 2;
-            getAllArtistByAccess();
+            // getAllArtistByAccess();
             cfpLoadingBar.complete();
         });
     }
 
     //    $scope.reload();
     $scope.getartistbyletter = function(letter) {
-        console.log(letter);
         _.each($scope.alphabetjson, function(n) {
             //            var index = n.name.indexOf(letter);
             //                      console.log(index);
@@ -2457,8 +2455,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.makeactive = function(type) {
-        console.log(type);
-        console.log($scope.typejson);
         _.each($scope.typejson, function(n) {
                 var index = n.name.indexOf(type);
                 if (index != -1) {
@@ -2491,7 +2487,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // });
 
     $scope.addMoreItems = function() {
-        console.log("addmore");
+      console.log("loading loading");
+      console.log(lastpage);
+      console.log($scope.pagedata.pagenumber);
         if (lastpage >= $scope.pagedata.pagenumber) {
             $scope.pagedata.pagenumber++;
             $scope.reload();
@@ -2501,7 +2499,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.artistdetail = {};
     $scope.showDetail = function(artist) {
-        console.log(artist);
         $scope.artistdetail = artist;
         var makeit4 = _.chunk($scope.artistdetail.artwork, 4);
         $scope.artistdetail.artwork = makeit4[0];
