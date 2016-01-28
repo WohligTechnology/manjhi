@@ -1207,7 +1207,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 })
 
-.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr, $state, ngDialog) {
+.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr, $state, ngDialog, $filter) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("checkout");
     $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -1396,9 +1396,30 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         })
     }
-
+$scope.shippingCost = 0;
     $scope.calculateShipping = function(artwork){
-      console.log(artwork);
+      var city = $scope.user.shipping.city;
+        console.log(city.trim());
+      if (artwork.form == "framed" && $filter('lowercase')($scope.user.shipping.city) != "mumbai") {
+        var height = (artwork.height + 6)*2.54;
+        var width = (artwork.width + 6)*2.54;
+        if (artwork.breadth != "N/A") {
+          var breadth = (artwork.breadth + 6)*2.54;
+        }else {
+          var breadth = (0 + 6)*2.54;
+        }
+        var formula = (height * width * breadth) / 2700;
+        formula = formula *40;
+        artwork.shippingCost = formula;
+      }
+      console.log($scope.cartItems);
+      $scope.shippingCost = 0;
+      _.each($scope.cartItems, function(n){
+        if (n.artwork.shippingCost) {
+          $scope.shippingCost = $scope.shippingCost + n.artwork.shippingCost;
+        }
+      });
+
     }
 
     $scope.paymentFunc = function() {
@@ -1446,7 +1467,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     //after implementing paymentgateway topayment and viewcart will replace
+    $scope.onFieldChange = function(checked){
+      $scope.showShippingContinue = true;
+      $scope.showCartEnable = false;
+      _.each($scope.cartItems, function(n){
+        n.artwork.form = "";
+      });
+      $scope.shippingCost = 0;
+    }
     $scope.viewCart = function(checked) {
+
         if (checked == true) {
             $scope.user.shipping = _.cloneDeep($scope.user.billing);
         }
