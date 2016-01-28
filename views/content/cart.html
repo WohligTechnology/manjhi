@@ -23,6 +23,7 @@
           <tr class="cart-details" ng-repeat="artwork in cartItems | orderBy : 'artwork.srno'">
             <td class="cart-img">
               <img ng-src="{{artwork.artwork.image[0] | uploadthumbnail}}" class="img-box">
+              <p style="color: red;padding: 5px;" ng-if="artwork.artwork.status =='sold'">Sold</p>
             </td>
             <td>
               <span class="mobile">Product Id</span>
