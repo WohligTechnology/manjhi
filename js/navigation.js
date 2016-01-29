@@ -100,35 +100,36 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         active: "",
         link: "#/infra-services",
         classis: "active",
-        subnav: [{
-            name: "Data Management",
-            classis: "active",
-            link: "#/infra-services"
-        }, {
-            name: "Valuation & Insurance",
-            classis: "active",
-            link: "#/infra-services"
-        }, {
-            name: "Strategy for Art Initiatives, including CSR",
-            classis: "active",
-            link: "#/infra-services"
-        }, {
-            name: "Packing & Logistics",
-            classis: "active",
-            link: "#/infra-services"
-        }, {
-            name: "Archival Facility Set-up",
-            classis: "active",
-            link: "#/infra-services"
-        }, {
-            name: "Trusteeship & Warehousing",
-            classis: "active",
-            link: "#/infra-services"
-        }, {
-            name: "Training & Workshops",
-            classis: "active",
-            link: "#/infra-services"
-        }]
+        subnav: []
+        // subnav: [{
+        //     name: "Data Management",
+        //     classis: "active",
+        //     link: "#/infra-services"
+        // }, {
+        //     name: "Valuation & Insurance",
+        //     classis: "active",
+        //     link: "#/infra-services"
+        // }, {
+        //     name: "Strategy for Art Initiatives, including CSR",
+        //     classis: "active",
+        //     link: "#/infra-services"
+        // }, {
+        //     name: "Packing & Logistics",
+        //     classis: "active",
+        //     link: "#/infra-services"
+        // }, {
+        //     name: "Archival Facility Set-up",
+        //     classis: "active",
+        //     link: "#/infra-services"
+        // }, {
+        //     name: "Trusteeship & Warehousing",
+        //     classis: "active",
+        //     link: "#/infra-services"
+        // }, {
+        //     name: "Training & Workshops",
+        //     classis: "active",
+        //     link: "#/infra-services"
+        // }]
     }, {
         name: "Events",
         active: "",
