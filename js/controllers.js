@@ -708,6 +708,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
+    $scope.openReachout = function() {
+        globalFunction.reachOut();
+    }
+
     //get user details
     $scope.setColorSearch = function(select) {
         $scope.pagedata.color = select.selected.name;
@@ -1038,10 +1042,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.lthactive = '';
         }
         NavigationService.artworktype(filterdata, function(data, status) {
+            // console.log(data.data);
             lastpage = parseInt(data.totalpages);
-            _.each(data.data, function(n) {
-                $scope.totalartcont.push(n);
-            })
+            $scope.totalartcont = _.union($scope.totalartcont, data.data);
+            // _.each(data.data, function(n) {
+            //     $scope.totalartcont.push(n);
+            // })
             $scope.callinfinite = false;
             cfpLoadingBar.complete();
         });
@@ -1959,9 +1965,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    // $timeout(function() {
-    //     cfpLoadingBar.complete();
-    // }, 5000);
+    $scope.openReachout = function() {
+        globalFunction.reachOut();
+    }
 
     $scope.lauchedSoon = function() {
         ngDialog.open({
@@ -2083,9 +2089,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    // $timeout(function() {
-    //     cfpLoadingBar.complete();
-    // }, 5000);
+    $scope.openReachout = function() {
+        globalFunction.reachOut();
+    }
 
     $scope.lauchedSoon = function() {
         ngDialog.open({
@@ -2843,6 +2849,31 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
+
+    globalFunction.reachOut = function() {
+        var reachOutArtist = window.location.hash.split('l/');
+        if (reachOutArtist[0] == "#/artist/detai" || reachOutArtist[0] == "#/artwork/detai" || reachOutArtist[0].indexOf("sculpture") != -1) {
+            $scope.reachOutArtistId = reachOutArtist[1];
+            $scope.artworkInterested = dataNextPre.reachout.artwork;
+            if (reachOutArtist[0] != "#/artist/detai")
+                $scope.reachOutForm.srno = $scope.artworkInterested[0].srno;
+            if (dataNextPre.reachout) {
+                $scope.reachOutForm.artist = dataNextPre.reachout.name;
+                if (reachOutArtist[0] != "#/artist/detai")
+                    $scope.reachOutInner(dataNextPre.reachout._id)
+            }
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/reach-out.html'
+            });
+        } else {
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/reach-out.html'
+            });
+        }
+    }
+
 
     //  $scope.art.search = $.jStorage.get("searchObj").search;
     $scope.getSearchedArt = function() {

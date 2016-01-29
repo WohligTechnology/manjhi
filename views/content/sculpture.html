@@ -80,27 +80,30 @@
                   <tr>
                     <td class="labels">Price:
                     </td>
-                    <td ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!=''">
+                    <td ng-if="artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
                       {{artistDetailImg.artwork.gprice|currency:"Rs "}}
                       / $
                       {{artistDetailImg.artwork.gprice|indollars}}
                       <span>(excluding VAT)</span>
                     </td>
-                    <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice==''">
-                      NA
+                    <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
+                      Price on request
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
+          <button type="button" class="btn btn-block uppercase" ng-click="openReachout();" ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
+            REQUEST FOR PRICE
+          </button>
           <button type="button" class="btn btn-block uppercase" ng-click="lauchedSoon();">
             VIEW ARTWORK IN YOUR ROOM
           </button>
           <button type="button" class="btn btn-block uppercase" ng-click="lauchedSoon();">
             Rent sculpture
           </button>
-          <button type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);">
+          <button type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);" ng-if="artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
             ADD TO CART
           </button>
           <h5 class="alt" ng-if="artistDetailImg.artwork.image.length>1">Alternate Views</h5>

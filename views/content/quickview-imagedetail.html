@@ -70,17 +70,20 @@
                                                 Rs {{artistDetailImg.artwork.gprice|number:0}} / ${{artistDetailImg.artwork.gprice|indollars}}
                                             </td>
                                             <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
-                                                N/A
+                                                Price on request
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <button type="button" class="btn btn-block  uppercase" ng-click="openReachout();" ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
+                            REQUEST FOR PRICE
+                        </button>
                         <button type="button" class="btn btn-block  uppercase" ng-click="lauchedSoon();">
                             VIEW ARTWORK IN YOUR ROOM
                         </button>
-                        <a type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);">
+                        <a type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
                         ADD TO CART
                     </a>
                     </div>
