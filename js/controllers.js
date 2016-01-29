@@ -3574,6 +3574,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.access = "artist";
     $scope.commentsub = '';
 
+    $scope.calcsq = function() {
+        if ($scope.artwork.height && $scope.artwork.width) {
+            if ($scope.artwork.type != "Sculptures") {
+                $scope.artwork.area = ((parseInt($scope.artwork.height) * parseInt($scope.artwork.width)) / 144).toFixed(2);
+            } else if ($scope.artwork.type == "Sculptures" && $scope.artwork.breadth) {
+                $scope.artwork.area = ((parseInt($scope.artwork.height) * parseInt($scope.artwork.width) * parseInt($scope.artwork.breadth)) / 1728).toFixed(2);
+            }
+            if ($scope.artwork.area && $scope.artwork.gprice && $scope.artwork.gprice > 0) {
+                $scope.artwork.pricesq = (parseFloat($scope.artwork.gprice) / $scope.artwork.area).toFixed(2);
+            }
+        }
+    }
 
     $scope.otherDetails = "eg. Diptych, Triptych";
 
@@ -3876,11 +3888,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         } else if (type == "Paintings") {
             $scope.showBreadth = false;
             $scope.otherDetails = "eg. Diptych, Triptych";
+            $scope.artwork.breadth = '';
         } else {
             $scope.showBreadth = false;
             $scope.otherDetails = "eg. Edition, Diptych, Triptych";
+            $scope.artwork.breadth = '';
         }
-
+        $scope.calcsq();
         switch (type) {
             case "Paintings":
                 $scope.showPaintings = true;
@@ -4043,6 +4057,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.otherDetails = "eg. Diptych, Triptych";
 
+    $scope.calcsq = function() {
+        if ($scope.artwork.height && $scope.artwork.width) {
+            if ($scope.artwork.type != "Sculptures") {
+                $scope.artwork.area = ((parseInt($scope.artwork.height) * parseInt($scope.artwork.width)) / 144).toFixed(2);
+            } else if ($scope.artwork.type == "Sculptures" && $scope.artwork.breadth) {
+                $scope.artwork.area = ((parseInt($scope.artwork.height) * parseInt($scope.artwork.width) * parseInt($scope.artwork.breadth)) / 1728).toFixed(2);
+            }
+            if ($scope.artwork.area && $scope.artwork.gprice && $scope.artwork.gprice > 0) {
+                $scope.artwork.pricesq = (parseFloat($scope.artwork.gprice) / $scope.artwork.area).toFixed(2);
+            }
+        }
+    }
+
     NavigationService.getuserprofile(function(data) {
         $scope.userData = data;
     })
@@ -4063,6 +4090,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
             // console.log($scope.artwork)
         }
+        $scope.calcsq();
     })
 
 
@@ -4362,11 +4390,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         } else if (type == "Paintings") {
             $scope.showBreadth = false;
             $scope.otherDetails = "eg. Diptych, Triptych";
+            $scope.artwork.breadth = '';
         } else {
             $scope.showBreadth = false;
             $scope.otherDetails = "eg. Edition, Diptych, Triptych";
+            $scope.artwork.breadth = '';
         }
-
+        $scope.calcsq();
         switch (type) {
             case "Paintings":
                 $scope.showPaintings = true;
