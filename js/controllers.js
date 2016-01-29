@@ -1257,12 +1257,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         if (data.id) {
             $scope.user = data;
             if (!$scope.user.billing) {
-              $scope.user.billing = {};
-              $scope.user.billing.country = "";
+                $scope.user.billing = {};
+                $scope.user.billing.country = "";
             }
             if (!$scope.user.shipping) {
-              $scope.user.shipping = {};
-              $scope.user.shipping.country = "";
+                $scope.user.shipping = {};
+                $scope.user.shipping.country = "";
             }
             $scope.showShipping = true;
             $scope.showShippingContinue = true;
@@ -1396,29 +1396,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         })
     }
-$scope.shippingCost = 0;
-    $scope.calculateShipping = function(artwork){
-      var city = $scope.user.shipping.city;
+    $scope.shippingCost = 0;
+    $scope.calculateShipping = function(artwork) {
+        var city = $scope.user.shipping.city;
         console.log(city.trim());
-      if (artwork.form == "framed" && $filter('lowercase')($scope.user.shipping.city) != "mumbai") {
-        var height = (artwork.height + 6)*2.54;
-        var width = (artwork.width + 6)*2.54;
-        if (artwork.breadth != "N/A") {
-          var breadth = (artwork.breadth + 6)*2.54;
-        }else {
-          var breadth = (0 + 6)*2.54;
+        if (artwork.form == "framed" && $filter('lowercase')($scope.user.shipping.city) != "mumbai") {
+            var height = (artwork.height + 6) * 2.54;
+            var width = (artwork.width + 6) * 2.54;
+            if (artwork.breadth != "N/A") {
+                var breadth = (artwork.breadth + 6) * 2.54;
+            } else {
+                var breadth = (0 + 6) * 2.54;
+            }
+            var formula = (height * width * breadth) / 2700;
+            formula = formula * 40;
+            artwork.shippingCost = formula;
         }
-        var formula = (height * width * breadth) / 2700;
-        formula = formula *40;
-        artwork.shippingCost = formula;
-      }
-      console.log($scope.cartItems);
-      $scope.shippingCost = 0;
-      _.each($scope.cartItems, function(n){
-        if (n.artwork.shippingCost) {
-          $scope.shippingCost = $scope.shippingCost + n.artwork.shippingCost;
-        }
-      });
+        console.log($scope.cartItems);
+        $scope.shippingCost = 0;
+        _.each($scope.cartItems, function(n) {
+            if (n.artwork.shippingCost) {
+                $scope.shippingCost = $scope.shippingCost + n.artwork.shippingCost;
+            }
+        });
 
     }
 
@@ -1467,110 +1467,110 @@ $scope.shippingCost = 0;
     }
 
     //after implementing paymentgateway topayment and viewcart will replace
-    $scope.onFieldChange = function(checked){
-      $scope.showShippingContinue = true;
-      $scope.showCartEnable = false;
-      _.each($scope.cartItems, function(n){
-        n.artwork.form = "";
-      });
-      $scope.shippingCost = 0;
+    $scope.onFieldChange = function(checked) {
+        $scope.showShippingContinue = true;
+        $scope.showCartEnable = false;
+        _.each($scope.cartItems, function(n) {
+            n.artwork.form = "";
+        });
+        $scope.shippingCost = 0;
     }
     $scope.viewCart = function(checked) {
 
         if (checked == true) {
             $scope.user.shipping = _.cloneDeep($scope.user.billing);
         }
-        try{
-        $scope.allvalidation = [{
-            field: $scope.user.billing.name,
-            validation: ""
-        }, {
-            field: $scope.user.billing.email,
-            validation: ""
-        }, {
-            field: $scope.user.billing.countrycode,
-            validation: ""
-        }, {
-            field: $scope.user.billing.mobileno,
-            validation: ""
-        }, {
-            field: $scope.user.billing.flatno,
-            validation: ""
-        }, {
-            field: $scope.user.billing.bldgname,
-            validation: ""
-        }, {
-            field: $scope.user.billing.landmark,
-            validation: ""
-        }, {
-            field: $scope.user.billing.street,
-            validation: ""
-        }, {
-            field: $scope.user.billing.regadd,
-            validation: ""
-        }, {
-            field: $scope.user.billing.city,
-            validation: ""
-        }, {
-            field: $scope.user.billing.pincode,
-            validation: ""
-        }, {
-            field: $scope.user.billing.state,
-            validation: ""
-        }, {
-            field: $scope.user.billing.country,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.name,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.email,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.countrycode,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.mobileno,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.flatno,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.bldgname,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.landmark,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.street,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.regadd,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.city,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.pincode,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.state,
-            validation: ""
-        }, {
-            field: $scope.user.shipping.country,
-            validation: ""
-        }];
-        var check = formvalidation($scope.allvalidation);
-        if (check) {
-            $scope.showCart();
-            $scope.showShippingContinue = false;
-            $(window).scrollTop($(window).height());
-        } else {
+        try {
+            $scope.allvalidation = [{
+                field: $scope.user.billing.name,
+                validation: ""
+            }, {
+                field: $scope.user.billing.email,
+                validation: ""
+            }, {
+                field: $scope.user.billing.countrycode,
+                validation: ""
+            }, {
+                field: $scope.user.billing.mobileno,
+                validation: ""
+            }, {
+                field: $scope.user.billing.flatno,
+                validation: ""
+            }, {
+                field: $scope.user.billing.bldgname,
+                validation: ""
+            }, {
+                field: $scope.user.billing.landmark,
+                validation: ""
+            }, {
+                field: $scope.user.billing.street,
+                validation: ""
+            }, {
+                field: $scope.user.billing.regadd,
+                validation: ""
+            }, {
+                field: $scope.user.billing.city,
+                validation: ""
+            }, {
+                field: $scope.user.billing.pincode,
+                validation: ""
+            }, {
+                field: $scope.user.billing.state,
+                validation: ""
+            }, {
+                field: $scope.user.billing.country,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.name,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.email,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.countrycode,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.mobileno,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.flatno,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.bldgname,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.landmark,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.street,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.regadd,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.city,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.pincode,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.state,
+                validation: ""
+            }, {
+                field: $scope.user.shipping.country,
+                validation: ""
+            }];
+            var check = formvalidation($scope.allvalidation);
+            if (check) {
+                $scope.showCart();
+                $scope.showShippingContinue = false;
+                $(window).scrollTop($(window).height());
+            } else {
+                dataNextPre.messageBox("Fill all manditory * Fields");
+            }
+        } catch (e) {
             dataNextPre.messageBox("Fill all manditory * Fields");
         }
-      }catch(e){
-        dataNextPre.messageBox("Fill all manditory * Fields");
-      }
     }
 
     $scope.checkout = function() {
@@ -3025,41 +3025,41 @@ $scope.shippingCost = 0;
     }
 
     dataNextPre.favorite = function(art) {
-      // art.heartClass = "fa fa-heart font-color3";
+        // art.heartClass = "fa fa-heart font-color3";
         if ($scope.userProfile.id) {
             cfpLoadingBar.start();
             console.log(art.heartClass);
             switch (art.heartClass) {
-              case "fa fa-heart":
-                {
-                  console.log("in if");
-                  art.heartClass = "fa fa-heart font-color3";
-                    NavigationService.addToFav($scope.userProfile.id, art.artwork._id, function(data) {
-                        cfpLoadingBar.complete();
-                        if (!data.value) {
-                            // $.jStorage.set("user", data);
-                            art.heartClass = "fa fa-heart font-color3";
-                            dataNextPre.messageBox("Added to favourites");
-                        } else if (data.value == true && data.comment == "Data already updated") {
-                            dataNextPre.messageBox("Already added to favourites");
-                        }
-                    })
-                }
-                break;
+                case "fa fa-heart":
+                    {
+                        console.log("in if");
+                        art.heartClass = "fa fa-heart font-color3";
+                        NavigationService.addToFav($scope.userProfile.id, art.artwork._id, function(data) {
+                            cfpLoadingBar.complete();
+                            if (!data.value) {
+                                // $.jStorage.set("user", data);
+                                art.heartClass = "fa fa-heart font-color3";
+                                dataNextPre.messageBox("Added to favourites");
+                            } else if (data.value == true && data.comment == "Data already updated") {
+                                dataNextPre.messageBox("Already added to favourites");
+                            }
+                        })
+                    }
+                    break;
                 case "fa fa-heart font-color3":
-                {
-                  console.log('in second if');
-                    cfpLoadingBar.complete();
-                    NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function(data) {
-                        if (!data.value) {
-                            // $.jStorage.set("user", data);
-                            art.heartClass = "fa fa-heart";
-                            dataNextPre.messageBox("Removed from favourites");
-                        }
-                    })
-                }
-                break;
-              default:
+                    {
+                        console.log('in second if');
+                        cfpLoadingBar.complete();
+                        NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function(data) {
+                            if (!data.value) {
+                                // $.jStorage.set("user", data);
+                                art.heartClass = "fa fa-heart";
+                                dataNextPre.messageBox("Removed from favourites");
+                            }
+                        })
+                    }
+                    break;
+                default:
 
             }
             NavigationService.getuserprofile(function(data) {

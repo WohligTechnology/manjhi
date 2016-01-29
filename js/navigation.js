@@ -1,7 +1,6 @@
-// var adminurl = "http://vignesh.com:82/";
-// var adminurl = "http://192.168.0.122:81/";
 // var adminurl = "http://146.148.34.49/";
 var adminurl = "http://smartsnap.in/";
+// var adminurl = "http://smartsnap.in:81/";
 var imgUploadUrl = adminurl + "user/uploadfile";
 
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
@@ -640,5 +639,43 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 method: "POST"
             }).success(callback);
         },
+        saveartMedium: function(data, callback) {
+            $http({
+                url: adminurl + "artmedium/save",
+                method: "POST",
+                data: {
+                    "name": data.name,
+                    "category": data.category,
+                }
+            }).success(callback);
+        },
+        saveTag: function(data, callback) {
+            $http({
+                url: adminurl + "tag/save",
+                method: "POST",
+                data: {
+                    "name": data.name,
+                    "category": data.category,
+                }
+            }).success(callback);
+        },
+        saveMedium: function(data, callback) {
+            $http({
+                url: adminurl + "medium/save",
+                method: "POST",
+                data: {
+                    "name": data.name
+                }
+            }).success(callback);
+        },
+        saveTheme: function(data, callback) {
+            $http({
+                url: adminurl + "theme/save",
+                method: "POST",
+                data: {
+                    "name": data.name
+                }
+            }).success(callback);
+        }
     }
 });

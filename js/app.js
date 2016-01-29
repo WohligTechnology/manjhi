@@ -610,7 +610,6 @@ firstapp.directive('onlyDigits', function() {
         require: 'ngModel',
         restrict: 'A',
         link: function(scope, element, attr, ctrl) {
-          console.log(attr);
             function inputValue(val) {
                 if (val) {
                   if (attr.type == "tel") {
