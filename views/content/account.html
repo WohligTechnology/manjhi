@@ -346,7 +346,8 @@
                                     <div class="artist-cont-detail">
                                         <p>{{artwork.artwork.imageno[0]}} <i class="fa fa-pencil"></i></p>
                                         <p>{{artwork.name}}</p>
-                                        <p>{{artwork.artwork.dim}}</p>
+                                        <!-- <p>{{artwork.artwork.dim}}</p> -->
+                                        <p>{{artwork.artwork|makesizestr}}</p>
                                         <p class="status-color">{{artwork.artwork.status}}</p>
                                     </div>
                                 </div>

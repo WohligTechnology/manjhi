@@ -60,7 +60,7 @@
                                         <td class="labels">Size:</td>
                                         <td>{{artistDetailImg.artwork|makesizestr}}</td>
                                     </tr>
-                                    <tr>
+                                    <tr ng-if="artistDetailImg.artwork.yoc && artistDetailImg.artwork.yoc!=''">
                                         <td class="labels">Year: </td>
                                         <td ng-if="artistDetailImg.artwork.yoc && artistDetailImg.artwork.yoc!=''">
                                             {{artistDetailImg.artwork.yoc}}

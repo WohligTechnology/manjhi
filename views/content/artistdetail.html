@@ -118,10 +118,10 @@
                                 </span>
                   </p>
                   <p>
-                     <!-- {{artistdetails|makesizestr}} -->
-                     {{artistdetails.dim}} inches
+                     {{artistdetails|makesizestr}}
+                     <!-- {{artistdetails.dim}} inches -->
                   </p>
-                  <p>
+                  <p ng-if="artistdetails.yoc && artistdetails.yoc!=''">
                      <span ng-if="artistdetails.yoc && artistdetails.yoc!=''">
                                     {{artistdetails.yoc}}
                                 </span>
@@ -134,7 +134,7 @@
                                     Rs {{artistdetails.gprice|number:0}} / ${{artistdetails.gprice|indollars}}
                                 </span>
                      <span ng-if="!artistdetails.gprice || artistdetails.gprice=='N/A'">
-                                    Price on request
+                                    Available on request
                                 </span>
                   </p>
                </div>

@@ -60,7 +60,7 @@
                 <p>
                   {{artistdetails.artwork|makesizestr}}
                 </p>
-                <p>
+                <p ng-if="artistdetails.artwork.yoc && artistdetails.artwork.yoc!=''">
                   <span ng-if="artistdetails.artwork.yoc && artistdetails.artwork.yoc!=''">
                     {{artistdetails.artwork.yoc}}
                   </span>

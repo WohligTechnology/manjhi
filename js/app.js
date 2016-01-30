@@ -552,23 +552,24 @@ firstapp.filter('makesizestr', function() {
     return function(artobj) {
         var size = "";
         if (artobj && artobj != undefined) {
-            if (artobj.width && artobj.width != "") {
-                size += artobj.width;
-            }
             if (artobj.height && artobj.height != "") {
-                size += " " + artobj.height;
+                size += artobj.height;
+            }
+            if (artobj.width && artobj.width != "") {
+                size += " " + artobj.width;
             }
             if (artobj.breadth && artobj.breadth != "" && artobj.breadth != "N/A") {
                 size += " " + artobj.breadth;
             }
             size = size.trim();
             size = size.split(" ").join(" x ");
-            if (size != "")
-                return size += " inches";
-            else
-                return "NA";
+            size += " inches";
+            if (artobj.dim) {
+                size += " (" + artobj.dim + ")";
+            }
+            return size;
         } else {
-            return "NA";
+            return "";
         }
     };
 });
@@ -591,12 +592,12 @@ firstapp.filter('showheart', function(NavigationService) {
     };
 });
 
-firstapp.filter('indollars', function(NavigationService) {
+firstapp.filter('indollars', function(NavigationService, $filter) {
     return function(input) {
         if (input && dollarPrice) {
             if (input != "0") {
                 var price = parseFloat(input) / parseFloat(dollarPrice);
-                return price.toFixed(2);
+                return $filter('number')(Math.round(price));
             } else
                 return 0.00;
         } else {
@@ -612,11 +613,11 @@ firstapp.directive('onlyDigits', function() {
         link: function(scope, element, attr, ctrl) {
             function inputValue(val) {
                 if (val) {
-                  if (attr.type == "tel") {
-                    var digits = val.replace(/[^0-9\+\\]/g, '');
-                  }else {
-                    var digits = val.replace(/[^0-9\-\\]/g, '');
-                  }
+                    if (attr.type == "tel") {
+                        var digits = val.replace(/[^0-9\+\\]/g, '');
+                    } else {
+                        var digits = val.replace(/[^0-9\-\\]/g, '');
+                    }
 
 
                     if (digits !== val) {
@@ -633,13 +634,13 @@ firstapp.directive('onlyDigits', function() {
 });
 
 firstapp.directive('clickme', function() {
-  return function(scope, element, attrs) {
-    var clickingCallback = function() {
-    console.log(userProfile);
-      alert(userProfile);
-    };
-    element.bind('click', clickingCallback);
-  }
+    return function(scope, element, attrs) {
+        var clickingCallback = function() {
+            console.log(userProfile);
+            alert(userProfile);
+        };
+        element.bind('click', clickingCallback);
+    }
 });
 
 firstapp.directive('youtube', function($sce) {

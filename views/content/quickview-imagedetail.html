@@ -52,10 +52,10 @@
                                         </tr>
                                         <tr>
                                             <td class="labels">Size:</td>
-                                            <!-- <td>{{artistDetailImg.artwork|makesizestr}}</td> -->
-                                            <td>{{artistDetailImg.artwork.dim}} inches</td>
+                                            <td>{{artistDetailImg.artwork|makesizestr}}</td>
+                                            <!-- <td>{{artistDetailImg.artwork.dim}} inches</td> -->
                                         </tr>
-                                        <tr>
+                                        <tr ng-if="artistDetailImg.artwork.yoc && artistDetailImg.artwork.yoc!=''">
                                             <td class="labels">Year: </td>
                                             <td ng-if="artistDetailImg.artwork.yoc && artistDetailImg.artwork.yoc!=''">
                                                 {{artistDetailImg.artwork.yoc}}
@@ -70,7 +70,7 @@
                                                 Rs {{artistDetailImg.artwork.gprice|number:0}} / ${{artistDetailImg.artwork.gprice|indollars}}
                                             </td>
                                             <td ng-if="!artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
-                                                Price on request
+                                                Available on request
                                             </td>
                                         </tr>
                                     </tbody>
