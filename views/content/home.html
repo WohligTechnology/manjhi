@@ -76,21 +76,21 @@
             <div class="form-group">
               <label class="above no-margin">Color</label>
               <ui-select ng-model="filterby.color" on-select="setColorSearch($select);" tagging tagging-label="false">
-                <ui-select-match class="text-capitalize" placeholder="eg. red, green..">{{filterby.color}}</ui-select-match>
+                <ui-select-match class="text-capitalize" placeholder="Eg. Red, Blue, White, Black">{{filterby.color}}</ui-select-match>
                 <ui-select-choices refresh-delay="0" refresh="getColorDropdown($select.search)" repeat="person in allColor track by person._id">
                   <div ng-bind-html="person.name| addhighlight: $select.search"></div>
                 </ui-select-choices>
               </ui-select>
               <label class="above">Style</label>
               <ui-select ng-model="filterby.style" on-select="setStyleSearch($select);" tagging tagging-label="false">
-                <ui-select-match class="text-capitalize" placeholder="eg. ">{{filterby.style}}</ui-select-match>
+                <ui-select-match class="text-capitalize" placeholder="Eg.  Abstract, Figurative, Contemporary, Spiritual">{{filterby.style}}</ui-select-match>
                 <ui-select-choices refresh-delay="0" refresh="getStyleDropdown($select.search)" repeat="person in allStyle track by person._id">
                   <div ng-bind-html="person.name| addhighlight: $select.search"></div>
                 </ui-select-choices>
               </ui-select>
               <label class="above">Elements</label>
               <ui-select ng-model="filterby.element" on-select="setElementSearch($select);" tagging tagging-label="false">
-                <ui-select-match class="text-capitalize" placeholder="eg. ">{{filterby.element}}</ui-select-match>
+                <ui-select-match class="text-capitalize" placeholder="Eg. Buddha, Bird, Rickshaw, Woman">{{filterby.element}}</ui-select-match>
                 <ui-select-choices refresh-delay="0" refresh="getElementDropdown($select.search)" repeat="person in allElement track by person._id">
                   <div ng-bind-html="person.name| addhighlight: $select.search"></div>
                 </ui-select-choices>
