@@ -1,6 +1,6 @@
 // var adminurl = "http://146.148.34.49/";
 var adminurl = "http://smartsnap.in/";
-// var adminurl = "http://smartsnap.in:81/";
+var adminurl = "http://smartsnap.in:81/";
 var imgUploadUrl = adminurl + "user/uploadfile";
 
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
@@ -257,6 +257,8 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
             }).success(callback);
         },
         getallartist: function(pagedata, callback) {
+          delete pagedata.pagenumber;
+          delete pagedata.pagesize;
             $http({
                 url: adminurl + "user/findbyletter",
                 method: "POST",

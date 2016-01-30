@@ -2454,11 +2454,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.pagedata.type = "";
         }
         NavigationService.getallartist($scope.pagedata, function(data, status) {
-            lastpage = parseInt(data.totalpages);
-            _.each(data.data, function(n) {
-                $scope.artistimage.push(n);
-            })
-            $scope.artistimage = _.uniq($scope.artistimage, '_id');
+            // lastpage = parseInt(data.totalpages);
+            $scope.artistimage = data.data
+                // _.each(data.data, function(n) {
+                //     $scope.artistimage.push(n);
+                // })
+                // $scope.artistimage = _.uniq($scope.artistimage, '_id');
             cfpLoadingBar.complete();
         });
     }
@@ -2525,10 +2526,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     // });
 
     $scope.addMoreItems = function() {
-        if (lastpage >= $scope.pagedata.pagenumber) {
-            $scope.pagedata.pagenumber++;
-            $scope.reload();
-        }
+        // if (lastpage >= $scope.pagedata.pagenumber) {
+        //     $scope.pagedata.pagenumber++;
+        //     $scope.reload();
+        // }
     }
 
 
@@ -3604,6 +3605,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.tag = [];
     $scope.access = "artist";
     $scope.commentsub = '';
+    $scope.artwork.address = 'new';
 
     $scope.calcsq = function() {
         if ($scope.artwork.height && $scope.artwork.width) {
@@ -3695,18 +3697,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artwork.price = parseFloat($scope.artwork.price);
         $scope.artwork.gprice = parseFloat($scope.artwork.gprice);
         $scope.artwork.comm = parseFloat($scope.artwork.comm);
-
         if ($scope.artwork.comm > 100 && flag == 1) {
             $scope.artwork.comm = 100;
         } else if ($scope.artwork.comm < 1 && flag == 1) {
             $scope.artwork.comm = 1;
         }
-        if (_.isNumber($scope.artwork.comm) && _.isNumber($scope.artwork.price) && flag == 1) {
-            console.log("first if");
-            $scope.artwork.gprice = Math.round($scope.artwork.price + ($scope.artwork.price * $scope.artwork.comm / 100));
-        }
-        if (_.isNumber($scope.artwork.gprice) && _.isNumber($scope.artwork.price) && flag == 2) {
-            $scope.artwork.price = Math.round($scope.artwork.gprice / (1 + ($scope.artwork.comm / 100)));
+        // if (_.isNumber($scope.artwork.comm) && _.isNumber($scope.artwork.price) && flag == 1) {
+        //     console.log("first if");
+        //     console.log($scope.artwork.price * $scope.artwork.comm);
+        //     $scope.artwork.gprice = Math.round($scope.artwork.price + ($scope.artwork.price * $scope.artwork.comm / 100));
+        // }
+        if (_.isNumber($scope.artwork.gprice) && _.isNumber($scope.artwork.comm) && flag == 2) {
+            $scope.artwork.price = Math.round($scope.artwork.gprice * (1 - ($scope.artwork.comm / 100)));
         }
     }
 
@@ -3998,6 +4000,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     $scope.artwork.status = 'pending';
                     $scope.artwork.selleremail = $scope.userData.email;
                     $scope.artwork.sellername = $scope.userData.name;
+                    $scope.artwork.location = $scope.userData.other;
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
@@ -4194,18 +4197,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.artwork.price = parseFloat($scope.artwork.price);
         $scope.artwork.gprice = parseFloat($scope.artwork.gprice);
         $scope.artwork.comm = parseFloat($scope.artwork.comm);
-
         if ($scope.artwork.comm > 100 && flag == 1) {
             $scope.artwork.comm = 100;
         } else if ($scope.artwork.comm < 1 && flag == 1) {
             $scope.artwork.comm = 1;
         }
-        if (_.isNumber($scope.artwork.comm) && _.isNumber($scope.artwork.price) && flag == 1) {
-            console.log("first if");
-            $scope.artwork.gprice = Math.round($scope.artwork.price + ($scope.artwork.price * $scope.artwork.comm / 100));
-        }
-        if (_.isNumber($scope.artwork.gprice) && _.isNumber($scope.artwork.price) && flag == 2) {
-            $scope.artwork.price = Math.round($scope.artwork.gprice / (1 + ($scope.artwork.comm / 100)));
+        // if (_.isNumber($scope.artwork.comm) && _.isNumber($scope.artwork.price) && flag == 1) {
+        //     console.log("first if");
+        //     console.log($scope.artwork.price * $scope.artwork.comm);
+        //     $scope.artwork.gprice = Math.round($scope.artwork.price + ($scope.artwork.price * $scope.artwork.comm / 100));
+        // }
+        if (_.isNumber($scope.artwork.gprice) && _.isNumber($scope.artwork.comm) && flag == 2) {
+            $scope.artwork.price = Math.round($scope.artwork.gprice * (1 - ($scope.artwork.comm / 100)));
         }
     }
 
@@ -4726,14 +4729,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             crdv.auction = [{
                 "year": "",
                 "auctionhouse": "",
-                "location": ""
+                "location": "",
+                "details": ""
             }];
         } else {
             if (crdv.auction.length < 3) {
                 crdv.auction.push({
                     "year": "",
                     "auctionhouse": "",
-                    "location": ""
+                    "location": "",
+                    "details": ""
                 });
             }
         }
@@ -4921,6 +4926,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 "email": $scope.userData.email
             }]
             delete $scope.user.checkboxModel;
+            if (!$scope.user.focused) {
+                $scope.user.focused = "nonfocused";
+            }
             NavigationService.registerArtist($scope.user, function(data, status) {
                 console.log(data);
                 if (data.value != false) {
@@ -4971,7 +4979,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.user.other = {};
     $scope.user.medium = [];
     $scope.user.theme = [];
-
+    $scope.user.focused = "nonfocused";
     $scope.checked = 0;
     $scope.medium = [];
     $scope.theme = [];
@@ -4984,6 +4992,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         maximumSelectionSize: 5,
         placeholder: "Select A Medium"
     };
+
+    NavigationService.getCountryJson(function(data) {
+        $scope.countries = data;
+    });
+
     $scope.show = 0;
     $scope.showmed = 0;
     $scope.ismatch = function(data, select) {
@@ -5107,14 +5120,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             crdv.auction = [{
                 "year": "",
                 "auctionhouse": "",
-                "location": ""
+                "location": "",
+                "details": ""
             }];
         } else {
             if (crdv.auction.length < 3) {
                 crdv.auction.push({
                     "year": "",
                     "auctionhouse": "",
-                    "location": ""
+                    "location": "",
+                    "details": "",
+                    "details": ""
                 });
             }
         }
