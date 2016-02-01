@@ -30,7 +30,7 @@
     "elevatezoom": "https://github.com/elevateweb/elevatezoom.git#~2.2.3",
     "fancyBox": "https://github.com/fancyapps/fancyBox.git#~2.1.5",
     "jquery": "~2.1.4",
-    "lodash": "~4.0.1",
+    "lodash": "~3.10.1",
     "moment": "~2.10.3",
     "ngAutocomplete": "https://github.com/wpalahnuk/ngAutocomplete.git#~1.0.0",
     "ngDialog": "~0.4.0",
