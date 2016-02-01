@@ -2980,6 +2980,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
+    globalFunction.showLogin = function() {
+        console.log("in login");
+        ngDialog.open({
+            template: 'views/content/login.html',
+            scope: $scope
+        });
+    };
+
     $scope.changeTab = function(tab) {
         $scope.logintab = tab;
     }
@@ -3081,12 +3089,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     dataNextPre.messageBoxWithBtn = function(msg, btnText, funcName) {
-        // var xyz = ngDialog.open({
-        //     template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '<br><br><button class="btn btn-sucesses" ng-click="' + funcName + '">' + btnText + '</button></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-        //     plain: true
-        // });
         var xyz = ngDialog.open({
-            template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites<br><br><button class="btn btn-sucesses" ng-click="$scope.showLogin();">Login</button></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+            scope: $scope,
+            template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><p>Click <a ng-click="showLogin();">here</a> to Login</p><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
             plain: true
         });
     }
@@ -3138,8 +3143,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 }
             })
         } else {
-            dataNextPre.messageBox("Please login to add to favourites");
-            // dataNextPre.messageBoxWithBtn("Please login to add to favourites", "Login", "$scope.showLogin()");
+            ngDialog.open({
+                scope: $scope,
+                template: 'views/content/favLogin.html'
+            });
         }
     }
 
