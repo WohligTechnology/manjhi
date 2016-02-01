@@ -248,14 +248,13 @@
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label>Artwork Location</label>
-                                 <!-- <br>
+                                 <br>
                                  <label class="radio-inline">
                                     <input name="address" ng-model="artwork.address" type="radio" value="residence">Use Residence Address</label>
                                  <br>
                                  <label class="radio-inline">
                                     <input name="address" ng-model="artwork.address" type="radio" value="studio">Use Studio Address</label>
-                                 <br> -->
-                                 {{artwork.address}}
+                                 <br>
                                  <label class="radio-inline">
                                     <input name="address" ng-model="artwork.address" type="radio" value="new">Enter New Address</label>
                               </div>
@@ -293,7 +292,7 @@
                               </div>
                            </div>
                         </div>
-                        <div class="row" ng-if="artwork.address=='studio';">
+                        <!-- <div class="row" ng-if="artwork.address=='studio';">
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label>Studio Address</label>
@@ -324,8 +323,8 @@
                                  <input class="form-control" ng-model="userData.work.country" placeholder="Country" type="text">
                               </div>
                            </div>
-                        </div>
-                        <div class="row" ng-if="artwork.address=='residence';">
+                        </div> -->
+                        <!-- <div class="row" ng-if="artwork.address=='residence';">
                            <div class="col-md-6">
                               <div class="form-group">
                                  <label>Residence Address</label>
@@ -356,7 +355,7 @@
                                  <input class="form-control" ng-model="userData.residence.country" placeholder="Country" type="text">
                               </div>
                            </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                            <label>Image
                               <span ng-show="artwork.type=='Sculptures'">(Multiple Upload)</span>
