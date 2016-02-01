@@ -5433,6 +5433,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
+.controller('BuyersTermConditionCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
+    //Used to name the .html file
+    $scope.template = TemplateService.changecontent(" buyerstermcondition");
+    $scope.menutitle = NavigationService.makeactive("Buyers Terms ConditionCtrl");
+    TemplateService.title = $scope.menutitle;
+    $scope.navigation = NavigationService.getnav();
+})
+
 .controller('TermConditionCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("termcondition");
