@@ -4037,6 +4037,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     $scope.artwork.selleremail = $scope.userData.email;
                     $scope.artwork.sellername = $scope.userData.name;
                     $scope.artwork.location = $scope.userData.other;
+                    if (!$scope.artwork.focused) {
+                        $scope.artwork.focused = "nonfocused";
+                    }
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
@@ -4536,6 +4539,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     NavigationService.registeruser($scope.userData, function(data) {
                         console.log(data);
                     });
+                    if (!$scope.artwork.focused) {
+                        $scope.artwork.focused = "nonfocused";
+                    }
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
