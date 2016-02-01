@@ -3,6 +3,11 @@ var userProfile = {};
 var uploadres = [];
 var dollarPrice = '';
 var globalFunction = {};
+
+var top = 200;
+var duration = 2000;
+
+var offset = 70;
 globalFunction.tab = "info";
 
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'duScroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
@@ -2306,11 +2311,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService, $location) {
+.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService, $location,$stateParams,$document ) {
     $scope.template = TemplateService.changecontent("artinfrastructure");
     $scope.menutitle = NavigationService.makeactive("Art Infrastructure");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+
+
+    $scope.$on('$viewContentLoaded', function(event) {
+      setTimeout(function() {
+        makeAnimation($stateParams.id);
+      }, 100);
+    });
+
+    function makeAnimation(stateValue) {
+      var goTo = angular.element(document.getElementById(stateValue));
+      $document.scrollToElement(goTo, offset, duration);
+    }
+
+
+
     $scope.artistDetailImg = [{
         image: 'img/imagedetail/imagedetail.jpg',
         id: ' 1527',
