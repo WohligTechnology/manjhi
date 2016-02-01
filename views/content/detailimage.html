@@ -102,12 +102,12 @@
                <button type="button" class="btn btn-block uppercase" ng-click="lauchedSoon();">
                   VIEW ARTWORK IN YOUR ROOM
                </button>
-               <a type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
+               <a type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A' && artistDetailImg.artwork.status!='sold'">
                         ADD TO CART
                     </a>
-                    <div type="button" class="soldout uppercase font-color3" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
-                    Sold Out
-                </div>
+               <div type="button" class="soldout uppercase font-color3" ng-if="artistDetailImg.artwork.status=='sold'">
+                  Sold Out
+               </div>
             </div>
          </div>
       </div>
@@ -127,13 +127,13 @@
                         <accordion-group is-open="status.open">
                            <div class="row">
                               <div class="col-md-6">
-                                <p>
-                                  <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">Born </span>
-                                   <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">in </span> {{artistdetail.dob}}
-                                   <span class="bold" ng-if="artistdetail.stateofb && artistdetail.stateofb!=''">at</span> {{artistdetail.stateofb}}
+                                 <p>
+                                    <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">Born </span>
+                                    <span class="bold" ng-if="artistdetail.dob && artistdetail.dob!=''">in </span> {{artistdetail.dob}}
+                                    <span class="bold" ng-if="artistdetail.stateofb && artistdetail.stateofb!=''">at</span> {{artistdetail.stateofb}}
                                  </p>
-                                <p ng-if="artistdetail.passedaway && artistdetail.passedaway!=''"><span class="bold">Passed away</span>
-                                </p>
+                                 <p ng-if="artistdetail.passedaway && artistdetail.passedaway!=''"><span class="bold">Passed away</span>
+                                 </p>
                                  <p ng-if="artistdetail.edu">
                                     <span class="bold">Education</span>
                                     <span ng-repeat="edu in artistdetail.edu">

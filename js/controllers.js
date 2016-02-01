@@ -2952,6 +2952,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             template: 'views/content/login.html'
         });
     };
+
+    globalFunction.showLogin = function() {
+        ngDialog.open({
+            template: 'views/content/login.html'
+        });
+    };
+
     $scope.changeTab = function(tab) {
         $scope.logintab = tab;
     }
@@ -3044,6 +3051,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }, 3000);
     }
 
+    dataNextPre.messageBoxWithBtn = function(msg, btnText, funcName) {
+        var xyz = ngDialog.open({
+            template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '<br><br><button class="btn btn-sucesses" ng-click="' + funcName + '">' + btnText + '</button></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+            plain: true,
+            scope: $scope
+        });
+    }
+
     dataNextPre.favorite = function(art) {
         // art.heartClass = "fa fa-heart font-color3";
         if ($scope.userProfile.id) {
@@ -3092,6 +3107,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             })
         } else {
             dataNextPre.messageBox("Please login to add to favourites");
+            // dataNextPre.messageBoxWithBtn("Please login to add to favourites", "Login", "globalFunction.showLogin()");
         }
     }
 

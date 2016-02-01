@@ -39,8 +39,8 @@
                   <span ng-if="!artistdetails.artwork.imageno || artistdetails.artwork.imageno.length==0">
                           N/A
                       </span>
-                  <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);"></i>
-                  <span class="font-color3 bold">sold</span>
+                  <i class="fa fa-shopping-cart" ng-click="addToCart(artistdetails);" ng-if="artistdetails.artwork.status!='sold'"></i>
+                  <span class="font-color3 bold pd5" ng-if="artistdetails.artwork.status=='sold'">Sold</span>
                 </p>
                 <p>
                   <span ng-if="artistdetails.artwork.name && artistdetails.artwork.name!=''">

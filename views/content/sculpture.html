@@ -98,14 +98,14 @@
           <button type="button" class="btn btn-block uppercase" ng-click="lauchedSoon();">
             VIEW ARTWORK IN YOUR ROOM
           </button>
-          <button type="button" class="btn btn-block uppercase" ng-click="lauchedSoon();">
+          <button type="button" class="btn btn-block uppercase" ng-click="lauchedSoon();" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A' && artistDetailImg.artwork.status!='sold'">
             Rent sculpture
           </button>
-          <button type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);" ng-if="artistDetailImg.artwork.gprice || artistDetailImg.artwork.gprice=='N/A'">
+          <button type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A' && artistDetailImg.artwork.status!='sold'">
             ADD TO CART
           </button>
-          <div type="button" class="soldout uppercase font-color3" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
-            Sold Out
+          <div type="button" class="soldout uppercase font-color3" ng-if="artistDetailImg.artwork.status=='sold'">
+             Sold Out
           </div>
           <h5 class="alt" ng-if="artistDetailImg.artwork.image.length>1">Alternate Views</h5>
           <div class="row-flex row-flex row-unflex sweet-box box-more text-center margin-less">
