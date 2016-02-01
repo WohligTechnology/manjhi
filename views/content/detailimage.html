@@ -105,6 +105,9 @@
                <a type="button" class="btn btn-primarys btn-block uppercase" ng-click="addToCart(artistDetailImg);" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
                         ADD TO CART
                     </a>
+                    <div type="button" class="soldout uppercase font-color3" ng-if="artistDetailImg.artwork.gprice && artistDetailImg.artwork.gprice!='N/A'">
+                    Sold Out
+                </div>
             </div>
          </div>
       </div>
