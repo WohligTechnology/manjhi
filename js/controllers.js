@@ -43,6 +43,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.slides = data;
     });
 
+    $scope.openPop = function() {
+        dataNextPre.messageBoxSignUp();
+    }
+
     $scope.becomeSeller = function() {
         globalFunction.becomeSeller();
         // if ($scope.isLoggedIn == true) {
@@ -2311,7 +2315,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService, $location,$stateParams,$document ) {
+.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService, $location, $stateParams, $document) {
     $scope.template = TemplateService.changecontent("artinfrastructure");
     $scope.menutitle = NavigationService.makeactive("Art Infrastructure");
     TemplateService.title = $scope.menutitle;
@@ -2319,14 +2323,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
     $scope.$on('$viewContentLoaded', function(event) {
-      setTimeout(function() {
-        makeAnimation($stateParams.id);
-      }, 100);
+        setTimeout(function() {
+            makeAnimation($stateParams.id);
+        }, 100);
     });
 
     function makeAnimation(stateValue) {
-      var goTo = angular.element(document.getElementById(stateValue));
-      $document.scrollToElement(goTo, offset, duration);
+        var goTo = angular.element(document.getElementById(stateValue));
+        $document.scrollToElement(goTo, offset, duration);
     }
 
 
@@ -2619,7 +2623,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar, $state, $stateParams, $timeout) {
+.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar, $state, $stateParams, $timeout, $sce) {
     $scope.template = TemplateService;
 
     $scope.adminurl = adminurl;
@@ -2725,7 +2729,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     $scope.showWishlist = true;
                     //$.jStorage.set("user", data);
                     ngDialog.closeAll();
-                    $state.go("termcondition");
+                    dataNextPre.messageBoxSignUp();
+                    // $state.go("termcondition");
                 } else if (data.value == false && data.comment == "User already exists") {
                     $scope.showAlreadyRegistered = true;
                 }
@@ -2968,14 +2973,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
     $scope.showLogin = function() {
+        console.log("in login");
         ngDialog.open({
-            template: 'views/content/login.html'
-        });
-    };
-
-    globalFunction.showLogin = function() {
-        ngDialog.open({
-            template: 'views/content/login.html'
+            template: 'views/content/login.html',
+            scope: $scope
         });
     };
 
@@ -3030,7 +3031,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     //$.jStorage.set("user", data);
                     $scope.user.name = data.name;
                     ngDialog.closeAll();
-                    window.location.reload();
+                    dataNextPre.messageBoxSignUp();
+                    // window.location.reload();
                 } else if (data.value == false && data.comment == "User already exists") {
                     $scope.showAlreadyRegistered = true;
                 }
@@ -3071,11 +3073,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }, 3000);
     }
 
-    dataNextPre.messageBoxWithBtn = function(msg, btnText, funcName) {
+    dataNextPre.messageBoxSignUp = function() {
         var xyz = ngDialog.open({
-            template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '<br><br><button class="btn btn-sucesses" ng-click="' + funcName + '">' + btnText + '</button></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
-            plain: true,
-            scope: $scope
+            template: '<div class="pop-up"><h5 class="popup-wishlist"><div class="text-center"><h3>Welcome to Aura Art </h3><p>You may update your Profile by clicking <a href="http://auraart.in/#/account">here</a> or continue surfing by clicking X.</p></div></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+            plain: true
+        });
+    }
+
+    dataNextPre.messageBoxWithBtn = function(msg, btnText, funcName) {
+        // var xyz = ngDialog.open({
+        //     template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '<br><br><button class="btn btn-sucesses" ng-click="' + funcName + '">' + btnText + '</button></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+        //     plain: true
+        // });
+        var xyz = ngDialog.open({
+            template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites<br><br><button class="btn btn-sucesses" ng-click="$scope.showLogin();">Login</button></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+            plain: true
         });
     }
 
@@ -3127,7 +3139,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             })
         } else {
             dataNextPre.messageBox("Please login to add to favourites");
-            // dataNextPre.messageBoxWithBtn("Please login to add to favourites", "Login", "globalFunction.showLogin()");
+            // dataNextPre.messageBoxWithBtn("Please login to add to favourites", "Login", "$scope.showLogin()");
         }
     }
 
