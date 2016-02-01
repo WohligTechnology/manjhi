@@ -95,6 +95,12 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
         templateUrl: "views/template.html",
         controller: 'ArtInfrastructureCtrl'
     })
+    .state('artInfrastructureID', {
+        url: "/infra-services/:id",
+        templateUrl: "views/template.html",
+        controller: 'ArtInfrastructureCtrl'
+    })
+
 
     .state('events', {
         url: "/events",
