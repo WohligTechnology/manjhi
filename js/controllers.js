@@ -607,7 +607,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     if (n.artwork.gprice != 'N/A')
                         $scope.totalCartPrice += n.artwork.gprice;
                 });
-                $scope.vat = ($scope.totalCartPrice / 100) * 12.4;
+                $scope.vat = ($scope.totalCartPrice / 100) * 12.5;
             }
             cfpLoadingBar.complete();
         });
@@ -1238,7 +1238,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.user.shipping.name = "";
     $scope.user.shipping.country = "";
     $scope.user.billing = {};
-    $scope.user.billing = {};
+    $scope.user.billing.country = "";
     $scope.checked = false;
     $scope.showShipping = false;
     $scope.showShippingContinue = false;
@@ -1506,12 +1506,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 field: $scope.user.billing.bldgname,
                 validation: ""
             }, {
-                field: $scope.user.billing.landmark,
-                validation: ""
-            }, {
-                field: $scope.user.billing.street,
-                validation: ""
-            }, {
                 field: $scope.user.billing.regadd,
                 validation: ""
             }, {
@@ -1543,12 +1537,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 validation: ""
             }, {
                 field: $scope.user.shipping.bldgname,
-                validation: ""
-            }, {
-                field: $scope.user.shipping.landmark,
-                validation: ""
-            }, {
-                field: $scope.user.shipping.street,
                 validation: ""
             }, {
                 field: $scope.user.shipping.regadd,
@@ -4919,7 +4907,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.user);
         if ($scope.isLoggedIn == true) {
             $scope.user.accesslevel = "artist";
-            $scope.user.status = "pending";
             $scope.user.reseller = [{
                 "_id": $scope.userData.id,
                 "name": $scope.userData.name,
@@ -4929,6 +4916,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if (!$scope.user.focused) {
                 $scope.user.focused = "nonfocused";
             }
+            $scope.user.status = "pending";
             NavigationService.registerArtist($scope.user, function(data, status) {
                 console.log(data);
                 if (data.value != false) {

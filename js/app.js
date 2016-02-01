@@ -578,8 +578,10 @@ firstapp.filter('makesizestr', function() {
 firstapp.filter('showheart', function(NavigationService) {
     return function(input) {
         if (input) {
-            if (userProfile.id && userProfile.wishlist) {
-                var ispresent = _.findIndex(userProfile.wishlist, 'artwork', input);
+            if (userProfile.wishlist) {
+                var ispresent = _.findIndex(userProfile.wishlist, {
+                    'artwork': input
+                });
                 if (ispresent != -1) {
                     return "fa fa-heart font-color3";
                 } else {

@@ -147,7 +147,7 @@
                     <input class="form-control" ng-model="user.billing.state" ng-change="onFieldChange(checked)" placeholder="State*" required type="text">
                   </div>
                   <div class="form-group">
-                    <select class="form-control" ng-options="country.code as country.name for country in countries" ng-change="onFieldChange(checked)" ng-model="user.billing.country" placeholder = "Select county" value=""></select>
+                    <select class="form-control" ng-options="country.code as country.name for country in countries" ng-change="onFieldChange(checked)" ng-model="user.billing.country" placeholder = "Select county"></select>
                   </div>
                   <label>
                     <input ng-model="checked" ng-change="changeAddress(checked)" type="checkbox">
@@ -206,7 +206,7 @@
                     <input class="form-control" ng-model="user.shipping.state" ng-change="onFieldChange(checked)" placeholder="State*" required type="text">
                   </div>
                   <div class="form-group">
-                    <select class="form-control" ng-options="country.code as country.name for country in countries" ng-change="onFieldChange(checked)" ng-model="user.shipping.country" ng-change="viewCart(checked)" placeholder = "select Country" value=""></select>
+                    <select class="form-control" ng-options="country.code as country.name for country in countries" ng-change="onFieldChange(checked)" ng-model="user.shipping.country" ng-change="viewCart(checked)" placeholder = "select Country"></select>
                   </div>
                 </div>
               </div>
