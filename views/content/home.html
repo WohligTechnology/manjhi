@@ -83,14 +83,14 @@
               </ui-select>
               <label class="above">Style</label>
               <ui-select ng-model="filterby.style" on-select="setStyleSearch($select);" tagging tagging-label="false">
-                <ui-select-match class="text-capitalize" placeholder="Eg.  Abstract, Figurative, Contemporary, Spiritual">{{filterby.style}}</ui-select-match>
+                <ui-select-match class="text-capitalize" placeholder="Eg.  Abstract, Figurative">{{filterby.style}}</ui-select-match>
                 <ui-select-choices refresh-delay="0" refresh="getStyleDropdown($select.search)" repeat="person in allStyle track by person._id">
                   <div ng-bind-html="person.name| addhighlight: $select.search"></div>
                 </ui-select-choices>
               </ui-select>
               <label class="above">Elements</label>
               <ui-select ng-model="filterby.element" on-select="setElementSearch($select);" tagging tagging-label="false">
-                <ui-select-match class="text-capitalize" placeholder="Eg. Buddha, Bird, Rickshaw, Woman">{{filterby.element}}</ui-select-match>
+                <ui-select-match class="text-capitalize" placeholder="Eg. Buddha, Bird">{{filterby.element}}</ui-select-match>
                 <ui-select-choices refresh-delay="0" refresh="getElementDropdown($select.search)" repeat="person in allElement track by person._id">
                   <div ng-bind-html="person.name| addhighlight: $select.search"></div>
                 </ui-select-choices>
@@ -199,7 +199,7 @@
         </div>
         <h5>Data Management</h5>
         <p>Documenting the Collection, photographing and presenting the same online / offline</p>
-        <a class="more2" href="#">Click for more</a>
+        <a class="more2"  ui-sref="artInfrastructureID({ id: 'data' })">Click for more</a>
       </div>
     </div>
     <div class="col-flex">
@@ -209,7 +209,7 @@
         </div>
         <h5>Valuation &amp; Insurance</h5>
         <p>Valuing the Art Collection and providing assistance/ guidance in insuring the same</p>
-    		<a href="/infra-services/#valuation" du-smooth-scroll du-scrollspy class="more2">Click for more</a>
+    		<a  ui-sref="artInfrastructureID({ id: 'valuation' })" class="more2">Click for more</a>
       </div>
     </div>
     <div class="col-flex">
@@ -219,7 +219,7 @@
         </div>
         <h5>Conservation &amp; Restoration</h5>
         <p>Restoring the collection through professionals and providing guidance on on-going preservation</p>
-        <a class="more2" href="#">Click for more</a>
+        <a class="more2" ui-sref="artInfrastructureID({ id: 'conservation' })">Click for more</a>
       </div>
     </div>
     <div class="col-flex">
@@ -229,7 +229,7 @@
         </div>
         <h5>Strategy for Art Initiatives including CSR</h5>
         <p>Integrating art initiatives into the CSR strategy of Corporates, PSUs and other Institutions</p>
-        <a class="more2" href="#">Click for more</a>
+        <a class="more2" ui-sref="artInfrastructureID({ id: 'art' })">Click for more</a>
       </div>
     </div>
     <div class="col-flex">
