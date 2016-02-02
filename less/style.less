@@ -554,7 +554,7 @@ ul.decimal {
 .box-style1 {
   background-color: @color1;
   padding: 0 15px 10px;
-  height: 250px;
+  height: 280px;
   .img-holder {
     margin: 0 -15px;
     img {
@@ -568,9 +568,10 @@ ul.decimal {
   }
   p {
     font-size: 12px;
-    height: 55px;
+    height: 80px;
     overflow: hidden;
     text-align: left;
+    line-height: 110%;
   }
 }
 h4 {
@@ -2998,7 +2999,9 @@ img.fancybox-image {
     }
   }
 }
-
+.fancybox-lock {
+    overflow-y: auto !important;
+}
 /* Mobile Less */
 //@import "other.less";
 @import "../less/mobile.less";
