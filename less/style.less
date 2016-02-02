@@ -427,6 +427,7 @@ a.link-page {
 }
 ul.decimal {
   list-style-type: decimal;
+  text-align: justify;
 }
 .sweet-box {
   margin: 10px -1px 0;
@@ -1069,6 +1070,11 @@ a.link-viewall {
 }
 .row-headleft {
   margin-top: 22px;
+  -webkit-column-count: 2;
+  /* Chrome, Safari, Opera */
+  -moz-column-count: 2;
+  /* Firefox */
+  column-count: 2;
   p {
     padding-left: 29px;
   }
@@ -3000,7 +3006,10 @@ img.fancybox-image {
   }
 }
 .fancybox-lock {
-    overflow-y: auto !important;
+  overflow-y: auto !important;
+}
+.art-initiative {
+  min-height: 280px;
 }
 /* Mobile Less */
 //@import "other.less";
