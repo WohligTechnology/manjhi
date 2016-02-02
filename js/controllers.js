@@ -1279,15 +1279,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.user.shipping = {};
                 $scope.user.shipping.country = "";
             }
+            if (data.billing) {
+                $scope.user.billing.name = data.name;
+                $scope.user.billing.email = data.email;
+                $scope.user.billing.regadd = data.billing.locality;
+            }
+            if (data.shipping) {
+                $scope.user.shipping.name = data.name;
+                $scope.user.shipping.email = data.email;
+                $scope.user.shipping.regadd = data.shipping.locality;
+            }
             $scope.showShipping = true;
             $scope.showShippingContinue = true;
             $scope.showLoginDiv = false;
             $scope.payment.billing = data;
-            var splited = data.name.split(' ');
-            if (splited[0])
-                $scope.payment.billing.fname = splited[0];
-            if (splited[1])
-                $scope.payment.billing.lname = splited[1];
         }
     })
 
@@ -2447,15 +2452,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     var totalpages = 2;
 
     function getAllArtistByAccess() {
-        var toList = _.cloneDeep($scope.pagedata);
-        toList.pagenumber = 1;
-        toList.pagesize = 100000000000;
-        NavigationService.getallartist(toList, function(data, status) {
-            if (data.data) {
-                $scope.listview = data.data;
-                $scope.listview = _.uniq($scope.listview, '_id');
-            }
-        })
+        // var toList = _.cloneDeep($scope.pagedata);
+        // toList.pagenumber = 1;
+        // toList.pagesize = 100000000000;
+        // NavigationService.getallartist(toList, function(data, status) {
+        //     if (data.data) {
+        //         $scope.listview = data.data;
+        //     }
+        // })
     }
     getAllArtistByAccess();
 
@@ -2466,12 +2470,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.pagedata.type = "";
         }
         NavigationService.getallartist($scope.pagedata, function(data, status) {
-            // lastpage = parseInt(data.totalpages);
             $scope.artistimage = data.data
-                // _.each(data.data, function(n) {
-                //     $scope.artistimage.push(n);
-                // })
-                // $scope.artistimage = _.uniq($scope.artistimage, '_id');
+            $scope.listview = data.data;
             cfpLoadingBar.complete();
         });
     }
@@ -3649,6 +3649,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.access = "artist";
     $scope.commentsub = '';
     $scope.artwork.address = 'new';
+
+    NavigationService.getCountryJson(function(data) {
+        $scope.allcountries = data;
+    })
 
     $scope.calcsq = function() {
         if ($scope.artwork.height && $scope.artwork.width) {

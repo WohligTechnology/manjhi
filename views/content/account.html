@@ -113,7 +113,7 @@
                         <div class="input-id">
                           <select class="form-control" ng-model="user.billing.country" placeholder="Country" required>
                             <option value="">Select Country</option>
-                            <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
+                            <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
                           </select>
                         </div>
                         <button class="btn btn-sucesses" type="submit">Save</button>
@@ -153,7 +153,7 @@
                           <div class="input-id">
                             <select class="form-control" ng-model="user.shipping.country" placeholder="Country" required>
                               <option value="">Select Country</option>
-                              <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
+                              <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
                             </select>
                           </div>
                           <button class="btn btn-sucesses" type="submit">Save</button>
@@ -195,7 +195,7 @@
                         <div class="input-id">
                           <select class="form-control" ng-model="user.work.country" placeholder="Country" required>
                             <option value="">Select Country</option>
-                            <option value="{{country.name}}" ng-repeat="country in allcountries">{{country.name}}</option>
+                            <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
                           </select>
                         </div>
                         <button class="btn btn-sucesses" type="submit">Save</button>

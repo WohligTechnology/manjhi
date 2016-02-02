@@ -288,7 +288,11 @@
                                  <input class="form-control" ng-model="userData.other.state" placeholder="State" type="text">
                               </div>
                               <div class="form-group">
-                                 <input class="form-control" ng-model="userData.other.country" placeholder="Country" type="text">
+                                 <!-- <input class="form-control" ng-model="userData.other.country" placeholder="Country" type="text"> -->
+                                 <select class="form-control" ng-model="userData.other.country">
+                                    <option value="">Select Country</option>
+                                    <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
+                                 </select>
                               </div>
                            </div>
                         </div>
