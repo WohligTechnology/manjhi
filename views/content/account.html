@@ -111,10 +111,7 @@
                           <input type="text" class="form-control" ng-model="user.billing.state" placeholder="State" required>
                         </div>
                         <div class="input-id">
-                          <select class="form-control" ng-model="user.billing.country" placeholder="Country" required>
-                            <option value="">Select Country</option>
-                            <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
-                          </select>
+                          <select class="form-control" ng-options="country.code as country.name for country in allcountries" ng-change="onFieldChange(checked)" ng-model="user.billing.country" placeholder = "Select county"></select>
                         </div>
                         <button class="btn btn-sucesses" type="submit">Save</button>
                         <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
@@ -151,10 +148,7 @@
                             <input type="text" class="form-control" ng-model="user.shipping.state" placeholder="State" required>
                           </div>
                           <div class="input-id">
-                            <select class="form-control" ng-model="user.shipping.country" placeholder="Country" required>
-                              <option value="">Select Country</option>
-                              <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
-                            </select>
+                            <select class="form-control" ng-options="country.code as country.name for country in allcountries" ng-change="onFieldChange(checked)" ng-model="user.shipping.country" placeholder = "Select county"></select>
                           </div>
                           <button class="btn btn-sucesses" type="submit">Save</button>
                           <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>

@@ -1256,10 +1256,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     NavigationService.getCountryJson(function(data) {
         $scope.countries = data;
-        $scope.countries.unshift({
-            "name": "Select Country",
-            "code": ""
-        });
+        // $scope.countries.unshift({
+        //     "name": "Select Country",
+        //     "code": ""
+        // });
     });
 
     $scope.showCart = function() {
@@ -1283,11 +1283,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.user.billing.name = data.name;
                 $scope.user.billing.email = data.email;
                 $scope.user.billing.regadd = data.billing.locality;
+                $scope.user.billing.mobileno = data.mob;
             }
             if (data.shipping) {
                 $scope.user.shipping.name = data.name;
                 $scope.user.shipping.email = data.email;
                 $scope.user.shipping.regadd = data.shipping.locality;
+                $scope.user.shipping.mobileno = data.mob;
             }
             $scope.showShipping = true;
             $scope.showShippingContinue = true;
@@ -3276,6 +3278,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if (!$scope.user.bank) {
                 $scope.user.bank = {};
                 $scope.user.bank.cancelCheck = '';
+            }
+            if (!$scope.user.shipping) {
+                $scope.user.shipping = {};
+                $scope.user.shipping.country = "";
+            } else if (!$scope.user.shipping.country) {
+                $scope.user.shipping.country = "";
+            }
+            if (!$scope.user.billing) {
+                $scope.user.billing = {};
+                $scope.user.billing.country = "";
+            } else if (!$scope.user.billing.country) {
+                $scope.user.billing.country = "";
             }
         });
     }
@@ -5364,6 +5378,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.userData = data;
             $scope.user.selleremail = $scope.userData.email;
             $scope.isLoggedIn = true;
+            if (!$scope.user.residence) {
+                $scope.user.residence = {};
+                $scope.user.residence.country = "";
+            } else if (!$scope.user.residence.country) {
+                $scope.user.residence.country = "";
+            }
+            if (!$scope.user.work) {
+                $scope.user.work = {};
+                $scope.user.work.country = "";
+            } else if (!$scope.user.work.country) {
+                $scope.user.work.country = "";
+            }
+            if (!$scope.user.other) {
+                $scope.user.other = {};
+                $scope.user.other.country = "";
+            } else if (!$scope.user.other.country) {
+                $scope.user.other.country = "";
+            }
         } else {
             $scope.isLoggedIn = false;
         }

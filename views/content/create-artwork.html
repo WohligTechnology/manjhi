@@ -289,10 +289,11 @@
                               </div>
                               <div class="form-group">
                                  <!-- <input class="form-control" ng-model="userData.other.country" placeholder="Country" type="text"> -->
-                                 <select class="form-control" ng-model="userData.other.country">
+                                 <!-- <select class="form-control" ng-model="userData.other.country">
                                     <option value="">Select Country</option>
                                     <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
-                                 </select>
+                                 </select> -->
+                                 <select class="form-control" ng-options="country.code as country.name for country in allcountries" ng-change="onFieldChange(checked)" ng-model="userData.other.country" placeholder = "Select county"></select>
                               </div>
                            </div>
                         </div>
