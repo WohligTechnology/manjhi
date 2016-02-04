@@ -96,12 +96,12 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
             link: "#/artwork/Others",
             clickopen: ""
         }]
-    }, {
-        name: "Infra Services",
-        active: "",
-        link: "#/infra-services",
-        classis: "active",
-        subnav: []
+    //}, {
+        // name: "Infra Services",
+        // active: "",
+        // link: "#/infra-services",
+        // classis: "active",
+        // subnav: []
         // subnav: [{
         //     name: "Data Management",
         //     classis: "active",
