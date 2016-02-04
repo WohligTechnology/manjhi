@@ -134,6 +134,7 @@ header.stickyheader {
 }
 .row-flex {
   .display(flex);
+  position: relative;
 }
 .col-flex {
   .flex(1);
@@ -3007,6 +3008,13 @@ img.fancybox-image {
 }
 .art-initiative {
   min-height: 280px;
+}
+.fancybox-overlay {
+  background: rgba(0, 0, 0, 0.66)!important;
+  z-index: 100000000!important;
+}
+.fancybox-opened {
+  z-index: 1000000000!important;
 }
 /* Mobile Less */
 //@import "other.less";
