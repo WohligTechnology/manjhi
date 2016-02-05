@@ -47,6 +47,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         dataNextPre.messageBoxSignUp();
     }
 
+    $scope.toPayU = function() {
+        console.log("in payu");
+        window.location.href = "http://www.auraart.in/PayUMoney_PHP_Module/PayUMoney_form.php";
+    }
+
     $scope.becomeSeller = function() {
         globalFunction.becomeSeller();
         // if ($scope.isLoggedIn == true) {
@@ -1462,7 +1467,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.checkout($scope.user, function(data) {
                 // console.log("incheck");
                 if (data.value != false) {
-                    $state.go('thankyou');
+                    $scope.user.orderid1 = data.id;
+                    $scope.user.orderid2 = data.orderid;
+                    $timeout(function() {
+                        $("form[name='payuForm']").submit();
+                    }, 2000);
+                    // $state.go('thankyou');
                     // dataNextPre.messageBox("Your order is placed. Thank You !!");
                     // $timeout(function() {
                     //     $state.go('thankyou');
@@ -5634,6 +5644,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.menutitle = NavigationService.makeactive("Sorry");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
+
+    $scope.order = {};
+    $scope.order.orderid = $stateParams.orderId;
 })
 
 .controller('Error404Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {

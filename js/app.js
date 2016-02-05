@@ -234,7 +234,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
     })
 
     .state('sorry', {
-        url: "/sorry",
+        url: "/sorry/:orderId",
         templateUrl: "views/template.html",
         controller: 'SorryCtrl'
     })
