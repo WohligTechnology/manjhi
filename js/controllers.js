@@ -1407,7 +1407,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
             $scope.vat = ($scope.totalCartPrice / 100) * 12.5;
             cfpLoadingBar.complete();
-
         });
     }
 
@@ -1467,6 +1466,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.checkout($scope.user, function(data) {
                 // console.log("incheck");
                 if (data.value != false) {
+                    $scope.user.grantTotal = parseFloat($scope.user.grantTotal).toFixed(2);
                     $scope.user.orderid1 = data.id;
                     $scope.user.orderid2 = data.orderid;
                     $timeout(function() {

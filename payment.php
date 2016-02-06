@@ -43,7 +43,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
           || empty($posted['productinfo'])
           || empty($posted['surl'])
           || empty($posted['furl'])
-		  || empty($posted['service_provider'])
+		  // || empty($posted['service_provider'])
   ) {
     $formError = 1;
   } else {
@@ -125,7 +125,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
         </tr>
 
         <tr>
-          <td colspan="3"><input type="hidden" name="service_provider" value="payu_paisa" size="64" /></td>
+          <td colspan="3"><input type="hidden" name="service_provider" value="" size="64" /></td>
         </tr>
 
         <tr>
