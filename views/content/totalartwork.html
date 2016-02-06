@@ -50,7 +50,7 @@
                             <!-- {{totalartconts.artwork.srno}} -->
                             {{totalartconts.artwork.imageno[0]}}
                             <i class="{{totalartconts.heartClass = (totalartconts.artwork._id | showheart)}}" ng-click="makeFav(totalartconts);"></i>
-                            <i class="fa fa-shopping-cart" ng-click="addToCart(totalartconts);" ng-if="totalartconts.artwork.status!='sold'"></i>
+                            <i class="fa fa-shopping-cart" ng-click="addToCart(totalartconts);" ng-if="totalartconts.artwork.status!='sold' && totalartconts.artwork.gprice && totalartconts.artwork.gprice!='N/A'"></i>
                             <span class="font-color3 bold pd5" ng-if="totalartconts.artwork.status=='sold'">Sold</span>
                         </p>
                         <p>
