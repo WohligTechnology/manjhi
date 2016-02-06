@@ -1466,7 +1466,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.checkout($scope.user, function(data) {
                 // console.log("incheck");
                 if (data.value != false) {
-                    $scope.user.grantTotal = (Math.ceil($scope.user.grantTotal));
+                    $scope.user.grantTotal = $scope.user.grantTotal;
                     $scope.user.orderid1 = data.id;
                     $scope.user.orderid2 = data.orderid;
                     $timeout(function() {
