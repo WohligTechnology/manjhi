@@ -13,7 +13,7 @@ globalFunction.tab = "info";
 angular.module('phonecatControllers', ['templateservicemod', 'navigationservice', 'ui.bootstrap', 'cfp.loadingBar', 'infinite-scroll', 'duScroll', 'toaster', 'ngAnimate', 'ngAutocomplete', 'ngDialog', 'valdr', 'ngSanitize', 'ui.select', 'angular-flexslider', 'ui-rangeSlider', 'angularFileUpload'])
 
 //.controller('AppCtrl')
-.controller('HomeCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+.controller('HomeCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("home");
     $scope.menutitle = NavigationService.makeactive("Home");
@@ -39,20 +39,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //  $scope.filterby.color = '';
     //  $scope.filterby.style = '';
     //  $scope.filterby.element = '';
-    NavigationService.getSlider(function(data) {
+    NavigationService.getSlider(function (data) {
         $scope.slides = data;
     });
 
-    $scope.openPop = function() {
+    $scope.openPop = function () {
         dataNextPre.messageBoxSignUp();
     }
 
-    $scope.toPayU = function() {
+    $scope.toPayU = function () {
         console.log("in payu");
         window.location.href = "http://www.auraart.in/PayUMoney_PHP_Module/PayUMoney_form.php";
     }
 
-    $scope.becomeSeller = function() {
+    $scope.becomeSeller = function () {
         globalFunction.becomeSeller();
         // if ($scope.isLoggedIn == true) {
         //   if (userProfile && userProfile.accesslevel == "reseller") {
@@ -67,11 +67,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         // }
     }
 
-    $scope.registeruser = function() {
+    $scope.registeruser = function () {
         if ($scope.register.password === $scope.register.confirmpassword) {
             $scope.passwordNotMatch = false;
             $scope.register.accesslevel = "customer";
-            NavigationService.registeruser($scope.register, function(data, status) {
+            NavigationService.registeruser($scope.register, function (data, status) {
                 console.log(data);
                 if (data.value != false) {
                     $scope.showAlreadyRegistered = false;
@@ -88,20 +88,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.lauchedSoon = function() {
+    $scope.lauchedSoon = function () {
         ngDialog.open({
             template: 'views/content/modal-launch.html'
         });
-        $timeout(function() {
+        $timeout(function () {
             ngDialog.closeAll();
         }, 3000);
     };
 
-    $scope.userlogin = function() {
-        NavigationService.userlogin($scope.login, function(data, status) {
+    $scope.userlogin = function () {
+        NavigationService.userlogin($scope.login, function (data, status) {
             if (data.value != false) {
                 $scope.showInvalidLogin = false;
-                NavigationService.getuserprofile(function(data) {
+                NavigationService.getuserprofile(function (data) {
                     ngDialog.closeAll();
                     if (data.id && data.accesslevel == "reseller") {
                         $state.go("create-artwork");
@@ -128,7 +128,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 
     $scope.showLogin = true;
-    $scope.changeTab = function(tab) {
+    $scope.changeTab = function (tab) {
         console.log(tab);
         if (tab == 1) {
             $scope.showLogin = false;
@@ -148,17 +148,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
     NavigationService.pressFind(getPress);
 
-    NavigationService.getupcomingevents(function(data) {
+    NavigationService.getupcomingevents(function (data) {
         if (data.value != false)
             $scope.upcomingEvent = data;
         console.log(data);
     });
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             $scope.isLoggedIn = true;
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 userProfile.wishlist = favorite;
             })
         } else {
@@ -167,14 +167,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
 
     $scope.onfock = "";
-    $scope.oon = function() {
+    $scope.oon = function () {
         if ($scope.onfock == "") {
             $scope.onfock = "sdfs";
         } else {
             $scope.onfock = "";
         }
     }
-    dataNextPre.setData = function(data) {
+    dataNextPre.setData = function (data) {
         //      console.log(data);
     }
     $scope.changeUI = 0;
@@ -192,7 +192,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //        })
     //    });
 
-    $scope.applyfilter = function() {
+    $scope.applyfilter = function () {
         //      console.log($scope.filterby);
         console.log($scope.filterby);
         $.jStorage.set("filterby", $scope.filterby)
@@ -202,22 +202,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     }
 
-    $scope.goToArtworks = function(type) {
+    $scope.goToArtworks = function (type) {
         //      $location.url("/artwork/" + type);
         $state.go('totalartpage', {
             type: type
         });
     }
 
-    $scope.goToEvents = function() {
+    $scope.goToEvents = function () {
         $state.go('events');
     }
 
-    $scope.onclick = function(value) {
+    $scope.onclick = function (value) {
         $scope.filterby.checked
     }
     var lastChecked = null
-    $scope.onclick = function(event) {
+    $scope.onclick = function (event) {
         if (event.target.value === lastChecked) {
             $scope.filterby.type = "";
             $scope.getallartist();
@@ -226,7 +226,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             lastChecked = event.target.value
         }
     }
-    $scope.changetype = function(chang) {
+    $scope.changetype = function (chang) {
         if (chang == 1) {
             $scope.filterby.type = "Paintings";
             $scope.getallartist();
@@ -257,28 +257,28 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.getStl();
         }
     }
-    $scope.setSearch = function(select) {
+    $scope.setSearch = function (select) {
         $scope.filterby.search = select.selected.name;
     }
-    $scope.setMediumSearch = function(select) {
+    $scope.setMediumSearch = function (select) {
         $scope.filterby.medium = select.selected.name;
     }
-    $scope.setColorSearch = function(select) {
+    $scope.setColorSearch = function (select) {
         $scope.filterby.color = select.selected.name;
     }
-    $scope.setStyleSearch = function(select) {
+    $scope.setStyleSearch = function (select) {
         $scope.filterby.style = select.selected.name;
     }
-    $scope.setElementSearch = function(select) {
+    $scope.setElementSearch = function (select) {
         $scope.filterby.element = select.selected.name;
     }
     $scope.allartist = [];
     $scope.allmedium = [];
-    $scope.getmedium = function() {
+    $scope.getmedium = function () {
         if ($scope.filterby.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.getallmedium($scope.change, function(data, status) {
+            NavigationService.getallmedium($scope.change, function (data, status) {
                 if (data && data.value != false) {
                     $scope.allmedium = _.uniq(data, '_id');
                 } else {
@@ -289,7 +289,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
-            NavigationService.getallmedium($scope.change, function(data, status) {
+            NavigationService.getallmedium($scope.change, function (data, status) {
                 if (data && data.value != false) {
                     $scope.allmedium = _.uniq(data, '_id');
                 } else {
@@ -299,11 +299,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.getClr = function() {
+    $scope.getClr = function () {
         if ($scope.filterby.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allColor = _.uniq(data, '_id');
                     $scope.allColor.unshift({
@@ -318,7 +318,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allColor = _.uniq(data, '_id');
                     $scope.allColor.unshift({
@@ -331,11 +331,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
-    $scope.getStl = function() {
+    $scope.getStl = function () {
         if ($scope.filterby.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allStyle = _.uniq(data, '_id');
                     $scope.allStyle.unshift({
@@ -350,7 +350,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allStyle = _.uniq(data, '_id');
                     $scope.allStyle.unshift({
@@ -363,11 +363,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
-    $scope.getElm = function() {
+    $scope.getElm = function () {
         if ($scope.filterby.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allElement = _.uniq(data, '_id');
                     $scope.allElement.unshift({
@@ -382,7 +382,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allElement = _.uniq(data, '_id');
                     $scope.allElement.unshift({
@@ -399,9 +399,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.getElm();
     $scope.getStl();
     var countcall = 0;
-    $scope.getallartist = function() {
+    $scope.getallartist = function () {
         if ($scope.filterby.type == "") {
-            NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+            NavigationService.getAllArtistByAccess(++countcall, function (data, status, n) {
                 if (n == countcall) {
                     if (data && data.value != false) {
                         $scope.allartist = _.uniq(data, '_id');
@@ -417,7 +417,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 }
             });
         } else {
-            NavigationService.userbytype($scope.filterby.type, ++countcall, function(data, status, n) {
+            NavigationService.userbytype($scope.filterby.type, ++countcall, function (data, status, n) {
                 if (n == countcall) {
                     if (data && data.value != false) {
                         $scope.allartist = data;
@@ -435,13 +435,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
-    $scope.getDropdown = function(search) {
+    $scope.getDropdown = function (search) {
         if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
             $scope.change.search = search;
-            $timeout(function() {
-                NavigationService.getAllArtistDrop($scope.change, function(data) {
+            $timeout(function () {
+                NavigationService.getAllArtistDrop($scope.change, function (data) {
                     console.log(data);
                     if (data && data.value != false) {
                         $scope.allartist = data;
@@ -458,13 +458,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.getallartist();
         }
     }
-    $scope.getDropdownMedium = function(search) {
+    $scope.getDropdownMedium = function (search) {
         if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.filterby.type;
             $scope.change.search = search;
-            $timeout(function() {
-                NavigationService.getallmedium($scope.change, function(data) {
+            $timeout(function () {
+                NavigationService.getallmedium($scope.change, function (data) {
                     if (data && data.value != false) {
                         $scope.allmedium = data;
                         $scope.allmedium.unshift({
@@ -483,10 +483,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //search by keyword
 
-    $scope.getColorDropdown = function(search) {
+    $scope.getColorDropdown = function (search) {
         if (search.length >= 1) {
-            $timeout(function() {
-                NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
+            $timeout(function () {
+                NavigationService.tagSearchType($scope.filterby.type, search, function (data) {
                     if (data && data.value != false) {
                         $scope.allColor = data;
                     } else {
@@ -498,10 +498,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.getClr();
         }
     }
-    $scope.getStyleDropdown = function(search) {
+    $scope.getStyleDropdown = function (search) {
         if (search.length >= 1) {
-            $timeout(function() {
-                NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
+            $timeout(function () {
+                NavigationService.tagSearchType($scope.filterby.type, search, function (data) {
                     if (data && data.value != false) {
                         $scope.allStyle = data;
                     } else {
@@ -513,10 +513,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.getStl();
         }
     }
-    $scope.getElementDropdown = function(search) {
+    $scope.getElementDropdown = function (search) {
         if (search.length >= 1) {
-            $timeout(function() {
-                NavigationService.tagSearchType($scope.filterby.type, search, function(data) {
+            $timeout(function () {
+                NavigationService.tagSearchType($scope.filterby.type, search, function (data) {
                     if (data && data.value != false) {
                         $scope.allElement = data;
                     } else {
@@ -531,7 +531,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('FavoriteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $state) {
+.controller('FavoriteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $state) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("favorite");
     $scope.menutitle = NavigationService.makeactive("Favorite");
@@ -541,15 +541,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.allfavourites = [];
     $scope.noFavs = false;
     cfpLoadingBar.start();
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 console.log(favorite);
                 if (favorite.value != false) {
                     $scope.noFavs = false;
                     userProfile.wishlist = favorite;
-                    _.each(favorite, function(n) {
+                    _.each(favorite, function (n) {
                         $scope.allfavourites.push({
                             "_id": n.artwork
                         });
@@ -564,7 +564,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
 
     function getFavorite(allfavourites) {
-        NavigationService.getAllFavouritesData(allfavourites, function(datas, status) {
+        NavigationService.getAllFavouritesData(allfavourites, function (datas, status) {
             console.log("favorite data");
             console.log(datas)
             $scope.artistdetail = datas;
@@ -573,11 +573,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         dataNextPre.addToCart(art);
     }
 
-    $scope.goToDetail = function(artwork) {
+    $scope.goToDetail = function (artwork) {
         console.log(artwork);
         if (artwork.type == "Sculptures") {
             //          $location.url("/sculpture/" + artwork._id);
@@ -594,7 +594,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('CartCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $state) {
+.controller('CartCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $state) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("cart");
     $scope.menutitle = NavigationService.makeactive("Cart");
@@ -605,8 +605,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     cfpLoadingBar.start();
     $scope.checkCheckout = true;
 
-    $scope.getCartItems = function() {
-        NavigationService.getCartItems(function(data) {
+    $scope.getCartItems = function () {
+        NavigationService.getCartItems(function (data) {
             console.log(data);
             if (data.length == 0) {
                 $scope.noCartItems = true;
@@ -614,7 +614,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.noCartItems = false;
                 $scope.cartItems = data;
                 $scope.totalCartPrice = 0;
-                _.each($scope.cartItems, function(n) {
+                _.each($scope.cartItems, function (n) {
                     if (n.artwork.status == "sold") {
                         $scope.checkCheckout = false;
                     }
@@ -629,9 +629,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.getCartItems();
 
-    $scope.toCheckout = function() {
+    $scope.toCheckout = function () {
         $scope.checkCheckout = true;
-        _.each($scope.cartItems, function(n) {
+        _.each($scope.cartItems, function (n) {
             if (n.artwork.status == "sold") {
                 $scope.checkCheckout = false;
             }
@@ -643,8 +643,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.removeFromCart = function(artid) {
-        NavigationService.removeFromCart(artid, function(data) {
+    $scope.removeFromCart = function (artid) {
+        NavigationService.removeFromCart(artid, function (data) {
             console.log(data);
             if (data.value == true) {
                 dataNextPre.messageBox("Removed from cart");
@@ -656,7 +656,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('TeamCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('TeamCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("team");
     $scope.menutitle = NavigationService.makeactive("Team");
@@ -664,7 +664,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('ArtistPageCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('ArtistPageCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("artistpage");
     $scope.menutitle = NavigationService.makeactive("Artist");
@@ -672,19 +672,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('ContactusCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('ContactusCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("contactus");
     $scope.menutitle = NavigationService.makeactive("Contact Us");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-    $scope.becomeSeller = function() {
+    $scope.becomeSeller = function () {
         globalFunction.becomeSeller();
     }
 })
 
-.controller('TotalartWorkCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams, $location, $state) {
+.controller('TotalartWorkCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, ngDialog, $stateParams, $location, $state) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("totalartwork");
     $scope.menutitle = NavigationService.makeactive("Total Artwork");
@@ -713,35 +713,35 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.heartClass = "fa fa-heart";
     var lastpage = 2;
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 userProfile.wishlist = favorite;
             })
         }
     })
 
-    $scope.openReachout = function() {
+    $scope.openReachout = function () {
         globalFunction.reachOut();
     }
 
     //get user details
-    $scope.setColorSearch = function(select) {
+    $scope.setColorSearch = function (select) {
         $scope.pagedata.color = select.selected.name;
     }
-    $scope.setStyleSearch = function(select) {
+    $scope.setStyleSearch = function (select) {
         $scope.pagedata.style = select.selected.name;
     }
-    $scope.setElementSearch = function(select) {
+    $scope.setElementSearch = function (select) {
         $scope.pagedata.element = select.selected.name;
     }
 
-    $scope.getClr = function() {
+    $scope.getClr = function () {
         if ($scope.pagedata.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allColor = _.uniq(data, '_id');
                     $scope.allColor.unshift({
@@ -756,7 +756,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allColor = _.uniq(data, '_id');
                     $scope.allColor.unshift({
@@ -769,11 +769,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
-    $scope.getStl = function() {
+    $scope.getStl = function () {
         if ($scope.pagedata.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allStyle = _.uniq(data, '_id');
                     $scope.allStyle.unshift({
@@ -788,7 +788,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allStyle = _.uniq(data, '_id');
                     $scope.allStyle.unshift({
@@ -801,11 +801,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
-    $scope.getElm = function() {
+    $scope.getElm = function () {
         if ($scope.pagedata.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allElement = _.uniq(data, '_id');
                     $scope.allElement.unshift({
@@ -820,7 +820,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
-            NavigationService.tagSearchType($scope.change, "", function(data, status) {
+            NavigationService.tagSearchType($scope.change, "", function (data, status) {
                 if (data && data.value != false) {
                     $scope.allElement = _.uniq(data, '_id');
                     $scope.allElement.unshift({
@@ -837,10 +837,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.getElm();
     $scope.getStl();
 
-    $scope.getColorDropdown = function(search) {
+    $scope.getColorDropdown = function (search) {
         if (search.length >= 1) {
-            $timeout(function() {
-                NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
+            $timeout(function () {
+                NavigationService.tagSearchType($scope.pagedata.type, search, function (data) {
                     if (data && data.value != false) {
                         $scope.allColor = data;
                     } else {
@@ -852,10 +852,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.getClr();
         }
     }
-    $scope.getStyleDropdown = function(search) {
+    $scope.getStyleDropdown = function (search) {
         if (search.length >= 1) {
-            $timeout(function() {
-                NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
+            $timeout(function () {
+                NavigationService.tagSearchType($scope.pagedata.type, search, function (data) {
                     if (data && data.value != false) {
                         $scope.allStyle = data;
                     } else {
@@ -867,10 +867,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.getStl();
         }
     }
-    $scope.getElementDropdown = function(search) {
+    $scope.getElementDropdown = function (search) {
         if (search.length >= 1) {
-            $timeout(function() {
-                NavigationService.tagSearchType($scope.pagedata.type, search, function(data) {
+            $timeout(function () {
+                NavigationService.tagSearchType($scope.pagedata.type, search, function (data) {
                     if (data && data.value != false) {
                         $scope.allElement = data;
                     } else {
@@ -883,9 +883,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     var countcall = 0;
-    $scope.getallartist = function() {
+    $scope.getallartist = function () {
         if ($scope.pagedata.type == "") {
-            NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+            NavigationService.getAllArtistByAccess(++countcall, function (data, status, n) {
                 if (n == countcall) {
                     if (data && data.value != false) {
                         $scope.allartist = _.uniq(data, '_id');
@@ -901,7 +901,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 }
             });
         } else {
-            NavigationService.userbytype($scope.pagedata.type, ++countcall, function(data, status, n) {
+            NavigationService.userbytype($scope.pagedata.type, ++countcall, function (data, status, n) {
                 if (n == countcall) {
                     if (data && data.value != false) {
                         $scope.allartist = data;
@@ -919,11 +919,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.getmedium = function() {
+    $scope.getmedium = function () {
         if ($scope.pagedata.type == "") {
             //          console.log("in if");
             $scope.change = "";
-            NavigationService.getallmedium($scope.change, function(data, status) {
+            NavigationService.getallmedium($scope.change, function (data, status) {
                 if (data && data.value != false) {
                     $scope.allmedium = _.uniq(data, '_id');
                 } else {
@@ -934,7 +934,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             //          console.log("in else");
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
-            NavigationService.getallmedium($scope.change, function(data, status) {
+            NavigationService.getallmedium($scope.change, function (data, status) {
                 if (data && data.value != false) {
                     $scope.allmedium = _.uniq(data, '_id');
                 } else {
@@ -944,13 +944,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     $scope.getallartist();
-    $scope.getDropdown = function(search) {
+    $scope.getDropdown = function (search) {
         if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
             $scope.change.search = search;
-            $timeout(function() {
-                NavigationService.getAllArtistDrop($scope.change, function(data) {
+            $timeout(function () {
+                NavigationService.getAllArtistDrop($scope.change, function (data) {
                     if (data && data.value != false) {
                         $scope.allartist = data;
                         $scope.allartist.unshift({
@@ -967,13 +967,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.getDropdownMedium = function(search) {
+    $scope.getDropdownMedium = function (search) {
         if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.pagedata.type;
             $scope.change.search = search;
-            $timeout(function() {
-                NavigationService.getallmedium($scope.change, function(data) {
+            $timeout(function () {
+                NavigationService.getallmedium($scope.change, function (data) {
                     if (data && data.value != false) {
                         $scope.allmedium = data;
                         $scope.allmedium.unshift({
@@ -990,10 +990,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.setSearch = function(select) {
+    $scope.setSearch = function (select) {
         $scope.pagedata.search = select.selected.name;
     }
-    $scope.setMediumSearch = function(select) {
+    $scope.setMediumSearch = function (select) {
         $scope.pagedata.medium = select.selected.name;
     }
 
@@ -1017,7 +1017,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         class: ""
     }]
 
-    $scope.changeHeartColor = function(totalartcont) {
+    $scope.changeHeartColor = function (totalartcont) {
         if ($scope.isRed == true)
             totalartcont.heartClass = "fa fa-heart";
         else
@@ -1025,19 +1025,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.isRed = !$scope.isRed;
     }
 
-    $scope.makeFav = function(art) {
+    $scope.makeFav = function (art) {
         dataNextPre.favorite(art);
     }
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         dataNextPre.addToCart(art);
     }
 
-    $scope.checkForEmpty = function() {
+    $scope.checkForEmpty = function () {
 
     }
 
-    $scope.reload = function() {
+    $scope.reload = function () {
         cfpLoadingBar.start();
         //      console.log($scope.pagedata);
         var filterdata = $scope.pagedata;
@@ -1055,7 +1055,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.htlactive = '';
             $scope.lthactive = '';
         }
-        NavigationService.artworktype(filterdata, function(data, status) {
+        NavigationService.artworktype(filterdata, function (data, status) {
             // console.log(data.data);
             lastpage = parseInt(data.totalpages);
             $scope.totalartcont = _.union($scope.totalartcont, data.data);
@@ -1069,9 +1069,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //    $scope.reload();
 
-    $scope.makeactive = function(type) {
+    $scope.makeactive = function (type) {
         //      console.log(type);
-        _.each($scope.typejson, function(n) {
+        _.each($scope.typejson, function (n) {
             var index = n.name.indexOf(type);
             if (index != -1) {
                 n.class = "actives";
@@ -1099,7 +1099,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //        }
     //    };
 
-    $scope.filterresults = function(search) {
+    $scope.filterresults = function (search) {
         //      console.log(search);
         $scope.pagedata.search = _.capitalize(search);
         $scope.totalartcont = [];
@@ -1118,7 +1118,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //     }
     // });
 
-    $scope.addMoreItems = function() {
+    $scope.addMoreItems = function () {
         if (lastpage > $scope.pagedata.pagenumber) {
             $scope.pagedata.pagenumber++;
             $scope.reload();
@@ -1137,7 +1137,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.imageSrc = 'img/artist/artist1.jpg';
 
     $scope.artistDetailImg = {};
-    $scope.showDetails = function(oneuser) {
+    $scope.showDetails = function (oneuser) {
         //      console.log(oneuser)
         $scope.artistDetailImg = oneuser;
         ngDialog.open({
@@ -1146,16 +1146,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    $scope.lauchedSoon = function() {
+    $scope.lauchedSoon = function () {
         ngDialog.open({
             template: 'views/content/modal-launch.html'
         });
-        $timeout(function() {
+        $timeout(function () {
             ngDialog.closeAll();
         }, 3000);
     };
 
-    $scope.sortBy = function(num, by) {
+    $scope.sortBy = function (num, by) {
         if (num == -1 && by == 'yoc') {
             $scope.lotactive = 'active';
             $scope.htlactive = '';
@@ -1188,7 +1188,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.makeactive($.jStorage.get("filterby").type);
     }
 
-    $scope.clearfilters = function() {
+    $scope.clearfilters = function () {
         $scope.pagedata.search = "";
         $scope.pagedata.type = "";
         $scope.pagedata.pagenumber = 1;
@@ -1211,7 +1211,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.makeactive('All');
     }
 
-    $scope.goToDetailPage = function(artwork) {
+    $scope.goToDetailPage = function (artwork) {
         //      console.log(artwork);
         if (artwork.type == "Sculptures") {
             //          $location.url("/sculpture/" + artwork._id);
@@ -1227,7 +1227,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 })
 
-.controller('CheckoutCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr, $state, ngDialog, $filter) {
+.controller('CheckoutCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, valdr, $state, ngDialog, $filter) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("checkout");
     $scope.menutitle = NavigationService.makeactive("Checkout");
@@ -1259,7 +1259,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.showCartEnable = false;
     $scope.showLoginDiv = true;
 
-    NavigationService.getCountryJson(function(data) {
+    NavigationService.getCountryJson(function (data) {
         $scope.countries = data;
         // $scope.countries.unshift({
         //     "name": "Select Country",
@@ -1267,11 +1267,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         // });
     });
 
-    $scope.showCart = function() {
+    $scope.showCart = function () {
         $scope.showCartEnable = true;
     }
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         console.log(data);
 
         if (data.id) {
@@ -1303,7 +1303,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    $scope.continueGuest = function() {
+    $scope.continueGuest = function () {
         console.log($scope.checkoutRadio);
         console.log($scope.showShipping);
         if ($scope.checkoutRadio == 'guest') {
@@ -1314,16 +1314,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.showShippingContinue = false;
         }
     }
-    $scope.loginRegClick = function() {
+    $scope.loginRegClick = function () {
         $scope.showShipping = false;
         $scope.showShippingContinue = false;
     }
 
-    $scope.registeruser = function() {
+    $scope.registeruser = function () {
         if ($scope.register.password === $scope.register.confirmpassword) {
             $scope.passwordNotMatch = false;
             $scope.register.accesslevel = "customer";
-            NavigationService.registeruser($scope.register, function(data, status) {
+            NavigationService.registeruser($scope.register, function (data, status) {
                 console.log(data);
                 if (data.value != false) {
                     ngDialog.closeAll();
@@ -1337,11 +1337,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.userlogin = function() {
-        NavigationService.userlogin($scope.login, function(data, status) {
+    $scope.userlogin = function () {
+        NavigationService.userlogin($scope.login, function (data, status) {
             if (data.value != false) {
                 $scope.showInvalidLogin = false;
-                NavigationService.getuserprofile(function(data) {
+                NavigationService.getuserprofile(function (data) {
                     console.log("login successfully");
                     ngDialog.closeAll();
                     window.location.reload();
@@ -1383,7 +1383,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.totalCartPrice = 0;
     $scope.sameAsBilling = false;
 
-    $scope.changeAddress = function(check) {
+    $scope.changeAddress = function (check) {
         if (check == true) {
             $scope.sameAsBilling = true;
         } else {
@@ -1394,12 +1394,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     cfpLoadingBar.start();
 
-    $scope.getCartItems = function() {
-        NavigationService.getCartItems(function(data) {
+    $scope.getCartItems = function () {
+        NavigationService.getCartItems(function (data) {
             console.log(data);
             $scope.cartItems = data;
             $scope.totalCartPrice = 0;
-            _.each($scope.cartItems, function(n) {
+            _.each($scope.cartItems, function (n) {
                 console.log(n.artwork.formname);
                 n.artwork.formname = n.artwork.srno;
                 if (n.artwork.gprice != 'N/A')
@@ -1412,8 +1412,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.getCartItems();
 
-    $scope.removeFromCart = function(artid) {
-        NavigationService.removeFromCart(artid, function(data) {
+    $scope.removeFromCart = function (artid) {
+        NavigationService.removeFromCart(artid, function (data) {
             console.log(data);
             if (data.value == true) {
                 dataNextPre.messageBox("Removed from cart");
@@ -1423,7 +1423,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
     $scope.shippingCost = 0;
-    $scope.calculateShipping = function(artwork) {
+    $scope.calculateShipping = function (artwork) {
         var city = $scope.user.shipping.city;
         console.log(city.trim());
         if (artwork.form == "framed" && $filter('lowercase')($scope.user.shipping.city) != "mumbai") {
@@ -1440,7 +1440,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
         console.log($scope.cartItems);
         $scope.shippingCost = 0;
-        _.each($scope.cartItems, function(n) {
+        _.each($scope.cartItems, function (n) {
             if (n.artwork.shippingCost) {
                 $scope.shippingCost = $scope.shippingCost + n.artwork.shippingCost;
             }
@@ -1448,9 +1448,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     }
 
-    $scope.paymentFunc = function() {
+    $scope.paymentFunc = function () {
         var num = 0;
-        _.each($scope.cartItems, function(n) {
+        _.each($scope.cartItems, function (n) {
             if (n.artwork.form) {
                 num++;
             }
@@ -1463,12 +1463,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             $scope.user.grantTotal = $scope.totalCartPrice + $scope.vat;
             $scope.user.discount = 0;
             delete $scope.user.id;
-            NavigationService.checkout($scope.user, function(data) {
+            NavigationService.checkout($scope.user, function (data) {
                 // console.log("incheck");
                 if (data.value != false) {
                     $scope.user.orderid1 = data.id;
                     $scope.user.orderid2 = data.orderid;
-                    $timeout(function() {
+                    $timeout(function () {
                         $("form[name='payuForm']").submit();
                     }, 2000);
                     // $state.go('thankyou');
@@ -1487,7 +1487,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.toPayment = function(checked) {
+    $scope.toPayment = function (checked) {
         if (checked == true) {
             $scope.user.shipping = _.cloneDeep($scope.user.billing);
             $scope.paymentFunc();
@@ -1498,15 +1498,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     //after implementing paymentgateway topayment and viewcart will replace
-    $scope.onFieldChange = function(checked) {
+    $scope.onFieldChange = function (checked) {
         $scope.showShippingContinue = true;
         $scope.showCartEnable = false;
-        _.each($scope.cartItems, function(n) {
+        _.each($scope.cartItems, function (n) {
             n.artwork.form = "";
         });
         $scope.shippingCost = 0;
     }
-    $scope.viewCart = function(checked) {
+    $scope.viewCart = function (checked) {
 
         if (checked == true) {
             $scope.user.shipping = _.cloneDeep($scope.user.billing);
@@ -1592,16 +1592,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.checkout = function() {
+    $scope.checkout = function () {
         $scope.user.cart = $scope.cartItems;
-        NavigationService.checkout($scope.user, function(data) {
+        NavigationService.checkout($scope.user, function (data) {
             console.log(data);
         });
     }
 
 })
 
-.controller('InviteCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $stateParams) {
+.controller('InviteCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $stateParams) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("invite");
     $scope.menutitle = NavigationService.makeactive("Invite");
@@ -1612,7 +1612,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('EventsCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
+.controller('EventsCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("events");
     $scope.menutitle = NavigationService.makeactive("Events");
@@ -1620,16 +1620,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     cfpLoadingBar.start();
 
-    NavigationService.getAllEvents(function(data, status) {
+    NavigationService.getAllEvents(function (data, status) {
         console.log(data);
-        var events = _.groupBy(data, function(n) {
+        var events = _.groupBy(data, function (n) {
             return n.year;
         });
         $scope.currentYear = parseInt(moment().get("year"));
 
         console.log($scope.events);
 
-        $scope.events = _.groupBy(events, function(key, value) {
+        $scope.events = _.groupBy(events, function (key, value) {
             if (parseInt(value) > $scope.currentYear) {
                 return "upcoming";
             } else if (parseInt(value) == $scope.currentYear) {
@@ -1639,7 +1639,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         });
 
-        $scope.events.past = _.sortBy($scope.events.past, function(n) {
+        $scope.events.past = _.sortBy($scope.events.past, function (n) {
             return -1 * n[0].year;
         });
         console.log($scope.events);
@@ -1726,7 +1726,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('EventdetailCtrl', function($scope, TemplateService, NavigationService, $timeout, ngDialog, $stateParams, cfpLoadingBar) {
+.controller('EventdetailCtrl', function ($scope, TemplateService, NavigationService, $timeout, ngDialog, $stateParams, cfpLoadingBar) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("eventdetail");
     $scope.menutitle = NavigationService.makeactive("Event");
@@ -1734,7 +1734,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
     cfpLoadingBar.start();
 
-    NavigationService.getOneEvents($stateParams.id, function(data) {
+    NavigationService.getOneEvents($stateParams.id, function (data) {
         console.log(data);
         $scope.eventDetail = data;
         cfpLoadingBar.complete();
@@ -1745,7 +1745,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.zoomposition = 0;
 
-    $scope.openModal = function(gal) {
+    $scope.openModal = function (gal) {
 
         $scope.zoomposition = $scope.eventDetail.photos.indexOf(gal);
 
@@ -1756,7 +1756,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    $scope.nextImage = function(oldposition) {
+    $scope.nextImage = function (oldposition) {
         if (oldposition == ($scope.eventDetail.photos.length - 1)) {
             $scope.zoomposition = 0;
         } else {
@@ -1764,21 +1764,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.previousImage = function(oldposition) {
+    $scope.previousImage = function (oldposition) {
         if (oldposition == 0) {
             $scope.zoomposition = ($scope.eventDetail.photos.length - 1);
         } else {
             $scope.zoomposition--;
         }
     };
-    $scope.openBox = function(id) {
+    $scope.openBox = function (id) {
         $(id).attr('openbox', 'show');
     }
 
 
 })
 
-.controller('FeatureCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
+.controller('FeatureCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, toaster, ngDialog, valdr) {
     $scope.template = TemplateService.changecontent("feature");
     $scope.menutitle = NavigationService.makeactive("Features");
     TemplateService.title = $scope.menutitle;
@@ -1786,16 +1786,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Angular Loader Example
     //Start loader
-    $scope.showLoader = function() {
+    $scope.showLoader = function () {
             cfpLoadingBar.start();
         }
         //Complete loader
-    $scope.hideLoader = function() {
+    $scope.hideLoader = function () {
         cfpLoadingBar.complete();
     }
 
     //Angular toaster
-    $scope.showToaster = function() {
+    $scope.showToaster = function () {
         toaster.pop({
             type: 'success',
             title: 'Success!',
@@ -1818,7 +1818,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }];
 
     //ngDialog
-    $scope.showPopup = function() {
+    $scope.showPopup = function () {
         ngDialog.open({
             template: 'demopop'
         });
@@ -1850,7 +1850,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('PressCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar) {
+.controller('PressCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("press");
     $scope.menutitle = NavigationService.makeactive("Press");
     TemplateService.title = $scope.menutitle;
@@ -1863,7 +1863,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     function getPress(data) {
         cfpLoadingBar.complete();
         if (data.value != false) {
-            data2 = _.groupBy(data, function(n) {
+            data2 = _.groupBy(data, function (n) {
                 var year = moment(n.date).get("year");
                 return year;
             }, true);
@@ -1955,7 +1955,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtistDetailImageCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, cfpLoadingBar, $timeout, $state, $filter) {
+.controller('ArtistDetailImageCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, cfpLoadingBar, $timeout, $state, $filter) {
     $scope.template = TemplateService.changecontent("detailimage");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -1966,10 +1966,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.nextButton = true;
     $scope.prevButton = true;
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 userProfile.wishlist = favorite;
                 $scope.loadArtWork($stateParams.artid);
             })
@@ -1978,31 +1978,31 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    $scope.openReachout = function() {
+    $scope.openReachout = function () {
         globalFunction.reachOut();
     }
 
-    $scope.lauchedSoon = function() {
+    $scope.lauchedSoon = function () {
         ngDialog.open({
             template: 'views/content/modal-launch.html'
         });
-        $timeout(function() {
+        $timeout(function () {
             ngDialog.closeAll();
         }, 3000);
     };
 
-    $scope.loadArtWork = function(id) {
-        NavigationService.getartworkdetail(id, function(data, status) {
+    $scope.loadArtWork = function (id) {
+        NavigationService.getartworkdetail(id, function (data, status) {
             console.log(data);
             $scope.aristImages = [];
             $scope.artid = data[0]._id;
-            NavigationService.getArtistDetail(data[0]._id, function(artistdata, status) {
+            NavigationService.getArtistDetail(data[0]._id, function (artistdata, status) {
                 console.log(artistdata);
                 $.jStorage.set("reachout", artistdata);
                 dataNextPre.reachout = artistdata;
                 $scope.artistdetail = artistdata;
                 $scope.allartworks = artistdata;
-                _.each(artistdata.artwork, function(n) {
+                _.each(artistdata.artwork, function (n) {
                     if (n._id != data[0].artwork._id) {
                         $scope.aristImages.push(n);
                     }
@@ -2018,7 +2018,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if ($scope.artistDetailImg.artwork.srno == 1) {
                 $scope.prevButton = false;
             }
-            NavigationService.lastSr(function(data) {
+            NavigationService.lastSr(function (data) {
                 if (data.srno == $scope.artistDetailImg.artwork.srno) {
                     $scope.nextButton = false;
                 }
@@ -2037,8 +2037,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         large: 'img/zoomlarge.jpg'
     }];
 
-    $scope.artPrev = function() {
-        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
+    $scope.artPrev = function () {
+        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function (data) {
             // $scope.artistDetailImg = data;
             if (data.value != false) {
                 $state.go("detail", {
@@ -2050,8 +2050,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.artNext = function() {
-        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
+    $scope.artNext = function () {
+        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function (data) {
             if (data.value != false) {
                 $state.go("detail", {
                     "artid": data.artwork._id
@@ -2063,23 +2063,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.showitabove = function(artwork) {
+    $scope.showitabove = function (artwork) {
         $state.go('detail', {
             artid: artwork._id
         })
     }
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         dataNextPre.addToCart(art);
     }
 
-    $scope.addToFav = function(art) {
+    $scope.addToFav = function (art) {
         dataNextPre.favorite(art);
     }
 
 })
 
-.controller('SculptureCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, $state, cfpLoadingBar, $filter, $timeout) {
+.controller('SculptureCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, $rootScope, $location, $state, cfpLoadingBar, $filter, $timeout) {
     $scope.template = TemplateService.changecontent("sculpture");
     $scope.menutitle = NavigationService.makeactive("Sculpture");
     TemplateService.title = $scope.menutitle;
@@ -2088,12 +2088,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.allartworks = [];
     cfpLoadingBar.start();
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             console.log("%%%%%%%%%%%%%%%%%%%%%%%");
             console.log(data);
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 userProfile.wishlist = favorite;
                 $scope.loadArtWork($stateParams.artid);
             })
@@ -2102,31 +2102,31 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    $scope.openReachout = function() {
+    $scope.openReachout = function () {
         globalFunction.reachOut();
     }
 
-    $scope.lauchedSoon = function() {
+    $scope.lauchedSoon = function () {
         ngDialog.open({
             template: 'views/content/modal-launch.html'
         });
-        $timeout(function() {
+        $timeout(function () {
             ngDialog.closeAll();
         }, 3000);
     };
 
-    $scope.loadArtWork = function(id) {
-        NavigationService.getartworkdetail(id, function(data, status) {
+    $scope.loadArtWork = function (id) {
+        NavigationService.getartworkdetail(id, function (data, status) {
             console.log(data);
             $scope.aristImages = [];
             $scope.artid = data[0]._id;
-            NavigationService.getArtistDetail(data[0]._id, function(artistdata, status) {
+            NavigationService.getArtistDetail(data[0]._id, function (artistdata, status) {
                 console.log(artistdata);
                 $.jStorage.set("reachout", artistdata);
                 dataNextPre.reachout = artistdata;
                 $scope.artistdetail = artistdata;
                 $scope.allartworks = artistdata;
-                _.each(artistdata.artwork, function(n) {
+                _.each(artistdata.artwork, function (n) {
                     if (n._id != data[0].artwork._id) {
                         $scope.aristImages.push(n);
                     }
@@ -2153,13 +2153,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         large: 'img/largesculpture.jpg'
     }];
 
-    $scope.showitabove = function(artwork) {
+    $scope.showitabove = function (artwork) {
         $state.go('sculpture', {
             artid: artwork._id
         });
     }
 
-    $scope.activeImage = function(imagetopush) {
+    $scope.activeImage = function (imagetopush) {
         if ($scope.artistDetailImg.artwork.image.length > 1) {
             $scope.artistDetailImg.artwork.image.splice(_.indexOf($scope.artistDetailImg.artwork.image, imagetopush), 1);
             $scope.artistDetailImg.artwork.image.unshift(imagetopush);
@@ -2168,8 +2168,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
 
-    $scope.artPrev = function() {
-        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
+    $scope.artPrev = function () {
+        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function (data) {
             // $scope.artistDetailImg = data;
             $state.go("detail", {
                 "artid": data.artwork._id
@@ -2177,8 +2177,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.artNext = function() {
-        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
+    $scope.artNext = function () {
+        NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function (data) {
             // $scope.artistDetailImg = data;
             $state.go("detail", {
                 "artid": data.artwork._id
@@ -2187,24 +2187,24 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         dataNextPre.addToCart(art);
     }
 
-    $scope.addToFav = function(art) {
+    $scope.addToFav = function (art) {
         dataNextPre.favorite(art);
     }
 
 })
 
-.controller('ThoughtleadershipCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar) {
+.controller('ThoughtleadershipCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("thoughtleadership");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadership");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     cfpLoadingBar.start();
 
-    NavigationService.getAllThoughts(function(data) {
+    NavigationService.getAllThoughts(function (data) {
         console.log(data);
         $scope.thoughts = data;
         cfpLoadingBar.complete();
@@ -2264,14 +2264,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ThoughtleadershipdetailCtrl', function($scope, TemplateService, NavigationService, $stateParams, cfpLoadingBar) {
+.controller('ThoughtleadershipdetailCtrl', function ($scope, TemplateService, NavigationService, $stateParams, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("thoughtleadershipdetail");
     $scope.menutitle = NavigationService.makeactive("Thoughtleadershipdetail");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
     cfpLoadingBar.start();
 
-    NavigationService.getOneThought($stateParams.id, function(data) {
+    NavigationService.getOneThought($stateParams.id, function (data) {
         console.log(data);
         $scope.thoughtdetail = data;
         cfpLoadingBar.complete();
@@ -2331,15 +2331,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ArtInfrastructureCtrl', function($scope, TemplateService, NavigationService, $location, $stateParams, $document) {
+.controller('ArtInfrastructureCtrl', function ($scope, TemplateService, NavigationService, $location, $stateParams, $document) {
     $scope.template = TemplateService.changecontent("artinfrastructure");
     $scope.menutitle = NavigationService.makeactive("Art Infrastructure");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
 
-    $scope.$on('$viewContentLoaded', function(event) {
-        setTimeout(function() {
+    $scope.$on('$viewContentLoaded', function (event) {
+        setTimeout(function () {
             makeAnimation($stateParams.id);
         }, 100);
     });
@@ -2362,7 +2362,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         year: '1978',
         price: 'Rs.1,00,000/ $6,400'
     }];
-    $scope.changeURL = function(id) {
+    $scope.changeURL = function (id) {
         $state.transitionTo('artInfrastructure', {
             id: id
         }, {
@@ -2378,7 +2378,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistDetailCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, $state, cfpLoadingBar) {
+.controller('ArtistDetailCtrl', function ($scope, TemplateService, NavigationService, $stateParams, $location, $state, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("artistdetail")
     $scope.menutitle = NavigationService.makeactive("Artist");
     TemplateService.title = $scope.menutitle;
@@ -2386,23 +2386,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artistid = $stateParams.artistid;
 
     cfpLoadingBar.start();
-    NavigationService.getArtistDetail($stateParams.artistid, function(data, status) {
+    NavigationService.getArtistDetail($stateParams.artistid, function (data, status) {
         $.jStorage.set("reachout", data);
         $scope.artistdetail = data
         dataNextPre.reachout = data;
         cfpLoadingBar.complete();
     })
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 userProfile.wishlist = favorite;
             })
         }
     })
 
-    $scope.goToDetail = function(artwork) {
+    $scope.goToDetail = function (artwork) {
         console.log(artwork);
         if (artwork.type == "Sculptures") {
             //          $location.url("/sculpture/" + artwork._id);
@@ -2417,13 +2417,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         var test = {}
         test.artwork = art;
         dataNextPre.addToCart(test);
     }
 
-    $scope.addToFav = function(art) {
+    $scope.addToFav = function (art) {
         console.log(art);
         var test = {}
         test.artwork = art;
@@ -2434,7 +2434,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('ArtistCtrl', function($scope, TemplateService, NavigationService, ngDialog, $stateParams, cfpLoadingBar) {
+.controller('ArtistCtrl', function ($scope, TemplateService, NavigationService, ngDialog, $stateParams, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("artist");
     $scope.menutitle = NavigationService.makeactive("Artists");
     TemplateService.title = $scope.menutitle;
@@ -2449,10 +2449,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.listview = [];
     var lastpage = 2;
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 userProfile.wishlist = favorite;
             })
         }
@@ -2474,13 +2474,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
     getAllArtistByAccess();
 
-    $scope.reload = function() {
+    $scope.reload = function () {
         console.log("reload");
         cfpLoadingBar.start();
         if ($scope.pagedata.type == "All") {
             $scope.pagedata.type = "";
         }
-        NavigationService.getallartist($scope.pagedata, function(data, status) {
+        NavigationService.getallartist($scope.pagedata, function (data, status) {
             $scope.artistimage = data.data
             $scope.listview = data.data;
             cfpLoadingBar.complete();
@@ -2488,8 +2488,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     //    $scope.reload();
-    $scope.getartistbyletter = function(letter) {
-        _.each($scope.alphabetjson, function(n) {
+    $scope.getartistbyletter = function (letter) {
+        _.each($scope.alphabetjson, function (n) {
             if (n.name == letter) {
                 n.class = "actived";
             } else {
@@ -2508,7 +2508,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.getartistbyletter('All');
-    $scope.getartistbysearch = function() {
+    $scope.getartistbysearch = function () {
         $scope.pagedata.pagenumber = 1;
         $scope.artistimage = [];
         $scope.listview = [];
@@ -2516,8 +2516,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         getAllArtistByAccess();
     }
 
-    $scope.makeactive = function(type) {
-        _.each($scope.typejson, function(n) {
+    $scope.makeactive = function (type) {
+        _.each($scope.typejson, function (n) {
                 var index = n.name.indexOf(type);
                 if (index != -1) {
                     n.class = "actives";
@@ -2548,7 +2548,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //     }
     // });
 
-    $scope.addMoreItems = function() {
+    $scope.addMoreItems = function () {
         // if (lastpage >= $scope.pagedata.pagenumber) {
         //     $scope.pagedata.pagenumber++;
         //     $scope.reload();
@@ -2557,7 +2557,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
     $scope.artistdetail = {};
-    $scope.showDetail = function(artist) {
+    $scope.showDetail = function (artist) {
         $scope.artistdetail = artist;
         var makeit4 = _.chunk($scope.artistdetail.artwork, 4);
         $scope.artistdetail.artwork = makeit4[0];
@@ -2602,13 +2602,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.makeactive($stateParams.type);
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         var test = {}
         test.artwork = art;
         dataNextPre.addToCart(test);
     }
 
-    $scope.addToFav = function(art) {
+    $scope.addToFav = function (art) {
         var test = {}
         test.artwork = art;
         test.heartClass = art.heartClass;
@@ -2618,7 +2618,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('InfiniteCtrl', function($scope, TemplateService, NavigationService) {
+.controller('InfiniteCtrl', function ($scope, TemplateService, NavigationService) {
     $scope.template = TemplateService.changecontent("infinite");
     $scope.menutitle = NavigationService.makeactive("Infinite Scroll");
     TemplateService.title = $scope.menutitle;
@@ -2626,7 +2626,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //Infinite scroll
     $scope.images = [1, 2, 3, 4, 5, 6, 7, 8];
-    $scope.loadMore = function() {
+    $scope.loadMore = function () {
         var last = $scope.images[$scope.images.length - 1];
         for (var i = 1; i <= 8; i++) {
             $scope.images.push(last + i);
@@ -2634,7 +2634,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('headerctrl', function($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar, $state, $stateParams, $timeout, $sce) {
+.controller('headerctrl', function ($scope, TemplateService, $window, ngDialog, NavigationService, $location, cfpLoadingBar, $state, $stateParams, $timeout, $sce) {
     $scope.template = TemplateService;
 
     $scope.adminurl = adminurl;
@@ -2676,11 +2676,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //     $scope.art.search = "";
     // }
 
-    $scope.joinUs = function() {
+    $scope.joinUs = function () {
 
     }
 
-    $scope.becomeSeller = function() {
+    $scope.becomeSeller = function () {
         globalFunction.becomeSeller();
         // if ($scope.isLoggedIn == true) {
         //   if (userProfile && userProfile.accesslevel == "reseller") {
@@ -2694,7 +2694,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         //   });
         // }
     }
-    globalFunction.becomeSeller = function() {
+    globalFunction.becomeSeller = function () {
         if ($scope.isLoggedIn == true) {
             if (userProfile && userProfile.accesslevel == "reseller") {
                 $state.go("account");
@@ -2708,7 +2708,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.subMenuClick = function(link) {
+    $scope.subMenuClick = function (link) {
         $scope.redirectu = link.split('/')[1];
         console.log($scope.redirectu);
         if ($scope.redirectu == 'termcondition') {
@@ -2729,11 +2729,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     }
 
-    $scope.registeruser = function() {
+    $scope.registeruser = function () {
         if ($scope.register.password === $scope.register.confirmpassword) {
             $scope.passwordNotMatch = false;
             $scope.register.accesslevel = "customer";
-            NavigationService.registeruser($scope.register, function(data, status) {
+            NavigationService.registeruser($scope.register, function (data, status) {
                 console.log(data);
                 if (data.value != false) {
                     $scope.showAlreadyRegistered = false;
@@ -2751,11 +2751,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.userlogin = function() {
-        NavigationService.userlogin($scope.login, function(data, status) {
+    $scope.userlogin = function () {
+        NavigationService.userlogin($scope.login, function (data, status) {
             if (data.value != false) {
                 $scope.showInvalidLogin = false;
-                NavigationService.getuserprofile(function(data) {
+                NavigationService.getuserprofile(function (data) {
                     ngDialog.closeAll();
                     if (data.id && data.accesslevel == "reseller") {
                         $state.go("create-artwork");
@@ -2772,18 +2772,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
 
-    NavigationService.getDollarPrice(function(data) {
+    NavigationService.getDollarPrice(function (data) {
         if (data.value != false) {
             dollarPrice = data[0].price;
             console.log("Dollar = " + data[0].price);
         }
     })
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             $scope.isLoggedIn = true;
             userProfile = data;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 userProfile.wishlist = favorite;
             })
         } else {
@@ -2791,7 +2791,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
     var countcall = 0;
-    NavigationService.getAllArtistByAccess(++countcall, function(data, status, n) {
+    NavigationService.getAllArtistByAccess(++countcall, function (data, status, n) {
         if (n == countcall) {
             if (data && data.value != false) {
                 $scope.allartist = _.uniq(data, '_id');
@@ -2806,7 +2806,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     });
 
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         userProfile = data;
         console.log(data);
         if (data.name) {
@@ -2817,16 +2817,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     });
 
-    $scope.setSearch = function(select) {
+    $scope.setSearch = function (select) {
         $scope.reachOutForm.artist = select.selected.name;
         cfpLoadingBar.start();
         $scope.reachOutInner(select.selected._id);
     }
 
-    $scope.setSearchSrno = function(select) {
+    $scope.setSearchSrno = function (select) {
         $scope.reachOutForm.srno = select.selected.srno;
     }
-    $scope.selectSearch = function(name) {
+    $scope.selectSearch = function (name) {
         console.log("on search");
         console.log(name);
         $scope.art.search = name.name;
@@ -2835,8 +2835,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.getSearchedArt();
     }
 
-    $scope.reachOutInner = function(id) {
-        NavigationService.getArtistDetail(id, function(data) {
+    $scope.reachOutInner = function (id) {
+        NavigationService.getArtistDetail(id, function (data) {
             $scope.artworkInterested = data.artwork;
             if (data.artwork != "") {
                 //              $scope.reachOutForm.srno = data.artwork[0].srno;
@@ -2847,11 +2847,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     }
 
-    $scope.changeArtist = function(data) {
+    $scope.changeArtist = function (data) {
 
     }
 
-    $scope.reachOut = function() {
+    $scope.reachOut = function () {
         var reachOutArtist = window.location.hash.split('l/');
         if (reachOutArtist[0] == "#/artist/detai" || reachOutArtist[0] == "#/artwork/detai" || reachOutArtist[0].indexOf("sculpture") != -1) {
             $scope.reachOutArtistId = reachOutArtist[1];
@@ -2875,7 +2875,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    globalFunction.reachOut = function() {
+    globalFunction.reachOut = function () {
         var reachOutArtist = window.location.hash.split('l/');
         if (reachOutArtist[0] == "#/artist/detai" || reachOutArtist[0] == "#/artwork/detai" || reachOutArtist[0].indexOf("sculpture") != -1) {
             $scope.reachOutArtistId = reachOutArtist[1];
@@ -2901,12 +2901,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
     //  $scope.art.search = $.jStorage.get("searchObj").search;
-    $scope.getSearchedArt = function() {
+    $scope.getSearchedArt = function () {
         console.log($scope.art);
 
         if ($scope.art.search != '') {
             cfpLoadingBar.start();
-            NavigationService.getArtworkbySearch($scope.art, function(data) {
+            NavigationService.getArtworkbySearch($scope.art, function (data) {
                 console.log(data);
                 $.jStorage.set("searchObj", $scope.art);
                 $.jStorage.set("searchResults", data);
@@ -2919,10 +2919,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
     var countcall = 0;
-    $scope.onSearchChange = function(search) {
+    $scope.onSearchChange = function (search) {
         if (search != undefined && search != '') {
-            $timeout(function() {
-                NavigationService.getSearchDrop(search, ++countcall, function(data, n) {
+            $timeout(function () {
+                NavigationService.getSearchDrop(search, ++countcall, function (data, n) {
                     if (n == countcall) {
                         if (data.value == false) {
                             $scope.showDropDown = true;
@@ -2951,7 +2951,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         field: $scope.reachOutForm.action,
         validation: ""
     }];
-    $scope.submitReachOut = function() {
+    $scope.submitReachOut = function () {
         $scope.allvalidation = [{
             field: $scope.reachOutForm.to,
             validation: ""
@@ -2964,7 +2964,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }];
         var check = formvalidation($scope.allvalidation);
         if (check) {
-            NavigationService.reachOutArtist($scope.reachOutForm, function(data) {
+            NavigationService.reachOutArtist($scope.reachOutForm, function (data) {
                 console.log(data);
                 if (data.value == true) {
                     alert("Thank you! Your query has been successfully submited.");
@@ -2974,8 +2974,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             alert("Enter all data");
         }
     }
-    $scope.resetReachOut = function() {
-        _.each($scope.reachOutForm, function(n, key) {
+    $scope.resetReachOut = function () {
+        _.each($scope.reachOutForm, function (n, key) {
             if (key != 'srno' && key != 'to' && key != 'action') {
                 $scope.reachOutForm[key] = "";
             }
@@ -2983,7 +2983,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
 
-    $scope.showLogin = function() {
+    $scope.showLogin = function () {
         console.log("in login");
         ngDialog.open({
             template: 'views/content/login.html',
@@ -2991,7 +2991,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    globalFunction.showLogin = function() {
+    globalFunction.showLogin = function () {
         console.log("in login");
         ngDialog.open({
             template: 'views/content/login.html',
@@ -2999,11 +2999,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    $scope.changeTab = function(tab) {
+    $scope.changeTab = function (tab) {
         $scope.logintab = tab;
     }
 
-    $scope.toaccount = function() {
+    $scope.toaccount = function () {
         //      $location.url("/account");
         $state.go('account');
     }
@@ -3013,9 +3013,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $scope.user.name = $.jStorage.get("user").name;
     }
 
-    $scope.logout = function() {
+    $scope.logout = function () {
         console.log("Logout");
-        NavigationService.logout(function(data) {
+        NavigationService.logout(function (data) {
             $scope.showWishlist = false;
             $scope.cartItems = [];
             userProfile = data;
@@ -3023,8 +3023,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     }
 
-    $scope.userlogin = function() {
-        NavigationService.userlogin($scope.login, function(data, status) {
+    $scope.userlogin = function () {
+        NavigationService.userlogin($scope.login, function (data, status) {
             console.log(data);
             if (data.value != false) {
                 $scope.showInvalidLogin = false;
@@ -3039,10 +3039,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     };
 
-    $scope.registeruser = function() {
+    $scope.registeruser = function () {
         if ($scope.register.password === $scope.register.confirmpassword) {
             $scope.passwordNotMatch = false;
-            NavigationService.registeruser($scope.register, function(data, status) {
+            NavigationService.registeruser($scope.register, function (data, status) {
                 console.log(data);
                 if (data.value != false) {
                     $scope.showAlreadyRegistered = false;
@@ -3061,9 +3061,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.forgotpassword = function() {
+    $scope.forgotpassword = function () {
         console.log($scope.forgot);
-        NavigationService.forgotpassword($scope.forgot, function(data, status) {
+        NavigationService.forgotpassword($scope.forgot, function (data, status) {
             console.log(data);
             if (data.value == true) {
                 dataNextPre.messageBox("New password has e-mailed to you");
@@ -3082,31 +3082,31 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 
     //common function
-    dataNextPre.messageBox = function(msg) {
+    dataNextPre.messageBox = function (msg) {
         var xyz = ngDialog.open({
             template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
             plain: true
         });
-        $timeout(function() {
+        $timeout(function () {
             xyz.close();
         }, 3000);
     }
 
-    dataNextPre.messageBoxNoTime = function(msg) {
+    dataNextPre.messageBoxNoTime = function (msg) {
         var xyz = ngDialog.open({
             template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
             plain: true
         });
     }
 
-    dataNextPre.messageBoxSignUp = function() {
+    dataNextPre.messageBoxSignUp = function () {
         var xyz = ngDialog.open({
             template: '<div class="pop-up"><h5 class="popup-wishlist"><div class="text-center"><h3>Welcome to Aura Art </h3><p>You may update your Profile by clicking <a href="http://auraart.in/#/account">here</a> or continue surfing by clicking X.</p></div></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
             plain: true
         });
     }
 
-    dataNextPre.messageBoxWithBtn = function(msg, btnText, funcName) {
+    dataNextPre.messageBoxWithBtn = function (msg, btnText, funcName) {
         var xyz = ngDialog.open({
             scope: $scope,
             template: '<div class="pop-up"><h5 class="popup-wishlist">Please login to add to favourites</h5><p>Click <a ng-click="showLogin();">here</a> to Login</p><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
@@ -3114,48 +3114,48 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     }
 
-    dataNextPre.favorite = function(art) {
+    dataNextPre.favorite = function (art) {
         // art.heartClass = "fa fa-heart font-color3";
         if ($scope.userProfile.id) {
             cfpLoadingBar.start();
             console.log(art.heartClass);
             switch (art.heartClass) {
-                case "fa fa-heart":
-                    {
-                        console.log("in if");
-                        art.heartClass = "fa fa-heart font-color3";
-                        NavigationService.addToFav($scope.userProfile.id, art.artwork._id, function(data) {
-                            cfpLoadingBar.complete();
-                            if (!data.value) {
-                                // $.jStorage.set("user", data);
-                                art.heartClass = "fa fa-heart font-color3";
-                                dataNextPre.messageBox("Added to favourites");
-                            } else if (data.value == true && data.comment == "Data already updated") {
-                                dataNextPre.messageBox("Already added to favourites");
-                            }
-                        })
-                    }
-                    break;
-                case "fa fa-heart font-color3":
-                    {
-                        console.log('in second if');
+            case "fa fa-heart":
+                {
+                    console.log("in if");
+                    art.heartClass = "fa fa-heart font-color3";
+                    NavigationService.addToFav($scope.userProfile.id, art.artwork._id, function (data) {
                         cfpLoadingBar.complete();
-                        NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function(data) {
-                            if (!data.value) {
-                                // $.jStorage.set("user", data);
-                                art.heartClass = "fa fa-heart";
-                                dataNextPre.messageBox("Removed from favourites");
-                            }
-                        })
-                    }
-                    break;
-                default:
+                        if (!data.value) {
+                            // $.jStorage.set("user", data);
+                            art.heartClass = "fa fa-heart font-color3";
+                            dataNextPre.messageBox("Added to favourites");
+                        } else if (data.value == true && data.comment == "Data already updated") {
+                            dataNextPre.messageBox("Already added to favourites");
+                        }
+                    })
+                }
+                break;
+            case "fa fa-heart font-color3":
+                {
+                    console.log('in second if');
+                    cfpLoadingBar.complete();
+                    NavigationService.deleteFromFav($scope.userProfile.id, art.artwork._id, function (data) {
+                        if (!data.value) {
+                            // $.jStorage.set("user", data);
+                            art.heartClass = "fa fa-heart";
+                            dataNextPre.messageBox("Removed from favourites");
+                        }
+                    })
+                }
+                break;
+            default:
 
             }
-            NavigationService.getuserprofile(function(data) {
+            NavigationService.getuserprofile(function (data) {
                 if (data.id) {
                     userProfile = data;
-                    NavigationService.getMyFavourites(data.id, function(favorite) {
+                    NavigationService.getMyFavourites(data.id, function (favorite) {
                         userProfile.wishlist = favorite;
                     })
                 }
@@ -3168,12 +3168,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    dataNextPre.getCartItems = function() {
-        NavigationService.getCartItems(function(data) {
+    dataNextPre.getCartItems = function () {
+        NavigationService.getCartItems(function (data) {
             // console.log(data);
             $scope.cartItems = data;
             $scope.totalCartPrice = 0;
-            _.each($scope.cartItems, function(n) {
+            _.each($scope.cartItems, function (n) {
                 if (n.artwork.gprice != 'N/A')
                     $scope.totalCartPrice += n.artwork.gprice;
             });
@@ -3182,10 +3182,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     dataNextPre.getCartItems();
 
-    dataNextPre.addToCart = function(art) {
+    dataNextPre.addToCart = function (art) {
         cfpLoadingBar.start();
         console.log(art);
-        NavigationService.addToCart(art.artwork._id, function(data) {
+        NavigationService.addToCart(art.artwork._id, function (data) {
             console.log(data);
             cfpLoadingBar.complete();
             if (data.value == true) {
@@ -3197,9 +3197,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    dataNextPre.removeFromCart = function(artid) {
+    dataNextPre.removeFromCart = function (artid) {
         console.log(artid);
-        NavigationService.removeFromCart(artid, function(data) {
+        NavigationService.removeFromCart(artid, function (data) {
             console.log(data);
             if (data.value == true) {
                 dataNextPre.messageBox("Removed from cart");
@@ -3210,7 +3210,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('AccountCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, cfpLoadingBar, $state, ngDialog) {
+.controller('AccountCtrl', function ($scope, TemplateService, NavigationService, $upload, $timeout, $http, cfpLoadingBar, $state, ngDialog) {
 
     $scope.template = TemplateService.changecontent("account");
     $scope.menutitle = NavigationService.makeactive("Account");
@@ -3237,18 +3237,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     cfpLoadingBar.start();
 
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             userProfile = data;
             $scope.user = data;
             cfpLoadingBar.complete();
             $scope.reload();
             $scope.isLoggedIn = true;
-            NavigationService.getMyFavourites(data.id, function(favorite) {
+            NavigationService.getMyFavourites(data.id, function (favorite) {
                 if (favorite.value != false) {
                     $scope.noFavs = false;
                     userProfile.wishlist = favorite;
-                    _.each(favorite, function(n) {
+                    _.each(favorite, function (n) {
                         $scope.allfavourites.push({
                             "_id": n.artwork
                         });
@@ -3257,37 +3257,44 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 } else {
                     $scope.noFavs = true;
                 }
-            })
+            });
         }
-    })
+    });
 
-    NavigationService.findMyArtwork(function(data) {
+    NavigationService.findMyArtwork(function (data) {
         console.log(data);
         if (data.value != false) {
             $scope.myArtworks = _.chunk(data, 3);
         }
-    })
+    });
 
     function getFavorite(allfavourites) {
-        NavigationService.getAllFavouritesData(allfavourites, function(datas, status) {
+        NavigationService.getAllFavouritesData(allfavourites, function (datas, status) {
             $scope.artistdetail = datas;
             $scope.totalfav = datas.length;
             cfpLoadingBar.complete();
-        })
+        });
     }
 
-    NavigationService.getCountryJson(function(data) {
+    NavigationService.getCountryJson(function (data) {
         $scope.allcountries = data;
-    })
+    });
 
-    NavigationService.getMyOrders(function(data) {
+    NavigationService.getMyOrders(function (data) {
         console.log(data);
         $scope.myorderedproducts = data;
-    })
+    });
 
-    $scope.reload = function() {
+    $scope.callPay = function (order) {
+        $scope.getOrder = order;
+        $scope.getOrder.pinfo = "Purchase of artwork";
+        $timeout(function () {
+            $("form[name='payuForm']").submit();
+        }, 2000);
+    }
+    $scope.reload = function () {
         $scope.user = "";
-        NavigationService.getoneartist(userProfile.id, function(data) {
+        NavigationService.getoneartist(userProfile.id, function (data) {
             console.log(data);
             $scope.user = data;
             $scope.shipping = data.shipping;
@@ -3309,53 +3316,53 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         });
     }
-    $scope.edituser = function() {
+    $scope.edituser = function () {
         $scope.user._id = userProfile.id;
-        NavigationService.registeruser($scope.user, function(data) {
+        NavigationService.registeruser($scope.user, function (data) {
             console.log(data);
             $scope.closeTab(2);
             if (data.value != false) {
                 // $scope.reload();
                 $scope.showSuccess = true;
-                $timeout(function() {
+                $timeout(function () {
                     $scope.showSuccess = false;
                 }, 5000);
             } else {
                 // $scope.reload();
                 $scope.showFail = true;
-                $timeout(function() {
+                $timeout(function () {
                     $scope.showFail = false;
                 }, 5000);
             }
         });
     }
 
-    $scope.changepassword = function() {
+    $scope.changepassword = function () {
         $scope.user._id = userProfile.id;
         if ($scope.user.editpassword === $scope.user.cnfrmpassword) {
             $scope.ismatch = false;
             delete $scope.user.cnfrmpassword;
             console.log($scope.user);
-            NavigationService.changePassword($scope.user, function(data) {
+            NavigationService.changePassword($scope.user, function (data) {
                 if (data.value == true) {
                     $scope.showSuccess = true;
                     $scope.user.password = "";
                     $scope.user.editpassword = "";
-                    $timeout(function() {
+                    $timeout(function () {
                         $scope.showSuccess = false;
                     }, 5000);
                 } else if (data.value == false && data.comment == "Same password") {
                     $scope.showPass = true;
                     $scope.user.password = "";
                     $scope.user.editpassword = "";
-                    $timeout(function() {
+                    $timeout(function () {
                         $scope.showPass = false;
                     }, 5000);
                 } else {
                     $scope.showFail = true;
                     $scope.user.password = "";
                     $scope.user.editpassword = "";
-                    $timeout(function() {
+                    $timeout(function () {
                         $scope.showFail = false;
                     }, 3000);
                 }
@@ -3365,28 +3372,28 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.saveAddress = function() {
+    $scope.saveAddress = function () {
         $scope.user._id = userProfile.id;
-        NavigationService.registeruser($scope.user, function(data) {
+        NavigationService.registeruser($scope.user, function (data) {
             console.log(data);
             if (data.value == true) {
                 // $scope.reload();
                 $scope.closeTab(1);
                 $scope.showSuccess = true;
-                $timeout(function() {
+                $timeout(function () {
                     $scope.showSuccess = false;
                 }, 5000);
             } else {
                 // $scope.reload();
                 $scope.showFail = true;
-                $timeout(function() {
+                $timeout(function () {
                     $scope.showFail = false;
                 }, 5000);
             }
         });
     }
 
-    $scope.editArtwork = function(status, id) {
+    $scope.editArtwork = function (status, id) {
         if (status === 'revert') {
             $state.go("edit-artwork", {
                 "id": id
@@ -3396,7 +3403,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.changeTab = function(tab) {
+    $scope.changeTab = function (tab) {
         if (tab == 1) {
             $scope.formstatus = true;
             //                $scope.formstatussec = false;
@@ -3406,7 +3413,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
 
     }
-    $scope.closeTab = function(tab) {
+    $scope.closeTab = function (tab) {
         if (tab == 1) {
             $scope.formstatus = false;
             $scope.reload();
@@ -3417,21 +3424,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
 
     }
-    $scope.changeTabs = function() {
+    $scope.changeTabs = function () {
         $scope.formstatussec = true;
     }
 
-    $scope.changeresi = function() {
+    $scope.changeresi = function () {
         $scope.resi = "active";
         $scope.offce = "";
     }
-    $scope.changeoffice = function() {
+    $scope.changeoffice = function () {
         $scope.resi = "";
         $scope.offce = "active";
     }
 
     $scope.activeTab = globalFunction.tab;
-    $scope.changeTab = function(data) {
+    $scope.changeTab = function (data) {
         $scope.activeTab = data;
     }
 
@@ -3440,20 +3447,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.usingFlash = FileAPI && FileAPI.upload != null;
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     $scope.uploadRightAway = true;
-    $scope.changeAngularVersion = function() {
+    $scope.changeAngularVersion = function () {
         window.location.hash = $scope.angularVersion;
         window.location.reload(true);
     };
-    $scope.hasUploader = function(index) {
+    $scope.hasUploader = function (index) {
         return $scope.upload[index] != null;
     };
-    $scope.abort = function(index) {
+    $scope.abort = function (index) {
         $scope.upload[index].abort();
         $scope.upload[index] = null;
     };
     $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
         window.location.hash.substring(2) : window.location.hash.substring(1)) : '1.2.20';
-    $scope.onFileSelect = function($files, whichone) {
+    $scope.onFileSelect = function ($files, whichone) {
         $scope.selectedFiles = [];
         $scope.progress = [];
         console.log($files);
@@ -3473,9 +3480,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
                 var fileReader = new FileReader();
                 fileReader.readAsDataURL($files[i]);
-                var loadFile = function(fileReader, index) {
-                    fileReader.onload = function(e) {
-                        $timeout(function() {
+                var loadFile = function (fileReader, index) {
+                    fileReader.onload = function (e) {
+                        $timeout(function () {
                             $scope.dataUrls[index] = e.target.result;
                         });
                     }
@@ -3488,7 +3495,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.start = function(index, whichone) {
+    $scope.start = function (index, whichone) {
         $scope.progress[index] = 0;
         $scope.errorMsg = null;
         console.log($scope.howToSend = 1);
@@ -3505,8 +3512,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 file: $scope.selectedFiles[index],
                 fileFormDataName: 'file'
             });
-            $scope.upload[index].then(function(response) {
-                $timeout(function() {
+            $scope.upload[index].then(function (response) {
+                $timeout(function () {
                     $scope.uploadResult.push(response.data);
                     imagejstupld = response.data;
                     if (whichone == 1) {
@@ -3516,26 +3523,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         }
                     }
                 });
-            }, function(response) {
+            }, function (response) {
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-            }, function(evt) {
+            }, function (evt) {
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
-            $scope.upload[index].xhr(function(xhr) {});
+            $scope.upload[index].xhr(function (xhr) {});
         } else {
             var fileReader = new FileReader();
-            fileReader.onload = function(e) {
+            fileReader.onload = function (e) {
                 $scope.upload[index] = $upload.http({
                     url: imgUploadUrl,
                     headers: {
                         'Content-Type': $scope.selectedFiles[index].type
                     },
                     data: e.target.result
-                }).then(function(response) {
+                }).then(function (response) {
                     $scope.uploadResult.push(response.data);
-                }, function(response) {
+                }, function (response) {
                     if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
+                }, function (evt) {
                     $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                 });
             }
@@ -3543,7 +3550,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.dragOverClass = function($event) {
+    $scope.dragOverClass = function ($event) {
         var items = $event.dataTransfer.items;
         var hasFile = false;
         if (items != null) {
@@ -3560,7 +3567,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 
 
-    $scope.becomeSeller = function() {
+    $scope.becomeSeller = function () {
         globalFunction.becomeSeller();
         // if ($scope.isLoggedIn == true) {
         //   if (userProfile && userProfile.accesslevel == "reseller") {
@@ -3575,11 +3582,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         // }
     }
 
-    $scope.registeruser = function() {
+    $scope.registeruser = function () {
         if ($scope.register.password === $scope.register.confirmpassword) {
             $scope.passwordNotMatch = false;
             $scope.register.accesslevel = "customer";
-            NavigationService.registeruser($scope.register, function(data, status) {
+            NavigationService.registeruser($scope.register, function (data, status) {
                 console.log(data);
                 if (data.value != false) {
                     $scope.showAlreadyRegistered = false;
@@ -3596,11 +3603,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.userlogin = function() {
-        NavigationService.userlogin($scope.login, function(data, status) {
+    $scope.userlogin = function () {
+        NavigationService.userlogin($scope.login, function (data, status) {
             if (data.value != false) {
                 $scope.showInvalidLogin = false;
-                NavigationService.getuserprofile(function(data) {
+                NavigationService.getuserprofile(function (data) {
                     ngDialog.closeAll();
                     if (data.id && data.accesslevel == "reseller") {
                         $state.go("create-artwork");
@@ -3628,20 +3635,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('ActivitiesCtrl', function($scope, TemplateService, NavigationService) {
+.controller('ActivitiesCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("activities");
         $scope.menutitle = NavigationService.makeactive("Activities");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('ReachOutCtrl', function($scope, TemplateService, NavigationService) {
+    .controller('ReachOutCtrl', function ($scope, TemplateService, NavigationService) {
         $scope.template = TemplateService.changecontent("reach-out");
         $scope.menutitle = NavigationService.makeactive("Reach Out");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
 
-.controller('CreateArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $state) {
+.controller('CreateArtworkCtrl', function ($scope, TemplateService, NavigationService, $upload, $timeout, $http, $state) {
     $scope.template = TemplateService.changecontent("create-artwork");
     $scope.menutitle = NavigationService.makeactive("Upload Artwork");
     TemplateService.title = $scope.menutitle;
@@ -3656,7 +3663,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artwork.subtype = [];
     $scope.artwork.tag = [];
     $scope.showBreadth = false;
-    $scope.onTextClick = function($event) {
+    $scope.onTextClick = function ($event) {
         $event.target.select();
     }
     $scope.select2options = {
@@ -3681,11 +3688,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.commentsub = '';
     $scope.artwork.address = 'new';
 
-    NavigationService.getCountryJson(function(data) {
+    NavigationService.getCountryJson(function (data) {
         $scope.allcountries = data;
     })
 
-    $scope.calcsq = function() {
+    $scope.calcsq = function () {
         if ($scope.artwork.height && $scope.artwork.width) {
             if ($scope.artwork.type != "Sculptures") {
                 $scope.artwork.area = ((parseInt($scope.artwork.height) * parseInt($scope.artwork.width)) / 144).toFixed(2);
@@ -3700,11 +3707,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.otherDetails = "eg. Diptych, Triptych";
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         $scope.userData = data;
     })
 
-    $scope.submitComment = function() {
+    $scope.submitComment = function () {
         if (!$scope.artwork.chat) {
             $scope.artwork.chat = [{
                 "name": $scope.userData.name,
@@ -3716,12 +3723,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.allartist = [];
-    $scope.getDropdown = function(search) {
+    $scope.getDropdown = function (search) {
         if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.artwork.type;
             $scope.change.search = search;
-            NavigationService.getAllArtistDropArtist($scope.change, function(data) {
+            NavigationService.getAllArtistDropArtist($scope.change, function (data) {
                 if (data && data.value != false) {
                     $scope.allartist = data;
                 } else {
@@ -3734,9 +3741,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.resellers = [];
-    $scope.getDropdownReseller = function(search) {
+    $scope.getDropdownReseller = function (search) {
         if (search.length >= 1) {
-            NavigationService.getAllResellerDrop(search, function(data) {
+            NavigationService.getAllResellerDrop(search, function (data) {
                 if (data && data.value != false) {
                     $scope.resellers = data;
                 } else {
@@ -3748,7 +3755,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.setSearch = function(select) {
+    $scope.setSearch = function (select) {
         console.log(select.selected);
         $scope.variable = select.selected.name;
         $scope.artwork.user = select.selected;
@@ -3762,16 +3769,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     }
 
-    $scope.setSearchReseller = function(select) {
+    $scope.setSearchReseller = function (select) {
         $scope.variableReseller = select.selected.name;
     }
 
-    NavigationService.lastSr(function(data, status) {
+    NavigationService.lastSr(function (data, status) {
         console.log(data);
         $scope.artwork.srno = parseInt(data.srno) + 1;
     });
 
-    $scope.calculateprice = function(flag) {
+    $scope.calculateprice = function (flag) {
         $scope.artwork.price = parseFloat($scope.artwork.price);
         $scope.artwork.gprice = parseFloat($scope.artwork.gprice);
         $scope.artwork.comm = parseFloat($scope.artwork.comm);
@@ -3790,23 +3797,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.removeimage = function(i) {
+    $scope.removeimage = function (i) {
         $scope.artwork.image.splice(i, 1);
     };
 
     $scope.show = 0;
     $scope.showmed = 0;
 
-    $scope.ismatch = function(data, select) {
+    $scope.ismatch = function (data, select) {
         console.log(select.selected);
-        _.each(data, function(n, key) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n),
                     category: $scope.artwork.type
                 };
-                NavigationService.saveartMedium(item, function(data, status) {
+                NavigationService.saveartMedium(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -3818,8 +3825,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
         console.log($scope.artwork.subtype);
     }
-    $scope.ismatchmed = function(data, select) {
-        _.each(data, function(n, key) {
+    $scope.ismatchmed = function (data, select) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 // var item = {
                 //     _id: _.now(),
@@ -3830,7 +3837,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     _id: _.now(),
                     name: _.capitalize(n)
                 };
-                NavigationService.saveTag(item, function(data, status) {
+                NavigationService.saveTag(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -3850,20 +3857,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.usingFlash = FileAPI && FileAPI.upload != null;
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     $scope.uploadRightAway = true;
-    $scope.changeAngularVersion = function() {
+    $scope.changeAngularVersion = function () {
         window.location.hash = $scope.angularVersion;
         window.location.reload(true);
     };
-    $scope.hasUploader = function(index) {
+    $scope.hasUploader = function (index) {
         return $scope.upload[index] != null;
     };
-    $scope.abort = function(index) {
+    $scope.abort = function (index) {
         $scope.upload[index].abort();
         $scope.upload[index] = null;
     };
     $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
         window.location.hash.substring(2) : window.location.hash.substring(1)) : '1.2.20';
-    $scope.onFileSelect = function($files, whichone) {
+    $scope.onFileSelect = function ($files, whichone) {
         $scope.selectedFiles = [];
         $scope.progress = [];
         console.log($files);
@@ -3883,9 +3890,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
                 var fileReader = new FileReader();
                 fileReader.readAsDataURL($files[i]);
-                var loadFile = function(fileReader, index) {
-                    fileReader.onload = function(e) {
-                        $timeout(function() {
+                var loadFile = function (fileReader, index) {
+                    fileReader.onload = function (e) {
+                        $timeout(function () {
                             $scope.dataUrls[index] = e.target.result;
                         });
                     }
@@ -3898,7 +3905,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.start = function(index, whichone) {
+    $scope.start = function (index, whichone) {
         $scope.progress[index] = 0;
         $scope.errorMsg = null;
         console.log($scope.howToSend = 1);
@@ -3915,8 +3922,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 file: $scope.selectedFiles[index],
                 fileFormDataName: 'file'
             });
-            $scope.upload[index].then(function(response) {
-                $timeout(function() {
+            $scope.upload[index].then(function (response) {
+                $timeout(function () {
                     $scope.uploadResult.push(response.data);
                     imagejstupld = response.data;
                     if (whichone == 1) {
@@ -3931,26 +3938,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         }
                     }
                 });
-            }, function(response) {
+            }, function (response) {
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-            }, function(evt) {
+            }, function (evt) {
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
-            $scope.upload[index].xhr(function(xhr) {});
+            $scope.upload[index].xhr(function (xhr) {});
         } else {
             var fileReader = new FileReader();
-            fileReader.onload = function(e) {
+            fileReader.onload = function (e) {
                 $scope.upload[index] = $upload.http({
                     url: imgUploadUrl,
                     headers: {
                         'Content-Type': $scope.selectedFiles[index].type
                     },
                     data: e.target.result
-                }).then(function(response) {
+                }).then(function (response) {
                     $scope.uploadResult.push(response.data);
-                }, function(response) {
+                }, function (response) {
                     if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
+                }, function (evt) {
                     $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                 });
             }
@@ -3958,7 +3965,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.dragOverClass = function($event) {
+    $scope.dragOverClass = function ($event) {
         var items = $event.dataTransfer.items;
         var hasFile = false;
         if (items != null) {
@@ -3975,7 +3982,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
     ////
     $scope.framedStatus = false;
-    $scope.changingStatus = function(data) {
+    $scope.changingStatus = function (data) {
         var fStatus = data;
         console.log(data);
         if (fStatus == 'framed') {
@@ -3989,7 +3996,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.isSculpture = function(type) {
+    $scope.isSculpture = function (type) {
         $scope.artwork.subtype = [];
         $scope.show = 0;
         $scope.showmed = 0;
@@ -4007,41 +4014,41 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
         $scope.calcsq();
         switch (type) {
-            case "Paintings":
-                $scope.showPaintings = true;
-                $scope.showSculpture = false;
-                $scope.showPrints = false;
-                $scope.showPhotography = false;
-                $scope.multiplesel = false;
-                break;
-            case "Sculptures":
-                $scope.showPaintings = false;
-                $scope.showSculpture = true;
-                $scope.showPrints = false;
-                $scope.showPhotography = false;
-                $scope.multiplesel = true;
-                break;
-            case "Photographs":
-                $scope.showPaintings = false;
-                $scope.showSculpture = false;
-                $scope.showPrints = false;
-                $scope.showPhotography = true;
-                $scope.multiplesel = false;
-                break;
-            case "Prints":
-                $scope.showPaintings = false;
-                $scope.showSculpture = false;
-                $scope.showPrints = true;
-                $scope.showPhotography = false;
-                $scope.multiplesel = false;
-                break;
+        case "Paintings":
+            $scope.showPaintings = true;
+            $scope.showSculpture = false;
+            $scope.showPrints = false;
+            $scope.showPhotography = false;
+            $scope.multiplesel = false;
+            break;
+        case "Sculptures":
+            $scope.showPaintings = false;
+            $scope.showSculpture = true;
+            $scope.showPrints = false;
+            $scope.showPhotography = false;
+            $scope.multiplesel = true;
+            break;
+        case "Photographs":
+            $scope.showPaintings = false;
+            $scope.showSculpture = false;
+            $scope.showPrints = false;
+            $scope.showPhotography = true;
+            $scope.multiplesel = false;
+            break;
+        case "Prints":
+            $scope.showPaintings = false;
+            $scope.showSculpture = false;
+            $scope.showPrints = true;
+            $scope.showPhotography = false;
+            $scope.multiplesel = false;
+            break;
         }
     }
 
     $scope.showerror = false;
     $scope.disableSubmit = false;
-    $scope.createartwork = function() {
-        NavigationService.getuserprofile(function(data) {
+    $scope.createartwork = function () {
+        NavigationService.getuserprofile(function (data) {
             if (data.id && $scope.artwork.user) {
                 $scope.submitComment();
                 // if (!$scope.artwork.chat) {
@@ -4084,13 +4091,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     }
                     if (!$scope.artwork.name)
                         $scope.artwork.name = 'Untitled';
-                    NavigationService.saveArtwork($scope.artwork, function(data, status) {
+                    NavigationService.saveArtwork($scope.artwork, function (data, status) {
                         console.log(data);
                         if (data.value == true) {
                             $scope.disableSubmit = true;
                             dataNextPre.messageBox("Your art work has been submitted for review.");
                             globalFunction.tab = "myartworks";
-                            $timeout(function() {
+                            $timeout(function () {
                                 $state.go('account');
                             }, 3000);
                         }
@@ -4109,29 +4116,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.refreshArtMedum = function(search, category) {
+    $scope.refreshArtMedum = function (search, category) {
         $scope.artmedium = [];
         if (search) {
             if (!$scope.artwork.subtype)
                 $scope.artwork.subtype = [];
-            NavigationService.findArtMedium(search, $scope.artwork.subtype, category, function(data, status) {
+            NavigationService.findArtMedium(search, $scope.artwork.subtype, category, function (data, status) {
                 $scope.artmedium = data;
             });
         }
     };
-    $scope.refreshTag = function(search, category) {
+    $scope.refreshTag = function (search, category) {
         $scope.tag = [];
         if (search) {
             if (!$scope.artwork.tag)
                 $scope.artwork.tag = [];
-            NavigationService.findTag(search, $scope.artwork.tag, category, function(data, status) {
+            NavigationService.findTag(search, $scope.artwork.tag, category, function (data, status) {
                 $scope.tag = _.uniq(data, '_id');
             });
         }
     };
 })
 
-.controller('EditArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams) {
+.controller('EditArtworkCtrl', function ($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams) {
     $scope.template = TemplateService.changecontent("edit-artwork");
     $scope.menutitle = NavigationService.makeactive("Upload Artwork");
     TemplateService.title = $scope.menutitle;
@@ -4146,7 +4153,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artwork.subtype = [];
     $scope.artwork.tag = [];
     $scope.showBreadth = false;
-    $scope.onTextClick = function($event) {
+    $scope.onTextClick = function ($event) {
         $event.target.select();
     }
     $scope.select2options = {
@@ -4174,7 +4181,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.otherDetails = "eg. Diptych, Triptych";
 
-    $scope.calcsq = function() {
+    $scope.calcsq = function () {
         if ($scope.artwork.height && $scope.artwork.width) {
             if ($scope.artwork.type != "Sculptures") {
                 $scope.artwork.area = ((parseInt($scope.artwork.height) * parseInt($scope.artwork.width)) / 144).toFixed(2);
@@ -4187,11 +4194,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         $scope.userData = data;
     })
 
-    NavigationService.getartworkdetail($stateParams.id, function(data) {
+    NavigationService.getartworkdetail($stateParams.id, function (data) {
         console.log(data);
         if (data.value != false) {
             $scope.artwork = data[0].artwork;
@@ -4211,7 +4218,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     })
 
 
-    $scope.submitComment = function() {
+    $scope.submitComment = function () {
         if (!$scope.artwork.chat) {
             $scope.artwork.chat = [{
                 "name": $scope.userData.name,
@@ -4229,12 +4236,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.allartist = [];
-    $scope.getDropdown = function(search) {
+    $scope.getDropdown = function (search) {
         if (search.length >= 1) {
             $scope.change = {};
             $scope.change.type = $scope.artwork.type;
             $scope.change.search = search;
-            NavigationService.getAllArtistDropArtist($scope.change, function(data) {
+            NavigationService.getAllArtistDropArtist($scope.change, function (data) {
                 if (data && data.value != false) {
                     $scope.allartist = data;
                 } else {
@@ -4247,9 +4254,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.resellers = [];
-    $scope.getDropdownReseller = function(search) {
+    $scope.getDropdownReseller = function (search) {
         if (search.length >= 1) {
-            NavigationService.getAllResellerDrop(search, function(data) {
+            NavigationService.getAllResellerDrop(search, function (data) {
                 if (data && data.value != false) {
                     $scope.resellers = data;
                 } else {
@@ -4261,13 +4268,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.setSearch = function(select) {
+    $scope.setSearch = function (select) {
         console.log(select.selected);
         $scope.variable = select.selected.name;
         $scope.artwork.user = select.selected;
     }
 
-    $scope.setSearchReseller = function(select) {
+    $scope.setSearchReseller = function (select) {
         $scope.variableReseller = select.selected.name;
     }
 
@@ -4276,7 +4283,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     //     $scope.artwork.srno = parseInt(data.srno) + 1;
     // });
 
-    $scope.calculateprice = function(flag) {
+    $scope.calculateprice = function (flag) {
         $scope.artwork.price = parseFloat($scope.artwork.price);
         $scope.artwork.gprice = parseFloat($scope.artwork.gprice);
         $scope.artwork.comm = parseFloat($scope.artwork.comm);
@@ -4295,23 +4302,23 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.removeimage = function(i) {
+    $scope.removeimage = function (i) {
         $scope.artwork.image.splice(i, 1);
     };
 
     $scope.show = 0;
     $scope.showmed = 0;
 
-    $scope.ismatch = function(data, select) {
+    $scope.ismatch = function (data, select) {
         console.log(select.selected);
-        _.each(data, function(n, key) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n),
                     category: $scope.artwork.type
                 };
-                NavigationService.saveartMedium(item, function(data, status) {
+                NavigationService.saveartMedium(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -4323,8 +4330,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
         console.log($scope.artwork.subtype);
     }
-    $scope.ismatchmed = function(data, select) {
-        _.each(data, function(n, key) {
+    $scope.ismatchmed = function (data, select) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 // var item = {
                 //     _id: _.now(),
@@ -4335,7 +4342,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     _id: _.now(),
                     name: _.capitalize(n)
                 };
-                NavigationService.saveTag(item, function(data, status) {
+                NavigationService.saveTag(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -4355,20 +4362,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.usingFlash = FileAPI && FileAPI.upload != null;
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     $scope.uploadRightAway = true;
-    $scope.changeAngularVersion = function() {
+    $scope.changeAngularVersion = function () {
         window.location.hash = $scope.angularVersion;
         window.location.reload(true);
     };
-    $scope.hasUploader = function(index) {
+    $scope.hasUploader = function (index) {
         return $scope.upload[index] != null;
     };
-    $scope.abort = function(index) {
+    $scope.abort = function (index) {
         $scope.upload[index].abort();
         $scope.upload[index] = null;
     };
     $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
         window.location.hash.substring(2) : window.location.hash.substring(1)) : '1.2.20';
-    $scope.onFileSelect = function($files, whichone) {
+    $scope.onFileSelect = function ($files, whichone) {
         $scope.selectedFiles = [];
         $scope.progress = [];
         console.log($files);
@@ -4388,9 +4395,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
                 var fileReader = new FileReader();
                 fileReader.readAsDataURL($files[i]);
-                var loadFile = function(fileReader, index) {
-                    fileReader.onload = function(e) {
-                        $timeout(function() {
+                var loadFile = function (fileReader, index) {
+                    fileReader.onload = function (e) {
+                        $timeout(function () {
                             $scope.dataUrls[index] = e.target.result;
                         });
                     }
@@ -4403,7 +4410,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.start = function(index, whichone) {
+    $scope.start = function (index, whichone) {
         $scope.progress[index] = 0;
         $scope.errorMsg = null;
         console.log($scope.howToSend = 1);
@@ -4420,8 +4427,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 file: $scope.selectedFiles[index],
                 fileFormDataName: 'file'
             });
-            $scope.upload[index].then(function(response) {
-                $timeout(function() {
+            $scope.upload[index].then(function (response) {
+                $timeout(function () {
                     $scope.uploadResult.push(response.data);
                     imagejstupld = response.data;
                     if (whichone == 1) {
@@ -4436,26 +4443,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         }
                     }
                 });
-            }, function(response) {
+            }, function (response) {
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-            }, function(evt) {
+            }, function (evt) {
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
-            $scope.upload[index].xhr(function(xhr) {});
+            $scope.upload[index].xhr(function (xhr) {});
         } else {
             var fileReader = new FileReader();
-            fileReader.onload = function(e) {
+            fileReader.onload = function (e) {
                 $scope.upload[index] = $upload.http({
                     url: imgUploadUrl,
                     headers: {
                         'Content-Type': $scope.selectedFiles[index].type
                     },
                     data: e.target.result
-                }).then(function(response) {
+                }).then(function (response) {
                     $scope.uploadResult.push(response.data);
-                }, function(response) {
+                }, function (response) {
                     if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
+                }, function (evt) {
                     $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                 });
             }
@@ -4463,7 +4470,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.dragOverClass = function($event) {
+    $scope.dragOverClass = function ($event) {
         var items = $event.dataTransfer.items;
         var hasFile = false;
         if (items != null) {
@@ -4480,7 +4487,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
     ////
     $scope.framedStatus = false;
-    $scope.changingStatus = function(data) {
+    $scope.changingStatus = function (data) {
         var fStatus = data;
         console.log(data);
         if (fStatus == 'framed') {
@@ -4494,7 +4501,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.isSculpture = function(type) {
+    $scope.isSculpture = function (type) {
         console.log($scope.artwork.subtype);
         console.log($scope.artwork.type);
         $scope.artwork.subtype = [];
@@ -4515,40 +4522,40 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
         $scope.calcsq();
         switch (type) {
-            case "Paintings":
-                $scope.showPaintings = true;
-                $scope.showSculpture = false;
-                $scope.showPrints = false;
-                $scope.showPhotography = false;
-                $scope.multiplesel = false;
-                break;
-            case "Sculptures":
-                $scope.showPaintings = false;
-                $scope.showSculpture = true;
-                $scope.showPrints = false;
-                $scope.showPhotography = false;
-                $scope.multiplesel = true;
-                break;
-            case "Photographs":
-                $scope.showPaintings = false;
-                $scope.showSculpture = false;
-                $scope.showPrints = false;
-                $scope.showPhotography = true;
-                $scope.multiplesel = false;
-                break;
-            case "Prints":
-                $scope.showPaintings = false;
-                $scope.showSculpture = false;
-                $scope.showPrints = true;
-                $scope.showPhotography = false;
-                $scope.multiplesel = false;
-                break;
+        case "Paintings":
+            $scope.showPaintings = true;
+            $scope.showSculpture = false;
+            $scope.showPrints = false;
+            $scope.showPhotography = false;
+            $scope.multiplesel = false;
+            break;
+        case "Sculptures":
+            $scope.showPaintings = false;
+            $scope.showSculpture = true;
+            $scope.showPrints = false;
+            $scope.showPhotography = false;
+            $scope.multiplesel = true;
+            break;
+        case "Photographs":
+            $scope.showPaintings = false;
+            $scope.showSculpture = false;
+            $scope.showPrints = false;
+            $scope.showPhotography = true;
+            $scope.multiplesel = false;
+            break;
+        case "Prints":
+            $scope.showPaintings = false;
+            $scope.showSculpture = false;
+            $scope.showPrints = true;
+            $scope.showPhotography = false;
+            $scope.multiplesel = false;
+            break;
         }
     }
 
     $scope.showerror = false;
-    $scope.createartwork = function() {
-        NavigationService.getuserprofile(function(data) {
+    $scope.createartwork = function () {
+        NavigationService.getuserprofile(function (data) {
             if (data.id && $scope.artwork.user) {
                 // console.log($scope.artwork);
                 if (!$scope.artwork.chat) {
@@ -4580,19 +4587,19 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         };
                     }
                     $scope.userData._id = $scope.userData.id;
-                    NavigationService.registeruser($scope.userData, function(data) {
+                    NavigationService.registeruser($scope.userData, function (data) {
                         console.log(data);
                     });
                     if (!$scope.artwork.focused) {
                         $scope.artwork.focused = "nonfocused";
                     }
-                    NavigationService.saveArtwork($scope.artwork, function(data, status) {
+                    NavigationService.saveArtwork($scope.artwork, function (data, status) {
                         console.log(data);
                         if (data.value == true) {
                             $scope.disableSubmit = true;
                             dataNextPre.messageBox("Your art work has been submitted for review.");
                             globalFunction.tab = "myartworks";
-                            $timeout(function() {
+                            $timeout(function () {
                                 $state.go('account');
                             }, 3000);
                         }
@@ -4611,29 +4618,29 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         })
     }
 
-    $scope.refreshArtMedum = function(search, category) {
+    $scope.refreshArtMedum = function (search, category) {
         $scope.artmedium = [];
         if (search) {
             if (!$scope.artwork.subtype)
                 $scope.artwork.subtype = [];
-            NavigationService.findArtMedium(search, $scope.artwork.subtype, category, function(data, status) {
+            NavigationService.findArtMedium(search, $scope.artwork.subtype, category, function (data, status) {
                 $scope.artmedium = data;
             });
         }
     };
-    $scope.refreshTag = function(search, category) {
+    $scope.refreshTag = function (search, category) {
         $scope.tag = [];
         if (search) {
             if (!$scope.artwork.tag)
                 $scope.artwork.tag = [];
-            NavigationService.findTag(search, $scope.artwork.tag, category, function(data, status) {
+            NavigationService.findTag(search, $scope.artwork.tag, category, function (data, status) {
                 $scope.tag = _.uniq(data, '_id');
             });
         }
     };
 })
 
-.controller('EditArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams) {
+.controller('EditArtistCtrl', function ($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams) {
     $scope.template = TemplateService.changecontent("edit-artist");
     $scope.menutitle = NavigationService.makeactive("Edit Artist");
     TemplateService.title = $scope.menutitle;
@@ -4654,7 +4661,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //DEVELOPMENT
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             $scope.userData = data;
 
@@ -4664,7 +4671,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
-    NavigationService.getArtistDetail($stateParams.id, function(data) {
+    NavigationService.getArtistDetail($stateParams.id, function (data) {
         console.log(data);
         $scope.user = data;
         if ($scope.userData)
@@ -4681,14 +4688,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
     $scope.show = 0;
     $scope.showmed = 0;
-    $scope.ismatch = function(data, select) {
-        _.each(data, function(n, key) {
+    $scope.ismatch = function (data, select) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n)
                 };
-                NavigationService.saveTheme(item, function(data, status) {
+                NavigationService.saveTheme(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -4700,14 +4707,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
         console.log($scope.user.theme);
     }
-    $scope.ismatchmed = function(data, select) {
-        _.each(data, function(n, key) {
+    $scope.ismatchmed = function (data, select) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n)
                 };
-                NavigationService.saveMedium(item, function(data, status) {
+                NavigationService.saveMedium(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -4720,9 +4727,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.user.medium);
     }
 
-    $scope.email = function(myemail) {
+    $scope.email = function (myemail) {
         if (myemail) {
-            NavigationService.getOneemail(myemail, function(data, status) {
+            NavigationService.getOneemail(myemail, function (data, status) {
                 if (data.value == true) {
                     console.log("if");
                     $scope.isValidEmail = 0;
@@ -4733,7 +4740,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             });
         }
     }
-    $scope.checking = function() {
+    $scope.checking = function () {
         if ($scope.user.checkboxModel) {
             $scope.checked = 0;
         } else {
@@ -4741,7 +4748,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.addsolo = function(crdv) {
+    $scope.addsolo = function (crdv) {
         if (!crdv.soloshow) {
             crdv.soloshow = [{
                 "year": "",
@@ -4760,11 +4767,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removesolo = function(i, dev) {
+    $scope.removesolo = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.addedu = function(crdv) {
+    $scope.addedu = function (crdv) {
         if (!crdv.edu) {
             crdv.edu = [{
                 "year": "",
@@ -4783,11 +4790,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removeedu = function(i, dev) {
+    $scope.removeedu = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.addgroup = function(crdv) {
+    $scope.addgroup = function (crdv) {
         if (!crdv.groupshow) {
             crdv.groupshow = [{
                 "year": "",
@@ -4806,11 +4813,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removegroup = function(i, dev) {
+    $scope.removegroup = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.addauction = function(crdv) {
+    $scope.addauction = function (crdv) {
         if (!crdv.auction) {
             crdv.auction = [{
                 "year": "",
@@ -4829,10 +4836,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removeauction = function(i, dev) {
+    $scope.removeauction = function (i, dev) {
         dev.splice(i, 1);
     };
-    $scope.addaward = function(crdv) {
+    $scope.addaward = function (crdv) {
         if (!crdv.award) {
             crdv.award = [{
                 "year": "",
@@ -4849,17 +4856,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removeaward = function(i, dev) {
+    $scope.removeaward = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.removeimage = function(i) {
+    $scope.removeimage = function (i) {
         $scope.user.image = "";;
     };
-    $scope.removeresume = function(i) {
+    $scope.removeresume = function (i) {
         $scope.user.resume = "";
     };
-    $scope.removeadcer = function(i) {
+    $scope.removeadcer = function (i) {
         $scope.user.adcer = "";
     };
     //imageupload
@@ -4867,20 +4874,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.usingFlash = FileAPI && FileAPI.upload != null;
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     $scope.uploadRightAway = true;
-    $scope.changeAngularVersion = function() {
+    $scope.changeAngularVersion = function () {
         window.location.hash = $scope.angularVersion;
         window.location.reload(true);
     };
-    $scope.hasUploader = function(index) {
+    $scope.hasUploader = function (index) {
         return $scope.upload[index] != null;
     };
-    $scope.abort = function(index) {
+    $scope.abort = function (index) {
         $scope.upload[index].abort();
         $scope.upload[index] = null;
     };
     $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
         window.location.hash.substring(2) : window.location.hash.substring(1)) : '1.2.20';
-    $scope.onFileSelect = function($files, whichone) {
+    $scope.onFileSelect = function ($files, whichone) {
         $scope.selectedFiles = [];
         $scope.progress = [];
         console.log($files);
@@ -4900,9 +4907,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
                 var fileReader = new FileReader();
                 fileReader.readAsDataURL($files[i]);
-                var loadFile = function(fileReader, index) {
-                    fileReader.onload = function(e) {
-                        $timeout(function() {
+                var loadFile = function (fileReader, index) {
+                    fileReader.onload = function (e) {
+                        $timeout(function () {
                             $scope.dataUrls[index] = e.target.result;
                         });
                     }
@@ -4915,7 +4922,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.start = function(index, whichone) {
+    $scope.start = function (index, whichone) {
         $scope.progress[index] = 0;
         $scope.errorMsg = null;
         console.log($scope.howToSend = 1);
@@ -4932,8 +4939,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 file: $scope.selectedFiles[index],
                 fileFormDataName: 'file'
             });
-            $scope.upload[index].then(function(response) {
-                $timeout(function() {
+            $scope.upload[index].then(function (response) {
+                $timeout(function () {
                     $scope.uploadResult.push(response.data);
                     imagejstupld = response.data;
                     if (whichone == 1) {
@@ -4953,26 +4960,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         }
                     }
                 });
-            }, function(response) {
+            }, function (response) {
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-            }, function(evt) {
+            }, function (evt) {
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
-            $scope.upload[index].xhr(function(xhr) {});
+            $scope.upload[index].xhr(function (xhr) {});
         } else {
             var fileReader = new FileReader();
-            fileReader.onload = function(e) {
+            fileReader.onload = function (e) {
                 $scope.upload[index] = $upload.http({
                     url: imgUploadUrl,
                     headers: {
                         'Content-Type': $scope.selectedFiles[index].type
                     },
                     data: e.target.result
-                }).then(function(response) {
+                }).then(function (response) {
                     $scope.uploadResult.push(response.data);
-                }, function(response) {
+                }, function (response) {
                     if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
+                }, function (evt) {
                     $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                 });
             }
@@ -4980,7 +4987,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.dragOverClass = function($event) {
+    $scope.dragOverClass = function ($event) {
         var items = $event.dataTransfer.items;
         var hasFile = false;
         if (items != null) {
@@ -5001,7 +5008,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //save user
     $scope.disableSubmit = false;
-    $scope.submitForm = function() {
+    $scope.submitForm = function () {
         console.log($scope.user);
         if ($scope.isLoggedIn == true) {
             $scope.user.accesslevel = "artist";
@@ -5015,7 +5022,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.user.focused = "nonfocused";
             }
             $scope.user.status = "pending";
-            NavigationService.registerArtist($scope.user, function(data, status) {
+            NavigationService.registerArtist($scope.user, function (data, status) {
                 console.log(data);
                 if (data.value != false) {
                     dataNextPre.messageBox("Your information has been send to AURA");
@@ -5028,22 +5035,22 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.refreshMedium = function(search) {
+    $scope.refreshMedium = function (search) {
         $scope.medium = [];
         if (search) {
             if (!$scope.user.medium)
                 $scope.user.medium = [];
-            NavigationService.findMedium(search, $scope.user.medium, function(data, status) {
+            NavigationService.findMedium(search, $scope.user.medium, function (data, status) {
                 $scope.medium = data;
             });
         }
     };
-    $scope.refreshTheme = function(search) {
+    $scope.refreshTheme = function (search) {
         $scope.theme = [];
         if (search) {
             if (!$scope.user.theme)
                 $scope.user.theme = [];
-            NavigationService.findTheme(search, $scope.user.theme, function(data, status) {
+            NavigationService.findTheme(search, $scope.user.theme, function (data, status) {
                 $scope.theme = data;
             });
         }
@@ -5052,7 +5059,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 })
 
 
-.controller('RegisterArtistCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $state) {
+.controller('RegisterArtistCtrl', function ($scope, TemplateService, NavigationService, $upload, $timeout, $http, $state) {
     $scope.template = TemplateService.changecontent("register-artist");
     $scope.menutitle = NavigationService.makeactive("Register Artist");
     TemplateService.title = $scope.menutitle;
@@ -5079,20 +5086,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         placeholder: "Select A Medium"
     };
 
-    NavigationService.getCountryJson(function(data) {
+    NavigationService.getCountryJson(function (data) {
         $scope.countries = data;
     });
 
     $scope.show = 0;
     $scope.showmed = 0;
-    $scope.ismatch = function(data, select) {
-        _.each(data, function(n, key) {
+    $scope.ismatch = function (data, select) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n)
                 };
-                NavigationService.saveTheme(item, function(data, status) {
+                NavigationService.saveTheme(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -5104,14 +5111,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
         console.log($scope.user.theme);
     }
-    $scope.ismatchmed = function(data, select) {
-        _.each(data, function(n, key) {
+    $scope.ismatchmed = function (data, select) {
+        _.each(data, function (n, key) {
             if (typeof n == 'string') {
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n)
                 };
-                NavigationService.saveMedium(item, function(data, status) {
+                NavigationService.saveMedium(item, function (data, status) {
                     if (data.value == true) {
                         item._id = data.id;
                     }
@@ -5124,7 +5131,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.user.medium);
     }
 
-    $scope.checking = function() {
+    $scope.checking = function () {
         if ($scope.user.checkboxModel) {
             $scope.checked = 0;
         } else {
@@ -5132,7 +5139,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.addsolo = function(crdv) {
+    $scope.addsolo = function (crdv) {
         if (!crdv.soloshow) {
             crdv.soloshow = [{
                 "year": "",
@@ -5151,11 +5158,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removesolo = function(i, dev) {
+    $scope.removesolo = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.addedu = function(crdv) {
+    $scope.addedu = function (crdv) {
         if (!crdv.edu) {
             crdv.edu = [{
                 "year": "",
@@ -5174,11 +5181,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removeedu = function(i, dev) {
+    $scope.removeedu = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.addgroup = function(crdv) {
+    $scope.addgroup = function (crdv) {
         if (!crdv.groupshow) {
             crdv.groupshow = [{
                 "year": "",
@@ -5197,11 +5204,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removegroup = function(i, dev) {
+    $scope.removegroup = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.addauction = function(crdv) {
+    $scope.addauction = function (crdv) {
         if (!crdv.auction) {
             crdv.auction = [{
                 "year": "",
@@ -5221,10 +5228,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removeauction = function(i, dev) {
+    $scope.removeauction = function (i, dev) {
         dev.splice(i, 1);
     };
-    $scope.addaward = function(crdv) {
+    $scope.addaward = function (crdv) {
         if (!crdv.award) {
             crdv.award = [{
                 "year": "",
@@ -5241,17 +5248,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }
         }
     };
-    $scope.removeaward = function(i, dev) {
+    $scope.removeaward = function (i, dev) {
         dev.splice(i, 1);
     };
 
-    $scope.removeimage = function(i) {
+    $scope.removeimage = function (i) {
         $scope.user.image = "";;
     };
-    $scope.removeresume = function(i) {
+    $scope.removeresume = function (i) {
         $scope.user.resume = "";
     };
-    $scope.removeadcer = function(i) {
+    $scope.removeadcer = function (i) {
         $scope.user.adcer = "";
     };
     //imageupload
@@ -5259,20 +5266,20 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.usingFlash = FileAPI && FileAPI.upload != null;
     $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
     $scope.uploadRightAway = true;
-    $scope.changeAngularVersion = function() {
+    $scope.changeAngularVersion = function () {
         window.location.hash = $scope.angularVersion;
         window.location.reload(true);
     };
-    $scope.hasUploader = function(index) {
+    $scope.hasUploader = function (index) {
         return $scope.upload[index] != null;
     };
-    $scope.abort = function(index) {
+    $scope.abort = function (index) {
         $scope.upload[index].abort();
         $scope.upload[index] = null;
     };
     $scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
         window.location.hash.substring(2) : window.location.hash.substring(1)) : '1.2.20';
-    $scope.onFileSelect = function($files, whichone) {
+    $scope.onFileSelect = function ($files, whichone) {
         $scope.selectedFiles = [];
         $scope.progress = [];
         console.log($files);
@@ -5292,9 +5299,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             if ($scope.fileReaderSupported && $file.type.indexOf('image') > -1) {
                 var fileReader = new FileReader();
                 fileReader.readAsDataURL($files[i]);
-                var loadFile = function(fileReader, index) {
-                    fileReader.onload = function(e) {
-                        $timeout(function() {
+                var loadFile = function (fileReader, index) {
+                    fileReader.onload = function (e) {
+                        $timeout(function () {
                             $scope.dataUrls[index] = e.target.result;
                         });
                     }
@@ -5307,7 +5314,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.start = function(index, whichone) {
+    $scope.start = function (index, whichone) {
         $scope.progress[index] = 0;
         $scope.errorMsg = null;
         console.log($scope.howToSend = 1);
@@ -5324,8 +5331,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 file: $scope.selectedFiles[index],
                 fileFormDataName: 'file'
             });
-            $scope.upload[index].then(function(response) {
-                $timeout(function() {
+            $scope.upload[index].then(function (response) {
+                $timeout(function () {
                     $scope.uploadResult.push(response.data);
                     imagejstupld = response.data;
                     if (whichone == 1) {
@@ -5345,26 +5352,26 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         }
                     }
                 });
-            }, function(response) {
+            }, function (response) {
                 if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-            }, function(evt) {
+            }, function (evt) {
                 $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
             });
-            $scope.upload[index].xhr(function(xhr) {});
+            $scope.upload[index].xhr(function (xhr) {});
         } else {
             var fileReader = new FileReader();
-            fileReader.onload = function(e) {
+            fileReader.onload = function (e) {
                 $scope.upload[index] = $upload.http({
                     url: imgUploadUrl,
                     headers: {
                         'Content-Type': $scope.selectedFiles[index].type
                     },
                     data: e.target.result
-                }).then(function(response) {
+                }).then(function (response) {
                     $scope.uploadResult.push(response.data);
-                }, function(response) {
+                }, function (response) {
                     if (response.status > 0) $scope.errorMsg = response.status + ': ' + response.data;
-                }, function(evt) {
+                }, function (evt) {
                     $scope.progress[index] = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
                 });
             }
@@ -5372,7 +5379,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.dragOverClass = function($event) {
+    $scope.dragOverClass = function ($event) {
         var items = $event.dataTransfer.items;
         var hasFile = false;
         if (items != null) {
@@ -5392,7 +5399,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //DEVELOPMENT
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
             $scope.userData = data;
             $scope.user.selleremail = $scope.userData.email;
@@ -5422,7 +5429,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     //save user
     $scope.disableSubmit = false;
-    $scope.submitForm = function() {
+    $scope.submitForm = function () {
         console.log($scope.user);
         if ($scope.isLoggedIn == true) {
             $scope.user.accesslevel = "artist";
@@ -5434,12 +5441,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             }]
             if ($scope.user.checkboxModel) {
                 delete $scope.user.checkboxModel
-                NavigationService.registerArtist($scope.user, function(data, status) {
+                NavigationService.registerArtist($scope.user, function (data, status) {
                     console.log(data);
                     if (data.value != false) {
                         dataNextPre.messageBox("Artist has been registerd and is in review");
                         $scope.disableSubmit = true;
-                        $timeout(function() {
+                        $timeout(function () {
                             $state.go("create-artwork");
                         }, 3000)
                     }
@@ -5456,46 +5463,46 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     };
 
-    $scope.refreshMedium = function(search) {
+    $scope.refreshMedium = function (search) {
         $scope.medium = [];
         if (search) {
             if (!$scope.user.medium)
                 $scope.user.medium = [];
-            NavigationService.findMedium(search, $scope.user.medium, function(data, status) {
+            NavigationService.findMedium(search, $scope.user.medium, function (data, status) {
                 $scope.medium = data;
             });
         }
     };
-    $scope.refreshTheme = function(search) {
+    $scope.refreshTheme = function (search) {
         $scope.theme = [];
         if (search) {
             if (!$scope.user.theme)
                 $scope.user.theme = [];
-            NavigationService.findTheme(search, $scope.user.theme, function(data, status) {
+            NavigationService.findTheme(search, $scope.user.theme, function (data, status) {
                 $scope.theme = data;
             });
         }
     };
 })
 
-.controller('FavoriteProductCtrl', function($scope, TemplateService, NavigationService, $stateParams) {
+.controller('FavoriteProductCtrl', function ($scope, TemplateService, NavigationService, $stateParams) {
     $scope.template = TemplateService.changecontent("favorite-product");
     $scope.menutitle = NavigationService.makeactive("Favorites");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-    NavigationService.getartworkdetail($stateParams.artid, function(data, status) {
+    NavigationService.getartworkdetail($stateParams.artid, function (data, status) {
         $scope.artistDetailImg = data[0];
         console.log($scope.artistDetailImg);
     });
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         dataNextPre.addToCart(art);
     }
 
 })
 
-.controller('BuyersTermConditionCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
+.controller('BuyersTermConditionCtrl', function ($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("buyerstermcondition");
     $scope.menutitle = NavigationService.makeactive("Buyers Terms ConditionCtrl");
@@ -5503,25 +5510,25 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('TermConditionCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
+.controller('TermConditionCtrl', function ($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("termcondition");
     $scope.menutitle = NavigationService.makeactive("Term Condition");
     TemplateService.title = $scope.menutitle;
     $scope.navigation = NavigationService.getnav();
 
-    NavigationService.getuserprofile(function(data) {
+    NavigationService.getuserprofile(function (data) {
         if (data.id) {
-            NavigationService.getoneartist(data.id, function(artistdata, status) {
+            NavigationService.getoneartist(data.id, function (artistdata, status) {
                 $scope.userData = artistdata;
             })
         }
     })
 
-    $scope.makeReseller = function() {
+    $scope.makeReseller = function () {
         cfpLoadingBar.start();
         $scope.userData.accesslevel = "reseller";
-        NavigationService.registeruser($scope.userData, function(data, status) {
+        NavigationService.registeruser($scope.userData, function (data, status) {
             cfpLoadingBar.complete();
             console.log(data);
             if (data.value != false) {
@@ -5535,7 +5542,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
 })
 
-.controller('SearchResultsCtrl', function($scope, TemplateService, NavigationService, $stateParams, $location, ngDialog, $timeout, $state, cfpLoadingBar) {
+.controller('SearchResultsCtrl', function ($scope, TemplateService, NavigationService, $stateParams, $location, ngDialog, $timeout, $state, cfpLoadingBar) {
     $scope.template = TemplateService.changecontent("searchresults");
     $scope.menutitle = NavigationService.makeactive("Search Results");
     TemplateService.title = $scope.menutitle;
@@ -5549,9 +5556,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     if ($.jStorage.get("searchResults")) {
         $scope.artworks = $.jStorage.get("searchResults");
         lastpage = $scope.artworks.totalpages;
-        _.each($scope.artworks.data, function(n) {
+        _.each($scope.artworks.data, function (n) {
             if (n.artwork) {
-                _.each(n.artwork, function(m) {
+                _.each(n.artwork, function (m) {
                     var item = {};
                     item._id = n._id;
                     item.name = n.name;
@@ -5564,18 +5571,18 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         console.log($scope.totalartcont);
     }
 
-    $scope.getSearchedArt = function() {
+    $scope.getSearchedArt = function () {
         console.log(lastpage);
         if ($scope.art.search != '' && lastpage >= $scope.art.pagenumber) {
             cfpLoadingBar.start();
-            NavigationService.getArtworkbySearch($scope.art, function(data) {
+            NavigationService.getArtworkbySearch($scope.art, function (data) {
                 console.log(data);
                 if (data.value != false) {
                     lastpage = data.totalpages;
                     $scope.artworks = data;
-                    _.each($scope.artworks.data, function(n) {
+                    _.each($scope.artworks.data, function (n) {
                         if (n.artwork) {
-                            _.each(n.artwork, function(m) {
+                            _.each(n.artwork, function (m) {
                                 var item = {};
                                 item._id = n._id;
                                 item.name = n.name;
@@ -5591,12 +5598,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.addMoreItems = function() {
+    $scope.addMoreItems = function () {
         $scope.art.pagenumber++;
         $scope.getSearchedArt();
     }
 
-    $scope.showDetails = function(oneuser) {
+    $scope.showDetails = function (oneuser) {
         console.log(oneuser)
         $scope.artistDetailImg = oneuser;
         ngDialog.open({
@@ -5605,16 +5612,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
     };
 
-    $scope.lauchedSoon = function() {
+    $scope.lauchedSoon = function () {
         ngDialog.open({
             template: 'views/content/modal-launch.html'
         });
-        $timeout(function() {
+        $timeout(function () {
             ngDialog.closeAll();
         }, 3000);
     };
 
-    $scope.goToDetailPage = function(artwork) {
+    $scope.goToDetailPage = function (artwork) {
         console.log(artwork);
         if (artwork.type == "Sculptures") {
             //          $location.url("/sculpture/" + artwork._id);
@@ -5629,17 +5636,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     }
 
-    $scope.makeFav = function(art) {
+    $scope.makeFav = function (art) {
         dataNextPre.favorite(art);
     }
 
-    $scope.addToCart = function(art) {
+    $scope.addToCart = function (art) {
         dataNextPre.addToCart(art);
     }
 
 })
 
-.controller('ThankYouCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+.controller('ThankYouCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("thankyou");
     $scope.menutitle = NavigationService.makeactive("Thank You");
@@ -5647,7 +5654,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.navigation = NavigationService.getnav();
 })
 
-.controller('SorryCtrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+.controller('SorryCtrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
     //Used to name the .html file
     $scope.template = TemplateService.changecontent("sorry");
     $scope.menutitle = NavigationService.makeactive("Sorry");
@@ -5658,21 +5665,21 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.order.orderid = $stateParams.orderId;
 })
 
-.controller('Error404Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+.controller('Error404Ctrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("error404");
         $scope.menutitle = NavigationService.makeactive("Home");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('PrivacyPolicyCtrl', function($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
+    .controller('PrivacyPolicyCtrl', function ($scope, TemplateService, NavigationService, $state, cfpLoadingBar) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("privacy-policy");
         $scope.menutitle = NavigationService.makeactive("Privacy Policy");
         TemplateService.title = $scope.menutitle;
         $scope.navigation = NavigationService.getnav();
     })
-    .controller('Error500Ctrl', function($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
+    .controller('Error500Ctrl', function ($scope, TemplateService, NavigationService, cfpLoadingBar, $timeout, $location, $state, $stateParams, ngDialog) {
         //Used to name the .html file
         $scope.template = TemplateService.changecontent("error500");
         $scope.menutitle = NavigationService.makeactive("Home");

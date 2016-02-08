@@ -78,127 +78,127 @@
             </div>
 
             <div class="col-md-10" ng-if="activeTab == 'address'">
-              <div class="address-book compact-form">
-                <div class="row">
-                  <div class="col-md-6">
-                    <form ng-submit="saveAddress();">
-                      <div class="chngpswd-cont">
-                        <div class="addcat">
-                          <h5 class="displ">Default Billing Address</h5>
+                <div class="address-book compact-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form ng-submit="saveAddress();">
+                                <div class="chngpswd-cont">
+                                    <div class="addcat">
+                                        <h5 class="displ">Default Billing Address</h5>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="tel-box">
+                                            <input type="text" class="form-control tel-country" ng-model="user.billing.flatno" placeholder="House No" required>
+                                            <input type="text" class="form-control tel-number" ng-model="user.billing.bldgname" placeholder="Name Of Buliding" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.billing.landmark" placeholder="Landmark" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.billing.street" placeholder="Street" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.billing.locality" placeholder="Locality" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.billing.city" placeholder="City" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.billing.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.billing.state" placeholder="State" required>
+                                    </div>
+                                    <div class="input-id">
+                                        <select class="form-control" ng-options="country.code as country.name for country in allcountries" ng-change="onFieldChange(checked)" ng-model="user.billing.country" placeholder="Select county"></select>
+                                    </div>
+                                    <button class="btn btn-sucesses" type="submit">Save</button>
+                                    <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                          <div class="tel-box">
-                            <input type="text" class="form-control tel-country" ng-model="user.billing.flatno" placeholder="House No" required>
-                            <input type="text" class="form-control tel-number" ng-model="user.billing.bldgname" placeholder="Name Of Buliding" required>
-                          </div>
+                        <div class="col-md-6">
+                            <form ng-submit="saveAddress();">
+                                <div class="chngpswd-cont">
+                                    <div class="addcat">
+                                        <h5 class="displ">Default Shipping Address</h5>
+                                        <div class="form-group">
+                                            <div class="tel-box">
+                                                <input type="text" class="form-control tel-country" ng-model="user.shipping.flatno" placeholder="House No" required>
+                                                <input type="text" class="form-control tel-number" ng-model="user.shipping.bldgname" placeholder="Name Of Buliding" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" ng-model="user.shipping.landmark" placeholder="Landmark" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" ng-model="user.shipping.street" placeholder="Street" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" ng-model="user.shipping.locality" placeholder="Locality" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" ng-model="user.shipping.city" placeholder="City" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" ng-model="user.shipping.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" ng-model="user.shipping.state" placeholder="State" required>
+                                        </div>
+                                        <div class="input-id">
+                                            <select class="form-control" ng-options="country.code as country.name for country in allcountries" ng-change="onFieldChange(checked)" ng-model="user.shipping.country" placeholder="Select county"></select>
+                                        </div>
+                                        <button class="btn btn-sucesses" type="submit">Save</button>
+                                        <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.landmark" placeholder="Landmark" required>
+                        <div class="col-md-6" ng-if="user.accesslevel!='customer'">
+                            <form ng-submit="saveAddress();">
+                                <div class="chngpswd-cont">
+                                    <div class="addcat">
+                                        <h5 class="displ">Studio Address</h5>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="tel-box">
+                                            <input type="text" class="form-control tel-country" ng-model="user.work.flatno" placeholder="House No" required>
+                                            <input type="text" class="form-control tel-number" ng-model="user.work.bldgname" placeholder="Name Of Buliding" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.work.landmark" placeholder="Landmark" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.work.street" placeholder="Street" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.work.locality" placeholder="Locality" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.work.city" placeholder="City" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.work.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model="user.work.state" placeholder="State" required>
+                                    </div>
+                                    <div class="input-id">
+                                        <select class="form-control" ng-model="user.work.country" placeholder="Country" required>
+                                            <option value="">Select Country</option>
+                                            <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-sucesses" type="submit">Save</button>
+                                    <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.street" placeholder="Street" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.locality" placeholder="Locality" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.city" placeholder="City" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.billing.state" placeholder="State" required>
-                        </div>
-                        <div class="input-id">
-                          <select class="form-control" ng-options="country.code as country.name for country in allcountries" ng-change="onFieldChange(checked)" ng-model="user.billing.country" placeholder = "Select county"></select>
-                        </div>
-                        <button class="btn btn-sucesses" type="submit">Save</button>
-                        <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="col-md-6">
-                    <form ng-submit="saveAddress();">
-                      <div class="chngpswd-cont">
-                        <div class="addcat">
-                          <h5 class="displ">Default Shipping Address</h5>
-                          <div class="form-group">
-                            <div class="tel-box">
-                              <input type="text" class="form-control tel-country" ng-model="user.shipping.flatno" placeholder="House No" required>
-                              <input type="text" class="form-control tel-number" ng-model="user.shipping.bldgname" placeholder="Name Of Buliding" required>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" class="form-control" ng-model="user.shipping.landmark" placeholder="Landmark" required>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" class="form-control" ng-model="user.shipping.street" placeholder="Street" required>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" class="form-control" ng-model="user.shipping.locality" placeholder="Locality" required>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" class="form-control" ng-model="user.shipping.city" placeholder="City" required>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" class="form-control" ng-model="user.shipping.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
-                          </div>
-                          <div class="form-group">
-                            <input type="text" class="form-control" ng-model="user.shipping.state" placeholder="State" required>
-                          </div>
-                          <div class="input-id">
-                            <select class="form-control" ng-options="country.code as country.name for country in allcountries" ng-change="onFieldChange(checked)" ng-model="user.shipping.country" placeholder = "Select county"></select>
-                          </div>
-                          <button class="btn btn-sucesses" type="submit">Save</button>
-                          <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="col-md-6" ng-if="user.accesslevel!='customer'">
-                    <form ng-submit="saveAddress();">
-                      <div class="chngpswd-cont">
-                        <div class="addcat">
-                          <h5 class="displ">Studio Address</h5>
-                        </div>
-                        <div class="form-group">
-                          <div class="tel-box">
-                            <input type="text" class="form-control tel-country" ng-model="user.work.flatno" placeholder="House No" required>
-                            <input type="text" class="form-control tel-number" ng-model="user.work.bldgname" placeholder="Name Of Buliding" required>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.work.landmark" placeholder="Landmark" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.work.street" placeholder="Street" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.work.locality" placeholder="Locality" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.work.city" placeholder="City" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.work.pincode" placeholder="Pincode" ng-trim="false" only-digits maxlength="6" required>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" ng-model="user.work.state" placeholder="State" required>
-                        </div>
-                        <div class="input-id">
-                          <select class="form-control" ng-model="user.work.country" placeholder="Country" required>
-                            <option value="">Select Country</option>
-                            <option value="{{country.code}}" ng-repeat="country in allcountries">{{country.name}}</option>
-                          </select>
-                        </div>
-                        <button class="btn btn-sucesses" type="submit">Save</button>
-                        <a class="btn btn-sucesses" ng-click="closeTab(2)">Cancel</a>
-                      </div>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
             </div>
 
 
@@ -206,10 +206,12 @@
             <div class="col-md-10" ng-if="activeTab == 'orders'">
                 <div class="cart orders" ng-repeat="orders in myorderedproducts" ng-if="myorderedproducts.length>0">
                     <h5>
-            <span class="bold">Order Id:</span> {{orders.orderid}}
-            <span class="pull-right">
-              <span class="bold">Date:</span> {{orders.timestamp | date:'MMMM dd, yyyy'}}</span>
-          </h5>
+                        <div class="row">
+                            <div class="col-md-4 pull-left"><span class="bold">Order Id : {{orders.orderid}}</span></div>
+                            <div class="col-md-4 text-center"><span class="bold">Status : {{orders.status | touppercase}}</span></div>
+                            <div class="col-md-4"><span class="pull-right bold">Date : {{orders.timestamp | date:'MMMM dd, yyyy'}}</span></div>
+                        </div>
+                  </h5>
                     <table class="table table-hover content-static">
                         <thead>
                             <tr>
@@ -217,7 +219,7 @@
                                 <th>Title</th>
                                 <th>Artist Name</th>
                                 <th>Seller</th>
-                                <th>Status</th>
+                                <!--                                <th>Status</th>-->
                                 <th>Price</th>
                             </tr>
                         </thead>
@@ -229,33 +231,101 @@
                                 <td>{{artwork.artwork.name}}</td>
                                 <td>{{artwork.name}}</td>
                                 <td>{{artwork.artwork.reseller[0].name}}</td>
-                                <td>{{orders.status}}</td>
+                                <!--                                <td>{{orders.status}}</td>-->
                                 <td>Rs {{artwork.artwork.gprice | number:0}} / ${{artwork.artwork.gprice|indollars}}</td>
                             </tr>
                         </tbody>
                     </table>
 
-                      <div class="row">
+                    <div class="row">
                         <div class="col-md-offset-8 col-md-4">
 
-                          <div class="padding-bottom">
-                            <div class="row">
-                              <div class="col-xs-6 font-color2 text-right bold">
-                                <p>Grand Total:</p>
-                              </div>
-                              <div class="col-xs-6">
-                                <p>Rs {{orders.grantTotal  | number:0}} / ${{orders.grantTotal |indollars}}</p>
-                              </div>
+                            <div class="padding-bottom">
+                                <div class="row">
+                                    <div class="col-xs-6 font-color2 text-right bold">
+                                        <p>Grand Total:</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p>Rs {{orders.grantTotal | number:0}} / ${{orders.grantTotal |indollars}}</p>
+                                        <button class="btn btn-sucesses" ng-if="orders.status == 'pending'" ng-click="callPay(orders);">Pay Now</button>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
-
-
+                    </div>
                 </div>
                 <div class="text-center" ng-if="myorderedproducts.length==0">
                     <p class="text-center font-special">You haven't placed any orders yet.
                         <br><a href="#/artwork/All" class="btn btn-sucesses">Shop Now</a></p>
+                </div>
+                <div style="display:none;">
+                    <form action="payment.php" method="post" name="payuForm">
+                        <input type="hidden" name="key" value="3gqoHz" />
+                        <input type="text" name="txnid" value="" ng-model="getOrder._id" />
+                        <table>
+                            <tr>
+                                <td><b>Mandatory Parameters</b></td>
+                            </tr>
+                            <tr>
+                                <td>Amount: </td>
+                                <td>
+                                    <input name="amount" value="" ng-model="getOrder.grantTotal" />
+                                </td>
+                                <td>First Name: </td>
+                                <td>
+                                    <input name="firstname" id="firstname" value="" ng-model="getOrder.billing.name" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email: </td>
+                                <td>
+                                    <input name="email" id="email" value="" ng-model="getOrder.billing.email" />
+                                </td>
+                                <td>Phone: </td>
+                                <td>
+                                    <input name="phone" value="" ng-model="getOrder.billing.mobileno" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Product Info: </td>
+                                <td colspan="3">
+                                    <textarea name="productinfo" value="Purchase of artwork" ng-model="getOrder.pinfo"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Success URI: </td>
+                                <td colspan="3">
+                                    <!--                                    <input name="surl" value="http://192.168.0.109:81/order/payU" size="64" />-->
+                                    <input name="surl" value="http://smartsnap.in/order/payU" size="64" />
+                                    <!-- <input name="surl" value="http://www.auraart.in/manjhi/payumoney/success.php" size="64" /> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Failure URI: </td>
+                                <td colspan="3">
+                                    <!--                                    <input name="furl" value="http://192.168.0.109:81/order/payU" size="64" />-->
+                                    <input name="furl" value="http://smartsnap.in/order/payU" size="64" />
+                                    <!-- <input name="furl" value="http://www.auraart.in/manjhi/payumoney/failure.php" size="64" /> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>UDF1: </td>
+                                <td>
+                                    <input name="udf1" value="" ng-model="getOrder.orderid" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <input type="hidden" name="service_provider" value="" size="64" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <input type="submit" value="Submit" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
             </div>
             <div class="col-md-4" ng-if="activeTab == 'trace'">

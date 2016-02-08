@@ -1,12 +1,12 @@
 // var adminurl = "http://146.148.34.49/";
 var adminurl = "http://smartsnap.in/";
 // var adminurl = "http://smartsnap.in:81/";
-// var adminurl = "http://192.168.0.122:81/";
+//var adminurl = "http://192.168.0.109:81/";
 var imgUploadUrl = adminurl + "user/uploadfile";
 
 var navigationservice = angular.module('navigationservice', ['ngDialog'])
 
-.factory('NavigationService', function($http, ngDialog) {
+.factory('NavigationService', function ($http, ngDialog) {
     var navigation = [{
         name: "Home",
         active: "",
@@ -102,35 +102,35 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         link: "#/infra-services",
         classis: "active",
         subnav: []
-        // subnav: [{
-        //     name: "Data Management",
-        //     classis: "active",
-        //     link: "#/infra-services"
-        // }, {
-        //     name: "Valuation & Insurance",
-        //     classis: "active",
-        //     link: "#/infra-services"
-        // }, {
-        //     name: "Strategy for Art Initiatives, including CSR",
-        //     classis: "active",
-        //     link: "#/infra-services"
-        // }, {
-        //     name: "Packing & Logistics",
-        //     classis: "active",
-        //     link: "#/infra-services"
-        // }, {
-        //     name: "Archival Facility Set-up",
-        //     classis: "active",
-        //     link: "#/infra-services"
-        // }, {
-        //     name: "Trusteeship & Warehousing",
-        //     classis: "active",
-        //     link: "#/infra-services"
-        // }, {
-        //     name: "Training & Workshops",
-        //     classis: "active",
-        //     link: "#/infra-services"
-        // }]
+            // subnav: [{
+            //     name: "Data Management",
+            //     classis: "active",
+            //     link: "#/infra-services"
+            // }, {
+            //     name: "Valuation & Insurance",
+            //     classis: "active",
+            //     link: "#/infra-services"
+            // }, {
+            //     name: "Strategy for Art Initiatives, including CSR",
+            //     classis: "active",
+            //     link: "#/infra-services"
+            // }, {
+            //     name: "Packing & Logistics",
+            //     classis: "active",
+            //     link: "#/infra-services"
+            // }, {
+            //     name: "Archival Facility Set-up",
+            //     classis: "active",
+            //     link: "#/infra-services"
+            // }, {
+            //     name: "Trusteeship & Warehousing",
+            //     classis: "active",
+            //     link: "#/infra-services"
+            // }, {
+            //     name: "Training & Workshops",
+            //     classis: "active",
+            //     link: "#/infra-services"
+            // }]
     }, {
         name: "Events",
         active: "",
@@ -166,7 +166,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         subnav: [{
             name: "Join our mailing list",
             classis: "active",
-            function: function() {
+            function: function () {
                 ngDialog.open({
                     template: 'views/content/join-mail.html'
                 });
@@ -178,7 +178,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
         }, {
             name: "Upload Artworks for Sale",
             classis: "active",
-            function: function() {
+            function: function () {
                 globalFunction.becomeSeller();
             }
         }, {
@@ -189,10 +189,10 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
     }];
 
     return {
-        getnav: function() {
+        getnav: function () {
             return navigation;
         },
-        makeactive: function(menuname) {
+        makeactive: function (menuname) {
             for (var i = 0; i < navigation.length; i++) {
                 if (navigation[i].name == menuname) {
                     navigation[i].classis = "active";
@@ -202,7 +202,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
             }
             return menuname;
         },
-        registeruser: function(register, callback) {
+        registeruser: function (register, callback) {
             delete register.confirmpassword
             $http({
                 url: adminurl + "user/save",
@@ -210,7 +210,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: register
             }).success(callback);
         },
-        registerArtist: function(register, callback) {
+        registerArtist: function (register, callback) {
             delete register.confirmpassword
             $http({
                 url: adminurl + "user/saveArtist",
@@ -218,28 +218,28 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: register
             }).success(callback);
         },
-        changePassword: function(register, callback) {
+        changePassword: function (register, callback) {
             $http({
                 url: adminurl + "user/changepassword",
                 method: "POST",
                 data: register
             }).success(callback);
         },
-        userlogin: function(login, callback) {
+        userlogin: function (login, callback) {
             $http({
                 url: adminurl + "user/login",
                 method: "POST",
                 data: login
             }).success(callback);
         },
-        forgotpassword: function(forgot, callback) {
+        forgotpassword: function (forgot, callback) {
             $http({
                 url: adminurl + "user/forgotpassword",
                 method: "POST",
                 data: forgot
             }).success(callback);
         },
-        artworktype: function(filterdata, callback) {
+        artworktype: function (filterdata, callback) {
             //            delete pagedata.minbreadth;
             //            delete pagedata.maxbreadth;
             $http({
@@ -248,7 +248,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: filterdata
             }).success(callback);
         },
-        getartworkdetail: function(artid, callback) {
+        getartworkdetail: function (artid, callback) {
             $http({
                 url: adminurl + "artwork/findbyid",
                 method: "POST",
@@ -257,16 +257,16 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getallartist: function(pagedata, callback) {
-          delete pagedata.pagenumber;
-          delete pagedata.pagesize;
+        getallartist: function (pagedata, callback) {
+            delete pagedata.pagenumber;
+            delete pagedata.pagesize;
             $http({
                 url: adminurl + "user/findbyletter",
                 method: "POST",
                 data: pagedata
             }).success(callback);
         },
-        getListView: function(callback) {
+        getListView: function (callback) {
             $http({
                 url: adminurl + "user/findbyletter",
                 method: "POST",
@@ -276,19 +276,19 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getoneartist: function(artistid, callback) {
+        getoneartist: function (artistid, callback) {
             $http({
                 url: adminurl + "user/findone",
                 method: "POST"
             }).success(callback);
         },
-        getLastArtwork: function(callback) {
+        getLastArtwork: function (callback) {
             $http({
                 url: adminurl + "artwork/lastsr",
                 method: "POST"
             }).success(callback);
         },
-        getArtistDetail: function(artistid, callback) {
+        getArtistDetail: function (artistid, callback) {
             $http({
                 url: adminurl + "user/findoneArtist",
                 method: "POST",
@@ -297,14 +297,14 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        reachOutArtist: function(reachout, callback) {
+        reachOutArtist: function (reachout, callback) {
             $http({
                 url: adminurl + "reachout/save",
                 method: "POST",
                 data: reachout
             }).success(callback);
         },
-        getpresentevents: function(callback) {
+        getpresentevents: function (callback) {
             $http({
                 url: adminurl + "event/findevents",
                 method: "POST",
@@ -313,7 +313,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getpastevents: function(callback) {
+        getpastevents: function (callback) {
             $http({
                 url: adminurl + "event/findevents",
                 method: "POST",
@@ -322,7 +322,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        addToFav: function(userid, artid, callback) {
+        addToFav: function (userid, artid, callback) {
             $http({
                 url: adminurl + "wishlist/save",
                 method: "POST",
@@ -332,7 +332,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        deleteFromFav: function(userid, artid, callback) {
+        deleteFromFav: function (userid, artid, callback) {
             $http({
                 url: adminurl + "wishlist/delete",
                 method: "POST",
@@ -342,7 +342,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getMyFavourites: function(userid, callback) {
+        getMyFavourites: function (userid, callback) {
             $http({
                 url: adminurl + "wishlist/find",
                 method: "POST",
@@ -351,7 +351,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        addToCart: function(artid, callback) {
+        addToCart: function (artid, callback) {
             $http({
                 url: adminurl + "cart/save",
                 method: "POST",
@@ -360,7 +360,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        removeFromCart: function(artid, callback) {
+        removeFromCart: function (artid, callback) {
             $http({
                 url: adminurl + "cart/delete",
                 method: "POST",
@@ -369,7 +369,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        checkout: function(order, callback) {
+        checkout: function (order, callback) {
             console.log(order);
             $http({
                 url: adminurl + "order/save",
@@ -377,34 +377,34 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 data: order
             }).success(callback);
         },
-        getCartItems: function(callback) {
+        getCartItems: function (callback) {
             $http({
                 url: adminurl + "cart/find",
                 method: "POST"
             }).success(callback);
         },
-        getuserprofile: function(callback) {
+        getuserprofile: function (callback) {
             $http({
                 url: adminurl + "user/profile",
                 method: "POST",
 
             }).success(callback);
         },
-        logout: function(callback) {
+        logout: function (callback) {
             $http({
                 url: adminurl + "user/logout",
                 method: "POST",
 
             }).success(callback);
         },
-        getAllEvents: function(callback) {
+        getAllEvents: function (callback) {
             $http({
                 url: adminurl + "event/find",
                 method: "POST",
 
             }).success(callback);
         },
-        getOneEvents: function(id, callback) {
+        getOneEvents: function (id, callback) {
             $http({
                 url: adminurl + "event/findone",
                 method: "POST",
@@ -414,19 +414,19 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
             }).success(callback);
         },
 
-        getupcomingevents: function(callback) {
+        getupcomingevents: function (callback) {
             $http({
                 url: adminurl + "event/findevents",
                 method: "POST"
             }).success(callback);
         },
-        pressFind: function(callback) {
+        pressFind: function (callback) {
             $http({
                 url: adminurl + "press/find",
                 method: "POST",
             }).success(callback);
         },
-        getAllFavouritesData: function(artarray, callback) {
+        getAllFavouritesData: function (artarray, callback) {
             $http({
                 url: adminurl + "artwork/favoriteartwork",
                 method: "POST",
@@ -435,50 +435,50 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getAllArtistDrop: function(searchtext, callback) {
+        getAllArtistDrop: function (searchtext, callback) {
             $http({
                 url: adminurl + "user/findUser",
                 method: "POST",
                 data: searchtext
             }).success(callback);
         },
-        getAllArtistDropArtist: function(searchtext, callback) {
+        getAllArtistDropArtist: function (searchtext, callback) {
             $http({
                 url: adminurl + "user/findforart",
                 method: "POST",
                 data: searchtext
             }).success(callback);
         },
-        getallmedium: function(data, callback) {
+        getallmedium: function (data, callback) {
             $http({
                 url: adminurl + "artmedium/getmedium",
                 method: "POST",
                 data: data
             }).success(callback);
         },
-        userbytype: function(searchtext, n, callback) {
+        userbytype: function (searchtext, n, callback) {
             $http({
                 url: adminurl + "user/userbytype",
                 method: "POST",
                 data: {
                     "type": searchtext
                 }
-            }).success(function(data, status) {
+            }).success(function (data, status) {
                 callback(data, status, n);
             });
         },
-        getAllArtistByAccess: function(n, callback) {
+        getAllArtistByAccess: function (n, callback) {
             $http({
                 url: adminurl + "user/findbyaccess",
                 method: "POST",
                 data: {
                     "accesslevel": "artist"
                 }
-            }).success(function(data, status) {
+            }).success(function (data, status) {
                 callback(data, status, n);
             });
         },
-        getArtworkbySearch: function(pagedata, callback) {
+        getArtworkbySearch: function (pagedata, callback) {
             $http({
                 url: adminurl + "artwork/searchartwork",
                 method: "POST",
@@ -490,24 +490,24 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getSlider: function(callback) {
+        getSlider: function (callback) {
             $http({
                 url: adminurl + "slider/find",
                 method: "POST"
             }).success(callback)
         },
-        getSearchDrop: function(search, n, callback) {
+        getSearchDrop: function (search, n, callback) {
             $http({
                 url: adminurl + "artwork/searchdrop",
                 method: "POST",
                 data: {
                     "search": search
                 }
-            }).success(function(data) {
+            }).success(function (data) {
                 callback(data, n);
             })
         },
-        nextPrev: function(srno, type, callback) {
+        nextPrev: function (srno, type, callback) {
             $http({
                 url: adminurl + "artwork/nextartwork",
                 method: "POST",
@@ -517,7 +517,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        tagSearchType: function(type, search, callback) {
+        tagSearchType: function (type, search, callback) {
             $http({
                 url: adminurl + "tag/gettag",
                 method: "POST",
@@ -527,29 +527,29 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        placeOrder: function(order, callback) {
+        placeOrder: function (order, callback) {
             $http({
                 url: adminurl + "order/save",
                 method: "POST",
                 data: order
             }).success(callback);
         },
-        getMyOrders: function(callback) {
+        getMyOrders: function (callback) {
             $http({
                 url: adminurl + "order/findOrders",
                 method: "POST"
             }).success(callback);
         },
-        getCountryJson: function(callback) {
+        getCountryJson: function (callback) {
             $http.get('js/countries.json').success(callback);
         },
-        getAllThoughts: function(callback) {
+        getAllThoughts: function (callback) {
             $http({
                 url: adminurl + "thought/find",
                 method: "POST"
             }).success(callback);
         },
-        getOneThought: function(id, callback) {
+        getOneThought: function (id, callback) {
             $http({
                 url: adminurl + 'thought/findone',
                 method: 'POST',
@@ -558,19 +558,19 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        getDollarPrice: function(callback) {
+        getDollarPrice: function (callback) {
             $http({
                 url: adminurl + 'dollar/find',
                 method: 'POST'
             }).success(callback);
         },
-        lastSr: function(callback) {
+        lastSr: function (callback) {
             $http({
                 url: adminurl + "artwork/lastsr",
                 method: "POST"
             }).success(callback);
         },
-        getAllResellerDrop: function(searchtext, callback) {
+        getAllResellerDrop: function (searchtext, callback) {
             $http({
                 url: adminurl + "user/findCust",
                 method: "POST",
@@ -579,7 +579,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        findArtMedium: function(data, artmedium, category, callback) {
+        findArtMedium: function (data, artmedium, category, callback) {
             $http({
                 url: adminurl + "artmedium/find",
                 method: "POST",
@@ -590,7 +590,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        findTag: function(data, tag, category, callback) {
+        findTag: function (data, tag, category, callback) {
             $http({
                 url: adminurl + "tag/find",
                 method: "POST",
@@ -601,14 +601,14 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        saveArtwork: function(data, callback) {
+        saveArtwork: function (data, callback) {
             $http({
                 url: adminurl + "artwork/saveFront",
                 method: "POST",
                 data: data
             }).success(callback);
         },
-        getOneemail: function(myemail, callback) {
+        getOneemail: function (myemail, callback) {
             $http({
                 url: adminurl + "user/searchmail",
                 method: "POST",
@@ -617,7 +617,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        findTheme: function(data, theme, callback) {
+        findTheme: function (data, theme, callback) {
             $http({
                 url: adminurl + "theme/find",
                 method: "POST",
@@ -627,7 +627,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        findMedium: function(data, medium, callback) {
+        findMedium: function (data, medium, callback) {
             $http({
                 url: adminurl + "medium/find",
                 method: "POST",
@@ -637,13 +637,13 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        findMyArtwork: function(callback) {
+        findMyArtwork: function (callback) {
             $http({
                 url: adminurl + "artwork/findMyArtwork",
                 method: "POST"
             }).success(callback);
         },
-        saveartMedium: function(data, callback) {
+        saveartMedium: function (data, callback) {
             $http({
                 url: adminurl + "artmedium/save",
                 method: "POST",
@@ -653,7 +653,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        saveTag: function(data, callback) {
+        saveTag: function (data, callback) {
             $http({
                 url: adminurl + "tag/save",
                 method: "POST",
@@ -663,7 +663,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        saveMedium: function(data, callback) {
+        saveMedium: function (data, callback) {
             $http({
                 url: adminurl + "medium/save",
                 method: "POST",
@@ -672,7 +672,7 @@ var navigationservice = angular.module('navigationservice', ['ngDialog'])
                 }
             }).success(callback);
         },
-        saveTheme: function(data, callback) {
+        saveTheme: function (data, callback) {
             $http({
                 url: adminurl + "theme/save",
                 method: "POST",
