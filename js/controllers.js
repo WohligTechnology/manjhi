@@ -1466,7 +1466,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             NavigationService.checkout($scope.user, function(data) {
                 // console.log("incheck");
                 if (data.value != false) {
-                    $scope.user.grantTotal = $scope.user.grantTotal;
                     $scope.user.orderid1 = data.id;
                     $scope.user.orderid2 = data.orderid;
                     $timeout(function() {
@@ -3067,7 +3066,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.forgotpassword($scope.forgot, function(data, status) {
             console.log(data);
             if (data.value == true) {
-                $scope.changeTab(4);
+                dataNextPre.messageBox("New password has e-mailed to you");
             }
         })
     }
@@ -3091,6 +3090,13 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         $timeout(function() {
             xyz.close();
         }, 3000);
+    }
+
+    dataNextPre.messageBoxNoTime = function(msg) {
+        var xyz = ngDialog.open({
+            template: '<div class="pop-up"><h5 class="popup-wishlist">' + msg + '</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+            plain: true
+        });
     }
 
     dataNextPre.messageBoxSignUp = function() {
@@ -3381,11 +3387,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.editArtwork = function(status, id) {
-        console.log(status);
         if (status === 'revert') {
             $state.go("edit-artwork", {
                 "id": id
             });
+        } else {
+            dataNextPre.messageBoxNoTime("For any changes, please write to us at artistsubmit/resellersubmit@auraart.in");
         }
     }
 
@@ -4075,6 +4082,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     if (!$scope.artwork.focused) {
                         $scope.artwork.focused = "nonfocused";
                     }
+                    if (!$scope.artwork.name)
+                        $scope.artwork.name = 'Untitled';
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {

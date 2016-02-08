@@ -456,12 +456,13 @@ firstapp.directive('elevateZoom', function($document, $filter) {
         link: function($scope, element, attr) {
             $scope.$watch(attr.image, function() {
                 $scope.changeImage = function() {
-                    var image = $scope[attr.image];
+                    var image = '';
+                    image = $scope[attr.image].artwork.image[0];
                     var $element = $(element);
-                    image = image.artwork.image[0];
+                    // image = image.artwork.image[0];
                     var smallimg = attr.smallImage;
                     var bigimg = attr.bigImage;
-
+                    console.log(image);
                     $element.attr('data-zoom-image', $filter('uploadpath')(image));
                     $element.attr('src', $filter('uploadsmallimage')(image));
                     $element.elevateZoom();
