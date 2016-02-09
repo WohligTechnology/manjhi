@@ -1,15 +1,16 @@
-<div class="choose-modal">
-  <h5>Please Select one:</h5>
-  <div class="choose-btn">
-    <button class="btn btn-sucesses" type="Submit">Favorite</button>
-    <button class="btn btn-sucesses" type="Submit">Folder</button>
-  </div>
-  <div class="select-artist">
-    <select class="" name="">
-      <option value="1">Artist</option>
-      <option value="1">Artist</option>
-      <option value="1">Artist</option>
-      <option value="1">Artist</option>
-    </select>
-  </div>
+<div class="choose-modal" ng-init="showDrop=false;">
+   <h5>Please Select one: {{favObj}}</h5>
+   <div class="choose-btn">
+      <button class="btn btn-sucesses" ng-click="showDrop=false;nowAddToFav(favObj);">My Favorites</button>
+      <button class="btn btn-sucesses" ng-click="showDrop=true;">Folder</button>
+   </div>
+   <div class="select-artist" ng-show="showDrop">
+      <select class="form-control" ng-model="favObj.wishlistfolder">
+         <option value="">Please Select</option>
+         <option value="{{folder._id}}" ng-repeat="folder in myFolders">{{folder.name}}</option>
+      </select>
+   </div>
+   <div class="row" ng-show="showDrop">
+      <button class="btn btn-sucesses" ng-click="nowAddToFav(favObj);">Ok</button>
+   </div>
 </div>

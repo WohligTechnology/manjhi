@@ -166,6 +166,11 @@ firstapp.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvi
         templateUrl: "views/template.html",
         controller: 'FavoriteCtrl'
     })
+    .state('favorites', {
+        url: "/favorite/:artist",
+        templateUrl: "views/template.html",
+        controller: 'FavoriteCtrl'
+    })
 
     .state('artistpage', {
         url: "/artistpage",
@@ -462,7 +467,6 @@ firstapp.directive('elevateZoom', function ($document, $filter) {
                     // image = image.artwork.image[0];
                     var smallimg = attr.smallImage;
                     var bigimg = attr.bigImage;
-                    console.log(image);
                     $element.attr('data-zoom-image', $filter('uploadpath')(image));
                     $element.attr('src', $filter('uploadsmallimage')(image));
                     $element.elevateZoom();
