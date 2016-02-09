@@ -107,7 +107,7 @@ h3.home-header {
 }
 .no-modify {
   width: 100% !important;
-  margin-left: 0px !important;
+  margin-left: 0 !important;
 }
 header.stickyheader.min {
   .translateY(0);
@@ -616,6 +616,7 @@ h4 {
 }
 .nav>li>a {
   padding: 10px 8px;
+
   // padding: 10px 20px;
   font-weight: 600;
 }
@@ -1076,7 +1077,7 @@ a.link-viewall {
     font-size: 16px;
   }
 }
-.col-2{
+.col-2 {
   -webkit-column-count: 2;
   /* Chrome, Safari, Opera */
   -moz-column-count: 2;
@@ -1994,6 +1995,13 @@ a.forgetlink {
           z-index: 0;
           top: 9px;
           right: -25px;
+        }
+        a.active {
+          color: @color2;
+        }
+        ul {
+          list-style: none;
+          padding-left: 20px;
         }
       }
     }
@@ -3027,6 +3035,33 @@ img.fancybox-image {
 }
 .fancybox-opened {
   z-index: 1000000000!important;
+}
+.create-modal {
+  padding: 14px 20px 20px;
+  min-height: 210px;
+  .create-form input {
+    width: 70%;
+    height: 30px;
+    padding-left: 10px;
+  }
+  h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+}
+.choose-modal {
+  padding: 14px 20px 20px;
+  min-height: 210px;
+  .choose-btn {
+    margin-bottom: 15px;
+  }
+  h5 {
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .select-artist {
+    margin-bottom: 10px;
+  }
 }
 /* Mobile Less */
 //@import "other.less";

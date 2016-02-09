@@ -19,6 +19,9 @@
     font-size: 0.77em;
     padding: 10px 6px;
   }
+  .social-icons i {
+    font-size: 20px;
+  }
   .search-box label {
     font-size: 9px;
     vertical-align: middle;
@@ -297,6 +300,17 @@
   nav.navbar {
     margin: -32px 0 0;
   }
+  .row-headleft.col-2 {
+    -webkit-column-count: 1;
+    li {
+      margin-bottom: 5px;
+    }
+  }
+  nav li:hover ul.dropdown-menu li {
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+  }
 }
 @media @mobileperfect {
   .logo {
@@ -354,12 +368,32 @@
   .inline-box {
     font-size: 9px;
     font-weight: 600;
+    position: static;
+    margin-top: 10px;
   }
   .box-style1 p {
     height: 50px!important;
   }
   .list-cart .megamenu {
-    width: 400%;
-    right: -100%;
+    width: 280px;
+    right: -100px;
+  }
+  .row-flex.login-head {
+    padding: 35px 0 5px 15px;
+    z-index: 9;
+  }
+  .small-box {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+  }
+  .drop-cart ul li.cart-img {
+    width: 85px !important;
+    height: 85px;
+    margin-right: 10px;
+    padding: 10px 0;
+  }
+  header.stickyheader {
+    padding-bottom: 15px;
   }
 }
