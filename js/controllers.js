@@ -647,15 +647,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.createFolder = function(name) {
-        console.log(name);
-        ngDialog.closeAll();
-        if ($scope.userProfile.id) {
-            NavigationService.createwishlistfolder(name, function(data) {
-                console.log(data);
-                if (data.value == true) {
-                    getMyFolders();
-                }
-            })
+        if (name && name != '') {
+            ngDialog.closeAll();
+            if ($scope.userProfile.id) {
+                NavigationService.createwishlistfolder(name, function(data) {
+                    console.log(data);
+                    if (data.value == true) {
+                        getMyFolders();
+                    }
+                })
+            }
         }
     }
 
@@ -1365,12 +1366,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.user.billing.email = data.email;
                 $scope.user.billing.regadd = data.billing.locality;
                 $scope.user.billing.mobileno = data.mob;
+                $scope.user.billing.countrycode = data.cc;
             }
             if (data.shipping) {
                 $scope.user.shipping.name = data.name;
                 $scope.user.shipping.email = data.email;
                 $scope.user.shipping.regadd = data.shipping.locality;
                 $scope.user.shipping.mobileno = data.mob;
+                $scope.user.shipping.countrycode = data.cc;
             }
             $scope.showShipping = true;
             $scope.showShippingContinue = true;
