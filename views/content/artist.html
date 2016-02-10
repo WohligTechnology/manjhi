@@ -7,13 +7,15 @@
           <h4 class="head-team">Artist Index</h4>
         </div>
         <div class="col-md-5">
-          <ul class="artist-crisp">
-            <li class="" ng-click="makeactive(type.name);" ng-repeat="type in typejson">
-              <a class="{{type.class}}" href="">{{type.name}}
+          <div class="artist-scroll">
+            <ul class="artist-crisp">
+              <li class="" ng-click="makeactive(type.name);" ng-repeat="type in typejson">
+                <a class="{{type.class}}" href="">{{type.name}}
                 <hr class="hover-see">
               </a>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="col-md-4 col-md-offset-3">
           <div class="search-form">
@@ -76,7 +78,7 @@
       </div>
     </div>
 
-      <div class="text-center" ng-if="listview == [] && artistimage == [];">
-        Sorry! No Artist found.
-      </div>
+    <div class="text-center" ng-if="listview == [] && artistimage == [];">
+      Sorry! No Artist found.
+    </div>
   </div>
