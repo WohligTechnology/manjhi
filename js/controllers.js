@@ -2169,7 +2169,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     NavigationService.getuserprofile(function(data) {
         if (data.id) {
-            console.log("%%%%%%%%%%%%%%%%%%%%%%%");
             console.log(data);
             userProfile = data;
             NavigationService.getMyFavourites(data.id, function(favorite) {
@@ -3178,7 +3177,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     dataNextPre.messageBoxSignUp = function() {
         var xyz = ngDialog.open({
-            template: '<div class="pop-up"><h5 class="popup-wishlist"><div class="text-center"><h3>Welcome to Aura Art </h3><p>You may update your Profile by clicking <a href="http://auraart.in/#/account">here</a> or continue surfing by clicking X.</p></div></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+            template: '<div class="pop-up"><h5 class="popup-wishlist"><div class="text-center"><h3>Welcome to Aura Art </h3><p>You may update your Profile by clicking <a href="http://www.auraart.in/#/account" ng-click="closeThisDialog(value)">here</a> or continue surfing by clicking X.</p></div></h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
             plain: true
         });
     }
