@@ -1800,10 +1800,13 @@ textarea {
   //    margin: 5px 0;
   .border-radius(0px);
   .transition(all 1s ease);
-  &:hover {
+  &:hover{
     background-color: #fff;
     border-color: @color2;
     color: @color2;
+  }
+  &:focus {
+    color: #fff;
   }
   &:active {
     background-color: @color2;
@@ -1980,6 +1983,15 @@ a.forgetlink {
           opacity: 1;
         }
       }
+      li.cat-list.cpointer{
+      ul {
+        list-style: none;
+        padding-left: 20px;
+        li{
+          padding-bottom: 0;
+        }
+      }
+    }
       li.cat-list.cpointer.bolds {
         color: @color2;
         font-weight: 500;
@@ -1998,10 +2010,6 @@ a.forgetlink {
         }
         a.active {
           color: @color2;
-        }
-        ul {
-          list-style: none;
-          padding-left: 20px;
         }
       }
     }
@@ -3038,7 +3046,7 @@ img.fancybox-image {
 }
 .create-modal {
   padding: 14px 20px 20px;
-  min-height: 210px;
+  min-height: 120px;
   .create-form input {
     width: 70%;
     height: 30px;
@@ -3051,7 +3059,8 @@ img.fancybox-image {
 }
 .choose-modal {
   padding: 14px 20px 20px;
-  min-height: 210px;
+  min-height: 157px;
+  min-width: 450px;
   .choose-btn {
     margin-bottom: 15px;
   }
@@ -3062,6 +3071,14 @@ img.fancybox-image {
   .select-artist {
     margin-bottom: 10px;
   }
+}
+
+
+.fav-artist {
+    font-size: 15px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    font-weight: 600;
 }
 /* Mobile Less */
 //@import "other.less";

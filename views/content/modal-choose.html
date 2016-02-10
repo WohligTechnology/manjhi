@@ -1,16 +1,21 @@
-<div class="choose-modal" ng-init="showDrop=false;">
-   <h5>Please Select one: {{favObj}}</h5>
-   <div class="choose-btn">
+<div class="choose-modal text-center" ng-init="showDrop=false;">
+   <h5>Where you want to add this artwork?</h5>
+   <div class="">
       <button class="btn btn-sucesses" ng-click="showDrop=false;nowAddToFav(favObj);">My Favorites</button>
-      <button class="btn btn-sucesses" ng-click="showDrop=true;">Folder</button>
+      <!-- <button class="btn btn-sucesses" ng-click="showDrop=true;" ng-if="myFolders.length>0">Folder</button> -->
    </div>
-   <div class="select-artist" ng-show="showDrop">
+   <p ng-if="myFolders.length>0">- or -</p>
+   <h5 style="margin-bottom: 5px;">Folder</h5>
+   <div class="select-artist" ng-if="myFolders.length>0">
       <select class="form-control" ng-model="favObj.wishlistfolder">
          <option value="">Please Select</option>
          <option value="{{folder._id}}" ng-repeat="folder in myFolders">{{folder.name}}</option>
       </select>
    </div>
-   <div class="" ng-show="showDrop">
-      <button class="btn btn-sucesses" ng-click="nowAddToFav(favObj);">Ok</button>
+   <div class="select-artist" ng-if="myFolders.length==0">
+      <p>Please create folder to add artworks to your folder</p>
+   </div>
+   <div class="">
+      <button class="btn btn-sucesses" ng-click="nowAddToFav(favObj);">Done</button>
    </div>
 </div>

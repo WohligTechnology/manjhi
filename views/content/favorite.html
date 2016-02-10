@@ -7,18 +7,18 @@
             <div class="col-md-2">
                <div class="info-cont">
                   <ul class="info-li">
-                     <li class="cat-list cpointer bolds">
+                     <li class="cat-list cpointer" ng-class="{'bolds' : activeTab == 'myfav'}">
                         <a href="#/favorite" class="active">My Favourites
                           <span>({{totalfav}})</span>
                         </a>
                         <i class="fa fa-share-alt"></i>
                      </li>
-                     <li class="cat-list cpointer bolds">My Artists
+                     <li class="cat-list cpointer" ng-if="myArtists.length>0" ng-class="{'bolds' : activeTab == 'myartist'}">My Artists
                         <ul>
                            <li ng-repeat="artist in myArtists | orderBy:'artist'"><a href="#/favorite/{{artist}}">{{artist}}</a></li>
                         </ul>
                      </li>
-                     <li class="cat-list cpointer bolds">My Folders
+                     <li class="cat-list cpointer" ng-if="myFolders.length>0" ng-class="{'bolds' : activeTab == 'myfolder'}">My Folders
                         <ul>
                            <li ng-repeat="folder in myFolders | orderBy:'name'"><a href="#/favorite/{{folder._id}}">{{folder.name}}</a></li>
                         </ul>
@@ -29,8 +29,9 @@
                   </div>
                </div>
             </div>
-            <span>{{artistName}}</span>
+
             <div class="col-md-10" ng-hide="noFavsFolder">
+               <div class="fav-artist">{{artistName}}</div>
                <div class="col-md-3 col-sm-6" ng-repeat="artistdetails in artistdetail track by $index" ng-if="artistdetail.length>0 && !artistdetails.wishlistfolder">
                   <div class="artist-details">
                      <a ng-click="goToDetail(artistdetails.artwork);">

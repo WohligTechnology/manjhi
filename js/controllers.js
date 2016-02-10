@@ -573,6 +573,8 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         }
     })
 
+    $scope.activeTab = "myfav";
+
     function getFavorite(allfavourites) {
         $scope.myArtists = [];
         NavigationService.getAllFavouritesData(allfavourites, function(datas, status) {
@@ -593,6 +595,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 $scope.artistName = '';
                 $scope.artistdetail = datas;
             } else {
+                $scope.activeTab = "myartist";
                 $scope.artistName = $stateParams.artist;
                 $scope.artistdetail = [];
                 _.each(datas, function(n) {
@@ -600,6 +603,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         $scope.artistdetail.push(n);
                 });
                 if ($scope.artistdetail.length == 0) {
+                    $scope.activeTab = "myfolder";
                     $scope.artistName = $scope.myFolders[_.findIndex($scope.myFolders, {
                         "_id": $stateParams.artist
                     })].name;
@@ -663,8 +667,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     function getMyFolders() {
         NavigationService.getMyFolders(function(data) {
             console.log(data);
-            if (data.value != "false") {
+            if (data.value != false) {
                 $scope.myFolders = data;
+            } else {
+                $scope.myFolders = [];
             }
         })
     }
@@ -3193,6 +3199,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.nowAddToFav = function(obj) {
         console.log(obj);
         ngDialog.closeAll();
+        cfpLoadingBar.start();
         NavigationService.addToFav(obj, function(data) {
             cfpLoadingBar.complete();
             if (!data.value) {
@@ -3219,15 +3226,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     dataNextPre.favorite = function(art) {
         // art.heartClass = "fa fa-heart font-color3";
         if ($scope.userProfile.id) {
-            cfpLoadingBar.start();
+            // cfpLoadingBar.start();
             console.log(art.heartClass);
             switch (art.heartClass) {
                 case "fa fa-heart":
                     {
-                        console.log("in if");
                         NavigationService.getMyFolders(function(data) {
-                            if (data.value != "false") {
+                            if (data.value != false) {
                                 $scope.myFolders = data;
+                            } else {
+                                $scope.myFolders = [];
                             }
                         })
                         $scope.favObj = {};
@@ -3263,7 +3271,6 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     }
                     break;
                 default:
-
             }
             NavigationService.getuserprofile(function(data) {
                 if (data.id) {
