@@ -309,9 +309,13 @@
             <div class="col-md-9">
                <div class="some-image">
                   <div class="row-flex row-unflex image-box text-center">
-                     <div class="col-flex pointer" fancybox-box href="{{upcomingEvent.invitation|uploadpath}}" ng-if="upcomingEvent.invitation">
+                     <!-- <div class="col-flex pointer" fancybox-box href="{{upcomingEvent.invitation|uploadpath}}" ng-if="upcomingEvent.invitation"> -->
+                     <div class="col-flex pointer" ng-if="upcomingEvent.invitation">
                         <h6>INVITE</h6>
-                        <img alt="" class="" ng-src="{{upcomingEvent.invitation|uploadthumbnail}}">
+                        <!-- <img alt="" class="" ng-src="{{upcomingEvent.invitation|uploadthumbnail}}"> -->
+                        <p>
+                          <a href="http://smartsnap.in/user/resize?file={{upcomingEvent.invitation}}" download="http://smartsnap.in/user/resize?file={{upcomingEvent.invitation}}">View Invite</a>
+                        </p>
                      </div>
                      <div class="col-flex pointer" ng-if="upcomingEvent.catalogue">
                         <h6>CATALOGUE</h6>
@@ -319,9 +323,9 @@
                            <img alt="" class="img-responsive" src="img/vc.jpg">
                         </a>
                      </div>
-                     <div class="col-flex pointer" fancybox-box href="{{upcomingEvent.photos[0]|uploadpath}}" ng-if="upcomingEvent.photos && upcomingEvent.photos[0]">
+                     <div class="col-flex pointer" fancybox-box href="{{upcomingEvent.homeimg|uploadpath}}" ng-if="upcomingEvent.homeimg">
                         <h6>PHOTO</h6>
-                        <img alt="" class="img-responsive" ng-src="{{upcomingEvent.photos[0]|uploadthumbnail}}">
+                        <img alt="" class="img-responsive" ng-src="{{upcomingEvent.homeimg|uploadthumbnail}}">
                      </div>
                      <div class="col-flex" fancybox-box href="{{upcomingEvent.pressphoto|uploadpath}}" ng-if="upcomingEvent.pressphoto">
                         <h6>PRESS</h6>
