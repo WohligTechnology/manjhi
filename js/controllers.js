@@ -1145,7 +1145,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             // _.each(data.data, function(n) {
             //     $scope.totalartcont.push(n);
             // })
-            // $scope.totalartcont = _.uniq($scope.totalartcont, 'artwork._id');
+            $scope.totalartcont = _.uniq($scope.totalartcont, 'artwork._id');
             $scope.callinfinite = false;
             cfpLoadingBar.complete();
         });
