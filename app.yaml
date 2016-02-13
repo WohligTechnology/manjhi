@@ -1,5 +1,5 @@
 application: aura--art
-version: 2
+version: 1
 runtime: php55
 api_version: 1
 threadsafe: no
@@ -9,9 +9,9 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: /(.+\.(gif|png|jpg|css|js|html|eot|woff|ttf|svg|otf|xml|txt|json))$
+- url: /(.+\.(gif|png|jpg|css|js|html|eot|woff|ttf|svg|otf|xml|txt|json|pdf))$
   static_files: \1
-  upload: .+\.(gif|png|jpg|css|js|html|eot|woff|ttf|svg|otf|xml|txt|json)$
+  upload: .+\.(gif|png|jpg|css|js|html|eot|woff|ttf|svg|otf|xml|txt|json|pdf)$
   application_readable: true
 
 - url: /payment.php
