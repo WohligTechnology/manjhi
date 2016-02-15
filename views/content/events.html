@@ -114,7 +114,7 @@
         </div>
     </div>
 -->
-    <div class="row" ng-if="events.upcoming && events.upcoming.length>0">
+    <!-- <div class="row" ng-if="events.upcoming && events.upcoming.length>0">
         <div class="all-events search-box">
             <h3 class="font-color3 home-header padtop">Upcoming Events</h3>
             <p class="head">{{currentYear+1}}</p>
@@ -135,6 +135,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div> -->
+    <div class="row" ng-if="events.upcoming && events.upcoming.length>0">
+        <div class="all-events search-box">
+            <h3 class="font-color3 home-header padtop">Upcoming Events</h3>
+            <accordion close-others="true">
+                <accordion-group heading="{{event1[0].year}}" ng-repeat="event1 in events.upcoming">
+                    <div class="row">
+                        <div class="col-md-3" ng-repeat="event in event1">
+                            <div class="event-detail ">
+                                <div class="data">
+                                    <h6 class="font-color2">{{event.name}}</h6>
+                                    <p>{{event.detail}}</p>
+                                </div>
+                                <a ui-sref="eventdetail({id:event._id})">
+                                  <!-- {{event}} -->
+                                    <div class="event-img text-center">
+                                        <figure>
+                                            <img ng-src="{{event.photos[0]|uploadthumbnail}}" class="img-responsive">
+                                        </figure>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
         </div>
     </div>
     <div class="row" ng-if="events.present && events.present.length>0">
