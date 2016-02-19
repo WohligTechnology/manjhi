@@ -455,21 +455,28 @@ firstapp.directive('fancyboxBox', function ($document) {
     }
 });
 
+
 firstapp.directive('elevateZoom', function ($document, $filter) {
     return {
         restrict: 'EA',
         link: function ($scope, element, attr) {
             $scope.$watch(attr.image, function () {
                 $scope.changeImage = function () {
+                    var $element = $(element);
                     var image = '';
                     image = $scope[attr.image].artwork.image[0];
-                    var $element = $(element);
-                    // image = image.artwork.image[0];
-                    var smallimg = attr.smallImage;
-                    var bigimg = attr.bigImage;
-                    $element.attr('data-zoom-image', $filter('uploadpath')(image));
-                    $element.attr('src', $filter('uploadsmallimage')(image));
-                    $element.elevateZoom();
+                    var ez = $element.data("elevateZoom");
+                    if(!ez)
+                    {
+                      $element.attr('data-zoom-image', $filter('uploadpath')(image));
+                      $element.attr('src', $filter('uploadpath')(image));
+                      $element.elevateZoom();
+                    }
+                    else {
+                      var newImage = $filter('uploadpath')(image);
+                      var smallImage = $filter('uploadsmallimage')(image);
+                      ez.swaptheimage(smallImage,newImage);
+                    }
                 }
                 $scope.$on('changeImage', function (event, data) {
                     $scope.changeImage();

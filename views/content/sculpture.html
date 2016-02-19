@@ -112,7 +112,7 @@
           <div class="row-flex row-flex row-unflex sweet-box box-more text-center margin-less">
             <div class="col-flex" ng-repeat="moreviews in artistDetailImg.artwork.image track by $index" ng-if="artistDetailImg.artwork.image.length>1 && $index!=0" ng-click="activeImage(moreviews);">
               <div class="view-box image-box">
-                <img ng-src='{{moreviews|uploadthumbnail}}' alt="" class="img-responsive">
+                <img ng-src='{{moreviews|uploadpath}}' alt="" class="img-responsive">
               </div>
             </div>
           </div>
