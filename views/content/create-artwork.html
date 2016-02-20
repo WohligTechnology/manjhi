@@ -6,7 +6,6 @@
          <div class="row">
             <div class="col-md-12">
                <form data-ng-submit="createartwork()">
-
                   <section class="panel panel-default" style="border-radius:0px;">
                      <div class="panel-body">
                         <div class="row">
@@ -50,10 +49,12 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="col-md-4">
+                           <div class="col-md-4" id="artTitle">
                               <div class="form-group">
                                  <label>Title</label>
-                                 <input capitalize-first class="form-control" ng-model="artwork.name" placeholder="Title" required type="text">
+                                 <input capitalize-first class="form-control" ng-model="artwork.name" placeholder="Title" type="text">
+                                 <!-- <p >Please Select Artist</p> -->
+                                 <label style="color: red;font-weight: 500;" ng-show="showProceedTitle">Press Submit to proceed with this Title.</label>
                               </div>
                            </div>
                            <div class="col-md-4">

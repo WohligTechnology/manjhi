@@ -3191,7 +3191,14 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.forgotpassword($scope.forgot, function(data, status) {
             console.log(data);
             if (data.value == true) {
-                dataNextPre.messageBox("New password has e-mailed to you");
+                ngDialog.open({
+                    template: '<div class="pop-up"><h5 class="popup-wishlist">New password e mailed to you.</h5><span class="closepop" ng-click="closeThisDialog(value);">X</span></div>',
+                    plain: true
+                });
+                $timeout(function() {
+                    ngDialog.closeAll();
+                }, 3000);
+                // dataNextPre.messageBox("New password e mailed to you.");
             }
         })
     }
@@ -3562,7 +3569,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 "id": id
             });
         } else {
-            dataNextPre.messageBoxNoTime("For any changes, please write to us at artistsubmit/resellersubmit@auraart.in");
+            dataNextPre.messageBoxNoTime("For any changes, please write to us at artistsubmit@auraart.in/resellersubmit@auraart.in");
         }
     }
 
@@ -4210,7 +4217,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.showerror = false;
     $scope.disableSubmit = false;
+    $scope.showProceedTitle = false;
     $scope.createartwork = function() {
+
         NavigationService.getuserprofile(function(data) {
             if (data.id && $scope.artwork.user) {
                 $scope.submitComment();
@@ -4232,40 +4241,47 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     $scope.artwork.weight = "";
                 }
                 if ($scope.artwork.user) {
-                    $scope.showerror = false;
-                    $scope.artwork.user = $scope.artwork.user._id;
-                    if ($scope.artwork.tag.length == 0) {
-                        $scope.artwork.tag[0] = {
-                            _id: "",
-                            name: "",
-                            category: ""
-                        };
-                    }
-                    // $scope.userData._id = $scope.userData.id;
-                    // NavigationService.registeruser($scope.userData, function(data) {
-                    //     console.log(data);
-                    // });
-                    $scope.artwork.status = 'pending';
-                    $scope.artwork.selleremail = $scope.userData.email;
-                    $scope.artwork.sellername = $scope.userData.name;
-                    $scope.artwork.location = $scope.userData.other;
-                    if (!$scope.artwork.focused) {
-                        $scope.artwork.focused = "nonfocused";
-                    }
-                    if (!$scope.artwork.name)
+                    if (!$scope.artwork.name) {
                         $scope.artwork.name = 'Untitled';
-                    NavigationService.saveArtwork($scope.artwork, function(data, status) {
-                        console.log(data);
-                        if (data.value == true) {
-                            $scope.disableSubmit = true;
-                            dataNextPre.messageBox("Your art work has been submitted for review.");
-                            globalFunction.tab = "myartworks";
-                            $timeout(function() {
-                                $state.go('account');
-                            }, 3000);
+                        $scope.showProceedTitle = true;
+                        $('html, body').animate({
+                            scrollTop: 100
+                        }, 1000);
+                    } else {
+                        $scope.showerror = false;
+                        $scope.artwork.user = $scope.artwork.user._id;
+                        if ($scope.artwork.tag.length == 0) {
+                            $scope.artwork.tag[0] = {
+                                _id: "",
+                                name: "",
+                                category: ""
+                            };
                         }
-                        // $location.url("/artworkout");
-                    });
+                        // $scope.userData._id = $scope.userData.id;
+                        // NavigationService.registeruser($scope.userData, function(data) {
+                        //     console.log(data);
+                        // });
+                        $scope.artwork.status = 'pending';
+                        $scope.artwork.selleremail = $scope.userData.email;
+                        $scope.artwork.sellername = $scope.userData.name;
+                        $scope.artwork.location = $scope.userData.other;
+                        if (!$scope.artwork.focused) {
+                            $scope.artwork.focused = "nonfocused";
+                        }
+
+                        NavigationService.saveArtwork($scope.artwork, function(data, status) {
+                            console.log(data);
+                            if (data.value == true) {
+                                $scope.disableSubmit = true;
+                                dataNextPre.messageBox("Your art work has been submitted for review.");
+                                globalFunction.tab = "myartworks";
+                                $timeout(function() {
+                                    $state.go('account');
+                                }, 3000);
+                            }
+                            // $location.url("/artworkout");
+                        });
+                    }
                 } else {
                     $scope.showerror = true;
                 }

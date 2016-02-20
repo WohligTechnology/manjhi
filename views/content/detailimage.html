@@ -120,9 +120,9 @@
                   <h4 class="head-more">
                      MORE WORKS BY THIS ARTIST
                      <a ui-sref="artistdetail({artistid:artid})" class="link-viewall">VIEW ALL</a>
-                     <a class="link-viewall" ng-click="status.open = !status.open">VIEW PROFILE</a>
+                     <a class="link-viewall" ng-click="status.open = !status.open;checkForEmpty();">VIEW PROFILE</a>
                   </h4>
-                  <div class="cont-artist">
+                  <div class="cont-artist" id="divh">
                      <accordion>
                         <accordion-group is-open="status.open">
                            <div class="row">

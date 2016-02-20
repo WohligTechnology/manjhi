@@ -16,6 +16,9 @@
          <div class="detailtext">
             <p ng-bind-html="thoughtdetail.desc | rawHtml"></p>
          </div>
+         <div class="detailtext" ng-if="thoughtdetail.file">
+            <a class="btn btn-sucesses" href="{{thoughtdetail.file | uploadpath}}" target="_blank">View Ppt or Pdf</a>
+         </div>
       </div>
    </div>
 </div>
