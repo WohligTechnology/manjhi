@@ -254,7 +254,7 @@ firstapp.config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvid
         url: "/error500",
         templateUrl: "views/template.html",
         controller: 'Error500Ctrl'
-    })
+    });
 
     $urlRouterProvider.otherwise("/home");
 
@@ -320,18 +320,15 @@ firstapp.directive("uiselectAutofocus", function($timeout) {
             //         scope.$watch(attr.)
             scope.$watch(attr.demo, function() {
                 console.log(attr.demo);
-
-
                 $timeout(function() {
                     var input = elem.find('input');
                     //                if (attr.uiselectAutofocus == 'open')
                     //                    input.click();
-                    //
-                    input.focus()
+                    input.focus();
                 }, 0);
-            })
+            });
         }
-    }
+    };
 });
 
 firstapp.directive('focus',
@@ -414,7 +411,7 @@ firstapp.directive('googlePlusSignin', ['$window',
                     };
                 });
             }
-        }
+        };
     }
 ]).run(['$window', '$rootScope',
     function($window, $rootScope) {
@@ -436,10 +433,11 @@ firstapp.directive('fancyboxBox', function($document) {
         replace: false,
         link: function(scope, element, attr) {
             var $element = $(element);
+            var target;
             if (attr.rel) {
-                var target = $("[rel='" + attr.rel + "']");
+               target = $("[rel='" + attr.rel + "']");
             } else {
-                var target = element;
+                target = element;
             }
 
             target.fancybox({
@@ -450,9 +448,8 @@ firstapp.directive('fancyboxBox', function($document) {
                     media: {}
                 }
             });
-
         }
-    }
+    };
 });
 
 
@@ -474,14 +471,14 @@ firstapp.directive('elevateZoom', function($document, $filter) {
                         var newImage = $filter('uploadpath')(image);
                         ez.swaptheimage(newImage, newImage);
                     }
-                }
+                };
                 $scope.$on('changeImage', function(event, data) {
                     $scope.changeImage();
                 });
                 $scope.changeImage();
-            })
+            });
         }
-    }
+    };
 });
 
 firstapp.directive('zoomContainer', function() {
@@ -490,15 +487,15 @@ firstapp.directive('zoomContainer', function() {
         link: function(scope, element, attrs) {
             scope.$on('$stateChangeSuccess', function() {
                 var target = element.children('div.zoomContainer').remove();
-            })
+            });
         }
-    }
+    };
 
 });
 
 firstapp.filter('uploadthumbnail', function() {
     return function(input) {
-        if (input && input != "") {
+        if (input && input !== "") {
             return adminurl + "user/resize?height=190&file=" + input;
             // return adminurl + "user/resize?file=" + input;
         } else {
@@ -509,7 +506,7 @@ firstapp.filter('uploadthumbnail', function() {
 
 firstapp.filter('uploadpath', function() {
     return function(input) {
-        if (input && input != "") {
+        if (input && input !== "") {
             if (input.indexOf('.jpg') != -1)
                 return adminurl + "user/resize?width=750&file=" + input;
             else {
@@ -523,7 +520,7 @@ firstapp.filter('uploadpath', function() {
 
 firstapp.filter('uploadsmallimage', function() {
     return function(input) {
-        if (input && input != "") {
+        if (input && input !== "") {
             // return adminurl + "user/resize?file=" + input;
             return adminurl + "user/resize?width=750&file=" + input;
         } else {
@@ -584,14 +581,14 @@ firstapp.filter('touppercase', function() {
 firstapp.filter('makesizestr', function() {
     return function(artobj) {
         var size = "";
-        if (artobj && artobj != undefined) {
-            if (artobj.height && artobj.height != "") {
+        if (artobj && artobj !== undefined) {
+            if (artobj.height && artobj.height !== "") {
                 size += artobj.height;
             }
-            if (artobj.width && artobj.width != "") {
+            if (artobj.width && artobj.width !== "") {
                 size += " " + artobj.width;
             }
-            if (artobj.breadth && artobj.breadth != "" && artobj.breadth != "N/A") {
+            if (artobj.breadth && artobj.breadth !== "" && artobj.breadth != "N/A") {
                 size += " " + artobj.breadth;
             }
             size = size.trim();
@@ -647,11 +644,12 @@ firstapp.directive('onlyDigits', function() {
         restrict: 'A',
         link: function(scope, element, attr, ctrl) {
             function inputValue(val) {
+              var digits;
                 if (val) {
                     if (attr.type == "tel") {
-                        var digits = val.replace(/[^0-9\+\\]/g, '');
+                         digits = val.replace(/[^0-9\+\\]/g, '');
                     } else {
-                        var digits = val.replace(/[^0-9\-\\]/g, '');
+                         digits = val.replace(/[^0-9\-\\]/g, '');
                     }
 
 
@@ -675,7 +673,7 @@ firstapp.directive('clickme', function() {
             alert(userProfile);
         };
         element.bind('click', clickingCallback);
-    }
+    };
 });
 
 firstapp.directive('youtube', function($sce) {
@@ -702,9 +700,9 @@ var formvalidation = function(allvalidation) {
     var error = '';
     for (var i = 0; i < allvalidation.length; i++) {
         console.log(allvalidation[i].field);
-        if (allvalidation[i].field == "" || !allvalidation[i].field) {
+        if (allvalidation[i].field === "" || !allvalidation[i].field) {
             allvalidation[i].validation = "ng-dirty";
-            if (error == '') {
+            if (error === '') {
                 error += allvalidation[i].name;
             } else {
                 error += " , " + allvalidation[i].name;
@@ -728,7 +726,7 @@ firstapp.filter('addhighlight', function() {
         var num = 0;
         var check = false;
         var string2 = "";
-        if (smallSearchkey && smallSearchkey != "") {
+        if (smallSearchkey && smallSearchkey !== "") {
             var split = newstr.split(" ");
             _.each(split, function(n) {
                 var subst = n.substr(0, searchkey.length);
@@ -741,15 +739,15 @@ firstapp.filter('addhighlight', function() {
                     abc = n + " ";
                 }
                 string2 += abc + " ";
-            })
+            });
         }
         if (check) {
             return string2;
         } else {
             return str;
         }
-    }
-})
+    };
+});
 
 
 var clearFields = function(allvalidation) {
