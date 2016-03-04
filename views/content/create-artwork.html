@@ -77,25 +77,25 @@
                            <div class="col-md-3">
                               <div class="form-group">
                                  <label>Height (inches)</label>
-                                 <input class="form-control" ng-model="artwork.height" placeholder="Height" required type="text" only-digits ng-trim="false" ng-change="calcsq();">
+                                 <input class="form-control" ng-model="artwork.height" placeholder="Height" required type="number" ng-change="calcsq();">
                               </div>
                            </div>
                            <div class="col-md-3">
                               <div class="form-group">
                                  <label>Width (inches)</label>
-                                 <input class="form-control" ng-model="artwork.width" placeholder="Width" required type="text" only-digits ng-trim="false" ng-change="calcsq();">
+                                 <input class="form-control" ng-model="artwork.width" placeholder="Width" required type="number" ng-change="calcsq();">
                               </div>
                            </div>
                            <div class="col-md-3" ng-show="showBreadth">
                               <div class="form-group">
                                  <label>Depth (inches)</label>
-                                 <input class="form-control" ng-model="artwork.breadth" placeholder="Depth" type="text" only-digits ng-trim="false" ng-change="calcsq();">
+                                 <input class="form-control" ng-model="artwork.breadth" placeholder="Depth" type="number" ng-change="calcsq();">
                               </div>
                            </div>
                            <div class="col-md-3" ng-show="showBreadth">
                               <div class="form-group">
                                  <label>Weight (kgs)</label>
-                                 <input class="form-control" ng-model="artwork.weight" placeholder="Weight" type="text" only-digits ng-trim="false">
+                                 <input class="form-control" ng-model="artwork.weight" placeholder="Weight" type="number">
                               </div>
                            </div>
                         </div>
@@ -176,25 +176,25 @@
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label>Height (inches)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalheight" placeholder="Height" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalheight" placeholder="Height" required type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label>Width (inches)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalwidth" placeholder="Width" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalwidth" placeholder="Width" required type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label>Depth (inches)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalbreadth" placeholder="Depth" type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalbreadth" placeholder="Depth" type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label>Weight (kgs)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalweight" placeholder="Weight" type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalweight" placeholder="Weight" type="number">
                                     </div>
                                  </div>
                               </div>
@@ -227,13 +227,13 @@
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label>Height (inches)</label>
-                                       <input class="form-control" ng-model="artwork.framedheight" placeholder="Height" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.framedheight" placeholder="Height" required type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label>Width (inches)</label>
-                                       <input class="form-control" ng-model="artwork.framedwidth" placeholder="Width" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.framedwidth" placeholder="Width" required type="number">
                                     </div>
                                  </div>
                               </div>
@@ -414,7 +414,6 @@
                      </div>
                   </section>
                </form>
-
             </div>
          </div>
       </div>

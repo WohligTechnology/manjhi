@@ -75,25 +75,25 @@
                            <div class="col-md-3">
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Height (inches)</label>
-                                 <input class="form-control" ng-model="artwork.height" placeholder="Height" required type="text" only-digits ng-trim="false" ng-change="calcsq();">
+                                 <input class="form-control" ng-model="artwork.height" placeholder="Height" required type="number" ng-change="calcsq();">
                               </div>
                            </div>
                            <div class="col-md-3">
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Width (inches)</label>
-                                 <input class="form-control" ng-model="artwork.width" placeholder="Width" required type="text" only-digits ng-trim="false" ng-change="calcsq();">
+                                 <input class="form-control" ng-model="artwork.width" placeholder="Width" required type="number" ng-change="calcsq();">
                               </div>
                            </div>
                            <div class="col-md-3" ng-show="showBreadth">
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Depth (inches)</label>
-                                 <input class="form-control" ng-model="artwork.breadth" placeholder="Depth" type="text" only-digits ng-trim="false" ng-change="calcsq();">
+                                 <input class="form-control" ng-model="artwork.breadth" placeholder="Depth" type="number" ng-change="calcsq();">
                               </div>
                            </div>
                            <div class="col-md-3" ng-show="showBreadth">
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Weight (kgs)</label>
-                                 <input class="form-control" ng-model="artwork.weight" placeholder="Weight" type="text" only-digits ng-trim="false">
+                                 <input class="form-control" ng-model="artwork.weight" placeholder="Weight" type="number">
                               </div>
                            </div>
                         </div>
@@ -174,25 +174,25 @@
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Height (inches)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalheight" placeholder="Height" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalheight" placeholder="Height" required type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Width (inches)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalwidth" placeholder="Width" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalwidth" placeholder="Width" required type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Depth (inches)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalbreadth" placeholder="Depth" type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalbreadth" placeholder="Depth" type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Weight (kgs)</label>
-                                       <input class="form-control" ng-model="artwork.pedestalweight" placeholder="Weight" type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.pedestalweight" placeholder="Weight" type="number">
                                     </div>
                                  </div>
                               </div>
@@ -225,13 +225,13 @@
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Height (inches)</label>
-                                       <input class="form-control" ng-model="artwork.framedheight" placeholder="Height" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.framedheight" placeholder="Height" required type="number">
                                     </div>
                                  </div>
                                  <div class="col-md-3">
                                     <div class="form-group">
                                        <label for="exampleInputEmail1">Width (inches)</label>
-                                       <input class="form-control" ng-model="artwork.framedwidth" placeholder="Width" required type="text" only-digits ng-trim="false">
+                                       <input class="form-control" ng-model="artwork.framedwidth" placeholder="Width" required type="number">
                                     </div>
                                  </div>
                               </div>
@@ -264,18 +264,18 @@
                               <div class="form-group">
                                  <label for="exampleInputEmail1">Residence Address</label>
                                  <div class="tel-box">
-                                    <input class="form-control tel-country" ng-model="userData.other.flatno" placeholder="House No"  type="text">
-                                    <input class="form-control tel-number" ng-model="userData.other.bldgname" placeholder="Name of Building / Society"  type="text">
+                                    <input class="form-control tel-country" ng-model="userData.other.flatno" placeholder="House No" type="text">
+                                    <input class="form-control tel-number" ng-model="userData.other.bldgname" placeholder="Name of Building / Society" type="text">
                                  </div>
                               </div>
                               <div class="form-group">
-                                 <input class="form-control" ng-model="userData.other.landmark" placeholder="Landmark"  type="text">
+                                 <input class="form-control" ng-model="userData.other.landmark" placeholder="Landmark" type="text">
                               </div>
                               <div class="form-group">
-                                 <input class="form-control" ng-model="userData.other.street" placeholder="Street"  type="text">
+                                 <input class="form-control" ng-model="userData.other.street" placeholder="Street" type="text">
                               </div>
                               <div class="form-group">
-                                 <input class="form-control" ng-model="userData.other.locality" placeholder="Locality"  type="text">
+                                 <input class="form-control" ng-model="userData.other.locality" placeholder="Locality" type="text">
                               </div>
                               <div class="form-group">
                                  <input class="form-control" ng-model="userData.other.city" placeholder="City" type="text">
