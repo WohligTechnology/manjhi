@@ -140,11 +140,11 @@
                                     <span ng-repeat="edu in artistdetail.edu">
                              <br>
                              <span ng-if="edu.year">{{edu.year}}</span>
-                                    <span ng-if="edu.year && edu.quali">, </span>
+                                    <span class="negmargin" ng-if="edu.year && edu.quali">, </span>
                                     <span ng-if="edu.quali">{{edu.quali}}</span>
-                                    <span ng-if="edu.quali && edu.institu">, </span>
+                                    <span class="negmargin" ng-if="edu.quali && edu.institu">, </span>
                                     <span ng-if="edu.institu">{{edu.institu}}</span>
-                                    <span ng-if="edu.institu && edu.city">, </span>
+                                    <span class="negmargin" ng-if="edu.institu && edu.city">, </span>
                                     <span ng-if="edu.city">{{edu.city}}</span>
                                     </span>
                                     <!--<br>2008, Master of Fine Arts, Jamia Milia Islamia University, New Delhi-->
@@ -154,9 +154,9 @@
                                     <span ng-repeat="awards in artistdetail.award">
                              <br>
                              <span ng-if="awards.year">{{awards.year}}</span>
-                                    <span ng-if="awards.year && awards.title">, </span>
+                                    <span class="negmargin" ng-if="awards.year && awards.title">, </span>
                                     <span ng-if="awards.title">{{awards.title}}</span>
-                                    <span ng-if="awards.title && awards.institution">, </span>
+                                    <span class="negmargin" ng-if="awards.title && awards.institution">, </span>
                                     <span ng-if="awards.institution">{{awards.institution}}</span>
                                     </span>
                                  </p>
@@ -167,11 +167,11 @@
                                     <span ng-repeat="auction in artistdetail.auction">
                              <br>
                              <span ng-if="auction.year">{{auction.year}}</span>
-                                    <span ng-if="auction.year && auction.auctionhouse">, </span>
+                                    <span class="negmargin" ng-if="auction.year && auction.auctionhouse">, </span>
                                     <span ng-if="auction.auctionhouse">{{auction.auctionhouse}}</span>
-                                    <span ng-if="auction.auctionhouse && auction.location">, </span>
+                                    <span class="negmargin" ng-if="auction.auctionhouse && auction.location">, </span>
                                     <span ng-if="auction.location">{{auction.location}}</span>
-                                    <span ng-if="auction.location && auction.details">, </span>
+                                    <span class="negmargin" ng-if="auction.location && auction.details">, </span>
                                     <span ng-if="auction.details">{{auction.details}}</span>
                                     </span>
                                  </p>
@@ -180,10 +180,10 @@
                                     <span ng-repeat="solo in artistdetail.soloshow">
                              <br>
                              <span ng-if="solo.year">{{solo.year}}</span>
-                                    <span ng-if="solo.title">, {{solo.title}}</span>
-                                    <span ng-if="solo.gallery">, {{solo.gallery}}</span>
-                                    <span ng-if="solo.venue">, {{solo.venue}}</span>
-                                    <span ng-if="solo.city">, {{solo.city}}</span>
+                                    <span class="negmargin" ng-if="solo.title">, {{solo.title}}</span>
+                                    <span class="negmargin" ng-if="solo.gallery">, {{solo.gallery}}</span>
+                                    <span class="negmargin" ng-if="solo.venue">, {{solo.venue}}</span>
+                                    <span class="negmargin" ng-if="solo.city">, {{solo.city}}</span>
                                     </span>
                                  </p>
                                  <p ng-if="artistdetail.groupshow && artistdetail.groupshow.length>0 && (artistdetail.groupshow[0].year || artistdetail.groupshow[0].title || artistdetail.groupshow[0].gallery || artistdetail.groupshow[0].venue || artistdetail.groupshow[0].city)">
@@ -191,10 +191,10 @@
                                     <span ng-repeat="group in artistdetail.groupshow">
                              <br>
                              <span ng-if="group.year">{{group.year}}</span>
-                                    <span ng-if="group.title">, {{group.title}}</span>
-                                    <span ng-if="group.gallery">, {{group.gallery}}</span>
-                                    <span ng-if="group.venue">, {{group.venue}}</span>
-                                    <span ng-if="group.city">, {{group.city}}</span>
+                                    <span class="negmargin" ng-if="group.title">, {{group.title}}</span>
+                                    <span class="negmargin" ng-if="group.gallery">, {{group.gallery}}</span>
+                                    <span class="negmargin" ng-if="group.venue">, {{group.venue}}</span>
+                                    <span class="negmargin" ng-if="group.city">, {{group.city}}</span>
                                     </span>
                                  </p>
                               </div>

@@ -3584,7 +3584,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     }
 
     $scope.editArtwork = function(status, id) {
-        if (status === 'revert') {
+        if (status === 'revert' || status === 'pending') {
             $state.go("edit-artwork", {
                 "id": id
             });
@@ -4015,14 +4015,12 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
         console.log($scope.artwork.subtype);
     }
-    $scope.ismatchmed = function(data, select) {
+    $scope.artwork.color = [];
+    $scope.artwork.style = [];
+    $scope.artwork.elements = [];
+    $scope.ismatchmed = function(data, select, index) {
         _.each(data, function(n, key) {
             if (typeof n == 'string') {
-                // var item = {
-                //     _id: _.now(),
-                //     name: _.capitalize(n),
-                //     category: $scope.artwork.type
-                // };
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n)
@@ -4034,10 +4032,15 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 });
                 select.selected = _.without(select.selected, n);
                 select.selected.push(item);
-                $scope.artwork.tag = select.selected;
+                if (index == 1) {
+                    $scope.artwork.color = select.selected;
+                } else if (index == 2) {
+                    $scope.artwork.style = select.selected;
+                } else if (index == 3) {
+                    $scope.artwork.elements = select.selected;
+                }
             }
         });
-        console.log($scope.artwork.tag);
     }
 
     //imageupload
@@ -4288,7 +4291,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                         if (!$scope.artwork.focused) {
                             $scope.artwork.focused = "nonfocused";
                         }
-
+                        $scope.artwork.tag = [];
+                        _.each($scope.artwork.color, function(n) {
+                            $scope.artwork.tag.push(n);
+                        });
+                        _.each($scope.artwork.style, function(n) {
+                            $scope.artwork.tag.push(n);
+                        });
+                        _.each($scope.artwork.elements, function(n) {
+                            $scope.artwork.tag.push(n);
+                        });
+                        $scope.artwork.tag = _.uniq($scope.artwork.tag, '_id');
                         NavigationService.saveArtwork($scope.artwork, function(data, status) {
                             console.log(data);
                             if (data.value == true) {
@@ -4337,7 +4350,7 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     };
 })
 
-.controller('EditArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams) {
+.controller('EditArtworkCtrl', function($scope, TemplateService, NavigationService, $upload, $timeout, $http, $stateParams, $state) {
     $scope.template = TemplateService.changecontent("edit-artwork");
     $scope.menutitle = NavigationService.makeactive("Upload Artwork");
     TemplateService.title = $scope.menutitle;
@@ -4409,7 +4422,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
             };
             $scope.variable = data[0].name;
             if ($scope.artwork.status == "pending") {
-                $scope.disableSubmit = true;
+                // $scope.disableSubmit = true;
+            }
+            if (!$scope.artwork.color) {
+                $scope.artwork.color = [];
+            }
+            if (!$scope.artwork.style) {
+                $scope.artwork.style = [];
+            }
+            if (!$scope.artwork.elements) {
+                $scope.artwork.elements = [];
             }
             // console.log($scope.artwork)
         }
@@ -4529,14 +4551,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         });
         console.log($scope.artwork.subtype);
     }
-    $scope.ismatchmed = function(data, select) {
+
+    $scope.ismatchmed = function(data, select, index) {
         _.each(data, function(n, key) {
             if (typeof n == 'string') {
-                // var item = {
-                //     _id: _.now(),
-                //     name: _.capitalize(n),
-                //     category: $scope.artwork.type
-                // };
                 var item = {
                     _id: _.now(),
                     name: _.capitalize(n)
@@ -4548,11 +4566,17 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                 });
                 select.selected = _.without(select.selected, n);
                 select.selected.push(item);
-                $scope.artwork.tag = select.selected;
+                if (index == 1) {
+                    $scope.artwork.color = select.selected;
+                } else if (index == 2) {
+                    $scope.artwork.style = select.selected;
+                } else if (index == 3) {
+                    $scope.artwork.elements = select.selected;
+                }
             }
         });
-        console.log($scope.artwork.tag);
     }
+
 
     //imageupload
     var imagejstupld = "";
@@ -4792,6 +4816,16 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
                     if (!$scope.artwork.focused) {
                         $scope.artwork.focused = "nonfocused";
                     }
+                    _.each($scope.artwork.color, function(n) {
+                        $scope.artwork.tag.push(n);
+                    });
+                    _.each($scope.artwork.style, function(n) {
+                        $scope.artwork.tag.push(n);
+                    });
+                    _.each($scope.artwork.elements, function(n) {
+                        $scope.artwork.tag.push(n);
+                    });
+                    $scope.artwork.tag = _.uniq($scope.artwork.tag, '_id');
                     NavigationService.saveArtwork($scope.artwork, function(data, status) {
                         console.log(data);
                         if (data.value == true) {
