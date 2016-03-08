@@ -1141,10 +1141,11 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.artworktype(filterdata, function(data, status) {
             // console.log(data.data);
             lastpage = parseInt(data.totalpages);
-            $scope.totalartcont = _.union($scope.totalartcont, data.data);
-            // _.each(data.data, function(n) {
-            //     $scope.totalartcont.push(n);
-            // })
+            // $scope.totalartcont = _.union($scope.totalartcont, data.data);
+            _.each(data.data, function(n) {
+                n.artwork.pageno = data.page;
+                $scope.totalartcont.push(n);
+            });
             $scope.totalartcont = _.uniq($scope.totalartcont, 'artwork._id');
             $scope.callinfinite = false;
             cfpLoadingBar.complete();
@@ -1297,6 +1298,10 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
 
     $scope.goToDetailPage = function(artwork) {
         //      console.log(artwork);
+        var obj = {};
+        obj.pageno = artwork.pageno;
+        obj.lastpage = lastpage;
+        $.jStorage.set("pageno", obj);
         if (artwork.type == "Sculptures") {
             //          $location.url("/sculpture/" + artwork._id);
             $state.go('sculpture', {
@@ -2169,6 +2174,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
             // $scope.artistDetailImg = data;
             if (data.value != false) {
+                var obj = $.jStorage.get("pageno");
+                obj.pageno = data.pageno;
+                $.jStorage.set("pageno", obj);
                 $state.go("detail", {
                     "artid": data.artwork._id
                 });
@@ -2181,6 +2189,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artNext = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
             if (data.value != false) {
+                var obj = $.jStorage.get("pageno");
+                obj.pageno = data.pageno;
+                $.jStorage.set("pageno", obj);
                 $state.go("detail", {
                     "artid": data.artwork._id
                 });
@@ -2297,6 +2308,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artPrev = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'prev', function(data) {
             // $scope.artistDetailImg = data;
+            var obj = $.jStorage.get("pageno");
+            obj.pageno = data.pageno;
+            $.jStorage.set("pageno", obj);
             $state.go("detail", {
                 "artid": data.artwork._id
             });
@@ -2306,6 +2320,9 @@ angular.module('phonecatControllers', ['templateservicemod', 'navigationservice'
     $scope.artNext = function() {
         NavigationService.nextPrev($scope.artistDetailImg.artwork.srno, 'next', function(data) {
             // $scope.artistDetailImg = data;
+            var obj = $.jStorage.get("pageno");
+            obj.pageno = data.pageno;
+            $.jStorage.set("pageno", obj);
             $state.go("detail", {
                 "artid": data.artwork._id
             });
